@@ -1,0 +1,708 @@
+<!doctype html>
+<html class="js backgroundsize borderimage csstransitions fontface svg no-details progressbar meter no-mathml cors mediumview wb-enable" lang="en" dir="ltr">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Form validation - Working examples - Web Experience Toolkit</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Provides generic validation and error message handling for Web forms.">
+<!--[if gte IE 9 | !IE ]><!-->
+<link class="wb-favicon" href="https://wet-boew.github.io/v4.0-ci/theme-wet-boew/assets/favicon-mobile.png" rel="apple-touch-icon" sizes="57x57 72x72 114x114 144x144 150x150">
+<link class="wb-init wb-favicon-inited" href="https://wet-boew.github.io/v4.0-ci/theme-wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon">
+<link href="https://wet-boew.github.io/v4.0-ci/theme-wet-boew/css/theme.min.css" rel="stylesheet">
+<!--<![endif]-->
+<!--[if lt IE 9]>
+		<link href="https://wet-boew.github.io/v4.0-ci/theme-wet-boew/assets/favicon.ico" rel="shortcut icon" />
+		<link rel="stylesheet" href="https://wet-boew.github.io/v4.0-ci/theme-wet-boew/css/ie8-theme.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://wet-boew.github.io/v4.0-ci/wet-boew/js/ie8-wet-boew.min.js"></script>
+		<![endif]-->
+<noscript>
+&lt;link rel="stylesheet" href="../../wet-boew/css/noscript.min.css" /&gt;
+</noscript>
+</head>
+<body typeof="WebPage" vocab="http://schema.org/">
+<nav>
+  <ul class="wb-init wb-disable-inited" id="wb-tphp">
+    <li class="wb-slc"> <a class="wb-sl" href="#wb-cont">Skip to main content</a> </li>
+    <li class="wb-slc visible-sm visible-md visible-lg"> <a class="wb-sl" href="#wb-info">Skip to "About this site"</a> </li>
+    <li class="wb-slc"><a class="wb-sl" href="" rel="alternate">Switch to basic HTML version</a></li>
+  </ul>
+</nav>
+<header role="banner">
+  <div id="wb-bnr">
+    <div id="wb-bar">
+      <div class="container">
+        <div class="row">
+          <section class="visible-md visible-lg" id="wb-lng">
+            <h2>Language selection</h2>
+            <ul class="text-right">
+              <li><a lang="fr" href="formvalid-fr.html" hreflang="fr">Français</a></li>
+              <li class="curr">English <span>(current)</span></li>
+            </ul>
+          </section>
+          <section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn">
+            <h2>Search and menus</h2>
+            <ul class="pnl-btn list-inline text-right">
+              <li><a title="Search and menus" class="overlay-lnk btn btn-sm btn-default" role="button" aria-controls="mb-pnl" href="#mb-pnl"><span class="glyphicon glyphicon-search"><span class="glyphicon glyphicon-th-list"><span class="wb-inv">Search and menus</span></span></span></a></li>
+            </ul>
+            <div class=" wb-overlay modal-content overlay-def wb-panel-r wb-overlay-inited" id="mb-pnl" aria-hidden="true">
+              <header class="modal-header">
+                <div class="modal-title">Search and menus</div>
+              </header>
+              <div class="modal-body">
+                <section class="srch-pnl">
+                  <h3>Search</h3>
+                  <form class="form-inline" role="search" action="https://google.ca/search" method="get">
+                    <div class="form-group">
+                      <label for="wb-srch-q-imprt">Search website</label>
+                      <input name="q" class="form-control" id="wb-srch-q-imprt" type="search" size="27" maxlength="150" value="">
+                      <input name="q" type="hidden" value="site:wet-boew.github.io OR site:github.com/wet-boew/">
+                    </div>
+                    <button class="btn btn-default" id="wb-srch-sub-imprt" type="submit">Search</button>
+                  </form>
+                </section>
+                <section class="lng-ofr">
+                  <h3>Language selection</h3>
+                  <ul class="list-inline">
+                    <li><a lang="fr" href="formvalid-fr.html" hreflang="fr">Français</a></li>
+                  </ul>
+                </section>
+                <nav class="sm-pnl wb-menu wb-menu-inited wb-init wb-navcurr-inited" id="sm-pnl" role="navigation" typeof="SiteNavigationElement">
+                  <h3>Topics menu</h3>
+                  <ul class="list-unstyled mb-menu" role="menu">
+                    <li>
+                      <details>
+                        <summary tabindex="0" class="mb-item wb-init wb-details-inited" id="wb-auto-25" role="menuitem" aria-expanded="false" aria-haspopup="true" aria-posinset="1" aria-setsize="3">WET project</summary>
+                        <ul class="list-unstyled mb-sm" role="menu" aria-expanded="false" aria-hidden="true">
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="1" aria-setsize="9" href="https://wet-boew.github.io/v4.0-ci/index-en.html#about">About the Web Experience Toolkit</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="2" aria-setsize="9" href="https://wet-boew.github.io/v4.0-ci/index-en.html#benefits">Benefits</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="3" aria-setsize="9" href="https://wet-boew.github.io/wet-boew/docs/ref/accolades-en.html">Awards, articles and videos</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="4" aria-setsize="9" href="https://wet-boew.github.io/wet-boew/docs/events-en.html">Events</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="5" aria-setsize="9" href="https://github.com/wet-boew/wet-boew/">Main project page</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="6" aria-setsize="9" href="https://wet-boew.github.io/v4.0-ci/License-en.html">Terms and conditions</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="7" aria-setsize="9" href="https://wet-boew.github.io/wet-boew/docs/versions/rdmp-en.html">Roadmap of past and future releases</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="8" aria-setsize="9" href="https://wet-boew.github.io/wet-boew/docs/versions/index-en.html">Version history</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="9" aria-setsize="9" href="https://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+                        </ul>
+                      </details>
+                    </li>
+                    <li>
+                      <details>
+                        <summary tabindex="-1" class="mb-item wb-init wb-details-inited" id="wb-auto-26" role="menuitem" aria-expanded="false" aria-haspopup="true" aria-posinset="2" aria-setsize="3">Implement WET</summary>
+                        <ul class="list-unstyled mb-sm" role="menu" aria-expanded="false" aria-hidden="true">
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="1" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/start-en.html">Getting started with WET</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="2" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">Download WET</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="3" aria-setsize="4" href="https://wet-boew.github.io/v4.0-ci/demos/index-en.html">Working examples</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="4" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/index-en.html">Documentation</a></li>
+                        </ul>
+                      </details>
+                    </li>
+                    <li>
+                      <details>
+                        <summary tabindex="-1" class="mb-item wb-init wb-details-inited" id="wb-auto-27" role="menuitem" aria-expanded="false" aria-haspopup="true" aria-posinset="3" aria-setsize="3">Contribute to WET</summary>
+                        <ul class="list-unstyled mb-sm" role="menu" aria-expanded="false" aria-hidden="true">
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="1" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/bugs-en.html">Filing a bug or an issue</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="2" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/pull-en.html">Creating a pull request</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="3" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/pull-en.html#test">Testing your code</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="4" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/start-en.html#develop">Developing for WET</a></li>
+                        </ul>
+                      </details>
+                    </li>
+                  </ul>
+                </nav>
+                <nav class="info-pnl wb-menu wb-menu-inited wb-init" id="info-pnl" role="navigation" typeof="SiteNavigationElement">
+                  <h3>About this site</h3>
+                  <ul class="list-unstyled mb-menu" role="menu">
+                    <li>
+                      <details>
+                        <summary tabindex="0" class="mb-item wb-init wb-details-inited" id="wb-auto-28" role="menuitem" aria-expanded="false" aria-haspopup="true" aria-posinset="1" aria-setsize="4">Contact us</summary>
+                        <ul class="list-unstyled mb-sm" role="menu" aria-expanded="false" aria-hidden="true">
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="1" aria-setsize="1" href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+                        </ul>
+                      </details>
+                    </li>
+                    <li>
+                      <details>
+                        <summary tabindex="-1" class="mb-item wb-init wb-details-inited" id="wb-auto-29" role="menuitem" aria-expanded="false" aria-haspopup="true" aria-posinset="2" aria-setsize="4">About</summary>
+                        <ul class="list-unstyled mb-sm" role="menu" aria-expanded="false" aria-hidden="true">
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="1" aria-setsize="2" href="../../index-en.html#about">About the Web Experience Toolkit</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="2" aria-setsize="2" href="https://www.tbs-sct.gc.ca/ws-nw/index-eng.asp" rel="external">About the Web Standards</a></li>
+                        </ul>
+                      </details>
+                    </li>
+                    <li>
+                      <details>
+                        <summary tabindex="-1" class="mb-item wb-init wb-details-inited" id="wb-auto-30" role="menuitem" aria-expanded="false" aria-haspopup="true" aria-posinset="3" aria-setsize="4">News</summary>
+                        <ul class="list-unstyled mb-sm" role="menu" aria-expanded="false" aria-hidden="true">
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="1" aria-setsize="2" href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="2" aria-setsize="2" href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+                        </ul>
+                      </details>
+                    </li>
+                    <li>
+                      <details>
+                        <summary tabindex="-1" class="mb-item wb-init wb-details-inited" id="wb-auto-31" role="menuitem" aria-expanded="false" aria-haspopup="true" aria-posinset="4" aria-setsize="4">Stay connected</summary>
+                        <ul class="list-unstyled mb-sm" role="menu" aria-expanded="false" aria-hidden="true">
+                          <li><a tabindex="-1" role="menuitem" aria-posinset="1" aria-setsize="1" href="https://twitter.com/WebExpToolkit" rel="external">Twitter</a></li>
+                        </ul>
+                      </details>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="modal-footer">
+                <button title="Close overlay" class="btn btn-sm btn-primary pull-left overlay-close" type="button">Close<span class="wb-inv">Close overlay</span></button>
+              </div>
+              <button title="Close: Search and menus (escape key)" class="mfp-close overlay-close" type="button">×<span class="wb-inv"> Close: Search and menus (escape key)</span></button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8" id="wb-sttl"> <a href="../../index-en.html"> <img alt="" src="../../theme-wet-boew/assets/logo.svg"> <span>Web Experience Toolkit<span class="wb-inv">, </span><small>Collaborative open source project led by the Government of Canada</small></span> </a> </div>
+        <section class="col-md-4 visible-md visible-lg" id="wb-srch">
+          <h2>Search</h2>
+          <form class="form-inline" role="search" action="https://google.ca/search" method="get">
+            <div class="form-group">
+              <label for="wb-srch-q">Search website</label>
+              <input name="q" class="form-control" id="wb-srch-q" type="search" size="27" maxlength="150" value="">
+              <input name="q" type="hidden" value="site:wet-boew.github.io OR site:github.com/wet-boew/">
+            </div>
+            <button class="btn btn-default" id="wb-srch-sub" type="submit">Search</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+  <nav class="wb-menu visible-md visible-lg wb-init wb-data-ajax-replace-inited wb-menu-inited wb-navcurr-inited" id="wb-sm" role="navigation" typeof="SiteNavigationElement" data-trgt="mb-pnl" data-ajax-replace="../../ajax/sitemenu-en.html"> 
+    
+    <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html --> 
+    <!-- DataAjaxFragmentStart -->
+    <div class="pnl-strt container visible-md visible-lg nvbar">
+      <h2>Topics menu</h2>
+      <div class="row">
+        <ul class="list-inline menu" role="menubar">
+          <li><a tabindex="0" class="item" role="menuitem" aria-haspopup="true" aria-posinset="1" aria-setsize="3" href="#project">WET project<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+            <ul class="sm list-unstyled" id="project" role="menu" aria-expanded="false" aria-hidden="true">
+              <li><a tabindex="-1" role="menuitem" aria-posinset="1" aria-setsize="9" href="https://wet-boew.github.io/v4.0-ci/index-en.html#about">About the Web Experience Toolkit</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="2" aria-setsize="9" href="https://wet-boew.github.io/v4.0-ci/index-en.html#benefits">Benefits</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="3" aria-setsize="9" href="https://wet-boew.github.io/wet-boew/docs/ref/accolades-en.html">Awards, articles and videos</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="4" aria-setsize="9" href="https://wet-boew.github.io/wet-boew/docs/events-en.html">Events</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="5" aria-setsize="9" href="https://github.com/wet-boew/wet-boew/">Main project page</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="6" aria-setsize="9" href="https://wet-boew.github.io/v4.0-ci/License-en.html">Terms and conditions</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="7" aria-setsize="9" href="https://wet-boew.github.io/wet-boew/docs/versions/rdmp-en.html">Roadmap of past and future releases</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="8" aria-setsize="9" href="https://wet-boew.github.io/wet-boew/docs/versions/index-en.html">Version history</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="9" aria-setsize="9" href="https://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+            </ul>
+          </li>
+          <li><a tabindex="-1" class="item" role="menuitem" aria-haspopup="true" aria-posinset="2" aria-setsize="3" href="#implement">Implement WET<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+            <ul class="sm list-unstyled" id="implement" role="menu" aria-expanded="false" aria-hidden="true">
+              <li><a tabindex="-1" role="menuitem" aria-posinset="1" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/start-en.html">Getting started with WET</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="2" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">Download WET</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="3" aria-setsize="4" href="https://wet-boew.github.io/v4.0-ci/demos/index-en.html">Working examples</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="4" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/index-en.html">Documentation</a></li>
+            </ul>
+          </li>
+          <li><a tabindex="-1" class="item" role="menuitem" aria-haspopup="true" aria-posinset="3" aria-setsize="3" href="#contribute">Contribute to WET<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+            <ul class="sm list-unstyled" id="contribute" role="menu" aria-expanded="false" aria-hidden="true">
+              <li><a tabindex="-1" role="menuitem" aria-posinset="1" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/bugs-en.html">Filing a bug or an issue</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="2" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/pull-en.html">Creating a pull request</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="3" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/pull-en.html#test">Testing your code</a></li>
+              <li><a tabindex="-1" role="menuitem" aria-posinset="4" aria-setsize="4" href="https://wet-boew.github.io/wet-boew/docs/start-en.html#develop">Developing for WET</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- DataAjaxFragmentEnd --> 
+  </nav>
+  <nav id="wb-bc" role="navigation" property="breadcrumb">
+    <h2>You are here:</h2>
+    <div class="container">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li> <a href="../../index-en.html">Home</a> </li>
+          <li> <a href="../../demos/index-en.html">Working examples</a> </li>
+          <li>Form validation</li>
+        </ol>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="container" role="main" property="mainContentOfPage">
+  <h1 id="wb-cont" property="name">Form validation</h1>
+  <ul class="list-inline">
+    <li><a class="btn btn-primary" href="../../docs/ref/formvalid/formvalid-en.html">Documentation</a></li>
+    <li><a class="btn btn-primary" href="https://github.com/wet-boew/wet-boew/issues/new?title=Form%20validation:%20">Questions or comments?</a></li>
+  </ul>
+  <ul>
+    <li><a href="formvalid-en.html">Form Validation</a></li>
+    <li><a href="formvalid-server-en.html">Merge Server-Client Errors</a></li>
+  </ul>
+  <hr>
+  <section>
+    <h2>Purpose</h2>
+    <p>Provides generic validation and error message handling for Web forms.</p>
+  </section>
+  <section>
+    <h2>Example</h2>
+    <div class="wb-frmvld wb-init wb-frmvld-inited" id="wb-auto-1">
+      <form id="validation-example" action="#" method="get" novalidate="novalidate">
+        <fieldset>
+          <legend>Contact information</legend>
+          <div class="form-group">
+            <label class="required" for="title1"><span class="field-name">Title</span> <strong class="required">(required)</strong> </label>
+            <select name="title1" class="form-control" id="title1" required="required" autocomplete="honorific-prefix">
+              <option label="Select a title"></option>
+              <option value="dr">Dr.</option>
+              <option value="esq">Esq.</option>
+              <option value="mr">Mr.</option>
+              <option value="ms">Ms.</option>
+            </select>
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-2" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="title1" class="required"&gt;&lt;span class="field-name"&gt;Title&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;select class="form-control" id="title1" name="title1" autocomplete="honorific-prefix" required="required"&gt;
+				&lt;option label="Select a title"&gt;&lt;/option&gt;
+				&lt;option value="dr"&gt;Dr.&lt;/option&gt;
+				&lt;option value="esq"&gt;Esq.&lt;/option&gt;
+				&lt;option value="mr"&gt;Mr.&lt;/option&gt;
+				&lt;option value="ms"&gt;Ms.&lt;/option&gt;
+			&lt;/select&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label class="required" for="fname1"><span class="field-name">First name</span> <strong class="required">(required)</strong> </label>
+            <input name="fname1" class="form-control" id="fname1" required="required" type="text" autocomplete="given-name" data-rule-minlength="2">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-3" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="fname1" class="required"&gt;&lt;span class="field-name"&gt;First name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" pattern=".{2,}" data-rule-minlength="2" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label class="required" for="lname1"><span class="field-name">Last name</span> <strong class="required">(required)</strong> </label>
+            <input name="lname1" class="form-control" id="lname1" required="required" type="text" autocomplete="family-name" data-rule-minlength="2">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-4" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="lname1" class="required"&gt;&lt;span class="field-name"&gt;Last name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="lname1" name="lname1" type="text" autocomplete="family-name" required="required" pattern=".{2,}" data-rule-minlength="2" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label class="required" for="tel1"><span class="field-name">Telephone number (including area code)</span> <strong class="required">(required)</strong> </label>
+            <input name="tel1" class="form-control" id="tel1" required="required" type="tel" autocomplete="tel" data-rule-phoneus="true">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-5" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="tel1" class="required"&gt;&lt;span class="field-name"&gt;Telephone number&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="tel1" name="tel1" type="tel" autocomplete="tel" required="required" data-rule-phoneUS="true" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label class="required" for="pcodeca1"><span class="field-name">Postal code (Canada)</span> <strong class="required">(required)</strong> </label>
+            <input name="pcodeca1" class="form-control" id="pcodeca1" required="required" type="text" size="7" maxlength="7" autocomplete="postal-code" data-rule-postalcodeca="true">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-6" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="pcodeca1" class="required"&gt;&lt;span class="field-name"&gt;Postal code&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="pcodeca1" name="pcodeca1" type="text" autocomplete="postal-code" size="7" maxlength="7" required="required" data-rule-postalCodeCA="true" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="email1"><span class="field-name">Email address</span> (yourname@domain.com) </label>
+            <input name="email1" class="form-control" id="email1" type="email" autocomplete="email">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-7" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="email1"&gt;&lt;span class="field-name"&gt;Email address&lt;/span&gt; (yourname@domain.com)&lt;/label&gt;
+			&lt;input class="form-control" id="email1" name="email1" type="email" autocomplete="email" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="url1"><span class="field-name">Website URL (https://www.url.com)</span> </label>
+            <input name="url1" class="form-control" id="url1" type="url" autocomplete="url">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-8" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="url1"&gt;&lt;span class="field-name"&gt;Website URL (https://www.url.com)&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="url1" name="url1" type="url" autocomplete="url" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label class="required" for="file1"><span class="field-name">File</span> <strong class="required">(required)</strong> </label>
+            <input name="file1" id="file1" required="required" type="file">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-9" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="file1" class="required"&gt;&lt;span class="field-name"&gt;File&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input id="file1" name="file1" type="file" required="required" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+        </fieldset>
+        <fieldset>
+          <legend>Other examples</legend>
+          <div class="form-group">
+            <label for="date1"><span class="field-name">Date</span><span class="datepicker-format"> (YYYY-MM-DD)</span> </label>
+            <input name="date1" class="form-control" id="date1" type="date" data-rule-dateiso="true">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-10" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="date1"&gt;&lt;span class="field-name"&gt;Date&lt;/span&gt;&lt;span class="datepicker-format"&gt; (YYYY-MM-DD)&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="date1" name="date1" type="date" data-rule-dateISO="true" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="time1"><span class="field-name">Time</span> (hh:mm) </label>
+            <input name="time1" class="form-control" id="time1" type="time">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-11" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="time1"&gt;&lt;span class="field-name"&gt;Time&lt;/span&gt; (hh:mm)&lt;/label&gt;
+			&lt;input class="form-control" id="time1" name="time1" type="time" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="number1"><span class="field-name">Number</span> (between -1 and 1 by step 0.1) </label>
+            <input name="number1" class="form-control" id="number1" type="number" min="-1" max="1" step="0.1">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-12" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+&lt;form action="#" method="get" id="validation-example"&gt;
+...
+&lt;div class="form-group"&gt;
+	&lt;label for="number1"&gt;&lt;span class="field-name"&gt;Number&lt;/span&gt; (between -a and 1 by step 0.1)&lt;/label&gt;
+	&lt;input class="form-control" id="number1" name="number1" type="number" min="-1" max="1" step="0.1" /&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="an1"><span class="field-name">Alphanumeric</span> (at least 4 characters) </label>
+            <input name="an1" class="form-control" id="an1" type="text" data-rule-minlength="4" data-rule-alphanumeric="true">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-13" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="an1"&gt;&lt;span class="field-name"&gt;Alphanumeric&lt;/span&gt; (at least 4 characters)&lt;/label&gt;
+			&lt;input class="form-control" id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" data-rule-alphanumeric="true" data-rule-minlength="4" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="numeric1"><span class="field-name">Numeric</span> (digits only) </label>
+            <input name="numeric1" class="form-control" id="numeric1" type="number" data-rule-digits="true">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-14" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="numeric1"&gt;&lt;span class="field-name"&gt;Numeric&lt;/span&gt; (digits only)&lt;/label&gt;
+			&lt;input class="form-control" id="numeric1" name="numeric1" type="number" data-rule-digits="true" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="letters1"><span class="field-name">Letters only</span> (maximum of 5 characters) </label>
+            <input name="letters1" class="form-control" id="letters1" type="text" size="5" maxlength="5" data-rule-lettersonly="true">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-15" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="letters1"&gt;&lt;span class="field-name"&gt;Letters only&lt;/span&gt; (maximum of 5 characters)&lt;/label&gt;
+			&lt;input class="form-control" id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" data-rule-lettersonly="true" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="text1"><span class="field-name">Letters and punctuation only</span> (allowed punctuation: [. , ( ) "]) </label>
+            <input name="text1" class="form-control" id="text1" type="text" data-rule-letterswithbasicpunc="true">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-16" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="text1"&gt;&lt;span class="field-name"&gt;Letters and punctuation only&lt;/span&gt; (allowed punctuation: [. , ( ) "])&lt;/label&gt;
+			&lt;input class="form-control" id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'"\s]" data-rule-letterswithbasicpunc="true" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="word1"><span class="field-name">Maximum of 10 words</span> </label>
+            <input name="word1" class="form-control" id="word1" type="text" data-rule-maxwords="10">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-17" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="word1"&gt;&lt;span class="field-name"&gt;Maximum of 10 words&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="word1" name="word1" type="text" data-rule-maxWords="10" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="word2"><span class="field-name">Minimum of 2 words</span> </label>
+            <input name="word2" class="form-control" id="word2" type="text" data-rule-minwords="2">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-18" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="word2"&gt;&lt;span class="field-name"&gt;Minimum of 2 words&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="word2" name="word2" type="text" data-rule-minWords="2" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="word3"><span class="field-name">Between 2 and 10 words</span> </label>
+            <input name="word3" class="form-control" id="word3" type="text" data-rule-rangewords="[2,10]">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-19" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="word3"&gt;&lt;span class="field-name"&gt;Between 2 and 10 words&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="word3" name="word3" type="text" data-rule-rangeWords="[2,10]" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="nowhitespace1"><span class="field-name">No white space</span> </label>
+            <input name="nowhitespace1" class="form-control" id="nowhitespace1" type="text" data-rule-nowhitespace="true">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-20" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="nowhitespace1"&gt;&lt;span class="field-name"&gt;No white space&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="nowhitespace1" name="nowhitespace1" type="text" pattern="[A-Za-z-.,()'"\s]" data-rule-nowhitespace="true" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+          <div class="form-group">
+            <label for="password1"><span class="field-name">Password</span> (between 5 and 10 characters) </label>
+            <input name="password1" class="form-control" id="password1" type="password" size="10" maxlength="10" autocomplete="new-password" data-rule-rangelength="[5,10]">
+            <label for="passwordconfirm"><span class="field-name">Confirm your password</span> </label>
+            <input name="passwordconfirm" class="form-control" id="passwordconfirm" type="password" size="10" maxlength="10" autocomplete="new-password" data-rule-equalto="#password1">
+          </div>
+          <details class="mrgn-bttm-md">
+            <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-21" role="button" aria-expanded="false">View code</summary>
+            <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="password1"&gt;&lt;span class="field-name"&gt;Password&lt;/span&gt; (between 5 and 10 characters)&lt;/label&gt;
+			&lt;input class="form-control" id="password1" name="password1" type="password" autocomplete="new-password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" /&gt;
+			&lt;label for="passwordconfirm"&gt;&lt;span class="field-name"&gt;Confirm your password&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-equalTo="#password1" /&gt;
+		&lt;/div&gt;</code></pre>
+          </details>
+        </fieldset>
+        <fieldset>
+          <legend class="required"><span class="field-name">Favourite pets</span> <strong class="required">(required)</strong></legend>
+          <div class="checkbox">
+            <label for="animal1">
+              <input name="animal" id="animal1" required="required" type="checkbox" value="1">
+              &nbsp;&nbsp;Dog </label>
+          </div>
+          <div class="checkbox">
+            <label for="animal2">
+              <input name="animal" id="animal2" type="checkbox" value="2">
+              &nbsp;&nbsp;Cat </label>
+          </div>
+          <div class="checkbox">
+            <label for="animal3">
+              <input name="animal" id="animal3" type="checkbox" value="3">
+              &nbsp;&nbsp;Fish </label>
+          </div>
+          <div class="checkbox">
+            <label for="animal4">
+              <input name="animal" id="animal4" type="checkbox" value="4">
+              &nbsp;&nbsp;Other </label>
+          </div>
+        </fieldset>
+        <details class="mrgn-bttm-md">
+          <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-22" role="button" aria-expanded="false">View code</summary>
+          <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Favourite pets&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="animal1"&gt;&lt;input type="checkbox" name="animal" value="1" id="animal1" required="required" /&gt;&amp;#160;&amp;#160;Dog&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="animal2"&gt;&lt;input type="checkbox" name="animal" value="2" id="animal2" /&gt;&amp;#160;&amp;#160;Cat&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="animal3"&gt;&lt;input type="checkbox" name="animal" value="3" id="animal3" /&gt;&amp;#160;&amp;#160;Fish&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="animal4"&gt;&lt;input type="checkbox" name="animal" value="4" id="animal4" /&gt;&amp;#160;&amp;#160;Other&lt;/label&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;</code></pre>
+        </details>
+        <fieldset>
+          <legend class="required"><span class="field-name">Citizenship status</span> <strong class="required">(required)</strong></legend>
+          <div class="radio">
+            <label for="status1">
+              <input name="status" id="status1" required="required" type="radio" value="1">
+              &nbsp;&nbsp;Canadian citizen </label>
+          </div>
+          <div class="radio">
+            <label for="status2">
+              <input name="status" id="status2" type="radio" value="2">
+              &nbsp;&nbsp;Permanent resident </label>
+          </div>
+          <div class="radio">
+            <label for="status3">
+              <input name="status" id="status3" type="radio" value="3">
+              &nbsp;&nbsp;Work permit </label>
+          </div>
+          <div class="radio">
+            <label for="status4">
+              <input name="status" id="status4" type="radio" value="4">
+              &nbsp;&nbsp;Other </label>
+          </div>
+        </fieldset>
+        <details class="mrgn-bttm-md">
+          <summary tabindex="0" class="wb-init wb-details-inited" id="wb-auto-23" role="button" aria-expanded="false">View code</summary>
+          <pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Citizenship status&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="status1"&gt;&lt;input type="radio" name="status" value="1" id="status1" required="required" /&gt;&amp;#160;&amp;#160;Canadian citizen&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="status2"&gt;&lt;input type="radio" name="status" value="2" id="status2" /&gt;&amp;#160;&amp;#160;Permanent resident&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="status3"&gt;&lt;input type="radio" name="status" value="3" id="status3" /&gt;&amp;#160;&amp;#160;Work permit&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="status4"&gt;&lt;input type="radio" name="status" value="4" id="status4" /&gt;&amp;#160;&amp;#160;Other&lt;/label&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;</code></pre>
+        </details>
+        <input class="btn btn-primary" type="submit" value="Submit">
+        <input class="btn btn-default" type="reset" value="Reset">
+      </form>
+      <div class="arialive wb-inv" aria-live="polite" aria-relevant="all"></div>
+    </div>
+    <noscript>
+    &lt;p&gt;This form cannot be submitted without JavaScript. You may use one of the following methods:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Method 1&lt;/li&gt; &lt;li&gt;Method 2&lt;/li&gt; &lt;li&gt;Method n&lt;/li&gt; &lt;/ul&gt;
+    </noscript>
+  </section>
+  <dl id="wb-dtmd">
+    <dt>Date modified: </dt>
+    <dd>
+      <time property="dateModified">2019-07-29</time>
+    </dd>
+  </dl>
+</main>
+<footer class="visible-sm visible-md visible-lg wb-navcurr wb-navcurr-inited" id="wb-info" role="contentinfo">
+  <div class="container">
+    <nav class="row" role="navigation">
+      <h2>About this site</h2>
+      <section class="col-sm-3">
+        <h3>Contact us</h3>
+        <ul class="list-unstyled">
+          <li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+        </ul>
+      </section>
+      <section class="col-sm-3">
+        <h3>About</h3>
+        <ul class="list-unstyled">
+          <li><a href="../../index-en.html#about">About the Web Experience Toolkit</a></li>
+          <li><a href="https://www.tbs-sct.gc.ca/ws-nw/index-eng.asp" rel="external">About the Web Standards</a></li>
+        </ul>
+      </section>
+      <section class="col-sm-3">
+        <h3>News</h3>
+        <ul class="list-unstyled">
+          <li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+          <li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+        </ul>
+      </section>
+      <section class="col-sm-3">
+        <h3>Stay connected</h3>
+        <ul class="list-unstyled">
+          <li><a href="https://twitter.com/WebExpToolkit" rel="external">Twitter</a></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+</footer>
+<!--[if gte IE 9 | !IE ]><!--> 
+<script src="https://wet-boew.github.io/v4.0-ci/wet-boew/js/polyfills/details.min.js"></script>
+<link href="https://wet-boew.github.io/v4.0-ci/wet-boew/css/polyfills/details.min.css" rel="stylesheet" type="text/css">
+<script src="https://wet-boew.github.io/v4.0-ci/wet-boew/js/i18n/en.min.js"></script><script src="https://wet-boew.github.io/v4.0-ci/wet-boew/js/deps/jquery.validate.min.js"></script><script src="https://wet-boew.github.io/v4.0-ci/wet-boew/js/deps/additional-methods.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+<script src="https://wet-boew.github.io/v4.0-ci/wet-boew/js/wet-boew.min.js"></script><span class="wb-init" id="wb-rsz">&nbsp;</span> 
+<!--<![endif]--> 
+<!--[if lt IE 9]>
+		<script src="../../wet-boew/js/ie8-wet-boew2.min.js"></script>
+		
+		<![endif]-->
+
+</body>
+</html>
