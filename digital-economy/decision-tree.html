@@ -9,14 +9,60 @@
 		<!-- Meta data -->
 		<!-- Meta data-->
 		<!-- Load closure template scripts -->
-		<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/cdts/compiled/soyutils.js"></script>
-		<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/cdts/compiled/wet-en.js"></script>
+		<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/soyutils.js"></script>
+		<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/wet-en.js"></script>
 		<link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+		<link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
+		<link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
 		<!-- Write closure template -->
 		<script type="text/javascript">
 			document.write(wet.builder.refTop({
 			}));
 		</script>
+		<style>
+		/*Checkbox/Fieldflow radio input sizing,positioning*/
+		.checkbox-lg > li.checkbox {
+		  margin-top: 0px;
+		}
+		.checkbox-lg > li {
+		  margin-left: -40px;
+		  padding-left: 40px;
+		  padding-top: 5px;
+		  padding-bottom: 10px;
+		  margin-bottom: 5px;
+		  padding-right: 15px;
+		}
+		.checkbox-zebra > li:nth-child(2n+1) {
+		  background-color: #f5f5f5;
+		  padding-top: 10px;
+		  padding-bottom: 15px;
+		}
+		.checkbox-lg > li.checkbox input[type=checkbox], .fieldflow-lg .radio input[type=radio] {
+		  margin-top: 12px;
+		  transform: scale(2);
+		}
+		.checkbox-lg label, .fieldflow-lg, .fieldflow-lg label, .fieldflow-lg div, .fieldflow-lg select, .std-blt {
+		  font-size: 20px;
+		  line-height: 1.65em;
+		}
+		.std-blt {
+		  list-style-type: disc;
+		}
+		.std-blt li label {
+		  display: block;
+		  padding-left: 0px;
+		}
+		.fieldflow-lg .radio label {
+		  margin-left: 40px;
+		}
+		.fieldflow-lg .radio input[type=radio] {
+		  margin-left: -40px;
+		}
+		.fieldflow-lg fieldset legend {
+		  font-size: 22px;
+		  margin-top: 0px;
+		</style>	
 	</head>
 	<body vocab="http://schema.org/" typeof="WebPage">
 		<div id="def-top">
@@ -45,7 +91,7 @@
 <h1 property="name" id="wb-cont">Digital economy - decision tree</h1>
 
 <div class="row">
-<div class="wb-frmvld col-md-8">
+<div class="wb-frmvld fieldflow-lg col-md-8">
 
 <form method="get">
 
@@ -60,24 +106,28 @@
 <ul>
 	<li>Digital Products and Services
 		<div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "reset": { "action": "addClass", "source":".results", "class": "hidden"}, "noreqlabel": true}'>
-			<p><span class="h3">Are you a non-resident vendor of taxable digital products or services to Canadian consumers or a distribution platform operator who makes such supplies and/or through which such supplies to such vendors are fascillitated?</span></p>
+			<div class="wb-fieldflow-header">
+			<p class="wb-fieldflow-label">Are you:</p>
+			<p>A <strong>non-resident vendor</strong> of taxable digital products or services to Canadian consumers?</p>
+			<p>A <strong>distribution platform operator</strong> who makes such supplies and/or through which such supplies to such vendors are fascilitated?</p>
+			</div>
 			<ul>
 				<li>Yes
 					<div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "reset": { "action": "addClass", "source":".results", "class": "hidden"}, "noreqlabel": true}'>
-						<p><span class="h3">Are you currently registered for GST/HST, or currently required to be registered under the normal GST/HST registration rules?</span></p>
+						<p>Are you currently registered for GST/HST, or currently required to be registered under the normal GST/HST registration rules?</p>
 						<ul>
 							<li data-wb-fieldflow='{"action": "removeClass", "source": "#digital-q2", "class": "hidden", "live":true}'>Yes</li>
 							<li>No
 								<div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "reset": { "action": "addClass", "source":".results", "class": "hidden"}, "noreqlabel": true}'>
-									<p><span class="h3">Are the supplies facilitated through another distribution platform that is registered for GST/HST?</span></p>
+									<p>Are the supplies facilitated through another distribution platform that is registered for GST/HST?</p>
 									<ul>
 										<li data-wb-fieldflow='{"action": "removeClass", "source": "#digital-q3", "class": "hidden", "live":true}'>Yes</li>
 										<li>No
 											<div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "reset": { "action": "addClass", "source":".results", "class": "hidden"}, "noreqlabel": true}'>
 												<div class="wb-fieldflow-header">
-												<p class="wb-fieldflow-label"><span class="h3">Some filler text as the label...</span></p>
-												<p><span class="">As a <strong>non-resident vendor</strong>, on July 1, 2021, do your total such taxable supplies exceed, or are they expected to exceed, $30, 000 over a 12-month period, excluding such supplies faciliated by a GST/HST registered (under either the normal or simplified registration system) distribution platform operator?</span></p>
-												<p><span class="">As a <strong>non-resident distribution platform operator</strong>, on July 1, 2021, do your total such taxable supplies, including such supplies made by non-resident vendors that you facilitate, exceed, or are they expected to exceed, $30,000 over a 12-month period?</span></p>
+												<p class="wb-fieldflow-label">Some filler text as the label...</p>
+												<p>As a <strong>non-resident vendor</strong>, on July 1, 2021, do your total such taxable supplies exceed, or are they expected to exceed, $30, 000 over a 12-month period, excluding such supplies faciliated by a GST/HST registered (under either the normal or simplified registration system) distribution platform operator?</p>
+												<p>As a <strong>non-resident distribution platform operator</strong>, on July 1, 2021, do your total such taxable supplies, including such supplies made by non-resident vendors that you facilitate, exceed, or are they expected to exceed, $30,000 over a 12-month period?</p>
 												</div>
 												<ul>
 													<li data-wb-fieldflow='{"action": "removeClass", "source": "#digital-q4", "class": "hidden", "live":true}'>Yes</li>
@@ -96,6 +146,21 @@
 		</div>
 	</li>
 	<li>Sales of goods located in Canada
+		<div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "reset": { "action": "addClass", "source":".results", "class": "hidden"}, "noreqlabel": true}'>
+			<div class="wb-fieldflow-header">
+			<p class="wb-fieldflow-label">Are you:</p>
+			<p>A <strong>vendor</strong> of taxable goods that are delivered or made available to purchasers in Canada, either directly or through a distribution platform, and that are:</p>
+			<ul>
+				<li>located in Canada, such as in a fulfillment warehouse, or</li>
+				<li>shipped from a place in Canada to purchasers in Canada?</li>
+			</ul>
+			<p>A <strong>distribution platform operator</strong> who sells such goods or facilitates the sale of such goods through your platform?</p>
+			</div>
+			<ul>
+				<li>Yes</li>
+				<li>No</li>
+			</ul>
+		</div>	
 	</li>
 	<li>Platform-Based Short-Term Accommodation
 	</li>
@@ -104,30 +169,30 @@
 
 </form>
 
-<section id="digital-q1" class="results hidden well well-md">
+<section id="digital-q1" class="results alert alert-info provisional hidden">
 <h2 class="h4 mrgn-tp-sm">Conclusion</h2>
 <p>You are not subject to the proposal measure.</p>
 </section>
 
-<section id="digital-q2" class="results hidden well well-md">
+<section id="digital-q2" class="results alert alert-info provisional hidden">
 <h2 class="h4 mrgn-tp-sm">Conclusion</h2>
 <p>If you are the vendor, as a GST/HST registrant, you are required to collect, report, and remit GST/HST on the supplies that you make in Canada.</p>
 <p>If you are the distribution platform, you would be required effective July 1, 2021, to collect, report, and remit GST/HST on such supplies that you make or that you facilitate through your platform for all non-resident vednors other than vendors that are not registrants for GST/HST purposed under the normal GST/HST rules.</p>
 </section>
 
-<section id="digital-q3" class="results hidden well well-md">
+<section id="digital-q3" class="results alert alert-info provisional hidden">
 <h2 class="h4 mrgn-tp-sm">Conclusion</h2>
 <p>The registrered distribution platform would be required to collect, report, and remit GST/HST on the supplies.</p>
 </section>
 
-<section id="digital-q4" class="results hidden well well-md">
+<section id="digital-q4" class="results alert alert-info provisional hidden">
 <h2 class="h4 mrgn-tp-sm">Conclusion</h2>
 <p><strong>If you are the vendor</strong>, you would be required to register effective July 1, 2021 under the proposed measure and to collect, report, and remit GST/HST on those supplies, excluding those made through a registered distribution platform. <strong>A <a href="#">simplified registration, reporting and remittance regime</a> would be available to you</strong>.</p>
 <p><strong>If you are the distribution platform</strong>, you would be required to register eefective July 1, 2021 for GST/HST under the new measure, and to collect, report, and remit GST/HST on such supplies, including those such supplies that you fascilitate through your platform for all non-resident vendors other than vendors that are not registrants for GST/HSt purposes under the normal GST/HST rules. <strong>A <a href="#">simplified registration, reporting and remittance regime</a> would be available to you</strong>.</p>
 <p>For more information, please contact us by telephone from Canada and U.S. at <strong>1-833-585-1462</strong>, or from elsewhere be calling <strong>613-221-3154</strong> (collect calls are accepted). You can also leave us a voicemail or contact us by email at: <a href="#">GST/HST Digital Economy - Economie numerique TPS/TVH (CRA/ARC)</a>, and we will contact you as sonn as possible.</p>
 </section>
 
-<section id="digital-q4-1" class="results hidden well well-md">
+<section id="digital-q4-1" class="results alert alert-info provisional hidden">
 <h2 class="h4 mrgn-tp-sm">Conclusion</h2>
 <p>You would not be required to register under the proposed measure. However, if you make such supplies through a registered distribution platform, the registered platform would be required to collect, report, and remit GST/HST on those supplies.</p>
 </section>
