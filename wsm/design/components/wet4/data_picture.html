@@ -38,16 +38,7 @@
            }],
            breadcrumbs: [{
              title: "CRA web service manual",
-             href: "../../../index.html"
-           },{
-             title: "Design and coding",
-             href: "../../index.html"
-           },{
-             title: "Components and functions",
-             href: "../index.html"
-           },{
-             title: "WET4 components and functions",
-             href: "index.html"
+             href: "../../../index.html"},{title: "Design and coding",href: "../../index.html"},{title: "Components and functions",href: "../index.html"},{title: "WET4 components and functions",href: "index.html"
            }],
            
            search: false,
@@ -57,34 +48,40 @@
       </script>
       <main role="main" property="mainContentOfPage" class="container">
 <!-- CONTENT STARTS -->
-<h1 property="name" id="wb-cont" class="provisional gc-thickline"><span class="stacked"><span>Data picture</span>: <span>CRA web service manual</span></span></h1>
+
+<h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Data picture: CRA web service manual</h1>
+<div aria-hidden="true">
+<p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">CRA web service manual</p>
+<h1 class="gc-thickline mrgn-tp-0">Data picture</h1>
+</div>
+
 <div class="all-pre wb-prettify">
+<p>Allow a web page to specify different image sources to display based on media queries.</p>
 <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
-      <li><a href="#h-1">Content approach</a>
-		<ul>
-		 <li><a href="#h-1-1">Purpose of data pictures</a></li>
-		</ul></li>
-      <li><a href="#h-2">How to implement</a>
+
+      <li><a href="#h-2">When to use a data picture</a></li>
+	  <li><a href="#h-3">How to implement (HTML)</a></li>
+      <li><a href="#h-4">Configuration options</a></li>
+      <li><a href="#h-5">Events</a></li>	  
+	  <li><a href="#h-6">Working examples</a>
 	  <ul>
-		 <li><a href="#h-2-1">Basic data picture</a></li>
-      <li><a href="#h-2-2">Configuration options</a></li>
-      <li><a href="#h-2-3">Events</a></li>
-	  <li><a href="#h-2-4">Examples</a></li>
-	   <li><a href="#h-2-5">Related components and functions</a></li>
+	  <li><a href="#h-6-1">Browser width</a></li>
+	   <li><a href="#h-6-2">High pixel density</a></li>
+	  </ul>
+	  </li>
+	   <li><a href="#h-7">Related components and functions</a></li>
 		</ul></li>
 
     </ul>
-<h2 id="h-1" class="mrgn-bttm-0">Content approach</h2>
-<h3 id="h-1-1">Purpose of data pictures</h3>
-<p>Allow a web page to specify different image sources to display based on media queries.</p>
-<p>Use when:</p>
+
+<h2 id="h-2">When to use a data picture</h2>
+<p>Use data picture to:</p>
 <ul>
-<li>Displaying different sized images for different browser screen sizes</li>
-<li>Displaying different resolution images to devices with different pixel densities</li>
+<li>Display different sized images for different browser screen sizes</li>
+<li>Display different resolution images to devices with different pixel densities</li>
 </ul>
-<h2 id="h-2">How to implement</h2>
-<h3 id="h-2-1">Basic data inview</h3>
+<h2 id="h-3">How to implement (HTML)</h2>
 <ol>
 <li>Add a <code>data-pic</code> element for each image that will have multiple sources:
 <pre><code>&lt;span data-pic="data-pic" data-alt="Alt tag for the image"&gt;</code></pre>
@@ -119,7 +116,7 @@
 	&lt;noscript&gt;&lt;img src="img/fallback.jpg" alt="Alt tag for the image"/&gt;&lt;/noscript&gt;
 &lt;/span&gt;</code></pre>
 
-<h3 id="h-2-2">Configuration options</h3>
+<h2 id="h-4">Configuration options</h2>
 <p>All configuration options of the plugin are controlled with data attributes:</p>
 <table class="table table-hover">
 <thead>
@@ -197,7 +194,7 @@
 </tbody>
 </table>
 
-<h3 id="h-2-3">Events</h3>
+<h2 id="h-5">Events</h2>
 <p>Document the public events that can be used by implementers or developers.</p>
 <table class="table table-hover">
 <thead>
@@ -248,8 +245,8 @@
 </tr>
 </tbody>
 </table>
-<h3 id="h-2-4">Examples</h3>
-<h4>Browser Width</h4>
+<h2 id="h-6">Working examples</h2>
+<h3 id="h-6-1">Browser width</h3>
 <p>This example uses <code>min-width</code> to determine which image should be displayed. Resize the browser window to see the different images load.</p>
 
 <div class="ds-example">
@@ -280,10 +277,8 @@
 </details>
 <!-- Field flow code -->
 <details id="app2">
-<summary>Code</summary>
-<details>
-<summary>HTML</summary>
-<pre><code>// Data image - browser width 
+<summary>HTML code</summary>
+<pre><code>&lt;!-- Data image - browser width --&gt;
 &lt;figure&gt;
   &lt;span data-pic="data-pic" data-alt="Parliament Hill" data-class="img-responsive"&gt;
   &lt;!-- Default image: &lt;div [data-src]&gt; with no data-media attribute is displayed when:
@@ -304,23 +299,27 @@
 &lt;/figure&gt;
 </code></pre>
 </details>
-<details>
-<summary>Struts</summary>
-<pre><code>code here</code></pre>
 </details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<p>Download the components library:</p>
+<ul class="fa-ul">
+<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
+<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+</ul>
 </details>
+
 </div>
 </div>
 </div>
 
-
-<h4>High Pixel Density</h4>
+<h3 id="h-6-2">High pixel density</h3>
 <p>This example uses two media queries to serve high resolution images to devices that will benefit from them (i.e. Retina displays).</p>
 
 <div class="ds-example">
 <div class="wb-tabs">
 <div class="tabpanels">
-<details id="app1">
+<details id="app4">
 <summary>Appearance</summary>
 <div class="panel panel-body brdr-0 brdr-rds-0">
 <figure>
@@ -338,12 +337,9 @@
 </div>
 </details>
 <!-- Field flow code -->
-<details id="app2">
-<summary>Code</summary>
-<details>
-<summary>HTML</summary>
-<pre><code>// Component 
-&lt;figure&gt;
+<details id="app5">
+<summary>HTML code</summary>
+<pre><code>&lt;figure&gt;
   &lt;span data-pic="data-pic" data-alt="False Kiva in the Canyonlands" data-class="img-responsive"&gt;
     &lt;!-- Images for different device resolutions --&gt;
     &lt;span data-src="images/components/data_picture-low_res.jpg"&gt;&lt;/span&gt;
@@ -357,24 +353,29 @@
 &lt;/figure&gt;
 </code></pre>
 </details>
-<details>
-<summary>Struts</summary>
-<pre><code>code here</code></pre>
 </details>
+<details id="app6">
+<summary>Prototyping libraries</summary>
+<p>Download the components library:</p>
+<ul class="fa-ul">
+<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
+<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+</ul>
 </details>
+
 </div>
 </div>
 </div>
 
 
-<h3 id="h-2-5">Related components and functions</h3>
+<h2 id="h-7">Related components and functions</h2>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
 	<!-- Images -->
 	  <li class="col-md-4" id="images">	
-		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
 		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/images.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-0"><a class="stretched-link" href="images.html">Images</a></h3> 	 
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="images.html">Images</a></h3> 	 
 	   </div></div></div></li>	 
 </ul>
  </div> 
