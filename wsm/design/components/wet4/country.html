@@ -38,16 +38,7 @@
            }],
            breadcrumbs: [{
              title: "CRA web service manual",
-             href: "../../../index.html"
-           },{
-             title: "Design and coding",
-             href: "../../index.html"
-           },{
-             title: "Components and functions",
-             href: "../index.html"
-           },{
-             title: "WET4 components and functions",
-             href: "index.html"
+             href: "../../../index.html"},{title: "Design and coding",href: "../../index.html"},{title: "Components and functions",href: "../index.html"},{title: "WET4 components and functions",href: "index.html"
            }],
            
            search: false,
@@ -57,27 +48,22 @@
       </script>
       <main role="main" property="mainContentOfPage" class="container">
 <!-- CONTENT STARTS -->
-<h1 property="name" id="wb-cont" class="provisional gc-thickline"><span class="stacked"><span>Country identifier</span>: <span>CRA web service manual</span></span></h1>
+<h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Country identifier: CRA web service manual</h1>
+<div aria-hidden="true">
+<p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">CRA web service manual</p>
+<h1 class="gc-thickline mrgn-tp-0">Country identifier</h1>
+</div>
 <div class="all-pre wb-prettify">
-<p>[short description]</p>
+<p>Use country identifier to load or replace an element's content based upon the user's country.</p>
 <h2 class="h3 mrgn-tp-md">On this page</h2>
 <ul>
-<li><a href="#h-1">Content approach</a>
-		<ul>
-		 <li><a href="#h-1-1">Purpose of country identifier</a></li>
-		</ul></li>
-<li><a href="#h-2">How to implement</a></li>
+<li><a href="#h-1">How to implement (HTML)</a></li>
 	<li><a href="#h-3">Configuration options</a></li>
 	<li><a href="#h-4">Events</a></li>
-	<li><a href="#h-5">Related components and functions</a></li>
-	
-	<li><a href="#h-6">Supporting principles</a></li>
+	<li><a href="#h-5">Related components and functions</a></li>	
 </ul>
-<h2 id="h-1" class="mrgn-bttm-0">Content approach</h2>
 
-<h3 id="h-1-1">Purpose of country identifier</h3>
-<p>A basic AjaxLoader wrapper that inserts AJAXed-in content based on a visitor's country.</p>
-<h2 id="h-2">How to implement</h2>
+<h2 id="h-1">How to implement (HTML)</h2>
 <ol>
 <li>Create a file with country-specific content for each supported country (e.g., Canada and the United States) in each supported language (e.g., English and French). The file name must include the two letter code for the supported country (e.g., "ca" for Canada and "us" for the United States). The file names for each supported language must be identical except for the country code (e.g., <code>country-content-us-en.html</code> and <code>country-content-ca-en.html</code>).
 <details>
@@ -109,13 +95,14 @@
 </li>
 </ol>
 
+<h3>Working example</h3>
 <div class="row">
 <!-- Field flow options -->
 <div class="col-md-4 ds-modifier">
 <form>
 <div class="radioselected">
 <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "addClass", "source":"#ca1, #us1, #mx1", "class": "hidden                  "} ]}'>
-<p><span class="lead mrgn-tp-0">Example</span></p>
+<p><span class="h4">Country</span></p>
 <ul>
 <li data-wb-fieldflow='[{"action": "removeClass", "source": "#ca1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-ca1", "live": true}]'>Canada</li>
 <li data-wb-fieldflow='[{"action": "removeClass", "source": "#us1", "class": "hidden", "live": true}, {"action": "addClass", "source": "#hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-us1", "live": true}]'>US</li>
@@ -155,35 +142,33 @@
 </details>
 <!-- Field flow code -->
 <details id="app2">
-<summary>Code</summary>
-<details>
-<summary>HTML</summary>
-<pre><code><span class="cl-ca1" id="hidden1">// Country identifier - Canada
+<summary>HTML code</summary>
+<pre><code><span class="cl-ca1" id="hidden1">&lt;!-- Country identifier - Canada --&gt;
 &lt;div data-ctrycnt="ajax/country-content-ca-fr.html"&gt;
 &lt;h4&gt;Hello World&lt;/h4&gt;
 &lt;p&gt;I'm the content that is shown when the country can't be resolved or the country that is returned does not have additional content.&lt;/p&gt;
 
-// File with Canada-specific content
+&lt;!-- File with Canada-specific content --&gt;
 &lt;section class="ajaxed-in"&gt;
 	&lt;h4&gt;Bonjour Canada&lt;/h4&gt;
 	&lt;p&gt;Je suis le contenu qui est affiché lorsque l'utilisateur visite du Canada.&lt;/p&gt;
 &lt;/section&gt;
-&lt;/div&gt;</span><span class="hidden cl-us1">// Country identifier - US 
+&lt;/div&gt;</span><span class="hidden cl-us1">&lt;!-- Country identifier - US  --&gt;
 &lt;div data-ctrycnt="ajax/country-content-us-en.html"&gt;
 &lt;h4&gt;Hello World&lt;/h4&gt;
 &lt;p&gt;I'm the content that is shown when the country can't be resolved or the country that is returned does not have additional content.&lt;/p&gt;
 
-// File with US-specific content
+&lt;!-- File with US-specific content --&gt;
 &lt;section class="ajaxed-in"&gt;
 	&lt;h4&gt;Hello United States&lt;/h4&gt;
 	&lt;p&gt;I'm the content that is shown when the user visits from the United States.&lt;/p&gt;
 &lt;/section&gt;
-&lt;/div&gt;</span><span class="hidden cl-mx1">// Country identifier - Mexico
+&lt;/div&gt;</span><span class="hidden cl-mx1">&lt;!-- Country identifier - Mexico --&gt;
 &lt;div data-ctrycnt="ajax/country-content-mx-es.html"&gt;
 &lt;h4&gt;Hello World&lt;/h4&gt;
 &lt;p&gt;I'm the content that is shown when the country can't be resolved or the country that is returned does not have additional content.&lt;/p&gt;
 
-// File with Mexico-specific content
+&lt;!-- File with Mexico-specific content --&gt;
 &lt;section class="ajaxed-in"&gt;
 	&lt;h4&gt;Hola México&lt;/h4&gt;
 	&lt;p&gt;Soy el contenido que se muestra cuando el usuario visita desde México.&lt;/p&gt;
@@ -191,11 +176,16 @@
 &lt;/div&gt;</span></code></pre>
 
 </details>
-<details>
-<summary>Struts</summary>
-<pre><code>code here</code></pre>
 </details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<p>Download the components library:</p>
+<ul class="fa-ul">
+<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
+<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+</ul>
 </details>
+
 </div>
 </div>
 </div>
@@ -273,9 +263,9 @@
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
 	<!-- Ajax -->
 	  <li class="col-md-4" id="Ajax">	
-		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Ajax.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-0"><a class="stretched-link" href="Ajax.html">Ajax</a></h3> 	 
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/ajax.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="ajax.html">Ajax</a></h3> 	 
 	   </div></div></div></li>	 
 
 
