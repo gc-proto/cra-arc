@@ -38,16 +38,7 @@
            }],
            breadcrumbs: [{
              title: "CRA web service manual",
-             href: "../../../index.html"
-           },{
-             title: "Design and coding",
-             href: "../../index.html"
-           },{
-             title: "Components and functions",
-             href: "../index.html"
-           },{
-             title: "WET4 components and functions",
-             href: "index.html"
+             href: "../../../index.html"},{title: "Design and coding",href: "../../index.html"},{title: "Components and functions",href: "../index.html"},{title: "WET4 components and functions",href: "index.html"
            }],
            
            search: false,
@@ -57,30 +48,25 @@
       </script>
       <main role="main" property="mainContentOfPage" class="container">
 <!-- CONTENT STARTS -->
-<h1 property="name" id="wb-cont" class="provisional gc-thickline"><span class="stacked"><span>Data inview</span>: <span>CRA web service manual</span></span></h1>
+<h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Data inview: CRA web service manual</h1>
+<div aria-hidden="true">
+<p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">CRA web service manual</p>
+<h1 class="gc-thickline mrgn-tp-0">Data inview</h1>
+</div>
 <div class="all-pre wb-prettify">
+<p>Use to displays an overlay when a section moves out of the viewport. Data inview creates fixed position content panels that are conditionally displayed as the web page is scrolled and resized.</p>
 <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
-      <li><a href="#h-1">Content approach</a>
-		<ul>
-		 <li><a href="#h-1-1">Purpose of data inview</a></li>
-		</ul></li>
-      <li><a href="#h-2">How to implement</a>
-	  <ul>
-		 <li><a href="#h-2-1">Basic data inview</a>
-		 </li>
-		 <li><a href="#h-2-2">Configuration options</a></li>
-      <li><a href="#h-2-3">Events</a></li>
-	  <li><a href="#h-2-4">Examples</a></li>
-	   <li><a href="#h-2-5">Related components and functions</a></li>
-		</ul></li>
+      <li><a href="#h-2">How to implement (HTML)</a></li>
+		 <li><a href="#h-3">Configuration options</a></li>
+      <li><a href="#h-4">Events</a></li>
+	  <li><a href="#h-5">Examples</a></li>
+	   <li><a href="#h-6">Related components and functions</a></li>
+		</ul>
 
     </ul>
-<h2 id="h-1" class="mrgn-bttm-0">Content approach</h2>
-<h3 id="h-1-1">Purpose of data inview</h3>
-<p>Displays an overlay when a section moves out of the viewport. Creates fixed position content panels that are conditionally displayed as the web page is scrolled and resized.</p>
-<h2 id="h-2" class="mrgn-bttm-0">How to implement</h2>
-<h3 id="h-2-1">Basic data inview</h3>
+<h2 id="h-2" class="">How to implement (HTML)</h2>
+
 <ol>
 	<li>Add the <code>wb-inview</code> class to an element.
 <pre><code>&lt;section class="wb-inview"&gt;
@@ -127,15 +113,15 @@
 		switch ( eventType ) {
 
 		case "all":
-			// event.target is a wb-inview element that has become completely visible
+			&lt;!-- event.target is a wb-inview element that has become completely visible --&gt;
 			break;
 
 		case "partial": {
-			// event.target is a wb-inview element that has become partially hidden
+			&lt;!-- event.target is a wb-inview element that has become partially hidden --&gt;
 			break;
 
 		case "none":
-			// event.target is a wb-inview element that has become completely hidden
+			&lt;!-- event.target is a wb-inview element that has become completely hidden --&gt;
 		}
 	}
 });
@@ -146,7 +132,7 @@
 		</ul>
 	</li>
 </ol>
-<h4 id="h-2-1-1">View state change events</h3>
+<h3>Working example</h3>
 <div class="row">
 <div class="col-md-8">
 <div class="ds-example">
@@ -162,7 +148,7 @@
 	</header>
 	<div class="panel-body">
 	<p>The view state of this section is being identified below through JavaScript.</p>
-	<p><strong>View state:</strong> <code class="view-state-status">all</code></p>
+	<p><strong>View state change:</strong> <code class="view-state-status">all</code></p>
 	</div>
 	</div>
 	</section>
@@ -170,10 +156,8 @@
 </details>
 <!-- Field flow code -->
 <details id="app2">
-<summary>Code</summary>
-<details>
-<summary>HTML</summary>
-<pre><code>// Data-inview state change 
+<summary>HTML code</summary>
+<pre><code>&lt;!-- Data-inview state change --&gt;
 &lt;section class="<strong>wb-inview</strong>"&gt;
   &lt;div class="panel panel-default"&gt;
     &lt;header class="panel-heading"&gt;
@@ -186,25 +170,30 @@
   &lt;/div&gt;
 &lt;/section&gt;
 
-// Script
+&lt;!-- Script --&gt;
 &lt;script src="../js/components.js"&gt;&lt;/script&gt;
 
-// CSS
-&lt;link href="../../css/design-system.css" rel="stylesheet"&gt;
+&lt;!-- CSS --&gt;
+&lt;link href="../../../css/design-system.css" rel="stylesheet"&gt;
 </code></pre>
 </details>
-<details>
-<summary>Struts</summary>
-<pre><code>code here</code></pre>
 </details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<p>Download the components library:</p>
+<ul class="fa-ul">
+<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
+<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+</ul>
 </details>
+
 </div>
 </div>
 </div>
 </div>
 </div>
 
-<h3 id="h-2-2">Configuration options</h3>
+<h2 id="h-3">Configuration options</h2>
 <table class="table table-hover">
 <thead>
 <tr>
@@ -241,7 +230,7 @@
 </tbody>
 </table>
 
-<h3 id="h-2-3">Events</h3>
+<h2 id="h-4">Events</h2>
 <table class="table">
 <thead>
 <tr>
@@ -307,20 +296,26 @@
 </tbody>
 </table>
 
-<h3 id="h-2-4">Examples</h3>
+<h2 id="h-5">Examples</h2>
 <ul>
 <li><a href="data_inview_examples.html">English page examples</a></li>
 <li><a href="data_inview_examples-f.html">French page examples</a></li>
 </ul>
 
-<h3 id="h-2-5">Related components and functions</h3>
+<h2 id="h-6">Related components and functions</h2>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
+	<!-- Buttons -->
+	  <li class="col-md-4" id="buttons">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/buttons.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="buttons.html">Buttons</a></h3> 	 
+	   </div></div></div></li>	
 	<!-- Overlay -->
 	  <li class="col-md-4" id="Overlay">	
-		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Overlay.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-0"><a class="stretched-link" href="Overlay.html">Overlay</a></h3> 	 
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/overlay.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="overlay.html">Overlay</a></h3> 	 
 	   </div></div></div></li>	 
 
 </ul>
