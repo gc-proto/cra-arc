@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+      <title>Data picture – Standard web pages – CRA web service manual – Canada.ca</title>
+      <meta content="width=device-width,initial-scale=1" name="viewport">
+      <meta name=”robots” content=”noindex”>
+      <!-- Meta data -->
+      <!-- Meta data-->
+      <!-- Load closure template scripts -->
+      <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/soyutils.js"></script>
+      <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/wet-en.js"></script>
+      <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         document.write(wet.builder.refTop({
+         }));
+      </script>
+      <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
+      <link rel="stylesheet" href="../../../css/provisional-topic.css"/>
+      <link rel="stylesheet" href="../../../css/wsm.css"/>
+      <link rel="stylesheet" href="../../../css/step-list.css"/>
+      <link rel="stylesheet" href="../../../css/stacked-header.css"/>
+   </head>
+   <body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
+      <div id="def-top"> </div>
+      <!-- Write closure template --> 
+      <script type="text/javascript">
+         var defTop = document.getElementById("def-top");
+         defTop.outerHTML = wet.builder.top({
+           lngLinks: [{
+         
+             lang: "fr",
+             href: "#",
+             text: "Français"
+           }],
+           breadcrumbs: [{
+             title: "CRA web service manual",
+             href: "../../../index.html"},{title: "Design and coding",href: "../../index.html"},{title: "Standard web page design and coding",href: "../index.html"},{title: "Components and functions",href: "index.html"
+           }],
+           
+           search: false,
+           siteMenu: false,
+           showPreContent: true
+         });
+      </script>
+      <main role="main" property="mainContentOfPage" class="container">
+<!-- CONTENT STARTS -->
+
+<h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Data picture – Standard web pages – CRA web service manual</h1>
+<div aria-hidden="true">
+<p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">CRA web service manual</p>
+<h1 class="gc-thickline mrgn-tp-0">Data picture – Standard web pages</h1>
+</div>
+
+<div class="all-pre wb-prettify">
+<p>Allow a web page to specify different image sources to display based on media queries.</p>
+<h2 class="h3 mrgn-tp-md">On this page</h2>
+    <ul>
+
+      <li><a href="#h-2">When to use a data picture</a></li>
+	  <li><a href="#h-3">How to implement (HTML)</a></li>
+      <li><a href="#h-4">Configuration options</a></li>
+      <li><a href="#h-5">Events</a></li>	  
+	  <li><a href="#h-6">Working examples</a>
+	  <ul>
+	  <li><a href="#h-6-1">Browser width</a></li>
+	   <li><a href="#h-6-2">High pixel density</a></li>
+	  </ul>
+	  </li>
+	   <li><a href="#h-7">Related components and functions</a></li>
+		</ul></li>
+
+    </ul>
+
+<h2 id="h-2">When to use a data picture</h2>
+<p>Use data picture to:</p>
+<ul>
+<li>Display different sized images for different browser screen sizes</li>
+<li>Display different resolution images to devices with different pixel densities</li>
+</ul>
+<h2 id="h-3">How to implement (HTML)</h2>
+<ol>
+<li>Add a <code>data-pic</code> element for each image that will have multiple sources:
+<pre><code>&lt;span data-pic="data-pic" data-alt="Alt tag for the image"&gt;</code></pre>
+</li>
+<li>Nested inside the <code>data-pic</code> element, specify the default image, different images sources and fallback image:
+<ol>
+<li><strong>Default image:</strong> image that will be displayed if no media queries match or the browser doesn't support media queries:
+<pre><code>&lt;span data-src="img/default.jpg"&gt;&lt;/span&gt;</code></pre>
+</li>
+<li><strong>Different image sources:</strong> images that will be displayed if their media query matches:
+<pre><code>&lt;span data-src="img/small.jpg" data-media="(min-width: 0px)"&gt;&lt;/span&gt;
+&lt;span data-src="img/medium.jpg" data-media="(min-width: 500px)"&gt;&lt;/span&gt;
+&lt;span data-src="img/large.jpg" data-media="(min-width: 960px)"&gt;&lt;/span&gt;</code></pre>
+</li>
+<li><strong>Fallback image:</strong> image to display if JavaScript is not supported:
+<pre><code>&lt;noscript&gt;&lt;img src="img/fallback.jpg" alt="Alt tag for the image"/&gt;&lt;/noscript&gt;</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<p>When you're finished, you should have an element that looks like the following:</p>
+<pre><code>&lt;span data-pic="data-pic" data-alt="Alt tag for the image"&gt;
+	&lt;!-- Default image --&gt;
+	&lt;span data-src="img/default.jpg"&gt;&lt;/span&gt;
+
+	&lt;!-- Images for browsers with CSS media query support --&gt;
+	&lt;span data-src="img/small.jpg" data-media="(min-width: 0px)"&gt;&lt;/span&gt;
+	&lt;span data-src="img/medium.jpg" data-media="(min-width: 500px)"&gt;&lt;/span&gt;
+	&lt;span data-src="img/large.jpg" data-media="(min-width: 960px)"&gt;&lt;/span&gt;
+
+	&lt;!-- Fallback content for non-JS browsers. --&gt;
+	&lt;noscript&gt;&lt;img src="img/fallback.jpg" alt="Alt tag for the image"/&gt;&lt;/noscript&gt;
+&lt;/span&gt;</code></pre>
+
+<h2 id="h-4">Configuration options</h2>
+<p>All configuration options of the plugin are controlled with data attributes:</p>
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>How to configure</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-pic</code></td>
+<td>Identifies this as an element that uses the data picture plugin.</td>
+<td>n/a</td>
+<td>
+<dl>
+<dt>data-picture</dt>
+<dd>The only supported value for the attribute.</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td><code>data-alt</code></td>
+<td>Provides an alt attribute value to the image element created by the plugin.</td>
+<td>Set to the string value to use as the alt attribute.</td>
+<td>
+<dl>
+<dt>None (default):</dt>
+<dd>The image element created by the plugin will not have an alt attribute.</dd>
+<dt>String:</dt>
+<dd>The string will be used as the image element's alt attribute.</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td><code>data-class</code></td>
+<td>Provides a class attribute value to the image element created by the plugin.</td>
+<td>Set to the string value to use as the image's CSS attribute.</td>
+<td>
+<dl>
+<dt>None (default):</dt>
+<dd>The image element created by the plugin will not have a class attribute.</dd>
+<dt>String:</dt>
+<dd>The string will be used as the image element's class attribute.</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td><code>data-src</code></td>
+<td>Image source that will be used if this element's media query (specified by data-media) matches.</td>
+<td>Set to the image resource path that should be displayed.</td>
+<td>
+<dl>
+<dt>None (default):</dt>
+<dd>No image will be displayed if the media query matches.</dd>
+<dt>Image path:</dt>
+<dd>The image that will be displayed if the element's media query (specified by data-media) matches.</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td><code>data-media</code></td>
+<td>Media query that determines when a given image source should be displayed.</td>
+<td>Set to the media query that should cause this element's image (specified by data-src) to display.</td>
+<td>
+<dl>
+<dt>None (default):</dt>
+<dd>The element is considered the default image and will be displayed if no media queries match or the browser does not support media queries. There can only be one default image source per data-pic element.</dd>
+<dt>Media query:</dt>
+<dd>The media query to match and determine if the element's image (specified by data-src) should be displayed.</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="h-5">Events</h2>
+<p>Document the public events that can be used by implementers or developers.</p>
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Event</th>
+<th>Trigger</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wb-init.wb-pic</code></td>
+<td>Triggered manually (e.g., <code>$( "[data-pic]" ).trigger( "wb-init.wb-pic" );</code>).</td>
+<td>Initializes the plugin and determines which data-pic image source should be displayed. <strong>Note:</strong> the data picture plugin will be initialized automatically unless it is added after the page has already loaded.</td>
+</tr>
+<tr>
+<td><code>wb-ready.wb-pic</code> (v4.0.5+)</td>
+<td>Triggered automatically after Date Picture initializes.</td>
+<td>Used to identify where Data Picture was initialized (target of the event)
+<pre><code>$( document ).on( "wb-ready.wb-pic", function( event ) {
+});</code></pre>
+<pre><code>$( "[data-pic]" ).on( "wb-ready.wb-pic", function( event ) {
+});</code></pre>
+</td>
+</tr>
+<tr>
+<td><code>wb-updated.wb-pic</code> (v4.0.5+)</td>
+<td>Triggered automatically each time the picture is updated.</td>
+<td>Used to identify which picture was updated (target of the event)
+<pre><code>$( document ).on( "wb-updated.wb-pic", "[data-pic]", function( event ) {
+});</code></pre>
+<pre><code>$( "[data-pic]" ).on( "wb-updated.wb-pic", function( event ) {
+});</code></pre>
+</td>
+</tr>
+<tr>
+<td><code>picfill.wb-pic</code></td>
+<td>Triggered during plugin initialization and manually (e.g., <code>$( "[data-pic]" ).trigger( "picfill.wb-pic" );</code>).</td>
+<td>Causes the data-pic element to determine which image source should be displayed. This could be called as part of a window resize event handler.</td>
+</tr>
+<tr>
+<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+<td>Triggered automatically when WET has finished loading and executing.</td>
+<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
+<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="h-6">Working examples</h2>
+<h3 id="h-6-1">Browser width</h3>
+<p>This example uses <code>min-width</code> to determine which image should be displayed. Resize the browser window to see the different images load.</p>
+
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+<figure>
+	<span data-pic="data-pic" data-alt="Parliament Hill" data-class="img-responsive">
+		<!-- Default image: <div [data-src]> with no data-media attribute is displayed when:
+				1. None of the other <div [data-src]> media queries match.
+				2. The browser doesn't support media queries -->
+		<span data-src="img/parliament-hill-large.jpg"></span>
+		<!-- Images for browsers with CSS media query support -->
+		<span data-src="images/components/data_picture-sm.jpg" data-media="(min-width: 0px)"></span>
+		<span data-src="images/components/data_picture-md.jpg" data-media="(min-width: 500px)"></span>
+		<span data-src="images/components/data_picture-lg.jpg" data-media="(min-width: 960px)"></span>
+		<span data-src="images/components/data_picture-xl.jpg" data-media="(min-width: 1200px)"></span>
+		<!-- Fallback content for non-JS browsers. -->
+		<noscript><img src="img/parliament-hill-large.jpg" alt="Parliament Hill"/></noscript>
+	</span>
+	<figcaption>
+		<p>Photo by <a href="https://www.flickr.com/photos/intercultura/6130311384">Noema Pérez</a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/deed.en_CA">Creative Commons</a>.</p>
+	</figcaption>
+	</figure>
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
+<pre><code>&lt;!-- Data image - browser width --&gt;
+&lt;figure&gt;
+  &lt;span data-pic="data-pic" data-alt="Parliament Hill" data-class="img-responsive"&gt;
+  &lt;!-- Default image: &lt;div [data-src]&gt; with no data-media attribute is displayed when:
+  1. None of the other &lt;div [data-src]&gt; media queries match.
+  2. The browser doesn't support media queries --&gt;
+    &lt;span data-src="img/parliament-hill-large.jpg"&gt;&lt;/span&gt;
+    &lt;!-- Images for browsers with CSS media query support --&gt;
+    &lt;span data-src="images/components/data_picture-sm.jpg" data-media="(min-width: 0px)"&gt;&lt;/span&gt;
+    &lt;span data-src="images/components/data_picture-md.jpg" data-media="(min-width: 500px)"&gt;&lt;/span&gt;
+    &lt;span data-src="images/components/data_picture-lg.jpg" data-media="(min-width: 960px)"&gt;&lt;/span&gt;
+    &lt;span data-src="images/components/data_picture-xl.jpg" data-media="(min-width: 1200px)"&gt;&lt;/span&gt;
+    &lt;!-- Fallback content for non-JS browsers. --&gt;
+    &lt;noscript&gt;&lt;img src="images/components/data_picture-lg.jpg" alt="Parliament Hill"/&gt;&lt;/noscript&gt;
+  &lt;/span&gt;
+  &lt;figcaption&gt;
+    &lt;p&gt;Photo by &lt;a href="https://www.flickr.com/photos/intercultura/6130311384"&gt;Noema Pérez&lt;/a&gt;, licensed under &lt;a href="https://creativecommons.org/licenses/by-nc-sa/2.0/deed.en_CA"&gt;Creative Commons&lt;/a&gt;.&lt;/p&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+</details>
+</details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<p>Download the components library:</p>
+<ul class="fa-ul">
+<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
+<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+</ul>
+</details>
+
+</div>
+</div>
+</div>
+
+<h3 id="h-6-2">High pixel density</h3>
+<p>This example uses two media queries to serve high resolution images to devices that will benefit from them (i.e. Retina displays).</p>
+
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app4">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+<figure>
+	<span data-pic="data-pic" data-alt="False Kiva in the Canyonlands" data-class="img-responsive">
+		<!-- Images for different device resolutions -->
+		<span data-src="images/components/data_picture-low_res.jpg"></span>
+		<span data-src="images/components/data_picture-high_res.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"></span>
+		<!-- Fallback content for non-JS browsers -->
+		<noscript><img src="images/components/data_picture-low_res.jpg" alt="False Kiva in the Canyonlands"/></noscript>
+	</span>
+	<figcaption>
+		<p>Photo by <a href="https://www.flickr.com/photos/snowpeak/7351510924/">snowpeak</a>, licensed under <a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons</a>.</p>
+	</figcaption>
+</figure>
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app5">
+<summary>HTML code</summary>
+<pre><code>&lt;figure&gt;
+  &lt;span data-pic="data-pic" data-alt="False Kiva in the Canyonlands" data-class="img-responsive"&gt;
+    &lt;!-- Images for different device resolutions --&gt;
+    &lt;span data-src="images/components/data_picture-low_res.jpg"&gt;&lt;/span&gt;
+    &lt;span data-src="images/components/data_picture-high_res.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"&gt;&lt;/span&gt;
+    &lt;!-- Fallback content for non-JS browsers --&gt;
+    &lt;noscript&gt;&lt;img src="images/components/data_picture-low_res.jpg" alt="False Kiva in the Canyonlands"/&gt;&lt;/noscript&gt;
+  &lt;/span&gt;
+  &lt;figcaption&gt;
+    &lt;p&gt;Photo by &lt;a href="https://www.flickr.com/photos/snowpeak/7351510924/"&gt;snowpeak&lt;/a&gt;, licensed under &lt;a href="https://creativecommons.org/licenses/by/2.0/"&gt;Creative Commons&lt;/a&gt;.&lt;/p&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+</details>
+</details>
+<details id="app6">
+<summary>Prototyping libraries</summary>
+<p>Download the components library:</p>
+<ul class="fa-ul">
+<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
+<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+</ul>
+</details>
+
+</div>
+</div>
+</div>
+
+
+<h2 id="h-7">Related components and functions</h2>
+<p>Additional add-on features and behaviours are available.</p>
+<ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
+	<!-- Images -->
+	  <li class="col-md-4" id="images">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/images.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="images.html">Images</a></h3> 	 
+	   </div></div></div></li>	 
+</ul>
+ </div> 
+ <!-- CONTENT ENDS -->
+ 
+		<div id="def-preFooter"></div>
+         <!-- Write closure template -->
+         <script type="text/javascript">
+            var defPreFooter = document.getElementById("def-preFooter");
+            defPreFooter.outerHTML = wet.builder.preFooter({
+            dateModified: "2020-05-05",
+            showPostContent: true,
+            showFeedback: false,
+            showShare: false
+            });
+         </script>
+      </main>
+      <div id="def-footer">
+      </div>
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         var defFooter = document.getElementById("def-footer");
+         defFooter.outerHTML = wet.builder.footer({
+         showFooter: true,
+         showFeatures: false
+         });
+      </script>
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         document.write(wet.builder.refFooter({
+         }));
+      </script>
+      <script src="https://test.canada.ca/cra/js/alpha-banner.js"></script>
+	  <script src="../../../js/components.js"></script>
+   </body>
+</html>
