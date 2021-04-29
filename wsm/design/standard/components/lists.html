@@ -847,27 +847,28 @@
 <form>
 <p><span class="lead"><span class="fas fa-tools"></span> Modify the design</span></p>
 <div class="radioselected">
-<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#steps1, #stepsol", "class": "hidden"} ]}'>
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "addClass", "source":"#stepsol, #stepsdiv", "class": "hidden"} ]}'>
 <p><span class="h4">Headings</span></p>
 <ul>
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#steps1", "class": "", "live": true}, {"action": "toggle", "toggle": ".cl-steps1", "live": true}]'>No headings (using ordered list)</li>
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#steps1, #stepsol", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-div", "live": true}]'>With headings (using section/div)</li>
+<li data-wb-fieldflow='[{"action": "removeClass", "source": "#stepsol", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-steps1", "live": true}]'>No headings (using ordered list)</li>
+<li data-wb-fieldflow='[{"action": "removeClass", "source": "#stepsdiv", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-div", "live": true}]'>With headings (using section/div)</li>
 </ul>
 </div>
 </div>
-<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"checkbox", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#steps1, #stepsdiv", "class": "stps-strpd"} ]}'>
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"checkbox", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#stepsol, #stepsdiv", "class": "stps-strpd"} ]}'>
 <p><span class="h4">Zebra striping</span></p>
 <ul>
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#steps1, #stepsdiv", "class": "stps-strpd", "live": true}, {"action": "toggle", "toggle": ".cl-zebra", "live": true}]'>Add zebra striping</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#stepsol, #stepsdiv", "class": "stps-strpd", "live": true}, {"action": "toggle", "toggle": ".cl-zebra", "live": true}]'>Add zebra striping</li>
+
 </ul>
 </div>
 <div class="radioselected">
-<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#sub1, #subdiv, #steps1", "class": "stps-strpd hidden"} ]}'>
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "addClass", "source":"#subol, #subdiv", "class": "hidden stps-strpd"} ]}'>
 <p><span class="h4">Nested list</span></p>
 <ul>
-<li data-wb-fieldflow='[{"action": "removeClass", "source": "#sub1, #subdiv", "class": "stps-strpd", "live": true}, {"action": "addClass", "source": "#sub1, #subdiv", "class": "hidden", "live": true}]'>Default</li>
-<li data-wb-fieldflow='[{"action": "removeClass", "source": "#sub1, #subdiv", "class": "stps-strpd", "live": true}, {"action": "toggle", "toggle": ".cl-sub", "live": true}]'>Add sub-steps</li>
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#sub1, #subdiv, #steps1", "class": "stps-strpd", "live": true}, {"action": "toggle", "toggle": ".cl-sub, .cl-zebra, .cl-subzebra", "live": true}]'>Add sub-steps with zebra striping</li>
+<li data-wb-fieldflow='[{"action": "removeClass", "source": "#subol, #subdiv", "class": "stps-strpd", "live": true}]'>Default</li>
+<li data-wb-fieldflow='[{"action": "removeClass", "source": "#subol, #subdiv", "class": "hidden stps-strpd", "live": true}, {"action": "toggle", "toggle": ".cl-subol, .cl-subdiv", "live": true}]'>Add sub-steps</li>
+<li data-wb-fieldflow='[{"action": "removeClass", "source": "#subol, #subdiv", "class": "hidden", "live": true}, {"action": "addClass", "source": "#subol, #subdiv", "class": "stps-strpd", "live": true}, {"action": "toggle", "toggle": ".cl-subol, .cl-subdiv, .cl-subzebra", "live": true}]'>Add sub-steps with zebra striping</li>
 
 </ul>
 </div>
@@ -883,10 +884,10 @@
 <summary>Appearance</summary>
 <!-- Field flow warnings -->
 <div class="panel panel-body brdr-0 brdr-rds-0">
-<ol class="lst-stps" id="steps1">
+<ol class="lst-stps" id="stepsol">
         <li>Lorem ipsum dolor sit amet, esse autem per ex, nec in magna lorem. Ea nec error scriptorem referrentur, patrioque torquatos conclusionemque pri in. Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.</li>
         <li>Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.
-		<ol id="sub1" class="hidden lst-stps-sub cl-sub">
+		<ol id="subol" class="hidden lst-stps-sub">
 	 <li>List item 2 sub item 1</li>
 	 <li>List item 2 sub item 2</li>
 	 <li>List item 2 sub item 3</li>
@@ -896,7 +897,7 @@
           <p>Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.</p>
         </li>
       </ol>
-<section class="hidden lst-stps cl-div" id="stepsdiv">
+<section class="hidden lst-stps" id="stepsdiv">
   <div class="lst-stps-itm">
    <h2><span class="wb-inv">Step 1</span> Heading goes here</h2>
     <p>Lorem ipsum dolor sit amet, esse autem per ex, nec in magna lorem. Ea nec error scriptorem referrentur, patrioque torquatos conclusionemque pri in. Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.</p>
@@ -904,7 +905,7 @@
   <div class="lst-stps-itm">
    <h2><span class="wb-inv">Step 2</span> Heading goes here</h2>
     <p>Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.</p>
-	<section id="subdiv" class="lst-stps-sub cl-sub hidden">
+	<section id="subdiv" class="lst-stps-sub hidden">
 	 <div class="lst-stps-itm">
 	  <h3><span class="wb-inv">Step 2a</span> Sub-heading goes here</h3>
 	 <p>Ea nec error scriptorem referrentur, patrioque torquatos conclusionemque pri in. Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei.</p>
