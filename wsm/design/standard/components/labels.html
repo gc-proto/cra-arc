@@ -23,6 +23,15 @@
       <link rel="stylesheet" href="../../../css/wsm.css"/>
       <link rel="stylesheet" href="../../../css/step-list.css"/>
       <link rel="stylesheet" href="../../../css/stacked-header.css"/>
+	  	  <script>
+	   function start() {
+	   var ref = document.getElementById("source_url");
+	   var ref2 = document.getElementById("source_url2");
+	   ref.value = window.location;
+	   ref2.value = window.location;
+	   }
+	   onload = start; 
+	  </script>
    </head>
    <body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
       <div id="def-top"> </div>
@@ -192,8 +201,74 @@
         <div>
           <div class="gc-rprt-prblm">
             <div class="gc-rprt-prblm-frm gc-rprt-prblm-tggl">
-              <form id="wsm_feedback" action="mailto:gabriel.portillo@cra-arc.gc.ca?subject=Feedback for the Web service manual" method="post" enctype="text/plain">
+              <form id="wsm_feedback" action="mailto:gabriel.portillo@cra-arc.gc.ca?subject=Feedback for the Web service manual" method="post" enctype="text/plain">			
 				<span class="h4">Please select all that apply</span>
+				<input type="hidden" id="source_url" name="Referring page">
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue1" name="A link, button or video is not working" type="checkbox" />
+					<label for="issue1">A link, button or video is not working</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue7" name="It has a spelling mistake" type="checkbox" />
+					<label for="issue7">It has a spelling mistake </label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue2" name="Information is missing" type="checkbox" />
+					<label for="issue2">Information is missing</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue3" name="Information is outdated or wrong" type="checkbox" />
+					<label for="issue3">Information is outdated or wrong</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue4" name="I can't find what I'm looking for" type="checkbox" />
+					<label for="issue4">I can't find what I'm looking for</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue6" name="There are coding errors" type="checkbox" />
+					<label for="issue6">There are coding errors</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue5" name="Other issue not in this list" type="checkbox" />
+					<label for="issue5">Other issue not in this list</label>
+				</div>
+				<div>
+                <label for="comment"><span class="field-name">Comments</span></label>
+                <textarea name="Comments" class="full-width form-control" id="comment" rows="5"></textarea>
+              </div>
+			  
+				  <div class="mrgn-tp-md">
+					<input type="submit" value="Send by email" class="btn btn-default" />
+					<input type="reset" name="reset" value="Clear Form" class="btn btn-link" />
+				  </div>
+              </form>
+            </div>
+            <div class="gc-rprt-prblm-thnk gc-rprt-prblm-tggl hide">
+              <h3>Thank you for your help!</h3>
+              <p>You will not receive a reply. For enquiries, <a href="https://www.canada.ca/en/contact/index.html">contact us</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+
+
+  <div class="col-sm-6 col-md-5 col-lg-4">
+    <details class="brdr-0">
+      <summary class="btn btn-default text-center">Report a problem or mistake on this page</summary>
+      <div class="clearfix"></div>
+      <div class="well row">
+        <div>
+          <div class="gc-rprt-prblm">
+            <div class="gc-rprt-prblm-frm gc-rprt-prblm-tggl wb-frmvld">
+              <form action="/scripts/form-to-email/response.asp" method="post">
+			  <input name="mailto" type="hidden" value="gabriel.portillo@cra-arc.gc.ca" />
+              <input name="reply" type="hidden" value="/english/r2732472/reply-e.html" />
+              <input name="subject" type="hidden" value="Feedback for the CRA web service manual" />
+				<span class="h4">Please select all that apply</span>
+				<input type="hidden" id="source_url2" name="Referring page">
 				<div class="checkbox provisional gc-chckbxrdio">
 					<input id="issue_1" name="A link, button or video is not working" type="checkbox" />
 					<label for="issue_1">A link, button or video is not working</label>
@@ -224,12 +299,22 @@
 				</div>
 				<div>
                 <label for="comments"><span class="field-name">Comments</span></label>
-                <textarea name="Comments" class="full-width" id="comments" rows="5"></textarea>
+                <textarea name="Comments" class="form-control full-width" id="comments" rows="5"></textarea>
               </div>
-				  <div>
-					<input type="submit" value="Send by email" class="btn btn-default" />
-					<input type="reset" name="reset" value="Clear Form" class="btn btn-link" />
-				  </div>
+
+			  <hr class="brdr-bttm">
+			  <div class="mrgn-tp-md">
+                    <label for="name">Your name</label>
+                    <input type="text" class="form-control full-width" placeholder="Enter name" id="name" name="Name:" />
+                  </div>
+				  <div class="mrgn-tp-md">
+                    <label for="email">Your email</label>
+                    <input type="email" class="form-control full-width" placeholder="Enter email" id="email" name="Email:" />
+                  </div>
+				  <div class="mrgn-tp-lg">
+					<input type="submit" class="btn btn-primary" value="Submit" />
+					<input type="reset" name="reset" value="Clear form" class="btn btn-link" />
+				  </div>			
               </form>
             </div>
             <div class="gc-rprt-prblm-thnk gc-rprt-prblm-tggl hide">
@@ -243,72 +328,7 @@
   </div>
 </div>
 
-<!--
-<div class="wb-frmvld">
-<form role="form" method="post" action="mailto:gabriel.portillo@cra-arc.gc.ca?subject=Feedback for the CRA web service manual">
-  <div class="checkbox provisional gc-chckbxrdio">
-    <input id="issue_1" name="issue_1" type="checkbox" />
-    <label for="issue_1">A link, button or video is not working</label>
-  </div>	
-  <div class="checkbox provisional gc-chckbxrdio">
-    <input id="issue_2" name="issue_2" type="checkbox" />
-    <label for="issue_2">It has a spelling mistake</label>
-  </div>
-  <button type="submit" class="btn btn-default">Send by email</button>
-  <button type="reset" class="btn btn-link">Clear</button>
-</form>
-</div>
 
-
-<div class="wb-frmvld">
-            <form action="/scripts/form-to-email/response.asp" method="post">
-              <input name="mailto" type="hidden" value="gabriel.portillo@cra-arc.gc.ca" />
-              <input name="reply" type="hidden" value="/english/r2732472/reply-e.html" />
-              <input name="subject" type="hidden" value="Feedback for the CRA web service manual" />
-			    <div class="checkbox provisional gc-chckbxrdio">
-					<input id="issue_1" name="A link, button or video is not working:" type="checkbox" />
-					<label for="issue_1">A link, button or video is not working</label>
-				</div>	
-				<div class="checkbox provisional gc-chckbxrdio">
-					<input id="issue_2" name="It has a spelling mistake" type="checkbox" />
-					<label for="issue_2">It has a spelling mistake</label>
-				</div> 			                     
-
-		<p id="source_url"></p>
-                    <input type="text" id="source_url" name="Referring page:" javascript:window.location="window.location;"/>
-	  <script>
-		document.getElementById("source_url").innerHTML = window.location.href;
-	  </script>
-
-
-                 
-
-              
-			  <div class="row">
-			  <div class="col-md-6">
-			  <div class="form-group">
-                    <label for="name">Your name</label>
-                    <input type="text" class="form-control full-width" placeholder="Enter name" id="name" name="Name:" />
-                  </div>
-				  </div>
-				  <div class="col-md-6">
-				  <div class="form-group">
-                    <label for="email">Your email</label>
-                    <input type="email" class="form-control full-width" placeholder="Enter email" id="email" name="Email:" />
-                  </div>
-              </div>
-			  </div>
-              
-              <div class="form-group">
-                <button class="btn btn-default mrgn-tp-md"  type="submit">Submit</button>
-              </div>
-            </form>
-			<div id="response" class="gc-rprt-prblm-thnk gc-rprt-prblm-tggl hide">
-              <h3>Thank you for your feedback!</h3>
-            </div>
-          </div>
-
--->
 
 
 
