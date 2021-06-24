@@ -23,6 +23,247 @@
       <link rel="stylesheet" href="../../css/wsm.css"/>
       <link rel="stylesheet" href="../../css/step-list.css"/>
       <link rel="stylesheet" href="../../css/stacked-header.css"/>
+	   <style>
+         [class*=cnjnctn-type-] {
+         display: flex;
+         flex-wrap: nowrap;
+         flex-direction: column;
+         margin-bottom: 15px;
+         margin-left: 5px;
+         margin-right: 0px;
+         margin-top: 15px;
+         position: relative;
+         min-height: 60px;
+         }
+         [class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child):after {
+         background-image: linear-gradient(to bottom, #6f6f6f, #6f6f6f);
+         background-size: 3px;
+         content: ' ';
+         height: 100%;
+         margin-left: -15px;
+         position: absolute;
+         top: 0;
+         width: 3px;
+         }
+         [class*=cnjnctn-type-] [class*=cnjnctn-col] {
+         padding-left: 15px;
+         padding-right: 15px;
+         width: 100%;
+         }
+         [class*=cnjnctn-type-] [class*=cnjnctn-col]> :first-child {
+         margin-top: 0px;
+         }
+         [class*=cnjnctn-type-] [class*=cnjnctn-col]> :last-child {
+         margin-bottom: 0px;
+         }
+         [class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:last-child) {
+         margin-bottom: 30px;
+         margin-right: 30px;
+         }
+         [class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child) {
+         margin-top: 30px;
+         }
+         [class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child):before {
+         border-color: #6f6f6f;
+         border-style: solid;
+         box-sizing: content-box;
+         font-size: 16px;
+         font-weight: 600;
+         height: 30px;
+         line-height: 28px;
+         margin-top: -53px;
+         padding: 4px;
+         position: absolute;
+         text-align: center;
+         width: 30px;
+         }
+         .cnjnctn-type-or [class*=cnjnctn-col]:not(:first-child):before {
+         border-radius: 50%;
+         border-width: 3px;
+         }
+         .cnjnctn-type-and [class*=cnjnctn-col]:not(:first-child):before {
+         border-width: 0px 3px 0px 3px;
+         }
+         html:lang(en) .cnjnctn-type-and [class*=cnjnctn-col]:not(:first-child):before {
+         content: "and";
+         }
+         html:lang(fr) .cnjnctn-type-and [class*=cnjnctn-col]:not(:first-child):before {
+         content: "et";
+         }
+         html:lang(en) .cnjnctn-type-or [class*=cnjnctn-col]:not(:first-child):before {
+         content: "or";
+         }
+         html:lang(fr) .cnjnctn-type-or [class*=cnjnctn-col]:not(:first-child):before {
+         content: "ou";
+         }
+         [class*=cnjnctn-type-] .cnjnctn-col-90 {
+         flex-basis: 90%
+         }
+         [class*=cnjnctn-type-] .cnjnctn-col-80 {
+         flex-basis: 80%
+         }
+         [class*=cnjnctn-type-] .cnjnctn-col-75 {
+         flex-basis: 75%
+         }
+         [class*=cnjnctn-type-] .cnjnctn-col-70 {
+         flex-basis: 70%
+         }
+         [class*=cnjnctn-type-] .cnjnctn-col-60 {
+         flex-basis: 60%
+         }
+         [class*=cnjnctn-type-] .cnjnctn-col-50 {
+         flex-basis: 50%
+         }
+         [class*=cnjnctn-type-] .cnjnctn-col-40 {
+         flex-basis: 40%
+         }
+         [class*=cnjnctn-type-] .cnjnctn-col-30 {
+         flex-basis: 30%
+         }
+         [class*=cnjnctn-type-] .cnjnctn-col-25 {
+         flex-basis: 25%
+         }
+         [class*=cnjnctn-type-] .cnjnctn-col-20 {
+         flex-basis: 20%
+         }
+         [class*=cnjnctn-type-].cnjnctn-xs {
+         flex-direction: row;
+         margin-left: -15px;
+         margin-right: -15px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):after {
+         background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+         }
+         [class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child) {
+         margin-left: 30px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):after {
+         margin-left: -46px;
+         }
+         .cnjnctn-type-or.cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+         margin-left: -67px;
+         }
+         .cnjnctn-type-and.cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+         margin-left: -65.5px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+         margin-top: 4px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:last-child) {
+         margin-bottom: 0px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child) {
+         margin-top: 0px;
+         }
+         .cnjnctn-type-and.cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+         border-width: 3px 0px 3px 0px;
+         }
+         @media all and (min-width: 768px) {
+         [class*=cnjnctn-type-].cnjnctn-sm {
+         border-left: 0px solid transparent;
+         flex-direction: row;
+         margin-left: -15px;
+         margin-right: -15px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child) {
+         margin-left: 30px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):after {
+         margin-left: -46px;
+         }
+         .cnjnctn-type-or.cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+         margin-left: -67px;
+         }
+         .cnjnctn-type-and.cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+         margin-left: -65.5px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+         margin-top: 4px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:last-child) {
+         margin-bottom: 0px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child) {
+         margin-top: 0px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):after {
+         background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+         }
+         .cnjnctn-type-and.cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+         border-width: 3px 0px 3px 0px;
+         }
+         }
+         @media all and (min-width: 992px) {
+         [class*=cnjnctn-type-].cnjnctn-md {
+         border-left: 0px solid transparent;
+         flex-direction: row;
+         margin-left: -15px;
+         margin-right: -15px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child) {
+         margin-left: 30px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child):after {
+         margin-left: -46px;
+         }
+         .cnjnctn-type-or.cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+         margin-left: -67px;
+         }
+         .cnjnctn-type-and.cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+         margin-left: -65.5px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+         margin-top: 4px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:last-child) {
+         margin-bottom: 0px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child) {
+         margin-top: 0px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child):after {
+         background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+         }
+         .cnjnctn-type-and.cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+         border-width: 3px 0px 3px 0px;
+         }
+         }
+         @media all and (min-width: 1200px) {
+         [class*=cnjnctn-type-].cnjnctn-lg {
+         border-left: 0px solid transparent;
+         flex-direction: row;
+         margin-left: -15px;
+         margin-right: -15px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child) {
+         margin-left: 30px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):after {
+         margin-left: -46px;
+         }
+         .cnjnctn-type-or.cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+         margin-left: -67px;
+         }
+         .cnjnctn-type-and.cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+         margin-left: -65.5px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+         margin-top: 4px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:last-child) {
+         margin-bottom: 0px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child) {
+         margin-top: 0px;
+         }
+         [class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):after {
+         background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+         }
+         .cnjnctn-type-and.cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+         border-width: 3px 0px 3px 0px;
+         }
+         }
+      </style>
    </head>
    <body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
       <div id="def-top"> </div>
@@ -80,23 +321,84 @@
           <h1 property="name" id="wb-cont" class="gc-thickline">Plan</h1>
         <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
-      <li><a href="#h-1">TOC link</a></li>
-      <li><a href="#h-2">TOC link</a></li>
-      <li><a href="#h-3">TOC link</a></li>
-	  <li><a href="#h-4">TOC link</a></li>
-	  <li><a href="#h-5">TOC link</a></li>
+      <li><a href="#h-1">Identify need for project</a></li>
+      <li><a href="#h-2">Gather existing data</a></li>
+      <li><a href="#h-3">Determine project scope</a></li>
+	  <li><a href="#h-4">Engage stakeholders and project team</a></li>
+	  <li><a href="#h-5">Kickoff meeting
+</a></li>
     </ul>
 	
-	<h2 id="h-1">heading</h2>
-	<p>content</p>
-	<h2 id="h-2">heading</h2>
-	<p>content</p>
-	<h2 id="h-3">heading</h2>
-	<p>content</p>
-	<h2 id="h-4">heading</h2>
-	<p>content</p>
-	<h2 id="h-5">heading</h2>
-	<p>content</p>
+	<h2 id="h-1">Identify need for project</h2>
+	<p>A project is initiated based on:</p>
+<ul>
+<li>client and user needs</li>
+<li>departmental priorities</li>
+<li>web optimization planning</li>
+</ul>
+
+	<h2 id="h-2">Gather existing data</h2>
+	<p>Data is gathered in the planning phase, so it’s ready to be analyzed in the discovery phase. </p>
+<p>The primary source of data is the Usability Performance Dashboard (UPD). It contains  the following:</p>
+<ul>
+<li>Call Centre data and trends</li>
+<li>feedback tool</li>
+<li>web analytics</li>
+<li>Search Engine Optimization (SEO) data</li>
+<li>Top task research</li>
+<li>usability testing results and findings</li>
+</ul>
+	<h2 id="h-3">Determine project scope</h2>
+	<p>This portion of the planning phase establishes the project boundaries and identifies the Key Performance Indicators (KPIs), or measures of success, that will be assessed. It’s also when project timelines are determined.</p>
+	<ol class="lst-stps">
+<li><h3>Identify top issues</h3>
+<p>Content, call driver data, search patterns, user feedback, and website traffic are examined to identify the top issues that users are experiencing and that need to be addressed on the web pages. </p></li>
+<li><h3>Establish timelines</h3> 
+<p>Determine the start and end dates for the tasks and activities associated with the project.</p> </li> 
+<li><h3>Set KPIs</h3>
+<p>For every project, KPIs are set.<p>
+<div class="cnjnctn-type-or cnjnctn-sm">
+                  <div class="cnjnctn-col">
+                     <h4 class="mrgn-tp-sm text-muted h5">Rate of findability and task success</h4>
+                     <p>A <strong>rate of 80%</strong> in findability and task success (completion)</p>
+					 </div>
+
+					 <div class="cnjnctn-col">
+                     <h4 class="mrgn-tp-sm text-muted h5">An increase in success from initial baseline to validation testing</h4>
+                     <p>A <strong>20% point increase</strong> (from initial baseline to validation testing) in terms of findability and task success (completion) </p>
+					 </div>
+					 </div>
+
+ 
+<p>
+The following are considered when determining whether KPIs have been met:</p>
+<dl class="dl-horizontal">
+<dt>Ease of use </dt>
+<dd>Users rank how easy or difficult it is to complete a task.</dd>
+<dt>System Usability (SUS)</dt>
+<dd>Users participate in this 10-item questionnaire, administered at the end of a usability test. The aim of the questionnaire is to capture the participant’s overall experience with the test pages and measure the usability of the test pages against industry-established metrics. </dd>
+
+<dt>Time on task</dt>
+<dd>How long it takes the user to complete a task.</dd>
+</dl>
+</li>
+</ol>
+	<h2 id="h-4">Engage stakeholders and project team</h2>
+	<p>All key stakeholders from the various departments and specialties are included in the planning process along with the project team.</p>
+	<h2 id="h-5">Kickoff meeting
+</h2>
+	<p>The goal of the kickoff meeting is to ensure all key stakeholders from the various departments and specialties are aligned and form one unified team for the project.</p>
+<p>Some of the items that should be confirmed during the meeting:</p>
+<ul>
+<li>intended target audience and their needs</li>
+<li>problems that need to be solved</li>
+<li>whether there is any current data related to pages (existing statistics or research)</li>
+<li>timelines/deadlines</li>
+<li>business goals from the different departmental areas</li>
+<li>whether the top “problem statements” for each partner area are in alignment with one another (high level issue each partner area feels is a cause for concern)</li>
+<li>business, user, or technology constraints (high-season volumes, planned release cycles, accessibility, standards, etc.)</li>
+<li>technical limitations that need to be dealt with </li>
+</ul>
        <nav class="mrgn-bttm-lg mrgn-tp-lg">
                <h3 class="wb-inv">Document navigation</h3>
                <ul class="pager">
