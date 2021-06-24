@@ -23,6 +23,15 @@
       <link rel="stylesheet" href="../../../css/wsm.css"/>
       <link rel="stylesheet" href="../../../css/step-list.css"/>
       <link rel="stylesheet" href="../../../css/stacked-header.css"/>
+	  	  <script>
+	   function start() {
+	   var ref = document.getElementById("source_url");
+	   var ref2 = document.getElementById("source_url2");
+	   ref.value = window.location;
+	   ref2.value = window.location;
+	   }
+	   onload = start; 
+	  </script>
    </head>
    <body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
       <div id="def-top"> </div>
@@ -33,7 +42,7 @@
            lngLinks: [{
          
              lang: "fr",
-             href: "#",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
              text: "Français"
            }],
            breadcrumbs: [{
@@ -46,6 +55,7 @@
            showPreContent: true
          });
       </script>
+
       <main role="main" property="mainContentOfPage" class="container">
 <!-- CONTENT STARTS -->
 <h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Labels – Standard web pages – CRA web service manual</h1>
@@ -54,29 +64,22 @@
 <h1 class="gc-thickline mrgn-tp-0">Labels – Standard web pages</h1>
 </div>
 <div class="all-pre wb-prettify">
-   
+      <p>Use labels to call attention to a section of content by adding short, text-based bits of supporting information. Labels are visual indicators that assign a tag to items such as events, products, programs or services. They provide additional context about the adjacent content.</p>
    <h2 class="h3 mrgn-tp-md">On this page</h2>
    <ul>
-      <li>
-         <a href="#h-1">Content approach</a>
-         <ul>
-            <li><a href="#h-1-1">Purpose</a></li>
-         </ul>
-      </li>
-      <li>
-         <a href="#h-2">Design options</a>
-         <ul>
-            <li><a href="#h-2-1">Basic labels</a></li>
-			<li><a href="#h-2-2">Related components and functions</a></li>
-         </ul>
-      </li>
-      
+   <li><a href="#h-1">When to use</a></li>
+     <li><a href="#h-2">Design options</a></li>
+	<li><a href="#h-3">Complementary components and functions</a></li>
    </ul>
-   <h2 id="h-1" class="mrgn-bttm-0">Content approach</h2>
-   <h3 id="h-1-1">Purpose</h3>
-   <p>Labels provide additional context about the adjacent content. Labels call attention to a section of content by adding short, text-based bits of supporting information.</p>
+
+   <h2 id="h-1" >When to use</h2>
+   <p>Use labels to:</p>
+   <ul>
+                  <li>signal that an item belongs to a category (for example, to show if some programs are open, some closed, and some will open soon)</li>
+                  <li>label or stamp items with additional information, like the date an item was updated, or the closure of an area</li>
+                  <li>show different stages of progress in a list of items (for example, to show which vaccines are under review and which ones are approved)</li>
+               </ul>
    <h2 id="h-2" >Design options</h2>
-   <h3 id="h-2-1">Basic labels</h3>
    <p>Use the appropriate label to describe and highlight text-based (non-numerical) information.</p>
    <div class="row">
       <!-- Field flow options -->
@@ -114,11 +117,17 @@
                         <pre><code>&lt;p&gt;Your text here &lt;span class="label<strong><span class="hidden cl-label-default"> label-default</span><span class="hidden cl-label-info"> label-info</span><span class="hidden cl-label-primary"> label-primary</span><span class="hidden cl-label-success"> label-success</span><span class="hidden cl-label-warning"> label-warning</span><span class="hidden cl-label-danger"> label-danger</span></strong>"&gt;(Your label)&lt;/span&gt;&lt;/p&gt;
 </code></pre>
                      </details>
-                     <details>
-                        <summary>Struts</summary>
-                        <pre><code>code here</code></pre>
-                     </details>
-                  </details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
+</details>
+
                </div>
             </div>
          </div>
@@ -127,67 +136,201 @@
       </div>
    </div>
    <!-- Correct use -->
-   <h4 class="mrgn-tp-0 text-muted">Correct use</h4>
-   <dl class="dl-horizontal">
-      <dt>General</dt>
-      <dd>
+   
+   <div class="row">
+   <div class="col-md-7">
+   <h3 class="h4 text-muted">Correct use</h3>
          <ul class="fa-ul">
-            <li><span class="fas fa-check fa-li text-success"></span> Use to feature a few words within a coloured background</li>
+			<li><span class="fas fa-check fa-li text-success"></span> Ensure labels are placed very close to the item they apply to</li>
+            <li><span class="fas fa-check fa-li text-success"></span> Use the correct type of label
+			<ul>
+			<li>Use <strong>default</strong> to give additional information about an item, like adding dates to a list of items</li>
+			<li>Use <strong>info</strong> to tag an item with a value, like identifying a new blog post. "New" labels should be temporary</li>
+			<li>Use <strong>primary</strong> to signal an important information about an item, like when a new program is not yet open but will be soon</li>
+			<li>Use <strong>success</strong> to signal an item is open, available or approved</li>
+			<li>Use <strong>warning</strong> when you want to bring attention to an item to warn people of a change, like if a program is ending soon</li>
+			<li>Use <strong>danger</strong> when an item is no longer available, like when a program has ended or an area is closed</li>
+			</ul>
+			</li>
+         </ul>
+	</div>
+   <div class="col-md-5">
+   <h3 class="h4 text-muted">Incorrect use</h3>
+         <ul class="fa-ul">
+		 <li><span class="fas fa-times fa-li text-danger"></span> Don't use long labels or full sentences - keep them short</li>
+		 <li><span class="fas fa-times fa-li text-danger"></span> Don't use labels that have overlapping meaning</li>
+		 <li><span class="fas fa-times fa-li text-danger"></span> Don't use labels to add style to text</li>
             <li><span class="fas fa-times fa-li text-danger"></span> Do not use in alerts or buttons</li>
             <li><span class="fas fa-times fa-li text-danger"></span> Do not use to highlight unread items − use <a href="badges.html">Badges</a></li>
             <li><span class="fas fa-times fa-li text-danger"></span> Do not highlight large sections of text − use <a href="alerts.html">Alerts</a></li>
          </ul>
-      </dd>
-      <dt>Info label</dt>
-      <dd>
-         <ul class="fa-ul">
-            <li><span class="fas fa-check fa-li text-success"></span> Use <code>.label-info</code> to indicate that the content is informative in nature</li>
-         </ul>
-      </dd>
-      <dt>Primary label</dt>
-      <dd>
-         <ul class="fa-ul">
-            <li><span class="fas fa-check fa-li text-success"></span>Use <code>.label-primary</code> to match the label to the colour theme of the site</li>
-         </ul>
-      </dd>
-      <dt>Success label</dt>
-      <dd>
-         <ul class="fa-ul">
-            <li><span class="fas fa-check fa-li text-success"></span>Use <code>.label-success</code> to indicate that the content is correct</li>
-         </ul>
-      </dd>
-      <dt>Warning label</dt>
-      <dd>
-         <ul class="fa-ul">
-            <li><span class="fas fa-check fa-li text-success"></span> Use <code>.label-warning</code> to indicate that the user needs to be warned</li>
-         </ul>
-      </dd>
-      <dt>Danger label</dt>
-      <dd>
-         <ul class="fa-ul">
-            <li><span class="fas fa-check fa-li text-success"></span> Use <code>.label-danger</code> to indicate that the content or action is dangerous</li>
-         </ul>
-      </dd>
-   </dl>
 </div>
 
-<h3 id="h-2-2">Related components and functions</h3>
+</div>
+
+<h2 id="h-3">Complementary components and functions</h2>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
 	<!-- Alerts -->
 	  <li class="col-md-4" id="Alerts">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Alerts.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Alerts.html">Alerts</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/alerts.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="alerts.html">Alerts</a></h3> 	 
 	   </div></div></div></li>	 
 	<!-- Footnotes -->
 	  <li class="col-md-4" id="Footnotes">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Footnotes.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Footnotes.html">Footnotes</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/footnotes.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="footnotes.html">Footnotes</a></h3> 	 
 	   </div></div></div></li>
 
 </ul>
+
+	
+<!--
+<a class="email" title="Email a friend" href="#" onclick="javascript:window.location='mailto:?subject=Interesting information&body==I thought you might find this information interesting: ' + window.location;">Email</a>
+-->
+
+
+<div class="row">
+  <div class="col-sm-6 col-md-5 col-lg-4">
+    <details class="brdr-0">
+      <summary class="btn btn-default text-center">Report a problem or mistake on this page</summary>
+      <div class="clearfix"></div>
+      <div class="well row">
+        <div>
+          <div class="gc-rprt-prblm">
+            <div class="gc-rprt-prblm-frm gc-rprt-prblm-tggl">
+              <form id="wsm_feedback" action="mailto:gabriel.portillo@cra-arc.gc.ca?subject=Feedback for the Web service manual" method="post" enctype="text/plain">			
+				<span class="h4">Please select all that apply</span>
+				<input type="hidden" id="source_url" name="Referring page">
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue1" name="A link, button or video is not working" type="checkbox" />
+					<label for="issue1">A link, button or video is not working</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue7" name="It has a spelling mistake" type="checkbox" />
+					<label for="issue7">It has a spelling mistake </label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue2" name="Information is missing" type="checkbox" />
+					<label for="issue2">Information is missing</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue3" name="Information is outdated or wrong" type="checkbox" />
+					<label for="issue3">Information is outdated or wrong</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue4" name="I can't find what I'm looking for" type="checkbox" />
+					<label for="issue4">I can't find what I'm looking for</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue6" name="There are coding errors" type="checkbox" />
+					<label for="issue6">There are coding errors</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue5" name="Other issue not in this list" type="checkbox" />
+					<label for="issue5">Other issue not in this list</label>
+				</div>
+				<div>
+                <label for="comment"><span class="field-name">Comments</span></label>
+                <textarea name="Comments" class="full-width form-control" id="comment" rows="5"></textarea>
+              </div>
+			  
+				  <div class="mrgn-tp-md">
+					<input type="submit" value="Send by email" class="btn btn-default" />
+					<input type="reset" name="reset" value="Clear Form" class="btn btn-link" />
+				  </div>
+              </form>
+            </div>
+            <div class="gc-rprt-prblm-thnk gc-rprt-prblm-tggl hide">
+              <h3>Thank you for your help!</h3>
+              <p>You will not receive a reply. For enquiries, <a href="https://www.canada.ca/en/contact/index.html">contact us</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+
+
+  <div class="col-sm-6 col-md-5 col-lg-4">
+    <details class="brdr-0">
+      <summary class="btn btn-default text-center">Report a problem or mistake on this page</summary>
+      <div class="clearfix"></div>
+      <div class="well row">
+        <div>
+          <div class="gc-rprt-prblm">
+            <div class="gc-rprt-prblm-frm gc-rprt-prblm-tggl wb-frmvld">
+              <form action="http://workzone/scripts/form-to-email/response.asp" method="post">
+			  <input name="mailto" type="hidden" value="gabriel.portillo@cra-arc.gc.ca" />
+              <input name="reply" type="hidden" value="form_reply.html" />
+              <input name="subject" type="hidden" value="Feedback for the CRA web service manual" />
+				<span class="h4">Please select all that apply</span>
+				<input type="hidden" id="source_url2" name="Referring page">
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="issue_1" name="A link, button or video is not working" type="checkbox" />
+					<label for="issue_1">A link, button or video is not working</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="Issue_7" name="It has a spelling mistake" type="checkbox" />
+					<label for="Issue_7">It has a spelling mistake </label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="Issue_2" name="Information is missing" type="checkbox" />
+					<label for="Issue_2">Information is missing</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="Issue_3" name="Information is outdated or wrong" type="checkbox" />
+					<label for="Issue_3">Information is outdated or wrong</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="Issue_4" name="I can't find what I'm looking for" type="checkbox" />
+					<label for="Issue_4">I can't find what I'm looking for</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="Issue_6" name="There are coding errors" type="checkbox" />
+					<label for="Issue_6">There are coding errors</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="Issue_5" name="Other issue not in this list" type="checkbox" />
+					<label for="Issue_5">Other issue not in this list</label>
+				</div>
+				<div>
+                <label for="comments"><span class="field-name">Comments</span></label>
+                <textarea name="Comments" class="form-control full-width" id="comments" rows="5"></textarea>
+              </div>
+
+			  <hr class="brdr-bttm">
+			  <div class="mrgn-tp-md">
+                    <label for="name">Your name</label>
+                    <input type="text" class="form-control full-width" placeholder="Enter name" id="name" name="Name:" />
+                  </div>
+				  <div class="mrgn-tp-md">
+                    <label for="email">Your email</label>
+                    <input type="email" class="form-control full-width" placeholder="Enter email" id="email" name="Email:" />
+                  </div>
+				  <div class="mrgn-tp-lg">
+					<input type="submit" class="btn btn-primary" value="Submit" />
+					<input type="reset" name="reset" value="Clear form" class="btn btn-link" />
+				  </div>			
+              </form>
+            </div>
+            <div class="gc-rprt-prblm-thnk gc-rprt-prblm-tggl hide">
+              <h3>Thank you for your help!</h3>
+              <p>You will not receive a reply. For enquiries, <a href="https://www.canada.ca/en/contact/index.html">contact us</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+
+
+
 
 
 
