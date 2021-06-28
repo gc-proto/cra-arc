@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+      <title>Interative checklists – Standard web pages – CRA web service manual – Canada.ca</title>
+      <meta content="width=device-width,initial-scale=1" name="viewport">
+      <meta name=”robots” content=”noindex”>
+      <!-- Meta data -->
+      <!-- Meta data-->
+      <!-- Load closure template scripts -->
+      <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/soyutils.js"></script>
+      <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/wet-en.js"></script>
+      <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+      <style>
+ @charset "utf-8";
+/*Navigation list  */
+ul.gcnav-steps {
+	list-style: none;
+	padding-left: 0.57em;
+	position: relative;
+	margin-top: 0.325em;
+}
+ul.gcnav-steps li ul.gcnav-steps {
+	margin-top: 20px;
+	padding-left: 0.55em;
+}
+/*border-right-width is for safari or apple browsers only */
+ul.gcnav-steps>li {
+	border-left: 4px solid #26374a;
+	padding: 0px 20px 30px 1em;
+	margin-top: -0.325em;
+	border-right-width: 0px;
+}
+ul.gcnav-steps>li:first-child {
+	border-left: 4px solid #26374a;
+	-o-border-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0) 0.4em, #26374a 0.4em, #26374a 0.4em) 1 100%;
+	border-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0) 0.4em, #26374a 0.4em, #26374a 0.4em) 1 100%;
+}
+ul.gcnav-steps>li ul.gcnav-steps.noline>li {
+	border-left: 4px solid transparent;
+	border-image: none;
+}
+ul.gcnav-steps>li:last-child, ul.gcnav-steps>li.gcnav-steps-end {
+	border-left: 4px solid transparent;
+}
+ul.gcnav-steps li ul.gcnav-steps>li:last-child {
+	padding-bottom: 0px;
+}
+ul.gcnav-steps>li>:first-child::before {
+	border-radius: 50%;
+	border: 3px solid #26374a;
+	background-color: #fff;
+	position: absolute;
+	left: 0.05em;
+	content: "";
+	width: 1.2em;
+	height: 1.2em;
+	transition: width 0.2s, height 0.2s, left 0.2s, margin-top 0.2s;
+	margin-top: 0.325em;
+}
+ul.gcnav-steps>li.active>:first-child::before {
+	background-color: #26374a;
+}
+ul.gcnav-steps>li>a[href]:hover::before, .gcnav-steps>li>a[href]:focus::before {
+	width: 1.4em;
+	height: 1.4em;
+	left: -0.05em;
+	margin-top: 0.225em;
+}
+ul.gcnav-steps>li ul.gcnav-steps.noline>li.active::before {
+	content: " ";
+	height: 4px;
+	width: 1.6em;
+	background-color: #26374a;
+	position: absolute;
+	margin-left: -2.8em;
+	margin-top: 0.825em;
+}
+/*Persistant navigation pattern default mobile */
+.gcnav .gcnav-menu h1#wb-cont-parent {
+	border-bottom-width: 0px;
+	padding: 0px 20px 10px 0px;
+	background-color: #fff;
+	display: inline-block;
+	font-size: 1.3em;
+	color: #555;
+	margin-top: -19px;
+	float: left;
+	margin-right: 20px;
+}
+.gcnav .gcnav-menu {
+	border-top: 4px solid #26374a;
+	border-right: 4px solid #26374a;
+	border-radius: 0px 6px 6px 0px;
+	margin-top: 38px;
+}
+.gcnav .gcnav-menu ul.gcnav-steps {
+	padding-top: 10px;
+	clear: both;
+}
+.gcnav .gcnav-menu ul.gcnav-steps>li:last-child {
+	border-left: 4px solid #26374a;
+	border-bottom: 4px solid #26374a;
+	border-bottom-left-radius: 6px;
+}
+.gcnav .gcnav-menu ul.gcnav-steps>li ul.gcnav-steps>li:last-child {
+	border-left: 4px solid transparent;
+	border-bottom: 0px;
+}
+.gcnav .gcnav-menu nav, .gcnav aside.gcnav-side {
+	clear: left;
+}
+.gcnav>h1#wb-cont {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+/*Header for navigation menu hidden in mobile except on focus*/
+@media all and (max-width:991px) {
+.gcnav .gcnav-menu #gcnav-menu-header:not(:focus) {
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	margin: 0;
+	overflow: hidden;
+	position: absolute;
+	width: 1px;
+}
+}
+
+/* Persistant navigation desktop */
+@media all and (min-width:992px) {
+.gcnav {
+	margin: 38px -15px 0px -15px;
+}
+.gcnav::after {
+	clear: both;
+}
+.gcnav::after, .gcnav::before {
+	content: " ";
+	display: table;
+}
+.gcnav .gcnav-menu h1#wb-cont-parent {
+	font-weight: inherit;
+	padding-bottom: 0px!important;
+	margin-bottom: 0px;
+	font-size: 1.52em;
+}
+.gcnav .gcnav-menu, .gcnav .gcnav-menu h1#wb-cont-parent, .gcnav h1#wb-cont {
+	margin-top: 0px;
+}
+.gcnav .gcnav-menu h1#wb-cont-parent, .gcnav .gcnav-section {
+	width: 66.66%;
+}
+.gcnav .gcnav-menu nav, .gcnav aside.gcnav-side, .gcnav .gcnav-side {
+	width: 33.33%;
+	float: right;
+}
+.gcnav .gcnav-section {
+	display: inline-block;
+}
+.gcnav .gcnav-menu nav {
+	margin-top: -20px;
+}
+.gcnav .gcnav-menu h1#wb-cont-parent, .gcnav .gcnav-section, .gcnav .gcnav-menu nav, .gcnav aside.gcnav-side, .gcnav .gcnav-side {
+	position: relative;
+	min-height: 1px;
+	padding: 0px 15px 0px 15px;
+}
+.gcnav .gcnav-menu h1#wb-cont-parent {
+	float: left;
+}
+.gcnav aside.gcnav-side {
+	clear: right;
+}
+.gcnav .gcnav-menu #gcnav-menu-header {
+	margin-top: 0px;
+}
+.gcnav #gcnav-menu-header {
+	font-size: 1.2em;
+	display: inherit;
+}
+.gcnav .gcnav-menu {
+	border-top: 0px;
+	border-right: 0px;
+}
+.gcnav .gcnav-menu ul.gcnav-steps>li:last-child {
+	border-left: 4px solid transparent;
+	border-bottom: 0px;
+}
+}
+ul.gcnav-steps>li ul.gcnav-steps>li.active::before {
+	margin-left: -2.75em;
+}
+}
+/*Checkbox/Fieldflow radio input sizing,positioning*/
+.checkbox-lg > li.checkbox {
+	margin-top: 0px;
+}
+.checkbox-lg > li {
+	margin-left: -40px;
+	padding-left: 40px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	margin-bottom: 5px;
+	padding-right: 15px;
+}
+.checkbox-zebra > li:nth-child(2n+1) {
+	background-color: #f5f5f5;
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+.checkbox-lg > li.checkbox input[type=checkbox], .fieldflow-lg .radio input[type=radio] {
+	margin-top: 12px;
+	transform: scale(2);
+}
+.checkbox-lg label, .fieldflow-lg, .fieldflow-lg label, .fieldflow-lg div, .fieldflow-lg select, .std-blt {
+	font-size: 20px;
+	line-height: 1.65em;
+}
+.std-blt {
+	list-style-type: disc;
+}
+.std-blt li label {
+	display: block;
+	padding-left: 0px;
+}
+.fieldflow-lg .radio label {
+	margin-left: 40px;
+}
+.fieldflow-lg .radio input[type=radio] {
+	margin-left: -40px;
+}
+.fieldflow-lg fieldset legend {
+	font-size: 22px;
+	margin-top: 0px;
+}
+
+/*Hide arrows in Chrome/FF for number input*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+ -webkit-appearance: none;
+ margin: 0;
+}
+/* Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
+}
+output.wb-calc {
+	display: inline;
+}
+/*Validation invisible text appearance */
+.wb-frmvld #errors-default .wb-inv, .wb-frmvld .has-error .wb-inv {
+	clip: inherit;
+	height: inherit;
+	margin: inherit;
+	overflow: inherit;
+	position: inherit;
+	width: inherit;
+}
+.wb-frmvld .has-error .wb-inv {
+	color: #333;
+}
+:not(#wb-srch) main form:not(#gc-pg-hlpfl-frm), main .checkbox, main .checkbox-inline, main .radio, main .radio-inline, main form:not(#gc-pg-hlpfl-frm) :not(.btn-call-to-action).btn, main form :not(.btn-primary).btn {
+               font-size: 20px !important;
+               line-height: 1.65em !important;
+}
+.checkbox-lg>li {
+	margin-bottom: 20px;
+}
+.checkbox-lg>li .checkbox-block {
+	padding-left: 20px;
+}
+.checkbox-lg input[type=checkbox] {
+	/* Double-sized Checkboxes */
+	-ms-transform: scale(2); /* IE */
+	-moz-transform: scale(2); /* FF */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-o-transform: scale(2); /* Opera */
+	transform: scale(2);
+	padding: 10px;
+	-webkit-background-color: #fff;
+}
+.checkbox-lg input[type=checkbox]:focus {
+	box-shadow: 0 0 2pt 1pt rgb(59, 153, 252);
+}
+.checkbox-lg label {
+	font-size: 1.2em;
+}
+p {
+	transition: all 1s;
+}
+p.hidden-action {
+	transform: scaleX(0);
+	overflow: hidden;
+	float: left;
+}
+p.visible-action {
+	transform: scaleX(1);
+	float: left;
+}
+/*Conjugation grid*/
+.cnjnctn-grd {
+	display: flex;
+	margin-top: 19px;
+	margin-bottom: 19px;
+}
+.cnjnctn-grd .cnjnctn-col {
+	width: 100%;
+	padding-top: 9px;
+}
+.cnjnctn-grd .cnjnctn-col-sm {
+	width: 50%;
+	padding-top: 9px;
+}
+.cnjnctn-grd .cnjnctn-and, .cnjnctn-grd .cnjnctn-or {
+	flex-basis: content;
+	position: relative;
+	align-self: stretch;
+	padding-right: 19px;
+	padding-left: 19px;
+	padding-top: 5px;
+}
+.cnjnctn-grd .cnjnctn-and:after, .cnjnctn-grd .cnjnctn-or:after {
+	content: " ";
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 50%;
+	border-left: 2px solid #000 !important;
+	border-image: linear-gradient(to bottom, #ccc 0.3em, #ccc 0.3em, rgba(0,0,0,0) 0.3em, rgba(0,0,0,0) 2.4em, #ccc 2.4em, #ccc 2.4em) 1 100% !important;
+	border-color: #ccc !important;
+}
+.cnjnctn-grd .cnjnctn-and:before, .cnjnctn-grd .cnjnctn-or:before {
+	float: left;
+	box-sizing: content-box;
+	line-height: 1.9em;
+	text-align: center;
+	padding: 4px;
+	height: 2em;
+	width: 2em;
+	font-weight: 600;
+	font-size: 16px;
+}
+.cnjnctn-grd .cnjnctn-and:before {
+	border-width: 2px 0px 2px 0px;
+	border-color: #ccc;
+	border-style: solid;
+}
+html:lang(en) .cnjnctn-and:before {
+	content: "and";
+}
+html:lang(fr) .cnjnctn-and:before {
+	content: "et";
+}
+.cnjnctn-or:before {
+	border-radius: 50%;
+	border: 2px solid #ccc;
+}
+html:lang(en) .cnjnctn-or:before {
+	content: "or";
+}
+html:lang(fr) .cnjnctn-or:before {
+	content: "ou";
+}
+
+@media all and (max-width: 767px) {
+.flex-fw-xs {
+	flex-direction: column;
+}
+.cnjnctn-grd.flex-fw-xs {
+	border-left: 2px solid #ccc;
+	padding-left: 19px;
+}
+.cnjnctn-grd.flex-fw-xs .cnjnctn-and, .cnjnctn-grd.flex-fw-xs .cnjnctn-or {
+	padding-left: 0px;
+}
+.flex-fw-xs .cnjnctn-and:after, .cnjnctn-grd.flex-fw-xs .cnjnctn-or:after {
+	border-left: 0px solid transparent;
+}
+.flex-fw-xs .cnjnctn-and:before {
+	border-width: 0px 2px 0px 2px;
+}
+}
+
+@media all and (max-width: 991px) {
+.flex-fw-sm {
+	flex-direction: column;
+}
+.cnjnctn-grd.flex-fw-sm {
+	border-left: 2px solid #ccc;
+	padding-left: 19px;
+}
+.flex-fw-sm .cnjnctn-and, .cnjnctn-grd.flex-fw-sm .cnjnctn-or {
+	padding-left: 0px;
+}
+.flex-fw-sm .cnjnctn-and:after, .cnjnctn-grd.flex-fw-sm .cnjnctn-or:after {
+	border-left: 0px solid transparent;
+}
+.flex-fw-sm .cnjnctn-and:before {
+	border-width: 0px 2px 0px 2px;
+}
+}
+
+@media all and (max-width: 1169px) {
+.flex-fw-md {
+	flex-direction: column;
+}
+.cnjnctn-grd.flex-fw-md {
+	border-left: 2px solid #ccc;
+	padding-left: 19px;
+}
+.flex-fw-md .cnjnctn-and, .cnjnctn-grd.flex-fw-md .cnjnctn-or {
+	padding-left: 0px;
+}
+.flex-fw-md .cnjnctn-and:after, .cnjnctn-grd.flex-fw-md .cnjnctn-or:after {
+	border-left: 0px solid transparent;
+}
+.flex-fw-md .cnjnctn-and:before {
+	border-width: 0px 2px 0px 2px;
+}
+}
+
+@media all and (min-width: 1170px) {
+.flex-fw-lg {
+	flex-direction: column;
+}
+.cnjnctn-grd.flex-fw-lg {
+	border-left: 2px solid #ccc;
+	padding-left: 19px;
+}
+.flex-fw-lg .cnjnctn-and, .cnjnctn-grd.flex-fw-lg .cnjnctn-or {
+	padding-left: 0px;
+}
+.flex-fw-lg .cnjnctn-and:after, .cnjnctn-grd.flex-fw-lg .cnjnctn-or:after {
+	border-left: 0px solid transparent;
+}
+.flex-fw-lg .cnjnctn-and:before {
+	border-width: 0px 2px 0px 2px;
+}
+}
+.dcsn-details details + .cnjnctn-or:before {
+	float: left;
+	box-sizing: content-box;
+	line-height: 1.9em;
+	text-align: center;
+	padding: 4px;
+	height: 2em;
+	width: 2em;
+	font-weight: 500;
+	font-size: 16px;
+	border: 1px solid #ccc;
+}
+.dcsn-details details:not(:last-child) {
+	margin-bottom: 30px;
+}
+.dcsn-details details + .cnjnctn-or {
+	position: absolute;
+	margin-top: -36px;
+	background-color: #fff;
+	margin-left: 38px;
+}
+}
+/*Temporary solution for decision points inside wells or backgrounds */
+.well .dcsn-details, .well .dcsn-details details + .cnjnctn-or, [class*='bg-'] .dcsn-details, [class*='bg-'] .dcsn-details details + .cnjnctn-or {
+	background-color: inherit;
+}
+/*Styled list steps */
+ol.lst-stps, .lst-stps {
+	counter-reset: item;
+}
+ol.lst-stps, .lst-stps {
+	margin: 15px 0 15px 0px;
+	padding-left: 0;
+	position: relative;
+}
+ol.lst-stps>li, .lst-stps>.lst-item {
+	counter-increment: item;
+}
+ol.lst-stps>li, ol.sub-lst-stps>li, .lst-stps .lst-item {
+	list-style: none;
+	margin-top: 30px;
+	position: relative;
+	padding-left: 60px;
+	padding-right: 15px;
+	min-height: 2.2em;
+}
+ol.lst-stps.lst-stps-sm>li, ol.sub-lst-stps.lst-stps-sm>li, .lst-stps.lst-stps-sm .lst-item {
+	padding-left: 45px;
+}
+ol.lst-stps>li ul {
+	margin-top: 20px;
+}
+/*ol.lst-stps>li ul>li, ol.lst-stps>li ol>li {
+		
+		list-style: auto;
+		margin-top:auto;
+	} */
+	
+	
+ol.lst-stps>li>*:last-child, .lst-stps .lst-item>*:last-child {
+	margin-bottom: 0px;
+}
+ol.lst-stps>li:before, .lst-stps .lst-item:before {
+	content: counter(item);
+}
+ol.lst-stps>li>ol.sub-lst-stps, .lst-stps .lst-item>.sub-lst-stps {
+	counter-reset: subitem;
+}
+ol.lst-stps>li>ol.sub-lst-stps {
+	margin-left: -35px;
+}
+.lst-stps .lst-item {
+	position: relative;
+	padding-left: 60px;
+	margin-top: 30px;
+}
+ol.lst-stps>li:before, ol.sub-lst-stps>li:before, .lst-stps .lst-item:before {
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	border: 3px solid #26374a;
+	background-color: #fff;
+	float: left;
+	position: absolute;
+	box-sizing: content-box;
+	line-height: 2.2;
+	text-align: center;
+	font-weight: 600;
+	height: 2.2em;
+	width: 2.2em;
+	left: 0px;
+	margin-top: -8px;
+}
+ol.lst-stps.lst-stps-sm>li:before, ol.sub-lst-stps.lst-stps-sm>li:before, .lst-stps.lst-stps-sm .lst-item:before {
+	line-height: 1.6;
+	height: 1.6em;
+	width: 1.6em;
+	margin-top: -4px;
+}
+ol.lst-stps>li>ol.sub-lst-stps>li:before, .lst-stps>.lst-item>.sub-lst-stps>.lst-item:before {
+	counter-increment: subitem;
+	content: counter(item) "" counter(subitem, lower-alpha) "";
+}
+.sub-lst-stps>.lst-item:last-child {
+	margin-bottom: 0px
+}
+.lst-stps-striped>li ol.lst-stps, .lst-stps-striped > .lst-item > .sub-lst-stps {
+	margin-top: 15px;
+}
+ol.lst-stps.lst-stps-striped>li, .lst-stps-striped>li>ol.sub-lst-stps>li, .lst-stps.lst-stps-striped .lst-item {
+	padding-top: 23px;
+	padding-bottom: 23px;
+	margin-top: 0px;
+}
+.lst-stps-striped >li:nth-child(odd), .lst-stps-striped >li:nth-child(even)>ol.sub-lst-stps>li:nth-child(odd), .lst-stps-striped >li:nth-child(odd)>ol.sub-lst-stps>li:nth-child(even), .lst-stps-striped >.lst-item:nth-child(odd), .lst-stps-striped >.lst-item:nth-child(even)>.sub-lst-stps>.lst-item:nth-child(odd), .lst-stps-striped >.lst-item:nth-child(odd)>.sub-lst-stps>.lst-item:nth-child(even) {
+	background-color: #f5f5f5;
+}
+.lst-stps-striped >li:nth-child(odd)>ol.sub-lst-stps>li:nth-child(odd), .lst-stps-striped >.lst-item:nth-child(odd)>.sub-lst-stps>.lst-item:nth-child(odd) {
+	background-color: #fff!important;
+}
+.lst-stps-striped >li:nth-child(even)>ol.sub-lst-stps>li:nth-child(even):last-child, .lst-stps-striped >li:nth-child(odd)>ol.sub-lst-stps>li:nth-child(even):last-child, .lst-stps-striped >.lst-item:nth-child(even)>.sub-lst-stps>.lst-item:nth-child(even):last-child, .lst-stps-striped >.lst-item:nth-child(odd)>.sub-lst-stps>.lst-item:nth-child(even):last-child {
+	padding-bottom: 0px;
+}
+ol.lst-stps>li>:first-child, .lst-stps .lst-item>:first-child {
+	margin-top: auto;
+}
+ol.lst-stps.lst-stps-striped>li, .lst-stps-striped>li>ol.sub-lst-stps>li, .lst-stps.lst-stps-striped .lst-item {
+	padding-left: 75px;
+}
+ol.lst-stps.lst-stps-striped.lst-stps-sm>li, .lst-stps-striped>li>ol.sub-lst-stps.lst-stps-sm>li, .lst-stps.lst-stps-striped.lst-stps-sm .lst-item {
+	padding-left: 65px;
+}
+.lst-stps-striped>li:before, .lst-stps-striped ol.sub-lst-stps>li:before, .lst-stps-striped .lst-item:before {
+	margin-left: 15px;
+}
+/*ol.lst-stps>li ul, ol.lst-stps>li ul>li, ol.lst-stps.lst-stps-striped>li ul, ol.lst-stps.lst-stps-striped>li ul>li {
+	padding-left: 0px;
+}*/
+
+@media all and (max-width: 767px) {
+ol.lst-stps>li:before, ol.sub-lst-stps>li:before, .lst-stps .lst-item:before {
+	font-size: 0.8em;
+	line-height: 2;
+	height: 2em;
+	width: 2em;
+	margin-top: -3px;
+	font-weight: 600;
+}
+ol.lst-stps.lst-stps-sm>li:before, ol.sub-lst-stps.lst-stps-sm>li:before, .lst-stps.lst-stps-sm .lst-item:before {
+	font-size: 0.8em;
+	line-height: 1.4;
+	height: 1.4em;
+	width: 1.4em;
+	font-weight: 500;
+	padding: 4px;
+}
+ol.lst-stps>li, ol.sub-lst-stps>li, .lst-stps>.lst-item {
+	padding-left: 45px
+}
+ol.lst-stps.lst-stps-sm>li, ol.sub-lst-stps.lst-stps-sm>li, .lst-stps.lst-stps-sm>.lst-item {
+	padding-left: 435px
+}
+.lst-stps.lst-stps-striped>li, .lst-stps-striped>li>ol.sub-lst-stps>li, .lst-stps.lst-stps-striped .lst-item {
+	padding-top: 19px;
+	padding-bottom: 19px;
+	margin-top: 0px;
+}
+.lst-stps.lst-stps-striped.lst-stps-sm>li, .lst-stps-striped>li>ol.sub-lst-stps.lst-stps-sm>li, .lst-stps.lst-stps-striped.lst-stps-sm .lst-item {
+	padding-left: 55px;
+}
+
+</style><!-- Write closure template -->
+      <script type="text/javascript">
+         document.write(wet.builder.refTop({
+         }));
+      </script>
+      <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
+      <link rel="stylesheet" href="../../../css/provisional-topic.css"/>
+      <link rel="stylesheet" href="../../../css/wsm.css"/>
+      <link rel="stylesheet" href="../../../css/step-list.css"/>
+      <link rel="stylesheet" href="../../../css/stacked-header.css"/>
+   </head>
+   <body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
+      <div id="def-top"> </div>
+      <!-- Write closure template --> 
+      <script type="text/javascript">
+         var defTop = document.getElementById("def-top");
+         defTop.outerHTML = wet.builder.top({
+           lngLinks: [{
+         
+             lang: "fr",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
+             text: "Français"
+           }],
+           breadcrumbs: [{
+             title: "CRA web service manual",
+             href: "../../../index.html"},{title: "Design and coding",href: "../../index.html"},{title: "Standard web page design and coding",href: "../index.html"},{title: "Components and functions",href: "index.html"
+           }],
+           
+           search: false,
+           siteMenu: false,
+           showPreContent: true
+         });
+      </script>
+      <main role="main" property="mainContentOfPage" class="container">
+<!-- CONTENT STARTS -->
+                   <h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Interative checklists – Standard web pages – CRA web service manual</h1>
+<div aria-hidden="true">
+<p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">CRA web service manual</p>
+<h1 class="gc-thickline mrgn-tp-0">Interative checklists – Standard web pages</h1>
+</div>
+<div class="all-pre wb-prettify">
+<p>A checklist can be used when there is a list the user needs to go through and ensure every item is covered and accounted for. This includes lists such as criteria to be eligible for a program and documents required for a procedure.</p>
+   <h2 class="h3">On this page</h2>
+    <ul>
+      <li><a href="#h-1">Working example</a></li>
+	  <li><a href="#h-4">Complementary components and functions</a></li>
+
+    </ul>
+<h2 id="h-1">Working example</h2>
+<p>Live example from <a href="https://www.canada.ca/en/revenue-agency/services/benefits/recovery-benefit/crb-who-apply.html">Canada Recovery Benefit (CRB) - Who can apply</a>.</p>
+<div class="row">
+<!-- Field flow appearance -->
+<div class="col-md-9">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+
+
+<section>
+                  <ul class="checkbox-lg checkbox-zebra">
+				      <li class="checkbox">
+                        <input type="checkbox" id="eg13" class="action-checkbox cb-dmm">
+                        <label for="eg13"><strong>During the period you’re applying for:</strong></label>
+                        <ul class="std-blt lst-spcd">
+                           <li>
+                              <label for="eg13">you were not employed or <span class="nowrap">self-employed</span> for reasons related to <span class="nowrap">COVID-19</span></label>
+                           </li>
+							
+						   <p><span class="fa-stack fa-fw text-muted"> <span class="fas fa-circle fa-stack-2x"></span><span class="fa-stack-1x fa-inverse">or</span></span></p>
+							
+								<li>
+									<label for="eg13">you had a <span class="nowrap">50%</span> reduction in your average weekly income compared to the previous year due to <span class="nowrap">COVID-19</span> </label>
+
+
+                           </li>
+                          					   
+                        </ul>
+                        <details class="mrgn-lft-lg">
+							<summary>How to calculate the <span class="nowrap">50%</span> reduction </summary>
+                         <p>The 50% reduction is  based on your average weekly employment or net <span class="nowrap">self-employment</span> income from the previous year.</p>
+
+<ul>
+
+<li>For periods in 2020, use either 2019 or the previous 12 months</li>
+<li>For periods in 2021, use 2019, 2020, or the previous 12 months</li>
+</ul>
+<p>You will need to check that you meet this criteria for every period you apply for.</p>
+<p><span class="fas fa-calculator text-muted"></span> <strong>Example:</strong></p>
+<p><strong>2020, 2019, or the last 12&nbsp;months </strong></p>
+<p class="mrgn-lft-lg"><strong>$26, 000</strong> (employment and self-employment income in 2019, 2020, or the last 12&nbsp;months)</p>
+<p class="mrgn-lft-lg"><span class="nowrap"><strong>÷  52</strong></span> </p>
+<p class="mrgn-lft-lg"><span class="nowrap"><strong>=</strong> <strong>$500</strong></span> (average weekly income in 2019, 2020, or the last <span class="nowrap">12 months</span>)</p>
+<p class="mrgn-lft-lg"><span class="nowrap"><strong>÷ </strong> <strong>&nbsp;&nbsp;2</strong></span></p>
+<p class="mrgn-lft-lg"><span class="nowrap"><strong>=</strong> <strong>$250 </strong></span>(50% of the average weekly income in 2019, 2020, or the last <span class="nowrap">12 months</span>)</p>
+<p><strong>CRB <span class="nowrap">2-week</span> period</strong></p>
+<p class="mrgn-lft-lg"><strong>$100</strong> (employment  and self-employment income for the CRB period)</p>
+<p class="mrgn-lft-lg"><span class="nowrap"><strong>÷ </strong> <strong>&nbsp;&nbsp;2</strong></span></p>
+<p class="mrgn-lft-lg"><span class="nowrap"><strong>=</strong> <strong>$50 </strong></span>(average weekly income for the CRB period)</p>
+<p>Your average weekly income  for the CRB period must be less than 50% of your average weekly income in 2019, 2020, or the last <span class="nowrap">12 months</span> for periods in 2021.</p>
+<p>  In this example, since $50 (average weekly income for the CRB period) is less than $250 (50% of  the average weekly income in 2019, 2020, or the last <span class="nowrap">12 months</span>), the individual would  meet this criteria.</p>
+                        </details>
+
+<details class="mrgn-lft-lg">
+<summary>What is included in employment or self-employment income</summary>
+<p>For this calculation, self-employment income is your revenue minus any expenses incurred to earn the <span class="nowrap">self-employment</span> revenue.</p>
+<p> Employment and/or self-employment income includes, among other things: </p>
+<ul>
+  <li>tips  you may earn while working</li>
+  <li>non-eligible  dividends</li>
+  <li>honoraria  (such as nominal amounts paid to emergency service volunteers)</li>
+  <li>royalties (such as those paid to artists)
+
+</li>
+</ul>
+<p class="mrgn-tp-lg">Do not include the following  in the calculation:</p>
+<ul>
+  <li>Canada Pension Plan (CPP), Québec Pension Plan (QPP), or other pension income</li>
+<li>Social assistance or family support payments </li>
+  <li>Student loans and bursaries </li>
+ <li>Old Age Security (OAS) payments</li>
+  <li>Maternity and parental benefits from EI or similar QPIP benefits </li>
+  <li>Any Canada <span class="nowrap">COVID-19</span> emergency or recovery benefits </li>
+</ul>
+
+</details>
+
+
+                     </li>
+                     <li class="checkbox">
+                        <input type="checkbox" id="eg1" class="action-checkbox cb-dmm">
+                        <label for="eg1">You <strong>did not apply for or receive</strong> any of the following:</label>
+                        <ul class="std-blt lst-spcd">
+                           <li>
+                              <label for="eg1">Canada Recovery Sickness Benefit (CRSB)</label>
+                           </li>
+                           <li>
+                              <label for="eg1">Canada Recovery Caregiving Benefit (CRCB)</label>
+                           </li>
+                           <li>
+                              <label for="eg1">short-term disability benefits</label>
+                           </li>
+						  
+						   <li>
+                              <label for="eg1">Employment Insurance (EI) benefits</label>
+                           </li>
+						   <li>
+                              <label for="eg1">Québec Parental Insurance Plan (QPIP) benefits</label>
+                           </li>
+						   
+                        </ul>
+                       
+                     </li>
+                     <li class="checkbox">
+                        <input type="checkbox" id="eg2" class="action-checkbox cb-dmm">
+                        <label for="eg2">You were <strong>not eligible</strong> for EI benefits</label>
+                       <details class="mrgn-lft-lg">
+                           <summary>Find out if you qualify for EI benefits </summary>
+						   <p><strong>You may be eligible for EI benefits if you:</strong> </p> 
+						   
+						   <ul class="lst-spcd"><li>were employed for at least 120 insurable hours in the past 52&nbsp;weeks<sup id="fn1-rf"><a class="fn-lnk" href="#fn1">
+   <span class="wb-inv">Footnote </span>1</a></sup></li>
+						  <li>	have not quit your job voluntarily</li>
+<li>are ready, willing and capable of working each day (for EI regular benefits)</li>
+<li>are temporarily unable to work while you care for someone else or yourself (for EI maternity, parental, sickness, compassionate care, and family caregiver benefits)</li>
+
+
+
+
+						  </ul>
+						   <!-- <div data-ajax-replace="/content/canadasite/en/services/benefits/ei/cerb-application/transition.html#eligible"> </div>-->
+                         
+                      			<p>If you are eligible for EI benefits, you will receive a minimum taxable benefit at a rate of $500 per week, or $300 per week for extended parental benefits.</p>
+							  <p>For more information about EI changes, go to: <a href="/en/services/benefits/ei/ei-regular-benefit.html">EI Regular Benefits</a></p>
+                        <aside class="wb-fnote" role="note">
+   
+  <dl>
+  <dt>Footnote 1</dt>
+  <dd id="fn1">
+    <p>If you received the CERB, the 52 week period to accumulate the insured hours will be extended.</p>
+    <p class="fn-rtn"><a href="#fn1-rf"><span class="wb-inv">Return to footnote </span>1<span class="wb-inv">referrer</span></a></p>
+  </dd>
+</dl>
+
+</aside>
+						  
+                        </details>
+
+                     </li>
+                     <li class="checkbox">
+                        <input type="checkbox" id="eg3" class="action-checkbox cb-dmm">
+                        <label for="eg3">You reside in Canada</label>
+						 <details class="mrgn-lft-lg">
+                           <summary>Definition </summary>
+						   <p>You live and have a home in Canada, but do not have to be a citizen or a permanent resident. </p>
+                           
+                        </details>
+						
+						
+						
+						
+                     </li>
+		<li class="checkbox">
+                        <input type="checkbox" id="eg4" class="action-checkbox cb-dmm">
+                        <label for="eg4">You were present in Canada</label>
+                     </li>
+                     
+                     <li class="checkbox">
+                        <input type="checkbox" id="eg6" class="action-checkbox cb-dmm">
+                        <label for="eg6">You are at least 15 years old</label>
+                     </li>
+					  <li class="checkbox">
+                        <input type="checkbox" id="eg5" class="action-checkbox cb-dmm">
+                        <label for="eg5">You have a valid Social Insurance Number (SIN)</label>
+                     </li>
+                     <li class="checkbox">
+                        <input type="checkbox" id="eg7" class="action-checkbox cb-dmm">
+						 <label for="eg7">You earned at least <span class="nowrap">$5,000</span> in 2019, 2020, or in the 12&nbsp;months before the date you apply from any of the following sources: </label>
+                        <ul class="std-blt lst-spcd">
+                           <li>
+                              <label for="eg7">employment income (total or gross pay)</label>
+                           </li>
+                           <li>
+                              <label for="eg7">net <span class="nowrap">self-employment</span> income (after deducting expenses) </label>
+                           </li>
+                           <li>
+                              <label for="eg7">maternity and parental benefits from EI or similar QPIP benefits</label>
+                           </li>
+                        </ul>
+                        <details class="mrgn-lft-lg">
+							<summary>What counts towards the <span class="nowrap">$5,000</span></summary>
+                           <ul class="fa-ul">
+                              <li><span class="fas fa-check text-success fa-li"></span> <strong>Counts as income:</strong>
+							  <ul>
+							  <li>All employment or self-employment income, including:
+							  <ul>
+								<li>tips</li>
+								<li>non-eligible dividends</li>
+								<li>honoraria (nominal amounts paid to volunteers)</li>
+								<li>royalties  (payments to artists)</li>
+								</ul>
+								</li>
+								</ul>
+								</li>
+                              <li><span class="fas fa-times text-danger fa-li"></span> <strong>Does not count as income:</strong> 
+							  <ul>
+							  <!--<li>EI regular benefits</li>-->
+								<li>disability benefits</li>
+								<li>student loans, bursaries or scholarships</li>
+								<li>social assistance or family support payments </li>
+<li>Canada Pension Plan (CPP), Québec Pension Plan (QPP), or other pension income</li>
+<li>Old Age Security (OAS) payments</li>
+								  <li>amounts from other <span class="nowrap">COVID-19</span> benefits:
+									<ul>
+										<li>Canada Emergency Response Benefit (CERB)</li>
+										<li>Canada Emergency Student Benefit (CESB)</li>
+										<li>Canada Recovery Benefit (CRB)</li>
+										<li>Canada Recovery Caregiving Benefit (CRCB)</li>
+
+										<li>Canada Recovery Sickness Benefit (CRSB)</li>
+									</ul>
+</li>
+								</ul>
+								</li>
+								</ul>
+                        </details>
+                     </li>
+                       
+			  <li class="checkbox">
+                        <input type="checkbox" id="eg8" class="action-checkbox cb-dmm">
+                        <label for="eg8">You have not quit your job or reduced your hours voluntarily on or after <span class="nowrap">September 27, 2020</span>, unless it was reasonable to do so</label>
+                      <details class="mrgn-lft-lg">                                             
+				<summary>Penalty</summary>
+			<p>If you voluntarily quit your job on or after September 27, 2020, you will not be eligible to receive the CRB.</p>
+				     </details>
+					  </li>
+					  
+					  
+					  
+					  
+                     <li class="checkbox">
+                        <input type="checkbox" id="eg9" class="action-checkbox cb-dmm">
+                        <label for="eg9">You were seeking work during the period, either as an employee or in self-employment</label>
+			     <details class="mrgn-lft-lg">                                             
+				<summary>Provincial course exception</summary>
+			<p>If you attended a course, program, or training referred to you by a provincial government or provincial body during the 2-week period, you may be eligible for the CRB if you also meet all the other eligibility criteria.</p>
+				     </details>
+				     
+			     <details class="mrgn-lft-lg">
+				     <summary>You may work while receiving the CRB</summary>
+			<p>You may earn employment or self-employment income while you receive the CRB. But the CRB has an income threshold of <span class="nowrap">$38,000</span>.</p>
+					 <p>You will have to reimburse <span class="nowrap">$0.50</span> for every dollar of net income you earn above <span class="nowrap">$38,000</span> on your income tax return for that year (2020 or 2021). You will not have to pay back more than your benefit amount for that year.</p> 
+		<p>We encourage you to consult <a href="https://www.jobbank.gc.ca/findajob/resources/cerb">Job Bank</a>, Canada's national employment service that offers tools to help with your job search.</p>
+                          </details>
+                     </li>
+                     <li class="checkbox">
+                        <input type="checkbox" id="eg10" class="action-checkbox cb-dmm">
+                        <label for="eg10">You have not turned down reasonable work during the 2-week period you’re applying for</label>
+			     <!--insert new ex-hide here-->
+			     <details class="mrgn-lft-lg">
+                           <summary>Penalty for refusing work</summary>
+<p>If you refuse reasonable work, you will automatically lose 5 periods (10 weeks) of the CRB eligibility periods. You must also wait 5&nbsp;periods (10&nbsp;weeks) before you can re-apply. If you refuse work again, you will face the penalty again.</p>
+
+</details>
+                     </li>
+			   <li class="checkbox">
+                        <input type="checkbox" id="eg11" class="action-checkbox cb-dmm">
+                        <label for="eg11">You were not self-isolating or in quarantine due to international travel </label>
+						<details class="mrgn-lft-lg">
+                           <summary>Exceptions</summary>
+<p>This does not apply to you if you were isolating because:</p>
+<ul>
+<li>you travelled for medical treatment certified by a medical practitioner</li> 
+<li>you accompanied a person who is not able to travel without help from an attendant to get medical treatment certified by a medical practitioner</li>
+<li>you are an essential worker who travelled for reasons normally exempt from quarantine when you return to Canada (such health care workers or truck drivers who need to cross the border for work) but were required to this time</li>
+</ul>
+<p class="mrgn-tp-md">If one of these exceptions applies to you and you meet all other eligibility criteria, call the CRA to apply: <a href="tel:18009598281" class="hidden-md hidden-lg nowrap"><span class="fas fa-phone fa-flip-horizontal"></span>1-800-959-8281<span class="wb-inv"> (opens up phone application)</span></a><strong class="hidden-xs hidden-sm nowrap"><span class="fas fa-phone fa-flip-horizontal"></span>1-800-959-8281</strong></p>
+</details>
+                     </li>
+                    
+					 <!--li class="checkbox">
+                        <input type="checkbox" id="eg12" class="action-checkbox cb-dmm">
+                        <label for="eg12">You are not incarcerated in a prison or other institution</label>
+						<details class="mrgn-lft-lg">
+                           <summary>Exceptions</summary>
+<p>If you're on day parole or may legally seek employment, you may be eligible for the CRB if you also meet all the other eligibility criteria.</p>
+
+</details>
+                     </li-->
+           
+                  </ul> 
+                   
+                  <div class="alert alert-warning provisional" id="action-no-msg">
+                     <p>You need all of the above to be eligible for the CRB.</p>
+					 <h3>If you’re not eligible for CRB</h3>
+				<p>If you still need financial support, review other options at <a href="/en/services/benefits/covid19-emergency-benefits.html">COVID-19 benefits and services</a>.</p>
+                  </div>
+
+                  <div class="alert alert-success hidden provisional" id="action-msg1">
+<h3>You meet the criteria </h3> 
+                     <p>If you meet all the above criteria, you can get <span class="nowrap">$1,000</span> (<span class="nowrap">$900</span> after taxes withheld) for each 2-week period you apply for. </p>
+			  <p>The CRA may need to validate your application by asking for additional information during the application process.</p>
+                  </div>
+               </section>
+               <div class="clearfix"></div>
+			   <p><small><strong>Note:</strong> Incarcerated individuals in prison or other institutions are not likely to meet all the above eligibility criteria. Those on day parole or who may legally seek employment may be eligible if all criteria are met.</small></p>
+
+            </section>
+            <h2 id="h-2">Verifying your eligibility</h2>
+            <p>The CRA will verify that you're eligible to receive the CRB. Individuals who are found to have intentionally made fraudulent claims may face additional consequences, such as penalties or possible jail time.</p>
+		  <p>To report any suspected misuse, go to: <a href="/en/revenue-agency/programs/about-canada-revenue-agency-cra/suspected-tax-cheating-in-canada-overview.html">CRA's Leads program</a>.</p>
+		 <p>If information is missing from your application, you may need to provide additional documentation to <a href="/en/revenue-agency/services/benefits/recovery-benefit/crb-how-apply.html#validate">validate your application</a> and complete the process.</p>
+                       <nav role="navigation" class="mrgn-bttm-lg mrgn-tp-lg">
+               <h3 class="wb-inv">Document navigation</h3>
+               <ul class="pager">
+                  <li class="next"><a href="/en/revenue-agency/services/benefits/recovery-benefit/crb-periods-apply.html" rel="next">Periods you can apply for</a></li>
+               </ul>
+            </nav>
+            <div class="hidden-md hidden-lg" data-ajax-replace="/content/canadasite/en/revenue-agency/services/benefits/recovery-benefit.html#related-menu"> </div>
+         </section>
+
+
+
+
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
+<pre><code>
+
+
+</code></pre>
+</details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<p>Download the components library:</p>
+<ul class="fa-ul">
+<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
+<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<h3 id="h-1-2">Supporting blogpost</h3>
+	<div class="panel panel-default brdr-rds-0 outset">
+    <div class="panel-body">
+	<div class="row">
+    <div class="col-sm-3"><p class="h3 mrgn-tp-0"><a class="stretched-link" href="https://blog.canada.ca/2020/11/12/interactive-checklists.html">Using interactive checklists to simplify eligibility criteria</a></p></div>
+<div class="col-sm-6">
+<p>In the last couple of years, the Digital Transformation Office (DTO) has been studying the use of interactive checklists to simplify the way we present eligibility criteria.</p>
+<p><small>[12 November 2020]</small> </p>
+</div>
+<div class="col-sm-3">
+<a href=""><img class="img-responsive hidden-xs thumbnail" src="images/blog/fieldflow.jpg"></a>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="h-4">Complementary components and functions</h2>
+
+<p>Additional add-on features and behaviours are available.</p>
+<ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
+	<!-- AAA -->
+	  <li class="col-md-4" id="AAA">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/AAA.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="AAA.html">AAA</a></h3> 	 
+	   </div></div></div></li>	 
+	<!-- AAA -->
+	  <li class="col-md-4" id="AAA">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/AAA.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="AAA.html">AAA</a></h3> 	 
+	   </div></div></div></li>
+	<!-- AAA -->
+	  <li class="col-md-4" id="AAA">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/AAA.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="AAA.html">AAA</a></h3> 	 
+	   </div></div></div></li>	   
+
+</ul>
+ </div> 
+  <!-- CONTENT ENDS -->
+ 
+		<div id="def-preFooter"></div>
+         <!-- Write closure template -->
+         <script type="text/javascript">
+            var defPreFooter = document.getElementById("def-preFooter");
+            defPreFooter.outerHTML = wet.builder.preFooter({
+            dateModified: "2020-05-05",
+            showPostContent: true,
+            showFeedback: false,
+            showShare: false
+            });
+         </script>
+      </main>
+      <div id="def-footer">
+      </div>
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         var defFooter = document.getElementById("def-footer");
+         defFooter.outerHTML = wet.builder.footer({
+         showFooter: true,
+         showFeatures: false
+         });
+      </script>
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         document.write(wet.builder.refFooter({
+         }));
+      </script>
+      <script src="https://test.canada.ca/cra/js/alpha-banner.js"></script>
+	   <script src="../../../js/components.js"></script>
+	    <script>
+         $(".action-checkbox").change(function(){
+         if ($('.action-checkbox:checked').length == $('.action-checkbox').length) {
+         $("#action-msg1").removeClass("hidden").addClass("visible");
+         $("#action-no-msg").addClass("hidden").removeClass("visible");
+         }
+         if ($('.action-checkbox:checked').length !== $('.action-checkbox').length) {
+         $("#action-msg1").addClass("hidden").removeClass("visible");
+         $("#action-no-msg").removeClass("hidden").addClass("visible");
+         }
+         })
+         
+      </script>
+   </body>
+</html>
