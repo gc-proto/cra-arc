@@ -33,7 +33,7 @@
            lngLinks: [{
          
              lang: "fr",
-             href: "#",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
              text: "Français"
            }],
            breadcrumbs: [{
@@ -57,13 +57,12 @@
 <p>Use country identifier to load or replace an element's content based upon the user's country.</p>
 <h2 class="h3 mrgn-tp-md">On this page</h2>
 <ul>
-<li><a href="#h-1">How to implement (HTML)</a></li>
-	<li><a href="#h-3">Configuration options</a></li>
-	<li><a href="#h-4">Events</a></li>
-	<li><a href="#h-5">Related components and functions</a></li>	
+<li><a href="#h-1">How to implement</a></li>
+	<li><a href="#h-3">Configuration options and events</a></li>
+	<li><a href="#h-5">Complementary components and functions</a></li>	
 </ul>
 
-<h2 id="h-1">How to implement (HTML)</h2>
+<h2 id="h-1">How to implement</h2>
 <ol>
 <li>Create a file with country-specific content for each supported country (e.g., Canada and the United States) in each supported language (e.g., English and French). The file name must include the two letter code for the supported country (e.g., "ca" for Canada and "us" for the United States). The file names for each supported language must be identical except for the country code (e.g., <code>country-content-us-en.html</code> and <code>country-content-ca-en.html</code>).
 <details>
@@ -95,7 +94,7 @@
 </li>
 </ol>
 
-<h3>Working example</h3>
+<h3>Example</h3>
 <div class="row">
 <!-- Field flow options -->
 <div class="col-md-4 ds-modifier">
@@ -179,11 +178,13 @@
 </details>
 <details id="app3">
 <summary>Prototyping libraries</summary>
-<p>Download the components library:</p>
-<ul class="fa-ul">
-<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
-<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
 </ul>
+</section>
 </details>
 
 </div>
@@ -192,80 +193,17 @@
 </div>
 </div>
 
-<h2 id="h-3">Configuration options</h2>
-<table class="table">
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>How to configure</th>
-<th>Values</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>data-ctrycnt</code></td>
-<td>Used to AJAX in country-specific content.</td>
-<td>Add <code>data-ctrycnt="[url]"</code> to the element that will hold the country-specific content, with <code>[url]</code> being the URL of the country-specific content to AJAX in with the language code replaced by <code>{country}</code>.
-<pre><code><span>&lt;div</span> </span>data-ctrycnt</span>=</span>"ajax/country-content-{country}-en.html"</span><span>&gt;</span></code></pre>
-</td>
-<td>
-<dl>
-<dt>None (default):</dt>
-<dd>Country-specific content is not AJAXed in.</dd>
-<dt>URL</dt>
-<dd>URL for the country-specific content to AJAX in.</dd>
-</dl>
-</td>
-</tr>
-</tbody>
-</table>
+<h2 id="h-3">Configuration options and events</h2>
+<p>For configuration options and events, refer to: <a href="https://wet-boew.github.io/v4.0-ci/docs/ref/country-content/country-content-en.html" rel="external">Country content on GitHub</a>.</p>
 
-<h2 id="h-4">Events</h2>
-<table class="table">
-<thead>
-<tr>
-<th>Event</th>
-<th>Trigger</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>wb-init.wb-calevt</code></td>
-<td>Triggered manually (e.g., <code>$( "[data-ctrycnt]" ).trigger( "wb-init.wb-ctrycnt" );</code>).</td>
-<td>Used to manually initialize the Country Content plugin. <strong>Note:</strong> The Country Content plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
-</tr>
-<tr>
-<td><code>wb-ready.wb-ctrycnt</code> (v4.0.5+)</td>
-<td>Triggered automatically after the country content has loaded.</td>
-<td>Used to identify where country content has loaded (target of the event)
-<pre><code>$( document ).on( "wb-ready.wb-ctrycnt", "[data-ctrycnt]", function( event ) {
-});</code></pre>
-<pre><code>$( "[data-ctrycnt]" ).on( "wb-ready.wb-calevt", function( event ) {
-});</code></pre>
-</td>
-</tr>
-<tr>
-<td><code>wb-ready.wb</code> (v4.0.5+)</td>
-<td>Triggered automatically when WET has finished loading and executing.</td>
-<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
-<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
-});</code></pre>
-</td>
-</tr>
-</tbody>
-</table>
-
-
-<h2 id="h-5">Related components and functions</h3>
+<h2 id="h-5">Complementary components and functions</h3>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
 	<!-- Ajax -->
 	  <li class="col-md-4" id="Ajax">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
 		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/ajax.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="ajax.html">Ajax</a></h3> 	 
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="ajax.html">Data Ajax</a></h3> 	 
 	   </div></div></div></li>	 
 
 

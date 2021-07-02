@@ -33,7 +33,7 @@
            lngLinks: [{
          
              lang: "fr",
-             href: "#",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
              text: "Français"
            }],
            breadcrumbs: [{
@@ -54,38 +54,28 @@
 <h1 class="gc-thickline mrgn-tp-0">Equal height (equalize) – Standard web pages</h1>
 </div>
 <div class="all-pre wb-prettify">
+<p>Use to make grid cells the same height. Make the inner elements (panels, wells and so forth) inherit the height from the parent grid.</p>
 <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
-      <li><a href="#h-1">Content approach</a>
-		<ul>
-		 <li><a href="#h-1-1">Purpose of equal height</a></li>
-		</ul></li>
       <li><a href="#h-2">Design options</a>
-	  <ul>
-<li><a href="#h-2-1">Basic use</a></li>
-	   <li><a href="#h-2-3">Related components and functions</a></li>
-		</ul></li>
+	   <li><a href="#h-3">Complementary components and functions</a></li>
     </ul>
-<h2 id="h-1" class="mrgn-bttm-0">Content approach</h2>
-
-<h3 id="h-1-1">Purpose of equal height</h3>
-<p>Use to make grid cells the same height. Make the inner elements (panels, wells and so forth) inherit the height from the parent grid.</p>
 
 <h2 id="h-2" >Design options</h2>
-<h3 id="h-2-1">Basic use</h3>
 
 <div class="row">
 <!-- Field flow options -->
 <div class="col-md-4 ds-modifier">
 <form>
 <div class="radioselected">
-<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#none, #eq1, #eq2", "class": "wb-inv"} ]}'>
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#none, #eq1, #eq2", "class": "hidden"} ]}'>
 <p><span class="lead mrgn-tp-0"><span class="fas fa-tools"></span> Modify the design</span></p>
 <ul>
 
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#none, #eq2", "class": "wb-inv", "live": true}, {"action": "toggle", "toggle": ".cl-eq1", "live": true}]'>Equalize nested elements</li>
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#none, #eq1", "class": "wb-inv", "live": true}, {"action": "addClass", "source": "#hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-eq2", "live": true}]'>Equalize deeper nested elements</li>
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#eq1, #eq2", "class": "wb-inv", "live": true}, {"action": "addClass", "source": "#hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-none", "live": true}]'>None</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#eq1, #eq2", "class": "hidden", "live": true}, {"action": "addClass", "source": "#hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-none", "live": true}]'>Default</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#none, #eq2, #hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-eq1", "live": true}]'>Equalize nested elements</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#none, #eq1, #hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-eq2", "live": true}]'>Equalize deeper nested elements</li>
+
 </ul>
 </div>
 </div>
@@ -99,8 +89,7 @@
 <details id="app1">
 <summary>Appearance</summary>
 <div class="panel panel-body brdr-0 brdr-rds-0">
-<span id="none" class="wb-inv">
-<div class="row"> 
+<div class="row cl-none" id="none"> 
 			<div class="col-md-4 ">
 			<section class="well">
 				<h3>Short container</h3>
@@ -119,31 +108,32 @@
 <p>Example text. <br>Example text. <br>Example text. </p>
 				</section></div>
 </div>
-</span>
-<span id="eq1" class="">
-<div class="row wb-eqht"> 
-			<div class="col-md-4">
+
+<span id="eq1" class="cl-eq1 hidden">
+<div class="row wb-eqht">
+			<div class="col-md-4 ">
 			<section class="well hght-inhrt">
-				<h3>Short container</h3>
-<p>Example text.</p>
-				</section>
-				</div>
-				<div class="col-md-4">
+			<h3>Short container</h3>
+			<p>Example text.</p>
+			</section>
+			</div>
+			<div class="col-md-4 ">
 				<section class="well hght-inhrt">
 				<h3>Medium container</h3>
-<p>Example text.<br> Example text. </p>
+				<p>Example text.<br> Example text. </p>
 				</section>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 ">
 				<section class="well hght-inhrt">
 				<h3>Long container</h3>
-<p>Example text. <br>Example text. <br>Example text. </p>
-				</section></div>
+				<p>Example text. <br>Example text. <br>Example text. </p>
+				</section>
+				</div>
+				
 </div>
 </span>
-
-<span id="eq2" class="wb-inv">
-<div class="row wb-eqht">
+<span class="cl-eq2 hidden">
+<div class="row wb-eqht" >
 		<div class="col-sm-6 col-md-4">
 			<div class="well">
 				<section class="panel panel-default eqht-trgt">
@@ -183,13 +173,13 @@
 			</div>
 		</div>
 	</div>
-</span>
+	</span>
 </div>
 </details>
 <!-- Field flow code -->
 <details id="app2">
 <summary>HTML code</summary>
-<pre><code><span class="hidden cl-none">&lt;!-- Default --&gt;
+<pre><code><span class="cl-none" id="hidden1">&lt;!-- Default --&gt;
 &lt;div class="row"&gt; 
 			&lt;div class="col-md-4 "&gt;
 			&lt;section class="well"&gt;
@@ -209,7 +199,7 @@
 &lt;p&gt;Example text. &lt;br&gt;Example text. &lt;br&gt;Example text. &lt;/p&gt;
 				&lt;/section&gt;&lt;/div&gt;
 &lt;/div&gt;
-</span><span class="cl-eq1" id="hidden1">&lt;!-- Equalize nested elements --&gt;
+</span><span class="hidden cl-eq1" >&lt;!-- Equalize nested elements --&gt;
 &lt;div class="row <strong>wb-eqht</strong>"&gt; 
 			&lt;div class="col-md-4"&gt;
 			&lt;section class="well <strong>hght-inhrt</strong>"&gt;
@@ -243,7 +233,6 @@
 				&lt;/section&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
-
 		&lt;div class="col-md-4"&gt;
 			&lt;div class="well"&gt;
 				&lt;section class="panel panel-default <strong>eqht-trgt</strong>"&gt;
@@ -256,7 +245,6 @@
 				&lt;/section&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
-
 		&lt;div class="col-md-4"&gt;
 			&lt;div class="well"&gt;
 				&lt;section class="panel panel-default <strong>eqht-trgt</strong>"&gt;
@@ -269,11 +257,23 @@
 				&lt;/section&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
-	&lt;/div&gt;
-</span>
-</code></pre>
+	&lt;/div&gt;</span></code></pre>
+<p><strong>Coding considerations:</strong></p>
+ <ul class="fa-ul">
+<li><span class="fas fa-check fa-li text-success"></span>The class <code>hght-inhrt</code> is applied on the element to be equalize as well as all the parents (up to the child of <code>wb-eqht</code>), whereas <code>eqht-trgt</code> is only applied to the element to equalize (nothing needs to be done about the parents).</li>
+</ul>
 </details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
 </details>
+
 </div>
 </div>
 </div>
@@ -281,37 +281,32 @@
 </div>
 </div>
 
-<h4 class="mrgn-tp-0 text-muted">Correct use</h4>
-<ul class="fa-ul">
-<li><span class="fas fa-check fa-li text-success"></span>The class <code>hght-inhrt</code> is applied on the element to be equalize as well as all the parents (up to the child of <code>wb-eqht</code>), whereas <code>eqht-trgt</code> is only applied to the element to equalize (nothing needs to be done about the parents).</li>
-</ul>
-
-<h3 id="h-2-3">Related components and functions</h3>
+<h2 id="h-3">Complementary components and functions</h2>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
 	<!-- Grids -->
 	  <li class="col-md-4" id="Grids">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Grids.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Grids.html">Grids</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/grids.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="grids.html">Grids</a></h3> 	 
 	   </div></div></div></li>	 
 	<!-- Positioning -->
 	  <li class="col-md-4" id="Position">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Position.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Position.html">Positioning</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/position.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="position.html">Positioning</a></h3> 	 
 	   </div></div></div></li>
 	<!-- Panels -->
 	  <li class="col-md-4" id="Panels">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Panels.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Panels.html">Panels</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/panels.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="panels.html">Panels</a></h3> 	 
 	   </div></div></div></li>	   
 	<!-- Wells -->
 	  <li class="col-md-4" id="Wells">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Wells.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Wells.html">Wells</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/wells.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="wells.html">Wells</a></h3> 	 
 	   </div></div></div></li>	 
 </ul>
  </div> 

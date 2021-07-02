@@ -33,7 +33,7 @@
            lngLinks: [{
          
              lang: "fr",
-             href: "#",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
              text: "Français"
            }],
            breadcrumbs: [{
@@ -54,43 +54,30 @@
 <h1 class="gc-thickline mrgn-tp-0">Pagination – Standard web pages</h1>
 </div>
 <div class="all-pre wb-prettify">
-
+<p>Use a pagination index for long documents that are best broken up over several pages.</p>
 <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
-      <li><a href="#h-1">Content approach</a>
-		<ul>
-		 <li><a href="#h-1-1">Purpose of pagination</a></li>
-		</ul></li>
-      <li><a href="#h-2">Design options</a>
-	  <ul>
-		 <li><a href="#h-2-1">Basic pagination</a></li>
-	   <li><a href="#h-2-3">Related components and functions</a></li>
-		</ul></li>
-		 
-    </ul>
-<h2 id="h-1" class="mrgn-bttm-0">Content approach</h2>
+      <li><a href="#h-2">Design options</a></li>
+	   <li><a href="#h-3">Complementary components and functions</a></li>
+		</ul>
 
-<h3 id="h-1-1">Purpose of pagination</h3>
-<p>Use a pagination index for long documents that are best broken up over several pages. A user can select a specific page within a document through either the "Next", "Previous", or (if present) the numeric pagination hyperlinks. This makes large content sections easier to read.</p>
 
 <h2 id="h-2" >Design options</h2>
-
-<h3 id="h-2-1">Basic pagination</h3>
-
+<p>A user can select a specific page within a document through either the "Next", "Previous", or (if present) the numeric pagination hyperlinks. This makes large content sections easier to read.</p>
 <div class="row">
 <!-- Field flow options -->
 <div class="col-md-4 ds-modifier">
 <form>
 <p><span class="lead mrgn-tp-0"><span class="fas fa-tools"></span> Modify the design</span></p>
 <div class="row">
-<div class="col-md-6">
+<div class="col-xs-6">
 <div class="radioselected">
 <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#pag1, #pag2, #state3, #next1", "class": "hidden previous next"} ]}'>
 <p><span class="h4">Type</span></p>
 <ul>
 <li data-wb-fieldflow='[{"action": "addClass", "source": "#pag2", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-pagination", "live": true}]'>Default</li>
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#pag1", "class": "hidden", "live": true}, {"action": "addClass", "source": "#hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-pager", "live": true}]'>Simple pager</li>
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#pag1", "class": "hidden", "live": true}, {"action": "addClass", "source": "#hidden1", "class": "hidden", "live": true}, {"action": "addClass", "source": "#state3", "class": "previous", "live": true}, {"action": "addClass", "source": "#next1", "class": "next", "live": true},{"action": "toggle", "toggle": ".cl-pager, .cl-pager-just", "live": true}]'>Simple pager justified</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#pag1", "class": "hidden", "live": true}, {"action": "addClass", "source": "#hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-pager, .cl-pager-code", "live": true}]'>Simple pager</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#pag1", "class": "hidden", "live": true}, {"action": "addClass", "source": "#hidden1", "class": "hidden", "live": true}, {"action": "addClass", "source": "#state3", "class": "previous", "live": true}, {"action": "addClass", "source": "#next1", "class": "next", "live": true},{"action": "toggle", "toggle": ".cl-pager,.cl-pager-code, .cl-pager-just", "live": true}]'>Simple pager justified</li>
 </ul>
 </div>
 </div>
@@ -102,7 +89,7 @@
 </ul>
 </div>
 </div>
-<div class="col-md-6">
+<div class="col-xs-6">
 <div class="radioselected">
 <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#pag1, #pag2", "class": "pagination-sm pagination-lg"} ]}'>
 <p><span class="h4">Size</span></p>
@@ -150,13 +137,25 @@
 &lt;/ul&gt;</span><span class="hidden cl-pager">&lt;ul class="<strong>pager<span class="hidden cl-pagination-sm"> pagination-sm</span><span class="hidden cl-pagination-lg"> pagination-lg</span></strong>"&gt;
   &lt;li class="<span class="hidden cl-disabled cl-"><strong>disabled </span><span class="hidden cl-pager-just">previous</span></strong>"&gt;&lt;a href="#" rel="prev"&gt;Previous&lt;/a&gt;&lt;/li&gt;
   &lt;li<span class="hidden cl-pager-just"> class="<strong>next</strong>"</span>&gt;&lt;a href="#" rel="next"&gt;Next&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</span>
-
-
-
-</code></pre>
+&lt;/ul&gt;</span></code></pre>
+<p><strong>Coding considerations:</strong></p>
+<ul class="fa-ul">
+<li><span class="fas fa-check fa-li text-success"></span> Add invisible text using <code>&lt;span class"wb-inv"&gt;</code> to make the links descriptive</li>
+<li><span class="fas fa-check fa-li text-success"></span> Ensure there is a space between the pagination  number and <code>&lt;span class"wb-inv"&gt;</code> to ensure screen readers correctly interpret the code</li>
+<li class="hidden cl-pager-code"><span class="fas fa-check fa-li text-success"></span>Use <code>.previous</code> and <code>.next</code> within the <code>&lt;li&gt;</code> elements to fully justify the <code>&lt;ul class="pager"&gt;</code> links</li>
+</ul>
 </details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
 </details>
+
 </div>
 </div>
 </div>
@@ -175,62 +174,47 @@
 </div>
 <!-- Correct use -->
 <h4 class="mrgn-tp-0 text-muted">Correct use</h4>
-<dl class="dl-horizontal">
-<dt>General</dt>
-<dd>
 <ul class="fa-ul">
-        <li><span class="fas fa-check fa-li text-success"></span> Use <code>.pagination</code> to number the separate pages of a large content section</li>
         <li><span class="fas fa-check fa-li text-success"></span> Ensure the pagination is always left-aligned</li>
-        <li><span class="fas fa-check fa-li text-success"></span> Ensure the navigational links appear as a single row and <strong>don't wrap</strong>, unless   there is a valid reason to do so</li>
-        <li><span class="fas fa-check fa-li text-success"></span> Add invisible text using <code>&lt;span class"wb-inv"&gt;</code> to make the links descriptive</li>
-        <li><span class="fas fa-check fa-li text-success"></span> Ensure there is a space between the pagination  number and <code>&lt;span class"wb-inv"&gt;</code> to ensure screen readers correctly interpret the code</li>
-        <li><span class="fas fa-check fa-li text-success"></span> Understand and implement the related <a href="#supporting">supporting principles</a></li>
-      </ul>
+        <li><span class="fas fa-check fa-li text-success"></span> Ensure the navigational links appear as a single row and <strong>don't wrap</strong>, unless there is a valid reason to do so</li>
+		<li><span class="fas fa-check fa-li text-success"></span>Use <strong>simple pager</strong> to create a simple pagination of <strong>only</strong> "Previous" and "Next" links</li>
+		<li><span class="fas fa-check fa-li text-success"></span> Use the correct state:
+<ul>
+<li>Use <strong>active</strong> to indicate the current page the user is on within the pagination</li>
+<li>Use <strong>disabled</strong> to hide unnecessary navigation for example, a "Previous" button if the user is on "Page 1" of a content section.</li>
 </ul>
-</dd>
-<dt>State</dt>
-<dd>
-<ul class="fa-ul">
-<li><span class="fas fa-check fa-li text-success"></span><strong>Active:</strong> Use <code>.active</code> to indicate the current page the user is on within the pagination</li>
-<li><span class="fas fa-check fa-li text-success"></span><strong>Disabled:</strong> Use <code>.disabled</code> to hide unnecessary navigation for example, a "Previous" button if the user is on "Page 1" of a content section.</li>
+</li>
+<li><span class="fas fa-check fa-li text-success"></span> Use the correct size:
+<ul>
+<li>Use <strong>default</strong> for typical pagination</li>
+<li>Use <strong>small</strong> when the pagination appears in a small section of space. This reduces the button size to maximize the amount of buttons that appear in a single row</li>
+<li>Use <strong>large</strong> when the pagination needs additional prominence on the page. Since the default buttons already create prominence and a call to action, there is limited value/need to increasing their size</li>
 </ul>
-</dd>
-<dt>Size</dt>
-<dd>
-<ul class="fa-ul">
-<li><span class="fas fa-check fa-li text-success"></span><strong>Default:</strong>  Use for typical pagination</li>
-<li><span class="fas fa-check fa-li text-success"></span><strong>Small:</strong> Use when the pagination appears in a small section of space. This reduces the button size to maximize the amount of buttons that appear in a single row</li>
-<li><span class="fas fa-check fa-li text-success"></span><strong>Large:</strong> Use when the pagination needs additional prominence on the page. Since the default buttons already create prominence and a call to action, there is limited value/need to increasing their size</li>
+</li>
 </ul>
-</dd>
-<dt>Simple pager</dt>
-<dd>
-<ul class="fa-ul">
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.pager</code> to create a simple pagination of <strong>only</strong> "Previous" and "Next" links</li>
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.previous</code> and <code>.next</code> within the <code>&lt;li&gt;</code> elements to fully justify the <code>&lt;ul class="pager"&gt;</code> links</li>
-<li><span class="fas fa-check fa-li text-success"></span>Understand and implement the related <a href="#supporting">supporting principles</a></li></li>
-</ul>
-</dd>
-</dl>
 
-
-
-
-<h3 id="h-2-3">Related components and functions</h3>
+<h2 id="h-3">Complementary components and functions</h2>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
-	<!-- Links -->
-	  <li class="col-md-4" id="Links">	
-		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Links.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Links.html">Links</a></h3> 	 
-	   </div></div></div></li>	 
 	<!-- Buttons -->
 	  <li class="col-md-4" id="Buttons">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Buttons.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Buttons.html">Buttons</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/buttons.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="buttons.html">Buttons</a></h3> 	 
 	   </div></div></div></li>
+	<!-- Links -->
+	  <li class="col-md-4" id="Links">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/links.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="links.html">Links</a></h3> 	 
+	   </div></div></div></li>	
+	<!-- Table of contents -->
+	  <li class="col-md-4" id="Toc">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/toc.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="toc.html">Table of contents</a></h3> 	 
+	   </div></div></div></li>		   
+
 
 </ul>
 

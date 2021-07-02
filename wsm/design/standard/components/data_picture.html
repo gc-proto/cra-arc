@@ -33,7 +33,7 @@
            lngLinks: [{
          
              lang: "fr",
-             href: "#",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
              text: "Français"
            }],
            breadcrumbs: [{
@@ -60,28 +60,28 @@
 <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
 
-      <li><a href="#h-2">When to use a data picture</a></li>
-	  <li><a href="#h-3">How to implement (HTML)</a></li>
-      <li><a href="#h-4">Configuration options</a></li>
-      <li><a href="#h-5">Events</a></li>	  
-	  <li><a href="#h-6">Working examples</a>
+      <li><a href="#h-2">When to use</a></li>
+	  <li><a href="#h-3">How to implement</a></li>
+      
+	  <li><a href="#h-4">Examples</a>
 	  <ul>
-	  <li><a href="#h-6-1">Browser width</a></li>
-	   <li><a href="#h-6-2">High pixel density</a></li>
+	  <li><a href="#h-4-1">Browser width</a></li>
+	   <li><a href="#h-4-2">High pixel density</a></li>
 	  </ul>
 	  </li>
-	   <li><a href="#h-7">Related components and functions</a></li>
+	  <li><a href="#h-5">Configuration options and events</a></li>  
+	   <li><a href="#h-7">Complementary components and functions</a></li>
 		</ul></li>
 
     </ul>
 
-<h2 id="h-2">When to use a data picture</h2>
-<p>Use data picture to:</p>
-<ul>
-<li>Display different sized images for different browser screen sizes</li>
-<li>Display different resolution images to devices with different pixel densities</li>
+<h2 id="h-2">When to use</h2>
+<h3 class="h4 text-muted">Use data picture</h3>
+<ul class="fa-ul"> 
+	<li><span class="fas fa-check fa-li text-success"></span>to display different sized images for different browser screen sizes</li>
+<li><span class="fas fa-check fa-li text-success"></span>to display different resolution images to devices with different pixel densities</li>
 </ul>
-<h2 id="h-3">How to implement (HTML)</h2>
+<h2 id="h-3">How to implement</h2>
 <ol>
 <li>Add a <code>data-pic</code> element for each image that will have multiple sources:
 <pre><code>&lt;span data-pic="data-pic" data-alt="Alt tag for the image"&gt;</code></pre>
@@ -116,138 +116,9 @@
 	&lt;noscript&gt;&lt;img src="img/fallback.jpg" alt="Alt tag for the image"/&gt;&lt;/noscript&gt;
 &lt;/span&gt;</code></pre>
 
-<h2 id="h-4">Configuration options</h2>
-<p>All configuration options of the plugin are controlled with data attributes:</p>
-<table class="table table-hover">
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>How to configure</th>
-<th>Values</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>data-pic</code></td>
-<td>Identifies this as an element that uses the data picture plugin.</td>
-<td>n/a</td>
-<td>
-<dl>
-<dt>data-picture</dt>
-<dd>The only supported value for the attribute.</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td><code>data-alt</code></td>
-<td>Provides an alt attribute value to the image element created by the plugin.</td>
-<td>Set to the string value to use as the alt attribute.</td>
-<td>
-<dl>
-<dt>None (default):</dt>
-<dd>The image element created by the plugin will not have an alt attribute.</dd>
-<dt>String:</dt>
-<dd>The string will be used as the image element's alt attribute.</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td><code>data-class</code></td>
-<td>Provides a class attribute value to the image element created by the plugin.</td>
-<td>Set to the string value to use as the image's CSS attribute.</td>
-<td>
-<dl>
-<dt>None (default):</dt>
-<dd>The image element created by the plugin will not have a class attribute.</dd>
-<dt>String:</dt>
-<dd>The string will be used as the image element's class attribute.</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td><code>data-src</code></td>
-<td>Image source that will be used if this element's media query (specified by data-media) matches.</td>
-<td>Set to the image resource path that should be displayed.</td>
-<td>
-<dl>
-<dt>None (default):</dt>
-<dd>No image will be displayed if the media query matches.</dd>
-<dt>Image path:</dt>
-<dd>The image that will be displayed if the element's media query (specified by data-media) matches.</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td><code>data-media</code></td>
-<td>Media query that determines when a given image source should be displayed.</td>
-<td>Set to the media query that should cause this element's image (specified by data-src) to display.</td>
-<td>
-<dl>
-<dt>None (default):</dt>
-<dd>The element is considered the default image and will be displayed if no media queries match or the browser does not support media queries. There can only be one default image source per data-pic element.</dd>
-<dt>Media query:</dt>
-<dd>The media query to match and determine if the element's image (specified by data-src) should be displayed.</dd>
-</dl>
-</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="h-5">Events</h2>
-<p>Document the public events that can be used by implementers or developers.</p>
-<table class="table table-hover">
-<thead>
-<tr>
-<th>Event</th>
-<th>Trigger</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>wb-init.wb-pic</code></td>
-<td>Triggered manually (e.g., <code>$( "[data-pic]" ).trigger( "wb-init.wb-pic" );</code>).</td>
-<td>Initializes the plugin and determines which data-pic image source should be displayed. <strong>Note:</strong> the data picture plugin will be initialized automatically unless it is added after the page has already loaded.</td>
-</tr>
-<tr>
-<td><code>wb-ready.wb-pic</code> (v4.0.5+)</td>
-<td>Triggered automatically after Date Picture initializes.</td>
-<td>Used to identify where Data Picture was initialized (target of the event)
-<pre><code>$( document ).on( "wb-ready.wb-pic", function( event ) {
-});</code></pre>
-<pre><code>$( "[data-pic]" ).on( "wb-ready.wb-pic", function( event ) {
-});</code></pre>
-</td>
-</tr>
-<tr>
-<td><code>wb-updated.wb-pic</code> (v4.0.5+)</td>
-<td>Triggered automatically each time the picture is updated.</td>
-<td>Used to identify which picture was updated (target of the event)
-<pre><code>$( document ).on( "wb-updated.wb-pic", "[data-pic]", function( event ) {
-});</code></pre>
-<pre><code>$( "[data-pic]" ).on( "wb-updated.wb-pic", function( event ) {
-});</code></pre>
-</td>
-</tr>
-<tr>
-<td><code>picfill.wb-pic</code></td>
-<td>Triggered during plugin initialization and manually (e.g., <code>$( "[data-pic]" ).trigger( "picfill.wb-pic" );</code>).</td>
-<td>Causes the data-pic element to determine which image source should be displayed. This could be called as part of a window resize event handler.</td>
-</tr>
-<tr>
-<td><code>wb-ready.wb</code> (v4.0.5+)</td>
-<td>Triggered automatically when WET has finished loading and executing.</td>
-<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
-<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
-});</code></pre>
-</td>
-</tr>
-</tbody>
-</table>
-<h2 id="h-6">Working examples</h2>
-<h3 id="h-6-1">Browser width</h3>
-<p>This example uses <code>min-width</code> to determine which image should be displayed. Resize the browser window to see the different images load.</p>
+<h2 id="h-4">Examples</h2>
+<h3 id="h-4-1">Browser width</h3>
+<p>This example uses <code>min-width</code> to determine which image should be displayed. </p>
 
 <div class="ds-example">
 <div class="wb-tabs">
@@ -255,6 +126,9 @@
 <details id="app1">
 <summary>Appearance</summary>
 <div class="panel panel-body brdr-0 brdr-rds-0">
+<section class="alert alert-info">
+<p>Resize the browser window to see the different images load.</p>
+</section>
 <figure>
 	<span data-pic="data-pic" data-alt="Parliament Hill" data-class="img-responsive">
 		<!-- Default image: <div [data-src]> with no data-media attribute is displayed when:
@@ -302,26 +176,32 @@
 </details>
 <details id="app3">
 <summary>Prototyping libraries</summary>
-<p>Download the components library:</p>
-<ul class="fa-ul">
-<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
-<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
 </ul>
+</section>
 </details>
 
 </div>
 </div>
 </div>
 
-<h3 id="h-6-2">High pixel density</h3>
+<h3 id="h-4-2">High pixel density</h3>
 <p>This example uses two media queries to serve high resolution images to devices that will benefit from them (i.e. Retina displays).</p>
-
+<div class="row">
+<div class="col-md-8">
 <div class="ds-example">
 <div class="wb-tabs">
 <div class="tabpanels">
 <details id="app4">
 <summary>Appearance</summary>
 <div class="panel panel-body brdr-0 brdr-rds-0">
+<section class="alert alert-info">
+<p>Zoom-in or zoom-out your browser window to see the different images load.</p>
+</section>
 <figure>
 	<span data-pic="data-pic" data-alt="False Kiva in the Canyonlands" data-class="img-responsive">
 		<!-- Images for different device resolutions -->
@@ -356,19 +236,25 @@
 </details>
 <details id="app6">
 <summary>Prototyping libraries</summary>
-<p>Download the components library:</p>
-<ul class="fa-ul">
-<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
-<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
 </ul>
+</section>
 </details>
 
 </div>
 </div>
 </div>
+</div>
+</div>
 
+<h2 id="h-5">Configuration options and events</h2>
+<p>For configuration options and events, refer to: <a href="https://wet-boew.github.io/v4.0-ci/docs/ref/data-picture/data-picture-en.html" rel="external">Data picture on GitHub</a>.</p>
 
-<h2 id="h-7">Related components and functions</h2>
+<h2 id="h-7">Complementary components and functions</h2>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
 	<!-- Images -->
