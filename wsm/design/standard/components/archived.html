@@ -33,7 +33,7 @@
            lngLinks: [{
          
              lang: "fr",
-             href: "#",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
              text: "Français"
            }],
            breadcrumbs: [{
@@ -54,48 +54,61 @@
 <h1 class="gc-thickline mrgn-tp-0">Archived content – Standard web pages</h1>
 </div>
 <div class="all-pre wb-prettify">
-<p>[short description]</p>
+<p>Use to help users identify Web pages that have been archived online.</p>
 <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
-      <li><a href="#h-1">Content approach</a>
-		<ul>
-		 <li><a href="#h-1-1">Purpose of archived content</a></li>
-      <li><a href="#h-1-2">When to use</a></li>
-		</ul></li>
-      <li><a href="#h-2">How to implement</a>
-	  <ul>
-		 <li><a href="#h-2-1">English pages</a></li>
-      <li><a href="#h-2-2">French pages</a></li>
-	  <li><a href="#h-2-3">Configure the display through CSS</a></li>
-	  <li><a href="#h-2-4">Related components and functions</a></li>
-		</ul></li>
-
+      <li><a href="#h-1">When to use</a></li>
+      <li><a href="#h-2">How to implement</a></li>
+	  <li><a href="#h-3">Configuration options</a></li>
+<li><a href="#h-4">Complementary components and functions</a></li>
     </ul>
-<h2 id="h-1" class="mrgn-bttm-0">Content approach</h2>
-<p>[content]</p>
-<h3 id="h-1-1">Purpose of archived content</h3>
-<p>Helps users identify Web pages that have been archived online.</p>
-<h3 id="h-1-2">When to use</h3>
+
+<h2 id="h-1">When to use</h2>
 <p>This approach is mandatory for Government of Canada Web pages that have been archived online.</p>
-<p>A Web page can be archived online if it is:</p>
+		<div class="row">		  			  
+		<div class="col-md-7">
+		<h4 class="mrgn-tp-md text-muted">Archive a page if</h4>
+		<ul class="fa-ul">
+<li><span class="fas fa-check fa-li text-success"></span>there is legal obligation to retain the information
 <ul>
-<li>maintained for reference, research or record keeping purposes</li>
-<li>will not be altered or updated after the date of archiving, and</li>
-<li>stored in a digital repository</li>
+<li>Web pages such as newsletters for example, do not fall under this category unless it is union-based information</li>
 </ul>
-<p>Examples include: a new policy that has replaced an old policy, older versions of reports, events that have happened in the past (such as conferences).</p>
-<p>Do not use when:</p>
-<ul>
-<li>The Web page includes current content</li>
-<li>In place of removing redundant, outdated and trivial content (ROT)</li>
-<li>As an excuse not to make Web pages compliant to the new Standard on Web Accessibility (WCAG 2.0)</li>
-</ul>
+</li>
+<li><span class="fas fa-check fa-li text-success"></span>it is maintained for reference, research or record keeping purposes</li>
+<li><span class="fas fa-check fa-li text-success"></span>it will not be altered or updated after the date of archiving, and</li>
+<li><span class="fas fa-check fa-li text-success"></span>it is stored in a digital repository</li>         
+		</ul>
+		</div>
 
-<h2 id="h-2" class="mrgn-bttm-0">How to implement</h2>
+		<div class="col-md-5">
+		<h4 class="mrgn-tp-md text-muted"><strong>Do not archive a page</strong> </h4>
+		<ul class="fa-ul">
+						<li><span class="fas fa-times fa-li text-danger"></span>if it includes current content</li>
+<li><span class="fas fa-times fa-li text-danger"></span>in place of removing redundant, outdated and trivial content (ROT)</li>
+<li><span class="fas fa-times fa-li text-danger"></span>as an excuse not to make Web pages compliant to the new Standard on Web Accessibility (WCAG 2.0)</li>
+					</ul>
+		</div>
+		</div>
 
-<h3 id="h-2-1">English pages</h3>
+
+<h2 id="h-2">How to implement</h2>
+<div class="row">
+<!-- Field flow appearance -->
+<div class="col-md-10">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+<iframe src="archived_example.html" height="500" width="100%" title="Iframe Example"></iframe>
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
 <ol>
-<li>Add the following markup at the start of the content area of the page (after the <code>h1</code>) 
+<li>Add the following markup after the <code>h1</code> of the page:
 <pre><code>&lt;section id="archived" class="alert alert-warning wb-inview" data-inview="archived-bnr"&gt;
 	&lt;h2&gt;This page has been archived on the Web&lt;/h2&gt;
 	&lt;p&gt;Information identified as archived is provided for reference, research or recordkeeping purposes. It is not subject to the Government of Canada Web Standards and has not been altered or updated since it was archived. Please contact us to request a format other than those available.&lt;/p&gt;
@@ -109,16 +122,31 @@
 &lt;/section&gt;
 </code></pre>
 </li>
-<li><strong>Optional</strong>: Add a paragraph after the first <code>h2</code> providing a link to a replacement (if one exists) and explaining why the current page was archived. 
+<li><strong>Optional</strong>: Add a paragraph after the first <code>h2</code> providing a link to a replacement (if one exists) and explaining why the current page was archived
 <pre><code>&lt;h2&gt;This page has been archived on the Web&lt;/h2&gt;
 &lt;p&gt;The &lt;a href="#"&gt;link to new page&lt;/a&gt; replaces this content. This content is archived because Common Look and Feel 2.0 Standards have been rescinded.&lt;/p&gt;
 </code></pre>
 </li>
 </ol>
+</details>
 
-<h4>Example</h3>
-<p><a href="archived_example.html">English page example</a></p>
 
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<p>Download the components library:</p>
+<ul class="fa-ul">
+<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
+<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--
 <h3 id="h-2-2">French pages</h3>
 <ol>
 <li>Add the following markup at the start of the content area of the page (after the <code>h1</code>) 
@@ -143,11 +171,10 @@
 </ol>
 <h4>Example</h3>
 <p><a href="archived_example-f.html">French page example</a></p>
-
-<h3 id="h-2-3">Configure the display through CSS</h3>
+-->
+<h2 id="h-3">Configuration options</h2>
 <p>Configure the display of the archived message through CSS as needed.</p>
-<pre></code>
-#archived-bnr {
+<pre></code>#archived-bnr {
 	background-color: #fd0;
 }
 
@@ -169,14 +196,14 @@
 }
 </code></pre>
 
-<h3 id="h-2-4">Related components and functions</h3>
+<h2 id="h-4">Complementary components and functions</h2>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">
 <!-- Ajax -->		
   <li class="col-md-4" id="Ajax">		
 	<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
 	 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/ajax.jpg">	
-	  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="ajax.html">Ajax</a></h3> 	
+	  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="ajax.html">Data Ajax</a></h3> 	
    </div></div></div></li>	
 <!-- Data inview -->		
   <li class="col-md-4" id="data_inview">		
@@ -190,11 +217,11 @@
 	 <div class="panel-body p-0"><img class="img-responsive hidden-xs" src="images/components/invisible_visible.jpg">
 	  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="invisible_visible.html">Invisible and visible content</a></h3>
    </div></div></div></li>	
-<!-- Overlay -->		
-  <li class="col-md-4" id="overlay">		
+<!-- popups -->		
+  <li class="col-md-4" id="popups">		
 	<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-	 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/overlay.jpg">	
-	  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="overlay.html">Overlay</a></h3> 	
+	 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/popups.jpg">	
+	  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="popups.html">Popups</a></h3> 	
    </div></div></div></li>	
 </ul>
 

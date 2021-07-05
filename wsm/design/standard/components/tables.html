@@ -23,6 +23,8 @@
       <link rel="stylesheet" href="../../../css/wsm.css"/>
       <link rel="stylesheet" href="../../../css/step-list.css"/>
       <link rel="stylesheet" href="../../../css/stacked-header.css"/>
+	  <link rel="stylesheet" href="../../../css/vertical-table.css"/>
+	  <link rel="stylesheet" href="../../../css/iframe.css"/>
    </head>
    <body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
       <div id="def-top"> </div>
@@ -33,7 +35,7 @@
            lngLinks: [{
          
              lang: "fr",
-             href: "#",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
              text: "Français"
            }],
            breadcrumbs: [{
@@ -53,11 +55,11 @@
 <h1 class="gc-thickline mrgn-tp-0">Tables – Standard web pages</h1>
 </div>
 		 <span  class="wb-prettify all-pre"></span>
-		 <p>[short description]
+		 <p>Use tables to organize data into rows and colums in order to create data cells.</p>
 		 <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
       <li><a href="#h-1">Content approach</a>
-		<ul>
+		<ul class="colcount-md-2">
 		  <li><a href="#h-1-1">Purpose of tables</a></li>
           <li><a href="#h-1-2">Use column and row headers</a></li>
           <li><a href="#h-1-3">Use the simplest structure possible</a></li>
@@ -66,14 +68,23 @@
           <li><a href="#h-1-6">Case study</a></li>
 		</ul></li>
       <li><a href="#h-2">Design options</a>
-	  <ul>
-		 <li><a href="#h-2-1">Basic table</a></li>
-      <li><a href="#h-2-2">Adjust table and column widths</a></li>
-	   <li><a href="#h-2-3">Responsive table</a></li>
-	   <li><a href="#h-2-4">Related components and functions</a></li>
+	  <ul class="colcount-md-2">
+		 <li><a href="#h-2-1">Basic tables</a></li>
+		 <li><a href="#h-2-2">Vertical (stacking) tables</a></li>    
+	   <li><a href="#h-2-3">Responsive tables</a></li>
+	   <li><a href="#h-2-4">Table and column widths</a></li>
+	   <li><a href="#h-2-5">Advanced zebra striping</a></li>
 		</ul></li>
-		<li><a href="#h-3">Table validator</a></li>
-		 <li><a href="#h-4">Supporting research</a></li>
+		<li><a href="#h-3">Data tables</a></li>
+		      <li><a href="#h-4">Advanced table filtering</a>
+	  <ul>
+		 <li><a href="#h-4-1">Do action</a></li>
+		 <li><a href="#h-4-2">Date range, drop-down list and checkbox filters</a></li>    
+	   <li><a href="#h-4-3">URL mapping</a></li>
+		</ul></li>
+		<li><a href="#h-5">Table validator</a></li>
+		<li><a href="#h-6">Complementary components and functions</a></li>		
+		 
     </ul>
 <h2 id="h-1" class="mrgn-bttm-0">Content approach</h2>
 <h3 id="h-1-1">Purpose of tables</h3>
@@ -83,9 +94,26 @@
         <li>entries in a column don't contain information that could be considered a subhead </li>
         <li>value of each cell aligns with the column header that appears directly above it </li>
       </ul>
-      <p>Give your table a clear title that describes the information in it.</p>
+      
+	  <div class="row">
+	  <div class="col-md-6">
+	  <h4 class="text-muted">When to use</h4>
+			<ul class="fa-ul">
+                  <li><span class="fas fa-check fa-li text-success"></span>Use to organize related information, such as contact numbers and details</li>
+                 <li><span class="fas fa-check fa-li text-success"></span>Give your table a clear title that describes the information in it</li>
+             </ul>
+			 </div>
+			 <div class="col-md-6">
+		 <h4 class="text-muted">What to avoid</h4>	 
+<ul class="fa-ul">
+                  <li><span class="fas fa-times fa-li text-danger"></span>Do not use data tables to force layout for text</li>
+                  <li><span class="fas fa-times fa-li text-danger"></span>Never include a data table as an image</li>
+               </ul>		 
+		</div>
+		</div>
+	  
 	  <details>
-	  <summary>Example of a table that organizes data</summary>
+	  <summary>Example - Table that organizes data</summary>
    
       <table class="table table-condensed table-bordered">
         <caption>
@@ -121,7 +149,7 @@
       </ul>
       <p>Check that there is a consistent relationship between the columns and rows.</p>
 	  <details>
-	  <summary>Example</summary>
+	  <summary>Example - Relationship between columns and rows</summary>
       <p>For example, to check the table above, ask yourself whether you can align the information that appears in:</p>
       <ul>
         <li>the column, with the column header that appears directly above it ("Vote 1," "2011 to 2012" ($ millions) and "2012 to 2013" ($ millions)) </li>
@@ -130,7 +158,7 @@
 	  </details>
       <p>Your web team will use the information in the headers to code the table. Afterwards, screen readers will be able to correctly interpret the data within the table.</p>
 	    <details>
-	  <summary>Example</summary>
+	  <summary>Example - Using column and row headers</summary>
       <p>In the following example, all the cells in the first: </p>
       <ul>
         <li>row are column headers and appear bolded and in grey&nbsp; </li>
@@ -205,7 +233,7 @@
         <li>convert a table to a list if the data is simple</li>
       </ul>
 	    <details>
-	  <summary>Example</summary>
+	  <summary>Example - Complex vs simple table</summary>
       <h4>Before: complex table</h4>
       <p>The following table is complex and poorly designed. It would be difficult for someone using a screen reader or a mobile device to access and understand the information.</p>
       <table class="table table-bordered table-condensed">
@@ -393,8 +421,8 @@
       Case study
       </h3>
 	    <details>
-	  <summary>Example: Before and after</summary>
-      <h4>After</h4>
+	  <summary>Example - Case study: before and after</summary>
+      <h4>Before</h4>
       <table class="table table-bordered table-condensed">
         <caption class="text-center">
         <strong>Table: supporting families and communities (in $ millions), Budget 2013</strong>
@@ -1150,17 +1178,12 @@
         <li>removed empty cells, rows and irrelevant information (underlining) and subheadings (such as those that were not aligned with the column headers)</li>
       </ul>
 	  </details>
-<h2 id="h-2" >Design options</h2>
-<h3 class="mrgn-bttm-0" id="h-2-1">Basic table</h3>
-
+<h2 id="h-2">Design options</h2>
+<h3 class="mrgn-bttm-0" id="h-2-1">Basic tables</h3>
 <div class="row">
-
 <div class="col-md-4">
-
 <div class="frmvld">
-
 <form>
-
 <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"checkbox", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#table1, #cell7, #cell8", "class": "table-striped table-hover table-bordered table-condensed " }, { "action": "removeClass", "source":"#row1", "class": "active" }, { "action": "removeClass", "source":"#row2", "class": "success" }, { "action": "removeClass", "source":"#cell7", "class": "warning" }, { "action": "removeClass", "source":"#cell8", "class": "danger" } ]}'>
 <p><span class="lead mrgn-tp-0"><span class="fas fa-tools"></span> Modify the design</span></p>
 <ul>
@@ -1215,19 +1238,39 @@
 </details>
 <details id="code1">
 <summary>HTML code</summary>
-<pre><code>&lt;table class=&quot;table<span class="hidden cl-ts"> table-striped</span><span class="hidden cl-th"> table-hover</span><span class="hidden cl-tb"> table-bordered</span><span class="hidden cl-tc"> table-condensed</span>&quot;&gt;<br> &lt;caption&gt;...&lt;/caption&gt;<br> &lt;thead&gt;<br> &lt;tr&gt;<br> &lt;th scope=&quot;col&quot;&gt;...&lt;/th&gt;<br> &lt;th scope=&quot;col&quot;&gt;...&lt;/th&gt;<br> &lt;th scope=&quot;col&quot;&gt;...&lt;/th&gt;<br> &lt;/tr&gt;<br> &lt;/thead&gt;<br> &lt;tbody&gt;<br> &lt;tr<span class="hidden cl-act"> class="active"</span>&gt;<br> ...<br> &lt;/tr&gt;<br> &lt;tr<span class="hidden cl-suc"> class="success"</span>&gt;<br> ...<br> &lt;/tr&gt;<br> &lt;tr&gt;<br> &lt;td<span class="hidden cl-war"> class="warning"</span>&gt;...&lt;/td&gt;<br> &lt;td<span class="hidden cl-dan"> class="danger"</span>&gt;...&lt;/td&gt;<br> ...<br> &lt;/tr&gt;<br> &lt;/tbody&gt;<br>&lt;/table&gt;</code></pre>
+<pre><code>&lt;table class=&quot;table<strong><span class="hidden cl-ts"> table-striped</span><span class="hidden cl-th"> table-hover</span><span class="hidden cl-tb"> table-bordered</span><span class="hidden cl-tc"> table-condensed</span></strong>&quot;&gt;<br> &lt;caption&gt;...&lt;/caption&gt;<br> &lt;thead&gt;<br> &lt;tr&gt;<br> &lt;th scope=&quot;col&quot;&gt;...&lt;/th&gt;<br> &lt;th scope=&quot;col&quot;&gt;...&lt;/th&gt;<br> &lt;th scope=&quot;col&quot;&gt;...&lt;/th&gt;<br> &lt;/tr&gt;<br> &lt;/thead&gt;<br> &lt;tbody&gt;<br> &lt;tr<strong><span class="hidden cl-act"> class="active"</span></strong>&gt;<br> ...<br> &lt;/tr&gt;<br> &lt;tr<strong><span class="hidden cl-suc"> class="success"</span></strong>&gt;<br> ...<br> &lt;/tr&gt;<br> &lt;tr&gt;<br> &lt;td<strong><span class="hidden cl-war"> class="warning"</span></strong>&gt;...&lt;/td&gt;<br> &lt;td<strong><span class="hidden cl-dan"> class="danger"</span></strong>&gt;...&lt;/td&gt;<br> ...<br> &lt;/tr&gt;<br> &lt;/tbody&gt;<br>&lt;/table&gt;</code></pre>
+<p><strong>Coding considerations:</strong></p>
+ <ul class="fa-ul">
+  <li><span class="fas fa-check fa-li text-success"></span>Include the appropriate <code>scope="col"</code> or <code>scope="row</code> within the <code>&lt;th&gt;</code> tag</li>
+   <li><span class="fas fa-check fa-li text-success"></span>Place a  descriptive <code>&lt;h*&gt;</code> title tag <strong>directly above</strong> a table when it does not contain a <code>&lt;caption&gt;</code> tag</li>
+        <li><span class="fas fa-check fa-li text-success"></span>Include a <strong>visible</strong> table caption when the <code>&lt;h*&gt;</code> title  is not directly above the table, or <strong>if multiple tables appear under </strong>an <code>&lt;h*&gt;</code> tag
+          <ul>
+            <li>Use a <code>&lt;caption&gt; </code> tag on all tables to ensure they &nbsp;validate, and are accessible and        descriptive (especially on statistics or financial pages that contain        multiple tables)</li>
+          
+            <li>Use <code>.wb-inv</code> (as needed) to make the table caption invisible, yet ensure accessibility</li>
+          </ul>
+        </li>
+		<li><span class="fas fa-times fa-li text-danger"></span>Do not use <code>title=""</code> within the <code>&lt;table&gt;</code> tag</li>
+</ul>
 </details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
 </details>
 </div>
 </div>
 </div>
 </div>
 </div>
-
-<h4 class="mrgn-tp-0 text-muted">Correct use</h4>
-<dl class="dl-horizontal">
-<dt>General</dt>
-<dd>
+<div class="row">
+<div class="col-md-7">
+<h4 class="text-muted">Correct use</h4>
 <ul class="fa-ul">     
         <li><span class="fas fa-check fa-li text-success"></span>Use tables  to display tabular data such as financial, statistical, comparative, or numerical   information</li>
 		  <li><span class="fas fa-check fa-li text-success"></span>Use consistent  heading text in  related tables
@@ -1240,78 +1283,182 @@
             <li>The dash (-) allows  the  screen reader  to correctly read the content  as "empty", and properly displays when magnified</li>
           </ul>
         </li>
-		<li><span class="fas fa-times fa-li text-danger"></span>Do not use tables for layout purposes</li>
-		<li><span class="fas fa-times fa-li text-danger"></span>Do not use <abbr title="Not Applicable">N/A</abbr>, <code>&amp;nbsp;</code> or have blank cells within a table
+  <li><span class="fas fa-check fa-li text-success"></span>Use <strong>borders</strong> to separate information when the table cells have a lot of data in them, and word wrap
+          <ul>
+            <li>This makes it easy for the user to tell what information belongs to which cell</li>
+</ul>
+</li>
+        <li><span class="fas fa-check fa-li text-success"></span>Use <strong>striped rows</strong> mainly on long, complex tables, to help distinguish rows from each other. Refer to <a href="#h-2-5">advanced zebra striping</a> for additional options</li>
+<li><span class="fas fa-check fa-li text-success"></span>Use <strong>hover effect</strong> to allow the user to highlight each row when they mouse over it</li>
+<li><span class="fas fa-check fa-li text-success"></span>Use <strong>condensed spacing</strong> to narrow the row height</li>
+<li><span class="fas fa-check fa-li text-success"></span>Use the correct colour:
+<ul>
+<li>Use <strong>active</strong> to apply the hover color to a particular row or cell</li>
+        <li>Use <strong>success</strong> to indicate a successful or positive action</li>
+        <li>Use <strong>warning</strong> to indicate a warning that might need attention</li>
+        <li>Use <strong>danger</strong> to indicate a dangerous or potentially negative action</li>
+		</ul>
+		</li>
+</ul>
+</div>
+<div class="col-md-5">
+<h4 class="text-muted">Incorrect use</h4>
+<ul class="fa-ul"> 
+<li><span class="fas fa-times fa-li text-danger"></span>Do not use tables for layout purposes</li>
+		<li><span class="fas fa-times fa-li text-danger"></span>Do not use spaces, <abbr title="Not Applicable">N/A</abbr>, or have blank cells within a table
           <ul>
             <li>This is to avoid screen reader issues</li>
           </ul>
         </li>
 		<li><span class="fas fa-times fa-li text-danger"></span>Avoid merged cells, as they are complex to code and pose accessibility issues</li>
 		</ul>
+</div>
+</div>
 
-</dd>
-<dt>Base coding</dt>
-<dd>
-<ul class="fa-ul"> 
- <li><span class="fas fa-check fa-li text-success"></span>Use <code>.table</code> to style a basic table</li>
-  <li><span class="fas fa-check fa-li text-success"></span>Include the appropriate <code>scope="col"</code> or <code>scope="row</code> within the <code>&lt;th&gt;</code> tag</li>
-   <li><span class="fas fa-check fa-li text-success"></span>Place a  descriptive <code>&lt;h*&gt;</code> title tag <strong>directly above</strong> a table when it does not contain a <code>&lt;caption&gt;</code> tag</li>
-        <li><span class="fas fa-check fa-li text-success"></span>Include a <strong>visible</strong> table caption when the <code>&lt;h*&gt;</code> title  is not directly above the table, or <strong>if multiple tables appear under </strong>an <code>&lt;h*&gt;</code> tag
-          <ul>
-            <li>Use a <code>&lt;caption&gt; </code> tag on all tables to ensure they &nbsp;validate, and are accessible and        descriptive (especially on statistics or financial pages that contain        multiple tables)</li>
-          
-            <li>Use <code>.wb-inv</code> (as needed) to make the table caption invisible, yet ensure accessibility</li>
-          </ul>
-        </li>
-		<li><span class="fas fa-times fa-li text-danger"></span>Do not use <code>title=""</code> within the <code>&lt;table&gt;</code> tag</li>
+<h3 id="h-2-2">Vertical (stacking) tables</h3>
+<p>Use to stack table cells as vertical block elements.</p>
+<div class="row">
+<!-- Field flow options -->
+<div class="col-md-4 ds-modifier">
+<form>
+<div class="radioselected">
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#tablev", "class": "hidden table-vertical  table-bordered table-vertical-header                  "} ]}'>
+<p><span class="lead"><span class="fas fa-tools"></span> Modify the design</span></p>
+<ul>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#tablev", "class": "", "live": true}, {"action": "toggle", "toggle": ".cl-table-default", "live": true}]'>Default</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#tablev", "class": "table-vertical", "live": true}, {"action": "toggle", "toggle": ".cl-table-default, .cl-table-vertical", "live": true}]'>Vertical table</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#tablev", "class": "table-vertical-header table-bordered", "live": true}, {"action": "toggle", "toggle": ".cl-table-vertical-header", "live": true}]'>Stacked headings</li>
 </ul>
-</dd>
-<dt>Modifiers</dt>
-<dd>
-<ul class="list-unstyled">
-<li><strong>Borders</strong>
-<ul class="fa-ul"> 
-  <li><span class="fas fa-check fa-li text-success"></span>Use <code>.table-bordered</code> to separate information when the table cells have a lot of data in them, and word wrap
-          <ul>
-            <li>This makes it easy for the user to tell what information belongs to which cell</li>
-</ul>
-</li></ul></li>
-<li><strong>Striped rows</strong>
-<ul class="fa-ul"> 
-        <li><span class="fas fa-check fa-li text-success"></span>Use <code>.table-striped</code> within the <code>&lt;tbody&gt;</code> to help  distinguish rows from each other</li>
-        <li><span class="fas fa-check fa-li text-success"></span>Use mainly on long, complex tables</li>
-     </ul>
-</li>
-<li><strong>Hover rows</strong>
-<ul class="fa-ul"> 
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.table-hover</code> to allow the user to highlight each row when they mouse over it</li>
-</ul>
-</li>
-<li><strong>Condensed spacing</strong>
-<ul class="fa-ul"> 
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.table-condensed</code> to narrow the row height</li>
-</ul>
-</li>
-</ul>
-</dd>
-<dt>Colours</dt>
-<dd>
-<ul class="fa-ul"> 
-<li><span class="fas fa-check fa-li text-success"></span><code>.active</code>: Applies the hover color to a particular row or cell</li>
-        <li><span class="fas fa-check fa-li text-success"></span><code>.success</code>:
-          Indicates a successful or positive action</li>
-        <li><span class="fas fa-check fa-li text-success"></span><code>.warning</code>:
-          Indicates a warning that might need attention</li>
-        <li><span class="fas fa-check fa-li text-success"></span><code>.danger</code>:
-          Indicates a dangerous or potentially negative action</li>
-</ul>
-</li>
-</dd>
- </dl>     
 </div>
 </div>
-        
-<h3 id="h-2-2">Adjust table and column widths</h3>
+</form>
+</div>
+<!-- Field flow appearance -->
+<div class="col-md-8">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<!-- Field flow warnings -->
+<div class="panel panel-body brdr-0 brdr-rds-0">
+<table id="tablev" class="table">
+<caption>Table caption here</caption>
+ <thead>
+  <tr>
+   <th scope="col">Hyperlink</th>
+   <th scope="col">Teaser text</th>
+   <th scope="col">Date</th>
+ </tr>
+ </thead>
+<tbody class="cl-table-default">
+		<tr>
+			<td class="h4 mrgn-tp-sm"><a href="#">Item number 1</a></td>
+			<td>Text for item number 1. Text for item number 1. Text for item number 1. Text for item number 1.</td>
+			<td><span class="small text-muted">2000-01-04</span></td>
+		</tr>
+		<tr>
+			<td class="h4 mrgn-tp-sm"><a href="#">Item number 2</a></td>
+			<td>Text for item number 2. Text for item number 2. Text for item number 2. Text for item number 2.</td>
+			<td><span class="small text-muted">2000-01-03</span></td>
+		</tr>
+		<tr>
+			<td class="h4 mrgn-tp-sm"><a href="#">Item number 3</a></td>
+			<td>Text for item number 3. Text for item number 3. Text for item number 3. Text for item number 3.</td>
+			<td><span class="small text-muted">2000-01-02</span></td>
+		</tr>
+</tbody>
+<tbody class="hidden cl-table-vertical-header">
+		<tr>
+			<td data-header="Hyperlink" class="h4 mrgn-tp-sm"><a href="#">Item number 1</a></td>
+			<td data-header="Teaser text">Text for item number 1. Text for item number 1. Text for item number 1. Text for item number 1.</td>
+			<td data-header="Date"><span class="small text-muted">2000-01-04</span></td>
+		</tr>
+		<tr>
+			<td data-header="Hyperlink" class="h4 mrgn-tp-sm"><a href="#">Item number 2</a></td>
+			<td data-header="Teaser text">Text for item number 2. Text for item number 2. Text for item number 2. Text for item number 2.</td>
+			<td data-header="Date"><span class="small text-muted">2000-01-03</span></td>
+		</tr>
+		<tr>
+			<td data-header="Hyperlink" class="h4 mrgn-tp-sm"><a href="#">Item number 3</a></td>
+			<td data-header="Teaser text">Text for item number 3. Text for item number 3. Text for item number 3. Text for item number 3.</td>
+			<td data-header="Date"><span class="small text-muted">2000-01-02</span></td>
+		</tr>
+
+		</div>
+	</tbody>	
+</table>
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
+<pre><code>&lt;table class="table<strong><span id="tablevhtml" class="hidden cl-table-vertical"> table-vertical</span><span class="hidden cl-table-vertical-header"> table-vertical-header table-bordered</span></strong>"&gt;
+&lt;caption&gt;...&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th scope="col"&gt;Hyperlink&lt;/th&gt;
+   &lt;th scope="col"&gt;Teaser text&lt;/th&gt;
+   &lt;th scope="col"&gt;Date&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ <span class="cl-table-default">&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;...&lt;/td&gt;
+   &lt;td&gt;...&lt;/td&gt;
+   &lt;td&gt;...&lt;/td&gt;
+  &lt;/tr&gt;
+  ...
+ &lt;/tbody&gt;</span><span class="hidden cl-table-vertical-header">&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td <strong>data-header="Heading"</strong>&gt;...&lt;/td&gt;
+   &lt;td <strong>data-header="Teaser text"</strong>&gt;...&lt;/td&gt;
+   &lt;td <strong>data-header="Date"</strong>&gt;...&lt;/td&gt;
+  &lt;/tr&gt;
+ &lt;/tbody&gt;</span>
+&lt;/table&gt;</code></pre>
+<p><strong>Coding considerations:</strong></p>
+<ul class="fa-ul">
+<li><span class="fas fa-check fa-li text-success"></span>...</li>
+<li><span class="fas fa-times fa-li text-danger"></span>…</li>
+</ul>
+</details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Correct use -->
+<div class="row">
+<div class="col-md-7">
+<h4 class="text-muted">Correct use</h4>
+<ul class="fa-ul">
+	<li><span class="fas fa-check fa-li text-success"></span>Use for tabular and comparable data only</li>
+	<li><span class="fas fa-check fa-li text-success"></span>Use when data in one or more columns is significantly larger than all other columns</li>
+	<li><span class="fas fa-check fa-li text-success"></span>Important information should be at the top (first column)</li>
+	<li><span class="fas fa-check fa-li text-success"></span>Limit the amount of columns in a table to avoid large vertical spans of content</li>
+</ul>
+</div>
+<div class="col-md-5">
+<h4 class="text-muted">Incorrect use</h4>
+<ul class="fa-ul">
+<li><span class="fas fa-times fa-li text-danger"></span>Do not re-purpose content in a table format to utilize the function</li>
+<li><span class="fas fa-times fa-li text-danger"></span>Do not use if there is a need to sort data by headers (data tables)</li>
+</ul>
+</div>
+</div>
+       
+<h3 id="h-2-3">Adjust table and column widths</h3>
 <p>Use <a href="grids.html">grids</a> to adjust the width of the table or the columns.</p>
 <div class="row">
 <!-- Field flow options -->
@@ -1329,7 +1476,7 @@
 </div>
 </div>
 <div class="row">
-<div class="col-md-6">
+<div class="col-xs-6">
 <div class="radioselected">
 <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#col1", "class": " col-sm-3 col-sm-4 col-sm-6"} ]}'>
 <p><span class="h4">Column 1</span></p>
@@ -1342,7 +1489,7 @@
 </div>
 </div>
 </div>
-<div class="col-md-6">
+<div class="col-xs-6">
 <div class="radioselected">
 <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#col2", "class": " col-sm-3 col-sm-4 col-sm-6"} ]}'>
 <p><span class="h4">Column 2</span></p>
@@ -1397,7 +1544,7 @@
 <!-- Field flow code -->
 <details id="app2">
 <summary>HTML code</summary>
-<pre><code>&lt;div<strong><span class="hidden cl-tab-sm-6"> class="col-sm-6"</span><span class="hidden cl-tab-sm-9"> class="col-sm-6"</span></strong>&gt;
+<pre><code>&lt;div<strong><span class="hidden cl-tab-sm-6"> class="col-sm-6"</span><span class="hidden cl-tab-sm-9"> class="col-sm-9"</span></strong>&gt;
  &lt;table class="table table-bordered"&gt;
  &lt;caption class="wb-inv"&gt;Caption text&lt;/caption&gt;
    &lt;thead&gt;
@@ -1424,7 +1571,17 @@
 &lt;/div&gt;
 </code></pre>
 </details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
 </details>
+
 </div>
 </div>
 </div>
@@ -1433,23 +1590,27 @@
 </div>
 </div>
 </div>
-
 <!-- Correct use -->
-<h4 class="mrgn-tp-0 text-muted">Correct use</h4>
-
+<div class="row">
+<div class="col-md-7">
+<h4 class="text-muted">Correct use</h4>
 <ul class="fa-ul">
-<li><span class="fas fa-check fa-li text-success"></span>Ensure the width  of the <code>&lt;table&gt;</code> as a whole, as well as each <code>&lt;th&gt;</code> column both suit the content
+<li><span class="fas fa-check fa-li text-success"></span>Ensure the width  of the <strong>table</strong> as a whole, as well as each <strong>header</strong> column both suit the content
           <ul>
             <li>Tables with too much (over-separation) or too little (over-crowding) white space are difficult to read</li>
           </ul></li>
-<li><span class="fas fa-check fa-li text-success"></span>Insert the <code>&lt;table&gt;</code> within an appropriate container to limit the overall table size</li>
+<li><span class="fas fa-check fa-li text-success"></span>Insert the table within an appropriate container to limit the overall table size</li>
+</ul>
+</div>
+<div class="col-md-5">
+<h4 class="text-muted">Incorrect use</h4>
+<ul class="fa-ul">
 <li><span class="fas fa-times fa-li text-danger"></span>Do not make all tables on a page the same width simply for design purposes</li>
 </ul>
-
-
-<h3 id="h-2-3">Responsive table</h3>
+</div>
+</div>
+<h3 id="h-2-4">Responsive tables</h3>
 <p>Create responsive tables to make a table scroll horizontally for small devices (under 768px). On anything larger than 768px wide, there is no visual difference in these tables.</p>
-
 <div class="row">
 <div class="col-md-8">
 <div class="ds-example">
@@ -1519,51 +1680,1062 @@
 &lt;/div&gt;
 </code></pre>
 </details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
 </details>
 </div>
 </div>
 </div>
 </div>
-<div class="col-md-4">
-<h4 class="mrgn-tp-0 text-muted">Correct use</h4>
+</div>
+<h4 class="text-muted">Correct use</h4>
 <ul class="fa-ul">
-<li><span class="fas fa-check fa-li text-success"></span>Wrap <code>.table</code> within <code>.table-responsive</code> when the table is wide, and needs to horizontally scroll on mobile devices</li>
+<li><span class="fas fa-check fa-li text-success"></span>Use when the table is wide, and needs to horizontally scroll on mobile devices</li>
 <li><span class="fas fa-check fa-li text-success"></span>Split large tables into smaller ones to improve the usability of the content</li>
 </ul>
+<h3 id="h-2-5">Advanced zebra striping</h3>
+<p>Use zebra striping rows mainly on long, complex tables, to help distinguish rows from each other.</p>
+<h4>Complex table</h4>
+<p>Provide visual emphasis on relationship for table that was build with the 12 techniques for tables. Summary group are in gray. Key column and description column are in italic. A delimiter is added for subsequent column group. Row hovering effect on summary row group is in a lighter color. Provide support for column hovering effect.</p>
+<p>The <strong>hassum</strong> options is an indicator for the table parser to allow the support for summary group. The 12 techniques for tables contains explaination on how to build tables with summary group.</p>
+<div class="row">
+<!-- Field flow appearance -->
+<div class="col-md-10">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+<table class="wb-zebra hassum table table-hover">
+<caption>Generic Invoice Table</caption>
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<colgroup class="wb-group-summary">
+<col>
+</colgroup>
+<thead>
+<tr>
+<th>Product ID</th>
+<th>Product</th>
+<th>Description</th>
+<th>Quantity</th>
+<th>Unit Price</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="wb-cell-key">Key</td>
+<th>Item</th>
+<td class="wb-cell-desc">Description</td>
+<td>2 times</td>
+<td>$25.99</td>
+<td>51.98</td>
+</tr>
+<tr>
+<td class="wb-cell-key">Key</td>
+<th>Item</th>
+<td class="wb-cell-desc">Description</td>
+<td>2 times</td>
+<td>$25.99</td>
+<td>51.98</td>
+</tr>
+<tr>
+<td class="wb-cell-key">Key</td>
+<th>Item</th>
+<td class="wb-cell-desc">Description</td>
+<td>2 times</td>
+<td>$25.99</td>
+<td>51.98</td>
+</tr>
+<tr>
+<td class="wb-cell-key">Key</td>
+<th>Item</th>
+<td class="wb-cell-desc">Description</td>
+<td>2 times</td>
+<td>$25.99</td>
+<td>51.98</td>
+</tr>
+<tr>
+<td class="wb-cell-key">Key</td>
+<th>Item</th>
+<td class="wb-cell-desc">Description</td>
+<td>2 times</td>
+<td>$25.99</td>
+<td>51.98</td>
+</tr>
+<tr>
+<td class="wb-cell-key">Key</td>
+<th>Item</th>
+<td class="wb-cell-desc">Description</td>
+<td>2 times</td>
+<td>$25.99</td>
+<td>51.98</td>
+</tr>
+<tr>
+<td class="wb-cell-key">Key</td>
+<th>Item</th>
+<td class="wb-cell-desc">Description</td>
+<td>2 times</td>
+<td>$25.99</td>
+<td>51.98</td>
+</tr>
+<tr>
+<td class="wb-cell-key">Key</td>
+<th>Item</th>
+<td class="wb-cell-desc">Description</td>
+<td>2 times</td>
+<td>$25.99</td>
+<td>51.98</td>
+</tr>
+<tr>
+<td class="wb-cell-key">Key</td>
+<th>Item</th>
+<td class="wb-cell-desc">Description</td>
+<td>2 times</td>
+<td>$25.99</td>
+<td>51.98</td>
+</tr>
+<tr>
+<td class="wb-cell-key">Key</td>
+<th>Item</th>
+<td class="wb-cell-desc">Description</td>
+<td>2 times</td>
+<td>$25.99</td>
+<td>51.98</td>
+</tr>
+</tbody>
+<tbody class="wb-group-summary">
+<tr>
+<th colspan="5">Subtotal</th>
+<td>519.80</td>
+</tr>
+<tr>
+<th colspan="5">Taxes (10%)</th>
+<td>51.98</td>
+</tr>
+</tbody>
+<tbody class="wb-group-summary">
+<tr>
+<th colspan="5">Total</th>
+<td>571.78</td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
+<pre><code>&lt;table class="<strong>wb-zebra hassum</strong> table table-hover"&gt;
+&lt;caption&gt;Generic Invoice Table&lt;/caption&gt;
+&lt;colgroup&gt;
+	&lt;col&gt;
+	&lt;col&gt;
+	&lt;col&gt;
+&lt;/colgroup&gt;
+&lt;colgroup&gt;
+	&lt;col&gt;
+	&lt;col&gt;
+&lt;/colgroup&gt;
+&lt;colgroup&gt;
+	&lt;col&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Product ID&lt;/th&gt;
+		&lt;th&gt;Product&lt;/th&gt;
+		&lt;th&gt;Description&lt;/th&gt;
+		&lt;th&gt;Quantity&lt;/th&gt;
+		&lt;th&gt;Unit Price&lt;/th&gt;
+		&lt;th&gt;Total&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Key&lt;/td&gt;
+		&lt;th&gt;Item&lt;/th&gt;
+		&lt;td&gt;Description&lt;/td&gt;
+		&lt;td&gt;2 times&lt;/td&gt;
+		&lt;td&gt;$25.99&lt;/td&gt;
+		&lt;td&gt;51.98&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Key&lt;/td&gt;
+		&lt;th&gt;Item&lt;/th&gt;
+		&lt;td&gt;Description&lt;/td&gt;
+		&lt;td&gt;2 times&lt;/td&gt;
+		&lt;td&gt;$25.99&lt;/td&gt;
+		&lt;td&gt;51.98&lt;/td&gt;
+	&lt;/tr&gt;
+	...
+&lt;/tbody&gt;
+&lt;tbody&gt;
+	&lt;tr&gt;
+		&lt;th colspan="5"&gt;Subtotal&lt;/th&gt;
+		&lt;td&gt;519.80&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan="5"&gt;Taxes (10%)&lt;/th&gt;
+		&lt;td&gt;51.98&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tbody&gt;
+	&lt;tr&gt;
+		&lt;th colspan="5"&gt;Total&lt;/th&gt;
+		&lt;td&gt;571.78&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h4>Multiple group</h4>
+<p>The following table contain 3 row group and 3 column group. The zebra stripping add column group separator and simulate the column hovering effect.</p>
+<div class="row">
+<!-- Field flow appearance -->
+<div class="col-md-8">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+<table class="wb-zebra wb-zebra-col-hover table table-bordered table-hover">
+<colgroup>
+<col class="">
+<col class="">
+<col class="">
+</colgroup>
+<colgroup>
+<col class="">
+<col class="">
+<col class="">
+</colgroup>
+<colgroup>
+<col class="">
+<col class="">
+<col class="">
+</colgroup>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td>3</td>
+<td>6</td>
+<td></td>
+<td>4</td>
+<td>7</td>
+<td></td>
+<td>9</td>
+</tr>
+<tr>
+<td></td>
+<td>2</td>
+<td></td>
+<td></td>
+<td>9</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>6</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td>2</td>
+<td></td>
+<td>4</td>
+<td></td>
+<td>3</td>
+<td></td>
+<td>9</td>
+<td></td>
+<td>8</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td>9</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td></td>
+<td></td>
+<td>8</td>
+<td></td>
+<td>2</td>
+<td></td>
+<td></td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
+<pre><code>&lt;table class="<strong>wb-zebra wb-zebra-col-hover</strong> table table-bordered table-hover"&gt;
+&lt;colgroup&gt;
+	&lt;col&gt;
+	&lt;col&gt;
+	&lt;col&gt;
+&lt;/colgroup&gt;
+&lt;colgroup&gt;
+	&lt;col&gt;
+	&lt;col&gt;
+	&lt;col&gt;
+&lt;/colgroup&gt;
+&lt;colgroup&gt;
+	&lt;col&gt;
+	&lt;col&gt;
+	&lt;col&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+	&lt;tr&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;3&lt;/td&gt;
+		&lt;td&gt;6&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;4&lt;/td&gt;
+		&lt;td&gt;7&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;9&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;9&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;7&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;6&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tbody&gt;
+	&lt;tr&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;4&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;3&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;9&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;8&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&nbsp;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;5&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;9&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;7&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tbody&gt;
+	&lt;tr&gt;
+		&lt;td&gt;6&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;5&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;7&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;9&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;8&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;5&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="h-3">Data tables</h2>
+
+<p>Use to provide searching, sorting, filtering, pagination and other advanced features for large tables.</p>
+<h3 id="h-3-1">Examples</h2>
+<details>
+<summary>Example - Basic data table</summary>
+<pre><code>&lt;table class="table <strong>wb-tables</strong>"&gt;</code></pre>
+<table class="wb-tables table">
+<thead>
+<tr role="row">
+<th>Rendering engine</th>
+<th>Browser</th>
+<th>Platform(s)</th>
+<th>Engine version</th>
+<th>CSS grade</th>
+</tr>
+</thead>
+<tbody>
+<tr role="row">
+<td>Gecko</td>
+<td>Firefox 1.0</td>
+<td>Win 98+ / OSX.2+</td>
+<td>1.7</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Firefox 1.5</td>
+<td>Win 98+ / OSX.2+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Firefox 2.0</td>
+<td>Win 98+ / OSX.2+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Firefox 3.0</td>
+<td>Win 2k+ / OSX.3+</td>
+<td>1.9</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Camino 1.0</td>
+<td>OSX.2+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Camino 1.5</td>
+<td>OSX.3+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Netscape 7.2</td>
+<td>Win 95+ / Mac OS 8.6-9.2</td>
+<td>1.7</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Netscape Browser 8</td>
+<td>Win 98SE+</td>
+<td>1.7</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Netscape Navigator 9</td>
+<td>Win 98+ / OSX.2+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.0</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.1</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.1</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.2</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.2</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.3</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.3</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.4</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.4</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.5</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.5</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.6</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.6</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.7</td>
+<td>Win 98+ / OSX.1+</td>
+<td>1.7</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.8</td>
+<td>Win 98+ / OSX.1+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Seamonkey 1.1</td>
+<td>Win 98+ / OSX.2+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Epiphany 2.20</td>
+<td>Gnome</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr class="gradeC" role="row">
+<td>KHTML</td>
+<td>Konqureror 3.1</td>
+<td>KDE 3.1</td>
+<td>3.1</td>
+<td>C</td>
+</tr><tr role="row">
+<td>KHTML</td>
+<td>Konqureror 3.3</td>
+<td>KDE 3.3</td>
+<td>3.3</td>
+<td>A</td>
+</tr><tr role="row">
+<td>KHTML</td>
+<td>Konqureror 3.5</td>
+<td>KDE 3.5</td>
+<td>3.5</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Misc</td>
+<td>NetFront 3.1</td>
+<td>Appareils intégrés</td>
+<td>-</td>
+<td>C</td>
+</tr><tr role="row">
+<td>Misc</td>
+<td>NetFront 3.4</td>
+<td>Appareils intégrés</td>
+<td>-</td>
+<td>A</td>
+</tr></tbody>
+</table>
+</details>
+<details>
+<summary>Example - Data table with options (using a JSON array)</summary>
+<pre><code>&lt;table class="wb-tables table table-striped table-hover" <strong>data-wb-tables='{ "ordering" : false }'</strong>&gt;</code></pre>
+<table class="wb-tables table table-striped table-hover" data-wb-tables='{ "ordering" : false }'>
+<thead>
+<tr role="row">
+<th>Rendering engine</th>
+<th>Browser</th>
+<th>Platform(s)</th>
+<th>Engine version</th>
+<th>CSS grade</th>
+</tr>
+</thead>
+<tbody>
+<tr role="row">
+<td>Gecko</td>
+<td>Firefox 1.0</td>
+<td>Win 98+ / OSX.2+</td>
+<td>1.7</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Firefox 1.5</td>
+<td>Win 98+ / OSX.2+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Firefox 2.0</td>
+<td>Win 98+ / OSX.2+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Firefox 3.0</td>
+<td>Win 2k+ / OSX.3+</td>
+<td>1.9</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Camino 1.0</td>
+<td>OSX.2+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Camino 1.5</td>
+<td>OSX.3+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Netscape 7.2</td>
+<td>Win 95+ / Mac OS 8.6-9.2</td>
+<td>1.7</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Netscape Browser 8</td>
+<td>Win 98SE+</td>
+<td>1.7</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Netscape Navigator 9</td>
+<td>Win 98+ / OSX.2+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.0</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.1</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.1</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.2</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.2</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.3</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.3</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.4</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.4</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.5</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.5</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.6</td>
+<td>Win 95+ / OSX.1+</td>
+<td>1.6</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.7</td>
+<td>Win 98+ / OSX.1+</td>
+<td>1.7</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Mozilla 1.8</td>
+<td>Win 98+ / OSX.1+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Seamonkey 1.1</td>
+<td>Win 98+ / OSX.2+</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Gecko</td>
+<td>Epiphany 2.20</td>
+<td>Gnome</td>
+<td>1.8</td>
+<td>A</td>
+</tr><tr class="gradeC" role="row">
+<td>KHTML</td>
+<td>Konqureror 3.1</td>
+<td>KDE 3.1</td>
+<td>3.1</td>
+<td>C</td>
+</tr><tr role="row">
+<td>KHTML</td>
+<td>Konqureror 3.3</td>
+<td>KDE 3.3</td>
+<td>3.3</td>
+<td>A</td>
+</tr><tr role="row">
+<td>KHTML</td>
+<td>Konqureror 3.5</td>
+<td>KDE 3.5</td>
+<td>3.5</td>
+<td>A</td>
+</tr><tr role="row">
+<td>Misc</td>
+<td>NetFront 3.1</td>
+<td>Appareils intégrés</td>
+<td>-</td>
+<td>C</td>
+</tr><tr role="row">
+<td>Misc</td>
+<td>NetFront 3.4</td>
+<td>Appareils intégrés</td>
+<td>-</td>
+<td>A</td>
+</tr></tbody>
+</table>
+</details>
+<h3>Configuration options and events</h3>
+<p>Data tables and its extensions are extremely configurable libraries and almost every aspect of the enhancements they make to HTML tables can be customised. Features can be enabled, disabled or customised to meet your exact needs for your table implementations. For information on all configuration options, refer to: <a rel="external" href="https://wet-boew.github.io/v4.0-ci/docs/ref/tables/tables-en.html">Tables on GitHub</a>.<p>
+
+
+
+<h2 id="h-4" class="">Advanced table filtering</h2>
+<h3 id="h-4-1" class="">Do action </h2>
+<div class="row">
+<!-- Field flow appearance -->
+<div class="col-md-10">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+	<p class=""><span class="fas fa-sliders-h"></span> Filter options: </p>
+      <form class="wb-tables-filter form-horizontal" data-bind-to="create-tbl">   
+	<ul class="list-inline"  data-wb-actionmng='[
+		{ "trggroup":"clearFilter", "action": "removeClass", "source": ".fltopts", "class": "btn-primary" },
+		{ "trggroup":"clearFilter", "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "" }]'>
+	<li><button type="button" class="fltopts btn btn-default" data-wb-doaction='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "red" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'>Red</button></li>
+	<li><button type="button" class="fltopts btn btn-default" data-wb-doaction='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "green" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'>Green</button></li>
+	<li><button type="button" class="fltopts btn btn-default" data-wb-doaction='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "orange" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'>Orange</button></li>	
+	<li><button type="button" class="fltopts btn btn-default" data-wb-doaction='[
+		{ "action": "run", "trggroup": "clearFilter" },
+		{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "white" },
+		{ "action": "addClass", "class": "btn-primary" }
+	]'>White</button></li>	
+	<li><button type="reset" class="btn btn-link" data-wb-doaction='{ "action": "run", "trggroup": "clearFilter" }'>Reset</button></li>
+</ul>
+</form>
+ <table class="table wb-tables table-striped table-hover" id="create-tbl" data-wb-tables='{"ordering":false,  "lengthMenu": [ [5, 10, -1], [5, 10, "All"] ], "paging": false }'>
+    <thead>
+      <tr>
+        <th scope="col">Food</th>
+        <th scope="col">Colour</th>
+      </tr>
+    </thead>
+<tbody>
+	<tr role="row">
+			<td>Apples</td>
+			<td>Red</td>
+		</tr><tr role="row">
+			<td>Apples</td>
+			<td>Green</td>
+		</tr><tr role="row">
+			<td>Carrots</td>
+			<td>Orange</td>
+		</tr><tr role="row">
+			<td>Cheese</td>
+			<td>White</td>
+		</tr><tr role="row">
+			<td>Cheese</td>
+			<td>Orange</td>
+		</tr><tr role="row">
+			<td>Lettuce</td>
+			<td>Green</td>
+		</tr><tr role="row">
+			<td>Oranges</td>
+			<td>Orange</td>
+		</tr>
+		<tr role="row">
+			<td>Tomatoes</td>
+			<td>Red</td>
+		</tr></tbody>
+  </table> 
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
+<pre><code>&lt;p class=""&gt;&lt;span class="fas fa-sliders-h"&gt;&lt;/span&gt; Filter options: &lt;/p&gt;
+&lt;form class="<strong>wb-tables-filter form-horizontal</strong>" data-bind-to="create-tbl"&gt;   
+	&lt;ul class="list-inline"  data-wb-actionmng='[
+		{ "trggroup":"clearFilter", "action": "removeClass", "source": ".fltopts", "class": "btn-primary" },
+		{ "trggroup":"clearFilter", "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "" }]'&gt;
+	&lt;li&gt;&lt;button type="button" class="fltopts btn btn-default" <strong>data-wb-doaction</strong>='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "red" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'&gt;Red&lt;/button&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;button type="button" class="fltopts btn btn-default" <strong>data-wb-doaction</strong>='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "green" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'&gt;Green&lt;/button&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;button type="button" class="fltopts btn btn-default" <strong>data-wb-doaction</strong>='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "orange" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'&gt;Orange&lt;/button&gt;&lt;/li&gt;	
+	&lt;li&gt;&lt;button type="button" class="fltopts btn btn-default" <strong>data-wb-doaction</strong>='[
+		{ "action": "run", "trggroup": "clearFilter" },
+		{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "white" },
+		{ "action": "addClass", "class": "btn-primary" }
+	]'&gt;White&lt;/button&gt;&lt;/li&gt;	
+	&lt;li&gt;&lt;button type="reset" class="btn btn-link" <strong>data-wb-doaction</strong>='{ "action": "run", "trggroup": "clearFilter" }'&gt;Reset&lt;/button&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/form&gt;
+&lt;table class="table wb-tables table-striped table-hover" id="create-tbl" data-wb-tables='{"ordering":false,  "lengthMenu": [ [5, 10, -1], [5, 10, "All"] ], "paging": false }'&gt;
+&lt;thead&gt;
+	&lt;tr&gt;
+		&lt;th scope="col"&gt;Food&lt;/th&gt;
+		&lt;th scope="col"&gt;Colour&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+	&lt;tr role="row"&gt;
+		&lt;td&gt;Apples&lt;/td&gt;
+		&lt;td&gt;Red&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr role="row"&gt;
+		&lt;td&gt;Apples&lt;/td&gt;
+		&lt;td&gt;Green&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr role="row"&gt;
+		&lt;td&gt;Carrots&lt;/td&gt;
+		&lt;td&gt;Orange&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr role="row"&gt;
+		&lt;td&gt;Cheese&lt;/td&gt;
+		&lt;td&gt;White&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr role="row"&gt;
+		&lt;td&gt;Cheese&lt;/td&gt;
+		&lt;td&gt;Orange&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr role="row"&gt;
+		&lt;td&gt;Lettuce&lt;/td&gt;
+		&lt;td&gt;Green&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr role="row"&gt;
+		&lt;td&gt;Oranges&lt;/td&gt;
+		&lt;td&gt;Orange&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr role="row"&gt;
+		&lt;td&gt;Tomatoes&lt;/td&gt;
+		&lt;td&gt;Red&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt; </code></pre>
+</details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
+</details>
+</div>
+</div>
+</div>
 </div>
 </div>
 
-<h3 id="h-2-4">Related components and functions</h3>
+<h3 id="h-4-2" class="">Date range, drop-down list and checkbox filters</h2>
+<p>Please refer to: <a href="https://wet-boew.github.io/v4.0-ci/demos/tables/tables-fltrs-en.html">Table filters on GitHub</a>.</p>
+
+<h3 id="h-4-3" class="">URL mapping</h2>
+<p>Use to execute pre-configured table filtering action based on url query string. Please refer to: <a href="https://wet-boew.github.io/themes-dist/GCWeb/demos/urlmapping/tblfilter-en.html">URL Mapping on GitHub</a>.</p>
+
+<h2 id="h-5" class="">Table validator</h2>
+<p>Use to produce tables that conform to WCAG 2.0. Please refer to:  <a href="https://wet-boew.github.io/v4.0-ci/demos/tablevalidator/tablevalidator-en.html" rel="external">Table validator on GitHub</a>.</p> 
+
+<h2 id="h-6">Complementary components and functions</h2>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
 	<!-- Charts_graphs -->
 	  <li class="col-md-4" id="Charts_graphs">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Charts_graphs.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Charts_graphs.html">Charts and graphs</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/charts.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a href="charts.html">Charts and graphs</a></h3> 	 
 	   </div></div></div></li>	 
-	<!-- Data_tables -->
-	  <li class="col-md-4" id="Data_tables">	
-		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Data_tables.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Data_tables.html">Data tables</a></h3> 	 
-	   </div></div></div></li>
 	<!-- Equalize -->
 	  <li class="col-md-4" id="Equalize">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Equalize.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Equalize.html">Equal height (equalize)</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/equalize.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a href="equalize.html">Equal height (equalize)</a></h3> 	 
 	   </div></div></div></li>	   
 	<!-- Grids -->
 	  <li class="col-md-4" id="Grids">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Grids.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Grids.html">Grids</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/grids.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a href="grids.html">Grids</a></h3> 	 
 	   </div></div></div></li>	
 </ul>
 
-<h2 id="h-3" class="mrgn-bttm-0">Table validator</h2>
-<p>Please refer to the <a href="https://wet-boew.github.io/v4.0-ci/demos/tablevalidator/tablevalidator-en.html" rel="external"><abbr title="Web Experience Toolkit">WET</abbr> table validator</a> to help you produce tables that conform to WCAG 2.0. 
+
 
          <div id="def-preFooter"></div>
          <!-- Write closure template -->
@@ -1594,5 +2766,6 @@
       </script>
       <script src="https://test.canada.ca/cra/js/alpha-banner.js"></script>
 	   <script src="../../../js/components.js"></script>
+	   <script src="../../../js/resize-iframe.js"></script>
    </body>
 </html>

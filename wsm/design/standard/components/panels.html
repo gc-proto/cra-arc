@@ -33,7 +33,7 @@
            lngLinks: [{
          
              lang: "fr",
-             href: "#",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
              text: "Français"
            }],
            breadcrumbs: [{
@@ -54,37 +54,24 @@
 <h1 class="gc-thickline mrgn-tp-0">Panels – Standard web pages</h1>
 </div>
 <div class="all-pre wb-prettify">
-
+<p>Use to spotlight general information/actions within a self-contained box. Panels have colour themed options, as well as offer a distinct header and footer.</p>
 <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
-      <li><a href="#h-1">Content approach</a>
-		<ul>
-		 <li><a href="#h-1-1">Purpose of panels</a></li>
-		</ul></li>
-      <li><a href="#h-2">Design options</a>
-	  <ul>
-		 <li><a href="#h-2-1">Basic panels</a></li>
-	   <li><a href="#h-2-3">Related components and functions</a></li>
-		</ul></li>
-		 
-    </ul>
-<h2 id="h-1" class="mrgn-bttm-0">Content approach</h2>
-
-<h3 id="h-1-1">Purpose of panels</h3>
-<p>Use to create a visual grouping of content. Panels have colour themed options, as well as offer a distinct header and footer.</p>
+      <li><a href="#h-2">Design options</a></li>
+	   <li><a href="#h-3">Complementary components and functions</a></li>
+		</ul>
 
 <h2 id="h-2" >Design options</h2>
 
-<h3 id="h-2-1">Basic panels</h3>
-<p><span class="lead mrgn-tp-0"><span class="fas fa-tools"></span> Modify the design</span></p>
 <div class="row">
 <!-- Field flow options -->
 <div class="col-md-4 ds-modifier">
 <form>
-<div class="radioselected">
+<p><span class="lead mrgn-tp-0"><span class="fas fa-tools"></span> Modify the design</span></p>
 <div class="row">
-<div class="col-md-6">
-<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#panel1", "class": "panel-default panel-info panel-primary panel-success panel-warning panel-danger              "} ]}'>
+<div class="col-xs-6">
+<div class="radioselected">
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#panel1", "class": "panel-default panel-info panel-primary panel-success panel-warning panel-danger"} ]}'>
 <p><span class="h4 mrgn-tp-0">Colour</span></p>
 <ul>
 <li data-wb-fieldflow='[{"action": "addClass", "source": "#panel1", "class": "panel-default", "live": true}, {"action": "toggle", "toggle": ".cl-panel-default", "live": true}]'>Default</li>
@@ -96,7 +83,8 @@
 </ul>
 </div>
 </div>
-<div class="col-md-6">
+</div>
+<div class="col-xs-6">
 <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"checkbox", "isoptional": true, "noForm": true, "reset": [{ "action": "addClass", "source":"#header1, #footer1, #table1", "class": "hidden "} ]}'>
 <p><span class="h4 mrgn-tp-0">Options</span></p>
 <ul>
@@ -105,6 +93,12 @@
 <li data-wb-fieldflow='[{"action": "removeClass", "source": "#table1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-table", "live": true}]'>Table</li>
 </ul>
 </div>
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"checkbox", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#panel1", "class": " brdr-rds-0                 "} ]}'>
+<p><span class="h4">Border radius</span></p>
+<ul>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#panel1", "class": "brdr-rds-0", "live": true}, {"action": "toggle", "toggle": ".cl-brdr", "live": true}]'>Remove border radius</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -153,14 +147,12 @@
 <!-- Field flow code -->
 <details id="app2">
 <summary>HTML code</summary>
-<pre><code>&lt;section class="panel<span class="cl-panel-default"> <strong>panel-default</strong></span><span class="hidden cl-panel-info"> <strong>panel-info</strong></span><span class="hidden cl-panel-primary"> <strong>panel-primary</strong></span><span class="hidden cl-panel-success"> <strong>panel-success</strong></span><span class="hidden cl-panel-warning"> <strong>panel-warning</strong></span><span class="hidden cl-panel-danger"> <strong>panel-danger</strong></span>"&gt;
-<span class="hidden cl-header">&lt;header class="<strong>panel-heading</strong>"&gt;
+<pre><code>&lt;section class="panel<span class="cl-panel-default"> <strong>panel-default</strong></span><span class="hidden cl-panel-info"> <strong>panel-info</strong></span><span class="hidden cl-panel-primary"> <strong>panel-primary</strong></span><span class="hidden cl-panel-success"> <strong>panel-success</strong></span><span class="hidden cl-panel-warning"> <strong>panel-warning</strong></span><span class="hidden cl-panel-danger"> <strong>panel-danger</strong></span><span class="hidden cl-brdr"> <strong>brdr-rds-0</strong></span>"&gt;<span class="hidden cl-header"><br>&lt;header class="<strong>panel-heading</strong>"&gt;
 &lt;h5 class="panel-title"&gt;Panel title&lt;/h5&gt;
 &lt;/header&gt;</span>
   &lt;div class="panel-body"&gt;
     &lt;p&gt;Your text ...&lt;/p&gt;
-  &lt;/div&gt;
-  <span class="hidden cl-table">&lt;table class="table"&gt;
+  &lt;/div&gt;  <span class="hidden cl-table"><br>&lt;table class="table"&gt;
     &lt;caption class="wb-inv"&gt;Caption text&lt;/caption&gt;
       &lt;thead&gt;
         &lt;tr&gt;
@@ -178,12 +170,29 @@
         &lt;td&gt;Table data&lt;/td&gt;
         &lt;/tr&gt;
       &lt;/tbody&gt;
-    &lt;/table&gt;</span>
-<span class="hidden cl-footer">&lt;footer class="<strong>panel-footer</strong>" id="footer1"&gt;Panel footer&lt;/footer&gt;</span>
+    &lt;/table&gt;</span><span class="hidden cl-footer"><br>&lt;footer class="<strong>panel-footer</strong>" id="footer1"&gt;Panel footer&lt;/footer&gt;</span>
 &lt;/section&gt;
 </code></pre>
+<p><strong>Coding considerations:</strong></p>
+ <ul class="fa-ul">
+ <li><span class="fas fa-check fa-li text-success"></span>Ensure a heading (<code>&lt;h*&gt;</code>) is used within the panel heading</li>
+<li><span class="fas fa-check fa-li text-success"></span>Use <code>.panel</code> for both full-width content, as well as content that is padded in from the border with <code>.panel-body</code></li>
+<li><span class="fas fa-check fa-li text-success"></span>Include a <code>&lt;caption&gt;</code> when the <code>&lt;table&gt;</code> is not directly under an <code>&lt;h*&gt;</code> tag</li>
+<li><span class="fas fa-check fa-li text-success"></span>Use <code>.wb-inv</code> when it is necessary to make the caption invisible, this ensures accessibility</li>
+</ul>
+
 </details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
 </details>
+
 </div>
 </div>
 </div>
@@ -194,56 +203,45 @@
 </div>
 
 <!-- Correct use -->
-<h4 class="mrgn-tp-0 text-muted">Correct use</h4>
-<dl class="dl-horizontal">
-<dt>General</dt>
-<dd>
+<h3 class="text-muted">Use the correct type of panel</h3>
 <ul class="fa-ul">
-<li><span class="fas fa-check fa-li text-success"></span>Use panels to spotlight general information/actions within a self-contained box.</li>
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.panel-heading</code>, <code>.panel-title</code> and  <code>.panel-body</code> to spotlight general information/actions within a self-contained box</li>
-<li><span class="fas fa-check fa-li text-success"></span>Ensure a heading <code>&lt;h*&gt;</code> is used within the <code>.panel-heading</code></li>
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.panel</code> for both full-width content, as well as content that is padded in from the border with <code>.panel-body</code></li>
+<li><span class="fas fa-check fa-li text-success"></span>Use <strong>info</strong> to spotlight specialized information/actions</li>
+<li><span class="fas fa-check fa-li text-success"></span>Use <strong>primary</strong> to spotlight general information/actions</li>
+<li><span class="fas fa-check fa-li text-success"></span>Use <strong>success</strong> to spotlight correct information/actions</li>
+<li><span class="fas fa-check fa-li text-success"></span>Use <strong>warning</strong> to spotlight warning information/actions</li>
+<li><span class="fas fa-check fa-li text-success"></span>Use <strong>danger</strong> to spotlight dangerous information/actions</li>
 </ul>
-</dd>
-<dt>Tables</dt>
-<dd>
-<ul class="fa-ul">
-<li><span class="fas fa-check fa-li text-success"></span>Include a <code>&lt;caption&gt;</code> when the <code>&lt;table&gt;</code> is not directly under an <code>&lt;h*&gt;</code> tag</li>
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.wb-inv</code> when it is necessary to make the caption invisible, this ensures accessibility</li>
-</ul>
-</dd>
-<dt>Colour</dt>
-<dd>
-<ul class="fa-ul">
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.panel-info</code> to spotlight specialized information/actions</li>
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.panel-primary</code> to spotlight general information/actions</li>
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.panel-success</code> to spotlight correct information/actions</li>
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.panel-warning</code> to spotlight warning information/actions</li>
-<li><span class="fas fa-check fa-li text-success"></span>Use <code>.panel-danger</code> to spotlight dangerous information/actions</li>
+</li>
 </ul>
 </dd>
 </dl>
 
-<h3 id="h-2-3">Related components and functions</h3>
+<h2 id="h-3">Complementary components and functions</h2>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
 	<!-- Equalize -->
 	  <li class="col-md-4" id="Equalize">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Equalize.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Equalize.html">Equal height (equalize)</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/equalize.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="equalize.html">Equal height (equalize)</a></h3> 	 
 	   </div></div></div></li>	 
 	<!-- Grids -->
 	  <li class="col-md-4" id="Grids">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Grids.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Grids.html">Grids</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/grids.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="grids.html">Grids</a></h3> 	 
+	   </div></div></div></li>
+	   	   	<!-- Margin proximity -->
+	  <li class="col-md-4" id="margin">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/margin.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="margin.html">Margin proximity</a></h3> 	 
 	   </div></div></div></li>
 	<!-- Wells -->
 	  <li class="col-md-4" id="Wells">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/Wells.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="Wells.html">Wells</a></h3> 	 
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/wells.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="wells.html">Wells</a></h3> 	 
 	   </div></div></div></li>	   
 
 </ul>

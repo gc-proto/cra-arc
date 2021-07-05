@@ -33,7 +33,7 @@
            lngLinks: [{
          
              lang: "fr",
-             href: "#",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
              text: "Français"
            }],
            breadcrumbs: [{
@@ -57,19 +57,19 @@
 <p>Responsive carousels are in-page components used to display multiple different items within the same content space. Carousels dynamically stacks multiple sections of content, transforming them into a tabbed interface.</p>
 <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
-	<li><a href="#h-0">How to use a carousel</a></li>
-		<li><a href="#h-1">How to implement (HTML)</a></li>
+	<li><a href="#h-0">How to use</a></li>
+		<li><a href="#h-1">How to implement</a></li>
       <li><a href="#h-2">Design options</a>
 	  <ul>
 		 <li><a href="#h-2-1">Basic carousel</a></li>
 		 <li><a href="#h-2-2">Multimedia player</a></li></ul>
 		</li>
-      <li><a href="#h-3">Configuration options</a></li>	   
+      <li><a href="#h-3">Configuration options and events</a></li>	   
 		
-		<li><a href="#h-4">Related components and functions</a></li>
+		<li><a href="#h-4">Complementary components and functions</a></li>
     </ul>
 
-<h2 id="h-1">How to use a carousel</h2>
+<h2 id="h-1">How to use</h2>
 <ul>
 	<li>Responsive carousels are a set of 2 to 4 rotating slides that refresh on page load, with user-controls to rotate through the slides and to toggle to auto-rotation</li>
 	<li>The default controls for stepping through the slides are thumbnails for large screens and forward/back buttons, including an “Item X of X” message for small screens</li>
@@ -78,32 +78,32 @@
 	<li>The default style for transitioning between slides is horizontal sliding transition, starting from the right edge</li>
 	<li>Carousels may be implemented at various sizes, ranging from a single column to the full width of the screen</li>
 	<li>Each slide is made up of a combination of text and imagery, with the option to add a button link</li>
-	<li>Both text and imagery must be linked, but all links in the carousel slide must point to the same destination</li>
-	<li>Any call to action must be described in the hyperlink text or button link</li>
-	<li>A maximum of 65 characters is allowed for all of the text on a carousel slide (including link label)</li>
-	<li>Textual elements must be coded as HTML text—do not embed text into imagery</li>
-	<li>Use the defined presentation classes included in the Canada.ca <abbr title="Web Experience Toolkit">WET</abbr> theme</li>
-	<li>For image sizing details, consult the <a href="images.html">images</a> component page</li>
 </ul>
 
 <div class="row mrgn-tp-lg">
-<div class="col-md-6">
+<div class="col-md-7">
 <h3 class="mrgn-tp-0 text-muted">Correct use</h3>
 <ul class="fa-ul">  
 <li><span class="fas fa-check fa-li text-success"></span>Use only for awareness campaigns or to notify about new information in a topic</li>
 <li><span class="fas fa-check fa-li text-success"></span>Ensure the content in each slider all promotes the same type of information from a singular topic</li> 
+<li><span class="fas fa-check fa-li text-success"></span>Both text and imagery must be linked, but all links in the carousel slide must point to the same destination</li> 
+<li><span class="fas fa-check fa-li text-success"></span>Any call to action must be described in the hyperlink text or button link</li> 
+<li><span class="fas fa-check fa-li text-success"></span>Use the defined presentation classes included in the Canada.ca <abbr title="Web Experience Toolkit">WET</abbr> theme</li> 
+<li><span class="fas fa-check fa-li text-success"></span>For image sizing details, consult the <a href="images.html">images</a> component page</li> 
 </ul>
 </div>
-<div class="col-md-6">
+<div class="col-md-5">
 <h3 class="mrgn-tp-0 text-muted">Incorrect use</h3>
 <ul class="fa-ul">     
 		<li><span class="fas fa-times fa-li text-danger"></span>Do not use if the content can be rephrased into concise, plain language</li>
+		<li><span class="fas fa-times fa-li text-danger"></span>Do not embed text into imagery. Textual elements must be coded as HTML text</li>
+		<li><span class="fas fa-times fa-li text-danger"></span>Do not use more than 65 characters for all of the text on a carousel slide (including link label)</li>
 </ul>
 </div>
 </div>
 
 
-<h2 id="h-1">How to implement (HTML)</h2>
+<h2 id="h-1">How to implement</h2>
 <ol>
 <li>Add a <code>div</code> element to the page with the class <code>wb-tabs</code> and either the styling class <a href="../../../demos/tabs/tabs-carousel-en.html#carousel-s1"><code>carousel-s1</code></a> or <a href="../../../demos/tabs/tabs-carousel-en.html#carousel-s2"><code>carousel-s2</code></a>.</li>
 <li>Add a <code>div</code> element to the previous <code>div</code> element with the class <code>tabpanels</code>.</li>
@@ -242,7 +242,7 @@
 
 <div class="row">
 
-<div class="col-md-6">
+<div class="col-xs-6">
 <div class="radioselected">
 <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#style1", "class": "carousel-s1 carousel-s2 show-thumbs"} ]}'>
 <p><span class="h4 mrgn-tp-0">Style</span></p>
@@ -255,7 +255,7 @@
 </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-xs-6">
 <div class="radioselected">
 <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#panel1, #panel2, #panel3", "class": "fade slide slidevert                 "} ]}'>
 <p><span class="h4 mrgn-tp-0">Transition</span></p>
@@ -354,11 +354,13 @@
 </details>
 <details id="app3">
 <summary>Prototyping libraries</summary>
-<p>Download the components library:</p>
-<ul class="fa-ul">
-	<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
-	<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
 </ul>
+</section>
 </details>
 </div>
 </div>
@@ -426,11 +428,13 @@
 				</details>
 		<details id="app3">
 <summary>Prototyping libraries</summary>
-<p>Download the components library:</p>
-<ul class="fa-ul">
-	<li><a href="axure_library_link"><span class="fa fa-li fa-download"></span> Axure library</a></li>
-	<li><a href="figma_ui_kit_link"><span class="fa fa-li fa-download"></span> Figma UI kit</a></li>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
 </ul>
+</section>
 </details>
 		</div>
 		</div>
@@ -438,142 +442,10 @@
 		</div>
 		</div>
 		
-<h2 id="h-3">Configuration options</h2>
-<table class="table">
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>How to configure</th>
-<th>Values</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Carousel style</td>
-<td>Configures the carousel style.</td>
-<td>Add the value after the <code>wb-tabs</code> class (e.g., <code>class="wb-tabs carousel-s1"</code>)</td>
-<td>
-<dl>
-<dt><code>carousel-s1</code>:</dt>
-<dd>Square grey controls located at the top of the carousel.</dd>
-<dt><code>carousel-s2</code>:</dt>
-<dd>Rounded white controls located at the bottom of the carousel.</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td>Change rotation speed (<code>data-wb-tabs</code>)</td>
-<td>Configure the tab rotation speed through the <code>interval</code> property of the <code>data-wb-tabs</code> attribute.</td>
-<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>interval</code> property with the number of seconds between tab rotations.
-<pre><code>data-wb-tabs='{"interval": 3}'</code></pre>
-</td>
-<td>
-<dl>
-<dt><code>6</code> (default):</dt>
-<dd>Six seconds between tab rotations</dd>
-<dt>Integer</dt>
-<dd>Number of seconds between tab rotations</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td>Change rotation speed (<code>slow</code>, <code>fast</code>)</td>
-<td>Configure the tab rotation speed through either the <code>slow</code> or <code>fast</code> classes.</td>
-<td>Add either <code>slow</code> or <code>fast</code> after the <code>wb-tabs</code> class.
-<pre><code>class="wb-tabs slow"</code></pre>
-</td>
-<td>
-<dl>
-<dt>None (default):</dt>
-<dd>Six seconds between tab rotations</dd>
-<dt><code>slow</code></dt>
-<dd>Nine seconds between tab rotations</dd>
-<dt><code>fast</code></dt>
-<dd>Three seconds between tab rotations</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td>Tab panel transitions</td>
-<td>Configure the tab panel transition type through the <code>fade</code>, <code>slide</code> or <code>slidevert</code> classes.</td>
-<td>Add <code>fade</code>, <code>slide</code> or <code>slidevert</code> after the <code>in</code> or <code>out</code> class on each tab panel.
-<pre><code>&lt;div role="tabpanel" id="panel21" class="in fade"&gt;</code></pre>
-</td>
-<td>
-<dl>
-<dt><code>fade</code>:</dt>
-<dd>Fading transition</dd>
-<dt><code>slide</code></dt>
-<dd>Horizontal sliding transition</dd>
-<dt><code>slidevert</code></dt>
-<dd>Vertical sliding transition</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td>Exclude play (<code>data-wb-tabs</code>) (v4.0.5+)</td>
-<td>Exclude the play button from the carousel controls through the <code>excludePlay</code> property of the <code>data-wb-tabs</code> attribute.</td>
-<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>excludePlay</code> property with <code>true</code> for the value.
-<pre><code>data-wb-tabs='{"excludePlay": true}'</code></pre>
-</td>
-<td>
-<dl>
-<dt><code>false</code> (default):</dt>
-<dd>Play button is <strong>included in</strong> the carousel controls.</dd>
-<dt><code>true</code>:</dt>
-<dd>Play button is <strong>excluded from</strong> the carousel controls.</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td>Exclude play (<code>exclude-play</code>) (v4.0.5+)</td>
-<td>Exclude the play button from the carousel controls through the <code>exclude-play</code> class.</td>
-<td>Add <code>exclude-play</code> after the <code>wb-tabs</code> class.
-<pre><code>class="wb-tabs exclude-play"</code></pre>
-</td>
-<td>
-<dl>
-<dt>None (default):</dt>
-<dd>Play button is <strong>included in</strong> the carousel controls.</dd>
-<dt><code>playing</code></dt>
-<dd>Play button is <strong>excluded from</strong> the carousel controls.</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td>Play on page load (<code>data-wb-tabs</code>) (v4.0.5+)</td>
-<td>Play the carousel on page load through the <code>playing</code> property of the <code>data-wb-tabs</code> attribute.<br><strong>Warning:</strong> Playing on page load can be distracting and cause usability issues for some users.<br><strong>Note:</strong> Playing will be disabled if the play button is excluded from the carousel controls.</td>
-<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>playing</code> property with <code>true</code> for the value.
-<pre><code>data-wb-tabs='{"playing": true}'</code></pre>
-</td>
-<td>
-<dl>
-<dt><code>false</code> (default):</dt>
-<dd>Carousel <strong>does not play</strong> on page load.</dd>
-<dt><code>true</code>:</dt>
-<dd>Carousel <strong>plays</strong> on page load.</dd>
-</dl>
-</td>
-</tr>
-<tr>
-<td>Play on page load (<code>playing</code>)</td>
-<td>Play the carousel on page load through the <code>playing</code> class.<br><strong>Warning:</strong> Playing on page load can be distracting and cause usability issues for some users.<br><strong>Note:</strong> Playing will be disabled if the play button is excluded from the carousel controls.</td>
-<td>Add <code>playing</code> after the <code>wb-tabs</code> class.
-<pre><code>class="wb-tabs playing"</code></pre>
-</td>
-<td>
-<dl>
-<dt>None (default):</dt>
-<dd>Carousel <strong>does not play</strong> on page load.</dd>
-<dt><code>playing</code></dt>
-<dd>Carousel <strong>plays</strong> on page load.</dd>
-</dl>
-</td>
-</tr>
-</tbody>
-</table>
-<h2 id="h-4">Related components and functions</h2>
+<h2 id="h-3">Configuration options and events</h2>
+<p>For configuration options and events, refer to: <a href="https://wet-boew.github.io/v4.0-ci/docs/ref/tabs/tabs-en.html" rel="external">Tabbed interface on GitHub</a>.</p>
+
+<h2 id="h-4">Complementary components and functions</h2>
 <p>Additional add-on features and behaviours are available.</p>
 <ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
 	<!-- Images -->
@@ -582,18 +454,19 @@
 		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/images.jpg">
 		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="images.html">Images</a></h3> 	 
 	   </div></div></div></li>	 
-	<!-- Multimedia -->
-	  <li class="col-md-4" id="Multimedia">	
-		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
-		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/multimedia.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="multimedia.html">Multimedia player</a></h3> 	 
-	   </div></div></div></li>
-	<!-- Tabs -->
+		<!-- Tabs -->
 	  <li class="col-md-4" id="Tabs">	
 		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
 		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/tabs.jpg">
-		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="tabs.html">Tabs</a></h3> 	 
-	   </div></div></div></li>	   
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="tabs.html">Tabbed interface</a></h3> 	 
+	   </div></div></div></li>	
+	   <!-- video_audio -->
+	  <li class="col-md-4" id="video_audio">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/video_audio.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="video_audio.html">Video and audio</a></h3> 	 
+	   </div></div></div></li>
+   
 
 </ul>
 
