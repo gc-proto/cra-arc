@@ -56,122 +56,199 @@
          });
       </script>
       <main role="main" property="mainContentOfPage" class="container">
-          <h1 property="name" id="wb-cont" class="provisional gc-thickline"><span class="stacked"><span>Canada.ca templates</span> - <span>CRA web service manual</span></span></h1>
+<h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Canada.ca templates – Standard web pages – CRA web service manual</h1>
+<div aria-hidden="true">
+<p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">CRA web service manual</p>
+<h1 class="gc-thickline mrgn-tp-0">Canada.ca templates – Standard web pages</h1>
+</div>
 		  <p>Intro statement goes here</p>
-           <div class="table-responsive">
-		  <table class="table wb-tables " data-wb-tables='{"paging":false, "ordering":false, "rowGroup": [{"dataSrc":0 }] }'>
-		
-		
-	    <caption class="wb-inv">Templates</caption>
-	<thead>
-	<tr><th scope="col">Category</th>
-		<th scope="col">Type</th>
-		<th scope="col">Description</th>
+<!--
+		<section class="well well-sm mrgn-bttm-lg">
+            <form class="wb-tables-filter form-horizontal" data-bind-to="table1">
+               <div class="row">
+                  <div class="form-group mrgn-bttm-0 col-md-5">
+                     <label class="h3 mrgn-tp-0 col-md-4 control-label" for="dt_topic">Page type</label>
+                     <div class="col-md-6 mrgn-tp-0">
+                        <select class="form-control full-width" id="dt_topic" name="dt_topic" data-column="1">
+                           <option value="">All page types</option>
+                           <option value="Content">Content page</option>
+						   <option value="Navigation">Navigation page</option>                           
+                        </select>
+                     </div>
+                  </div>
 
-	</tr>
+                  <div class="col-md-4">
+                     <button type="submit" class="btn btn-primary mrgn-rght-md" aria-controls="dataset-filter">Filter</button>
+                     <button type="reset" class="btn btn-link">Reset</button>
+                  </div>
+               </div>
+            </form>
+         </section>
+		 -->
+	<p class="pull-lefts mrgn-rght-md"><span class="fas fa-sliders-h"></span> Page type options: </p>
+      <form class="wb-tables-filter form-horizontal" data-bind-to="table1">   
+	<ul class="list-inline lst-spcd list-grid-hover"  data-wb-actionmng='[
+		{ "trggroup":"clearFilter", "action": "removeClass", "source": ".fltopts", "class": "btn-primary" },
+		{ "trggroup":"clearFilter", "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "" }
+	]'>
+	<li><button type="button" class="fltopts btn btn-default" data-wb-doaction='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "fltr-content" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'>Content</button></li>
+	<li><button type="button" class="fltopts btn btn-default" data-wb-doaction='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "fltr-navigation" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'>Navigation</button></li>
+	
+	<li class="wb-tables-filter" data-bind-to="create-tbl"><button type="reset" class="btn btn-link" data-wb-doaction='{ "action": "run", "trggroup": "clearFilter" }'>Reset</button></li>
+</ul>
+</form>
+
+<table class="table wb-tables tbl-gridify " id="create-tbl" data-wb-tables='{"ordering":false,  "lengthMenu": [ [15, 30, -1], [15, 30, "All"] ],  "columns": [
+{ "className": "brdr-lft brdr-rght brdr-bttm"}, { "className": "hidden"}], "paging": false, "ordering": true}'>
+	<thead>
+		<tr>
+			<th scope="col">Image Title/Description</th>
+			<th scope="col">Page type</th>
+		</tr>
 	</thead>
-	<tbody>
-	<tr>
-	<td>Navigation page</td>
-		<td><a href="topic.html">Topic page (standard)</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Navigation page</td>
-		<td><a href="https://design.canada.ca/common-design-patterns/subway-navigation.html">Topic page (GC subway design)</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Navigation page</td>
-		<td><a href="#">Topic page (Numbers steps)</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Navigation page</td>
-		<td><a href="#">Campaign page</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Navigation page</td>
-		<td><a href="#">Sign-in page</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Navigation page</td>
-		<td><a href="#">Splash page</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Content page</td>
-		<td><a href="https://design.canada.ca/coded-layout/generic-destination-basic.html">Content page (standard)</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Content page</td>
-		<td><a href="#">Content page (GC subway design)</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Content page</td>
-		<td><a href="#">Contact page</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Navigation page</td>
-		<td><a href="https://design.canada.ca/coded-layout/institutional_landing_page_guidance.html">Instituational profile</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Navigation page</td>
-		<td><a href="#">Index of options page</a></td>
-		<td>asdf</td>
-		
-	</tr>
-	<tr>
-	<td>Navigation page</td>
-		<td><a href="gallery.html">Gallery</a></td>
-		<td>asdf</td>
-		
-	</tr>
+	<tbody class="wb-eqht mrgn-tp-md row">
+		<tr class="col-xs-12 col-md-4 col-sm-6  position-relative">
+			<td class="eqht-trgt mrgn-bttm-lg outset">
+				<h3 class="mrgn-tp-sm mrgn-lft-sm mrgn-rght-sm">
+					<a href="topic.html">
+						<div class="row">
+							<div class="col-xs-12">
+								<img src="images/placeholder.jpg" alt="" class="full-width mrgn-bttm-md">
+							</div>
+						</div>
+					Topic page - standard
+					</a>
+				</h3>
+			</td>
+			<td>fltr-navigation</td>
+		</tr>		  
+		<tr class="col-xs-12 col-md-4 col-sm-6  position-relative">
+			<td class="eqht-trgt mrgn-bttm-lg outset">
+				<h3 class="mrgn-tp-sm mrgn-lft-sm mrgn-rght-sm">
+					<a href="gc-subway-index.html">
+						<div class="row">
+							<div class="col-xs-12">
+								<img src="images/placeholder.jpg" alt="" class="full-width mrgn-bttm-md">
+							</div>
+						</div>
+					Topic page - GC subway
+					</a>
+				</h3>
+			</td>
+			<td>fltr-navigation</td>
+		</tr>
+		<tr class="col-xs-12 col-md-4 col-sm-6  position-relative">
+			<td class="eqht-trgt mrgn-bttm-lg outset">
+				<h3 class="mrgn-tp-sm mrgn-lft-sm mrgn-rght-sm">
+					<a href="#">
+						<div class="row">
+							<div class="col-xs-12">
+								<img src="images/placeholder.jpg" alt="" class="full-width mrgn-bttm-md">
+							</div>
+						</div>
+					Campaign page
+					</a>
+				</h3>
+			</td>
+			<td>fltr-navigation</td>
+		</tr>
+		<tr class="col-xs-12 col-md-4 col-sm-6  position-relative">
+			<td class="eqht-trgt mrgn-bttm-lg outset">
+				<h3 class="mrgn-tp-sm mrgn-lft-sm mrgn-rght-sm">
+					<a href="#">
+						<div class="row">
+							<div class="col-xs-12">
+								<img src="images/placeholder.jpg" alt="" class="full-width mrgn-bttm-md">
+							</div>
+						</div>
+					Content page - standard
+					</a>
+				</h3>
+			</td>
+			<td>fltr-content</td>
+		</tr>
+		<tr class="col-xs-12 col-md-4 col-sm-6  position-relative">
+			<td class="eqht-trgt mrgn-bttm-lg outset">
+				<h3 class="mrgn-tp-sm mrgn-lft-sm mrgn-rght-sm">
+					<a href="gc-subway-sub-content.html">
+						<div class="row">
+							<div class="col-xs-12">
+								<img src="images/placeholder.jpg" alt="" class="full-width mrgn-bttm-md">
+							</div>
+						</div>
+					Content page - GC subway
+					</a>
+				</h3>
+			</td>
+			<td>fltr-content</td>
+		</tr>
+		<tr class="col-xs-12 col-md-4 col-sm-6  position-relative">
+			<td class="eqht-trgt mrgn-bttm-lg outset">
+				<h3 class="mrgn-tp-sm mrgn-lft-sm mrgn-rght-sm">
+					<a href="#">
+						<div class="row">
+							<div class="col-xs-12">
+								<img src="images/placeholder.jpg" alt="" class="full-width mrgn-bttm-md">
+							</div>
+						</div>
+					Institutional profile
+					</a>
+				</h3>
+			</td>
+			<td>fltr-navigation</td>
+		</tr>
+		<tr class="col-xs-12 col-md-4 col-sm-6  position-relative">
+			<td class="eqht-trgt mrgn-bttm-lg outset">
+				<h3 class="mrgn-tp-sm mrgn-lft-sm mrgn-rght-sm">
+					<a href="#LINK#">
+						<div class="row">
+							<div class="col-xs-12">
+								<img src="images/placeholder.jpg" alt="" class="full-width mrgn-bttm-md">
+							</div>
+						</div>
+					News (third party)
+					</a>
+				</h3>
+			</td>
+			<td>fltr-navigation</td>
+		</tr>		
 	</tbody>
-	</table>
-	</div>
-        <div id="def-preFooter"></div>
-         <!-- Write closure template --> 
-         <script type="text/javascript">
-            var defPreFooter = document.getElementById("def-preFooter");
-            defPreFooter.outerHTML = wet.builder.preFooter({
-            dateModified: "2021-01-30",
-            showPostContent: true,
-            showFeedback: false,
-            showShare: false
-            });
-         </script> 
-      </main>
-      <div id="def-footer"> </div>
-      <!-- Write closure template --> 
-      <script type="text/javascript">
-         var defFooter = document.getElementById("def-footer");
-         defFooter.outerHTML = wet.builder.footer({
-         showFooter: true,
-         showFeatures: false
-         });
-      </script> 
-      <!-- Write closure template --> 
-      <script type="text/javascript">
-         document.write(wet.builder.refFooter({
-         }));
-      </script> 
-      <script src="https://test.canada.ca/cra/js/alpha-banner.js"></script>
-   </body>
+</table>
+          
+<div id="def-preFooter"></div>
+ <!-- Write closure template --> 
+ <script type="text/javascript">
+	var defPreFooter = document.getElementById("def-preFooter");
+	defPreFooter.outerHTML = wet.builder.preFooter({
+	dateModified: "2021-01-30",
+	showPostContent: true,
+	showFeedback: false,
+	showShare: false
+	});
+ </script> 
+</main>
+<div id="def-footer"> </div>
+<!-- Write closure template --> 
+<script type="text/javascript">
+ var defFooter = document.getElementById("def-footer");
+ defFooter.outerHTML = wet.builder.footer({
+ showFooter: true,
+ showFeatures: false
+ });
+</script> 
+<!-- Write closure template --> 
+<script type="text/javascript">
+ document.write(wet.builder.refFooter({
+ }));
+</script> 
+<script src="https://test.canada.ca/cra/js/alpha-banner.js"></script>
+</body>
 </html>
