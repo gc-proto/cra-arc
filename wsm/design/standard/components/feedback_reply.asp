@@ -58,7 +58,7 @@
 
 
 <%
-Server.Execute("../../../js/response.vbs")
+Server.Execute("http://test.canada.ca/cra-arc/wsm/js/response.vbs")
 
 Function getHTML (strUrl, submitType)
     Set xmlHttp = Server.CreateObject("MSXML2.ServerXMLHTTP")
