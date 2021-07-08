@@ -34,7 +34,7 @@
 	  </script>
    </head>
    <body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
-      <div id="def-top"> </div>
+   <div id="def-top"> </div>
       <!-- Write closure template --> 
       <script type="text/javascript">
          var defTop = document.getElementById("def-top");
@@ -78,7 +78,7 @@
                   <li>signal that an item belongs to a category (for example, to show if some programs are open, some closed, and some will open soon)</li>
                   <li>label or stamp items with additional information, like the date an item was updated, or the closure of an area</li>
                   <li>show different stages of progress in a list of items (for example, to show which vaccines are under review and which ones are approved)</li>
-               </ul>
+   </ul>
    <h2 id="h-2" >Design options</h2>
    <p>Use the appropriate label to describe and highlight text-based (non-numerical) information.</p>
    <div class="row">
@@ -116,7 +116,7 @@
                      <summary>HTML code</summary>
                         <pre><code>&lt;p&gt;Your text here &lt;span class="label<strong><span class="hidden cl-label-default"> label-default</span><span class="hidden cl-label-info"> label-info</span><span class="hidden cl-label-primary"> label-primary</span><span class="hidden cl-label-success"> label-success</span><span class="hidden cl-label-warning"> label-warning</span><span class="hidden cl-label-danger"> label-danger</span></strong>"&gt;(Your label)&lt;/span&gt;&lt;/p&gt;
 </code></pre>
-                     </details>
+                 </details>
 <details id="app3">
 <summary>Prototyping libraries</summary>
 <section class="alert alert-info">
@@ -193,15 +193,15 @@
 -->
 
 <!--
-<div class="row">
+<div class="row"> --sends an email--
   <div class="col-sm-6 col-md-5 col-lg-4">
     <details class="brdr-0">
-      <summary class="btn btn-default text-center">Report a problem or mistake on this page</summary>
+      <summary class="btn btn-default text-center">Report a problem or mistake on this page (opens Outlook)</summary>
       <div class="clearfix"></div>
       <div class="well row">
         <div>
           <div class="gc-rprt-prblm">
-            <div class="gc-rprt-prblm-frm gc-rprt-prblm-tggl">
+            <div class="gc-rprt-prblm-frm">
               <form id="wsm_feedback" action="mailto:gabriel.portillo@cra-arc.gc.ca?subject=Feedback for the Web service manual" method="post" enctype="text/plain">			
 				<span class="h4">Please select all that apply</span>
 				<input type="hidden" id="source_url" name="Referring page">
@@ -244,18 +244,15 @@
 				  </div>
               </form>
             </div>
-            <div class="gc-rprt-prblm-thnk gc-rprt-prblm-tggl hide">
-              <h3>Thank you for your help!</h3>
-              <p>You will not receive a reply. For enquiries, <a href="https://www.canada.ca/en/contact/index.html">contact us</a>.</p>
-            </div>
+
           </div>
         </div>
       </div>
     </details>
   </div>
-
-
-
+  </div>
+-->
+<div class="row"> <!-- opens new page-->
   <div class="col-sm-6 col-md-5 col-lg-4">
     <details class="brdr-0">
       <summary class="btn btn-default text-center">Report a problem or mistake on this page</summary>
@@ -263,10 +260,10 @@
       <div class="well row">
         <div>
           <div class="gc-rprt-prblm">
-            <div class="gc-rprt-prblm-frm gc-rprt-prblm-tggl wb-frmvld">
-              <form action="http://workzone/scripts/form-to-email/response.asp" method="post">
+            <div class="gc-rprt-prblm-frm wb-frmvld">
+              <form action="feedback_reply.asp" method="post" >
 			  <input name="mailto" type="hidden" value="gabriel.portillo@cra-arc.gc.ca" />
-              <input name="reply" type="hidden" value="form_reply.html" />
+              <!--<input name="reply" type="hidden" value="form_reply.html" />-->
               <input name="subject" type="hidden" value="Feedback for the CRA web service manual" />
 				<span class="h4">Please select all that apply</span>
 				<input type="hidden" id="source_url2" name="Referring page">
@@ -307,29 +304,98 @@
 			  <div class="mrgn-tp-md">
                     <label for="name">Your name</label>
                     <input type="text" class="form-control full-width" placeholder="Enter name" id="name" name="Name:" />
-                  </div>
+                </div>
 				  <div class="mrgn-tp-md">
                     <label for="email">Your email</label>
                     <input type="email" class="form-control full-width" placeholder="Enter email" id="email" name="Email:" />
-                  </div>
+                </div>
 				  <div class="mrgn-tp-lg">
-					<input type="submit" class="btn btn-primary" value="Submit" />
+
+
+					<input type="submit" class="btn btn-primary" value="Submit"  />
 					<input type="reset" name="reset" value="Clear form" class="btn btn-link" />
 				  </div>			
               </form>
             </div>
-            <div class="gc-rprt-prblm-thnk gc-rprt-prblm-tggl hide">
-              <h3>Thank you for your help!</h3>
-              <p>You will not receive a reply. For enquiries, <a href="https://www.canada.ca/en/contact/index.html">contact us</a>.</p>
-            </div>
+
           </div>
         </div>
       </div>
     </details>
   </div>
 </div>
--->
 
+
+<!--
+<div class="row"> -- needs fix --
+  <div class="col-sm-6 col-md-5 col-lg-4">
+
+          <div class="gc-rprt-prblm">
+            <div class="gc-rprt-prblm-frm gc-rprt-prblm-tggl wb-frmvld">
+              <form action="mailto:gabriel.portillo@cra-arc.gc.ca" method="post">
+              <input name="subject" type="hidden" value="Feedback for the CRA web service manual" />
+				<span class="h4">Please select all that apply</span>
+				<input type="hidden" id="source_url2" name="Referring page">
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="nr_1" name="A link, button or video is not working" type="checkbox" />
+					<label for="nr_1">A link, button or video is not working</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="nr_7" name="It has a spelling mistake" type="checkbox" />
+					<label for="nr_7">It has a spelling mistake </label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="nr_2" name="Information is missing" type="checkbox" />
+					<label for="nr_2">Information is missing</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="nr_3" name="Information is outdated or wrong" type="checkbox" />
+					<label for="nr_3">Information is outdated or wrong</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="nr_4" name="I can't find what I'm looking for" type="checkbox" />
+					<label for="nr_4">I can't find what I'm looking for</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="nr_6" name="There are coding errors" type="checkbox" />
+					<label for="nr_6">There are coding errors</label>
+				</div>
+				<div class="checkbox provisional gc-chckbxrdio">
+					<input id="nr_5" name="Other issue not in this list" type="checkbox" />
+					<label for="nr_5">Other issue not in this list</label>
+				</div>
+				<div>
+                <label for="comments"><span class="field-name">Comments</span></label>
+                <textarea name="Comments" class="form-control full-width" id="comments" rows="5"></textarea>
+              </div>
+			  <hr class="brdr-bttm">
+			  <div class="mrgn-tp-md">
+                    <label for="name">Your name</label>
+                    <input type="text" class="form-control full-width" placeholder="Enter name" id="name" name="Name:" />
+                </div>
+				  <div class="mrgn-tp-md">
+                    <label for="email">Your email</label>
+                    <input type="email" class="form-control full-width" placeholder="Enter email" id="email" name="Email:" />
+                </div>
+				  <div class="mrgn-tp-lg">
+					<input type="submit" class="btn btn-primary wb-toggle" value="Submit" data-toggle='{"stateOff": "hide", "stateOn": "show", "selector": ".gc-rprt-prblm-tggl"}' />
+					<input type="reset" name="reset" value="Clear form" class="btn btn-link" />
+				  </div>			
+              </form>
+            </div>
+
+          </div>
+
+
+	            <div class="gc-rprt-prblm-thnk gc-rprt-prblm-tggl hide">
+			<div class="alert alert-success">
+              <h3>Thank you for your help!</h3>
+              <p>You will not receive a reply. For enquiries, <a href="https://www.canada.ca/en/contact/index.html">contact us</a>.</p>
+            </div>
+			</div>
+  </div>
+  -->
+</div>
 
 
 
