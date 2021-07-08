@@ -58,7 +58,7 @@
 
 
 <%
-Server.Execute("/scripts/form-to-email/response.vbs")
+Server.Execute("../../../js/response.vbs")
 
 Function getHTML (strUrl, submitType)
     Set xmlHttp = Server.CreateObject("MSXML2.ServerXMLHTTP")
