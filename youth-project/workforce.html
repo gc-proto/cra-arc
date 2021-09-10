@@ -63,7 +63,7 @@ body.wb-overlay-dlg {
   </div>
   <div data-wb-urlmapping='{
 		"lesson-expand":
-			[{"action":"removeClass", "source": "#lsn-a-modal .modal-body, #lsn-b-modal .modal-body, #lsn-c-modal .modal-body, #lsn-d-modal .modal-body", "class": "container"}, {"action":"removeClass", "source": ".modal-content", "class": "wb-overlay overlay-def"}, {"action":"removeClass", "source": " #lsn-a-resource, #lsn-b-resource, #lsn-c-resource, #lsn-d-resource, #reset-page, .rght-a", "class": "hidden"},  {"action":"addClass", "source": ".modal-footer, #lsn-a-modal nav, #lsn-b-modal nav, #lsn-c-modal nav, #lsn-d-modal nav, .overlay-close, #lsn-a-ov-btn, #lsn-b-ov-btn, #lsn-c-ov-btn, #lsn-d-ov-btn", "class": "hidden"}]
+			[{"action":"removeClass", "source": "#lsn-a-modal .modal-body, #lsn-b-modal .modal-body, #lsn-c-modal .modal-body, #lsn-d-modal .modal-body #quiz-final .modal-body", "class": "container"}, {"action":"removeClass", "source": ".modal-content", "class": "wb-overlay overlay-def"}, {"action":"removeClass", "source": " #lsn-a-resource, #lsn-b-resource, #lsn-c-resource, #lsn-d-resource, #reset-page, .rght-a", "class": "hidden"},  {"action":"addClass", "source": ".modal-footer, #lsn-a-modal nav, #lsn-b-modal nav, #lsn-c-modal nav, #lsn-d-modal nav, .overlay-close, #lsn-a-ov-btn, #lsn-b-ov-btn, #lsn-c-ov-btn, #lsn-d-ov-btn", "class": "hidden"}]
 		}'></div>
   <p>Are you ready to work in Canada? You will need to get a Social Insurance Number (SIN) and you may want to fill out a TD1 to choose your deduction amounts.</p>
   <p id="reset-page" class="hidden"><a href="?" class="btn btn-default btn-lg"><span class="fas fa-undo-alt fa-lg"></span> Reset the lessons</a></p>
@@ -1246,8 +1246,10 @@ body.wb-overlay-dlg {
             <p class="mrgn-bttm-lg">Avoid pressing the back button or reloading the page during the quiz.</p>
           </div>
        
-          <p><a href="#quiz-final" aria-controls="#quiz-final" class="overlay-lnk btn btn-primary btn-lg" role="button" onclick="window.location.href = '#quiz-final';"><span class="h3">Start the quiz</span></a></p>
-	
+         <p id="quiz-final-start"><a href="#quiz-final" aria-controls="#quiz-final" class="overlay-lnk btn btn-primary btn-lg" role="button" onclick="window.location.href = '#quiz-final';" ><span class="h3">Start the quiz</span></a><a href="#quiz-final" aria-controls="#quiz-final" class="overlay-lnk hidden" role="button" onclick="window.location.href = '#quiz-final';" id="quiz-final-review">Review the quiz</a></p>
+		<div class="mrgn-bttm-lg">
+        <p><a href="#quiz-final" role="button" data-wb-doaction='[{"action":"removeClass", "source": "#quiz-final.modal-content", "class": "wb-overlay overlay-def"}, {"action":"removeClass", "source": "#quiz-final .modal-body", "class": "container"}, {"action":"removeClass", "source": "#quiz-final-review-hide", "class": "hidden"},  {"action":"addClass", "source": "#quiz-final-review, #quiz-final .overlay-close", "class": "hidden"}]' class="hidden" id="quiz-final-review">Show the quiz<span class="wb-inv">: starting to work</span></a> <a href="#quiz-results" role="button" data-wb-doaction='[{"action":"addClass", "source": "#quiz-final.modal-content", "class": "wb-overlay overlay-def"}, {"action":"addClass", "source": "#quiz-final .modal-body", "class": "container"}, {"action":"addClass", "source": " #quiz-final-review-hide", "class": "hidden"}, {"action":"removeClass", "source": " #quiz-final-review", "class": "hidden"}]' class="hidden" id="quiz-final-review-hide">Hide the quiz<span class="wb-inv">: starting to work</span></a></p>
+      </div>
 		<!--Quiz overlay start //-->
 		<section id="quiz-final" class="wb-overlay modal-content overlay-def wb-popup-full mrgn-bttm-lg">
       <header class="modal-header">
@@ -1553,7 +1555,8 @@ body.wb-overlay-dlg {
 </section>
  <div class="row mrgn-bttm-lg mrgn-tp-xl">
               <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-                <button class="btn btn-primary overlay-close btn-block" type="button"  onclick="document.location='#quiz-final';"><span class="h2">Finish and close the quiz</span></button>
+                <button class="btn btn-primary overlay-close btn-block" type="button"  onclick="document.location='#quiz-final';" id="finish-close-quiz" data-wb-doaction='{"action":"addClass", "source": "#finish-close-quiz, #quiz-final-start", "class": "hidden"}'><span class="h2">Finish and close the quiz</span></button>
+		   
               </div>
             </div>		  
 		  
