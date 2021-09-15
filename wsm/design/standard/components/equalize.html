@@ -58,24 +58,27 @@
 <h2 class="h3 mrgn-tp-md">On this page</h2>
     <ul>
       <li><a href="#h-2">Design options</a>
+	  <ul>
+	  <li><a href="#h-2-1">Equalize nested elements</a></li>
+	  <li><a href="#h-2-2">Equalize deeper nested elements</a></li>
+	  </ul>
+	  </li>
 	   <li><a href="#h-3">Complementary components and functions</a></li>
     </ul>
 
 <h2 id="h-2" >Design options</h2>
-
+<h3 id="h-2-1">Equalize nested elements</h3>
 <div class="row">
 <!-- Field flow options -->
 <div class="col-md-4 ds-modifier">
 <form>
 <div class="radioselected">
-<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#none, #eq1, #eq2", "class": "hidden"} ]}'>
-<p><span class="lead mrgn-tp-0"><span class="fas fa-tools"></span> Modify the design</span></p>
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#none, #hidden1, #eq1", "class": "hidden"} ]}'>
+<!--<p><span class="lead mrgn-tp-0"><span class="fas fa-tools"></span> Modify the design</span></p>-->
+<p><span class="mrgn-tp-0 hidden">Modify the design</span></p>
 <ul>
-
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#eq1, #eq2", "class": "hidden", "live": true}, {"action": "addClass", "source": "#hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-none", "live": true}]'>Default</li>
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#none, #eq2, #hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-eq1", "live": true}]'>Equalize nested elements</li>
-<li data-wb-fieldflow='[{"action": "addClass", "source": "#none, #eq1, #hidden1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-eq2", "live": true}]'>Equalize deeper nested elements</li>
-
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#none, "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-eq1", "live": true}]'>Equalize nested elements</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#hidden1, #eq1", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-none", "live": true}]'>Default</li>
 </ul>
 </div>
 </div>
@@ -89,8 +92,27 @@
 <details id="app1">
 <summary>Appearance</summary>
 <div class="panel panel-body brdr-0 brdr-rds-0">
-<div class="row cl-none" id="none"> 
-			<div class="col-md-4 ">
+<div class="row wb-eqht cl-eq1" id="eq1"> 
+			<div class="col-md-4">
+			<section class="well hght-inhrt">
+				<h3>Short container</h3>
+<p>Example text.</p>
+				</section>
+				</div>
+				<div class="col-md-4">
+				<section class="well hght-inhrt">
+				<h3>Medium container</h3>
+<p>Example text.<br> Example text. </p>
+				</section>
+				</div>
+				<div class="col-md-4">
+				<section class="well hght-inhrt">
+				<h3>Long container</h3>
+<p>Example text. <br>Example text. <br>Example text. </p>
+				</section></div>
+</div>
+<div class="row cl-none hidden" id="none"> 
+			<div class="col-md-4">
 			<section class="well">
 				<h3>Short container</h3>
 <p>Example text.</p>
@@ -108,78 +130,12 @@
 <p>Example text. <br>Example text. <br>Example text. </p>
 				</section></div>
 </div>
-
-<span id="eq1" class="cl-eq1 hidden">
-<div class="row wb-eqht">
-			<div class="col-md-4 ">
-			<section class="well hght-inhrt">
-			<h3>Short container</h3>
-			<p>Example text.</p>
-			</section>
-			</div>
-			<div class="col-md-4 ">
-				<section class="well hght-inhrt">
-				<h3>Medium container</h3>
-				<p>Example text.<br> Example text. </p>
-				</section>
-				</div>
-				<div class="col-md-4 ">
-				<section class="well hght-inhrt">
-				<h3>Long container</h3>
-				<p>Example text. <br>Example text. <br>Example text. </p>
-				</section>
-				</div>
-				
-</div>
-</span>
-<span class="cl-eq2 hidden">
-<div class="row wb-eqht" >
-		<div class="col-sm-6 col-md-4">
-			<div class="well">
-				<section class="panel panel-default eqht-trgt">
-					<div class="panel-heading">
-						<h3 class="panel-title">Small container</h3>
-					</div>
-					<div class="panel-body">
-<p>Example text.</p>
-					</div>
-				</section>
-			</div>
-		</div>
-
-		<div class="col-sm-6 col-md-4">
-			<div class="well">
-				<section class="panel panel-default eqht-trgt">
-					<div class="panel-heading">
-						<h3 class="panel-title">Medium container</h3>
-					</div>
-					<div class="panel-body">
-<p>Example text. <br>Example text. </p>
-					</div>
-				</section>
-			</div>
-		</div>
-
-		<div class="col-sm-12 col-md-4">
-			<div class="well">
-				<section class="panel panel-default eqht-trgt">
-					<div class="panel-heading">
-						<h3 class="panel-title">Large container</h3>
-					</div>
-					<div class="panel-body">
-<p>Example text. <br>Example text. <br>Example text. </p>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	</span>
 </div>
 </details>
 <!-- Field flow code -->
 <details id="app2">
 <summary>HTML code</summary>
-<pre><code><span class="cl-none" id="hidden1">&lt;!-- Default --&gt;
+<pre><code><span class="hidden cl-none">&lt;!-- Default --&gt;
 &lt;div class="row"&gt; 
 			&lt;div class="col-md-4 "&gt;
 			&lt;section class="well"&gt;
@@ -199,7 +155,7 @@
 &lt;p&gt;Example text. &lt;br&gt;Example text. &lt;br&gt;Example text. &lt;/p&gt;
 				&lt;/section&gt;&lt;/div&gt;
 &lt;/div&gt;
-</span><span class="hidden cl-eq1" >&lt;!-- Equalize nested elements --&gt;
+</span><span class="cl-eq1" id="hidden1">&lt;!-- Equalize nested elements --&gt;
 &lt;div class="row <strong>wb-eqht</strong>"&gt; 
 			&lt;div class="col-md-4"&gt;
 			&lt;section class="well <strong>hght-inhrt</strong>"&gt;
@@ -219,7 +175,98 @@
 &lt;p&gt;Example text. &lt;br&gt;Example text. &lt;br&gt;Example text. &lt;/p&gt;
 				&lt;/section&gt;&lt;/div&gt;
 &lt;/div&gt;
-</span><span class="hidden cl-eq2">&lt;!-- Equalize deeper nested elements --&gt;
+</span></code></pre>
+<p><strong>Coding considerations:</strong></p>
+ <ul class="fa-ul">
+<li><span class="fas fa-check fa-li text-success"></span>The class <code>hght-inhrt</code> is applied on the element to be equalize as well as all the parents (up to the child of <code>wb-eqht</code>), whereas <code>eqht-trgt</code> is only applied to the element to equalize (nothing needs to be done about the parents).</li>
+</ul>
+</details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
+</details>
+
+</div>
+</div>
+</div>
+<!-- Field flow warnings -->
+</div>
+</div>
+
+<h3 id="h-2-2">Equalize deeper nested elements</h3>
+<div class="row">
+<!-- Field flow appearance -->
+<div class="col-md-8">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app4">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+<div class="row wb-eqht">
+		<div class="col-md-4">
+			<div class="well">
+				<section class="panel panel-default eqht-trgt">
+					<div class="panel-heading">
+						<h3 class="panel-title">Small container</h3>
+					</div>
+					<div class="panel-body">
+<ul>
+<li>Text</li>
+<span>&nbsp;</span><br>
+<span>&nbsp;</span>
+</ul>
+
+					</div>
+				</section>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="well">
+				<section class="panel panel-default eqht-trgt">
+					<div class="panel-heading">
+						<h3 class="panel-title">Medium container</h3>
+					</div>
+					<div class="panel-body">
+<ul>
+<li>Text</li>
+<li>Text</li>
+<span>&nbsp;</span>
+</ul>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="well">
+				<section class="panel panel-default eqht-trgt">
+					<div class="panel-heading">
+						<h3 class="panel-title">Large container</h3>
+					</div>
+					<div class="panel-body">
+<ul>
+<li>Text</li>
+<li>Text</li>
+<li>Text</li>
+</ul>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app5">
+<summary>HTML code</summary>
+<pre><code><span class="cl-eq2" id="hidden1">&lt;!-- Equalize deeper nested elements --&gt;
 &lt;div class="row <strong>wb-eqht</strong>"&gt;
 		&lt;div class="col-md-4"&gt;
 			&lt;div class="well"&gt;
@@ -263,7 +310,7 @@
 <li><span class="fas fa-check fa-li text-success"></span>The class <code>hght-inhrt</code> is applied on the element to be equalize as well as all the parents (up to the child of <code>wb-eqht</code>), whereas <code>eqht-trgt</code> is only applied to the element to equalize (nothing needs to be done about the parents).</li>
 </ul>
 </details>
-<details id="app3">
+<details id="app6">
 <summary>Prototyping libraries</summary>
 <section class="alert alert-info">
 <p>The following prototyping libraries are currently being developed and will be available to download once the CRA web service manual is officially launched:</p>
@@ -310,6 +357,10 @@
 	   </div></div></div></li>	 
 </ul>
  </div> 
+
+ 
+ 
+ 
  <!-- CONTENT ENDS -->
  
 		<div id="def-preFooter"></div>
