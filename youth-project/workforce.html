@@ -63,7 +63,7 @@ body.wb-overlay-dlg {
   </div>
   <div data-wb-urlmapping='{
 		"lesson-expand":
-			[{"action":"removeClass", "source": "#lsn-a-modal .modal-body, #lsn-b-modal .modal-body, #lsn-c-modal .modal-body, #lsn-d-modal .modal-body, #quiz-final .modal-body", "class": "container"}, {"action":"removeClass", "source": ".modal-content", "class": "wb-overlay overlay-def"}, {"action":"removeClass", "source": " #lsn-a-resource, #lsn-b-resource, #lsn-c-resource, #lsn-d-resource, #reset-page, .rght-a", "class": "hidden"},  {"action":"addClass", "source": ".modal-footer, #lsn-a-modal nav, #lsn-b-modal nav, #lsn-c-modal nav, #lsn-d-modal nav, .overlay-close, #lsn-a-ov-btn, #lsn-b-ov-btn, #lsn-c-ov-btn, #lsn-d-ov-btn", "class": "hidden"}]
+			[{"action":"removeClass", "source": ".lsn-modal .modal-body, #quiz-final .modal-body", "class": "container"}, {"action":"removeClass", "source": ".modal-content", "class": "wb-overlay overlay-def"}, {"action":"removeClass", "source": " .lsn-resource, #reset-page, .rght-a", "class": "hidden"},  {"action":"addClass", "source": ".modal-footer, .lsn-modal nav, .overlay-close, .lsn-ov-btn", "class": "hidden"}]
 		}'></div>
   <p>Are you ready to work in Canada? You will need to get a Social Insurance Number (SIN) and you may want to fill out a TD1 to choose your deduction amounts.</p>
   <p id="reset-page" class="hidden"><a href="?" class="btn btn-default btn-lg"><span class="fas fa-undo-alt fa-lg"></span> Reset the lessons and quizzes</a></p>
@@ -74,7 +74,7 @@ body.wb-overlay-dlg {
     <div class="col-xs-9 col-md-7">
       <h2 class="mrgn-tp-sm" id="lesson-a">Why you need a SIN or a tax number<span class="hidden lsn-a-complete wb-inv"> lesson complete</span></h2>
       <p>What is a SIN, getting one for work purposes, what if you don't qualify, and keeping it safe.</p>
-      <p id="lsn-a-ov-btn">
+      <p id="lsn-a-ov-btn" class="lsn-ov-btn">
         <button class="btn btn-default btn-lg" onclick="window.history.pushState(null, null, '#lsn-a-overview');" data-wb-doaction='[{"action": "removeClass", "source": "#lsn-a-overview", "class": "hidden"}, {"action": "addClass", "source": "#lsn-a-ov-btn", "class": "hidden"}]'>Read the introduction to begin lesson<span class="wb-inv">: Why you need a SIN or a tax number</span></button>
       </p>
       <div aria-live="polite">
@@ -115,7 +115,7 @@ body.wb-overlay-dlg {
       </div>
     </div>
     <div class="col-xs-10 col-xs-offset-2 col-md-4 col-md-offset-0">
-      <div class="panel panel-default brdr-rds-0 hidden" id="lsn-a-resource">
+      <div class="lsn-resource panel panel-default brdr-rds-0 hidden" id="lsn-a-resource">
         <header class="panel-heading brdr-rds-0">
           <h4 class="panel-title">Resources<span class="wb-inv"> for why you need a SIN or tax number</span> </h4>
         </header>
@@ -124,16 +124,17 @@ body.wb-overlay-dlg {
             <li><a href="https://www.canada.ca/en/employment-social-development/services/sin.html" target="_blank">Social Insurance Number (SIN) with Service <span class="nowrap">Canada<span class="wb-inv"> open in new window</span><span class="far fa-window-restore mrgn-lft-sm"></span></span></a></li>
             <li><a href="https://www.canada.ca/en/revenue-agency/services/tax/international-non-residents/information-been-moved/determining-your-residency-status.html" target="_blank">Determining your residency <span class="nowrap">status<span class="wb-inv"> open in new window</span><span class="far fa-window-restore mrgn-lft-sm"></span></span></a></li>
           </ul>
-          <details><summary>Additional resources</summary>
+          <details>
+            <summary>Additional resources</summary>
             <ul class="list-unstyled lst-spcd">
-            <li><a href="https://www.canada.ca/en/employment-social-development/programs/sin/protect.html" target="_blank">Protecting your <span class="nowrap">SIN<span class="wb-inv"> open in new window</span><span class="far fa-window-restore mrgn-lft-sm"></span></span></a></li>
-              </ul>
-            </details>
+              <li><a href="https://www.canada.ca/en/employment-social-development/programs/sin/protect.html" target="_blank">Protecting your <span class="nowrap">SIN<span class="wb-inv"> open in new window</span><span class="far fa-window-restore mrgn-lft-sm"></span></span></a></li>
+            </ul>
+          </details>
         </div>
       </div>
     </div>
   </div>
-  <div id="lsn-a-modal">
+  <div id="lsn-a-modal" class="lsn-modal">
     <section id="lsn-a-prt1" class="wb-overlay modal-content overlay-def wb-popup-full mrgn-bttm-lg">
       <header class="modal-header">
         <h2 class="modal-title">Why you need a SIN or tax number <span class="nowrap">(part 1 of 3)</span></h2>
@@ -155,12 +156,14 @@ body.wb-overlay-dlg {
               <p>Individuals who are considered  non-residents, such as international students, may not be able to get a SIN but  still have to file an income tax and benefit return. These individuals may  apply for an individual tax number (ITN) through the Canada Revenue Agency  (CRA). An ITN starts with 09. </p>
               <p>Residents of Canada who are not entitled to receive a  SIN or an ITN and still have to file a return may be able to apply for a  temporary tax number (TTN) through the CRA. A TTN starts with either 01 or 03. </p>
               <p>If you need to apply for an ITN or a TTN, contact the  CRA.</p>
-             <div class="panel panel-info panel-body"><p class="text-info h4 mrgn-tp-0">Resources are available</p>
-<p>After you finish this lesson, resources links are provided for:</p>
-<ul class="mrgn-bttm-0"><li>Determining your residency status</li>
-<li>Contacting the CRA</li>
-</ul>
-</div>
+              <div class="panel panel-info panel-body">
+                <p class="text-info h4 mrgn-tp-0">Resources are available</p>
+                <p>After you finish this lesson, these resources links will be available:</p>
+                <ul class="mrgn-bttm-0">
+                  <li>Determining your residency status</li>
+                  <li>Contacting the CRA</li>
+                </ul>
+              </div>
             </details>
             <nav class="mrgn-tp-lg mrgn-bttm-lg">
               <ul class="pager">
@@ -188,7 +191,7 @@ body.wb-overlay-dlg {
             <details>
               <summary>Definition for: Newborn Registration Service</summary>
               <dl data-ajax-replace="glossary.html #nrs">
-		      <dt><a href="glossary.html#nrs">Newborn registration Service</a></dt>
+                <dt><a href="glossary.html#nrs">Newborn registration Service</a></dt>
               </dl>
             </details>
             <p>If you do not already have a SIN, you can apply for one online, by mail, or in person through Service Canada.</p>
@@ -267,7 +270,7 @@ body.wb-overlay-dlg {
               <details>
                 <summary>Definition for: Income tax and benefit return</summary>
                 <dl data-ajax-replace="glossary.html #itbr">
-			<dt><a href="glossary.html#itbr">Income tax and benefit return</a></dt>
+                  <dt><a href="glossary.html#itbr">Income tax and benefit return</a></dt>
                 </dl>
               </details>
             </div>
@@ -307,13 +310,13 @@ body.wb-overlay-dlg {
                 </div>
               </div>
             </div>
-            <div class="panel panel-info panel-body"><p class="text-info h4 mrgn-tp-0">Resources are available</p>
-<p>After you finish this lesson, resources links are provided for:</p>
-<ul class="mrgn-bttm-0"><li>Protecting your SIN</li>
-
-</ul>
-</div>
-            
+            <div class="panel panel-info panel-body">
+              <p class="text-info h4 mrgn-tp-0">Resources are available</p>
+              <p>After you finish this lesson, these resources links will be available:</p>
+              <ul class="mrgn-bttm-0">
+                <li>Protecting your SIN</li>
+              </ul>
+            </div>
             <div class="row mrgn-bttm-lg mrgn-tp-lg">
               <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
                 <button class="btn btn-success overlay-close btn-block" type="button" data-wb-doaction='[{"action":"addClass", "source": "#lsn-a-circle, #lesson-a", "class": "text-success"}, {"action":"removeClass", "source": ".lsn-a-complete,  #lsn-a-resource, #lsn-a-expand, #reset-page", "class": "hidden"}, {"action": "addClass", "source": "#lsn-a-incomplete, #lsn-a-overview", "class": "hidden"}, {"action": "addClass", "source": "#lsn-a-circle>.fa-circle", "class": "fas"}]' onclick="document.location='#lesson-a';"><span class="h2">Finish and close the lesson<span class="wb-inv"> for why you need a SIN or a tax number</span></span></button>
@@ -332,7 +335,7 @@ body.wb-overlay-dlg {
     <div class="col-xs-9 col-md-7 brdr-tp">
       <h2 class="mrgn-tp-lg" id="lesson-b">When to fill out a TD1 Personal Tax Credits Return<span class="hidden lsn-b-complete wb-inv"> lesson completed</span></h2>
       <p>Learn about the TD1 return, why and how you  want to fill it out, and be aware of special circumstances.</p>
-      <p id="lsn-b-ov-btn">
+      <p id="lsn-b-ov-btn" class="lsn-ov-btn">
         <button class="btn btn-default btn-lg" onclick="window.history.pushState(null, null, '#lsn-b-overview');" data-wb-doaction='[{"action": "removeClass", "source": "#lsn-b-overview", "class": "hidden"}, {"action": "addClass", "source": "#lsn-b-ov-btn", "class": "hidden"}]'>Read the introduction to begin lesson<span class="wb-inv">: When to fill out a TD1 Personal Tax Credits Return</span></button>
       </p>
       <div aria-live="polite">
@@ -341,7 +344,7 @@ body.wb-overlay-dlg {
           <ul class="fa-ul mrgn-bttm-md">
             <li><strong><span class="fa-li fa-fw fas fa-chalkboard-teacher fa-lg"></span> This lesson includes:</strong>
               <ul class="mrgn-lft-md">
-		      <li>1 test yourself question</li>
+                <li>1 test yourself question</li>
               </ul>
             </li>
             <li><strong><span class="fa-li far fa-clock fa-lg fa-fw"></span> Time to complete:</strong> about 5 minutes</li>
@@ -369,11 +372,11 @@ body.wb-overlay-dlg {
         </div>
       </div>
       <div class="mrgn-bttm-lg">
-        <p><a href="#lsn-b-modal" role="button" data-wb-doaction='[{"action":"removeClass", "source": "#lsn-b-modal>.modal-content", "class": "wb-overlay overlay-def"}, {"action":"removeClass", "source": "#lsn-b-modal .modal-body", "class": "container"}, {"action":"removeClass", "source": "#lsn-b-hide", "class": "hidden"},  {"action":"addClass", "source": "#lsn-b-expand, #lsn-b-modal .modal-footer, #lsn-b-modal nav, #lsn-b-modal .overlay-close", "class": "hidden"}]' class="hidden" id="lsn-b-expand"><span class="fas fa-award fa-lg mrgn-rght-md"></span>Show the entire lesson<span class="wb-inv">: when to fill out a TD1 Personal Tax Credits Return</span></a> <a href="#lsn-resource" role="button" data-wb-doaction='[{"action":"addClass", "source": "#lsn-b-modal>.modal-content", "class": "wb-overlay overlay-def"}, {"action":"addClass", "source": "#lsn-b-modal .modal-body", "class": "container"}, {"action":"addClass", "source": " #lsn-b-hide", "class": "hidden"}, {"action":"removeClass", "source": " #lsn-b-expand, #lsn-b-modal .modal-footer", "class": "hidden"}]' class="hidden" id="lsn-b-hide">Hide the lesson<span class="wb-inv">: when to fill out a TD1 Personal Tax Credits Return</span></a></p>
+        <p><a href="#lsn-b-modal" role="button" data-wb-doaction='[{"action":"removeClass", "source": "#lsn-b-modal>.modal-content", "class": "wb-overlay overlay-def"}, {"action":"removeClass", "source": "#lsn-b-modal .modal-body", "class": "container"}, {"action":"removeClass", "source": "#lsn-b-hide", "class": "hidden"},  {"action":"addClass", "source": "#lsn-b-expand, #lsn-b-modal .modal-footer, #lsn-b-modal nav, #lsn-b-modal .overlay-close", "class": "hidden"}]' class="hidden" id="lsn-b-expand"><span class="fas fa-award fa-lg mrgn-rght-md"></span>Show the entire lesson<span class="wb-inv">: when to fill out a TD1 Personal Tax Credits Return</span></a> <a href="#lsn-b-resource" role="button" data-wb-doaction='[{"action":"addClass", "source": "#lsn-b-modal>.modal-content", "class": "wb-overlay overlay-def"}, {"action":"addClass", "source": "#lsn-b-modal .modal-body", "class": "container"}, {"action":"addClass", "source": " #lsn-b-hide", "class": "hidden"}, {"action":"removeClass", "source": " #lsn-b-expand, #lsn-b-modal .modal-footer", "class": "hidden"}]' class="hidden" id="lsn-b-hide">Hide the lesson<span class="wb-inv">: when to fill out a TD1 Personal Tax Credits Return</span></a></p>
       </div>
     </div>
     <div class="col-xs-10 col-xs-offset-2 col-md-4 col-md-offset-0">
-      <div class="panel panel-default brdr-rds-0 mrgn-tp-lg hidden" id="lsn-b-resource">
+      <div class="lsn-resource panel panel-default brdr-rds-0 hidden" id="lsn-b-resource">
         <header class="panel-heading brdr-rds-0">
           <h4 class="panel-title">Resources<span class="wb-inv"> for when to fill out a TD1 Personal Tax Credits Return</span> </h4>
         </header>
@@ -385,7 +388,7 @@ body.wb-overlay-dlg {
       </div>
     </div>
   </div>
-  <div id="lsn-b-modal">
+  <div id="lsn-b-modal" class="lsn-modal">
     <section id="lsn-b-prt1" class="wb-overlay modal-content overlay-def wb-popup-full mrgn-bttm-lg">
       <header class="modal-header">
         <h2 class="modal-title">When to fill out a TD1 Personal Tax Credits Return <span class="nowrap">(part 1 of 3)</span></h2>
@@ -421,12 +424,13 @@ body.wb-overlay-dlg {
             <h3 class="h2 mrgn-tp-0">Filling out a TD1 form</h3>
             <p>The first page of a TD1 form  requires you to enter personal information, such as your name, address, date of birth, and  social insurance number. </p>
             <p>You will also enter an amount or amounts such as the basic  personal amount for tax credits you  will claim when you file your income tax and benefit return for the year. The tax credits will help to reduce the tax that you might  owe on your income. If you are claiming other amounts, such as for tuition, your employer can deduct less tax from your paycheques. If you  do not claim any other amounts, your tax credits will only be for the basic personal amount,  which all residents of Canada can claim. </p>
-            <div class="panel panel-info panel-body"><p class="text-info h4 mrgn-tp-0">Resources are available</p>
-<p>After you finish this lesson, resources links are provided for:</p>
-<ul class="mrgn-bttm-0"><li>Tax credits to claim</li>
-</ul>
-</div>
-            
+            <div class="panel panel-info panel-body">
+              <p class="text-info h4 mrgn-tp-0">Resources are available</p>
+              <p>After you finish this lesson, these resources links will be available:</p>
+              <ul class="mrgn-bttm-0">
+                <li>Tax credits to claim</li>
+              </ul>
+            </div>
             <nav class="mrgn-tp-lg mrgn-bttm-lg">
               <ul class="pager">
                 <li class="next"><a href="#lsn-b-prt3" aria-controls="lsn-b-prt3" class="overlay-lnk" rel="next">Next: Part 3</a></li>
@@ -455,7 +459,7 @@ body.wb-overlay-dlg {
             <details>
               <summary>Definition for: Basic Personal Amount (BPA)</summary>
               <dl data-ajax-replace="glossary.html #bpa">
-		      <dt><a href="glossary.html#bpa">Basic Personal Amount (BPA)</a></dt>
+                <dt><a href="glossary.html#bpa">Basic Personal Amount (BPA)</a></dt>
               </dl>
             </details>
             <p>If you have more than one employer at the same time  and you filled out a TD1 form claiming amounts, you cannot claim them again for the other employer in  the same tax year. In that case, you should enter 0 on the first page of the latest TD1, and tick the box  &ldquo;More than one employer at the same time&rdquo; on the second page.</p>
@@ -479,7 +483,7 @@ body.wb-overlay-dlg {
                             <li data-wb-fieldflow='[ {"action": "addClass", "source": "#q3-btn, .wrng-a", "class": "hidden"}, {"action": "removeClass", "source": "#q3-a3", "class": "hidden"}]'>"0"</li>
                           </ul>
                         </div>
-                       <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q3-btn">Check your answer<span class="wb-inv"> for question 3</span></button>
+                        <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q3-btn">Check your answer<span class="wb-inv"> for question 3</span></button>
                       </form>
                     </div>
                     <div aria-live="assertive">
@@ -507,12 +511,13 @@ body.wb-overlay-dlg {
             <p>If you receive other income where tax is not taken  off, such as cash tips or occasional earnings, you may want your employer to  deduct more tax from your pay. This means that you&rsquo;ll pay a  little bit more tax each time you are paid rather than possibly having to pay a  larger amount when you file your income tax and benefit  return. Any  amount that you overpay will be refunded to you after the CRA processes your return.</p>
             <p>Enter the extra amount you want the employer to deduct on  the second page. </p>
             <p>You may also need to complete a provincial or  territorial tax  credits form for your province or territory of employment.</p>
-            <div class="panel panel-info panel-body"><p class="text-info h4 mrgn-tp-0">Resources are available</p>
-<p>After you finish this lesson, resources links are provided for:</p>
-<ul class="mrgn-bttm-0"><li>TD1 and provincial and territorial forms</li>
-</ul>
-</div>
-
+            <div class="panel panel-info panel-body">
+              <p class="text-info h4 mrgn-tp-0">Resources are available</p>
+              <p>After you finish this lesson, these resources links will be available:</p>
+              <ul class="mrgn-bttm-0">
+                <li>TD1 and provincial and territorial forms</li>
+              </ul>
+            </div>
             <p>You must sign and date the TD1 form and give it to your employer. </p>
             <div class="well brdr-rds-0"> <span class="fa-lg fa-stack pull-right text-muted"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-bolt fa-stack-1x"></span></span>
               <p class="h4 mrgn-tp-0">Fast fact</p>
@@ -536,7 +541,7 @@ body.wb-overlay-dlg {
     <div class="col-xs-9 col-md-7 brdr-tp">
       <h2 class="mrgn-tp-lg" id="lesson-c">What's on your pay stub<span class="lsn-c-complete wb-inv hidden"> lesson complete</span></h2>
       <p>What are deductions, the difference between gross and net pay and all the other details on your pay stub. </p>
-      <p id="lsn-c-ov-btn">
+      <p id="lsn-c-ov-btn" class="lsn-ov-btn">
         <button class="btn btn-default btn-lg" onclick="window.history.pushState(null, null, '#lsn-c-overview');" data-wb-doaction='[{"action": "removeClass", "source": "#lsn-c-overview", "class": "hidden"}, {"action": "addClass", "source": "#lsn-c-ov-btn", "class": "hidden"}]'>Read the introduction to begin lesson<span class="wb-inv">: What's on your pay stub</span></button>
       </p>
       <div aria-live="polite">
@@ -581,7 +586,7 @@ body.wb-overlay-dlg {
       </div>
     </div>
     <div class="col-xs-10 col-xs-offset-2 col-md-4 col-md-offset-0">
-      <div class="panel panel-default brdr-rds-0 mrgn-tp-lg hidden" id="lsn-c-resource">
+      <div class="lsn-resource panel panel-default brdr-rds-0 hidden" id="lsn-c-resource">
         <header class="panel-heading brdr-rds-0">
           <h4 class="panel-title">Resources<span class="wb-inv"> for what's on your pay stub</span> </h4>
         </header>
@@ -593,7 +598,7 @@ body.wb-overlay-dlg {
       </div>
     </div>
   </div>
-  <div id="lsn-c-modal">
+  <div id="lsn-c-modal" class="lsn-modal">
     <section id="lsn-c-prt1" class="wb-overlay modal-content overlay-def wb-popup-full mrgn-bttm-lg">
       <header class="modal-header">
         <h2 class="modal-title">What's on your pay stub <span class="nowrap">(part 1 of 5)</span></h2>
@@ -607,7 +612,7 @@ body.wb-overlay-dlg {
             <details class="mrgn-bttm-lg">
               <summary>Definition for: TD1, Personal Tax Credits Return </summary>
               <dl data-ajax-replace="glossary.html #td1ptc">
-		      <dt><a href="glossary.html#td1ptc">TD1, Personal Tax Credits Return </a></dt>
+                <dt><a href="glossary.html#td1ptc">TD1, Personal Tax Credits Return </a></dt>
               </dl>
             </details>
             <div class="well brdr-rds-0"> <span class="fa-lg fa-stack pull-right text-muted"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-bolt fa-stack-1x"></span></span>
@@ -618,13 +623,13 @@ body.wb-overlay-dlg {
             <details>
               <summary>For individuals earning tax exempt employment income</summary>
               <p>For individuals earning tax exempt employment income, you may not be required to make CPP or  QPP contributions on your exempt income.</p>
-              <div class="panel panel-info panel-body"><p class="text-info h4 mrgn-tp-0">Resources are available</p>
-<p>After you finish this lesson, resources links are provided for:</p>
-<ul class="mrgn-bttm-0"><li>Tax exempt employment income</li>
-</ul>
-</div>
-              
-        
+              <div class="panel panel-info panel-body">
+                <p class="text-info h4 mrgn-tp-0">Resources are available</p>
+                <p>After you finish this lesson, these resources links will be available:</p>
+                <ul class="mrgn-bttm-0">
+                  <li>Tax exempt employment income</li>
+                </ul>
+              </div>
             </details>
             <nav class="mrgn-tp-lg mrgn-bttm-lg">
               <ul class="pager">
@@ -674,7 +679,7 @@ body.wb-overlay-dlg {
                             <li data-wb-fieldflow='[{"action": "addClass", "source": "#q4-btn, .wrng-a", "class": "hidden"}, {"action": "removeClass", "source": "#q4-a2", "class": "hidden"}]'>No </li>
                           </ul>
                         </div>
-                       <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q4-btn">Check your answer<span class="wb-inv"> for question 4</span></button>
+                        <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q4-btn">Check your answer<span class="wb-inv"> for question 4</span></button>
                       </form>
                     </div>
                     <div aria-live="assertive">
@@ -814,48 +819,56 @@ body.wb-overlay-dlg {
           <p class="h4 visible-xs">Breakdown of example</p>
           <div class="row visible-xs">
             <div class="col-xs-10 mrgn-tp-md">
-              <p class="h5 mrgn-tp-sm">Employer information</p><img alt="" class="img-responsive pull-right" src="paystub-er.png"> </div>
+              <p class="h5 mrgn-tp-sm">Employer information</p>
+              <img alt="" class="img-responsive pull-right" src="paystub-er.png"> </div>
             <div class="col-xs-2 mrgn-tp-md">
               <p><sup id="fn1-2-rf"><a class="fn-lnk h2 no-undrln mrgn-tp-sm" href="#fn1" title="Employer information"><span class="wb-inv">Footnote </span>1 <span class="wb-inv">details about employer information</span></a></sup></p>
             </div>
             <div class="col-xs-10 mrgn-tp-md">
-              <p class="h5 mrgn-tp-sm">Employee information</p><img alt="" class="img-responsive pull-right" src="paystub-ee.png"> </div>
+              <p class="h5 mrgn-tp-sm">Employee information</p>
+              <img alt="" class="img-responsive pull-right" src="paystub-ee.png"> </div>
             <div class="col-xs-2 mrgn-tp-md">
               <p><sup id="fn2-2-rf"><a class="fn-lnk h2 no-undrln mrgn-tp-sm" href="#fn2" title="Employee information"><span class="wb-inv">Footnote </span>2 <span class="wb-inv">details about employee information</span></a></sup></p>
             </div>
             <div class="col-xs-10 mrgn-tp-md">
-              <p class="h5 mrgn-tp-sm">Pay period</p><img alt="" class="img-responsive pull-right" src="paystub-pyp.png"> </div>
+              <p class="h5 mrgn-tp-sm">Pay period</p>
+              <img alt="" class="img-responsive pull-right" src="paystub-pyp.png"> </div>
             <div class="col-xs-2 mrgn-tp-md">
               <p><sup id="fn3-2-rf"><a class="fn-lnk h2 no-undrln mrgn-tp-sm" href="#fn3" title="Pay period"><span class="wb-inv">Footnote </span>3 <span class="wb-inv">details about pay period</span></a></sup></p>
             </div>
-            <div class="col-xs-10 mrgn-tp-md"> 
+            <div class="col-xs-10 mrgn-tp-md">
               <p class="h5 mrgn-tp-sm">Date issued</p>
               <img alt="" class="img-responsive pull-right" src="paystub-di.png"> </div>
             <div class="col-xs-2 mrgn-tp-md">
               <p><sup id="fn4-2-rf"><a class="fn-lnk h2 no-undrln mrgn-tp-sm" href="#fn4" title="Date issued"><span class="wb-inv">Footnote </span>4 <span class="wb-inv">details of date issued </span></a></sup></p>
             </div>
             <div class="col-xs-10 mrgn-tp-md">
-              <p class="h5 mrgn-tp-sm">Gross pay</p><img alt="" class="img-responsive pull-right" src="paystub-gp.png"> </div>
+              <p class="h5 mrgn-tp-sm">Gross pay</p>
+              <img alt="" class="img-responsive pull-right" src="paystub-gp.png"> </div>
             <div class="col-xs-2 mrgn-tp-md">
               <p><sup id="fn5-2-rf"><a class="fn-lnk h2 no-undrln mrgn-tp-sm" href="#fn5" title="Gross pay"><span class="wb-inv">Footnote </span>5 <span class="wb-inv">details about Gross pay</span></a></sup></p>
             </div>
             <div class="col-xs-10 mrgn-tp-md">
-              <p class="h5 mrgn-tp-sm">Deductions</p><img alt="" class="img-responsive pull-right" src="paystub-dd.png"> </div>
+              <p class="h5 mrgn-tp-sm">Deductions</p>
+              <img alt="" class="img-responsive pull-right" src="paystub-dd.png"> </div>
             <div class="col-xs-2 mrgn-tp-md">
               <p><sup id="fn6-2-rf"><a class="fn-lnk h2 no-undrln mrgn-tp-sm" href="#fn6" title="Deductions"><span class="wb-inv">Footnote </span>6 <span class="wb-inv">details about deductions</span></a></sup></p>
             </div>
             <div class="col-xs-10 mrgn-tp-md">
-              <p class="h5 mrgn-tp-sm">Current amount</p><img alt="" class="img-responsive pull-right" src="paystub-cur.png"> </div>
+              <p class="h5 mrgn-tp-sm">Current amount</p>
+              <img alt="" class="img-responsive pull-right" src="paystub-cur.png"> </div>
             <div class="col-xs-2 mrgn-tp-md">
               <p><sup id="fn7-2-rf"><a class="fn-lnk h2 no-undrln mrgn-tp-sm" href="#fn7" title="Current amount"><span class="wb-inv">Footnote </span>7 <span class="wb-inv">details about current amount</span></a></sup></p>
             </div>
             <div class="col-xs-10 mrgn-tp-md">
-              <p class="h5 mrgn-tp-sm">Year-to-date amount</p><img alt="" class="img-responsive pull-right" src="paystub-ytd.png"> </div>
+              <p class="h5 mrgn-tp-sm">Year-to-date amount</p>
+              <img alt="" class="img-responsive pull-right" src="paystub-ytd.png"> </div>
             <div class="col-xs-2 mrgn-tp-md">
               <p><sup id="fn8-2-rf"><a class="fn-lnk h2 no-undrln mrgn-tp-sm" href="#fn8" title="Year-to-date amount"><span class="wb-inv">Footnote </span>8 <span class="wb-inv">details about year-to-date</span></a></sup></p>
             </div>
             <div class="col-xs-10 mrgn-tp-md">
-              <p class="h5 mrgn-tp-sm">Net pay</p><img alt="" class="img-responsive pull-right" src="paystub-np.png"> </div>
+              <p class="h5 mrgn-tp-sm">Net pay</p>
+              <img alt="" class="img-responsive pull-right" src="paystub-np.png"> </div>
             <div class="col-xs-2 mrgn-tp-md">
               <p><sup id="fn9-2-rf"><a class="fn-lnk h2 no-undrln mrgn-tp-sm" href="#fn9" title="Year-to-date amount"><span class="wb-inv">Footnote </span>9 <span class="wb-inv">details about year-to-date</span></a></sup></p>
             </div>
@@ -1053,7 +1066,7 @@ body.wb-overlay-dlg {
     <div class="col-xs-9 col-md-7 brdr-tp">
       <h2 class="mrgn-tp-lg" id="lesson-d">What's on your T4 slip<span class="lsn-d-complete wb-inv hidden"> lesson complete</span></h2>
       <p>Your T4 slip is what you need to file your taxes. Get an overview on the main parts of the slip.</p>
-      <p id="lsn-d-ov-btn">
+      <p id="lsn-d-ov-btn" class="lsn-ov-btn">
         <button class="btn btn-default btn-lg" onclick="window.history.pushState(null, null, '#lsn-d-overview');" data-wb-doaction='[{"action": "removeClass", "source": "#lsn-d-overview", "class": "hidden"}, {"action": "addClass", "source": "#lsn-d-ov-btn", "class": "hidden"}]'>Read the introduction to begin lesson<span class="wb-inv">: What's on your T4 slip</span></button>
       </p>
       <div aria-live="polite">
@@ -1095,7 +1108,7 @@ body.wb-overlay-dlg {
       </div>
     </div>
     <div class="col-xs-10 col-xs-offset-2 col-md-4 col-md-offset-0">
-      <div class="panel panel-default brdr-rds-0 mrgn-tp-lg hidden" id="lsn-d-resource">
+      <div class="lsn-resource panel panel-default brdr-rds-0 hidden" id="lsn-d-resource">
         <header class="panel-heading brdr-rds-0">
           <h4 class="panel-title">Resources<span class="wb-inv"> for what's on your T4 slip</span> </h4>
         </header>
@@ -1108,7 +1121,7 @@ body.wb-overlay-dlg {
       </div>
     </div>
   </div>
-  <div id="lsn-d-modal">
+  <div id="lsn-d-modal" class="lsn-modal">
     <section id="lsn-d-prt1" class="wb-overlay modal-content overlay-def wb-popup-full mrgn-bttm-lg">
       <header class="modal-header">
         <h2 class="modal-title">What's on your T4 slip <span class="nowrap">(part 1 of 3)</span></h2>
@@ -1121,13 +1134,13 @@ body.wb-overlay-dlg {
             <details>
               <summary>Definition for: Deductions</summary>
               <dl data-ajax-replace="glossary.html #ddctn">
-		      <dt><a href="glossary.html#ddctn">Deductions</a></dt>
+                <dt><a href="glossary.html#ddctn">Deductions</a></dt>
               </dl>
             </details>
             <details class="mrgn-bttm-lg">
               <summary>Definition for: Calendar year</summary>
               <dl data-ajax-replace="glossary.html #calyr">
-		      <dt><a href="glossary.html#calyr">Calendar year</a></dt>
+                <dt><a href="glossary.html#calyr">Calendar year</a></dt>
               </dl>
             </details>
             <p>Your tax slips are issued based on the province or territory where you work. </p>
@@ -1241,7 +1254,7 @@ body.wb-overlay-dlg {
             <details>
               <summary>Definition for: My Account</summary>
               <dl data-ajax-replace="glossary.html #myaccnt">
-		      <dt><a href="glossary.html#myaccnt">My Account</a></dt>
+                <dt><a href="glossary.html#myaccnt">My Account</a></dt>
               </dl>
             </details>
             <div class="row mrgn-bttm-xl mrgn-tp-lg">
@@ -1292,297 +1305,296 @@ body.wb-overlay-dlg {
     </section>
   </div>
   <!--Lesson D End //-->
-	<div class="row">
-  <div class="col-md-8">
-  <div class="panel panel-primary mrgn-tp-lg brdr-rds-0">
-    <header class="panel-heading brdr-rds-0">
-      <h2 class="panel-title"><span class="fas fa-graduation-cap fa-lg mrgn-rght-sm"></span>Quiz: Starting to work</h2>
-    </header>
-    <div class="panel-body">
-      <p>If you have finished the above lessons, you can take the quiz.</p>
-<p id="quiz-final-start"><a href="#quiz-final" aria-controls="#quiz-final" class="overlay-lnk btn btn-primary btn-lg" role="button" onclick="window.history.pushState(null, null, '#quiz-results'); window.location.href = '#quiz-final';" ><span class="h3">Start the quiz</span></a></p>
-     
-        <p><a href="#quiz-final" role="button" data-wb-doaction='[{"action":"removeClass", "source": "#quiz-final.modal-content", "class": "wb-overlay overlay-def"}, {"action":"removeClass", "source": "#quiz-final .modal-body", "class": "container"}, {"action":"removeClass", "source": "#quiz-final-review-hide", "class": "hidden"},  {"action":"addClass", "source": "#quiz-final-review, #quiz-final .overlay-close", "class": "hidden"}]' class="hidden" id="quiz-final-review">Show the quiz<span class="wb-inv">: starting to work</span></a> <a href="#quiz-results" role="button" data-wb-doaction='[{"action":"addClass", "source": "#quiz-final.modal-content", "class": "wb-overlay overlay-def"}, {"action":"addClass", "source": "#quiz-final .modal-body", "class": "container"}, {"action":"addClass", "source": " #quiz-final-review-hide", "class": "hidden"}, {"action":"removeClass", "source": " #quiz-final-review", "class": "hidden"}]' class="hidden" id="quiz-final-review-hide">Hide the quiz<span class="wb-inv">: starting to work</span></a></p>
-    <p id="quiz-results" class="mrgn-tp-lg"><strong>Your results:</strong>
-	    <ul><li>Completed <strong><span class="qz-total qz-start">0</span><span class="qz-total hidden">1</span><span class="qz-total hidden">2</span><span class="qz-total hidden">3</span><span class="qz-total hidden">4</span><span class="qz-total hidden">5</span><span class="qz-total hidden">6</span></strong> of <strong>6</strong> questions</li>
-		   <li>Answered <strong><span class="qz-track qz-start">0</span><span class="qz-track hidden">1</span><span class="qz-track hidden">2</span><span class="qz-track hidden">3</span><span class="qz-track hidden">4</span><span class="qz-track hidden">5</span><span class="qz-track hidden">6</span></strong> of the questions correctly</li></ul>  
-	  </div>
-	  </div>
-		</div>
-	</div>
-      <!--Quiz overlay start //-->
-      <section id="quiz-final" class="wb-overlay modal-content overlay-def wb-popup-full mrgn-bttm-lg">
-        <header class="modal-header">
-          <h2 class="modal-title">Quiz: Starting to work (6 questions)</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-primary mrgn-tp-lg brdr-rds-0">
+        <header class="panel-heading brdr-rds-0">
+          <h2 class="panel-title"><span class="fas fa-graduation-cap fa-lg mrgn-rght-sm"></span>Quiz: Starting to work</h2>
         </header>
-        <div class="modal-body container">
-          <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-              <p>Introduction statement here.</p>
-              <section  id="quiz-6">
-                <h3 class="mrgn-tp-0">Question 1</h3>
-                <div class="frmvld">
-                  <form onsubmit='$("#q6+fieldset input").attr("disabled", true);'>
-                    <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
-                      <div class="wb-fieldflow-header">
-                        <p id="q6" class="gc-font-2019">A social insurance number (SIN) is a nine-digit identification number that you need to work in Canada and receive benefits and services from the government.</p>
-                        <p class="wb-fieldflow-label"><span class="gc-font-2019">In which situation are you not required to provide your social insurance number?</span></p>
-                      </div>
-                      <ul>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q6-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q6-a1, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>When you hired at a new job</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q6-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q6-a2, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>When applying to rent an apartment</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q6-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q6-a3, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>When you do your taxes</li>
-                      </ul>
-                    </div>
-                    <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q6-btn">Check your answer<span class="wb-inv"> for question 6</span></button>
-                  </form>
+        <div class="panel-body">
+          <p>If you have finished the above lessons, you can take the quiz.</p>
+          <p id="quiz-final-start"><a href="#quiz-final" aria-controls="#quiz-final" class="overlay-lnk btn btn-primary btn-lg" role="button" onclick="window.history.pushState(null, null, '#quiz-results'); window.location.href = '#quiz-final';" ><span class="h3">Start the quiz</span></a></p>
+          <p><a href="#quiz-final" role="button" data-wb-doaction='[{"action":"removeClass", "source": "#quiz-final.modal-content", "class": "wb-overlay overlay-def"}, {"action":"removeClass", "source": "#quiz-final .modal-body", "class": "container"}, {"action":"removeClass", "source": "#quiz-final-review-hide", "class": "hidden"},  {"action":"addClass", "source": "#quiz-final-review, #quiz-final .overlay-close", "class": "hidden"}]' class="hidden" id="quiz-final-review">Show the quiz<span class="wb-inv">: starting to work</span></a> <a href="#quiz-results" role="button" data-wb-doaction='[{"action":"addClass", "source": "#quiz-final.modal-content", "class": "wb-overlay overlay-def"}, {"action":"addClass", "source": "#quiz-final .modal-body", "class": "container"}, {"action":"addClass", "source": " #quiz-final-review-hide", "class": "hidden"}, {"action":"removeClass", "source": " #quiz-final-review", "class": "hidden"}]' class="hidden" id="quiz-final-review-hide">Hide the quiz<span class="wb-inv">: starting to work</span></a></p>
+          <p id="quiz-results" class="mrgn-tp-lg"><strong>Your results:</strong>
+          <ul>
+            <li>Completed <strong><span class="qz-total qz-start">0</span><span class="qz-total hidden">1</span><span class="qz-total hidden">2</span><span class="qz-total hidden">3</span><span class="qz-total hidden">4</span><span class="qz-total hidden">5</span><span class="qz-total hidden">6</span></strong> of <strong>6</strong> questions</li>
+            <li>Answered <strong><span class="qz-track qz-start">0</span><span class="qz-track hidden">1</span><span class="qz-track hidden">2</span><span class="qz-track hidden">3</span><span class="qz-track hidden">4</span><span class="qz-track hidden">5</span><span class="qz-track hidden">6</span></strong> of the questions correctly</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Quiz overlay start //-->
+  <section id="quiz-final" class="wb-overlay modal-content overlay-def wb-popup-full mrgn-bttm-lg">
+    <header class="modal-header">
+      <h2 class="modal-title">Quiz: Starting to work (6 questions)</h2>
+    </header>
+    <div class="modal-body container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <p>Introduction statement here.</p>
+          <section  id="quiz-6">
+            <h3 class="mrgn-tp-0">Question 1</h3>
+            <div class="frmvld">
+              <form onsubmit='$("#q6+fieldset input").attr("disabled", true);'>
+                <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
+                  <div class="wb-fieldflow-header">
+                    <p id="q6" class="gc-font-2019">A social insurance number (SIN) is a nine-digit identification number that you need to work in Canada and receive benefits and services from the government.</p>
+                    <p class="wb-fieldflow-label"><span class="gc-font-2019">In which situation are you not required to provide your social insurance number?</span></p>
+                  </div>
+                  <ul>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q6-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q6-a1, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>When you hired at a new job</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q6-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q6-a2, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>When applying to rent an apartment</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q6-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q6-a3, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>When you do your taxes</li>
+                  </ul>
                 </div>
-                <div aria-live="assertive">
-                  <div id="q6-a1" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>Your employer needs your SIN to report your income information to the CRA.</p>
-                    <p>You are not required to give your SIN when applying to rent an apartment. You especially want to protect your SIN if you are providing information over the phone and you are not sure who you are speaking to.</p>
-                  </div>
-                  <div id="q6-a2" class="hidden">
-                    <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
-                    <p>You are not required to give your SIN when applying to rent an apartment. You especially want to protect your SIN if you are providing information over the phone and you are not sure who you are speaking to. </p>
-                  </div>
-                  <div id="q6-a3" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>The CRA needs your SIN to identify you.</p>
-                    <p>You are not required to give your SIN when applying to rent an apartment. You especially want to protect your SIN if you are providing information over the phone and you are not sure who you are speaking to.</p>
-                  </div>
-                </div>
-              </section>
-              <hr class="brdr-bttm" />
-              <section id="quiz-7">
-                <h3 class="mrgn-tp-0">Question 2</h3>
-                <div class="frmvld">
-                  <form onsubmit='$("#q7+fieldset input").attr("disabled", true);'>
-                    <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
-                      <div class="wb-fieldflow-header">
-                        <p id="q7" class="gc-font-2019">The TD1, Personal Tax Credits Return, is a form that you fill out when you start a new job.</p>
-                        <p class="wb-fieldflow-label"><span class="gc-font-2019">What is the importance of this form?</span></p>
-                      </div>
-                      <ul>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q7-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q7-a1, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>The Canada Revenue Agency (CRA) uses this form to determine how much income tax you owe</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q7-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q7-a2, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>Your employer uses this form to pay you the goods and services / harmonized sales tax (GST/HST) credit</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q7-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q7-a3, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You use this form to apply for a credit card with your financial institution</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q7-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q7-a4, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>Your employer uses this form to calculate the amount of tax deductions they need to make</li>
-                      </ul>
-                    </div>
-                    <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q7-btn">Check your answer<span class="wb-inv"> for question 7</span></button>
-                  </form>
-                </div>
-                <div aria-live="assertive">
-                  <div id="q7-a1" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>You must file a tax return every year to determine how much income tax you owe.</p>
-                    <p>You use the TD1 to  provide your employer information about your tax situation, so they can pay you  accurately. This ensures that the right amount of tax is taken off your pay.</p>
-                  </div>
-                  <div id="q7-a2" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>The GST/HST credit is a tax-free quarterly payment that helps individuals and families with low and modest incomes offset the GST or HST that they pay. The only way to apply for this credit is to do your taxes. </p>
-                    <details>
-                      <summary>Defintion of: Goods and Services Tax/Harmonized Sales Tax (GST/HST) credit</summary>
-                      <dl data-ajax-replace="glossary.html #gstc">
-                        <dt><a href="glossary.html#gstc">Goods and Services Tax/Harmonized Sales Tax (GST/HST) credit</a></dt>
-                      </dl>
-                    </details>
-                    <p>You use the TD1 to provide your employer information about your tax situation, so they can pay you accurately. This ensures that the right amount of tax is taken off your pay.</p>
-                  </div>
-                  <div id="q7-a3" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>The TD1 is not related to a credit card application. </p>
-                    <p>You use the TD1 to provide your employer information about your tax situation, so they can pay you accurately. This ensures that the right amount of tax is taken off your pay.</p>
-                  </div>
-                  <div id="q7-a4" class="hidden">
-                    <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
-                    <p>You use the TD1 to provide your employer information about your tax situation, so they can pay you accurately. This ensures that the right amount of tax is taken off your pay.</p>
-                  </div>
-                </div>
-              </section>
-              <hr class="brdr-bttm" />
-              <section id="quiz-8">
-                <h3 class="mrgn-tp-0">Question 3</h3>
-                <div class="frmvld">
-                  <form onsubmit='$("#q8+fieldset input").attr("disabled", true);'>
-                    <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
-                      <div class="wb-fieldflow-header">
-                        <p id="q8" class="gc-font-2019">Your employer will deduct income tax directly from your pay cheque. </p>
-                        <p class="wb-fieldflow-label"><span class="gc-font-2019">What is the reason for doing this?</span></p>
-                      </div>
-                      <ul>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q8-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q8-a1, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To pay for the fixed amount of tax charged on your income</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q8-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q8-a2, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To cover the tax that they owe for running their business</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q8-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q8-a3, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To help pay for the tax you might owe when you do your taxes</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q8-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q8-a4, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To pay off the amount you owe for last year’s property taxes</li>
-                      </ul>
-                    </div>
-                    <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q8-btn">Check your answer<span class="wb-inv"> for question 8</span></button>
-                  </form>
-                </div>
-                <div aria-live="assertive">
-                  <div id="q8-a1" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span</p>
-                    <p>Each individual’s tax situation is different, which is why you must complete a TD1.</p>
-                    <p>Your employer deducts income tax to help pay for the tax you might owe when you do your taxes. Your employer will calculate the amount to deduct based on the tax information on the TD1 you submitted.</p>
-                  </div>
-                  <div id="q8-a2" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>Your payroll deductions are not related to the taxes your employer may owe for their business. </p>
-                    <p>Your employer deducts income tax to help pay for the tax you might owe when you do your taxes. Your employer will calculate the amount to deduct based on the tax information on the TD1 you submitted.</p>
-                  </div>
-                  <div id="q8-a3" class="hidden">
-                    <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
-                    <p>Your employer will calculate the amount to deduct based on the tax information on the TD1 you submitted. </p>
-                  </div>
-                  <div id="q8-a4" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>Your payroll deductions are not related to the property taxes you might owe to your municipality.</p>
-                    <p>Your employer deducts income tax to help pay for the tax you might owe when you do your taxes. Your employer will calculate the amount to deduct based on the tax information on the TD1 you submitted.</p>
-                  </div>
-                </div>
-              </section>
-              <hr class="brdr-bttm" />
-              <section id="quiz-9">
-                <h3 class="mrgn-tp-0">Question 4</h3>
-                <div class="frmvld">
-                  <form onsubmit='$("#q9+fieldset input").attr("disabled", true);'>
-                    <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
-                      <div class="wb-fieldflow-header">
-                        <p id="q9" class="gc-font-2019">Your employer deducts certain amounts, such as CPP/QPP contributions and EI premiums, are directly from your pay.</p>
-                        <p class="wb-fieldflow-label"><span class="gc-font-2019">What is not a benefit of your payroll deductions? </span></p>
-                      </div>
-                      <ul>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q9-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q9-a1, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You will receive a lump-sum payment if you quit your job</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q9-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q9-a2, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You will receive larger pension payments when you retire</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q9-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q9-a3, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You may have access to more programs and benefits</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q9-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q9-a4, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You may receive benefits if you have a child or are laid off by your employer</li>
-                      </ul>
-                    </div>
-                    <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q9-btn">Check your answer<span class="wb-inv"> for question 9</span></button>
-                  </form>
-                </div>
-                <div aria-live="assertive">
-                  <div id="q9-a1" class="hidden">
-                    <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
-                    <p>Your payroll deductions go towards various programs and benefits, either public or through your employer, and do not automatically qualify you for a lump-sum payment if you quit your job.</p>
-                  </div>
-                  <div id="q9-a2" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>By working and contributing to the Canada Pension Plan (CPP) or Quebec Pension Plan (QPP), you will receive pension payments when you retire.</p>
-                    <p>Your payroll deductions go towards various programs and benefits, either public or through your employer, and do not automatically qualify you for a lump-sum payment if you quit your job.</p>
-                  </div>
-                  <div id="q9-a3" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>Your employer may deduct amounts such as union dues or health plan premiums, which increase your access to various services.</p>
-                    <p>Your payroll deductions go towards various programs and benefits, either public or through your employer, and do not automatically qualify you for a lump-sum payment if you quit your job.</p>
-                  </div>
-                  <div id="q9-a4" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>If you have a child or are laid off by your employer, the Employment Insurance (EI) cheques you may receive will be partially funded by the EI premiums you paid.</p>
-                    <p>Your payroll deductions go towards various programs and benefits, either public or through your employer, and do not automatically qualify you for a lump-sum payment if you quit your job.</p>
-                  </div>
-                </div>
-              </section>
-              <hr class="brdr-bttm" />
-              <section id="quiz-10">
-                <h3 class="mrgn-tp-0">Question 5</h3>
-                <div class="frmvld">
-                  <form onsubmit='$("#q10+fieldset input").attr("disabled", true);'>
-                    <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
-                      <div class="wb-fieldflow-header">
-                        <p id="q10" class="gc-font-2019">If you worked as an employee during the year, you will receive a last pay stub and a T4 slip.</p>
-                        <p class="wb-fieldflow-label"><span class="gc-font-2019">How are these two documents comparable?</span></p>
-                      </div>
-                      <ul>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q10-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q10-a1, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>Both documents are issued by the CRA</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q10-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q10-a2, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>The amounts on your T4 should match the year-to-date amounts on your last pay stub</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q10-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q10-a3, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You will only receive one of each for the tax year</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q10-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q10-a4, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>They aren’t comparable as they are two unrelated documents</li>
-                      </ul>
-                    </div>
-                   <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q10-btn">Check your answer<span class="wb-inv"> for question 10</span></button>
-                  </form>
-                </div>
-                <div aria-live="assertive">
-                  <div id="q10-a1" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>Your employer issues both documents, although they send a copy of your T4 slip to the CRA.</p>
-                    <p>The amounts of your T4 should match the year-to-date amounts on your last pay stub. Both documents represent your employment earnings for the year, so the amounts should be the same.</p>
-                  </div>
-                  <div id="q10-a2" class="hidden">
-                    <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
-                    <p>Both documents represent your employment earnings for the year, so the amounts should be the same.</p>
-                  </div>
-                  <div id="q10-a3" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>If you worked for multiple employers during the year, you will receive a last pay stub and a T4 slip from each of them.</p>
-                    <p>The amounts of your T4 should match the year-to-date amounts on your last pay stub. Both documents represent your employment earnings for the year, so the amounts should be the same.</p>
-                  </div>
-                  <div id="q10-a4" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>Both documents represent your employment earnings for the year, so the amounts should match.</p>
-                    <p>The amounts of your T4 should match the year-to-date amounts on your last pay stub. Both documents represent your employment earnings for the year, so the amounts should be the same.</p>
-                  </div>
-                </div>
-              </section>
-              <hr class="brdr-bttm" />
-              <section id="quiz-11">
-                <h3 class="mrgn-tp-0">Question 6</h3>
-                <div class="frmvld">
-                  <form onsubmit='$("#q11+fieldset input").attr("disabled", true);'>
-                    <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
-                      <div class="wb-fieldflow-header">
-                        <p id="q11" class="gc-font-2019">Your employer should give you a T4 slip by the end of March following the year you worked for them.</p>
-                        <p class="wb-fieldflow-label"><span class="gc-font-2019">What is the purpose of your T4 slip?</span></p>
-                      </div>
-                      <ul>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q11-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q11-a1, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To show how many hours you worked during the year</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q11-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q11-a2, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To deposit funds at your financial institution</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q11-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q11-a3, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To report your employment income when you do your taxes</li>
-                        <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q11-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q11-a4, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To confirm how much tax on goods and services you paid during the year</li>
-                      </ul>
-                    </div>
-                    <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q11-btn">Check your answer<span class="wb-inv"> for question 11</span></button>
-                  </form>
-                </div>
-                <div aria-live="assertive">
-                  <div id="q11-a1" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>Your T4 slip is a summary of your employment earnings and deductions for the year, but does not show how many hours you worked. </p>
-                    <p>You will use your T4 to report your employment income when you do your taxes. </p>
-                  </div>
-                  <div id="q11-a2" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>Your T4 slip is a summary of your employment earnings and deductions for the year, but has no monetary value. </p>
-                    <p>You will use your T4 to report your employment income when you do your taxes.</p>
-                  </div>
-                  <div id="q11-a3" class="hidden">
-                    <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
-                    <p>Your T4 slip is a summary of your employment earnings and deductions for the calendar year, which is the same as the tax year referred to on the tax return. </p>
-                  </div>
-                  <div id="q11-a4" class="hidden">
-                    <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
-                    <p>Your T4 slip is a summary of your employment earnings and deductions for the year, but does not reflect information about the taxes you paid on goods and services.</p>
-                    <p>You will use your T4 to report your employment income when you do your taxes.</p>
-                  </div>
-                </div>
-              </section>
-              <div class="row mrgn-bttm-lg mrgn-tp-xl">
-                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-                  <button class="btn btn-success overlay-close btn-block" type="button"  onclick="document.location='#quiz-final';" id="finish-close-quiz" data-wb-doaction='[{"action":"addClass", "source": "#finish-close-quiz, #quiz-final-start", "class": "hidden"}, {"action":"removeClass", "source": "#quiz-final-review, #reset-page", "class": "hidden"}]'><span class="h2">Finish and close the quiz</span></button>
-                </div>
+                <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q6-btn">Check your answer<span class="wb-inv"> for question 6</span></button>
+              </form>
+            </div>
+            <div aria-live="assertive">
+              <div id="q6-a1" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>Your employer needs your SIN to report your income information to the CRA.</p>
+                <p>You are not required to give your SIN when applying to rent an apartment. You especially want to protect your SIN if you are providing information over the phone and you are not sure who you are speaking to.</p>
               </div>
+              <div id="q6-a2" class="hidden">
+                <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
+                <p>You are not required to give your SIN when applying to rent an apartment. You especially want to protect your SIN if you are providing information over the phone and you are not sure who you are speaking to. </p>
+              </div>
+              <div id="q6-a3" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>The CRA needs your SIN to identify you.</p>
+                <p>You are not required to give your SIN when applying to rent an apartment. You especially want to protect your SIN if you are providing information over the phone and you are not sure who you are speaking to.</p>
+              </div>
+            </div>
+          </section>
+          <hr class="brdr-bttm" />
+          <section id="quiz-7">
+            <h3 class="mrgn-tp-0">Question 2</h3>
+            <div class="frmvld">
+              <form onsubmit='$("#q7+fieldset input").attr("disabled", true);'>
+                <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
+                  <div class="wb-fieldflow-header">
+                    <p id="q7" class="gc-font-2019">The TD1, Personal Tax Credits Return, is a form that you fill out when you start a new job.</p>
+                    <p class="wb-fieldflow-label"><span class="gc-font-2019">What is the importance of this form?</span></p>
+                  </div>
+                  <ul>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q7-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q7-a1, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>The Canada Revenue Agency (CRA) uses this form to determine how much income tax you owe</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q7-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q7-a2, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>Your employer uses this form to pay you the goods and services / harmonized sales tax (GST/HST) credit</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q7-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q7-a3, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You use this form to apply for a credit card with your financial institution</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q7-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q7-a4, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>Your employer uses this form to calculate the amount of tax deductions they need to make</li>
+                  </ul>
+                </div>
+                <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q7-btn">Check your answer<span class="wb-inv"> for question 7</span></button>
+              </form>
+            </div>
+            <div aria-live="assertive">
+              <div id="q7-a1" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>You must file a tax return every year to determine how much income tax you owe.</p>
+                <p>You use the TD1 to  provide your employer information about your tax situation, so they can pay you  accurately. This ensures that the right amount of tax is taken off your pay.</p>
+              </div>
+              <div id="q7-a2" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>The GST/HST credit is a tax-free quarterly payment that helps individuals and families with low and modest incomes offset the GST or HST that they pay. The only way to apply for this credit is to do your taxes. </p>
+                <details>
+                  <summary>Defintion of: Goods and Services Tax/Harmonized Sales Tax (GST/HST) credit</summary>
+                  <dl data-ajax-replace="glossary.html #gstc">
+                    <dt><a href="glossary.html#gstc">Goods and Services Tax/Harmonized Sales Tax (GST/HST) credit</a></dt>
+                  </dl>
+                </details>
+                <p>You use the TD1 to provide your employer information about your tax situation, so they can pay you accurately. This ensures that the right amount of tax is taken off your pay.</p>
+              </div>
+              <div id="q7-a3" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>The TD1 is not related to a credit card application. </p>
+                <p>You use the TD1 to provide your employer information about your tax situation, so they can pay you accurately. This ensures that the right amount of tax is taken off your pay.</p>
+              </div>
+              <div id="q7-a4" class="hidden">
+                <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
+                <p>You use the TD1 to provide your employer information about your tax situation, so they can pay you accurately. This ensures that the right amount of tax is taken off your pay.</p>
+              </div>
+            </div>
+          </section>
+          <hr class="brdr-bttm" />
+          <section id="quiz-8">
+            <h3 class="mrgn-tp-0">Question 3</h3>
+            <div class="frmvld">
+              <form onsubmit='$("#q8+fieldset input").attr("disabled", true);'>
+                <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
+                  <div class="wb-fieldflow-header">
+                    <p id="q8" class="gc-font-2019">Your employer will deduct income tax directly from your pay cheque. </p>
+                    <p class="wb-fieldflow-label"><span class="gc-font-2019">What is the reason for doing this?</span></p>
+                  </div>
+                  <ul>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q8-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q8-a1, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To pay for the fixed amount of tax charged on your income</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q8-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q8-a2, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To cover the tax that they owe for running their business</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q8-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q8-a3, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To help pay for the tax you might owe when you do your taxes</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q8-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q8-a4, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To pay off the amount you owe for last year’s property taxes</li>
+                  </ul>
+                </div>
+                <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q8-btn">Check your answer<span class="wb-inv"> for question 8</span></button>
+              </form>
+            </div>
+            <div aria-live="assertive">
+              <div id="q8-a1" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span</p>
+                <p>Each individual’s tax situation is different, which is why you must complete a TD1.</p>
+                <p>Your employer deducts income tax to help pay for the tax you might owe when you do your taxes. Your employer will calculate the amount to deduct based on the tax information on the TD1 you submitted.</p>
+              </div>
+              <div id="q8-a2" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>Your payroll deductions are not related to the taxes your employer may owe for their business. </p>
+                <p>Your employer deducts income tax to help pay for the tax you might owe when you do your taxes. Your employer will calculate the amount to deduct based on the tax information on the TD1 you submitted.</p>
+              </div>
+              <div id="q8-a3" class="hidden">
+                <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
+                <p>Your employer will calculate the amount to deduct based on the tax information on the TD1 you submitted. </p>
+              </div>
+              <div id="q8-a4" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>Your payroll deductions are not related to the property taxes you might owe to your municipality.</p>
+                <p>Your employer deducts income tax to help pay for the tax you might owe when you do your taxes. Your employer will calculate the amount to deduct based on the tax information on the TD1 you submitted.</p>
+              </div>
+            </div>
+          </section>
+          <hr class="brdr-bttm" />
+          <section id="quiz-9">
+            <h3 class="mrgn-tp-0">Question 4</h3>
+            <div class="frmvld">
+              <form onsubmit='$("#q9+fieldset input").attr("disabled", true);'>
+                <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
+                  <div class="wb-fieldflow-header">
+                    <p id="q9" class="gc-font-2019">Your employer deducts certain amounts, such as CPP/QPP contributions and EI premiums, are directly from your pay.</p>
+                    <p class="wb-fieldflow-label"><span class="gc-font-2019">What is not a benefit of your payroll deductions? </span></p>
+                  </div>
+                  <ul>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q9-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q9-a1, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You will receive a lump-sum payment if you quit your job</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q9-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q9-a2, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You will receive larger pension payments when you retire</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q9-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q9-a3, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You may have access to more programs and benefits</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q9-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q9-a4, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You may receive benefits if you have a child or are laid off by your employer</li>
+                  </ul>
+                </div>
+                <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q9-btn">Check your answer<span class="wb-inv"> for question 9</span></button>
+              </form>
+            </div>
+            <div aria-live="assertive">
+              <div id="q9-a1" class="hidden">
+                <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
+                <p>Your payroll deductions go towards various programs and benefits, either public or through your employer, and do not automatically qualify you for a lump-sum payment if you quit your job.</p>
+              </div>
+              <div id="q9-a2" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>By working and contributing to the Canada Pension Plan (CPP) or Quebec Pension Plan (QPP), you will receive pension payments when you retire.</p>
+                <p>Your payroll deductions go towards various programs and benefits, either public or through your employer, and do not automatically qualify you for a lump-sum payment if you quit your job.</p>
+              </div>
+              <div id="q9-a3" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>Your employer may deduct amounts such as union dues or health plan premiums, which increase your access to various services.</p>
+                <p>Your payroll deductions go towards various programs and benefits, either public or through your employer, and do not automatically qualify you for a lump-sum payment if you quit your job.</p>
+              </div>
+              <div id="q9-a4" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>If you have a child or are laid off by your employer, the Employment Insurance (EI) cheques you may receive will be partially funded by the EI premiums you paid.</p>
+                <p>Your payroll deductions go towards various programs and benefits, either public or through your employer, and do not automatically qualify you for a lump-sum payment if you quit your job.</p>
+              </div>
+            </div>
+          </section>
+          <hr class="brdr-bttm" />
+          <section id="quiz-10">
+            <h3 class="mrgn-tp-0">Question 5</h3>
+            <div class="frmvld">
+              <form onsubmit='$("#q10+fieldset input").attr("disabled", true);'>
+                <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
+                  <div class="wb-fieldflow-header">
+                    <p id="q10" class="gc-font-2019">If you worked as an employee during the year, you will receive a last pay stub and a T4 slip.</p>
+                    <p class="wb-fieldflow-label"><span class="gc-font-2019">How are these two documents comparable?</span></p>
+                  </div>
+                  <ul>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q10-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q10-a1, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>Both documents are issued by the CRA</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q10-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q10-a2, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>The amounts on your T4 should match the year-to-date amounts on your last pay stub</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q10-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q10-a3, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>You will only receive one of each for the tax year</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q10-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q10-a4, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>They aren’t comparable as they are two unrelated documents</li>
+                  </ul>
+                </div>
+                <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q10-btn">Check your answer<span class="wb-inv"> for question 10</span></button>
+              </form>
+            </div>
+            <div aria-live="assertive">
+              <div id="q10-a1" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>Your employer issues both documents, although they send a copy of your T4 slip to the CRA.</p>
+                <p>The amounts of your T4 should match the year-to-date amounts on your last pay stub. Both documents represent your employment earnings for the year, so the amounts should be the same.</p>
+              </div>
+              <div id="q10-a2" class="hidden">
+                <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
+                <p>Both documents represent your employment earnings for the year, so the amounts should be the same.</p>
+              </div>
+              <div id="q10-a3" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>If you worked for multiple employers during the year, you will receive a last pay stub and a T4 slip from each of them.</p>
+                <p>The amounts of your T4 should match the year-to-date amounts on your last pay stub. Both documents represent your employment earnings for the year, so the amounts should be the same.</p>
+              </div>
+              <div id="q10-a4" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>Both documents represent your employment earnings for the year, so the amounts should match.</p>
+                <p>The amounts of your T4 should match the year-to-date amounts on your last pay stub. Both documents represent your employment earnings for the year, so the amounts should be the same.</p>
+              </div>
+            </div>
+          </section>
+          <hr class="brdr-bttm" />
+          <section id="quiz-11">
+            <h3 class="mrgn-tp-0">Question 6</h3>
+            <div class="frmvld">
+              <form onsubmit='$("#q11+fieldset input").attr("disabled", true);'>
+                <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
+                  <div class="wb-fieldflow-header">
+                    <p id="q11" class="gc-font-2019">Your employer should give you a T4 slip by the end of March following the year you worked for them.</p>
+                    <p class="wb-fieldflow-label"><span class="gc-font-2019">What is the purpose of your T4 slip?</span></p>
+                  </div>
+                  <ul>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q11-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q11-a1, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To show how many hours you worked during the year</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q11-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q11-a2, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To deposit funds at your financial institution</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden), .qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden, .qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q11-btn, .qz-track:not(hidden), .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q11-a3, .qz-track.qz-prog+.qz-track, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To report your employment income when you do your taxes</li>
+                    <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-total:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-total.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#q11-btn, .qz-total:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#q11-a4, .qz-total.qz-prog+.qz-total, #quiz-results", "class": "hidden"}]'>To confirm how much tax on goods and services you paid during the year</li>
+                  </ul>
+                </div>
+                <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="q11-btn">Check your answer<span class="wb-inv"> for question 11</span></button>
+              </form>
+            </div>
+            <div aria-live="assertive">
+              <div id="q11-a1" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>Your T4 slip is a summary of your employment earnings and deductions for the year, but does not show how many hours you worked. </p>
+                <p>You will use your T4 to report your employment income when you do your taxes. </p>
+              </div>
+              <div id="q11-a2" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>Your T4 slip is a summary of your employment earnings and deductions for the year, but has no monetary value. </p>
+                <p>You will use your T4 to report your employment income when you do your taxes.</p>
+              </div>
+              <div id="q11-a3" class="hidden">
+                <p><span class="text-success"><span class="fas fa-check-circle "></span> That is correct.</span></p>
+                <p>Your T4 slip is a summary of your employment earnings and deductions for the calendar year, which is the same as the tax year referred to on the tax return. </p>
+              </div>
+              <div id="q11-a4" class="hidden">
+                <p><span class="text-danger"><span class="fas fa-times-circle"></span> Sorry, that is incorrect.</span></p>
+                <p>Your T4 slip is a summary of your employment earnings and deductions for the year, but does not reflect information about the taxes you paid on goods and services.</p>
+                <p>You will use your T4 to report your employment income when you do your taxes.</p>
+              </div>
+            </div>
+          </section>
+          <div class="row mrgn-bttm-lg mrgn-tp-xl">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+              <button class="btn btn-success overlay-close btn-block" type="button"  onclick="document.location='#quiz-final';" id="finish-close-quiz" data-wb-doaction='[{"action":"addClass", "source": "#finish-close-quiz, #quiz-final-start", "class": "hidden"}, {"action":"removeClass", "source": "#quiz-final-review, #reset-page", "class": "hidden"}]'><span class="h2">Finish and close the quiz</span></button>
             </div>
           </div>
         </div>
-        <div class="modal-footer hidden"></div>
-      </section>
+      </div>
     </div>
- 
-  
+    <div class="modal-footer hidden"></div>
+  </section>
+  </div>
   <nav class="mrgn-tp-lg mrgn-bttm-lg">
     <ul class="pager">
       <li class="next"><a href="preparing.html" rel="next">Next: Preparing to do your taxes</a></li>
