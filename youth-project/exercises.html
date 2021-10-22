@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en" dir="ltr"><!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+		<title>Exercises: Calculate a refund or a balance owing - Learn about your taxes - Canada.ca</title>
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<!-- Meta data -->
+		<!-- Meta data-->
+		<!-- Load closure template scripts -->
+		<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/compiled/soyutils.js"></script>
+		<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/compiled/wet-en.js"></script>
+
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			document.write(wet.builder.refTop({
+			}));
+		</script>
+	</head>
+	<body vocab="http://schema.org/" typeof="WebPage">
+		<div id="def-top">
+		</div>
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			var defTop = document.getElementById("def-top");
+			defTop.outerHTML = wet.builder.top({
+				lngLinks: [{
+					lang: "fr",
+					href: "",
+					text: "Français"
+				}],
+				breadcrumbs: [{
+					title: "Canada.ca",
+					href: "https://www.canada.ca/en.html"
+					},{
+            		title: "Taxes",
+            		href: "https://www.canada.ca/en/services/taxes.html"
+            	},{
+				title: "Income tax",
+            		href: "https://www.canada.ca/en/services/taxes/income-tax.html"
+					},{
+				title: "Personal income tax",
+            		href: "https://www.canada.ca/en/services/taxes/income-tax/personal-income-tax.html"},{
+				title: "Learn about your taxes",
+            		href: "index.html"},{
+				title: "Completing a basic tax return",
+            		href: "completing.html"}],
+				search: true,
+				siteMenu: true,
+				showPreContent: true
+			});
+</script>
+
+<main role="main" property="mainContentOfPage" class="container">
+<h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Exercises: Calculate a refund or a balance owing - Learn about your taxes</h1>
+  <div aria-hidden="true">
+    <p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">Learn about your taxes</p>
+    <h1 class="gc-thickline mrgn-tp-0">Exercises: Calculate a refund or a balance owing</h1>
+  </div>
+ <div data-wb-urlmapping='{"answerkey=1": [{"action": "ajax", "url": "jonah-answers.txt #jonah-btn", "container": "#btn-here"}, {"action": "addClass", "source": "#example-btns, #calculation-init", "class": "hidden"}, {"action": "removeClass", "source": ".example-1, #intro, #calculation-alt", "class": "hidden"}], "answerkey=2": [{"action": "ajax", "url": "terry-answers.txt #terry-btn", "container": "#btn-here"}, {"action": "addClass", "source": "#example-btns, #calculation-init", "class": "hidden"}, {"action": "removeClass", "source": ".example-2, #intro, #calculation-alt", "class": "hidden"}]}'></div>
+  <div class="hidden-print">
+    <div class="alert alert-info hidden" id="intro">
+      <h2 class="h3 text-info">Answer key will follow</h2>
+      <p class="wb-inv">Alert: information</p>
+      <p>You will be able to see the answers  by selecting the "Show answers" button after the scenario and information.</p>
+    </div>
+    <p>This exercise uses a simplified version of the income tax and benefit return to show you the basic calculations for each step.
+    <p>The amounts shown <strong>are not</strong> actual tax brackets, tax rates or credit values. <strong>Do not</strong> use them to do your taxes or to check calculations done by certified tax software or on official paper tax forms.</p>
+    <p>Certified tax software will calculate most amounts based on the information you input. These amounts are provided to you for you to complete this exercise manually.</p>
+    <p>If you are a resident of Quebec, you will complete a separate provincial tax return with<span lang="fr">Revenu Québec</span>.</p>
+  </div>
+  <h2 id="examples">Scenarios</h2>
+  <div id="example-btns">
+    <p>Select a scenario to get started</p>
+    <ul class="list-inline hidden-print" data-wb-actionmng='[
+		{ "trggroup":"clearFilter", "action": "removeClass", "source": ".fltopts", "class": "btn-primary" }, { "trggroup":"clearFilter", "action": "addClass", "source": ".fltopts", "class": "btn-link" }]'>
+      <li>
+        <button type="button" class="fltopts btn btn-link btn-lg mrgn-lft-md mrgn-rght-md" data-wb-doaction='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "removeClass", "source": ".example-1:not(.correct-answer), .answers-1, #form-fill, #calculation-init", "class": "hidden"}, { "action": "addClass", "source": ".example-2, .answers-2, #calculation-alt", "class": "hidden"},
+			{ "action": "addClass", "class": "btn-primary" }, { "action": "removeClass", "class": "btn-link" }, {"action": "removeClass", "source": "#tax-bracket>colgroup>col", "class": "bg-info"} 
+		]' onclick="document.getElementById('tax-bracket-select').reset();">Jonah quits the bakery<span class="wb-inv">: start exercise</span></button>
+      </li>
+      <li class="brdr-lft">
+        <button class="fltopts btn btn-link btn-lg mrgn-lft-md mrgn-rght-md" data-wb-doaction='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "removeClass", "source": ".example-2:not(.correct-answer), .answers-2, #form-fill, #calculation-init", "class": "hidden" }, { "action": "addClass", "source": ".example-1, .answers-1, #calculation-alt", "class": "hidden" },
+			{ "action": "addClass", "class": "btn-primary" }, { "action": "removeClass", "class": "btn-link" }, {"action": "removeClass", "source": "#tax-bracket>colgroup>col", "class": "bg-info"} 
+		]' onclick="document.getElementById('tax-bracket-select').reset();">Terry keeps track of tips<span class="wb-inv">: start exercise</span></button>
+      </li>
+    </ul>
+  </div>
+  <div aria-live="polite">
+    <div class="example-1 hidden">
+      <h3>Jonah quits the bakery</h3>
+      <p>Jonah worked full-time at a local bakery last year until July, when he quit his job to travel for a month before going back to school.</p>
+      <p>He did not have any other income for the year. </p>
+      <p>Review the T4 slip and tax information to complete the exercise.</p>
+    </div>
+  </div>
+  <div class="example-1 hidden">
+    <h4>T4 slip example</h4>
+    <p>Jonah received this T4 slip, Statement of Remuneration Paid, from the bakery.</p>
+    <img src="jonah-t4.png" alt="Text of Jonah's T4 slip below" class="img-responsive">
+    <details>
+      <summary>Details of Jonah's T4 slip</summary>
+      <p>Employer's name: Casey's Bakery</p>
+      <p>Employee's name and address:</p>
+      <ul>
+        <li>Last name: Smith</li>
+        <li>First name: Jonah</li>
+        <li>Address:
+          <ul class="lst-none">
+            <li>1 Home Ave<br>
+              City, Newfoundland and Labrador, X0X 0X0<br>
+              Province of employment</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Income and other information</p>
+      <ul>
+        <li>Box 10: Province of employment – NL</li>
+        <li>Box 12: Social Insurance Number –<a class="nowrap">123 456 789</a></li>
+        <li>Box 14: Employment income (Line 10100) – $18,000.00</li>
+        <li>Box 16: Employee's CPP contributions (Line 30800) – $870.90</li>
+        <li>Box 18: Employee's EI premiums (Line 31200) – $284.40</li>
+        <li>Box 22: Income tax deducted (Line 43700) – $2,209.80</li>
+        <li>Box 24: EI Insurable earnings – $18,000.00</li>
+        <li>Box 26: CPP/QPP pensionable earnings – $18,000.00</li>
+        <li>Box 85: Other information (explained on reverse side of slip) – $76.50</li>
+      </ul>
+    </details>
+    <h3>What information needs to be entered on Jonah's taxes</h3>
+    <p><strong>Step 1:</strong> Identification</p>
+    <ul id="step1-ajax-1">
+      <li>Name: <strong>Jonah Smith</strong></li>
+      <li>SIN:<strong><a class="nowrap">123 456 789</a></strong></li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 2:</strong> Total income</p>
+    <ul id="step2-ajax-1">
+      <li> Jonah's total income includes:
+        <ul>
+          <li>the employment income of <strong>$18,000.00</strong> shown in box 14 of his T4 slip</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 3:</strong> Net income</p>
+    <ul id="step3-ajax-1">
+      <li> Jonah's deductions for calculating net income are <strong>$950.00</strong>,which includes:
+        <ul>
+          <li>registered pension plan (RPP) contributions shown in box 20 of his T4 slip</li>
+          <li>union dues shown in box 44, of his T4 slip</li>
+          <li>enhanced Canada Pension Plan (CPP) contributions, calculated using CPP contributions shown in box 16 of his T4 slip</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 4:</strong> Taxable income</p>
+    <ul id="step4-ajax-1">
+      <li> Jonah's deductions for calculating taxable income are <strong>$0.00</strong></li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 5:</strong> Federal tax</p>
+    <ul id="step5-ajax-1">
+      <li> Jonah's federal non-refundable tax credits are <strong>$16,500.00</strong>, which includes:
+        <ul>
+          <li>the basic personal amount</li>
+          <li>CPP contributions calculated using amounts shown in box 16 of his T4 slip</li>
+          <li>employment insurance (EI) premiums shown in box 18 of his T4 slip</li>
+          <li>the Canada employment amount</li>
+          <li>tuition amounts calculated using amount shown on a T2202, Tuition and Enrolment Certificate
+            <ul>
+              <li>an image of this form is not provided here </li>
+            </ul>
+          </li>
+          <li>Jonah's eligible medical expenses, including premiums for private health services plan shown in box 85 of his T4 slip</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 6:</strong> Provincial or territorial tax</p>
+    <ul id="step6-ajax-1">
+      <li> Jonah's provincial or territorial tax is <strong>$16.00</strong>
+        <ul>
+          <li>when you do your taxes, a similar calculation is done for provincial or territorial taxes as for federal tax (step 5)
+            <ul>
+              <li>for this exercise, the completed calculation is provided</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 7:</strong> Refund or balance owing</p>
+    <ul id="step7-ajax-1">
+      <li> Jonah's total income tax deducted at source is <strong>$2,209.80</strong>, as shown in box 22 of his T4 slip</li>
+      <li>Jonah's refundable tax credits are <strong>$0.00</strong></li>
+    </ul>
+    <h3>Complete Jonah's calculations</h3>
+    <p>Enter the amounts in the correct spaces and complete the calcuations to find out if Jonah will get a refund or have a balance owing.</p>
+    <p>For this example, you will be able to validate your amounts, calculations and final answer at the end of the exercise.</p>
+    <hr class="brdr-bttm">
+  </div>
+  <section aria-live="polite">
+    <div class="example-2 hidden">
+      <h3>Terry keeps track of tips</h3>
+      <p>Terry is 18 and works at a pizza restaurant, where she earn hourly wages and tips.</p>
+      <p>Last year Terry received $997.60 in cash tips, in addition to her salary. Terry kept track of her cash tips because her employer does not record this information.</p>
+      <p>Review the T4 slip and tax information to complete the exercise.</p>
+    </div>
+  </section>
+  <div class="example-2 hidden">
+    <h4>T4 slip example</h4>
+    <p>Terry received this T4 slip, Statement of Remuneration Paid, from her employer.</p>
+    <img src="terry-t4.png" alt="Text of Terry's T4 slip below" class="img-responsive">
+    <details>
+      <summary>Details of Terry's T4 slip</summary>
+      <p>Employer's name: Plaza di pizza</p>
+      <p>Employee's name and address:</p>
+      <ul>
+        <li>Last name: Lee</li>
+        <li>First name: Terry</li>
+        <li>Address:
+          <ul class="lst-none">
+            <li>123 Main Street<br>
+              City, British Columbia, X0X 0X0</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Income and other information</p>
+      <ul>
+        <li>Box 10: Province of employment – BC</li>
+        <li>Box 12: Social Insurance Number –<a class="nowrap">777 777 777</a></li>
+        <li>Box 14: Employment income (Line 10100) – $12,000.00</li>
+        <li>Box 16: Employee's CPP contributions (Line 30800) – $480.00</li>
+        <li>Box 18: Employee's EI premiums (Line 31200) – $200.00</li>
+        <li>Box 22: Income tax deducted (Line 43700) – $200.00</li>
+        <li>Box 24: EI Insurable earnings – $12,000.00</li>
+        <li>Box 26: CPP/QPP pensionable earnings – $12,000.00</li>
+      </ul>
+    </details>
+    <h3>What information needs to be entered on Terry’s taxes</h3>
+    <p><strong>Step 1:</strong> Identification</p>
+    <ul id="step1-ajax-2">
+      <li>Name: <strong>Terry Lee</strong></li>
+      <li>SIN: <strong><a class="nowrap">777 777 777</a></strong></li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 2:</strong> Total income</p>
+    <ul id="step2-ajax-2">
+      <li> Terry's total income includes:
+        <ul>
+          <li>employment income of <strong>$12,000.00</strong> shown in box 14 of her T4 slip</li>
+        </ul>
+        <ul>
+          <li>cash tips received for an amount of <strong>$997.60</strong> not shown on an information slip</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 3:</strong> Net income</p>
+    <ul id="step3-ajax-2">
+      <li> Terry's deductions for calculating net income are <strong>$625.00</strong>, which includes:
+        <ul>
+          <li>RRSP contributions shown on a receipt
+            <ul>
+              <li>an image of this receipt is not provided here</li>
+            </ul>
+          </li>
+          <li>enhanced CPP contributions, calculated using CPP contributions shown in box 16 of her T4 slip</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 4:</strong> Deductions</p>
+    <ul id="step4-ajax-2">
+      <li>
+        <p>Terry's deductions for calculating taxable income are <strong>$0.00</strong></p>
+      </li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 5:</strong> Federal tax</p>
+    <ul id="step5-ajax-2">
+      <li> Terry's federal non-refundable tax credits are <strong>$15,000.00</strong>, which includes:
+        <ul>
+          <li>the basic personal amount</li>
+          <li>CPP contributions calculated using amounts shown in box 16 of her T4 slip</li>
+          <li>employment insurance (EI) premiums shown in box 18 of her T4 slip</li>
+          <li>the Canada employment amount</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 6:</strong> Provincial/Territorial tax</p>
+    <ul id="step6-ajax-2">
+      <li>Terry's provincial or territorial tax is <strong>$0.00</strong>
+        <ul>
+          <li>when you do your taxes, a similar calculation is done for provincial or territorial taxes as for federal tax (step 5)
+            <ul>
+              <li>for this exercise, the completed calculation is provided</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p class="mrgn-tp-lg"><strong>Step 7:</strong> Refund or balance owing</p>
+    <ul id="step7-ajax-2">
+      <li> Terry's total income tax deducted at source is <strong>$200.00</strong>, as shown on her T4 slip</li>
+      <li>Terry's refundable tax credits are <strong>$25.00</strong>, which includes:
+        <ul>
+          <li>CPP overpayments, calculated using amounts shown in box 16 of her T4 slip</li>
+          <li>EI overpayments, calculated using amounts shown in box 18 of her T4 slip</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Complete Terry's calculations</h3>
+    <p>Enter the amounts in the correct spaces and complete the calcuations to find out if Terry will get a refund or have a balance owing.</p>
+    <p>For this example, you will be able to validate your final answer at the end of the exercise.</p>
+    <hr class="brdr-bttm">
+  </div>
+  <div id="btn-here"></div>
+  <div id="form-fill" class="hidden">
+    <h2 id="calculation" class="mrgn-tp-sm"><span id="calculation-init">Calculation</span><span id="calculation-alt" class="hidden">Calculation (with answers)</span></h2>
+    <p class="hidden-print" id="form-fill-clear"><strong>Note:</strong> Before you proceed
+      <button onclick="$('[role=textbox]').empty(); document.getElementById('tax-bracket-select').reset();"  class="btn btn-default btn-sm" data-wb-doaction='{"action": "removeClass", "source": "#tax-bracket>colgroup>col", "class": "bg-info"}'><span class="fas fa-eraser fa-lg"></span> Reset the input fields</button>
+      if you have filled out a previous scenario.</p>
+    <h3 id="step-1">Step 1: Identification<span class="wb-inv">: step 1</span></h3>
+    <p>Enter the individual's personal information</p>
+    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 1: Information" href="#step1-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step1-ajax-1", "container": "#step1-body" }'>Information for step 1</a></p>
+    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 1: Information" href="#step1-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step1-ajax-2", "container": "#step1-body" }'>Information for step 1</a></p>
+    <section id="step1-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
+      <header class="modal-header">
+        <h4 class="modal-title">Identification</h4>
+      </header>
+      <div class="modal-body" id="step1-body"></div>
+    </section>
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right" id="name"><strong>Name</strong></p>
+      </div>
+      <div class="col-xs-6 col-md-5">
+        <div class="well well-sm p-0">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm" contenteditable="true" aria-labelledby="name" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right" id="sin"><strong>Social Insurance Number</strong></p>
+      </div>
+      <div class="col-xs-6 col-md-5">
+        <div class="well well-sm p-0">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm" contenteditable="true" aria-labelledby="sin" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <h3 id="step-2">Step 2: Total income</h3>
+    <p>Calculate the individual's gross income</p>
+    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 2: Total income" href="#step2-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step2-ajax-1", "container": "#step2-body" }'>Information for step 2</a></p>
+    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 2: Information" href="#step2-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step2-ajax-2", "container": "#step2-body" }'>Information for step 2</a></p>
+    <section id="step2-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
+      <header class="modal-header">
+        <h4 class="modal-title">Total income</h4>
+      </header>
+      <div class="modal-body" id="step2-body"></div>
+    </section>
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-md" id="stp2-income">Enter <span class="h4">Income</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp2-income-edit"><span class="fas fa-fw fa-lg pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp2-income" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp2-income2">Plus <span class="h4">Additional income</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp2-income2-edit"><span class="fas fa-plus fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl mrgn-bttm-md">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp2-income2" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <div class="mrgn-tp-md"></div>
+        <p class="text-right" id="stp2-total">Equals the <span class="h4">Total income</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3 brdr-tp" id="stp2-total-edit">
+        <div class="mrgn-tp-sm"></div>
+        <span class="fas fa-equals fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp2-total" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <h3 id="step-3">Step 3: Net income</h3>
+    <p>Calculate the individual's net income</p>
+    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 3: Net income" href="#step3-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step3-ajax-1", "container": "#step3-body" }'>Information for step 3</a></p>
+    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 3: Net income" href="#step3-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step3-ajax-2", "container": "#step3-body" }'>Information for step 3</a></p>
+    <section id="step3-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
+      <header class="modal-header">
+        <h4 class="modal-title">Net income</h4>
+      </header>
+      <div class="modal-body" id="step3-body"></div>
+    </section>
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp3-total">Enter the <span class="h4">Total income</span><br>
+          from step 2</p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp3-total-edit"><span class="fas fa-fw fa-lg pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp3-total" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp3-deductions">Minus the <span class="h4">Total net income deductions</span><br>
+          to claim</p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp3-deductions-edit"><span class="fas fa-minus fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl mrgn-bttm-md">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp3-deductions" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <div class="mrgn-tp-md"></div>
+        <p class="text-right" id="stp3-net">Equals the <span class="h4">Net income</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3 brdr-tp" id="stp3-net-edit">
+        <div class="mrgn-tp-sm"></div>
+        <span class="fas fa-equals fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp3-net" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <h3 id="step-4">Step 4: Taxable income</h3>
+    <p>Calculate the individual's net income</p>
+    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 4: Taxable income" href="#step4-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step4-ajax-1", "container": "#step4-body" }'>Information for step 4</a></p>
+    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 4: Taxable income" href="#step4-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step4-ajax-2", "container": "#step4-body" }'>Information for step 4</a></p>
+    <section id="step4-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
+      <header class="modal-header">
+        <h4 class="modal-title">Taxable income</h4>
+      </header>
+      <div class="modal-body" id="step4-body"></div>
+    </section>
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp4-net">Enter the <span class="h4">Net income</span><br>
+          from step 3</p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp4-net-edit"><span class="fas fa-fw fa-lg pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp4-net" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp4-deductions">Minus the <span class="h4">Total taxable income deductions</span><br>
+          to claim</p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp4-deductions-edit"><span class="fas fa-minus fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl mrgn-bttm-md">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp4-deductions" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <div class="mrgn-tp-md"></div>
+        <p class="text-right" id="stp4-taxable">Equals the <span class="h4">Taxable income</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3 brdr-tp" id="stp4-taxable-edit">
+        <div class="mrgn-tp-sm"></div>
+        <span class="fas fa-equals fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp4-taxable" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <h3 id="step-5">Step 5: Federal tax</h3>
+    <p>Calculate the federal tax using the correct tax bracket</p>
+    <p>To calculate the federal tax, use the table below, and:</p>
+    <ol class="mrgn-bttm-lg">
+      <li>Enter the taxable income in the column for the appropriate tax bracket</li>
+      <li>Complete the calculation in that column</li>
+    </ol>
+    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 5: Federal tax" href="#step5-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step5-ajax-1", "container": "#step5-body" }'>Information for step 5</a></p>
+    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 5: Federal tax" href="#step5-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step5-ajax-2", "container": "#step5-body" }'>Information for step 5</a></p>
+    <section id="step5-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
+      <header class="modal-header">
+        <h4 class="modal-title">Federal tax</h4>
+      </header>
+      <div class="modal-body" id="step5-body"></div>
+    </section>
+    <div class="row">
+      <div class="col-md-6 frmvld hidden-print">
+        <form id="tax-bracket-select">
+          <div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true, "noreqlabel": true, "defaultselectedlabel":"Select the taxable income", "reset": [{ "action": "removeClass", "source":"#tax-bracket col", "class": "bg-info" }, { "action": "addClass", "source":".col2-class, .col3-class, .col4-class, .col5-class", "class": "hidden" }, { "action": "removeClass", "source":"#cap-default", "class": "hidden" }]}'>
+            <p>The taxable income is</p>
+            <ul>
+              <li data-wb-fieldflow='[{"action": "addClass", "source": "#col2", "class": "bg-info", "live":true}, {"action": "removeClass", "source": ".col2-class", "class": "hidden", "live":true}, {"action": "addClass", "source": "#cap-default", "class": "hidden", "live":true}]'>$49,999 or less</li>
+              <li data-wb-fieldflow='[{"action": "addClass", "source": "#col3", "class": "bg-info", "live":true}, {"action": "removeClass", "source": ".col3-class", "class": "hidden", "live":true}, {"action": "addClass", "source": "#cap-default", "class": "hidden", "live":true}]'>$50,000 to $99,000</li>
+              <li data-wb-fieldflow='[{"action": "addClass", "source": "#col4", "class": "bg-info", "live":true}, {"action": "removeClass", "source": ".col4-class", "class": "hidden", "live":true}, {"action": "addClass", "source": "#cap-default", "class": "hidden", "live":true}]'>$100,000 to $149,999</li>
+              <li data-wb-fieldflow='[{"action": "addClass", "source": "#col5", "class": "bg-info", "live":true}, {"action": "removeClass", "source": ".col5-class", "class": "hidden", "live":true}, {"action": "addClass", "source": "#cap-default", "class": "hidden", "live":true}]'>$150,000 or more</li>
+            </ul>
+          </div>
+        </form>
+      </div>
+      <div class="clearfix"></div>
+      <div class="table-responsive">
+        <table class="table table-bordered small mrgn-bttm-0" id="tax-bracket" role="grid">
+          <caption>
+          Taxable income brackets<br>
+          <span id="cap-default">(fill in only one tax bracket)</span><span class="col2-class hidden">(fill in tax bracket 1)</span><span class="col3-class hidden">(fill in tax bracket 2)</span><span class="col4-class hidden">(fill in tax bracket 3)</span><span class="col5-class hidden">(fill in tax bracket 4)</span>
+          </caption>
+          <colgroup>
+          <col id="col1">
+          <col id="col2">
+          <col id="col3">
+          <col id="col4">
+          <col id="col5">
+          </colgroup>
+          <tr class="h3">
+            <td>&nbsp;</td>
+            <th scope="col" class="text-center"><span class="wb-inv">Tax bracket</span>1</th>
+            <th scope="col" class="text-center"><span class="wb-inv">Tax bracket</span>2</th>
+            <th scope="col" class="text-center"><span class="wb-inv">Tax bracket</span>3</th>
+            <th scope="col" class="text-center"><span class="wb-inv">Tax bracket</span>4</th>
+          </tr>
+          <tr>
+            <th scope="row">Taxable income is</th>
+            <td>$49,999 or less</td>
+            <td>$50,000 to $99,000</td>
+            <td>$100,000 to $149,999</td>
+            <td>$150,000 or more</td>
+          </tr>
+          <tr>
+            <th scope="row">Enter taxable income<br>
+              <span class="h6">from step 4</span></th>
+            <td class="active text-right" contenteditable="true" aria-label="Taxable income (bracket 1)" role="textbox" aria-multiline="false">&nbsp;</td>
+            <td class="active text-right" contenteditable="true" aria-label="Taxable income (bracket 2)" role="textbox" aria-multiline="false">&nbsp;</td>
+            <td class="active text-right" contenteditable="true" aria-label="Taxable income (bracket 3)" role="textbox" aria-multiline="false">&nbsp;</td>
+            <td class="active text-right" contenteditable="true" aria-label="Taxable income (bracket 4)" role="textbox" aria-multiline="false">&nbsp;</td>
+          </tr>
+          <tr class="tax-brackets-1 hidden">
+            <th scope="row">Enter taxable income (Answer)<br>
+              <span class="h6">from step 4</span></th>
+            <td class="text-right nowrap" id="stp5-taxable-bracket-1">&nbsp;</td>
+            <td->
+            &nbsp;
+              </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr class="tax-brackets-2 hidden">
+            <th scope="row">Enter taxable income (Answer)<br>
+              <span class="h6">from step 4</span></th>
+            <td class="text-right nowrap" id="stp5-taxable-bracket-2">&nbsp;</td>
+            <td->
+            &nbsp;
+              </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th scope="row">Base amount</th>
+            <td class="text-right nowrap"><span class="fas fa-minus fa-xs"><span class="wb-inv">minus </span></span> <strong>0.00</strong></td>
+            <td class="text-right nowrap"><span class="fas fa-minus fa-xs"><span class="wb-inv">minus </span></span> <strong>49,999.00</strong></td>
+            <td class="text-right nowrap"><span class="fas fa-minus fa-xs"><span class="wb-inv">minus </span></span> <strong>99,999.00</strong></td>
+            <td class="text-right nowrap"><span class="fas fa-minus fa-xs"><span class="wb-inv">minus </span></span> <strong>149,999.00</strong></td>
+          </tr>
+          <tr>
+            <th scope="row">Total after base amount</th>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="baseline tax amount" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="baseline tax amount" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="baseline tax amount" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="baseline tax amount" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+          </tr>
+          <tr class="tax-brackets-1 hidden">
+            <th scope="row">Total after base amount (Answer)</th>
+            <td class="text-right" id="stp5-baseline-bracket-1">&nbsp;</td>
+            <td >&nbsp;</td>
+            <td>&nbsp;</td>
+            <td >&nbsp;</td>
+          </tr>
+          <tr class="tax-brackets-2 hidden">
+            <th scope="row">Total after base amount (Answer)</th>
+            <td class="text-right" id="stp5-baseline-bracket-2">&nbsp;</td>
+            <td >&nbsp;</td>
+            <td>&nbsp;</td>
+            <td >&nbsp;</td>
+          </tr>
+          <tr>
+            <th scope="row">Tax rate</th>
+            <td class="text-right"><span class="fas fa-times fa-xs mrgn-tp-sm"><span class="wb-inv">multiplied by </span></span> <strong>10%</strong></td>
+            <td class="text-right"><span class="fas fa-times fa-xs mrgn-tp-sm"><span class="wb-inv">multiplied by </span></span> <strong>20%</strong></td>
+            <td class="text-right"><span class="fas fa-times fa-xs mrgn-tp-sm"><span class="wb-inv">multiplied by </span></span> <strong>30%</strong></td>
+            <td class="text-right"><span class="fas fa-times fa-xs mrgn-tp-sm"><span class="wb-inv">multiplied by </span></span> <strong>40%</strong></td>
+          </tr>
+          <tr>
+            <th scope="row">Total after tax rate</th>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="amount after tax rate calculated" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="amount after tax rate calculated" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="amount after tax rate calculated" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="amount after tax rate calculated" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+          </tr>
+          <tr class=" tax-brackets-1 hidden">
+            <th scope="row">Total after tax rate (Answer)</th>
+            <td class="text-right" id="stp5-aftertax-bracket-1">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr class="tax-brackets-2 hidden">
+            <th scope="row">Total after tax rate (Answer)</th>
+            <td class="text-right" id="stp5-aftertax-bracket-2">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th scope="row">Tax on base amount<br>
+              <span class="h6">using the rate from lower bracket</span></th>
+            <td class="text-right"><span class="fas fa-plus fa-xs mrgn-tp-sm"><span class="wb-inv">plus </span></span> <strong>0.00</strong></td>
+            <td class="text-right"><span class="fas fa-plus fa-xs mrgn-tp-sm"><span class="wb-inv">plus </span></span> <strong>4,999.90</strong></td>
+            <td class="text-right"><span class="fas fa-plus fa-xs mrgn-tp-sm"><span class="wb-inv">plus </span></span> <strong>14,999.70</strong></td>
+            <td class="text-right"><span class="fas fa-plus fa-xs mrgn-tp-sm"><span class="wb-inv">plus </span></span> <strong>29,999.40</strong></td>
+          </tr>
+          <tr>
+            <th scope="row">Federal tax on taxable income</th>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="Federal tax amount on income" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="Federal tax amount on income" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="Federal tax amount on income" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="Federal tax amount on income" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
+          </tr>
+          <tr class="tax-brackets-1 hidden">
+            <th scope="row">Federal tax on taxable income (Answer)</th>
+            <td class="text-right" id="stp5-fedtax-bracket-1">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr class="tax-brackets-2 hidden">
+            <th scope="row">Federal tax on taxable income (Answer)</th>
+            <td class="text-right" id="stp5-fedtax-bracket-2">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+            </tbody>
+          
+        </table>
+      </div>
+      <div class="clearfix"></div>
+      <p class="mrgn-bttm-lg"><strong>Reminder:</strong> This exercise is using simplified tax rates. They are different than the tax rates used on the actual tax return.</p>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp5-crd">Enter the <span class="h4">Federal non-refundable tax credits</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp5-crd-edit"><span class="fas fa-fw fa-lg pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp5-non-crd" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="fed-tx-rt">Multiply by the <span class="h4">Federal <span class="nowrap">non-refundable</span> tax rate</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3 "><span class="fas fa-times fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="mrgn-lft-xl">
+          <p class="text-right h3 mrgn-tp-md">10%</p>
+        </div>
+      </div>
+      <div class="clearfix mrgn-bttm-md"></div>
+      <div class="col-xs-6 col-md-6">
+        <div class="mrgn-tp-md"></div>
+        <p class="text-right" id="stp5-total-crd">Equals the <span class="h4">Total federal<span class="nowrap">non-refundable</span> tax credits amount</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3 brdr-tp" id="stp5-total-crd-edit">
+        <div class="mrgn-tp-sm"></div>
+        <span class="fas fa-equals fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp5-total-crd" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix mrgn-bttm-lg"></div>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp5-fed-tax">Enter the <span class="h4">Federal tax on taxable income</span><br>
+          from the table above</p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp5-fed-tax-edit"><span class="fas fa-fw fa-lg pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp5-fed-tax" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp5-total-crd2">Minus the <span class="h4">Total federal <span class="nowrap">non-refundable</span> tax credits amount</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp5-total-crd2-edit"><span class="fas fa-minus fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp5-total-crd2" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix mrgn-bttm-md"></div>
+      <div class="col-xs-6 col-md-6">
+        <div class="mrgn-tp-md"></div>
+        <p class="text-right" id="stp5-fed-tax-total">Equals the <span class="h4">Federal tax</span><br>
+          If negative, enter "0" (Remember,<span class="nowrap">non-refundable</span> tax credits can only reduce tax to zero)</p>
+      </div>
+      <div class="col-xs-6 col-md-3 brdr-tp" id="stp5-fed-tax-total-edit">
+        <div class="mrgn-tp-sm"></div>
+        <span class="fas fa-equals fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp5-fed-tax-total" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <h3 id="step-6">Step 6: Provincial/Territorial tax</h3>
+    <p>Calculate the provincial/territorial tax.<br>
+      A similar calculation is done in this step as in step 5 (Simply enter the number provided in the T4 details).</p>
+    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 6: Provincial/Territorial tax" href="#step6-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step6-ajax-1", "container": "#step6-body" }'>Information for step 6</a></p>
+    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 6: Provincial/Territorial tax" href="#step6-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step6-ajax-2", "container": "#step6-body" }'>Information for step 6</a></p>
+    <section id="step6-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
+      <header class="modal-header">
+        <h4 class="modal-title">Provincial/Territorial tax</h4>
+      </header>
+      <div class="modal-body" id="step6-body"></div>
+    </section>
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <div class="mrgn-tp-md"></div>
+        <p class="text-right" id="stp6-prov-tax">Enter the <span class="h4">Provincial/Territorial tax</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp6-prov-tax-edit">
+        <div class="mrgn-tp-sm"></div>
+        <span class="fas fa-equals fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp6-prov-tax" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+    </div>
+    <h3 id="step-7">Step 7: Refund or balance owing</h3>
+    <p>Calculate if a refund is due or a balance is owing.</p>
+    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 7: Refund or balance owing" href="#step7-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step7-ajax-1", "container": "#step7-body" }'>Information for step 7</a></p>
+    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 7: Refund or balance owing" href="#step7-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step7-ajax-2", "container": "#step7-body" }'>Information for step 7</a></p>
+    <section id="step7-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
+      <header class="modal-header">
+        <h4 class="modal-title">Refund or balance owing</h4>
+      </header>
+      <div class="modal-body" id="step7-body"></div>
+    </section>
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-md" id="stp7-fed-tax">Enter the <span class="h4">Federal tax</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp7-fed-tax-edit"><span class="fas fa-fw fa-lg pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-fed-tax" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp7-prov-tax">Plus the <span class="h4">Provincial/territorial tax</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp7-prov-tax-edit"><span class="fas fa-plus fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl mrgn-bttm-md">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-prov-tax" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <div class="mrgn-tp-md"></div>
+        <p class="text-right" id="stp7-pay-total">Equals the <span class="h4">Total payable</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3 brdr-tp" id="stp7-pay-total-edit">
+        <div class="mrgn-tp-sm"></div>
+        <span class="fas fa-equals fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-pay-total" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="row mrgn-tp-lg">
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-md" id="stp7-tax-deduct">Enter the <span class="h4">Tax deducted</span> at source</p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp7-tax-deduct-edit"><span class="fas fa-fw fa-lg pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-tax-deduct" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp7-tax-crd">Plus the <span class="h4">Eligible refundable tax credits</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp7-tax-crd-edit"><span class="fas fa-plus fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl mrgn-bttm-md">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-tax-crd" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <div class="mrgn-tp-md"></div>
+        <p class="text-right" id="stp7-crd-total">Equals the <span class="h4">Total credits</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3 brdr-tp" id="stp7-crd-total-edit">
+        <div class="mrgn-tp-sm"></div>
+        <span class="fas fa-equals fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-crd-total" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="row mrgn-tp-lg">
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-md" id="stp7-pay-total2">Enter the <span class="h4">Total payable</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp7-pay-total2-edit"><span class="fas fa-fw fa-lg pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-pay-total2" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <p class="text-right mrgn-tp-sm" id="stp7-crd-total2">Plus the <span class="h4">Total credits</span></p>
+      </div>
+      <div class="col-xs-6 col-md-3" id="stp7-crd-total2-edit"><span class="fas fa-plus fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl mrgn-bttm-md">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-crd-total2" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-6 col-md-6">
+        <div class="mrgn-tp-md"></div>
+        <p class="text-right" id="stp7-final-total">Equals the <span class="h4">Final result</span><br>
+          A positive result represents a balance owing, and a negative result represents a refund</p>
+      </div>
+      <div class="col-xs-6 col-md-3 brdr-tp" id="stp7-final-total-edit">
+        <div class="mrgn-tp-sm"></div>
+        <span class="fas fa-equals fa-lg fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
+        <div class="well well-sm p-0 mrgn-lft-xl">
+          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-final-total" role="textbox" aria-multiline="false"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div id="self-answer">
+      <h2>Answer</h2>
+      <!--Jonah answer//-->
+      <div class="wb-frmvld example-1 hidden">
+        <form>
+          <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
+            <p><span class="h3">After the calculation, Jonah will:</span></p>
+            <ul>
+              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ex-1-a-1", "live": true }'>receive a refund</li>
+              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ex-1-a-2", "live": true}'>have a balance owing</li>
+            </ul>
+          </div>
+        </form>
+        <div aria-live="polite">
+          <div id="ex-1-a-1" class="hidden">
+            <p><span class="pull-left">Jonah will receive a refund of</span><span class="well well-sm p-0 col-xs-4 col-sm-2 mrgn-lft-sm" contenteditable="true" aria-label="Enter the amount the refund" role="textbox" aria-multiline="false" ></span>.</p>
+            <div class="clearfix"></div>
+            <p>If you have provided an answer, you can:</p>
+            <ul data-ajax-prepend="jonah-answers.txt .answers">
+              <li><a href="#examples">select another example</a> if you would like to try again</li>
+            </ul>
+          </div>
+          <div id="ex-1-a-2" class="hidden">
+            <p><span class="pull-left">Jonah will have a balance owing of</span><span class="well well-sm p-0 col-xs-4 col-sm-2 mrgn-lft-sm" contenteditable="true" aria-label="Enter the amount of the balance owing" role="textbox" aria-multiline="false" ></span>.</p>
+            <div class="clearfix"></div>
+            <p>If you have provided an answer, you can:</p>
+            <ul data-ajax-prepend="jonah-answers.txt #answers">
+              <li><a href=".examples">select another example</a> if you would like to try again</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--Terry answer//-->
+      <div class="wb-frmvld example-2 hidden">
+        <form>
+          <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
+            <p><span class="h3">After the calculation, Terry will:</span></p>
+            <ul>
+              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ex-2-a-1", "live": true }'>receive a refund</li>
+              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ex-2-a-2", "live": true}'>have a balance owing</li>
+            </ul>
+          </div>
+        </form>
+        <div aria-live="polite">
+          <div id="ex-2-a-1" class="hidden">
+            <p><span class="pull-left">Terry will receive a refund of</span><span class="well well-sm p-0 col-xs-4 col-sm-2 mrgn-lft-sm" contenteditable="true" aria-label="Enter the amount of the refund" role="textbox" aria-multiline="false" ></span>.</p>
+            <div class="clearfix"></div>
+            <p>If you have provided an answer, you can:</p>
+            <ul>
+              <li><a href="#answer" data-wb-doaction='{"action": "removeClass", "source": ".example-2.correct-answer", "class": "hidden"}'>check if you are correct</a> about Terry, or</li>
+              <li><a href="#examples">select another example</a> if you would like to try again</li>
+            </ul>
+          </div>
+          <div id="ex-2-a-2" class="hidden">
+            <p><span class="pull-left">Terry will have a balance owing of</span><span class="well well-sm p-0 col-xs-4 col-sm-2 mrgn-lft-sm" contenteditable="true" aria-label="Enter the amount of the balance owing" role="textbox" aria-multiline="false" ></span>.</p>
+            <div class="clearfix"></div>
+            <p>If you have provided an answer, you can:</p>
+            <ul>
+              <li><a href="#answer" data-wb-doaction='{"action": "removeClass", "source": ".example-2.correct-answer", "class": "hidden"}'>check if you are correct</a> about Terry, or</li>
+              <li><a href="#examples">select another example</a> if you would like to try again</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div aria-live="assertive" id="answer">
+        <p class="example-1 correct-answer hidden"><strong>Answer:</strong> Jonah will <strong>receive a refund</strong> of <strong>$3,248.80</strong>.</p>
+        <p class="example-2 correct-answer hidden"><strong>Answer:</strong> Terry will <strong>receive a refund</strong> of <strong>$225.00</strong>.</p>
+      </div>
+    </div>
+  </div>
+  <!--only for print purposes //-->
+  <p class="visible-print"><span class="pull-left">of</span><span class="well well-sm p-0 col-xs-4 col-sm-2 mrgn-lft-sm" contenteditable="true" aria-label="" role="textbox" aria-multiline="false" ></span>.</p>
+
+<div id="def-preFooter">
+</div>
+<!-- Write closure template -->
+<script type="text/javascript">
+	var defPreFooter = document.getElementById("def-preFooter");
+	defPreFooter.outerHTML = wet.builder.preFooter({
+		dateModified: "November 17, 2021",
+		showPostContent: true,
+		showFeedback: true,
+		showShare: true
+	});
+</script>
+		</main>
+		<div id="def-footer">
+
+		</div>
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			var defFooter = document.getElementById("def-footer");
+			defFooter.outerHTML = wet.builder.footer({
+				showFooter: true,
+				showFeatures: true
+			});
+		</script>
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			document.write(wet.builder.refFooter({
+			}));
+		</script>
+	</body>
+</html>
