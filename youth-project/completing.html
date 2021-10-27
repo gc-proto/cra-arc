@@ -3354,7 +3354,7 @@ body.wb-overlay-dlg {
         </header>
         <div class="panel-body">
           <p>Take the quiz after you've finished all the lessons for: Completing a basic tax return</p>
-          <p id="quiz-final-start"><a href="#quiz-final" aria-controls="#quiz-final" class="overlay-lnk btn btn-primary btn-lg" role="button" onclick="window.history.pushState(null, null, '#quiz-results'); window.location.href = '#quiz-final';" ><span class="h3">Start the quiz</span></a></p>
+          <p id="quiz-final-start"><a href="#quiz-header" aria-controls="#quiz-final" class="overlay-lnk btn btn-primary btn-lg" role="button" onclick="window.history.pushState(null, null, '#quiz-results'); window.location.href = '#quiz-final';" ><span class="h3">Start the quiz</span></a></p>
           <p><a href="#quiz-final" role="button" data-wb-doaction='[{"action":"removeClass", "source": "#quiz-final.modal-content", "class": "wb-overlay overlay-def"}, {"action":"removeClass", "source": "#quiz-final .modal-body", "class": "container"}, {"action":"removeClass", "source": "#quiz-final-review-hide", "class": "hidden"},  {"action":"addClass", "source": "#quiz-final-review, #quiz-final .overlay-close", "class": "hidden"}]' class="hidden" id="quiz-final-review">Show the quiz<span class="wb-inv">: Completing a basic tax return</span></a> <a href="#quiz-results" role="button" data-wb-doaction='[{"action":"addClass", "source": "#quiz-final.modal-content", "class": "wb-overlay overlay-def"}, {"action":"addClass", "source": "#quiz-final .modal-body", "class": "container"}, {"action":"addClass", "source": " #quiz-final-review-hide", "class": "hidden"}, {"action":"removeClass", "source": " #quiz-final-review", "class": "hidden"}]' class="hidden" id="quiz-final-review-hide">Hide the quiz<span class="wb-inv">: Completing a basic tax return</span></a></p>
           <p id="quiz-results" class="mrgn-tp-lg"><strong>Your quiz results:</strong>
           <ul>
@@ -3365,24 +3365,10 @@ body.wb-overlay-dlg {
       </div>
 	    </div>
     </div>
-	 <div class="col-md-4">
-    <div class="hght-inhrt">
-	<div class="panel panel-primary brdr-rds-0 hght-inhrt">
-					<div class="panel-heading brdr-rds-0">
-						<h2 class="panel-title"><span class="fas fa-edit fa-lg"></span> Exercises</h2>
-					</div>
-					<div class="panel-body">
-						<p>There are exercises available to test yourself on completing a basic tax return.</p>
-						<p>Go to: <a href="exercises.html">Calculate a refund or a balance owing</a></p>
-					</div>
-				</div>
-			</div>
-      </div> 
-  </div>
-  <!--Quiz overlay start //-->
+<!--Quiz overlay start //-->
   <section id="quiz-final" class="wb-overlay modal-content overlay-def wb-popup-full mrgn-bttm-lg">
     <header class="modal-header">
-      <h2 class="modal-title">Quiz: Completing a basic tax return (15 questions)</h2>
+      <h2 class="modal-title" id="quiz-header">Quiz: Completing a basic tax return (15 questions)</h2>
     </header>
     <div class="modal-body container">
       <div class="row">
@@ -3973,15 +3959,30 @@ body.wb-overlay-dlg {
           </section>
           <div class="row mrgn-bttm-lg mrgn-tp-xl">
             <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-              <button class="btn btn-success overlay-close btn-block" type="button"  onclick="document.location='#quiz-final';" id="finish-close-quiz" data-wb-doaction='[{"action":"addClass", "source": "#finish-close-quiz, #quiz-final-start", "class": "hidden"}, {"action":"removeClass", "source": "#quiz-final-review, #reset-page", "class": "hidden"}]'><span class="h2">Finish and close the quiz</span></button>
+              <button class="btn btn-success overlay-close btn-block" type="button"  onclick="window.location.href = '#quiz-results';" id="finish-close-quiz" data-wb-doaction='[{"action":"addClass", "source": "#finish-close-quiz, #quiz-final-start", "class": "hidden"}, {"action":"removeClass", "source": "#quiz-final-review, #reset-page", "class": "hidden"}]'><span class="h2">Finish and close the quiz</span></button>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="modal-footer hidden"></div>
-  </section>
+  </section>	  
+	 <div class="col-md-4">
+    <div class="hght-inhrt">
+	<div class="panel panel-primary brdr-rds-0 hght-inhrt">
+					<div class="panel-heading brdr-rds-0">
+						<h2 class="panel-title"><span class="fas fa-edit fa-lg"></span> Exercises</h2>
+					</div>
+					<div class="panel-body">
+						<p>There are exercises available to test yourself on completing a basic tax return.</p>
+						<p>Go to: <a href="exercises.html">Calculate a refund or a balance owing</a></p>
+					</div>
+				</div>
+			</div>
+      </div> 
   </div>
+  
+
   <div id="def-preFooter"> </div>
   <!-- Write closure template --> 
   <script type="text/javascript">
