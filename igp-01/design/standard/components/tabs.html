@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+      <title>Tabbed interface – Standard web pages – CRA instructional guidance product – Canada.ca</title>
+      <meta content="width=device-width,initial-scale=1" name="viewport">
+      <meta name=”robots” content=”noindex”>
+      <!-- Meta data -->
+      <!-- Meta data-->
+      <!-- Load closure template scripts -->
+      <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/soyutils.js"></script>
+      <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/wet-en.js"></script>
+      <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         document.write(wet.builder.refTop({
+         }));
+      </script>
+      <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
+      <link rel="stylesheet" href="../../../css/provisional-topic.css"/>
+      <link rel="stylesheet" href="../../../css/wsm.css"/>
+      <link rel="stylesheet" href="../../../css/step-list.css"/>
+      <link rel="stylesheet" href="../../../css/stacked-header.css"/>
+   </head>
+   <body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
+      <div id="def-top"> </div>
+      <!-- Write closure template --> 
+      <script type="text/javascript">
+         var defTop = document.getElementById("def-top");
+         defTop.outerHTML = wet.builder.top({
+           lngLinks: [{
+         
+             lang: "fr",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
+             text: "Français"
+           }],
+           breadcrumbs: [{
+             title: "CRA instructional guidance product",
+             href: "../../../index.html"},{title: "Design and coding",href: "../../index.html"},{title: "Standard web page design and coding",href: "../index.html"},{title: "Components and functions",href: "index.html"
+           }],
+           
+           search: false,
+           siteMenu: false,
+           showPreContent: true
+         });
+      </script>
+      <main role="main" property="mainContentOfPage" class="container">
+<!-- CONTENT STARTS -->
+                   <h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Tabbed interface – Standard web pages – CRA instructional guidance product</h1>
+<div aria-hidden="true">
+<p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">CRA instructional guidance product</p>
+<h1 class="gc-thickline mrgn-tp-0">Tabbed interface – Standard web pages</h1>
+</div>
+<div class="all-pre wb-prettify">
+<p>Use to separate related content into different panes that are viewable one at a time when the respective tab is clicked.</p>
+   <h2 class="h3">On this page</h2>
+    <ul>
+      <li><a href="#h-1">When to use</a></li>
+      <li><a href="#h-2">How to implement</a></li>
+	  <li><a href="#h-4">Configuration options and events</a></li>
+	  <li><a href="#h-6">Complementary components and functions</a></li>
+    </ul>
+
+<h2 id="h-1">When to use</h2>
+<p>Use the tabbed interface pattern to group and present different aspects of content that are closely related, such as:</p>
+<ul>
+		<li>Geographic places, where the tabs can be used to present content relating to a place’s location, demographics, economy, etc.</li>
+		<li>Product catalogues, where the tabs can be used to present consistent facets of each product in the catalogue, such as specifications, features, etc.</li>
+	</ul>
+	
+		<blockquote class="mrgn-tp-lg">
+        <p>Module tabs [a User Interface (<abbr title="User Interface">UI</abbr>) design pattern where content is separated into different panes, and each pane is viewable one at a time] are meant to contain modular and easily digested information, and as such, module tabs are <strong>only appropriate for data that is succinct and to the point</strong> such as lists, data conveyed as graphics (data visualization), or one to two short paragraphs of text.</p>
+        <footer class="text-right">Smashing Magazine<br>
+          <cite><a href="https://www.smashingmagazine.com/2009/06/module-tabs-in-web-design-best-practices-and-solutions/" rel="external">Module  Tabs in Web Design: Best Practices and Solutions<span class="wb-inv"> (external link)</span></a></cite> </footer>
+      </blockquote>
+	  
+		<div class="row">		  			  
+		<div class="col-md-5">
+		<h4 class="text-muted">Correct use</h4>
+		<ul class="fa-ul">
+		            <li><span class="fas fa-check fa-li text-success"></span>Use tabs to show alternative views (modules) of  the same types of information</li><li><span class="fas fa-check fa-li text-success"></span>Ensure that tab headers are clear and concise; avoid lengthy labels</li>
+		<li><span class="fas fa-check fa-li text-success"></span>When repeating the tabbed interface across a set of related pages (for  example, on  country pages), always ensure the tab headers are presented consistently</li>
+		<li><span class="fas fa-check fa-li text-success"></span>Make the default active tab first on page load; but another tab may be used as the active tab on page load if required</li> 
+            <li><span class="fas fa-check fa-li text-success"></span>Ensure tab labels appear as a single row, and do not wordwrap over multiple lines, regardless of the viewport/resolution</li>
+            <li><span class="fas fa-check fa-li text-success"></span>Ensure tab labels display/hide content on the same page, and  do not navigate to different pages</li>
+
+            <li><span class="fas fa-check fa-li text-success"></span>Label tabs in a parallel  naming structure for example:
+				<ul>
+				<li>Tax forms</li>
+				<li>Benefit forms</li>
+				<li>Charity forms</li>
+				</ul>
+            </li>		
+		</ul>
+		</div>
+
+		<div class="col-md-7">
+		<h4 class="text-muted"><strong>Incorrect use</strong> </h4>
+		<ul class="fa-ul">
+		            <li><span class="fas fa-times fa-li text-danger"></span>Don't use to hide primary or essential content</li>
+            <li><span class="fas fa-times fa-li text-danger"></span>Don't use to tidy up the look of a page
+              <ul>
+                <li>If the page is too busy, separate the content over several pages, or place it in smaller blocks of information</li>
+              </ul>
+            </li>
+            <li><span class="fas fa-times fa-li text-danger"></span>Don't use to take a user through a process that moves from tab to tab
+              <ul>
+                <li>This can result in the need to check back and forth between tabs</li>
+                <li>Tabs are meant to  experience in isolation of each another</li>
+              </ul>
+            </li>
+		<li><span class="fas fa-times fa-li text-danger"></span>Don't use when content must be presented in a specific sequential order (instead, use a <a href="lists.html#h-2-7">steps list</a>)</li>
+		<li><span class="fas fa-times fa-li text-danger"></span>Don't use when content needs to be compared and contrasted, which would lead to repeated switching between tabs (instead, use <a href="tables.html">tables</a> or other components that allow all content to be presented at once)</li>
+		<li><span class="fas fa-times fa-li text-danger"></span>Don't use when content is lengthy or detailed, because of space limitations in the tabbed interface</li>
+		<li><span class="fas fa-times fa-li text-danger"></span>Don't use when content presentation includes only 2 tabs (for greater efficiency, use <a href="headings.html#h-1-7">subheadings</a>)</li>
+		            <li><span class="fas fa-times fa-li text-danger"></span>Don't use labels that are not parallel in naming structure for example:
+              				<ul>
+				<li>Forms</li>
+				<li>Regional offices</li>
+				<li>Apply for benefits</li>
+				</ul>
+            </li>
+					</ul>
+		</div>
+		</div>
+	  
+<h2 id="h-2">How to implement</h2>
+<div class="row">
+<!-- Field flow appearance -->
+<div class="col-md-8">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+
+<div class="wb-tabs">
+	<div class="tabpanels">
+		<details id="details-panel1">
+			<summary>Example 1</summary>
+			<p class="mrgn-tp-md"><strong>Content of first tab.</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+		</details>
+		<details id="details-panel2">
+			<summary>Example 2</summary>
+			<p class="mrgn-tp-md"><strong>Content of second tab.</strong></p>
+			<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</details>
+		<details id="details-panel3">
+			<summary>Example 3</summary>
+			<p class="mrgn-tp-md"><strong>Content of third tab.</strong></p>
+			<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+		</details>
+	</div>
+</div>
+<p class="mrgn-tp-md">Link to open a specific tab: <a href="#details-panel3" class="wb-tabs-ext">show the third tab</a>.</p>
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
+<pre><code>&lt;div class="<strong>wb-tabs</strong>"&gt;
+	&lt;div class="<strong>tabpanels</strong>"&gt;
+		&lt;details id="details-panel1"&gt;
+			&lt;summary&gt;Example 1&lt;/summary&gt;
+			&lt;p&gt;Content of first tab.&lt;/p&gt;
+			...
+		&lt;/details&gt;
+		&lt;details id="details-panel2"&gt;
+			&lt;summary&gt;Example 2&lt;/summary&gt;
+			&lt;p&gt;Content of second tab.&lt;/p&gt;
+			...
+		&lt;/details&gt;
+				&lt;details id="details-panel3"&gt;
+			&lt;summary&gt;Example 3&lt;/summary&gt;
+			&lt;p&gt;Content of third tab.&lt;/p&gt;
+			...
+		&lt;/details&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Link to open a specific tab --&gt;
+&lt;p&gt;&lt;a href="#details-panel3" class="<strong>wb-tabs-ext</strong>"&gt;Show the third tab&lt;/a&gt;&lt;/p&gt;</code></pre>
+</details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA instructional guidance product is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="h-4">Configuration options and events</h2>
+<p>For configuration options and events, refer to: <a href="https://wet-boew.github.io/v4.0-ci/docs/ref/tabs/tabs-en.html" rel="external">Tabbed interface on GitHub</a>.</p>
+
+
+<h2 id="h-6">Complementary components and functions</h2>
+
+<p>Additional add-on features and behaviours are available.</p>
+<ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
+	<!-- carousel -->
+	  <li class="col-md-4" id="carousel">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/carousel.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="carousel.html">Carousel</a></h3> 	 
+	   </div></div></div></li>	 
+	<!-- expand_hide -->
+	  <li class="col-md-4" id="expand_hide">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/expand_hide.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="expand_hide.html">Expand and hide</a></h3> 	 
+	   </div></div></div></li>
+	<!-- toggle -->
+	  <li class="col-md-4" id="toggle">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/toggle.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="toggle.html">Toggle</a></h3> 	 
+	   </div></div></div></li>	   
+
+</ul>
+ </div> 
+  <!-- CONTENT ENDS -->
+ 
+		<div id="def-preFooter"></div>
+         <!-- Write closure template -->
+         <script type="text/javascript">
+            var defPreFooter = document.getElementById("def-preFooter");
+            defPreFooter.outerHTML = wet.builder.preFooter({
+            dateModified: "2020-05-05",
+            showPostContent: true,
+            showFeedback: false,
+            showShare: false
+            });
+         </script>
+      </main>
+      <div id="def-footer">
+      </div>
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         var defFooter = document.getElementById("def-footer");
+         defFooter.outerHTML = wet.builder.footer({
+         showFooter: true,
+         showFeatures: false
+         });
+      </script>
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         document.write(wet.builder.refFooter({
+         }));
+      </script>
+      <script src="https://test.canada.ca/cra/js/alpha-banner.js"></script>
+	   <script src="../../../js/components.js"></script>
+   </body>
+</html>

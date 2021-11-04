@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+      <title>Carousel – Standard web pages – CRA instructional guidance product – Canada.ca</title>
+      <meta content="width=device-width,initial-scale=1" name="viewport">
+      <meta name=”robots” content=”noindex”>
+      <!-- Meta data -->
+      <!-- Meta data-->
+      <!-- Load closure template scripts -->
+      <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/soyutils.js"></script>
+      <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/wet-en.js"></script>
+      <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         document.write(wet.builder.refTop({
+         }));
+      </script>
+      <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
+      <link rel="stylesheet" href="../../../css/provisional-topic.css"/>
+      <link rel="stylesheet" href="../../../css/wsm.css"/>
+      <link rel="stylesheet" href="../../../css/step-list.css"/>
+      <link rel="stylesheet" href="../../../css/stacked-header.css"/>
+   </head>
+   <body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
+      <div id="def-top"> </div>
+      <!-- Write closure template --> 
+      <script type="text/javascript">
+         var defTop = document.getElementById("def-top");
+         defTop.outerHTML = wet.builder.top({
+           lngLinks: [{
+         
+             lang: "fr",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
+             text: "Français"
+           }],
+           breadcrumbs: [{
+             title: "CRA instructional guidance product",
+             href: "../../../index.html"},{title: "Design and coding",href: "../../index.html"},{title: "Standard web page design and coding",href: "../index.html"},{title: "Components and functions",href: "index.html"
+           }],
+           
+           search: false,
+           siteMenu: false,
+           showPreContent: true
+         });
+      </script>
+      <main role="main" property="mainContentOfPage" class="container">
+<!-- CONTENT STARTS -->
+<h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Carousel – Standard web pages – CRA instructional guidance product</h1>
+<div aria-hidden="true">
+<p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">CRA instructional guidance product</p>
+<h1 class="gc-thickline mrgn-tp-0">Carousel – Standard web pages</h1>
+</div>
+<div class="all-pre wb-prettify">
+<p>Responsive carousels are in-page components used to display multiple different items within the same content space. Carousels dynamically stacks multiple sections of content, transforming them into a tabbed interface.</p>
+<h2 class="h3 mrgn-tp-md">On this page</h2>
+    <ul>
+	<li><a href="#h-0">How to use</a></li>
+		<li><a href="#h-1">How to implement</a></li>
+      <li><a href="#h-2">Design options</a>
+	  <ul>
+		 <li><a href="#h-2-1">Basic carousel</a></li>
+		 <li><a href="#h-2-2">Multimedia player</a></li></ul>
+		</li>
+      <li><a href="#h-3">Configuration options and events</a></li>	   
+		
+		<li><a href="#h-4">Complementary components and functions</a></li>
+    </ul>
+
+<h2 id="h-1">How to use</h2>
+<ul>
+	<li>Responsive carousels are a set of 2 to 4 rotating slides that refresh on page load, with user-controls to rotate through the slides and to toggle to auto-rotation</li>
+	<li>The default controls for stepping through the slides are thumbnails for large screens and forward/back buttons, including an “Item X of X” message for small screens</li>
+	<li>When auto-play is activated, the default slide for the start of auto-rotation is slide one</li>
+	<li>The default timing for auto-rotation is 9 seconds per slide</li>
+	<li>The default style for transitioning between slides is horizontal sliding transition, starting from the right edge</li>
+	<li>Carousels may be implemented at various sizes, ranging from a single column to the full width of the screen</li>
+	<li>Each slide is made up of a combination of text and imagery, with the option to add a button link</li>
+</ul>
+
+<div class="row mrgn-tp-lg">
+<div class="col-md-7">
+<h3 class="mrgn-tp-0 text-muted">Correct use</h3>
+<ul class="fa-ul">  
+<li><span class="fas fa-check fa-li text-success"></span>Use only for awareness campaigns or to notify about new information in a topic</li>
+<li><span class="fas fa-check fa-li text-success"></span>Ensure the content in each slider all promotes the same type of information from a singular topic</li> 
+<li><span class="fas fa-check fa-li text-success"></span>Both text and imagery must be linked, but all links in the carousel slide must point to the same destination</li> 
+<li><span class="fas fa-check fa-li text-success"></span>Any call to action must be described in the hyperlink text or button link</li> 
+<li><span class="fas fa-check fa-li text-success"></span>Use the defined presentation classes included in the Canada.ca <abbr title="Web Experience Toolkit">WET</abbr> theme</li> 
+<li><span class="fas fa-check fa-li text-success"></span>For image sizing details, consult the <a href="images.html">images</a> component page</li> 
+</ul>
+</div>
+<div class="col-md-5">
+<h3 class="mrgn-tp-0 text-muted">Incorrect use</h3>
+<ul class="fa-ul">     
+		<li><span class="fas fa-times fa-li text-danger"></span>Do not use if the content can be rephrased into concise, plain language</li>
+		<li><span class="fas fa-times fa-li text-danger"></span>Do not embed text into imagery. Textual elements must be coded as HTML text</li>
+		<li><span class="fas fa-times fa-li text-danger"></span>Do not use more than 65 characters for all of the text on a carousel slide (including link label)</li>
+</ul>
+</div>
+</div>
+
+
+<h2 id="h-1">How to implement</h2>
+<ol>
+<li>Add a <code>div</code> element to the page with the class <code>wb-tabs</code> and either the styling class <a href="../../../demos/tabs/tabs-carousel-en.html#carousel-s1"><code>carousel-s1</code></a> or <a href="../../../demos/tabs/tabs-carousel-en.html#carousel-s2"><code>carousel-s2</code></a>.</li>
+<li>Add a <code>div</code> element to the previous <code>div</code> element with the class <code>tabpanels</code>.</li>
+<li>For each tab panel, add a <code>div</code> element with a unique id, <code>role="tabpanel"</code> and <code>class="out"</code>. For the tab panel that should be opened by default, replace the <code>out</code> class with <code>in</code>.</li>
+<li>Specify the tab panel transition type by adding one of the following classes to the <code>div</code> element for each of the tab panels:
+<ul>
+<li><code>fade</code>: Fading transition</li>
+<li><code>slide</code>: Horizontal sliding transition</li>
+<li><code>slidevert</code>: Vertical sliding transition</li>
+</ul>
+<ul class="list-unstyled">
+	<li>
+		<details>
+			<summary>Code example - transitions</summary>
+<pre><code>&lt;div class="wb-tabs carousel-s1"&gt;
+	&lt;div class="tabpanels"&gt;
+		&lt;div role="tabpanel" id="panel1" class="in fade"&gt;
+		&lt;/div&gt;
+		&lt;div role="tabpanel" id="panel2" class="out fade"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+		</details>
+	</li>
+</ul>
+
+</li>
+<li>Add a <code>figure</code> element to each tab panel.</li>
+<li>Add content to each <code>figure</code> element:
+<ul>
+<li><strong>Image:</strong> Add an image to the <code>figure</code> element followed by a <code>figcaption</code> element with the caption for the tab panel.
+<ul class="list-unstyled">
+	<li>
+		<details>
+			<summary>Code example - figure with an image</summary>
+<pre><code>&lt;div role="tabpanel" id="panel1" class="in fade"&gt;
+	&lt;figure&gt;
+		&lt;img src="img/protect-environment.jpg" alt="Panel 1" /&gt;
+		&lt;figcaption&gt;
+			&lt;p&gt;
+				Take Note: &lt;a href="https://www.tc.gc.ca/eng/civilaviation/opssvs/general-personnel-changes-1814.htm"&gt;Renewal of the Aviation Document Booklet&lt;/a&gt;&#160;&lt;br /&gt;
+				Learn more about &lt;a href="https://www.tc.gc.ca/eng/air-menu.htm"&gt;air transportation&lt;/a&gt; in Canada.
+			&lt;/p&gt;
+		&lt;/figcaption&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;
+</code></pre>
+		</details>
+	</li>
+</ul>
+</li>
+<li><strong>Video:</strong> Add a multimedia player to the <code>figure</code> element according to the <a href="multimedia.html">multimedia player documentation</a>.
+<ul class="list-unstyled">
+	<li>
+		<details>
+			<summary>Code example - figure with a video</summary>
+<pre><code>&lt;div role="tabpanel" id="panel1" class="in fade"&gt;
+	&lt;figure class="wb-mltmd"&gt;
+		&lt;video poster="../multimedia/demo/video1-en.jpg" title="Looking for a Job"&gt;
+			&lt;source type="video/webm" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" /&gt;
+			&lt;source type="video/mp4" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;
+			&lt;track src="../multimedia/cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
+		&lt;/video&gt;
+		&lt;figcaption&gt;
+			&lt;p&gt;Looking for a Job (&lt;a href="../multimedia/cpts-lg-en.html"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+		&lt;/figcaption&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;
+</code></pre>
+		</details>
+	</li>
+</ul>
+</li>
+<li><strong>Other content:</strong> Add content to the <code>figure</code> element followed by a <code>figcaption</code> element with the caption for the tab panel.
+<ul class="list-unstyled">
+	<li>
+		<details>
+			<summary>Code example - figure with other content</summary>
+<pre><code>&lt;div role="tabpanel" id="panel1" class="in fade"&gt;
+	&lt;figure&gt;
+		&lt;table&gt;
+			...
+		&lt;/table&gt;
+		&lt;figcaption&gt;
+			&lt;p&gt;Tab panel caption&lt;/p&gt;
+		&lt;/figcaption&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;
+</code></pre>
+		</details>
+	</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Add a <code>ul</code> element with <code>role="tablist"</code> at the start of the <code>div</code> element with the <code>wb-tabs</code> class.</li>
+<li>For each tab panel, add an <code>li</code> element to the previous <code>ul</code> element. Add <code>class="active"</code> for the tab panel that should be open by default.</li>
+<li>Add an <code>a</code> element to each <code>li</code> element
+</li><li>Add to each <code>li</code> element an <code>a</code> element with the label of the tab and that links to the associated tab panel.
+<ul class="list-unstyled">
+	<li>
+		<details>
+			<summary>Code example - links to each panel</summary>
+<pre><code>&lt;ul role="tablist"&gt;
+	&lt;li class="active"&gt;&lt;a href="#panel27"&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#panel28"&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+		...
+&lt;/ul&gt;
+</code></pre>
+		</details>
+	</li>
+</ul>
+</li>
+<li><strong>Optional:</strong> Override the default settings using the <a href="#h-2-3">configuration options</a>.</li>
+<li><strong>Optional:</strong> Add an external link that affects which tab is visible. The href attribute includes the id of the panel to make visible. (v4.0.8+)
+<ul class="list-unstyled">
+	<li>
+		<details>
+			<summary>Code example - external link</summary>
+<pre><code>&lt;p&gt;&lt;a href="#panel3" class="wb-tabs-ext"&gt;Show the third panel&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+		</details>
+	</li>
+</ul>
+</li>
+</ol>
+
+<h2 id="h-2" >Design options</h2>
+<h3 id="h-2-1">Basic carousel</h3>
+<div class="row">
+<!-- Field flow options -->
+<div class="col-md-4 ds-modifier">
+<!--<p class="lead mrgn-tp-md"><span class="fas fa-tools"></span> Modify the design</p>-->
+<form>
+
+<div class="row">
+
+<div class="col-xs-6">
+<div class="radioselected">
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#style1", "class": "carousel-s1 carousel-s2 show-thumbs"} ]}'>
+<p><span class="h4 mrgn-tp-0">Style</span></p>
+<ul>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#style1", "class": "carousel-s1", "live": true}, {"action": "toggle", "toggle": ".cl-carousel-s1, .cl-no-thumbs", "live": true}]'>Carousel S1</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#style1", "class": "carousel-s2", "live": true}, {"action": "addClass", "source": "#s1hidden", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-carousel-s2, .cl-no-thumbs", "live": true}]'>Carousel S2</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#style1", "class": "carousel-s2 show-thumbs", "live": true}, {"action": "addClass", "source": "#s1hidden", "class": "hidden", "live": true}, {"action": "addClass", "source": "#slide1, #slide2, #no-thumbs", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-carousel-s2-thumb, .cl-thumbs", "live": true}]'>Carousel S2 with thumbnails</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="col-xs-6">
+<div class="radioselected">
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "noForm": true, "reset": [{ "action": "removeClass", "source":"#panel1, #panel2, #panel3", "class": "fade slide slidevert                 "} ]}'>
+<p><span class="h4 mrgn-tp-0">Transition</span></p>
+<ul>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#panel1, #panel2", "class": "", "live": true}]'>Default</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#panel1, #panel2", "class": "fade", "live": true}, {"action": "toggle", "toggle": ".cl-fade", "live": true}]'>Fade</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#panel1, #panel2", "class": "slide", "live": true}, {"action": "toggle", "toggle": ".cl-slide", "live": true}]'>Slide</li>
+<li data-wb-fieldflow='[{"action": "addClass", "source": "#panel1, #panel2", "class": "slidevert", "live": true}, {"action": "toggle", "toggle": ".cl-slidevert", "live": true}]'>Slide vertical</li>
+</ul>
+</div>
+
+</div>
+</div>
+</div>
+
+
+</form>
+</div>
+<!-- Field flow appearance -->
+<div class="col-md-8">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+<div class="wb-tabs carousel-s1" id="style1">
+	<ul role="tablist">
+		<li class="active"><a href="#panel1"><span id="slide1">Slide 1: ...</span><span id="img1"><img src="images/canada_red.jpg" alt="Slide 1: ..." /></span></a></li>
+		<li><a href="#panel2"><span id="slide2">Slide 2: ...</span><span id="img2"><img src="images/canada_green.jpg" alt="Slide 2: ..." /></span></a></li>
+	</ul>	
+	<div class="tabpanels">
+		<div role="tabpanel" id="panel1" class="in">
+			<figure>
+				<img src="images/canada_red.jpg" class="img-responsive full-width" alt="" />
+				<figcaption>
+					<p>
+						Slide 1: Your text...
+					</p>
+				</figcaption>
+			</figure>
+		</div>
+				<div role="tabpanel" id="panel2" class="out">
+			<figure>
+				<img src="images/canada_green.jpg" alt="" />
+				<figcaption>
+					<p>
+						Slide 2: Your text...
+					</p>
+				</figcaption>
+			</figure>
+		</div>
+
+	</div>
+</div>
+
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
+<pre><code>&lt;div class="wb-tabs<strong><span class="cl-carousel-s1" id="s1hidden"> carousel-s1</span><span class="hidden cl-carousel-s2"> carousel-s2</span><span class="hidden cl-carousel-s2-thumb"> carousel-s2 show-thumbs</span>"&gt;
+	<span id="no-thumbs" class="cl-no-thumbs"></strong>&lt;ul role="tablist"&gt;
+		&lt;li class="active"&gt;&lt;a href="#panel1"&gt;Slide 1: ...&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#panel2"&gt;Slide 2: ...&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;</span><span class="hidden cl-thumbs">&lt;ul role="tablist"&gt;
+		&lt;li class="active"&gt;&lt;a href="#panel1"&gt;&lt;img src="url_mage_1" alt="..." /&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#panel2"&gt;&lt;img src="url_mage_2" alt="..." /&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;</span>	
+	
+	&lt;div class="tabpanels"&gt;
+		&lt;div role="tabpanel" class="in<strong><span class="hidden cl-fade"> fade</span><span class="hidden cl-slide"> slide</span><span class="hidden cl-slidevert"> slidevert</span></strong>"&gt;
+			&lt;figure&gt;
+				&lt;img src="url_mage_1" class="img-responsive full-width" alt="" /&gt;
+				&lt;figcaption&gt;
+					&lt;p&gt;
+						Slide 1: Your text...
+					&lt;/p&gt;
+				&lt;/figcaption&gt;
+			&lt;/figure&gt;
+		&lt;/div&gt;
+				&lt;div role="tabpanel" class="out<strong><span class="hidden cl-fade"> fade</span><span class="hidden cl-slide"> slide</span><span class="hidden cl-slidevert"> slidevert</span></strong>"&gt;
+			&lt;figure&gt;
+				&lt;img src="url_mage_2" alt="" /&gt;
+				&lt;figcaption&gt;
+					&lt;p&gt;
+						Slide 2: Your text...
+					&lt;/p&gt;
+				&lt;/figcaption&gt;
+			&lt;/figure&gt;
+		&lt;/div&gt;
+
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</details>
+</details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA instructional guidance product is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
+</details>
+</div>
+</div>
+</div>
+<!-- Field flow warnings -->
+<div class="mrgn-tp-md ">
+</div>
+</div>
+</div>
+
+<h3 id="h-2-2">Multimedia player</h3>
+<div class="row">
+<div class="col-md-8">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+		<div class="wb-tabs carousel-s2">
+			<ul role="tablist">
+				<li class="active"><a href="#panel19">Tab 1</a></li>
+				<li><a href="#panel20">Tab 2</a></li>
+			</ul>
+			<div class="tabpanels">
+				<div role="tabpanel" id="panel19" class="in fade">
+					<figure class="wb-mltmd">
+										<video title="Video: The Canada Revenue Agency – We’re more than just taxes" id="wb-auto-4-md" poster="https://www.canada.ca/content/dam/cra-arc/migration/cra-arc/vdgllry/ndvdls/mrthntxs-eng.jpg"> 
+    <source src="https://www.canada.ca/content/dam/cra-arc/migration/cra-arc/vc/ndvdls/mrthntxs-eng.mp4" type="video/mp4"> 
+    <track kind="captions" src="https://www.canada.ca/content/dam/cra-arc/migration/cra-arc/vdgllry/ndvdls/mrthntxs-eng.xml" srclang="en" label="English" data-type="application/ttml+xml"> 
+   </video>
+						<figcaption>
+							<p>The Canada Revenue Agency – We’re more than just taxes (<a href="https://www.canada.ca/en/revenue-agency/news/cra-multimedia-library/individuals-video-gallery/transcript-canada-revenue-agency-we-than-just-taxes.html">Transcript</a>)</p>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
+<pre></code>&lt;div class="wb-tabs carousel-s2"&gt;
+  &lt;ul role="tablist"&gt;
+    &lt;li class="active"&gt;&lt;a href="#panel19"&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#panel20"&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;div class="tabpanels"&gt;
+  &lt;div role="tabpanel" id="panel19" class="in fade"&gt;
+    &lt;figure class="wb-mltmd"&gt;
+      &lt;video title="Video: Title ..." id="wb-auto-4-md" poster="image_source"&gt; 
+        &lt;source src="video_source" type="video/mp4"&gt; 
+        &lt;track kind="captions" src="Captions_source" srclang="en" label="English" data-type="application/ttml+xml"&gt; 
+      &lt;/video&gt;
+      &lt;figcaption&gt;
+        &lt;p&gt;Title ... (&lt;a href="transcript_source"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+      &lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		</details>
+				</details>
+		<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA instructional guidance product is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
+</details>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
+<h2 id="h-3">Configuration options and events</h2>
+<p>For configuration options and events, refer to: <a href="https://wet-boew.github.io/v4.0-ci/docs/ref/tabs/tabs-en.html" rel="external">Tabbed interface on GitHub</a>.</p>
+
+<h2 id="h-4">Complementary components and functions</h2>
+<p>Additional add-on features and behaviours are available.</p>
+<ul class="list-unstyled row wb-eqht-grd list-grid-hover">	
+	<!-- Images -->
+	  <li class="col-md-4" id="Images">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/images.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="images.html">Images</a></h3> 	 
+	   </div></div></div></li>	 
+		<!-- Tabs -->
+	  <li class="col-md-4" id="Tabs">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/tabs.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="tabs.html">Tabbed interface</a></h3> 	 
+	   </div></div></div></li>	
+	   <!-- video_audio -->
+	  <li class="col-md-4" id="video_audio">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/video_audio.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="video_audio.html">Video and audio</a></h3> 	 
+	   </div></div></div></li>
+   
+
+</ul>
+
+ </div> 
+ <!-- CONTENT ENDS -->
+ 
+		<div id="def-preFooter"></div>
+         <!-- Write closure template -->
+         <script type="text/javascript">
+            var defPreFooter = document.getElementById("def-preFooter");
+            defPreFooter.outerHTML = wet.builder.preFooter({
+            dateModified: "2020-05-05",
+            showPostContent: true,
+            showFeedback: false,
+            showShare: false
+            });
+         </script>
+      </main>
+      <div id="def-footer">
+      </div>
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         var defFooter = document.getElementById("def-footer");
+         defFooter.outerHTML = wet.builder.footer({
+         showFooter: true,
+         showFeatures: false
+         });
+      </script>
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         document.write(wet.builder.refFooter({
+         }));
+      </script>
+      <script src="https://test.canada.ca/cra/js/alpha-banner.js"></script>
+	  	  <script src="../../../js/components.js"></script>
+   </body>
+</html>
