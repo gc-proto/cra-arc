@@ -761,6 +761,7 @@
 <p><span class="h4">Headings</span></p>
 <ul>
 <li data-wb-fieldflow='[{"action": "removeClass", "source": "#stepsol", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-steps1", "live": true}]'>No headings (using ordered list)</li>
+<li data-wb-fieldflow='[{"action": "removeClass", "source": "#stepsolh, #stepsol", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-olh", "live": true}]'>With headings (using ordered list)</li>
 <li data-wb-fieldflow='[{"action": "removeClass", "source": "#stepsdiv", "class": "hidden", "live": true}, {"action": "toggle", "toggle": ".cl-div", "live": true}]'>With headings (using section/div)</li>
 </ul>
 </div>
@@ -794,25 +795,25 @@
 <!-- Field flow warnings -->
 <div class="panel panel-body brdr-0 brdr-rds-0">
 <ol class="lst-stps" id="stepsol">
-        <li>Lorem ipsum dolor sit amet, esse autem per ex, nec in magna lorem. Ea nec error scriptorem referrentur, patrioque torquatos conclusionemque pri in. Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.</li>
-        <li>Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.
+        <li><span class="cl-olh hidden"><h3>Heading goes here</h3></span>Lorem ipsum dolor sit amet, esse autem per ex, nec in magna lorem. Ea nec error scriptorem referrentur, patrioque torquatos conclusionemque pri in. Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.</li>
+        <li><span class="cl-olh hidden"><h3>Heading goes here</h3></span>Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.
 		<ol id="subol" class="hidden lst-stps-sub">
 	 <li>List item 2 sub item 1</li>
 	 <li>List item 2 sub item 2</li>
 	 <li>List item 2 sub item 3</li>
     </ol>	</li>
-        <li>
+        <li><span class="cl-olh hidden"><h3>Heading goes here</h3></span>
           <p>Lorem ipsum dolor sit amet, esse autem per ex, nec in magna lorem. Ea nec error scriptorem referrentur, patrioque torquatos conclusionemque pri in. </p>
           <p>Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.</p>
         </li>
       </ol>
 <section class="hidden lst-stps" id="stepsdiv">
   <div class="lst-stps-itm">
-   <h2><span class="wb-inv">Step 1</span> Heading goes here</h2>
+   <h3><span class="wb-inv">Step 1</span> Heading goes here</h3>
     <p>Lorem ipsum dolor sit amet, esse autem per ex, nec in magna lorem. Ea nec error scriptorem referrentur, patrioque torquatos conclusionemque pri in. Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.</p>
   </div>
   <div class="lst-stps-itm">
-   <h2><span class="wb-inv">Step 2</span> Heading goes here</h2>
+   <h3><span class="wb-inv">Step 2</span> Heading goes here</h3>
     <p>Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.</p>
 	<section id="subdiv" class="lst-stps-sub hidden">
 	 <div class="lst-stps-itm">
@@ -830,7 +831,7 @@
 	</section>
   </div>
   <div class="lst-stps-itm">
-   <h2><span class="wb-inv">Step 3</span> Heading goes here</h2>
+   <h3><span class="wb-inv">Step 3</span> Heading goes here</h3>
     <p>Lorem ipsum dolor sit amet, esse autem per ex, nec in magna lorem. Ea nec error scriptorem referrentur, patrioque torquatos conclusionemque pri in.</p>
 	<p>Sed sint debitis ad, mazim vitae temporibus qui ut, vel erat ponderum efficiendi ei. In idque euismod sed.</p>
   </div>
@@ -841,20 +842,20 @@
 <details id="app2">
 <summary>HTML code</summary>
 <pre><code><span id="stepsol" class="cl-steps1">&lt;ol class="<strong>lst-stps<span class="hidden cl-zebra"> stps-strpd</span></strong>"&gt;
-  &lt;li&gt;...&lt;/li&gt;
-  &lt;li&gt;...<span class="hidden cl-subol"><br>    &lt;ol class="<strong>lst-stps-sub<span class="hidden cl-subzebra"> stps-strpd</span></strong>"&gt;
+  &lt;li&gt;<span class="cl-olh hidden"><br>    &lt;h3&gt;Heading goes here&lt;/h3&gt;<br>    </span>...<span class="cl-olh hidden"><br>  </span>&lt;/li&gt;
+  &lt;li&gt;<span class="cl-olh hidden"><br>    &lt;h3&gt;Heading goes here&lt;/h3&gt;<br>    </span>...<span class="cl-olh hidden"><br>  </span><span class="hidden cl-subol"><br>    &lt;ol class="<strong>lst-stps-sub<span class="hidden cl-subzebra"> stps-strpd</span></strong>"&gt;
       &lt;li&gt;...&lt;/li&gt;
       &lt;li&gt;...&lt;/li&gt;
       &lt;li&gt;...&lt;/li&gt;
     &lt;/ol&gt;<br></span>&lt;/li&gt;
-	&lt;li&gt;...&lt;/li&gt;
+	&lt;li&gt;<span class="cl-olh hidden"><br>    &lt;h3&gt;Heading goes here&lt;/h3&gt;<br>    </span>...<span class="cl-olh hidden"><br>  </span>&lt;/li&gt;
 &lt;/ol&gt;</span><span class="hidden cl-div">&lt;section class="<strong>lst-stps<span class="hidden cl-zebra"> stps-strpd</span></strong>"&gt;
   &lt;div class="<strong>lst-stps-itm</strong>"&gt;
-    &lt;h2&gt;&lt;span class="wb-inv"&gt;Step 1&lt;/span&gt; Heading&lt;/h2&gt;
+    &lt;h3&gt;&lt;span class="wb-inv"&gt;Step 1&lt;/span&gt; Heading&lt;/h3&gt;
     &lt;p&gt;...&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="<strong>lst-stps-itm</strong>"&gt;
-    &lt;h2&gt;&lt;span class="wb-inv"&gt;Step 2&lt;/span&gt; Heading&lt;/h2&gt;
+    &lt;h3&gt;&lt;span class="wb-inv"&gt;Step 2&lt;/span&gt; Heading&lt;/h3&gt;
     &lt;p&gt;...&lt;/p&gt;<span class="hidden cl-subdiv"><br>    &lt;section class="<strong>lst-stps-sub<span class="hidden cl-subzebra"> stps-strpd</span></strong>"&gt;
       &lt;div class="<strong>lst-stps-itm</strong>"&gt;
         &lt;h3&gt;&lt;span class="wb-inv"&gt;Step 2a&lt;/span&gt; Sub-heading&lt;/h3&gt;
@@ -871,7 +872,7 @@
     &lt;/section&gt;</span>
   &lt;/div&gt;
   &lt;div class="<strong>lst-stps-itm</strong>"&gt;
-    &lt;h2&gt;&lt;span class="wb-inv"&gt;Step 3&lt;/span&gt; Heading&lt;/h2&gt;
+    &lt;h3&gt;&lt;span class="wb-inv"&gt;Step 3&lt;/span&gt; Heading&lt;/h3&gt;
     &lt;p&gt;...&lt;/p&gt;
     &lt;p&gt;...&lt;/p&gt;
   &lt;/div&gt;
