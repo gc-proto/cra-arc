@@ -1,970 +1,693 @@
-<!DOCTYPE html>
-<!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en" dir="ltr">
-<!--<![endif]-->
-<head>
-<meta charset="utf-8">
-<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Exercises: Calculate a refund or a balance owing - Learn about your taxes - Canada.ca</title>
-<meta content="width=device-width,initial-scale=1" name="viewport">
-<!-- Meta data -->
-<!-- Meta data-->
-<!-- Load closure template scripts -->
-<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/compiled/soyutils.js"></script>
-<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/compiled/wet-en.js"></script>
 
-<!-- Write closure template -->
-<script type="text/javascript">
-			document.write(wet.builder.refTop({
-			}));
-		</script>
-</head>
-<body vocab="http://schema.org/" typeof="WebPage">
-<div id="def-top"> </div>
-<!-- Write closure template --> 
-<script type="text/javascript">
-			var defTop = document.getElementById("def-top");
-			defTop.outerHTML = wet.builder.top({
-				lngLinks: [{
-					lang: "fr",
-					href: "",
-					text: "Français"
-				}],
-				breadcrumbs: [{
-					title: "Canada.ca",
-					href: "https://www.canada.ca/en.html"
-					},{
-            		title: "Taxes",
-            		href: "https://www.canada.ca/en/services/taxes.html"
-            	},{
-				title: "Income tax",
-            		href: "https://www.canada.ca/en/services/taxes/income-tax.html"
-					},{
-				title: "Personal income tax",
-            		href: "https://www.canada.ca/en/services/taxes/income-tax/personal-income-tax.html"},{
-				title: "Learn about your taxes",
-            		href: "index.html"},{
-				title: "Completing a basic tax return",
-            		href: "completing.html"}],
-				search: true,
-				siteMenu: true,
-				showPreContent: true
-			});
-</script>
-<main role="main" property="mainContentOfPage" class="container">
-  <h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Exercises: Calculate a refund or a balance owing - Learn about your taxes</h1>
-  <div aria-hidden="true">
-    <p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">Learn about your taxes</p>
-    <h1 class="gc-thickline mrgn-tp-0">Exercises: Calculate a refund or a balance owing</h1>
-  </div>
-  <div data-wb-urlmapping='{"answerkey=1": [{"action": "ajax", "url": "jonah-answers.txt #jonah-btn", "container": "#btn-here"}, {"action": "addClass", "source": "#example-btns, #calculation-init", "class": "hidden"}, {"action": "removeClass", "source": ".example-1, #intro, #calculation-alt", "class": "hidden"}], "answerkey=2": [{"action": "ajax", "url": "terry-answers.txt #terry-btn", "container": "#btn-here"}, {"action": "addClass", "source": "#example-btns, #calculation-init", "class": "hidden"}, {"action": "removeClass", "source": ".example-2, #intro, #calculation-alt", "class": "hidden"}]}'></div>
-  <div class="hidden-print">
-    <div class="alert alert-info hidden" id="intro">
-      <h2 class="h3 text-info">Answer key will follow</h2>
-      <p class="wb-inv">Alert: information</p>
-      <p>You will be able to see the answers  by selecting the "Show answers" button after the scenario and information.</p>
-    </div>
-    <p>This  exercise uses a simplified version of the income tax and benefit return to show  you the basic calculations for each step.    
-    <p>The  amounts shown <strong>are not</strong> actual tax  brackets, tax rates or credit values. <strong>Do  not</strong> use them to do your taxes or to check calculations done by certified  tax software or on official paper tax forms. </p>
-    <p>Certified  tax software will calculate most amounts based on the information you input.  These amounts are provided to you for you to complete this exercise manually.</p>
-    <p>If  you are a resident of Quebec, you will complete a separate provincial tax  return with <span lang="fr">Revenu Québec</span>.</p>
-    <p><strong>Instructions:</strong></p>
-    <ol>
-      <li>Review each individual&rsquo;s tax  information </li>
-      <li>Use the information to fill out the  simplified tax return at the end of the page</li>
-      <li>Complete the calculations</li>
-      <li>Find out if the individual is getting  a refund or has a balance owing </li>
-      <li>Compare your answers to the answers  provided at the end of the exercise</li>
-    </ol>
-  </div>
-  <h2 id="examples">Scenarios</h2>
-  <div id="example-btns">
-    <p>Select a scenario to get started</p>
-    <ul class="list-inline hidden-print" data-wb-actionmng='[
-		{ "trggroup":"clearFilter", "action": "removeClass", "source": ".fltopts", "class": "btn-primary" }, { "trggroup":"clearFilter", "action": "addClass", "source": ".fltopts", "class": "btn-link" }]'>
-      <li>
-        <button type="button" class="fltopts btn btn-link btn-lg mrgn-lft-md mrgn-rght-md" data-wb-doaction='[
-			{ "action": "run", "trggroup": "clearFilter" },
-			{ "action": "removeClass", "source": ".example-1:not(.correct-answer), .answers-1, #form-fill, #calculation-init", "class": "hidden"}, { "action": "addClass", "source": ".example-2, .answers-2, #calculation-alt", "class": "hidden"},
-			{ "action": "addClass", "class": "btn-primary" }, { "action": "removeClass", "class": "btn-link" }, {"action": "removeClass", "source": "#tax-bracket>colgroup>col", "class": "bg-info"} 
-		]' onclick="document.getElementById('tax-bracket-select').reset();">Jonah quits the bakery<span class="wb-inv">: start exercise</span></button>
-      </li>
-      <li class="brdr-lft">
-        <button class="fltopts btn btn-link btn-lg mrgn-lft-md mrgn-rght-md" data-wb-doaction='[
-			{ "action": "run", "trggroup": "clearFilter" },
-			{ "action": "removeClass", "source": ".example-2:not(.correct-answer), .answers-2, #form-fill, #calculation-init", "class": "hidden" }, { "action": "addClass", "source": ".example-1, .answers-1, #calculation-alt", "class": "hidden" },
-			{ "action": "addClass", "class": "btn-primary" }, { "action": "removeClass", "class": "btn-link" }, {"action": "removeClass", "source": "#tax-bracket>colgroup>col", "class": "bg-info"} 
-		]' onclick="document.getElementById('tax-bracket-select').reset();">Terry keeps track of tips<span class="wb-inv">: start exercise</span></button>
-      </li>
-    </ul>
-  </div>
-  <div aria-live="polite">
-    <div class="example-1 hidden">
-      <h3>Jonah quits the bakery</h3>
-      <p>Jonah worked full-time at a local bakery last year until July, when he quit his job to travel for a month before going back to school.</p>
-      <p>He did not have any other income for the year. </p>
-      <p>Review the T4 slip and tax information to complete the exercise.</p>
-    </div>
-  </div>
-  <div class="example-1 hidden">
-    <h4>T4 slip example</h4>
-    <p>Jonah received this T4 slip, Statement of Remuneration Paid, from the bakery.</p>
-    <img src="images/jonah-t4.png" alt="Text of Jonah's T4 slip below" class="img-responsive">
-    <details>
-      <summary>Details of Jonah's T4 slip</summary>
-      <p>Employer's name: Casey's Bakery</p>
-      <p>Employee's name and address:</p>
-      <ul>
-        <li>Last name: Smith</li>
-        <li>First name: Jonah</li>
-        <li>Address:
-          <ul class="lst-none">
-            <li>1 Home Ave<br>
-              City, Newfoundland and Labrador, X0X 0X0<br>
-              Province of employment</li>
-          </ul>
-        </li>
-      </ul>
-      <p>Income and other information</p>
-      <ul>
-        <li>Box 10: Province of employment – NL</li>
-        <li>Box 12: Social Insurance Number –<a class="nowrap">123 456 789</a></li>
-        <li>Box 14: Employment income (Line 10100) – $18,000.00</li>
-        <li>Box 16: Employee's CPP contributions (Line 30800) – $870.90</li>
-        <li>Box 18: Employee's EI premiums (Line 31200) – $284.40</li>
-		 <li>Box 18: Employee's EI premiums (Line 31200) – $284.40</li>
-		  <li>Box 20: RPP contributions (line 20700) - $675.00</li>
-        <li>Box 22: Income tax deducted (Line 43700) – $2,209.80</li>
-        <li>Box 24: EI Insurable earnings – $18,000.00</li>
-        <li>Box 26: CPP/QPP pensionable earnings – $18,000.00</li>
-        <li>Box 85: Other information (explained on reverse side of slip) – $76.50</li>
-      </ul>
-    </details>
-    <h3>What information needs to be entered on Jonah's taxes</h3>
-    <p><strong>Step 1:</strong> Identification</p>
-    <ul id="step1-ajax-1">
-      <li>Name: <strong>Jonah Smith</strong></li>
-      <li>SIN:<strong><a class="nowrap">123 456 789</a></strong></li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 2:</strong> Total income</p>
-    <ul id="step2-ajax-1">
-      <li> Jonah's total income includes:
-        <ul>
-          <li>the employment income of <strong>$18,000.00</strong> shown in box 14 of his T4 slip</li>
-        </ul>
-      </li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 3:</strong> Net income</p>
-    <ul id="step3-ajax-1">
-      <li> Jonah's deductions for calculating net income are <strong>$950.00</strong>, which includes:
-        <ul>
-          <li>registered pension plan (RPP) contributions shown in box 20 of his T4 slip</li>
-          <li>union dues shown in box 44, of his T4 slip</li>
-          <li>enhanced Canada Pension Plan (CPP) contributions, calculated using CPP contributions shown in box 16 of his T4 slip</li>
-        </ul>
-      </li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 4:</strong> Taxable income</p>
-    <ul id="step4-ajax-1">
-      <li> Jonah's deductions for calculating taxable income are <strong>$0.00</strong></li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 5:</strong> Federal tax</p>
-    <ul id="step5-ajax-1">
-      <li> Jonah's federal non-refundable tax credits are <strong>$16,500.00</strong>, which includes:
-        <ul>
-          <li>the basic personal amount</li>
-          <li>CPP contributions calculated using amounts shown in box 16 of his T4 slip</li>
-          <li>employment insurance (EI) premiums shown in box 18 of his T4 slip</li>
-          <li>the Canada employment amount</li>
-          <li>tuition amounts calculated using amount shown on a T2202, Tuition and Enrolment Certificate
-            <ul>
-              <li>an image of this form is not provided here </li>
-            </ul>
-          </li>
-          <li>Jonah's eligible medical expenses, including premiums for private health services plan shown in box 85 of his T4 slip</li>
-        </ul>
-      </li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 6:</strong> Provincial or territorial tax</p>
-    <ul id="step6-ajax-1">
-      <li> Jonah's provincial or territorial tax is <strong>$16.00</strong>
-        <ul>
-          <li>when you do your taxes, a similar calculation is done for provincial or territorial taxes as for federal tax (step 5)
-            <ul>
-              <li>for this exercise, the completed calculation is provided</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 7:</strong> Refund or balance owing</p>
-    <ul id="step7-ajax-1">
-      <li> Jonah's total income tax deducted at source is <strong>$2,209.80</strong>, as shown in box 22 of his T4 slip</li>
-      <li>Jonah's refundable tax credits are <strong>$0.00</strong></li>
-    </ul>
-    <h3>Complete Jonah's calculations</h3>
-    <p>Enter the amounts in the correct spaces and complete the calcuations to find out if Jonah will get a refund or have a balance owing.</p>
-    <p>For this example, you will be able to validate your amounts, calculations and final answer at the end of the exercise.</p>
-    <hr class="brdr-bttm">
-  </div>
-  <section aria-live="polite">
-    <div class="example-2 hidden">
-      <h3>Terry keeps track of tips</h3>
-      <p>Terry is 18 and works at a pizza restaurant, where she earn hourly wages and tips.</p>
-      <p>Last year Terry received $997.60 in cash tips, in addition to her salary. Terry kept track of her cash tips because her employer does not record this information.</p>
-      <p>Review the T4 slip and tax information to complete the exercise.</p>
-    </div>
-  </section>
-  <div class="example-2 hidden">
-    <h4>T4 slip example</h4>
-    <p>Terry received this T4 slip, Statement of Remuneration Paid, from her employer.</p>
-    <img src="images/terry-t4.png" alt="Text of Terry's T4 slip below" class="img-responsive">
-    <details>
-      <summary>Details of Terry's T4 slip</summary>
-      <p>Employer's name: Plaza di pizza</p>
-      <p>Employee's name and address:</p>
-      <ul>
-        <li>Last name: Lee</li>
-        <li>First name: Terry</li>
-        <li>Address:
-          <ul class="lst-none">
-            <li>123 Main Street<br>
-              City, British Columbia, X0X 0X0</li>
-          </ul>
-        </li>
-      </ul>
-      <p>Income and other information</p>
-      <ul>
-        <li>Box 10: Province of employment – BC</li>
-        <li>Box 12: Social Insurance Number –<a class="nowrap">777 777 777</a></li>
-        <li>Box 14: Employment income (Line 10100) – $12,000.00</li>
-        <li>Box 16: Employee's CPP contributions (Line 30800) – $480.00</li>
-        <li>Box 18: Employee's EI premiums (Line 31200) – $200.00</li>
-        <li>Box 22: Income tax deducted (Line 43700) – $200.00</li>
-        <li>Box 24: EI Insurable earnings – $12,000.00</li>
-        <li>Box 26: CPP/QPP pensionable earnings – $12,000.00</li>
-      </ul>
-    </details>
-    <h3>What information needs to be entered on Terry’s taxes</h3>
-    <p><strong>Step 1:</strong> Identification</p>
-    <ul id="step1-ajax-2">
-      <li>Name: <strong>Terry Lee</strong></li>
-      <li>SIN: <strong><a class="nowrap">777 777 777</a></strong></li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 2:</strong> Total income</p>
-    <ul id="step2-ajax-2">
-      <li> Terry's total income includes:
-        <ul>
-          <li>employment income of <strong>$12,000.00</strong> shown in box 14 of her T4 slip</li>
-        </ul>
-        <ul>
-          <li>cash tips received for an amount of <strong>$997.60</strong> not shown on an information slip</li>
-        </ul>
-      </li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 3:</strong> Net income</p>
-    <ul id="step3-ajax-2">
-      <li> Terry's deductions for calculating net income are <strong>$625.00</strong>, which includes:
-        <ul>
-          <li>RRSP contributions shown on a receipt
-            <ul>
-              <li>an image of this receipt is not provided here</li>
-            </ul>
-          </li>
-          <li>enhanced CPP contributions, calculated using CPP contributions shown in box 16 of her T4 slip</li>
-        </ul>
-      </li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 4:</strong> Taxable income</p>
-    <ul id="step4-ajax-2">
-      <li>
-        <p>Terry's deductions for calculating taxable income are <strong>$0.00</strong></p>
-      </li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 5:</strong> Federal tax</p>
-    <ul id="step5-ajax-2">
-      <li> Terry's federal non-refundable tax credits are <strong>$15,000.00</strong>, which includes:
-        <ul>
-          <li>the basic personal amount</li>
-          <li>CPP contributions calculated using amounts shown in box 16 of her T4 slip</li>
-          <li>employment insurance (EI) premiums shown in box 18 of her T4 slip</li>
-          <li>the Canada employment amount</li>
-        </ul>
-      </li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 6:</strong> Provincial/Territorial tax</p>
-    <ul id="step6-ajax-2">
-      <li>Terry's provincial or territorial tax is <strong>$0.00</strong>
-        <ul>
-          <li>when you do your taxes, a similar calculation is done for provincial or territorial taxes as for federal tax (step 5)
-            <ul>
-              <li>for this exercise, the completed calculation is provided</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <p class="mrgn-tp-lg"><strong>Step 7:</strong> Refund or balance owing</p>
-    <ul id="step7-ajax-2">
-      <li> Terry's total income tax deducted at source is <strong>$200.00</strong>, as shown on her T4 slip</li>
-      <li>Terry's refundable tax credits are <strong>$25.00</strong>, which includes:
-        <ul>
-          <li>CPP overpayments, calculated using amounts shown in box 16 of her T4 slip</li>
-          <li>EI overpayments, calculated using amounts shown in box 18 of her T4 slip</li>
-        </ul>
-      </li>
-    </ul>
-    <h3>Complete Terry's calculations</h3>
-    <p>Enter the amounts in the correct spaces and complete the calcuations to find out if Terry will get a refund or have a balance owing.</p>
-    <p>For this example, you will be able to validate your final answer at the end of the exercise.</p>
-    <hr class="brdr-bttm">
-  </div>
-  <div id="btn-here"></div>
-  <div id="form-fill" class="hidden">
-    <h2 id="calculation" class="mrgn-tp-sm"><span id="calculation-init">Calculation</span><span id="calculation-alt" class="hidden">Calculation (with answers)</span></h2>
-    <p class="hidden-print" id="form-fill-clear"><strong>Note:</strong> Before you proceed
-      <button onclick="$('[role=textbox]').empty(); document.getElementById('tax-bracket-select').reset();"  class="btn btn-default btn-sm" data-wb-doaction='{"action": "removeClass", "source": "#tax-bracket>colgroup>col", "class": "bg-info"}'><span class="fas fa-eraser fa-lg"></span> Reset the input fields</button>
-      if you have filled out a previous scenario.</p>
-    <h3 id="step-1">Step 1: Identification<span class="wb-inv">: step 1</span></h3>
-    <p>Enter the individual's personal information</p>
-    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 1: Information" href="#step1-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step1-ajax-1", "container": "#step1-body" }'>Information for step 1</a></p>
-    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 1: Information" href="#step1-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step1-ajax-2", "container": "#step1-body" }'>Information for step 1</a></p>
-    <section id="step1-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
-      <header class="modal-header">
-        <h4 class="modal-title">Identification</h4>
-      </header>
-      <div class="modal-body" id="step1-body"></div>
-    </section>
-    <div class="row">
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right" id="name"><strong>Name</strong></p>
-      </div>
-      <div class="col-xs-6 col-md-5">
-        <div class="well well-sm p-0">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm" contenteditable="true" aria-labelledby="name" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right" id="sin"><strong>Social Insurance Number</strong></p>
-      </div>
-      <div class="col-xs-6 col-md-5">
-        <div class="well well-sm p-0">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm" contenteditable="true" aria-labelledby="sin" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-    <h3 id="step-2">Step 2: Total income</h3>
-    <p>Calculate the individual's total income</p>
-    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 2: Total income" href="#step2-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step2-ajax-1", "container": "#step2-body" }'>Information for step 2</a></p>
-    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 2: Information" href="#step2-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step2-ajax-2", "container": "#step2-body" }'>Information for step 2</a></p>
-    <section id="step2-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
-      <header class="modal-header">
-        <h4 class="modal-title">Total income</h4>
-      </header>
-      <div class="modal-body" id="step2-body"></div>
-    </section>
-    <div class="row">
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-md" id="stp2-income">Enter <span class="h4">income</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp2-income-edit"><span class="fas fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp2-income" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-     
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp2-income2">Plus <span class="h4">additional income</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp2-income2-edit"><span class="fas fa-plus fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg mrgn-bttm-md">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp2-income2" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <div class="mrgn-tp-md"></div>
-        <p class="text-right" id="stp2-total">Equals the <span class="h4">total income</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3 brdr-tp" id="stp2-total-edit">
-        <div class="mrgn-tp-sm"></div>
-        <span class="fas fa-equals fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp2-total" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-    <h3 id="step-3">Step 3: Net income</h3>
-    <p>Calculate the individual's net income</p>
-    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 3: Net income" href="#step3-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step3-ajax-1", "container": "#step3-body" }'>Information for step 3</a></p>
-    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 3: Net income" href="#step3-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step3-ajax-2", "container": "#step3-body" }'>Information for step 3</a></p>
-    <section id="step3-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
-      <header class="modal-header">
-        <h4 class="modal-title">Net income</h4>
-      </header>
-      <div class="modal-body" id="step3-body"></div>
-    </section>
-    <div class="row">
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp3-total">Enter the <span class="h4">total income</span><br>
-          from step 2</p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp3-total-edit"><span class="fas fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp3-total" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp3-deductions">Minus the <span class="h4">total  deductions for calculating net income</span><br>
-        </p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp3-deductions-edit"><span class="fas fa-minus fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg mrgn-bttm-md">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp3-deductions" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
+<!doctype html>
+
+
+<html class="no-js" dir="ltr" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head prefix="og: http://ogp.me/ns#">
     
-      <div class="col-xs-6 col-md-6">
-        <div class="mrgn-tp-md"></div>
-        <p class="text-right" id="stp3-net">Equals the <span class="h4">net income</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3 brdr-tp" id="stp3-net-edit">
-        <div class="mrgn-tp-sm"></div>
-        <span class="fas fa-equals fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp3-net" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-    <h3 id="step-4">Step 4: Taxable income</h3>
-    <p>Calculate the individual's taxable income</p>
-    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 4: Taxable income" href="#step4-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step4-ajax-1", "container": "#step4-body" }'>Information for step 4</a></p>
-    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 4: Taxable income" href="#step4-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step4-ajax-2", "container": "#step4-body" }'>Information for step 4</a></p>
-    <section id="step4-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
-      <header class="modal-header">
-        <h4 class="modal-title">Taxable income</h4>
-      </header>
-      <div class="modal-body" id="step4-body"></div>
-    </section>
-    <div class="row">
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp4-net">Enter the <span class="h4">net income</span><br>
-          from step 3</p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp4-net-edit"><span class="fas fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp4-net" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp4-deductions">Minus the <span class="h4">total  deductions</span><br>
-        for calculating taxable income</p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp4-deductions-edit"><span class="fas fa-minus fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg mrgn-bttm-md">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp4-deductions" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <div class="mrgn-tp-md"></div>
-        <p class="text-right" id="stp4-taxable">Equals the <span class="h4">taxable income</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3 brdr-tp" id="stp4-taxable-edit">
-        <div class="mrgn-tp-sm"></div>
-        <span class="fas fa-equals fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp4-taxable" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-    <h3 id="step-5">Step 5: Federal tax</h3>
-    <p>Calculate the federal tax using the correct tax bracket</p>
-    <p>To calculate the federal tax, use the table below, and:</p>
-    <ol class="mrgn-bttm-lg">
-      <li>Enter the taxable income in the column for the appropriate tax bracket</li>
-      <li>Complete the calculation in that column</li>
-    </ol>
-    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 5: Federal tax" href="#step5-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step5-ajax-1", "container": "#step5-body" }'>Information for step 5</a></p>
-    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 5: Federal tax" href="#step5-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step5-ajax-2", "container": "#step5-body" }'>Information for step 5</a></p>
-    <section id="step5-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
-      <header class="modal-header">
-        <h4 class="modal-title">Federal tax</h4>
-      </header>
-      <div class="modal-body" id="step5-body"></div>
-    </section>
-    <div class="row">
-      <div class="col-md-6 frmvld hidden-print">
-        <form id="tax-bracket-select">
-          <div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true, "noreqlabel": true, "defaultselectedlabel":"Select the taxable income", "reset": [{ "action": "removeClass", "source":"#tax-bracket col", "class": "bg-info" }, { "action": "addClass", "source":".col2-class, .col3-class, .col4-class, .col5-class", "class": "hidden" }, { "action": "removeClass", "source":"#cap-default", "class": "hidden" }]}'>
-            <p>The taxable income is</p>
-            <ul>
-              <li data-wb-fieldflow='[{"action": "addClass", "source": "#col2", "class": "bg-info", "live":true}, {"action": "removeClass", "source": ".col2-class", "class": "hidden", "live":true}, {"action": "addClass", "source": "#cap-default", "class": "hidden", "live":true}]'>$49,999 or less</li>
-              <li data-wb-fieldflow='[{"action": "addClass", "source": "#col3", "class": "bg-info", "live":true}, {"action": "removeClass", "source": ".col3-class", "class": "hidden", "live":true}, {"action": "addClass", "source": "#cap-default", "class": "hidden", "live":true}]'>$50,000 to $99,000</li>
-              <li data-wb-fieldflow='[{"action": "addClass", "source": "#col4", "class": "bg-info", "live":true}, {"action": "removeClass", "source": ".col4-class", "class": "hidden", "live":true}, {"action": "addClass", "source": "#cap-default", "class": "hidden", "live":true}]'>$100,000 to $149,999</li>
-              <li data-wb-fieldflow='[{"action": "addClass", "source": "#col5", "class": "bg-info", "live":true}, {"action": "removeClass", "source": ".col5-class", "class": "hidden", "live":true}, {"action": "addClass", "source": "#cap-default", "class": "hidden", "live":true}]'>$150,000 or more</li>
-            </ul>
-          </div>
-        </form>
-      </div>
-      <div class="clearfix"></div>
-      <div class="table-responsive">
-        <table class="table table-bordered small mrgn-bttm-0 col-xs-12" id="tax-bracket" role="grid">
-          <caption>
-          Taxable income brackets<br>
-          <span id="cap-default">(fill in only one tax bracket)</span><span class="col2-class hidden">(fill in tax bracket 1)</span><span class="col3-class hidden">(fill in tax bracket 2)</span><span class="col4-class hidden">(fill in tax bracket 3)</span><span class="col5-class hidden">(fill in tax bracket 4)</span>
-          </caption>
-          <colgroup>
-          <col id="col1">
-          <col id="col2">
-          <col id="col3">
-          <col id="col4">
-          <col id="col5">
-          </colgroup>
-          <tr class="h3 bg-dark text-white">
-            <td>&nbsp;</td>
-            <th scope="col" class="text-center"><span class="wb-inv">Tax bracket</span>1</th>
-            <th scope="col" class="text-center"><span class="wb-inv">Tax bracket</span>2</th>
-            <th scope="col" class="text-center"><span class="wb-inv">Tax bracket</span>3</th>
-            <th scope="col" class="text-center"><span class="wb-inv">Tax bracket</span>4</th>
-          </tr>
-          <tr>
-            <th scope="row">Taxable income bracket</th>
-            <td>$49,999 or less</td>
-            <td>$50,000 to $99,000</td>
-            <td>$100,000 to $149,999</td>
-            <td>$150,000 or more</td>
-          </tr>
-          <tr>
-            <th scope="row"><span class="h6">Enter the</span> taxable income<br>
-              
-            <td class="active text-right" contenteditable="true" aria-label="Taxable income (bracket 1)" role="textbox" aria-multiline="false">&nbsp;</td>
-            <td class="active text-right" contenteditable="true" aria-label="Taxable income (bracket 2)" role="textbox" aria-multiline="false">&nbsp;</td>
-            <td class="active text-right" contenteditable="true" aria-label="Taxable income (bracket 3)" role="textbox" aria-multiline="false">&nbsp;</td>
-            <td class="active text-right" contenteditable="true" aria-label="Taxable income (bracket 4)" role="textbox" aria-multiline="false">&nbsp;</td>
-          </tr>
-          <tr class="tax-brackets-1 hidden">
-            <th scope="row"><span class="h6">Enter</span> taxable income (Answer)<br>
-              <span class="h6">from step 4</span></th>
-            <td class="text-right nowrap" id="stp5-taxable-bracket-1">&nbsp;</td>
-            <td->
-            &nbsp;
-              </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr class="tax-brackets-2 hidden">
-            <th scope="row"><span class="h6">Enter</span> taxable income (Answer)<br>
-              <span class="h6">from step 4</span></th>
-            <td class="text-right nowrap" id="stp5-taxable-bracket-2">&nbsp;</td>
-            <td->
-            &nbsp;
-              </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-			   <th scope="row"><span class="h6">Subtract this from</span> taxable income<br>
-            
-            <td class="text-right nowrap"><span class="fas fa-minus fa-xs"><span class="wb-inv">minus </span></span> <strong>0.00</strong></td>
-            <td class="text-right nowrap"><span class="fas fa-minus fa-xs"><span class="wb-inv">minus </span></span> <strong>49,999.00</strong></td>
-            <td class="text-right nowrap"><span class="fas fa-minus fa-xs"><span class="wb-inv">minus </span></span> <strong>99,999.00</strong></td>
-            <td class="text-right nowrap"><span class="fas fa-minus fa-xs"><span class="wb-inv">minus </span></span> <strong>149,999.00</strong></td>
-          </tr>
-          <tr>
-             <th scope="row">Taxable income subject to federal tax rate</th>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="baseline tax amount" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="baseline tax amount" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="baseline tax amount" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="baseline tax amount" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-          </tr>
-          <tr class="tax-brackets-1 hidden">
-            <th scope="row"><span class="h6">Equals</span> Total after Subtracting from taxable income (Answer)</th>
-            <td class="text-right" id="stp5-baseline-bracket-1">&nbsp;</td>
-            <td >&nbsp;</td>
-            <td>&nbsp;</td>
-            <td >&nbsp;</td>
-          </tr>
-          <tr class="tax-brackets-2 hidden">
-            <th scope="row"><span class="h6">Equals</span> Total after Subtracting from taxable income (Answer)</th>
-            <td class="text-right" id="stp5-baseline-bracket-2">&nbsp;</td>
-            <td >&nbsp;</td>
-            <td>&nbsp;</td>
-            <td >&nbsp;</td>
-          </tr>
-          <tr>
-			   <th scope="row"><span class="h6">Multiply by the</span> federal tax rate</th>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta charset="utf-8"/>
+<title>Learn about your taxes - Canada.ca</title>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+
+
+	<link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+	<link rel="canonical" href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs.html"/>
+	
+		<meta name="description" content="What you need to understand taxes, understanding taxes"/>
+	
+	
+		<meta name="keywords" content="understanding taxes, what you are entitled to, your responsibilities, tools to do tax return"/>
+	
+	
+		<meta name="author" content="Canada Revenue Agency"/>
+	
+	
+		<meta name="dcterms.title" content="Learn about your taxes"/>
+	
+	
+		<meta name="dcterms.description" content="What you need to understand taxes, understanding taxes"/>
+	
+	
+		<meta name="dcterms.creator" content="Canada Revenue Agency"/>
+	
+	
+	
+		<meta name="dcterms.language" title="ISO639-2/T" content="eng"/>
+	
+	
+		<meta name="dcterms.subject" title="gccore" content="EC Economics and Industry;Taxes;Income tax;Personal income tax"/>
+	
+	
+		<meta name="dcterms.issued" title="W3CDTF" content="2018-11-14"/>
+	
+	
+		<meta name="dcterms.modified" title="W3CDTF" content="2021-11-10"/>
+	
+	
+	
+		<meta name="dcterms.spatial" content="Canada"/>
+	
+	
+		<meta name="dcterms.type" content="navigation page"/>
+	
+	
+	
+	
+	
+		<meta name="dcterms.identifier" content="Canada_Revenue_Agency"/>
+	
+	
+	
+    
+
+
+
+	<meta prefix="fb: https://www.facebook.com/2008/fbml" property="fb:pages" content="378967748836213, 160339344047502, 184605778338568, 237796269600506, 10860597051, 14498271095, 209857686718, 160504807323251, 111156792247197, 113429762015861, 502566449790031, 312292485564363, 1471831713076413, 22724568071, 17294463927, 1442463402719857, 247990812241506, 730097607131117, 1142481292546228, 1765602380419601, 131514060764735, 307780276294187, 427238637642566, 525934210910141, 1016214671785090, 192657607776229, 586856208161152, 1146080748799944, 408143085978521, 490290084411688, 163828286987751, 565688503775086, 460123390028, 318424514044, 632493333805962, 370233926766473, 173004244677, 1562729973959056, 362400293941960, 769857139754987, 167891083224996, 466882737009651, 126404198009505, 135409166525475, 664638680273646, 169011506491295, 217171551640146, 182842831756930, 1464645710444681, 218822426028, 218740415905, 123326971154939, 125058490980757, 1062292210514762, 1768389106741505, 310939332270090, 285960408117397, 985916134909087, 655533774808209, 1522633664630497, 686814348097821, 230798677012118, 320520588000085, 103201203106202, 273375356172196, 61263506236, 353102841161, 1061339807224729, 1090791104267764, 395867780593657, 1597876400459657, 388427768185631, 937815283021844, 207409132619743, 1952090675003143, 206529629372368, 218566908564369, 175257766291975, 118472908172897, 767088219985590, 478573952173735, 465264530180856, 317418191615817, 428040827230778, 222493134493922, 196833853688656, 194633827256676, 252002641498535, 398018420213195, 265626156847421, 202442683196210, 384350631577399, 385499078129720, 178433945604162, 398240836869162, 326182960762584, 354672164565195, 375081249171867, 333050716732105, 118996871563050, 240349086055056, 119579301504003, 185184131584797, 333647780005544, 306255172770146, 369589566399283, 117461228379000, 349774478396157, 201995959908210, 307017162692056, 145928592172074, 122656527842056">
+
+
+	
+
+
+    
+
+
+	
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/etc/designs/canada/wet-boew/css/wet-boew.min.css"/>
+<link rel="stylesheet" href="/etc/designs/canada/wet-boew/css/theme.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
+<link href="/etc/designs/canada/wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon"/>
+<noscript><link rel="stylesheet" href="/etc/designs/canada/wet-boew/css/noscript.min.css"/></noscript>
+
+
+
+
+</head>
+
+<body vocab="http://schema.org/" typeof="WebPage" resource="#wb-webpage">
+
+    
+
+
+
+
+    
+        
+        
+        <div class="newpar new section">
+
+</div>
+
+    
+        
+        
+        <div class="par iparys_inherited">
+
+    
+    
+    
+    
+        
+        
+        <div class="global-header"><nav><ul id="wb-tphp">
+	<li class="wb-slc"><a class="wb-sl" href="#wb-cont">Skip to main content</a></li>
+	<li class="wb-slc"><a class="wb-sl" href="#wb-info">Skip to &#34;About government&#34;</a></li>
+	
+</ul></nav>
+
+<header>
+	<div id="wb-bnr" class="container">
+		<div class="row">
 			
-            <td class="text-right"><span class="fas fa-times fa-xs mrgn-tp-sm"><span class="wb-inv">multiplied by </span></span> <strong>10%</strong></td>
-            <td class="text-right"><span class="fas fa-times fa-xs mrgn-tp-sm"><span class="wb-inv">multiplied by </span></span> <strong>20%</strong></td>
-            <td class="text-right"><span class="fas fa-times fa-xs mrgn-tp-sm"><span class="wb-inv">multiplied by </span></span> <strong>30%</strong></td>
-            <td class="text-right"><span class="fas fa-times fa-xs mrgn-tp-sm"><span class="wb-inv">multiplied by </span></span> <strong>40%</strong></td>
-          </tr>
-          <tr>
-			  <th scope="row">Tax after multiplying by the federal rate</th>
-      
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="amount after tax rate calculated" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="amount after tax rate calculated" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="amount after tax rate calculated" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="amount after tax rate calculated" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-          </tr>
-          <tr class=" tax-brackets-1 hidden">
-            <th scope="row"><span class="h6">Equals</span> Total after multiplying by the federal rate (Answer)</th>
-            <td class="text-right" id="stp5-aftertax-bracket-1">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr class="tax-brackets-2 hidden">
-            <th scope="row"><span class="h6">Equals</span> Total after multiplying by the federal rate (Answer)</th>
-            <td class="text-right" id="stp5-aftertax-bracket-2">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-			    <th scope="row"><span class="h6">Add</span> federal tax<br>
-              <span class="h6">calculated on income in the lower tax brackets</span></th>
-			  
-			 
-            <td class="text-right"><span class="fas fa-plus fa-xs mrgn-tp-sm"><span class="wb-inv">plus </span></span> <strong>0.00</strong></td>
-            <td class="text-right"><span class="fas fa-plus fa-xs mrgn-tp-sm"><span class="wb-inv">plus </span></span> <strong>4,999.90</strong></td>
-            <td class="text-right"><span class="fas fa-plus fa-xs mrgn-tp-sm"><span class="wb-inv">plus </span></span> <strong>14,999.70</strong></td>
-            <td class="text-right"><span class="fas fa-plus fa-xs mrgn-tp-sm"><span class="wb-inv">plus </span></span> <strong>29,999.40</strong></td>
-          </tr>
-          <tr>
-            <th scope="row"><span class="h6">Equals</span> federal tax on taxable income</th>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="Federal tax amount on income" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="Federal tax amount on income" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="Federal tax amount on income" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-            <td class="active"><span class="fas fa-equals fa-xs pull-left mrgn-tp-sm"><span class="wb-inv">equals</span></span><span contenteditable="true" aria-label="Federal tax amount on income" role="textbox" aria-multiline="false" class="visible-xs-block visible-sm-block visible-md-block visible-lg-block">&nbsp;</span></td>
-          </tr>
-          <tr class="tax-brackets-1 hidden">
-            <th scope="row"><span class="h6">Equals</span> federal tax on taxable income (Answer)</th>
-            <td class="text-right" id="stp5-fedtax-bracket-1">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr class="tax-brackets-2 hidden">
-            <th scope="row"><span class="h6">Equals</span> federal tax on taxable income (Answer)</th>
-            <td class="text-right" id="stp5-fedtax-bracket-2">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-            </tbody>
-          
-        </table>
-      </div>
-      <div class="clearfix"></div>
-	  <div class="col-xs-12">
-      <p class="mrgn-bttm-lg"><strong>Reminder:</strong> This exercise is using simplified tax rates. They are different than the tax rates used on the actual tax return.</p>
-	  </div>
-		  <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp5-crd">Enter the <span class="h4">federal non-refundable tax credits</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp5-crd-edit"><span class="fas fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp5-non-crd" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="fed-tx-rt">Multiply by the <span class="h4">federal <span class="nowrap">non-refundable</span> tax credit rate</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3 "><span class="fas fa-times fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="mrgn-lft-xl">
-          <p class="text-right h3 mrgn-tp-md">10%</p>
-        </div>
-      </div>
-      <div class="clearfix mrgn-bttm-md"></div>
-      <div class="col-xs-6 col-md-6">
-        <div class="mrgn-tp-md"></div>
-        <p class="text-right" id="stp5-total-crd">Equals the <span class="h4">total federal <span class="nowrap">non-refundable</span> tax credits amount</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3 brdr-tp" id="stp5-total-crd-edit">
-        <div class="mrgn-tp-sm"></div>
-        <span class="fas fa-equals fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp5-total-crd" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix mrgn-bttm-lg"></div>
-    <div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp5-fed-tax">Enter <span class="h4">federal tax on taxable income</span><br>
-          from the table above</p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp5-fed-tax-edit"><span class="fas fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp5-fed-tax" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp5-total-crd2">Minus the <span class="h4">total federal <span class="nowrap">non-refundable</span> tax credits amount</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp5-total-crd2-edit"><span class="fas fa-minus fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp5-total-crd2" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix mrgn-bttm-md"></div>
-      <div class="col-xs-6 col-md-6">
-        <div class="mrgn-tp-md"></div>
-        <p class="text-right" id="stp5-fed-tax-total">Equals the <span class="h4">federal tax</span><br>
-          If negative, enter "0" (Remember, <span class="nowrap">non-refundable</span> tax credits can only reduce tax to zero)</p>
-      </div>
-      <div class="col-xs-6 col-md-3 brdr-tp" id="stp5-fed-tax-total-edit">
-        <div class="mrgn-tp-sm"></div>
-        <span class="fas fa-equals fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp5-fed-tax-total" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-    <h3 id="step-6">Step 6: Provincial/Territorial tax</h3>
-    <p>Calculate the provincial/territorial tax.<br>
-      A similar calculation is done in this step as in step 5 (Simply enter the number provided in the tax information).</p>
-    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 6: Provincial/Territorial tax" href="#step6-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step6-ajax-1", "container": "#step6-body" }'>Information for step 6</a></p>
-    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 6: Provincial/Territorial tax" href="#step6-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step6-ajax-2", "container": "#step6-body" }'>Information for step 6</a></p>
-    <section id="step6-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
-      <header class="modal-header">
-        <h4 class="modal-title">Provincial/Territorial tax</h4>
-      </header>
-      <div class="modal-body" id="step6-body"></div>
-    </section>
+			<section id="wb-lng" class="col-xs-3 col-sm-12 pull-right text-right">
+    <h2 class="wb-inv">Language selection</h2>
     <div class="row">
-      <div class="col-xs-6 col-md-6">
-        <div class="mrgn-tp-md"></div>
-        <p class="text-right" id="stp6-prov-tax">Enter the <span class="h4">provincial/territorial tax</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp6-prov-tax-edit">
-        <div class="mrgn-tp-sm"></div>
-        <span class="fas fa-equals fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp6-prov-tax" role="textbox" aria-multiline="false"></p>
+        <div class="col-md-12">
+            <ul class="list-inline mrgn-bttm-0">
+                <li>
+                    <a lang="fr" href="/fr/agence-revenu/services/impot/particuliers/programmes-educatifs.html">
+                        
+                            <span class="hidden-xs">Fran&ccedil;ais</span>
+                            <abbr title="Fran&ccedil;ais" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">fr</abbr>
+                        
+                        
+                    </a>
+                </li>
+                
+                
+            </ul>
         </div>
-      </div>
     </div>
-    <h3 id="step-7">Step 7: Refund or balance owing</h3>
-    <p>Calculate to see if the final result is a refund  or a balance owing.</p>
-    <p class="example-1 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 7: Refund or balance owing" href="#step7-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step7-ajax-1", "container": "#step7-body" }'>Information for step 7</a></p>
-    <p class="example-2 hidden hidden-print"><a class="btn btn-default btn-sm wb-lbx" role="button" title="Step 7: Refund or balance owing" href="#step7-overlay" data-wb-doaction='{ "action": "ajax", "url": "#step7-ajax-2", "container": "#step7-body" }'>Information for step 7</a></p>
-    <section id="step7-overlay" class="mfp-hide modal-dialog modal-content overlay-def">
-      <header class="modal-header">
-        <h4 class="modal-title">Refund or balance owing</h4>
-      </header>
-      <div class="modal-body" id="step7-body"></div>
-    </section>
-    <div class="row">
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-md" id="stp7-fed-tax">Enter the <span class="h4">federal tax</span><br>
-           from step 5</p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp7-fed-tax-edit"><span class="fas fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-fed-tax" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp7-prov-tax">Plus the <span class="h4">provincial/<br class="visible-xs">territorial tax</span><br>
-             from step 6</p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp7-prov-tax-edit"><span class="fas fa-plus fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg mrgn-bttm-md">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-prov-tax" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <div class="mrgn-tp-md"></div>
-        <p class="text-right" id="stp7-pay-total">Equals the <span class="h4">total payable</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3 brdr-tp" id="stp7-pay-total-edit">
-        <div class="mrgn-tp-sm"></div>
-        <span class="fas fa-equals fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-pay-total" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-    </div>
-    <div class="row mrgn-tp-lg">
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-md" id="stp7-tax-deduct">Enter the <span class="h4">tax deducted</span> at source</p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp7-tax-deduct-edit"><span class="fas fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-tax-deduct" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp7-tax-crd">Plus the <span class="h4">eligible refundable tax credits</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp7-tax-crd-edit"><span class="fas fa-plus fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg mrgn-bttm-md">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-tax-crd" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <div class="mrgn-tp-md"></div>
-        <p class="text-right" id="stp7-crd-total">Equals the <span class="h4">total credits</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3 brdr-tp" id="stp7-crd-total-edit">
-        <div class="mrgn-tp-sm"></div>
-        <span class="fas fa-equals fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-crd-total" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-    </div>
-    <div class="row mrgn-tp-lg">
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-md" id="stp7-pay-total2">Enter the <span class="h4">total payable</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp7-pay-total2-edit"><span class="fas fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-pay-total2" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div><div class="mrgn-answers"></div>
-      <div class="col-xs-6 col-md-6">
-        <p class="text-right mrgn-tp-sm" id="stp7-crd-total2">Minus the <span class="h4">total credits</span></p>
-      </div>
-      <div class="col-xs-6 col-md-3" id="stp7-crd-total2-edit"><span class="fas fa-plus fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg mrgn-bttm-md">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-crd-total2" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-xs-6 col-md-6">
-        <div class="mrgn-tp-md"></div>
-        <p class="text-right" id="stp7-final-total">Equals the <span class="h4">final result</span><br>
-          A positive result represents a balance owing, and a negative result represents a refund</p>
-      </div>
-      <div class="col-xs-6 col-md-3 brdr-tp" id="stp7-final-total-edit">
-        <div class="mrgn-tp-sm"></div>
-        <span class="fas fa-equals fa-fw pull-left mrgn-rght-md mrgn-tp-md"></span>
-        <div class="well well-sm p-0 mrgn-lft-lg">
-          <p class="mrgn-lft-sm mrgn-rght-sm mrgn-tp-sm mrgn-bttm-sm text-right" contenteditable="true" aria-labelledby="stp7-final-total" role="textbox" aria-multiline="false"></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-    <div id="self-answer">
-      <h2>Answer</h2>
-      <!--Jonah answer//-->
-      <div class="wb-frmvld example-1 hidden">
-        <form>
-          <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
-            <p><span class="h3">After the calculation, Jonah will:</span></p>
-            <ul>
-              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ex-1-a-1", "live": true }'>receive a refund</li>
-              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ex-1-a-2", "live": true}'>have a balance owing</li>
-            </ul>
-          </div>
-        </form>
-        <div aria-live="polite">
-          <div id="ex-1-a-1" class="hidden">
-            <p><span class="pull-left">Jonah will receive a refund of</span><span class="well well-sm p-0 col-xs-4 col-sm-2 mrgn-lft-sm" contenteditable="true" aria-label="Enter the amount the refund" role="textbox" aria-multiline="false" ></span>.</p>
-            <div class="clearfix"></div>
-            <p>If you have provided an answer, you can:</p>
-            <ul data-ajax-prepend="jonah-answers.txt .answers">
-              <li><a href="#examples">select another example</a> if you would like to try again</li>
-            </ul>
-          </div>
-          <div id="ex-1-a-2" class="hidden">
-            <p><span class="pull-left">Jonah will have a balance owing of</span><span class="well well-sm p-0 col-xs-4 col-sm-2 mrgn-lft-sm" contenteditable="true" aria-label="Enter the amount of the balance owing" role="textbox" aria-multiline="false" ></span>.</p>
-            <div class="clearfix"></div>
-            <p>If you have provided an answer, you can:</p>
-            <ul data-ajax-prepend="jonah-answers.txt .answers">
-              <li><a href="#examples">select another example</a> if you would like to try again</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!--Terry answer//-->
-      <div class="wb-frmvld example-2 hidden">
-        <form>
-          <div class="wb-fieldflow" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true}'>
-            <p><span class="h3">After the calculation, Terry will:</span></p>
-            <ul>
-              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ex-2-a-1", "live": true }'>receive a refund</li>
-              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ex-2-a-2", "live": true}'>have a balance owing</li>
-            </ul>
-          </div>
-        </form>
-        <div aria-live="polite">
-          <div id="ex-2-a-1" class="hidden">
-            <p><span class="pull-left">Terry will receive a refund of</span><span class="well well-sm p-0 col-xs-4 col-sm-2 mrgn-lft-sm" contenteditable="true" aria-label="Enter the amount of the refund" role="textbox" aria-multiline="false" ></span>.</p>
-            <div class="clearfix"></div>
-            <p>If you have provided an answer, you can:</p>
-            <ul>
-              <li><a href="#answer" data-wb-doaction='{"action": "removeClass", "source": ".example-2.correct-answer", "class": "hidden"}'>check if you are correct</a> about Terry, or</li>
-              <li><a href="#examples">select another example</a> if you would like to try again</li>
-            </ul>
-          </div>
-          <div id="ex-2-a-2" class="hidden">
-            <p><span class="pull-left">Terry will have a balance owing of</span><span class="well well-sm p-0 col-xs-4 col-sm-2 mrgn-lft-sm" contenteditable="true" aria-label="Enter the amount of the balance owing" role="textbox" aria-multiline="false" ></span>.</p>
-            <div class="clearfix"></div>
-            <p>If you have provided an answer, you can:</p>
-            <ul>
-              <li><a href="#answer" data-wb-doaction='{"action": "removeClass", "source": ".example-2.correct-answer", "class": "hidden"}'>check if you are correct</a> about Terry, or</li>
-              <li><a href="#examples">select another example</a> if you would like to try again</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div aria-live="assertive" id="answer">
-        <p class="example-1 correct-answer hidden"><strong>Answer:</strong> Jonah will <strong>receive a refund</strong> of <strong>$3,248.80</strong>.</p>
-        <p class="example-2 correct-answer hidden"><strong>Answer:</strong> Terry will <strong>receive a refund</strong> of <strong>$225.00</strong>.</p>
-      </div>
+</section>
+				<div class="brand col-xs-9 col-sm-5 col-md-4" property="publisher" resource="#wb-publisher" typeof="GovernmentOrganization">
+					
+                    
+					
+						
+						<a href="/en.html" property="url">
+							<img src="/etc/designs/canada/wet-boew/assets/sig-blk-en.svg" alt="Government of Canada" property="logo"/>
+							<span class="wb-inv"> /
+								
+								<span lang="fr">Gouvernement du Canada</span>
+							</span>
+						</a>
+					
+					<meta property="name" content="Government of Canada"/>
+					<meta property="areaServed" typeof="Country" content="Canada"/>
+					<link property="logo" href="/etc/designs/canada/wet-boew/assets/wmms-blk.svg"/>
+				</div>
+				<section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
+					<h2>Search</h2>
+					
+<form action="/en/revenue-agency/search.html" method="get" name="cse-search-box" role="search">
+	<div class="form-group wb-srch-qry">
+		<label for="wb-srch-q" class="wb-inv">Search Canada.ca</label>
+		<input name="cdn" value="canada" type="hidden"/>
+		<input name="st" value="s" type="hidden"/>
+		<input name="num" value="10" type="hidden"/>
+		<input name="langs" value="en" type="hidden"/>
+		<input name="st1rt" value="1" type="hidden"/>
+		<input name="s5bm3ts21rch" value="x" type="hidden"/>
+		    
+		
+			<input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="34" maxlength="170" placeholder="Search CRA"/>
+		
+
+		<datalist id="wb-srch-q-ac">
+		</datalist>
+	</div>
+	<div class="form-group submit">
+	<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">Search</span></button>
+	</div>
+</form>
+
+				</section>
+		</div>
+	</div>
+	
+	
+	
+	<nav class="gcweb-v2 gcweb-menu" typeof="SiteNavigationElement"><div class="container">
+		<h2 class="wb-inv">Menu</h2>
+		<button type="button" aria-haspopup="true" aria-expanded="false"><span class="wb-inv">Main </span>Menu <span class="expicon glyphicon glyphicon-chevron-down"></span></button>
+		<ul role="menu" aria-orientation="vertical" data-ajax-replace="/content/dam/canada/sitemenu/sitemenu-v2-en.html">
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/jobs.html">Jobs and the workplace</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/immigration-citizenship.html">Immigration and citizenship</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://travel.gc.ca/">Travel and tourism</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/business.html">Business and industry</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/benefits.html">Benefits</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/health.html">Health</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/taxes.html">Taxes</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/environment.html">Environment and natural resources</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/defence.html">National security and defence</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/culture.html">Culture, history and sport</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/policing.html">Policing, justice and emergencies</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/transport.html">Transport and infrastructure</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="http://international.gc.ca/world-monde/index.aspx?lang=eng">Canada and the world</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/finance.html">Money and finances</a></li>
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.canada.ca/en/services/science.html">Science and innovation</a></li>
+</ul>
+		
+	</div></nav>
+	
+
+	
+		<nav id="wb-bc" property="breadcrumb"><h2 class="wb-inv">You are here:</h2><div class="container"><ol class="breadcrumb">
+<li><a href='/en.html'>Canada.ca</a></li>
+<li><a href='/en/revenue-agency.html'>Canada Revenue Agency</a></li>
+</ol></div></nav>
+
+
+	
+
+
+</header>
+</div>
+
+    
+
+</div>
+
+    
+
+
+
+
+	
+
+
+
+    
+    
+
+    
+    
+        <main property="mainContentOfPage" resource="#wb-main" typeof="WebPageElement" class="container">
+            <div class="mwsgeneric-base-html parbase section">
+
+
+    
+    <link href="https://cra-arc.gc.ca/wet-boew/css/custom/steps.css" rel="stylesheet">
+<link href="https://cra-arc.gc.ca/wet-boew/css/custom/theme-topic.css" rel="stylesheet">
+
+	<!--Need to move this CSS sheet to cra-arc.gc.ca //-->
+ <link href="https://design.canada.ca/css/beta/social-media.css" rel="stylesheet">
+
+
+</div>
+<div class="mwsgeneric-base-html parbase section">
+
+
+    
+    <div class="provisional bg-cover row mrgn-bttm-lg" data-bgimg="banner-students-pf.jpg">
+  <div class="container p-0 p-sm-3">
+    <div class="well header-rwd brdr-0 brdr-rds-0  opct-90 mrgn-tp-lg">
+      <h1 property="name" id="wb-cont" class="gc-thickline">Learn about your taxes</h1>
+      <p class="mrgn-tp-md">Develop an understanding of how the Canadian tax system works</p>
     </div>
   </div>
-  <!--only for print purposes //-->
-  <p class="visible-print"><span class="pull-left">of</span><span class="well well-sm p-0 col-xs-4 col-sm-2 mrgn-lft-sm" contenteditable="true" aria-label="" role="textbox" aria-multiline="false" ></span>.</p>
-  <div id="def-preFooter"> </div>
-  <!-- Write closure template --> 
-  <script type="text/javascript">
-	var defPreFooter = document.getElementById("def-preFooter");
-	defPreFooter.outerHTML = wet.builder.preFooter({
-		dateModified: "November 17, 2021",
-		showPostContent: true,
-		showFeedback: true,
-		showShare: true
-	});
-</script> 
-</main>
-<div id="def-footer"> </div>
-<!-- Write closure template --> 
-<script type="text/javascript">
-			var defFooter = document.getElementById("def-footer");
-			defFooter.outerHTML = wet.builder.footer({
-				showFooter: true,
-				showFeatures: true
-			});
-		</script> 
-<!-- Write closure template --> 
-<script type="text/javascript">
-			document.write(wet.builder.refFooter({
-			}));
-		</script>
+
+</div>
+
+
+
+</div>
+<div class="mwscolumns section">
+    
+
+    
+
+        
+
+        
+            
+        <div class="row ">
+            
+                <div class="col-md-8">
+                    <div class="mwsbodytext text parbase section">
+    
+
+    
+        <p>Take this online course to help you learn about personal income taxes in Canada.</p>
+<h2 class="wb-inv">Modules</h2>
+<ol class="lst-stps stps-strpd mrgn-tp-lg">
+<li><h3 class="mrgn-tp-md"><a href="/en/revenue-agency/services/tax/individuals/educational-programs/starting-work.html">Starting to work</a></h3>
+<p>Why you need a SIN, when to fill out a TD1, and what’s on your pay stub and T4 slip.</p>
+<ul class="mrgn-lft-md list-inline text-right small">
+<li class="nowrap mrgn-rght-sm"><span class="fas fa-chalkboard-teacher text-muted"></span> 4 lessons</li>
+<li class="nowrap"><span class="far fa-clock text-muted"></span> 23 minutes total</li>
+</ul>
+</li>
+<li><h3 class="mrgn-tp-md"><a href="/en/revenue-agency/services/tax/individuals/educational-programs/preparing-your-taxes.html">Preparing to do your taxes</a></h3>
+<p>Find out what you’ll need to know before doing your taxes and the different ways to do them.</p>
+<ul class="mrgn-lft-md list-inline text-right small">
+<li class="nowrap mrgn-rght-sm"><span class="fas fa-chalkboard-teacher text-muted"></span>3 lessons</li>
+<li class="nowrap"><span class="far fa-clock text-muted"></span> 20 minutes total</li>
+</ul>
+</li>
+<li><h3 class="mrgn-tp-md"><a href="/en/revenue-agency/services/tax/individuals/educational-programs/completing-basic-return.html">Completing a basic tax return</a></h3>
+<p>An introduction to a basic income tax and benefit return. What you need to report, how to claim deductions and tax credits, and finding out whether you will get a refund or owe tax.</p>
+<ul class="mrgn-lft-md list-inline text-right small">
+<li class="nowrap mrgn-rght-sm"><span class="fas fa-chalkboard-teacher text-muted"></span>7 lessons</li>
+<li class="nowrap"><span class="far fa-clock text-muted"></span> 63 minutes total</li>
+</ul>
+</li>
+</ol>
+
+    
+
+
+</div>
+
+
+                </div>
+            
+                <div class="col-md-4">
+                    <div class="mwsbodytext text parbase section">
+    
+
+    
+        <div class="panel panel-default brdr-rds-0"><header class="panel-heading"><h2 class="panel-title">Resources</h2>
+</header><div class="panel-body"><h3 class="h4 mrgn-tp-sm">General</h3>
+<ul>
+<li><a href="/en/revenue-agency/services/tax/individuals/educational-programs/videos.html">Videos</a></li>
+<li><a href="/en/revenue-agency/services/tax/individuals/educational-programs/common-terms.html">Common tax terms</a></li>
+</ul>
+<h3 class="h4">Teachers and facilitators</h3>
+<ul>
+<li><a href="/en/revenue-agency/services/tax/individuals/educational-programs/lesson-plans.html">Lesson plans</a></li>
+</ul>
+<h3 class="h4">Students</h3>
+<ul>
+<li><a href="/en/revenue-agency/services/forms-publications/publications/p105.html">Students and Income Tax (P105)</a></li>
+</ul>
+</div>
+</div>
+
+    
+
+
+</div>
+<div class="mwsgeneric-base-html parbase section">
+
+
+    
+    <div class="provisional followus followus-vertical">
+          <h2>Follow us</h2>
+          <ul>
+		<li class="twitter"><a href="https://twitter.com/canrevagency" rel="external" class="social-lnk"><b>@CanRevAgency</b></a></li>  
+            <li class="facebook"><a href="https://www.facebook.com/canrevagency/" rel="external" class="social-lnk"><b>canrevagency</b></a></li>
+            
+            <li class="youtube"><a href="https://www.youtube.com/user/canrevagency" rel="external" class="social-lnk"><b>CanRevAgency</b></a></li>
+          
+            <li class="linkedin"><a href="https://www.linkedin.com/company/cra-arc" rel="external" class="social-lnk"><b>cra‑arc</b></a></li>
+          </ul>
+        </div>  
+
+
+</div>
+
+
+                </div>
+            
+        </div>
+    
+        
+    
+
+
+
+</div>
+
+
+            <div class="pagedetails ">
+<div class="row">
+<div class="col-sm-6 col-md-5 col-lg-4">
+    <details class="brdr-0">
+        
+<summary class="btn btn-default text-center">Report a problem or mistake on this page</summary>
+<div class="clearfix"></div>
+<div class="well row">
+    <div><div class="gc-rprt-prblm">
+    <div class="gc-rprt-prblm-frm gc-rprt-prblm-tggl">			
+			<form id="gc-rprt-prblm-form" action="/gc/services/notify" method="post">
+			
+			<input name="emailTemplateservcanE" type="hidden" value="ZmVlZGJhY2stcmV0cm9hY3Rpb25AY2FuYWRh">
+			<input name="emailTemplate" type="hidden" value="90663d71-5f83-4e26-8817-f46db3e05513">
+			<input name="successUrl" type="hidden" value="/content/canadasite/en/contact/questionsthanks.html"> 
+			<input name="failureUrl" type="hidden" value="/content/canadasite/en/contact/questionsfailure.html"> 
+			
+			<input type="hidden" name="externalReferer" value="">
+				
+            <input type="hidden" name="pageTitle" value="Learn about your taxes">
+            <input type="hidden" name="submissionPage" value="/content/canadasite/en/revenue-agency/services/tax/individuals/educational-programs.html">
+            <input type="hidden" name="lang" value="en">
+            <input type="hidden" name="pageOwner" value="gc:institutions/revenue-agency">
+            <input name="subject" type="hidden" value="Report a problem or mistake on this page">
+            <fieldset>
+                <legend><span class="field-name">Please select all that apply:</span></legend>
+                 <div class="checkbox">
+                    <label for="problem1"><input name="problem1" id="problem1" type="checkbox" value="Yes" data-reveal="#broken" data-gc-analytics-rap="A link, button or video is not working-Un lien, un bouton ou une vidéo ne fonctionne pas">A link, button or video is not working</label>
+                    <input name="problem1" type="hidden" value="">
+                </div>
+                <div class="checkbox">
+                    <label for="problem2"><input name="problem2" id="problem2" type="checkbox" value="Yes" data-reveal="#spelling" data-gc-analytics-rap="It has a spelling mistake-Il y a une erreur d'orthographe ou de grammaire">It has a spelling mistake</label>
+                    <input name="problem2" type="hidden" value="">
+                </div>
+                <div class="checkbox">
+                    <label for="problem3"><input name="problem3" id="problem3" type="checkbox" value="Yes" data-reveal="#wrong" data-gc-analytics-rap="Information is missing-Les renseignements sont incomplets">Information is missing</label>
+                    <input name="problem3" type="hidden" value="">
+               </div>
+                <div class="checkbox">
+                    <label for="problem4"><input name="problem4" id="problem4" type="checkbox" value="Yes" data-reveal="#outdated" data-gc-analytics-rap=" Information is outdated or wrong-L'information n'est plus à jour ou est erronée">Information is outdated or wrong</label>
+                    <input name="problem4" type="hidden" value="">
+                </div>
+                <div class="checkbox">
+                    <label for="problem5"><input name="problem5" id="problem5" type="checkbox" value="Yes" data-reveal="#find" data-gc-analytics-rap=" Login error when trying to access an account (e.g. My Service Canada Account)-Message d'erreur à l'ouverture de la session lorsque je tente d'accéder à un compte (ex. Mon dossier Service Canada)">Login error when trying to access an account (e.g. My Service Canada Account)</label>
+                    <input name="problem5" type="hidden" value="">
+                </div>
+   					<ul>
+					<li class="checkbox">
+                        <label for="problem6a"><input name="problem6" id="problem6a" type="checkbox" value="Yes" data-reveal="#find" data-gc-analytics-rap="GC Key access-Accès CléGC">GC Key access</label>
+                        <input name="problem6" type="hidden" value="">
+                     </li>
+					<li class="checkbox">
+                        <label for="problem7"><input name="problem7" id="problem7" type="checkbox" value="Yes" data-reveal="#find" data-gc-analytics-rap="SecureKey Concierge (Banking Credential) access-Accès SecureKey Service de Concierge (justificatifs d'identité bancaires)">SecureKey Concierge (Banking Credential) access </label>
+                        <input name="problem7" type="hidden" value="">
+                     </li>
+					<li class="checkbox">
+                        <label for="problem8"><input name="problem8" id="problem8" type="checkbox" value="Yes" data-reveal="#find" data-gc-analytics-rap="Personal Access Code (PAC) problems or EI Access Code (AC) problems-Problème avec le Code d'accès personnel (CAP) ou avec le Code d'accès (CA) de l'assurance emploi">Personal Access Code (PAC) problems or EI Access Code (AC) problems</label>
+                        <input name="problem8" type="hidden" value="">
+                     </li>	
+					<li class="checkbox">
+                        <label for="problem9"><input name="problem9" id="problem9" type="checkbox" value="Yes" data-reveal="#find" data-gc-analytics-rap="Social Insurance Number (SIN) validation problems-Problème lié à la validation du numéro d'assurance sociale (NAS)">Social Insurance Number (SIN) validation problems</label>
+                        <input name="problem9" type="hidden" value="">
+                     </li>								
+					<li class="checkbox">
+                        <label for="problem10"><input name="problem10" id="problem10" type="checkbox" value="Yes" data-reveal="#find" data-gc-analytics-rap="Other login error not in this list-Autre erreur lors de l'ouverture de session qui ne figure pas sur cette liste">Other login error not in this list</label>
+                        <input name="problem10" type="hidden" value="">
+                     </li>		 
+                     </ul>
+				    <div class="checkbox">
+                    <label for="problem11"><input name="problem11" id="problem11" type="checkbox" value="Yes" data-reveal="#find" data-gc-analytics-rap="I can't find what I'm looking for-Je n'arrive pas à trouver ce que je cherche">I can't find what I'm looking for</label>
+                    <input name="problem11" type="hidden" value="">
+                </div>
+             		<div class="checkbox">
+                    <label for="problem12"><input name="problem12" id="problem12" type="checkbox" value="Yes" data-reveal="#find" data-gc-analytics-rap="Other issue not in this list-Autre problème qui ne figure pas sur cette liste">Other issue not in this list</label>
+                    <input name="problem12" type="hidden" value="">
+                </div>                 
+                   </fieldset>
+            <button data-wb5-click="postback@#gc-rprt-prblm-form@" type="submit" class="btn btn-primary wb-toggle" data-toggle='{"stateOff": "hide", "stateOn": "show", "selector": ".gc-rprt-prblm-tggl"}'>Submit</button>
+
+        </form>
+    </div>
+    <div class="gc-rprt-prblm-thnk gc-rprt-prblm-tggl hide">
+        <h3>Thank you for your help!</h3>
+<p>You will not receive a reply. For enquiries,&nbsp;<a href="https://www.canada.ca/en/contact/index.html">contact us</a>.</p>
+
+    </div>
+</div></div>
+</div>
+
+    </details>
+</div>
+       	<div class="col-sm-4 col-md-3 col-sm-offset-2 col-md-offset-4 col-lg-offset-5">
+        <div class="wb-share" data-wb-share='{&#34;lnkClass&#34;: &#34;btn btn-default btn-block&#34;}'></div>
+        </div>
+</div>
+        <dl id="wb-dtmd">
+    <dt>Date modified:</dt>
+    <dd><time property="dateModified">2021-11-10</time></dd>
+</dl>
+</div>
+        </main>
+    
+
+
+
+    
+
+
+
+
+    
+        
+        
+        <div class="newpar new section">
+
+</div>
+
+    
+        
+        
+        <div class="par iparys_inherited">
+
+    
+    
+    
+    
+
+</div>
+
+    
+
+
+
+
+    
+
+
+
+
+    
+        
+        
+        <div class="newpar new section">
+
+</div>
+
+    
+        
+        
+        <div class="par iparys_inherited">
+
+    
+    
+    
+    
+        
+        
+        <div class="global-footer">
+    <footer id="wb-info">
+        <div class="landscape">
+        <nav class="container wb-navcurr">
+            <h2 class="wb-inv">About government</h2>
+            <ul class="list-unstyled colcount-sm-2 colcount-md-3">
+                
+                     
+                         <li><a href="/en/revenue-agency/corporate/contact-information.html">Contact us</a></li>
+                     
+                
+                
+                    
+                        <li><a href="/en/government/dept.html">Departments and agencies</a></li>
+                    
+                
+                
+                    
+                        <li><a href="/en/government/publicservice.html">Public service and military</a></li>
+                    
+                
+                
+                    
+                        <li><a href="/en/news.html">News</a></li>
+                    
+                
+                
+                    
+                        <li><a href="/en/government/system/laws.html">Treaties, laws and regulations</a></li>
+                    
+                
+                
+                    
+                        <li><a href="/en/transparency/reporting.html">Government-wide reporting</a></li>
+                    
+                
+                
+                    
+                        <li><a href="http://pm.gc.ca/en">Prime Minister</a></li>
+                    
+                
+                
+                    
+                        <li><a href="/en/government/system.html">About government</a></li>
+                    
+                
+                
+                    
+                        <li><a href="http://open.canada.ca/en">Open government</a></li>
+                    
+                
+            </ul>
+        </nav>
+        </div>
+        <div class="brand">
+            <div class="container">
+                <div class="row">
+                    <nav class="col-md-10 ftr-urlt-lnk">
+                        <h2 class="wb-inv">About this site</h2>
+                        <ul>
+                            
+                                
+                                    <li><a href="/en/social.html">Social media</a></li>
+                                
+                            
+                            
+                                
+                                    <li><a href="/en/mobile.html">Mobile applications</a></li>
+                                
+                            
+                            
+                                
+                                    <li><a href="/en/government/about.html">About Canada.ca</a></li>
+                                
+                            
+                            
+                                
+                                    <li><a href="/en/transparency/terms.html">Terms and conditions</a></li>
+                                
+                            
+                            
+                                
+                                    <li><a href="/en/revenue-agency/corporate/privacy-notice.html">Privacy</a></li>
+                                
+                            
+                            
+                                
+                            
+                        </ul>
+                    </nav>
+                    <div class="col-xs-6 visible-sm visible-xs tofpg">
+                        <a href="#wb-cont">Top of page <span class="glyphicon glyphicon-chevron-up"></span></a>
+                    </div>
+                    <div class="col-xs-6 col-md-2 text-right">
+                        <img src="/etc/designs/canada/wet-boew/assets/wmms-blk.svg" alt="Symbol of the Government of Canada"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+    
+
+</div>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+    
+<script src="/etc.clientlibs/clientlibs/granite/jquery.min.js"></script>
+<script src="/etc.clientlibs/clientlibs/granite/utils.min.js"></script>
+<script src="/etc/designs/canada/clientlib-publish.min.js"></script>
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/etc/designs/canada/wet-boew/js/wet-boew.min.js"></script>
+<script src="/etc/designs/canada/wet-boew/js/theme.min.js"></script>
+
+
+
 </body>
 </html>
