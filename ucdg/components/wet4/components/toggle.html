@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+      <title>Toggle – WET4 – CRA user-centred design guide – Canada.ca</title>
+      <meta content="width=device-width,initial-scale=1" name="viewport">
+      <meta name=”robots” content=”noindex”>
+      <!-- Meta data -->
+      <!-- Meta data-->
+      <!-- Load closure template scripts -->
+      <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/soyutils.js"></script>
+      <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_39/cdts/compiled/wet-en.js"></script>
+      <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         document.write(wet.builder.refTop({
+         }));
+      </script>
+      <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
+      <link rel="stylesheet" href="../../../css/provisional-topic.css"/>
+      <link rel="stylesheet" href="../../../css/wsm.css"/>
+      <link rel="stylesheet" href="../../../css/step-list.css"/>
+      <link rel="stylesheet" href="../../../css/stacked-header.css"/>
+   </head>
+   <body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
+      <div id="def-top"> </div>
+      <!-- Write closure template --> 
+      <script type="text/javascript">
+         var defTop = document.getElementById("def-top");
+         defTop.outerHTML = wet.builder.top({
+           lngLinks: [{
+         
+             lang: "fr",
+             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
+             text: "Français"
+           }],
+           breadcrumbs: [{
+             title: "CRA user-centred design guide",
+             href: "../../../index.html"},{title: "Components and patterns",href: "../../index.html"},{title: "WET4 components and patterns",href: "../index.html"},{title: "WET4 components",href: "index.html"
+           }],
+           
+           search: false,
+           siteMenu: false,
+           showPreContent: true
+         });
+      </script>
+      <main role="main" property="mainContentOfPage" class="container">
+<!-- CONTENT STARTS -->
+                   <h1 property="name" class="wb-inv" id="wb-cont" dir="ltr">Toggle – WET4 – CRA user-centred design guide</h1>
+<div aria-hidden="true">
+<p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">CRA user-centred design guide</p>
+<h1 class="gc-thickline mrgn-tp-0">Toggle – WET4</h1>
+</div>
+<div class="all-pre wb-prettify">
+<p>Use to toggle elements between on and off states.</p>
+   <h2 class="h3">On this page</h2>
+    <ul>
+      <li><a href="#h-1">When to use</a></li>
+      <li><a href="#h-2">How to implement</a></li>
+	  <li><a href="#h-4">Complementary components</a></li>
+
+    </ul>
+<h2 id="h-1">When to use</h2>
+		<div class="row">		  			  
+		<div class="col-md-7">
+		<h4 class="mrgn-tp-md text-muted">Use when</h4>
+		<ul class="fa-ul">
+			<li><span class="fas fa-check fa-li text-success"></span>clicking an element should control the state of itself or other elements on the page (e.g. a button to open/close all expand/hide elements)</li>
+			<li><span class="fas fa-check fa-li text-success"></span>elements should change state when the page is printed (e.g. all expand/hide elements should be automatically opened for print)</li>
+			<li><span class="fas fa-check fa-li text-success"></span>accordion widget behaviour is needed</li>           
+		</ul>
+		</div>
+
+		<div class="col-md-5">
+		<h4 class="mrgn-tp-md text-muted"><strong>Do not use when</strong> </h4>
+		<ul class="fa-ul">
+						<li><span class="fas fa-times fa-li text-danger"></span>The element being toggled already supports the behaviour natively (e.g. expand/hide elements).</li>
+					</ul>
+		</div>
+		</div>
+
+ <h2 id="h-2">How to implement</h2>
+<p>For instructions on how to implement, refer to: <a href="https://wet-boew.github.io/v4.0-ci/docs/ref/toggle/toggle-en.html" rel="external">Toggle on GitHub</a>.</p>
+
+<h3 id="h-1-1">Example</h3>
+<p>The following example shows:</p>
+<ul>
+<li>a group of buttons that control the toggle state of multiple <a href="expand_hide.html">expand/hide</a> elements</li>
+</ul>
+
+<div class="row">
+<!-- Field flow appearance -->
+<div class="col-md-8">
+<div class="ds-example">
+<div class="wb-tabs">
+<div class="tabpanels">
+<details id="app1">
+<summary>Appearance</summary>
+<div class="panel panel-body brdr-0 brdr-rds-0">
+<div class="btn-group mrgn-bttm-md">
+<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details"}' aria-controls="wb-auto-8 wb-auto-9 wb-auto-10">Toggle</button>
+<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "on"}' aria-controls="wb-auto-8 wb-auto-9 wb-auto-10">On</button>
+<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "off"}' aria-controls="wb-auto-8 wb-auto-9 wb-auto-10">Off</button>
+</div>
+<div class="row">
+<div class="col-sm-4">
+<details id="wb-auto-8">
+<summary>Example 1</summary>
+<p>Example content that provides more details.</p>
+</details>
+</div>
+<div class="col-sm-4">
+<details id="wb-auto-9">
+<summary>Example 2</summary>
+<p>Example content that provides more details.</p>
+</details>
+</div>
+<div class="col-sm-4">
+<details id="wb-auto-10">
+<summary>Example 3</summary>
+<p>Example content that provides more details.</p>
+</details>
+</div>
+</div>
+</div>
+</details>
+<!-- Field flow code -->
+<details id="app2">
+<summary>HTML code</summary>
+<pre><code>&lt;div class="btn-group mrgn-bttm-md"&gt;
+  &lt;button type="button" class="btn btn-primary <strong>wb-toggle</strong>" data-toggle='{"selector": "details"}' aria-controls="wb-auto-8 wb-auto-9 wb-auto-10"&gt;Toggle&lt;/button&gt;
+  &lt;button type="button" class="btn btn-default <strong>wb-toggle</strong>" data-toggle='{"selector": "details", "type": "on"}' aria-controls="wb-auto-8 wb-auto-9 wb-auto-10"&gt;On&lt;/button&gt;
+  &lt;button type="button" class="btn btn-default <strong>wb-toggle</strong>" data-toggle='{"selector": "details", "type": "off"}' aria-controls="wb-auto-8 wb-auto-9 wb-auto-10"&gt;Off&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-sm-4"&gt;
+    &lt;details id="wb-auto-8"&gt;
+      &lt;summary&gt;Example 1&lt;/summary&gt;
+      &lt;p&gt;Example content that provides more details.&lt;/p&gt;
+    &lt;/details&gt;
+  &lt;/div&gt;
+  &lt;div class="col-sm-4"&gt;
+    &lt;details id="wb-auto-9"&gt;
+      &lt;summary&gt;Example 2&lt;/summary&gt;
+      &lt;p&gt;Example content that provides more details.&lt;/p&gt;
+    &lt;/details&gt;
+  &lt;/div&gt;
+  &lt;div class="col-sm-4"&gt;
+    &lt;details id="wb-auto-10"&gt;
+      &lt;summary&gt;Example 3&lt;/summary&gt;
+      &lt;p&gt;Example content that provides more details.&lt;/p&gt;
+    &lt;/details&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</details>
+<details id="app3">
+<summary>Prototyping libraries</summary>
+<section class="alert alert-info">
+<p>The following prototyping libraries are currently being developed and will be available to download once the CRA user-centred design guide is officially launched:</p>
+<ul>
+<li>Axure library</li>
+<li>Figma UI kit</li>
+</ul>
+</section>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<h2 id="h-4">Complementary components</h2>
+
+<p>Additional add-on features and behaviours are available.</p>
+<ul class="list-unstyled row wb-eqht-grd list-grid-hover">
+	<!-- dismissable -->
+	  <li class="col-md-4" id="dismissable">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/dismissable.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="dismissable.html">Dismissable content</a></h3> 	 
+	   </div></div></div></li>	
+	<!-- expand/hide -->
+	  <li class="col-md-4" id="expand/hide">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/expand_hide.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="expand_hide.html">Expand/hide</a></h3> 	 
+	   </div></div></div></li>	 
+	<!-- invisible and visible -->
+	  <li class="col-md-4" id="invisible_visible">	
+		<div class="panel panel-default brdr-rds-0 position-relative hght-inhrt outset">	
+		 <div class="panel-body p-0"> <img class="img-responsive hidden-xs" src="images/components/invisible_visible.jpg">
+		  <div class="panel-body"><h3 class="mrgn-tp-md"><a class="stretched-link" href="invisible_visible.html">Invisible and visible content</a></h3> 	 
+	   </div></div></div></li>   
+
+</ul>
+ </div> 
+  <!-- CONTENT ENDS -->
+ 
+		<div id="def-preFooter"></div>
+         <!-- Write closure template -->
+         <script type="text/javascript">
+            var defPreFooter = document.getElementById("def-preFooter");
+            defPreFooter.outerHTML = wet.builder.preFooter({
+            dateModified: "2020-05-05",
+            showPostContent: true,
+            showFeedback: false,
+            showShare: false
+            });
+         </script>
+      </main>
+      <div id="def-footer">
+      </div>
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         var defFooter = document.getElementById("def-footer");
+         defFooter.outerHTML = wet.builder.footer({
+         showFooter: true,
+         showFeatures: false
+         });
+      </script>
+      <!-- Write closure template -->
+      <script type="text/javascript">
+         document.write(wet.builder.refFooter({
+         }));
+      </script>
+      <script src="https://test.canada.ca/cra/js/alpha-banner.js"></script>
+	   <script src="../../../js/components.js"></script>
+   </body>
+</html>
