@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
+<!--[if gt IE 8]>
+<!--><html class="no-js" lang="en" dir="ltr"><!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+    <title>T4E: Service Canada CERB and EI amounts - Personal income tax - Canada.ca</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <!-- Meta data -->
+    <!-- Meta data-->
+    <!-- Load closure template scripts -->
+    <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/cdts/compiled/soyutils.js"></script>
+    <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/cdts/compiled/wet-en.js"></script>
+
+    <!-- Write closure template -->
+    <script type="text/javascript">
+        document.write(wet.builder.refTop({}));
+    </script>
+    <link href="../../css/pn.css" rel="stylesheet">
+    <link href="../../css/h1-underline.css" rel="stylesheet">
+    <link href="../../css/h1-stacked.css" rel="stylesheet">
+    <link href="../../css/bands.css" rel="stylesheet">
+    <link href="../../css/owner-social.css" rel="stylesheet">
+    <link href="../../css/templates.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" />
+    <link href="http://test.canada.ca/cra/css/custom.css" rel="stylesheet">
+<style>
+/*Stacked H1*/
+h1 {
+  border-bottom: none;
+}
+h1#wb-cont::after {
+  content: ""; /* This is necessary for the pseudo element to work. */
+  display: block; /* This will put the pseudo element on its own line. */
+  width: 70px; /* Change this to whatever width you want to have before hover. */
+  padding-bottom: 8px; /* This creates some space between the element and the border. */
+  border-bottom: .18em solid #af3c43; /* This creates the border. Replace black with whatever color you want. */
+}
+h1 span.stacked {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-left: -9999px;
+}
+
+h1 span.stacked span:nth-child(1) {
+    margin-top: -1.1em;
+}
+
+h1 span.stacked span:nth-child(1), h1 span.stacked span:nth-child(2) {
+    margin-left: 9999px;
+}
+
+h1 span.stacked span:nth-child(2) {
+    font-size: 26px;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 0.17em;
+}
+#blue.badge {
+    background: #2572B4;
+}
+
+/*alert style start */
+.alert:before {
+ height: 34px;
+ content: "";
+ background-color: #fff;
+ width: 6px;
+ display: inline;
+ margin-top: -1px;
+ margin-left: -26px;
+ position: absolute;
+}
+.alert-success, .alert-info, .alert-warning, .alert-danger {
+ background: #fff !important;
+}
+.alert {
+ border-width: 1px 1px 1px 4px !important;
+ margin-left: 11px;
+ padding-left: 20px;
+ border-width: 0px 0px 0px 6px!important
+}
+.alert-success > :first-child::before, .alert-info > :first-child::before, .alert-warning > :first-child::before, .alert-danger > :first-child::before {
+ font-size: 26px;
+ margin-left: -1.48em;
+ padding: 2px;
+ line-height: 1.1em;
+}
+.alert > :first-child {
+ margin-left: 0em;
+}
+.alert >:first-child::before {
+ margin-right: 0.4em
+}
+/*alert styles end */
+/*chatbot styles start */
+
+  #chat-bottom-bar {overflow: visible !important;}
+  
+  .iconparent{
+    position: relative;
+    
+  }
+  
+  .iconmain{
+    top: -18px;
+    position: fixed;
+  }
+
+#chat-bottom-bar header h2 {
+                font-size: 0.95em;
+                margin-left: 70px;
+                font-weight: 400;
+}
+
+
+    #webchat div.ac-container button.ac-pushButton.style-positive {
+      text-decoration: underline;
+    }
+
+#chat-bottom-bar {
+  max-width: 90%;
+}
+
+      #webchat-container{
+        height:100%;
+      }
+
+      #webchat {
+      border: none;
+      font-size: 16px;
+      height: 100%;
+      padding-bottom: 42px;
+      line-height: normal;
+    }
+    
+    #webchat > div > div:first-child {
+      overflow-x: hidden;
+      overflow-y: auto;
+      /*height: 490px;*/
+    }
+    
+    #webchat > div > div:nth-child(2) {
+      /*height: 35px;*/
+    }
+    
+    #webchat div.ac-container button.ac-pushButton {
+      font-weight: normal;
+      line-height: normal;
+    }
+    
+    #webchat div.ac-container div.ac-textBlock {
+      font-size: 16px !important;
+    }
+
+
+      /*#webchat button.ac-pushButton {
+        justify-content: left;
+        border-style: none;
+        padding: 5px;
+      }*/
+      #webchat button.ac-pushButton div {
+        overflow:auto!important;
+        white-space:normal!important;
+      }
+      .chat {
+          background-color: #006165;
+          color: #fff;
+          border-color: #006165;
+          display: inline-block;
+          position: fixed;
+          bottom: 0px;
+          right: 5%;
+          border-bottom-color: currentColor;
+          border-bottom-width: 0px;
+          border-bottom-style: none;
+          min-width:200px;
+          height:40px;
+          width:275px;
+          z-index: 1050;
+          -webkit-transform: translateZ(0px);
+          box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+          -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+          outline: 0px;
+        }
+
+        .chat header {
+    padding: 10px 15px;
+    border-bottom-color: transparent;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    position: relative;
+    display: block;
+        }
+        
+        .chat header * {
+    color: inherit;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+#unreadMsgSpanContainer {
+    background-color: #fff;
+    color: #006165;
+    display: none;
+    padding: 3px 7px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: bold;
+    vertical-align: middle;
+    white-space: nowrap;
+    min-width: 10px;
+}
+
+
+      .chat.minimizedchat header{
+          cursor: pointer;
+        }
+
+        .chat.minimizedchat #toggleCollapse{
+          display:none;
+        }
+        .chat.minimizedchat #toggleExpand{
+          display:block;
+        }
+        .chat.expandedchat #toggleExpand{
+          display:none;
+        }
+        .chat.expandedchat #toggleCollapse{
+          display:block;
+        }
+
+        .chat.minimizedchat button.toprightbtn.secondFromRight{
+          display:none;
+        }
+
+
+        .chat.minimizedchat header:hover .toprightbtn{
+          opacity: 1;
+        }
+      
+        .toprightbtn:focus {
+          outline: rgb(255, 255, 255) dotted 1px;
+          outline-offset: -2px;
+          opacity: 1;
+      }
+      .toprightbtn:hover {
+          opacity: 1;
+      }
+      button.toprightbtn.innerbtn {
+        right: 44px !important;
+      }
+    
+      button.rightMost.toprightbtn {
+        right: 0px;
+      }
+      button.secondFromRight.toprightbtn {
+        right: 45px;
+      }
+      
+      button.toprightbtn {
+          background: none;
+          padding: 0px !important;
+          border: 0px currentColor;
+          border-image: none;
+          overflow: visible;
+          display: block;
+          z-index: 1046;
+          cursor: pointer;
+          box-shadow: none;
+          -webkit-appearance: none;
+          -webkit-box-shadow: none;
+          font-weight: 700;
+          padding: 0px 0px 18px 10px;
+          top: 0px;
+          width: 44px;
+          height: 44px;
+          text-align: center;
+          color: rgb(255, 255, 255);
+          line-height: 44px;
+          font-family: Arial,Baskerville,monospace;
+          font-style: normal;
+          text-decoration: none;
+          position: absolute;
+          opacity: 0.65;
+          margin: 0px;
+      }   
+
+.css-1dgbgmu {
+background-color: #00a89d !important
+}
+.css-1dgbgmu.from-user {
+background-color: #26384a !important
+}
+
+/*chatbot styles end */
+</style>
+</head>
+
+<body vocab="http://schema.org/" typeof="WebPage">
+    <div id="def-top">
+    </div>
+    <!-- Write closure template -->
+    <script type="text/javascript">
+        var defTop = document.getElementById("def-top");
+        defTop.outerHTML = wet.builder.top({
+            lngLinks: [{
+                lang: "fr",
+                href: "https://www.canada.ca/fr/services/impots/impot-sur-le-revenu/impot-sur-le-revenu-des-particuliers/covid19-impots/t4e-declarer.html",
+                text: "Français"
+            }],
+            breadcrumbs: [{
+                title: "Canada.ca",
+                href: "https://www.canada.ca/en.html"
+            }, {
+                title: "Taxes",
+                href: "https://www.canada.ca/en/services/taxes.html"
+            }, {
+                title: "Income tax",
+                href: "https://www.canada.ca/en/services/taxes/income-tax.html"
+            }, {
+                title: "Personal income tax",
+                href: "https://www.canada.ca/en/services/taxes/income-tax/personal-income-tax.html"
+            }, {
+                title: "COVID-19 benefits and your taxes",
+                href: "https://www.canada.ca/en/services/taxes/income-tax/personal-income-tax/covid19-taxes.html"
+
+            }],
+            search: true,
+            siteMenu: true,
+            showPreContent: true
+        });
+    </script>
+
+    <main role="main" property="mainContentOfPage" class="container">
+
+         <div class="mwsgeneric-base-html parbase section">
+
+
+    
+    <div class="container">
+	<h1 property="name" class="wb-inv" id="wb-cont" dir="ltr"> T4E: Service Canada CERB and EI amounts - Personal income tax</h1>
+	<div aria-hidden="true">
+		<p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">Personal income tax</p>
+		<h1 class="gc-thickline mrgn-tp-0">T4E: Service Canada CERB and EI amounts </h1>
+	</div>
+	
+	<!-- chatbot starts -->
+	<section id="chat-bottom-bar" class="chat smallchat minimizedchat">
+		<header class="">
+			<div class="iconparent">
+				<div class="iconmain"> <img src="/content/dam/cra-arc/chatbot/avatar_head.png" alt="" width="61" height="60" class="ChatWindowIcon"> </div>
+			</div>
+			<h2 class="" data-gc-analytics-customclick="CRA|ARC:Chatbot:Open Chatbot (Chat with Charlie)">Chat with Charlie <span id="unreadMsgSpanContainer" class=""><span id="unreadMsgSpan"></span><span class="wb-inv"> unread messages</span></span> <span class="small" id="chatstatus"></span></h2>
+			<button id="toggleMax" title="Fullscreen chat" class="toprightbtn secondFromRight" type="button" data-gc-analytics-customclick="CRA|ARC:Chatbot:Chatbot Fullscreen">⁠<span class="glyphicon glyphicon-resize-full"><span class="wb-inv"> Fullscreen chat</span></span></button>
+			<button id="toggleSmall" title="Small chat" class="toprightbtn secondFromRight" type="button" data-gc-analytics-customclick="CRA|ARC:Chatbot:Chatbot Smallscreen">⁠<span class="glyphicon glyphicon-resize-small"><span class="wb-inv"> Small chat</span></span></button>
+			<button id="toggleExpand" title="Open chat" class="toprightbtn rightMost" type="button" data-gc-analytics-customclick="CRA|ARC:Chatbot:Open Chatbot (chevron up)"><span class="glyphicon glyphicon-chevron-up"><span class="wb-inv"> Open chat</span></span></button>
+			<button id="toggleCollapse" title="Minimize chat" class="toprightbtn rightMost" type="button" data-gc-analytics-customclick="CRA|ARC:Chatbot:Minimize Chatbot (chevron down) "><span class="glyphicon glyphicon-chevron-down"><span class="wb-inv"> Minimize chat</span></span></button>
+		</header>
+		<div id="webchat-container" class="">
+			<div id="webchat"> </div>
+		</div>
+	</section>
+	<!-- chatbot ends -->
+	<div class="row ">
+		<div class="col-md-9">
+			<h2>On this page</h2>
+			<ul>
+				<li><a href="#toc0">T4E slips for 2020 tax year</a></li>
+				<li><a href="#toc1">Verify amount or issues on your T4E slip</a></li>
+				<li><a href="#toc2">Report T4E amounts on your tax return</a></li>
+			</ul>
+			<h2 id="toc0">T4E slips for 2020 tax year</h2>
+			<p>If you received Canada Emergency Response Benefit (CERB) from Service Canada or any Employment Insurance (EI) benefit payments, you should get a T4E tax slip with the amounts you received.</p>
+			<p>These benefit amounts are taxable income. Any payments you received before December 31, 2020 will need to be reported on your 2020 tax return.</p>
+			<p>You will receive a T4E slip at tax time or you may also get your T4E information from <a href="/en/employment-social-development/services/my-account.html">My Service Canada Account</a>.</p>
+			<h3>Other tax slips you may receive</h3>
+			<p>You may get other tax slips in addition to the T4E slip.</p>
+			<dl class="dl-horizontal">
+				<dt>T4A slip</dt>
+				<dd>
+					<p>If you received CERB from the Canada Revenue Agency (CRA), you will get a T4A slip. For details: <a href="http://test.canada.ca/cra/cops/t1/covid19-1-e.html">T4A: Report COVID-19 amounts</a>.</p>
+				</dd>
+				<dt>T4E(Q) slip</dt>
+				<dd>
+					<p>If you are a Quebec resident, you will also get a T4E(Q) slip.</p>
+				</dd>
+				<dt>T4 slip</dt>
+				<dd>
+					<p>If you received employment income in 2020, you will see new box numbers (57, 58, 59, and 60) at the bottom of your 2020 T4 slip. These boxes are only for CRA use and no action is required by you.</p>
+					<p>These amounts include employment income paid between March 15 to September 26, 2020, which are already included in box 14 of your <a href="/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/tax-slips/understand-your-tax-slips/t4-slips/t4-statement-remuneration-paid.html">T4 slip</a>.</p>
+				</dd>
+			</dl>
+			<p>If your employer received the Canada Emergency Wage Subsidy (CEWS) to cover part of your wages, it be will be included as regular employment income on your <a href="/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/tax-slips/understand-your-tax-slips/t4-slips/t4-statement-remuneration-paid.html">T4 slip</a>.</p>
+			<h2 id="toc1">Verify amount or issues on your T4E slip</h2>
+			<p>When you receive your T4E slip, make sure the CERB and EI amounts you received are correct. You also need to verify any repayments you made before December 31, 2020 are accounted for.</p>
+			<p>You can view or print an itemized statement of your T4E benefits through&nbsp;<a href="/en/employment-social-development/services/my-account.html">My Service Canada Account</a>. If you still do not have your T4E slip,&nbsp;<a href="/en/employment-social-development/programs/ei/ei-list/tax-slips-itemized.html#h2-15">contact Service Canada</a></p>
+			<p>To verify your amounts or if you have an issue on your T4E slip, go to&nbsp;<a href="/en/employment-social-development/programs/ei/ei-list/tax-slips-itemized.html#h2-04">T4E and the Canada Emergency Response Benefit (CERB)</a>.</p>
+			<h2 id="toc2">Report T4E amounts on your tax return</h2>
+			<p>CERB benefit payment amounts received from Service Canada are included in <strong>box 14</strong> of your <a href="/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/tax-slips/understand-your-tax-slips/t4-slips/t4e-statement-employment-insurance-other-benefits.html">T4E slip</a>.</p>
+			<p>The total amount in box 14 includes your CERB amounts along with other employment insurance benefits.</p>
+			<h3>Steps for reporting T4E amounts on your tax return</h3>
+			<ol>
+				<li>Find your total benefits paid amount in <strong>box 14 </strong>of your T4E slip</li>
+				<li>If you are not eligible to receive tax exempt benefits under the Indian Act, take the amount in box 14 and <strong>subtract </strong>any amount from <strong>box 18 </strong>(under "Other information" on your T4E slip)</li>
+				<li>Enter the subtracted amount on <a href="/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/personal-income/line-11900-employment-insurance-other-benefits.html">line 11900</a> on your return</li>
+			</ol>
+			<h3>If your income is tax exempt </h3>
+			<p>If your income is eligible for tax exemption under section 87 of the Indian Act, your CERB payments may be tax exempt. Your CERB payments will be taxed or tax exempt in the same way as the total income that entitled you to the benefit.</p>
+			<ul>
+				<li>If all your income was tax exempt during the time you earned the $5,000 income requirement (in 2019 or the last 12 months), then the benefit is also tax exempt</li>
+				<li>If your income during that time was not fully tax exempt, you may have some tax to pay</li>
+			</ul>
+			<p>If you are not sure if your income is tax exempt, or need more details: <br><a href="/en/revenue-agency/services/indigenous-peoples.html#toc5">Taxes and benefits for Indigenous peoples </a></p>
+		</div>
+	</div>
+</div>
+</div>
+
+<div id="def-preFooter">
+</div>
+<!-- Write closure template -->
+<script type="text/javascript">
+	var defPreFooter = document.getElementById("def-preFooter");
+	defPreFooter.outerHTML = wet.builder.preFooter({
+		dateModified: "August 26, 2021",
+		showPostContent: true,
+		showFeedback: true,
+		showShare: true
+	});
+</script>
+
+</main>
+
+<div id="def-footer">
+
+</div>
+<!-- Write closure template -->
+<script type="text/javascript">
+    var defFooter = document.getElementById("def-footer");
+    defFooter.outerHTML = wet.builder.footer({
+        showFooter: true,
+        showFeatures: true
+    });
+</script>
+<!-- Write closure template -->
+<script type="text/javascript">
+    document.write(wet.builder.refFooter({
+    }));
+</script>
+
+</body>
+</html>
