@@ -3,4 +3,4 @@
 
 Live: [https://test.canada.ca/cra-arc/cops/t1/](https://test.canada.ca/cra-arc/cops/t1/)
 
-[Income tax](https://test.canada.ca/cra-arc/cops/t1/income-tax.html)
+* [Taxes](https://test.canada.ca/cra-arc/cops/t1/taxes.html)
