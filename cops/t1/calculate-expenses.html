@@ -1595,6 +1595,604 @@ font-size: 22px;
 
 
 </div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script>
+    (function ($, document, wb) {
+      "use strict";
+      $('.data-ajax').on("wb-contentupdated", function (event, data) {
+        // "data.ajax-type" contains the insersion method [after, append, before, prepend, replace]
+        // "data.content" contains the
+        var $elm = $(event.currentTarget);
+        $elm
+          .find(wb.allSelectors)
+          .addClass("wb-init")
+          .filter(":not(#" + $elm.attr("id") + " .wb-init .wb-init)")
+          .trigger("timerpoke.wb");
+        /*
+         * Since we are working with events we want to ensure that we are being
+         * passive about our control, so returning true allows for events to always
+         * continue
+         */
+        return true;
+      });
+    })(jQuery, document, wb);
+  </script> 
+
+<script>
+    //prevent enter from submitting the form
+    var list = document.querySelectorAll("input,select");
+    for (i = 0; i < list.length; i++) {
+      list[i].addEventListener("keypress", function (event) {
+        if (event.keyCode == 13) {
+          event.preventDefault();
+        }
+      })
+    }
+
+    (function ($, wb) {
+      "use strict";
+      var $document = wb.doc;
+      $document.on("click vclick", ".wb-lbx", function (event) {
+        var value = $(this).attr('href');
+        $document.trigger("open.wb-lbx", [
+          [{
+            src: value,
+            type: "inline"
+          }]
+        ]);
+      });
+    })(jQuery, wb);
+    const toMoney = new Intl.NumberFormat(wb.lang + "-CA", {
+      style: "currency",
+      currency: "CAD",
+      minimumFractionDigits: 2,
+    });
+    const toFormattedNumber = new Intl.NumberFormat(wb.lang + "-CA");
+    //regex for identifying currency values
+    const NON_CURRENCY_CHARACTER = /[a-zA-Z\+\-~<>?\/":;'\[\{\]\}\\|!@#$%^&*()_=]/g;
+    const FRENCH_CURRENCY_FORMAT = /^(\d{1,3}(\s\d{3})*|(\d+))(\,\d{2})?$/g;
+    const ENGLISH_CURRENCY_FORMAT = /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/g;
+    //regex for identifying number formats not limited to decimal places
+    const FRENCH_NUMBER_FORMAT = /^(\d{1,3}(\s\d{3})*|(\d+))(\,\d{1,})?$/g;
+    const ENGLISH_NUMBER_FORMAT = /^(\d{1,3}(\,\d{3})*|(\d+))(\.\d{1,})?$/g;
+
+    /**
+     * calculateCommonRoomClaimRate
+     * 
+     * calculate the percentage of bills that can be claimed when using a 
+     * common room
+     * 
+     * @param {Float} percSpaceUsed the percentage of the total finished area 
+     * that is used for work
+     * @param {Float} percHour the percentage of the week that the space is 
+     * used for work purposes
+     * 
+     * @return {Float} the percentage of bills that can be claimed; 0 if params * fail validation
+     */
+    function calculateCommonRoomClaimRate(percSpaceUsed, percHour) {
+      if (parseFloat(percSpaceUsed) && parseFloat(percHour)) {
+        return percSpaceUsed * percHour / 100;
+      }
+      return 0;
+    }
+
+    /**
+     * reformat the currency values after a short delay
+     */
+    $(document).on("blur", ".currency", reformatNumber);
+
+    function reformatNumber(event) {
+      if (event.target.value == "") {
+        return;
+      }
+      if (event.target.value.match(NON_CURRENCY_CHARACTER)) {
+        event.target.value = event.target.value.replace(
+          NON_CURRENCY_CHARACTER,
+          ""
+        );
+      }
+      event.target.value = toFloat(event.target.value);
+      event.target.value = toMoney.format(event.target.value)
+        .replace("$", "");
+      event.target.value = event.target.value.replace('CA', "").trim();
+    }
+
+    /**
+     * calculateSpaceUsed
+     * 
+     * calculate the space used as workspace
+     * 
+     * @param {Float} workArea the total area used for work purposes
+     * @param {Float} totalArea the total area of the home
+     * 
+     * @return {Float} the percentage of space used for work
+     */
+    function calculateSpaceUsed(workArea, totalArea) {
+      return workArea / totalArea * 100;
+    }
+
+    /**
+     * getCommonWorkSpace
+     * 
+     * determine the total common space used for work
+     *
+     * @return {Float} the total common space used for work
+     */
+    function getCommonWorkSpace() {
+      var workArea = 0;
+      //if common room panel is visible, add each common room to the work space
+      if (!$("div.shared-room").hasClass("hidden")) {
+        if ($("#shared-room-area-input").val() !== "") {
+          workArea += spaceToFloat($("#shared-room-area-input").val());
+        }
+      }
+      return workArea;
+    }
+
+    /**
+     * getCommonWorkSpaceHours
+     * 
+     * determine the percentage of the week that the common space used for work
+     *
+     * @return {object} with property for raw hours and property 
+     * representing the percentage of hours the room is used during the week
+     */
+    function getCommonWorkSpaceHours() {
+      var workHours = 0;
+      if (!$("div.shared-room").hasClass("hidden")) {
+        if ($("#shared-room-hrs-input").val() !== "") {
+          workHours += spaceToFloat($("#shared-room-hrs-input").val());
+        }
+      }
+      return {
+        rawHours: workHours,
+        percentage: workHours / 168 * 100
+      };
+    }
+
+    /**
+     * getDesignatedWorkSpace
+     * 
+     * determine the total designated space used for work
+     *
+     * @return {Float} the designated space used for work
+     */
+    function getDesignatedWorkSpace() {
+      var workArea = 0;
+      //if the designated work space input is visible, add it to the work space
+      if (!$("#designated-room-area-input").hasClass("hidden")) {
+        if ($("#designated-room-area-input").val() !== "") {
+          workArea += spaceToFloat($("#designated-room-area-input").val());
+        }
+      }
+      return workArea;
+    }
+
+
+    /**
+     * toFloat
+     * 
+     * convert a formatted currency value to a JS compliant float
+     * 
+     * param {String} the formatted currency value
+     * 
+     * return {Float} the JS compliant float equiv
+     */
+    function toFloat(formattedNumber) {
+      if (typeof formattedNumber == "string") {
+        formattedNumber = formattedNumber.trim();
+      }
+      if (formattedNumber == "") {
+        return parseFloat(0);
+      }
+      var reformattedNumber = 0;
+      if (formattedNumber.match(FRENCH_CURRENCY_FORMAT)) {
+        reformattedNumber = formattedNumber.replace(/\s/g, "");
+        reformattedNumber = reformattedNumber.replace(/\,/g, ".");
+        return parseFloat(reformattedNumber);
+      } else if (formattedNumber.match(ENGLISH_CURRENCY_FORMAT)) {
+        reformattedNumber = formattedNumber.replace(/\,/g, "");
+        return parseFloat(reformattedNumber);
+      } else {
+        return parseFloat(formattedNumber);
+      }
+    }
+
+    /**
+     * spaceToFloat
+     * 
+     * convert a formatted number to a JS compliant float
+     * 
+     * param {String} the number value
+     * 
+     * return {Float} the JS compliant float equiv
+     */
+    function spaceToFloat(number) {
+      number = number.trim();
+      if (number == "") {
+        return parseFloat(0);
+      }
+      var reformattedNumber = 0;
+      if (number.match(FRENCH_NUMBER_FORMAT)) {
+        reformattedNumber = number.replace(/\s/g, "");
+        reformattedNumber = reformattedNumber.replace(/\,/g, ".");
+        return parseFloat(reformattedNumber);
+      } else if (number.match(ENGLISH_NUMBER_FORMAT)) {
+        reformattedNumber = number.replace(/\,/g, "");
+        return parseFloat(reformattedNumber);
+      } else {
+        return parseFloat(number);
+      }
+    }
+
+    /**
+     * validateDates
+     * 
+     * Validating the start and end date
+     * 
+     */
+    function validateDates() {
+      var fromDate = $("#work-home-start").val();
+      var toDate = $("#work-home-end").val();
+
+      //Start Date
+      if (fromDate) {
+        $(".startDate").text(fromDate);
+      }
+
+      //End Date
+      if (toDate) {
+        $(".endDate").text(toDate);
+      }
+    }
+
+
+    //when the total area input is updated
+    $(document).on("change keyup", "#total-home-area-input", function (event) {
+      //update the total finished area summary 
+      var totalArea = spaceToFloat(event.target.value);
+      if (!isNaN(totalArea)) {
+        $(".total-home-area-output").text(toFormattedNumber.format(totalArea));
+      } else {
+        $(".total-home-area-output").text("0");
+      }
+      //calculate the total area used as a percentage of the total finished area
+      var workArea = getCommonWorkSpace() + getDesignatedWorkSpace();
+      var spaceUsed = calculateSpaceUsed(workArea, totalArea).toFixed(2);
+      //update display
+      if (!isNaN(spaceUsed)) {
+        $(".ws-area-personal-percent-output").text(
+          toFormattedNumber.format((100 - spaceUsed).toFixed(2))
+        );
+        $(".ws-area-employment-percent-output").text(
+          toFormattedNumber.format(spaceUsed)
+        );
+      } else {
+        $(".ws-area-employment-percent-output").text("0");
+        $(".ws-area-personal-percent-output").text("0");
+      }
+      var claimRate = calculateCommonRoomClaimRate(
+        spaceUsed,
+        getCommonWorkSpaceHours().percentage
+      ).toFixed(2);
+      $(".shared-room-personal-percent-output").text(
+        toFormattedNumber.format((100 - claimRate).toFixed(2))
+      );
+      $(".shared-room-employment-percent-output").text(
+        toFormattedNumber.format(claimRate)
+      );
+    });
+
+    //trigger the summary to update when common workspace input is updated
+    $(document).on("change keyup", "#shared-room-area-input", function (event) {
+      var workArea = getCommonWorkSpace();
+      if (!isNaN(workArea)) {
+        $(".room-area-output").text(toFormattedNumber.format(workArea));
+      } else {
+        $(".room-area-output").text("0");
+      }
+      $("#total-home-area-input").trigger("change");
+      var claimRate = calculateCommonRoomClaimRate(
+        calculateSpaceUsed(workArea, toFloat($("#total-home-area-input").val())),
+        getCommonWorkSpaceHours().percentage
+      ).toFixed(1);
+      $(".shared-room-personal-percent-output").text(
+        toFormattedNumber.format((100 - claimRate).toFixed(2))
+      );
+      $(".shared-room-employment-percent-output").text(
+        toFormattedNumber.format(parseFloat(claimRate).toFixed(2))
+      );
+    });
+    //when designated work space input is changed
+    $(document).on("change keyup", "#designated-room-area-input", function (event) {
+      var workArea = getDesignatedWorkSpace();
+      if (!isNaN(workArea)) {
+        $(".room-area-output").text(toFormattedNumber.format(workArea));
+      } else {
+        $(".room-area-output").text("0");
+      }
+      $("#total-home-area-input").trigger("change");
+    });
+
+    //when end date is changed
+    $(document).on("change keyup", "[id^='work-home-']", function (event) {
+      var index = event.target.id.split("-")[3];
+      var fromDate = $("#work-home-start-" + index).val();
+      var toDate = $("#work-home-end-" + index).val();
+      //Start Date
+      if (fromDate) {
+        $(".startDate" + index).text(fromDate);
+      }
+      //End Date
+      if (toDate) {
+        $(".endDate" + index).text(toDate);
+      }
+    });
+
+    //make sure the claim period doesnt exceed the start year
+    $(document).on("change keyup", "[id^='work-home-start']", function (event) {
+      var startDateElement = event.target;
+      var index = event.target.id.split("-")[3];
+      var startDate = new Date(startDateElement.value);
+      var endDateElements = $("[id^='work-home-end']");
+      var startDateElements = $("[id^='work-home-start']");
+      $(endDateElements).each(function (i, element) {
+        $(element).attr("max", startDate.getUTCFullYear() + "-12-31");
+      });
+      $("#work-home-end-" + index).attr("min", startDateElement.value);
+      //if the user changed the start date to a date after the current end date, display the wet4 error
+      if ($("#work-home-end-" + index).val() !== '') {
+        $("#work-home-end-" + index).trigger('change');
+      }
+      $(startDateElements).each(function (i, element) {
+        if (element.id !== "work-home-start-1") {
+          $(element).attr("min", startDate.getUTCFullYear() + "-01-01");
+          $(element).attr("max", startDate.getUTCFullYear() + "-12-31");
+        }
+      });
+    });
+
+    //reset date field values, min, max, and spans when date is removed
+    $(document).on("click keyup", "button[id^='remove-date-']", function (event) {
+      if (event.target.nodeName == "SPAN") {
+        event.target = event.target.parentElement;
+      }
+      var index = $(event.target).prop("id").replace("remove-date-", "");
+      $("#work-home-start-" + index).val("");
+      $("#work-home-end-" + index).val("");
+      $(".startDate" + index).text("start");
+      $(".endDate" + index).text("end");
+    });
+
+    //when a user updates the common space hours
+    $(document).on("change keyup", "#shared-room-hrs-input", function (event) {
+      if ($("#shared-room-area-input").val() == "" && $("#total-home-area-input").val() == "") {
+        $(".perhr-percent-sum").text("0");
+        $(".perhr-percent-sum").text("0");
+        $(".shared-room-hrs-output").text("0");
+        $("#per-cmmn-rm-sum").text("0");
+        return;
+      }
+      var hours = getCommonWorkSpaceHours();
+      if (!isNaN(hours.percentage) && !isNaN(hours.rawHours)) {
+        $(".perhr-percent-sum").text(toFormattedNumber.format(100 - hours.percentage));
+        $(".shared-room-hrs-percent-output").text(toFormattedNumber.format(hours.percentage.toFixed(2)));
+        $(".shared-room-personal-hrs-percent-output").text(
+          toFormattedNumber.format(100 - hours.percentage.toFixed(2))
+        );
+        $(".shared-room-hrs-output").text(toFormattedNumber.format(hours.rawHours));
+        $("#per-cmmn-rm-sum").text(toFormattedNumber.format((168 - hours.rawHours)));
+      } else {
+        $(".perhr-percent-sum").text("0");
+        $(".perhr-percent-sum").text("0");
+        $(".shared-room-hrs-output").text("0");
+        $("#per-cmmn-rm-sum").text("0");
+      }
+      var workArea = getCommonWorkSpace() + getDesignatedWorkSpace();
+      var claimRate = calculateCommonRoomClaimRate(
+        calculateSpaceUsed(workArea, toFloat($("#total-home-area-input").val())),
+        hours.percentage
+      ).toFixed(2);
+      $(".shared-room-personal-percent-output").text(toFormattedNumber.format((100 - claimRate).toFixed(2)));
+      $(".shared-room-employment-percent-output").text(toFormattedNumber.format(parseFloat(claimRate).toFixed(2)));
+    });
+
+    //when the commission or work space type radios are changed. using this method of selecting because fieldflow does not give us ID's to work with if need to target specific use :eq(n)
+    $(document).on("click", ".wb-fieldflow-form input[type='radio']", function (event) {
+      $("input[type='text'], input[type='number']").each(function (i, element) {
+        $(element).val("0").trigger("focusout");
+        $(element).trigger("change");
+      });
+      $("input[type='date']").each(function (i, element) {
+        $(element).val("");
+      });
+      $("#results").addClass("hidden");
+    });
+
+    //submit button was clicked
+    $(document).on("click", "#exp-cal", function (event) {
+      event.preventDefault();
+      var form = $("#wsih-calculator-form");
+      form.validate()
+      //if WET4 already has errors, return
+      if (!form.valid()) {
+        return;
+      } else {
+        $("#results").removeClass("hidden");
+      }
+      validateDates();
+      //get inputs. defaulting to zero
+      var workArea = getCommonWorkSpace() + getDesignatedWorkSpace();
+      var totalArea = spaceToFloat($("#total-home-area-input").val());
+      var workHours = getCommonWorkSpaceHours();
+      var income = toFloat($("#income-input").val()) || 0;
+      var unionDues = toFloat($("#dues-input").val()) || 0;
+      var pension = toFloat($("#pension-input").val()) || 0;
+      var supplies = toFloat($("#supplies-input").val()) || 0;
+      var otherWorkExpenses = toFloat($("#ws-expenses-input").val()) || 0;
+      var electricityBill = toFloat($("#utilities-input").val()) || 0;
+      var homeMaintenance = toFloat($("#home-maintenance-input").val()) || 0;
+      var rentBill = toFloat($("#home-rent-input").val()) || 0;
+      var homeInsurance = toFloat($("#insurance-commission-input").val()) || 0;
+      var propertyTaxes = toFloat($("#property-taxes-commission-input").val()) || 0;
+      var otherExpenses = toFloat($("#home-expenses-input").val()) || 0;
+      var roomMaintenance = toFloat($("#designated-room-maintenance-input").val()) || toFloat($("#shared-room-maintenance-input").val()) || 0;
+      var rate;
+      var personalUsePercent = toFloat($(".ws-area-personal-percent-output").text());
+      var totalEmploymentUse = 0;
+      var netIncome = Math.max(income - (supplies + otherWorkExpenses) - pension - unionDues, 0);
+      var totalExpenses = electricityBill + homeMaintenance + propertyTaxes + otherWorkExpenses + homeInsurance;
+      //room type specific calculations/display effects
+      if ($(".shared-room").hasClass("hidden")) {
+        //designated room
+        rate = calculateSpaceUsed(workArea, totalArea) || 0;
+        //total claim calculations
+        totalEmploymentUse = ((electricityBill + homeMaintenance + homeInsurance + propertyTaxes + otherExpenses + rentBill) * (rate) / 100) + roomMaintenance;
+        //employment use percentage
+        $(".employment-use-ws-rate").text(toFormattedNumber.format(100));
+        //employment use amount
+        $(".employment-use-ws-amount").text(
+          toMoney.format(roomMaintenance).replace('CA', '').trim()
+        );
+        //add room maintenance to total expenses
+        totalExpenses += roomMaintenance;
+      } else {
+        //common/shared room
+        rate = spaceToFloat($("#shared-room-employment-percent-output-id").text());
+        //total claim calculations
+        totalEmploymentUse = ((electricityBill + homeMaintenance + homeInsurance + propertyTaxes + otherExpenses + rentBill) * (rate) / 100) + roomMaintenance * (toFloat($("#shared-room-hrs-percent-output-id").text()) / 100);
+        //employment use percentage
+        $(".employment-use-ws-rate").text(
+          toFormattedNumber.format(
+            toFloat($("#shared-room-hrs-percent-output-id").text())
+              .toFixed(2)
+          )
+        );
+        //employment use amount
+        $(".employment-use-ws-amount").text(
+          toMoney.format(roomMaintenance * (toFloat($("#shared-room-hrs-percent-output-id").text()) / 100)).replace('CA', '').trim()
+        );
+      }
+      //calculate the carry forward amount
+      var carryFwd = Math.max(0, totalEmploymentUse - netIncome);
+      //calculate total claim amount
+      var totalClaim = toMoney.format(
+        (supplies + otherWorkExpenses) +
+        Math.min(netIncome, totalEmploymentUse)).replace('CA', '').trim();
+      //total claimable expense calculation
+      $(".employment-use-home-amount").text(
+        toMoney.format(
+          (electricityBill + homeMaintenance + homeInsurance + propertyTaxes + otherExpenses + rentBill) * (rate / 100)
+        ).replace('CA', '').trim()
+      );
+      //total of expenses paid
+      $(".employment-use-home-claim").text(
+        toMoney.format(
+          electricityBill + homeMaintenance + homeInsurance + propertyTaxes + otherExpenses + rentBill
+        ).replace('CA', '').trim()
+      );
+      //workspace specific claim amount
+      $(".employment-use-ws-claim").text(toMoney.format(roomMaintenance).replace('CA', '').trim());
+      //workplace specific claim rate
+      $(".employment-use-home-rate").text(
+        toFormattedNumber.format(rate.toFixed(2))
+      );
+      $(".supplies-output").text(toMoney.format(supplies).replace('CA', '').trim());
+      $(".ws-expenses-output").text(toMoney.format(otherWorkExpenses).replace('CA', '').trim());
+      $(".utilities-output").text(toMoney.format(electricityBill).replace('CA', '').trim());
+      $(".home-ws-maintenance").text(toMoney.format(homeMaintenance).replace('CA', '').trim());
+      //only one room output will be shown at a time, but cover both bases.
+      $(".shared-room-maintenance-output").text(
+        toMoney.format(roomMaintenance).replace('CA', '').trim()
+      );
+      $(".designated-room-maintenance-output").text(
+        toMoney.format(roomMaintenance).replace('CA', '').trim()
+      );
+      $(".maintenance-output").text(
+        toMoney.format(homeMaintenance + roomMaintenance).replace('CA', '').trim()
+
+      );
+      $(".insurance-commission-output").text(
+        toMoney.format(homeInsurance).replace('CA', '').trim()
+      );
+      $(".property-taxes-commission-output").text(
+        toMoney.format(propertyTaxes).replace('CA', '').trim()
+      );
+      $(".home-expenses-output").text(toMoney.format(otherExpenses + rentBill).replace('CA', '').trim());
+      $(".income-output").text(toMoney.format(income).replace('CA', '').trim());
+      $(".dues-pension-output").text(
+        toMoney.format(
+          (supplies + otherWorkExpenses) + unionDues + pension
+        ).replace('CA', '').trim()
+      );
+      $(".room-area-output").text(toFormattedNumber.format(workArea));
+      $(".total-home-area-summary").text(toFormattedNumber.format(totalArea));
+      $(".shared-room-hrs-output").text(toFormattedNumber.format(workHours.rawHours));
+      $(".ws-total-claim-output").text(
+        toMoney.format(
+          (supplies + otherWorkExpenses) +
+          Math.min(netIncome, totalEmploymentUse)
+        ).replace('CA', '').trim()
+      );
+      $(".employment-use-output").text(toMoney.format(totalEmploymentUse).replace('CA', '').trim());
+      $(".employment-use-total-amount").text(
+        toMoney.format(totalEmploymentUse).replace('CA', '').trim()
+      );
+      $(".carry-forward-output").text(
+        toMoney.format(carryFwd).replace('CA', '').trim()
+      );
+       $(".ws-t777short-total-amount").text(totalClaim);
+      if (carryFwd > 0 || netIncome < totalExpenses) {
+        $(".carry-fwd").removeClass('hidden');
+      } else {
+        $(".carry-fwd").addClass('hidden');
+      }
+      document.getElementById("results").scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+
+    //flat rate calculations
+    $(document).on("click", "#fr-cal", function (event) {
+      event.preventDefault();
+      var numDays = parseFloat($("#days-worked-home-input").val()) || parseFloat($("#days-worked-home-input-2021").val()) || 0;
+   
+      if (isNaN(numDays)) {
+        return;
+      }
+      var flatRateTotal = numDays * 2;
+      $(".days-worked-home-output").text(numDays);
+      $(".flat-rate-total-amount").text(toMoney.format(flatRateTotal));
+      if ((!$("#days-worked-home-input-2021").hasClass("error")) && (!$("#days-worked-home-input").hasClass("error")) ) {
+      $("#fr-results").removeClass("hidden");
+      document.getElementById("fr-results").scrollIntoView({
+        behavior: 'smooth'
+      });
+      };
+       if (($("#days-worked-home-input-2021").hasClass("error")) || ($("#days-worked-home-input").hasClass("error")) ) {
+         $("#fr-results").addClass("hidden");
+         
+       };
+    });
+    window.onload = function () {
+      if (/Android/i.test(navigator.userAgent)) {
+        var osDetect = document.getElementById("wsih-calculator-form").querySelectorAll("input[type=text], input[type=number]");
+        for (var i = 0; i < osDetect.length; i++) {
+          osDetect[i].setAttribute("inputmode", "numeric");
+        }
+      }
+      else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        $('input[type="text"]').on('touchstart', function () {
+          $(this).attr('type', 'number');
+        });
+        $('input[type="text"]').on('keydown blur', function () {
+          $(this).attr('type', 'text');
+        });
+      }
+    }
+
+</script>
 
 <div id="def-preFooter">
 </div>
