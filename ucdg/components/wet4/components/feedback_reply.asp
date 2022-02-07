@@ -33,7 +33,7 @@
            lngLinks: [{
          
              lang: "fr",
-             href: "http://test.canada.ca/cra-arc/wsm/index-f.html",
+             href: "http://test.canada.ca/cra-arc/wsm/../gcau/index.html",
              text: "Français"
            }],
            breadcrumbs: [{
