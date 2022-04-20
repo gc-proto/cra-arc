@@ -843,7 +843,36 @@ margin-left: 38px;
 
 
 <h2 id="h-1">Introduction </h2>
+<p>Accommodation platform operators and distribution platform operators must file GST/HST information returns with the Canada Revenue Agency (CRA), as outlined by sections 211.21 and 211.25 of the Excise Tax Act (ETA). These information returns are to be filed in XML, according to the Digital Platform Information Returns (DPIR) schema, as described here.</p>
+<p>The DPIR schema is based on schema introduced by the Organisation of Economic Co-operation and Development (OECD) Model Rules for Reporting by Platform Operators (“Model Rules”). The DPIR schema includes the applicable Model Rules data elements and introduces new data elements only when needed.</p>
+<p>The DPIR schema user guide is similar to the Model Rules user guide, both in structure and content. This makes filing information returns with the CRA similar to reporting to other tax administrations using the OECD’s Model Rules.</p>
+
+
+
+
 <h3 id="h-1-1">Overall document structure </h3>
+<p>This user guide is organized around the main components of the XML document. We refer to the XML document as the “DPIR message” or “message” for short.</p> 
+<p>Figure 1 shows a high-level overview of a DPIR message. It includes these data elements:</p>
+<ul>
+<li>Message Specification (MessageSpec)</li>
+<li>Platform Operator (PlatformOperator) </li>
+<li>Reportable Seller (ReportableSeller)</li>
+<li>Identity</li>
+<li>Relevant Activities (RelevantActivities)</li>
+<li>Document Specification (DocSpec)</li>
+ </ul>
+<p>The user guide refers to XML elements using their full name (for example, “Message Specification”) but provides its XML name in brackets (MessageSpec) for clarity. </p>
+<p>Placeholder image: Figure 1: Overall document structure</p>
+<p>The root of the DPIR message is a DPIR data element. Each DPIR message must contain a Message Specification and a DPIR Body (DPIRBody). It may optionally contain a version attribute, which specifies the version of the schema to which the message complies.</p>
+<p>A DPIR Body includes data about the Platform Operator and its Reportable Sellers. Each Reportable Seller includes:</p>
+<ul>
+<li>the Identity data element, which describes who the Seller is</li>
+<li>Relevant Activities (RelevantActivities), which describes services provided by the Seller,  earnings (or consideration) derived from those services and related taxes</li>
+</ul>
+<p>The DPIR schema also provides a mechanism to uniquely identify Platform Operator and Reportable Seller data elements.</p>
+<p>More details are in the <a href="#h-3">Identification of data elements</a> section.
+<p>A DPIR message must have exactly one DPIR Body data element, even though the DPIR schema allows for any number of DPIR Body data elements or none at all. The more general message structure in Figure 1 aligns the DPIR schema with the Model Rules schema, and provides for a wide range of applications for consistency with international standards. </p>
+
 <h2 id="h-2">Schema elements</h2>
 <h3 id="h-2-1">Message Specification type </h3>
 <p>The Message Specification (MessageSpec) type represents a message header. It includes the Platform Operator identifier (SendingEntityIN), the time when the message was created, the Reportable Period, the nature of the data in the message (original, correction or deletion), contact information, and other data elements.</p>
@@ -852,9 +881,9 @@ margin-left: 38px;
 <h4>SendingEntityIN data element</h4>
 <p>Identifies the Platform Operator. This must be a BN15 issued to the Platform Operator by the Canada Revenue Agency (CRA).</p>
 <dl class="dl-horizontal">
-          <dt>Size</dt>
+          <dt>Size:</dt>
           <dd>1 to 200 characters</dd>
-          <dt>Input type</dt>
+          <dt>Input type:</dt>
           <dd>stf:StringMin1Max200_Type</dd>
 		  <dt>Requirement:</dt>
           <dd>Mandatory</dd>
@@ -862,9 +891,9 @@ margin-left: 38px;
 		<h4>TransmittingCountry data element</h4>
 <p>Identifies the country from where the Platform Operator is sending the DPIR message. It uses a 2-character alphabetic country code based on the ISO 3166-1 Alpha 2 standard.</p>
 <dl class="dl-horizontal">
-          <dt>Size</dt>
+          <dt>Size:</dt>
           <dd>2-character</dd>
-          <dt>Input type</dt>
+          <dt>Input type:</dt>
           <dd>iso:CountryCode_Type</dd>
 		  <dt>Requirement:</dt>
           <dd>Mandatory</dd>
@@ -872,9 +901,9 @@ margin-left: 38px;
 		<h4>ReceivingCountry data element </h4>
 <p>Identifies the country receiving the DPIR message. It is used to facilitate further potential alignment of the information returns with the Model Rules. The value of this data element must be “CA”.</p>
 <dl class="dl-horizontal">
-          <dt>Size</dt>
+          <dt>Size:</dt>
           <dd>2-character</dd>
-          <dt>Input type</dt>
+          <dt>Input type:</dt>
           <dd>iso:CountryCode_Type</dd>
 		  <dt>Requirement:</dt>
           <dd>Mandatory</dd>
@@ -882,9 +911,9 @@ margin-left: 38px;
 	<h4>MessageType data element</h4>
 <p>Specifies the type of the DPIR message. The value of this data element must be “DPIR”.</p>
 <dl class="dl-horizontal">
-          <dt>Size</dt>
+          <dt>Size:</dt>
           <dd>enum</dd>
-          <dt>Input type</dt>
+          <dt>Input type:</dt>
           <dd>dpir:MessageType_EnumType</dd>
 		  <dt>Requirement:</dt>
           <dd>Mandatory</dd>
@@ -892,9 +921,9 @@ margin-left: 38px;
 	<h4>Warning data element </h4>
 <p>Free text field, which allows input of specific cautionary instructions about the use of the DPIR message content.</p>
 <dl class="dl-horizontal">
-          <dt>Size</dt>
+          <dt>Size:</dt>
           <dd>1 to 4,000 characters</dd>
-          <dt>Input type</dt>
+          <dt>Input type:</dt>
           <dd>stf:StringMin1Max4000_Type</dd>
 		  <dt>Requirement:</dt>
           <dd>Optional</dd>
@@ -902,9 +931,9 @@ margin-left: 38px;
 <h4>Contact data element  </h4>
 <p>Free text field allowing input of specific contact information relating to the Platform Operator. Contact data element should include an email address.</p>
 <dl class="dl-horizontal">
-          <dt>Size</dt>
+          <dt>Size:</dt>
           <dd>1 to 4,000 characters</dd>
-          <dt>Input type</dt>
+          <dt>Input type:</dt>
           <dd>stf:StringMin1Max4000_Type</dd>
 		  <dt>Requirement:</dt>
           <dd>Mandatory</dd>
@@ -912,9 +941,9 @@ margin-left: 38px;
 	<h4>MessageRefID data element </h4>
 <p>Uniquely identifies an XML document or DPIR message containing the information returns that are filed by the Platform Operator. This identifier allows both the sender and receiver to identify the specific message at a subsequent point in time, if questions arise. The format of the Message Reference ID is specified in the <a href="#h-3">Identification of data elements</a> section.</p>
 <dl class="dl-horizontal">
-          <dt>Size</dt>
+          <dt>Size:</dt>
           <dd>1 to 170 characters</dd>
-          <dt>Input type</dt>
+          <dt>Input type:</dt>
           <dd>stf:StringMin1Max170_Type</dd>
 		  <dt>Requirement:</dt>
           <dd>Mandatory</dd>
@@ -926,11 +955,11 @@ margin-left: 38px;
 <li>DPI402 = The message contains corrections/deletions of previously sent information</li>
 <li>DPI403 = The message advises that there is no data to report (This value must not be used)</li>
 </ul>
-<p>Corrections, amendments or deletions of previously sent data should never be included with new information returns. For more details, please see the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/correct-submitted-return.html">Modifying previously filed returns</a>page. </p>
+<p>Corrections, amendments or deletions of previously sent data should never be included with new information returns. For more details, please see the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/correct-submitted-return.html">Modifying previously filed returns</a> page. </p>
 <dl class="dl-horizontal">
-          <dt>Size</dt>
+          <dt>Size:</dt>
           <dd>enum</dd>
-          <dt>Input type</dt>
+          <dt>Input type:</dt>
           <dd>dpi:DPIMessageTypeIndic_EnumType</dd>
 		  <dt>Requirement:</dt>
           <dd>Mandatory</dd>
@@ -940,7 +969,7 @@ margin-left: 38px;
 	<p>Identifies the end of the calendar year to which the information in the DPIR message relates. It is to be provided in YYYY-MM-DD format. For example, if the information relates to the 2022 Reportable Period, the field would read ʻ2022-12-31’.</p>
 <dl class="dl-horizontal">
          
-          <dt>Input type</dt>
+          <dt>Input type:</dt>
           <dd>xsd:dateTime</dd>
 		   <dt>Requirement:</dt>
           <dd>Mandatory</dd>
@@ -949,7 +978,7 @@ margin-left: 38px;
 	<p>Identifies the date and time when the message was compiled. The format is YYYY-MM-DD’T’hh:mm:ss.nnn. Fractions of seconds may be used (in such a case, the milliseconds will be provided with three digits). Examples: ʻ2015-03-15T09:45:30ʼ or ʻ2015-03-15T09:45:30.789ʼ (with milliseconds)</p>
 <dl class="dl-horizontal">
          
-          <dt>Input type</dt>
+          <dt>Input type:</dt>
           <dd>xsd:dateTime</dd>
 		   <dt>Requirement:</dt>
           <dd>Mandatory</dd>
