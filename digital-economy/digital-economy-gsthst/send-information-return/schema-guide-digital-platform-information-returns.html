@@ -878,9 +878,9 @@ margin-left: 38px;
 <p>The Message Specification (MessageSpec) type represents a message header. It includes the Platform Operator identifier (SendingEntityIN), the time when the message was created, the Reportable Period, the nature of the data in the message (original, correction or deletion), contact information, and other data elements.</p>
 <p>Image placeholder: Figure 2: Message Specification type</p>
 <p>The following data elements are used to define the Message Specification type.</p>
-<details>
-<summary>SendingEntityIN data element</summary>
-<div>
+
+<h4>SendingEntityIN data element</h4>
+
 <p>Identifies the Platform Operator. This must be a BN15 issued to the Platform Operator by the Canada Revenue Agency (CRA).</p>
 <dl class="dl-horizontal">
 
@@ -892,11 +892,11 @@ margin-left: 38px;
 		  <dt>Requirement:</dt>
           <dd>Mandatory</dd>
         </dl>
-		</div>
-		</details>
-<details>
-<summary>TransmittingCountry data element</summary>
-<div>
+		
+		
+
+<h4>TransmittingCountry data element</h4>
+
 <p>Identifies the country from where the Platform Operator is sending the DPIR message. It uses a 2-character alphabetic country code based on the ISO 3166-1 Alpha 2 standard.</p>
 <dl class="dl-horizontal">
           <dt>Size:</dt>
@@ -906,8 +906,8 @@ margin-left: 38px;
 		  <dt>Requirement:</dt>
           <dd>Mandatory</dd>
         </dl>
-		</div>
-		</details>
+		
+		
 		<h4>ReceivingCountry data element </h4>
 <p>Identifies the country receiving the DPIR message. It is used to facilitate further potential alignment of the information returns with the Model Rules. The value of this data element must be “CA”.</p>
 <dl class="dl-horizontal">
@@ -994,6 +994,156 @@ margin-left: 38px;
           <dd>Mandatory</dd>
         </dl>	
 <h3 id="h-2-2">Platform Operator data element </h3>
+<p>The Platform Operator data element is of the Correctable Platform Operator (CorrectablePlatformOperator) type, which extends the Organisation Party (OrganisationParty) type and adds the Document Specification data element to it. For more details about the Document Specification data element, please refer to the <a href="#h-3">Identification of data elements</a> section.</p>
+<p>The Organisation Party type defines the structure that represents either a Platform Operator or an Entity Seller. </p>
+<p>Image placeholder: Figure 3: Organization Party type</p>
+<p>The following are descriptions of elements comprising the Organization Party type.</p>
+<h4>URL attribute</h4>
+<p>Specifies the URL of the Platform Operator or an Entity Seller. While this field is optional, Platform Operators are expected to have it, while not all Entity Sellers are expected to have it.</p>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>1 to 200 characters</dd>
+          <dt>Input type:</dt>
+          <dd>stf:StringMin1Max200_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Optional</dd>
+        </dl>	
+	<h4>ResCountryCode data element </h4>
+<p>Repeatable data element which specifies the tax residency country of an entity. An entity’s tax residency country is determined based on its Primary Address. Additionally, Residency Country Codes may be obtained using a tax administration’s API-based service, if and/or when it is available.</p>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>2-character</dd>
+          <dt>Input type:</dt>
+          <dd>iso:CountryCode_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Optional</dd>
+        </dl>		
+	<h4>TIN data element </h4>
+<p>Provides the identification number used by the CRA and corresponds to a BN9 (defined in the Definition of key terms section). In case the entity does not have a TIN, or the TIN is not known, the value ‘NOTIN’ should be entered and the unknown attribute (see below) must be set to ‘true’.</p>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>1 to 200 characters</dd>
+          <dt>Input type:</dt>
+          <dd>dpi:TIN_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Mandatory</dd>
+        </dl>	
+	<h4>issuedBy attribute</h4>
+<p>Specifies the jurisdiction that issued the TIN, unless the TIN element is flagged as ‘unknown’. It is used for future alignment with the Model Rules.</p>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>2-character</dd>
+          <dt>Input type:</dt>
+          <dd>iso:CountryCode_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Optional</dd>
+        </dl>	
+<h4>Unknown attribute</h4>
+<p>Can be provided if the TIN is not available or non-existent. Any value provided for a TIN flagged as unknown will be discarded.</p>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>1-character</dd>
+          <dt>Input type:</dt>
+          <dd>xsd:Boolean</dd>
+		   <dt>Requirement:</dt>
+          <dd>Optional</dd>
+        </dl>		
+<h4>IN data element </h4>
+<p>Repeatable data element and may be provided if additional identifiers (other than the BN9 provided in the TIN or BN15 provided in the VAT data element) are available.</p>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>1 to 200 characters</dd>
+          <dt>Input type:</dt>
+          <dd>OrganisationIN_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Optional</dd>
+        </dl>		
+<p>OrganisationIN_Type is a complex data type which extends stf:StringMin1Max200_Type and adds two attributes: issuedBy and INType - description of these attributes follows below.</p>
+	<h4>issuedBy attribute </h4>
+<p>Optional attribute and describes the jurisdiction that issued the IN.</p>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>2-character</dd>
+          <dt>Input type:</dt>
+          <dd>iso:CountryCode_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Optional</dd>
+        </dl>
+<h4>INType attribute</h4>
+<p>Type of identification number being sent. It can contain one of the following values:</p>
+<ul>
+<li>IIN = represents an individual identification number</li>
+<li>LEI = represents a legal entity identifier</li>
+<li>EIN = represents an entity identification number</li>
+<li>BRN = represents a business registration number</li>
+<li>Other</li>
+</ul>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>enum</dd>
+          <dt>Input type:</dt>
+          <dd>dpi:INType_EnumType</dd>
+		   <dt>Requirement:</dt>
+          <dd>Optional</dd>
+        </dl>		
+<h4>VAT data element </h4>
+<p>GST/HST Registration Number. This corresponds to the BN15.</p>
+
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>1 to 200 characters</dd>
+          <dt>Input type:</dt>
+          <dd>stf:StringMin1Max200_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Optional</dd>
+        </dl>		
+	<h4>Name data element </h4>
+<p>The legal name of the entity, as indicated in its articles of incorporation or any similar document</p>
+
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>1 to 200 characters</dd>
+          <dt>Input type:</dt>
+          <dd>dpi:NameOrganisation_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Mandatory</dd>
+        </dl>
+		
+<p><strong>Note:</strong> In case of Entity Sellers, the Name data element may be used for the legal names and operating names – both should be provided if available. If Name does not exist, then the value of ‘UNKNOWN’ must be entered.</p>
+<p>In the case of Platform Operators, the Name data element is to be used for their legal name only.</p>
+<h4>PlatformBusinessName data element </h4>
+<p>Business or operating name(s) of the Platform(s) in respect of which the Platform Operator is reporting. This element must not be used for Entity Sellers.</p>
+
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>1 to 200 characters</dd>
+          <dt>Input type:</dt>
+          <dd>stf:StringMin1Max200_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Optional</dd>
+        </dl>
+<h4>Address data element </h4>
+<p>Entity’s address. It should include at least the Primary Address. Additional addresses should be provided, if available.</p>
+
+<dl class="dl-horizontal">
+         
+          <dt>Input type:</dt>
+          <dd>dpir:Address_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Required</dd>
+        </dl>
+<h4>DocSpec data element </h4>
+<p>Provides a mechanism to uniquely identify a Platform Operator or Reportable Seller data elements, not only within the current DPIR message but across all DPIR messages, all Platform Operators and all Reportable Periods. The Document Specification data element is detailed in the <a href="#h-3">Identification of data elements</a> section.</p>
+
+<dl class="dl-horizontal">
+         
+          <dt>Input type:</dt>
+          <dd>sft:DocSpec_Type</dd>
+		   <dt>Requirement:</dt>
+          <dd>Mandatory</dd>
+        </dl>
+
+		
 <h3 id="h-2-3">Address type </h3>
 <h3 id="h-2-4">Address Fix type </h3>	
 <h3 id="h-2-5">Reportable Seller type </h3>
