@@ -1145,22 +1145,654 @@ margin-left: 38px;
 
 		
 <h3 id="h-2-3">Address type </h3>
-<h3 id="h-2-4">Address Fix type </h3>	
+<p>Address of a Platform Operator, an Entity Seller or an Individual Seller.</p>
+
+<p>Image placeholder: Figure 4: Address type</p>
+<p>An address can be specified in either free text or fixed format optionally followed by free text. Fixed format should be used whenever possible.</p>
+<p><strong>Note: </strong>Address is mandatory for both Entity Sellers and Individual Sellers. If a Platform Operator does not have an address, it should report ‘UNKNOWN' in the AddressFree data element and "XX" for CountryCode. This is a temporary measure and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have addresses for all Sellers. </p>
+<p>The following are descriptions of data elements that comprise the definition of the Address type.</p>
+<h4>legalAddressType attribute</h4>
+<p>Legal character of the address (residential, business etc.). The possible values are:</p>
+
+<ul>
+<li>OECD301 = Residential Or Business </li>
+<li>OECD302 = Residential </li>
+<li>OECD303 = Business </li>
+<li>OECD304 = Registered Office </li>
+<li>OECD305 = Unspecified </li>
+</ul>
+<p>The address of the Platform Operator must represent the ‘Registered Office Address' (OECD304).</p>
+
+<dl class="dl-horizontal">
+<dt>Size:</dt>
+<dd> enum </dd>
+<dt>Input Type:</dt>
+<dd>dpi:OECDLegalAddressType_EnumType </dd>
+<dt>Requirement:</dt>
+<dd>Optional </dd>
+  </dl>
+<h4>CountryCode data element </h4>
+<p>The code of the country where the address is located. It uses the 2-character alphabetic code based on the ISO 3166-1 Alpha 2 standard.</p>
+
+<dl class="dl-horizontal">
+<dt>Size:</dt><dd>2-character</dt>
+<dt>Input Type:</dt><dd>iso:CountryCode_Type</dt>
+<dt>Requirement:</dt><dd>Mandatory</dt>
+  </dl>
+<h4>AddressFree data element </h4>
+<p>Allows input of address information in free text. It should only be used in exceptional circumstances when it is impossible to provide the address in fixed format.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: 1 to 4,000 characters</strong> </li>
+<li><strong>Input Type: stf:StringMin1Max4000_Type</strong> </li>
+<li><strong>Requirement: Optional</strong> </li>
+  </dl>
+<h4>AddressFix data element </h4>
+<p>Allows input of address information in fixed format and is described below.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size:</strong> </li>
+<li><strong>Input Type: </strong>dpi:AddressFix_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+
+
+
+<h3 id="h-2-4">Address Fix type </h3>
+	<p>The Address Fix type specifies the address in structured format.</p>
+
+<p>Image placeholder: Figure 5: Fixed address type</p>
+<p>The following are descriptions of data elements comprising the Address Fix type, all of which are optional except for the City data element.</p>
+<h4>Street data element</h4>
+<p>The street component of the address.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>BuildingIdentifier data element </h4>
+<p>The building identifier of the address. It is typically a number, but could be combination of numbers and letters.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>SuiteIdentifier data element </h4>
+<p>An office or similar part of a building.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>FloorIdentifier data element </h4>
+<p>A floor within the building.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>DistrictName data element </h4>
+<p>The district name of the address.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>POB data element </h4>
+<p>The post office box (also known as P.O. box or postal box).</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>PostCode data element </h4>
+<p>The postal code of the address.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>City data element </h4>
+<p>City where the address is located.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>CountrySubentity data element </h4>
+<p>Subentity of the country where the address is located. For Canadian addresses, the Country Subentity represents a province or territory in Canada.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+
+
 <h3 id="h-2-5">Reportable Seller type </h3>
-<h3 id="h-2-6">Seller Identity data element</h3>	
+<p>The Reportable Seller data element is of the Correctable Reportable Seller (CorrectableReportableSeller) type, which extends the Reportable Seller (ReportableSeller) type. We only describe the Reportable Seller type here. The Correctable Reportable Seller type will be apparent after the Identification of data elements<h2>section.</p>
+
+<p>Image placeholder: Figure 6: Reportable Seller type</p>
+<p>The following are descriptions of the two components that define Reportable Seller type.</p>
+<h4>Identity data element </h4>
+<p>Specifies the Seller identity, and is detailed below.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Input Type: </strong>N/A </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>RelevantActivities data element </h4>
+<p>Services provided by a Reportable Seller, the Consideration (or earnings) derived from them and related taxes. It is detailed in the Relevant Activities section.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Input Type:</strong> </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+
+
+
+<h3 id="h-2-6">Seller Identity data element</h3>
+	<p>The DPIR schema requires a minimal amount of identifying information about a Seller. This includes only the Organisation Party type for Entity Sellers (specified in the Platform Operator section) and the Person Party (PersonParty) type for Individual Sellers (detailed below). Both types are under the Identity data element (Figure 7). The Entity Seller, Individual Seller and Standard data elements are containers that may be further expanded in the future.</p>
+
+<p>Image placeholder: Figure 7: Seller identity element</p>
+<p>The following data elements comprise the Identity data element.</p>
+<h4>Identity data element </h4>
+<p>Can include either an Entity Seller data element or an Individual Seller data element, depending on the legal form of the Seller.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Input Type: </strong>N/A </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>EntitySeller data element </h4>
+<p>Should be completed in cases where the Seller is an Entity Seller.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Input Type: </strong>N/A </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>IndividualSeller data element </h4>
+<p>Should be completed in cases where the Seller is an Individual Seller.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Input Type: </strong>N/A </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<p>Both the Entity Seller and the Individual Seller contain the Standard data element.</p>
+<h4>Standard data element </h4>
+<p>Indicates that the Platform Operator has relied on its own implementation of procedures in order to establish the Seller's identity. Other options include using an API-based solution that might be provided by a tax administration. The name of the data element is derived from the Model Rules, which establish a set of standard, due-diligence procedures that Platform Operators are expected to implement. </p>
+<h4>EntSellerID data element </h4>
+<p>Includes the data elements that are used in establishing an entity's identity. It is of the Organisation Party type, which is described in the Platform Operator section.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Input Type: </strong>dpir:OrganisationParty_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>IndSellerID data element </h4>
+<p>Includes the data elements that are used in establishing an Individual Seller's identity. It is of the Person Party type, and is described below.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Input Type: </strong>dpir:PersonParty_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+
+
 <h3 id="h-2-7">Person Party type </h3>
-<h3 id="h-2-8">Name Person type </h3>	
+<p>Data elements that may be used to establish an individual's identity.</p>
+
+<p>Image placeholder:Figure 8: Person Party type</p>
+<p>The following data elements comprise the Person Party type.</p>
+<h4>ResCountryCode data element </h4>
+<p>The Residency Country Code is a repeatable data element, which specifies the tax residency country of an Individual Seller. An Individual Seller's tax residency country is determined based on their Primary Address. Additionally, Residency Country Codes may be obtained using a tax administration's API-based service, if and/or when it is available. If no API-based service exists and no Primary Address is available, then any available address should be used. If a Seller's address is not known to the Platform Operator, then ‘XX' must be entered. However, this should be a temporary measure only, and can be used for the Reporting Period for the year 2022 only. In subsequent Reporting Periods, Platform Operators are expected to have addresses for all Sellers.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>2-character </li>
+<li><strong>Input Type: </strong>iso:CountryCode_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>TIN data element </h4>
+<p>Individual Seller's identification number. If an Individual Seller operates as a sole proprietorship and has a BN9, then it should be used as their TIN. If they do not, then the unknown attribute (see below) must be set to ‘true' and the value of ʻNOTINʼ must be entered.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>dpi:TIN_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h5>issuedBy attribute</h5>
+<p>The jurisdiction that issued the TIN, unless the TIN element is flagged as ‘unknown'. It is used for future alignment with the Model Rules.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>2-character </li>
+<li><strong>Input Type: </strong>iso:CountryCode_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h5>Unknown attribute</h5>
+<p>The unknown attribute must be provided if the TIN is not available or non-existent. Any value provided for a TIN flagged as unknown will be discarded.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1-character </li>
+<li><strong>Input Type: </strong>xsd:Boolean </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>VAT data element </h4>
+<p>Should contain the Individual Seller's BN15, if available.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>Address data element </h4>
+<p>Primary Address of the Individual Seller. It is of the Address type, and is fully described in the Platform Operator section. Additional addresses may be provided, if available.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Input Type: </strong>dpi:Address_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>Name data element </h4>
+<p>Individual's full name. It is of the Name Person type, which is described next.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Input Type: </strong>dpi:NamePerson_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+
+
+<h3 id="h-2-8">Name Person type </h3>
+	<p>The Name Person type specifies the structure that may be used to fully specify the name of an individual, including all of its components. </p>
+
+<p>Image placeholder: Figure 9: Name Person type</strong></p>
+<p>The following data elements comprise the Name Person type.</p>
+<h4>nameType attribute</h4>
+<p>The type of an individual name, and can have one of the following values:</p>
+
+<ul>
+<li>OECD201 = Alias or other </li>
+<li>OECD202 = Individual name </li>
+<li>OECD203 = Alias </li>
+<li>OECD204 = Nickname </li>
+<li>OECD205 = AKA (also known as) </li>
+<li>OECD206 = DBA (doing business as) </li>
+<li>OECD207 = Legal name </li>
+<li>OECD208 = Name at birth </li>
+</ul>
+<p><strong>Size: </strong>enum</p>
+<p><strong>Input Type: </strong>stf:OECDNameType_Enum_Type</p>
+<p><strong>Requirement: </strong>Optional</p>
+<h4>PrecedingTitle data element </h4>
+<p>The preceding title of a full name. Examples include: His Excellency, Estate of the Late</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>Title data element </h4>
+<p>The title of a full name. Examples include: Mr, Dr, Ms, Herr, etc.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>FirstName data element </h4>
+<p>An individual's first name. It is a required data element. If no first name exists, the initialism NFN (‘No First Name') may be used. This is a temporary measure, and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have the full names of Individual Sellers. </p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>xnlNameType attribute</h4>
+<p>The meaning of the First Name data element. It may vary from one cultural environment to another. Examples include: Given Name, Forename, Christian Name, Father's Name</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>MiddleName data element </h4>
+<p>An individual's Middle Name. The data element is optional.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>xnlNameType attribute</h4>
+<p>The meaning of the Middle Name element. It may vary from one cultural environment to another. </p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>NamePrefix data element </h4>
+<p>Name prefix, if present. Examples include: de, van, van de, von</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>xnlNameType attribute</h4>
+<p>Used to define the meaning of the Name Prefix element, which may vary from one cultural environment to another.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>LastName data element </h4>
+<p>An individual's last name. It is a required data element. As the Last Name data element is a string, it can be used for a free format name or two last names. Wherever possible, the structured first name and last name should be used.</p>
+<p>If no last name exists, the initialism NLN (‘No Last Name') may be used. This is a temporary measure, and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have the full names of Individual Sellers. </p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>xnlNameType attribute</h4>
+<p>The meaning of the Last Name element. It may vary from one cultural environment to another.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>GenerationIdentifier data element </h4>
+<p>The generational identifier of an individual's name. Examples include: Jnr, Junior, Third, III, etc.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>Suffix data element </h4>
+<p>Suffix of an individual's name. Examples include: PhD, VC, QC</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+<h4>GeneralSuffix data element </h4>
+<p>Additional suffix of individual's name. Examples include: deceased, retired</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>1 to 200 characters </li>
+<li><strong>Input Type: </strong>stf:StringMin1Max200_Type </li>
+<li><strong>Requirement: </strong>Optional </li>
+  </dl>
+
+
 <h3 id="h-2-9">Relevant Activities data element</h3>
-<h3 id="h-2-10">Property Listing type </h3>	
+<p>The Relevant Activities data element includes information on Relevant Services provided by Sellers including the Consideration and Taxes derived from those services. The Relevant Activities include a supply of short-term accommodation (Immovable Property) and a supply of qualifying tangible personal property (Sale Of Goods).</p>
+
+<p>Image placeholder: Figure 10: Relevant Activities data element</p>
+<p>The Relevant Activities data element may contain Immovable Property and zero or more Sale Of Goods data elements. The Immovable Property data element is a container of Property Listing data elements.</p>
+<p>The following elements make up the Relevant Activities data element.</p>
+<h4>RelevantActivities data element </h4>
+<p>Describes Relevant Services provided by Sellers including the Consideration and Taxes derived from those services.</p>
+<p><strong>Requirement: </strong>Mandatory</p>
+<h4>ImmovableProperty data element </h4>
+<p>Specifies the Relevant Services provided by a Seller with respect to short-term accommodation. It is a container of the Property Listing data elements.</p>
+<p><strong>Requirement: </strong>Optional</p>
+<h4>PropertyListing data element </h4>
+<p>Captures total earnings and taxes of all properties located in a given province.</p>
+<p><strong>Input Type: </strong>dpir:PropertyListingType</p>
+<p><strong>Requirement: </strong>Mandatory</p>
+<h4>SaleOfGoods data element </h4>
+<p>Captures earnings and taxes with respect to the sale of qualifying tangible personal property, broken down by province to which the property is sold. It is of the Sale Of Goods Activities type and is described below.</p>
+<p><strong>Input Type: </strong>dpir:SaleOfGoodsActivities_Type</p>
+<p><strong>Requirement: </strong>Optional</p>
+
+
+<h3 id="h-2-10">Property Listing type </h3>
+<p>The Property Listing type specifies aggregate information on Consideration earned and Taxes collected from rental of all properties located in a given province. </p>
+<p>Image placholder: Figure 11: Property Listing type</p>
+<p>The following elements define the Property Listing type.</p>
+<h4>DurationClass attribute</h4>
+<p>Indicates if the rental is a short-term accommodation (defined as a rental of less than one month) or long-term accommodation (defined as a rental of more than one month). It can have one of the following values:</p>
+
+<ul>
+<li>DPIR101 = Short-term accommodation (continuous rental occupancy of less than one month). </li>
+<li>DPIR102 = Long-term accommodation (continuous rental occupancy of at least one month). </li>
+<li>DPIR103 = Short-term and long-term accommodation combined. </li>
+<li>DPIR104 = Rental occupancy of unknown duration. </li>
+</ul>
+<p>If the Duration Class is not specified, then the value of DPIR101 is assumed.</p>
+<p><strong>Size: </strong>enum</p>
+<p><strong>Input Type: </strong>dpir:RentalDurationClass_EnumType</p>
+<p><strong>Requirement: </strong>Optional</p>
+<p><strong>Note: </strong>A duration of one month is defined as a duration that starts on a particular date in one month and ends right before the same date in the following month. If the following month does not have a corresponding date, then the last date in the month is considered. </p>
+<p>Some examples of duration of one month are: Jan 15 &ndash; Feb 14, Jan 31 &ndash; Feb 28 for a non-leap year, Jan 31 &ndash; Feb 29 for a leap year. In these examples, the start and the end dates are included in duration.</p>
+<h4>Province attribute</h4>
+<p>Indicates the province where the property is located. The DPIR schema includes this attribute because Platform Operators are not required to report the property address. The Province attribute may contain one of the following values:</p>
+
+<ul>
+<li>DPIR001 = British Columbia </li>
+<li>DPIR002 = Saskatchewan </li>
+<li>DPIR003 = Newfoundland and Labrador </li>
+<li>DPIR004 = Quebec </li>
+<li>DPIR005 = Ontario </li>
+<li>DPIR006 = Nunavut </li>
+<li>DPIR007 = Manitoba </li>
+<li>DPIR008 = Yukon </li>
+<li>DPIR009 = Northwest Territories </li>
+<li>DPIR010 = Nova Scotia </li>
+<li>DPIR011 = Alberta </li>
+<li>DPIR012 = Prince Edward Island </li>
+<li>DPIR013 = New Brunswick </li>
+<li>DPIR014 = Unknown province </li>
+<li>DPIR015 = Not in Canada </li>
+</ul>
+<p><strong>Size: </strong>enum</p>
+<p><strong>Input Type: </strong>dpir:Province_EnumType</p>
+<p><strong>Requirement: </strong>Optional</p>
+<h4>Consideration data element </h4>
+<p>Contains information on the consideration or earnings received by a Seller in relation to rental of one or more properties located in the same province. It is of the Consideration type and is described next.</p>
+<p><strong>Input Type: </strong>dpir:Consideration_Type</p>
+<p><strong>Requirement: </strong>Mandatory</p>
+<h4>Taxes data element </h4>
+<p>Contains information on the VAT or GST/HST taxes collected in relation to rental of one or more properties located in the same province. It is of the Taxes type and is described next.</p>
+<p><strong>Input Type: </strong>dpir:Taxes_Type</p>
+<p><strong>Requirement: </strong>Mandatory</p>
+
+
 <h3 id="h-2-11">Consideration type</h3>	
+<p>Specifies the considerations or earnings amounts received by the Seller.</p>
+
+<p>Image placeholder: Figure 12: Consideration type</p>
+<p>Consideration is to be provided at annual level using the AnnualConsideration data element. The QuarterlyConsideration data element is reserved for potential future use. </p>
+<p>The following provides more details about data elements comprising the Consideration type.</p>
+<h4>AnnualConsideration data element </h4>
+<p>Specifies the Consideration credited to a Reportable Seller during the Reporting Period, where the Consideration is aggregated at the annual level and is specified using the Monetary Amount (MonAmnt) type.</p>
+<p>The Monetary Amount type is used to communicate the monetary amounts. Such amounts should be given in full units, that is, rounded to the nearest dollar. The code for the currency, in which the value is expressed, has to be provided using a code from the ISO code list 4217 and added in the currency code (currCode) attribute.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>enum </li>
+<li><strong>Input Type: </strong>dpi:MonAmnt_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>QuarterlyConsideration data element </h4>
+<p>This data element is reserved for potential future use only.</p>
+
+
 <h3 id="h-2-12">Taxes type</h3>	
+<p>Specifies the total VAT or GST/HST taxes collected on behalf of the Seller.</p>
+<p>Image placeholder: Figure 13: Consideration type</p>
+<p>Taxes are to be provided at the annual level using the AnnualTaxes data element. The QuarterlyTaxes data element is reserved for the potential future use. </p>
+<p>The following provides more details about data elements comprising the Consideration type.</p>
+<h4>AnnualTaxes data element </h4>
+<p>Specifies the Taxes collected on behalf of a Reportable Seller during the Reporting Period, where the Taxes are aggregated at the annual level and is specified using the Monetary Amount (MonAmnt) type.</p>
+<p>The Monetary Amount type is used to communicate the monetary amounts. Such amounts should be given in full units, that is, rounded to the nearest dollar. The code for the currency, in which the value is expressed, has to be provided using a code from the ISO code list 4217 and added in the currency code (currCode) attribute.</p>
+
+<dl class="dl-horizontal">
+<li><strong>Size: </strong>enum </li>
+<li><strong>Input Type: </strong>dpi:MonAmnt_Type </li>
+<li><strong>Requirement: </strong>Mandatory </li>
+  </dl>
+<h4>QuarterlyTaxes data element </h4>
+<p>This data element is reserved for potential future use only.</p>
+
 <h3 id="h-2-13">Sale Of Goods Activities type</h3>
+<p>The Sale Of Goods Activities (SaleOfGoodsActivities) type extends the Other Activities type, which currently includes only the Consideration and Taxes types (described above). This provides flexibility for future extensions.</p>
+<p>Image placeholder: Figure 14: Sale of Goods Activities tye</p>
 <h2 id="h-3">Identification of data elements </h2>	
+<p>In each DPIR message, the Platform Operator and Reportable Seller data elements must have unique identifiers. An identifier of a DPIR message is specified in the Message Reference ID (MessageRefId), while the Platform Operator's and Reportable Seller's identifiers are specified in the Document Reference ID (DocRefId), which is found in the Document Specification (DocSpec) data element, which each Platform Operator and Reportable Seller contain. </p>
+<p>In this section, we first describe the format of Message Reference ID and Document Reference ID. Then, we detail the Document Specification (DocSpec) data element, and outline how it applies to Platform Operators and Reportable Sellers. </p>
+
+
 <h3 id="h-3-1">Format of Message Reference ID </h3>	
-<h3 id="h-3-2">Format of Document Reference ID </h3>	
-<h3 id="h-3-3">Document Specification type </h3>	
+<p>A DPIR message identifier is specified in the Message Reference ID (MessageRefId) data element, and has the following format:</p>
+<p><strong><code>&lt;transmitting country&gt;&lt;reporting year&gt;&lt;receiving country&gt;DPIR&lt;BN #&gt;M&lt;message root&gt;</code></strong></p>
+<p>The meaning of the Message Reference ID components is as follows:</p>
+
+<ul>
+<li><code>&lt;transmitting country&gt;</code> is a 2-character ISO code of the country where the Platform Operator is located </li>
+<li><code>&lt;reporting year&gt;</code> is the year of the Reporting Period, as specified in the Message Specification data element </li>
+<li><code>&lt;receiving country&gt;</code> is a 2-character ISO code of Canada. This code must be "CA" </li>
+<li>DPIR is a fixed literal </li>
+<li><code>&lt;BN #&gt;</code> is a BN9 of the Platform Operator </li>
+<li>M is a fixed literal </li>
+<li><code>&lt;message root&gt;</code> is an 8-digit number that completes the Message Reference ID and ensures its uniqueness in time and space. It could be a randomly generated number or incremented from the message root of the previous Message Reference ID </li>
+</ul>
+<p>For example, US2023CADPIR123456789M11110201 is a valid Message Reference ID. It means that:</p>
+
+<ul>
+<li>The Platform Operator is located in the USA (‘US'), is filing the information return to Canada (‘CA') for the calendar year 2023 (‘2023') </li>
+<li>Information return is filed as part of the Digital Platform Information Returns (‘DPIR') program </li>
+<li>The BN9 of the Platform Operator is ‘123456789' </li>
+<li>Message root is ‘11110201' </li>
+</ul>
+
+<h3 id="h-3-2">Format of Document Reference ID </h3>
+	<p>Identifiers of Platform Operators and Reportable Sellers are specified in the Document Reference ID (DocRefId) data element, which is found in the Document Specification (DocSpec) data element. Data elements containing the DocSpec data element are called correctable data elements.</p>
+<p>The following is the format of the Document Reference ID:</p>
+<p><code>&lt;Message Reference ID&gt;&lt;data element identifier&gt;</code></p>
+<p><code>&lt;Message Reference ID&gt;</code> represents a DPIR message ID and is detailed in the previous section. The <data element identifier> is a six-digit number generated by the Platform Operator that, along with <Message Reference ID>, uniquely identifies each data element in space and time.</p>
+
+<h3 id="h-3-3">Document Specification type </h3>
+<p>The Document Specification data type defines the structure for identification of data elements, and it specifies the type of corrections that can be made on those data elements. </p>
+<p>Image placeholder: Figure 15: Doc Spec type</p>
+<p>The following data elements define the Document Specification type.</p>
+<h4>DocTypeIndic data element  </h4>
+<p>Specifies if the data being sent is new data, or if it is a correction or deletion of previously filed data. It can contain one of the following values:</p>
+
+<ul>
+<li>OECD0 = Resent data </li>
+<li>OECD1 = New data </li>
+<li>OECD2 = Corrected data </li>
+<li>OECD3 = Deletion of data </li>
+<li>OECD10, OECD11, OECD12, OECD13 are reserved for future use only </li>
+</ul>
+<p>A DPIR message can contain new data, amendments to previously filed data, or corrections or deletions of previously filed data, as described in the Filing, amending and correcting information returns section.</p>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>enum</dd>
+          <dt>Input type:</dt>
+          <dd>stf:OECDDocTypeIndic_EnumType</dd>
+		   <dt>Requirement:</dt>
+          <dd>Mandatory</dd>
+        </dl>
+
+<h4>DocRefId data element </h4>
+<p>The Document Reference ID (DocRefId) uniquely identifies a Platform Operator or Reportable Seller data element. Its follows the format described in the Format of Document Reference ID section.</p>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>1-200 characters</dd>
+          <dt>Input type:</dt>
+          <dd>stf:StringMin1Max200</dd>
+		   <dt>Requirement:</dt>
+          <dd>Mandatory</dd>
+        </dl>
+
+<h4>CorrMessageRefId data element </h4>
+<p>This data element is reserved for future use only.</p>
+<h4>CorrDocRefId data element </h4>
+<p>The Correctable Document Reference ID (CorrDocRefId) element specifies a Document Reference ID of a previously filed data element that should be corrected or deleted. It follows the format described in the Format of Document Reference ID section. </p>
+<p>A series of corrections can be handled, as each correction completely replaces the Platform Operator's or Seller's data fields in the return filed immediately before it.</p>
+<dl class="dl-horizontal">
+         <dt>Size:</dt>
+          <dd>1-200 characters</dd>
+          <dt>Input type:</dt>
+          <dd>stf:StringMin1Max200</dd>
+		   <dt>Requirement:</dt>
+          <dd>Mandatory</dd>
+        </dl>
+
+
+<h4>Document Specification data element for Platform Operators</h4>
+<p>The following rules govern the use of the Document Specification data element for Platform Operators:</p>
+
+<ul>
+<li>Platform Operator data elements cannot be deleted. Therefore, the only acceptable values for the Document Type Indicator (DocTypeIndic) are OECD0, OECD1 and OECD2. </li>
+<li>The Document Type Indicator will be set to OECD0 when a DPIR message contains updates of seller data (amendments, corrections or deletions) but the Platform Operator data element does not change. </li>
+<li>If a Platform Operator data element was filed with incorrect data, then a new information return must be filed with correct Platform Operator data. The new Platform Operator data element will have the Document Type Indicator set to OECD2 and will replace the Platform Operator identified in the CorrDocRefId data element. </li>
+<li>If a DPIR message exceeds the 150MB size limit and has to be split into several smaller messages, then each Platform Operator data element in the smaller messages will have unique Document Reference ID. </li>
+</ul>
+
+
+<h4>Document Specification data element for Reportable Sellers</h4>
+<p>The following rules govern the use of the Document Specification data element for Reportable Sellers:</p>
+
+<ul>
+<li>Seller's data can be corrected (OECD2) or deleted (OECD3). </li>
+<li>If the Document Type Indicator is set to OECD2, then the Reportable Seller data element replaces the Reportable Seller identified in the CorrDocRefId data element. </li>
+<li>If the Document Type Indicator is set to OECD3, then Relevant Activities within the Reportable Seller data element must not contain any data elements. This would indicate that the data for the Reportable Seller specified in CorrDocRefId should be deleted. </li>
+</ul>
+<p>Any past filed information returns can be modified, as long as the modifications being filed do not impact subsequent returns. If they do, a correction should be filed for every impacted return in reverse order. In other words, start with the most recently filed information return, and end with the oldest.</p>
+
 <h3 id="h-3-4">Glossary of namespaces </h3>	
+<table class="table table-bordered">
+
+<caption><span class="wb-inv">Glossary of namespaces</span>
+ </caption>
+<thead>
+
+<tr>
+	<th scope="col">
+<strong>Namespace</strong> </th>
+	<th scope="col">
+<strong>Description</strong> </th>
+	<th scope="col">
+<strong>Filename</strong> </th> </tr> </thead>
+<tbody>
+
+<tr>
+	<td>dpir </td>
+	<td>DPIR types </td>
+	<td>CPSS_DPIR_CDC_Schema_External_v6.5.xsd </td>
+</tr>
+<tr>
+	<td>dpi </td>
+	<td>DPI types (OECD Model Rules) </td>
+	<td>DPIXML_v1.05.xsd </td>
+</tr>
+<tr>
+	<td>stf </td>
+	<td>OECD Common types </td>
+	<td>OecdDPITypes_v1.0.xsd </td>
+</tr>
+<tr>
+	<td>iso </td>
+	<td>ISO types (Country, Currency &amp; Language codes) </td>
+	<td>IsoDPITypes_v1.0.xsd </td>
+</tr> </tbody> </table>
+
+
 <h2 id="h-4">Links </h2>
+<p>DPIR schema</p>
+<p>DPIR schema user guide</p>
+<p>DPIR examples</p>
 
 
 			<nav role="navigation" class="mrgn-bttm-lg mrgn-tp-lg">
