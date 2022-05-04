@@ -868,13 +868,112 @@ margin-left: 38px;
 <ul>
 <li>Sellers can be either Individual Sellers or Entity Sellers. </li>
 <li>Both Individual Sellers and Entity Sellers may have a BN9 and a BN15. </li>
-<li>A Seller registered for GST/HST purposes will remit the GST/HST (VAT) on its own. Platform Operators will collect and remit the GST/HST to the CRA on transactions by Sellers that are not registered for GST/HST. </li>
-<li>Platform Operators report taxes and sales of only not registered Sellers. </li>
-<li>GST/HST is calculated and collected based on the province where the property is sold. Different provinces have different GST/HST rates. </li>
-<li>A Province value of UNKNOWN may be used only in exceptional circumstances, and the Platform Operator should always have a valid Province data element. </li>
+<li>A Seller registered for GST/HST purposes will remit the taxes on its own.</li>
+<li>Platform Operators report taxes and sales of Sellers that are not registered. They do not have to include taxes and sales of registered Sellers in the information return </li>
+<li>Taxes are calculated and collected based on the province where the property is sold. Different provinces have different tax rates </li>
+<li>The Platform Operator should always have a valid Province data element. A Province value of UNKNOWN may be used only in exceptional circumstances </li>
+<li>Sales are aggregated at the Seller level, by Province.</li>
 </ul>
-<p>Sales are aggregated at the Seller level, by Province.</p>
+
 <p>Placeholder table: Table 1: Sales of qualifying tangible personal properties. Only cells in green colour are reported</p>
+<h4>Seller 1</h4>
+							<p>Seller 1 is an entity seller that is not registered, located in the province of Quebec and selling qualifying tangible personal properties in Quebec and Ontario.</p>
+								<h5>Seller name</h5>
+								<p><strong>Legal name:</strong> Car Parts 2030</p>
+<p><strong>Operating name:</strong> Custom Car Parts</p>
+<h5>Seller address</h5>
+<p><strong>Street:</strong> 34-245 Laurentian Boulevard</p>
+<p><strong>Province:</strong> Quebec</p>
+<p><strong>Postal code:</strong> H3B 2C5</p>
+<p><strong>City:</strong> Montréal</p>
+<p><strong>Country:</strong> CANADA</p>
+<h5>Seller transactions</h5>
+								<table class="table table-bordered">
+
+<caption>
+ </caption>
+<thead>
+
+<tr>
+	<th scope="col">
+Province </th>
+	<th scope="col">
+Sale </th>
+	<th scope="col">
+Tax  Rate</th>
+	<th scope="col">
+Tax</th> </tr> </thead>
+<tbody>
+
+<tr>
+	<td>Ontario </td>
+	<td class="align-right">$57,660.23 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$7,495.83 </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td class="align-right">$4,690.32 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$609.74 </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td class="align-right">$34,759.76 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$4,518.77 </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td class="align-right">$25,912.89 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$3,368.68 </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td class="align-right">$14,956.00 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$1,944.28 </td>
+</tr>
+<tr>
+	<td>Quebec </td>
+	<td class="align-right">$10,832.61 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$541.63 </td>
+</tr>
+<tr>
+	<td>Quebec </td>
+	<td class="align-right">$30,071.98 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$1,503.60 </td>
+</tr>
+<tr>
+	<td>Quebec </td>
+	<td class="align-right">$15,364.52 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$768.23 </td>
+</tr>
+<tr>
+	<td>Quebec </td>
+	<td class="align-right">$9,649.67 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$482.48 </td>
+</tr> </tbody> </table>
+<p><strong>Total sales for Seller 1 in Ontario:</strong> $137,979.21</p>
+<p>These sales are reported to the CRA</p>
+
+<p><strong>Total taxes for Seller 1 in Ontario:</strong> $17,937.30</p>
+<p>These taxes are reported to the CRA</p>
+
+<p><strong>Total sales for Seller 1 in Quebec:</strong> $65,918.78</p>
+<p>These sales are reported to the CRA</p>
+
+<p><strong>Total tax for Seller 1 in Quebec:</strong> $3,295.94</p>
+<p>These taxes are reported to the CRA</p>
+
+
+
+
 <p>The DPIR message for the information return in Table 1 would consist of six Reportable Sellers, two of which are Individual Sellers and the remaining four are Entity Sellers.</p>
 <p>In this section, we show four XML segments:</p>
 
