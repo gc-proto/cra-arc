@@ -812,20 +812,20 @@ margin-left: 38px;
 <p>Message Specification and Platform Operators data elements are common to both examples and are shown first. </p>
 
 <h3>Message Specification data element </h3>	
-	<p>Figure 1 shows an example of a Message Specification data element, where the Platform Operator is located in the United States, it has a BN15 of “123456789RT0001”, and is filing an information return for the calendar year 2022. The information return was filed on <span class="nowrap">April 17, 2023</span>, at 9:30 am.</p>
+	<p>Example 1 shows a Message Specification data element, where the Platform Operator is located in the United States, it has a BN15 of “123456789RT0001”, and is filing an information return for the calendar year 2022. The information return was filed on <span class="nowrap">April 17, 2023</span>, at 9:30 am.</p>
 <pre><code>&lt;dpir:MessageSpec&gt;
-  &lt;dpir:SendingEntityIN&gt;123456789RT0001&lt;/dpir:SendingEntityIN&gt;
-  &lt;dpir:TransmittingCountry&gt;US&lt;/dpir:TransmittingCountry&gt;
-  &lt;dpir:MessageType&gt;DPIR&lt;/dpir:MessageType&gt;
-  &lt;dpir:Contact&gt;John Valore: 1800-1010-0111 ext. 3458, 8am-4am EST.
-  For more info: john.valore@digitalcart2050ee.com&lt;/dpir:Contact&gt;
-  &lt;dpir:MessageRefId&gt; US2022CADPIR123456789M10000101&lt;/dpir:MessageRefId&gt;
-  &lt;dpir:MessageTypeIndic&gt;DPI401&lt;/dpir:MessageTypeIndic&gt;
-  &lt;dpir:ReportingPeriod&gt;2022-12-31&lt;/dpir:ReportingPeriod&gt;
-  &lt;dpir:Timestamp&gt;2023-04-17T09:30:47Z&lt;/dpir:Timestamp&gt;
+ &lt;dpir:SendingEntityIN&gt;123456789RT0001&lt;/dpir:SendingEntityIN&gt;
+ &lt;dpir:TransmittingCountry&gt;US&lt;/dpir:TransmittingCountry&gt;
+ &lt;dpir:MessageType&gt;DPIR&lt;/dpir:MessageType&gt;
+ &lt;dpir:Contact&gt;John Valore: 1800-1010-0111 ext. 3458, 8am-4am EST.
+ For more info: john.valore@digitalcart2050ee.com&lt;/dpir:Contact&gt;
+ &lt;dpir:MessageRefId&gt; US2022CADPIR123456789M10000101&lt;/dpir:MessageRefId&gt;
+ &lt;dpir:MessageTypeIndic&gt;DPI401&lt;/dpir:MessageTypeIndic&gt;
+ &lt;dpir:ReportingPeriod&gt;2022-12-31&lt;/dpir:ReportingPeriod&gt;
+ &lt;dpir:Timestamp&gt;2023-04-17T09:30:47Z&lt;/dpir:Timestamp&gt;
 &lt;/dpir:MessageSpec&gt;</code></pre>
-<p><strong>Figure 1: Example &ndash; Message Spec data element</strong></p>		
-		<p>The above message has a unique identifier "US2022CADPIR123456789M10000101" which follows the format specified in the DPIR schema user guide. The message identifier consists of the following components:</p>
+<p><strong>Example 1 &ndash; Message Spec data element</strong></p>		
+		<p>The above message has a unique identifier "US2022CADPIR123456789M10000101" which follows the format specified in the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/schema-guide-digital-platform-information-returns.html">DPIR schema user guide</a>. The message identifier consists of the following components:</p>
 
 <ul>
 <li>The Platform Operator is located in the United States and is filing an information return for the calendar year 2022 </li>
@@ -834,7 +834,7 @@ margin-left: 38px;
 <li>The message root is "10000101" </li>
 </ul>
 <h3>Platform Operator data element  </h3>
-<p><strong>Figure 2 shows an example of a Platform Operator data element.</strong> </p>		
+<p><strong>Example 2 shows an a Platform Operator data element.</strong> </p>		
 <pre><code>&lt;dpir:PlatformOperator URL=&quot;http://www.digitalcart2050ee.com/&quot;&gt;
   &lt;dpir:ResCountryCode&gt;US&lt;/dpir:ResCountryCode&gt;
   &lt;dpir:TIN issuedBy=&quot;CA&quot;&gt;123456789&lt;/dpir:TIN&gt;
@@ -856,7 +856,7 @@ margin-left: 38px;
 	&lt;stf:DocRefId&gt; US2022CADPIR123456789M10000101000001&lt;/stf:DocRefId&gt;
   &lt;/dpir:DocSpec&gt;
 &lt;/dpir:PlatformOperator&gt;</code></pre>
-	<p><strong>Figure 2: Example &ndash; Platform Operator data element</strong></p>
+	<p><strong>Example 2 &ndash; Platform Operator data element</strong></p>
 		<p>Platform Operators will likely have both a BN9 (which is used as TIN) and a BN15 (which is used for a VAT), as Figure 2 shows. In the above example, the Platform operates under the business name "Digital Cart Universe", but is registered under the legal name "Cart 1". Figure 2 shows the URL of the Platform Operator.</p>
 <p>The Platform Operator's business address (legalAddressType ='OECD303') is: </p>
 <p> "76200A San Antonio Boulevard, San Bernardino, 92408, California, US". </p>
@@ -908,10 +908,10 @@ margin-left: 38px;
    &lt;/dpir:Standard&gt;
   &lt;/dpir:EntitySeller&gt;
 &lt;/dpir:Identity&gt;</code></pre>
-<p><strong>Figure 3: Example – Identity of Entity Seller data element</strong></p>	
+<p><strong>Example 3 – Identity of Entity Seller data element</strong></p>	
 <p>The above example shows that for tax purposes, the Seller is a resident of Canada. This can be established based on the Seller's Primary Address. </p>
 <p>The Seller has reported two names: one is a legal name, and the other is an operating name. The Platform Operator is reporting the Seller's address in a structured format (through the Address Fix data element). The Seller does not have a BN9 or BN15. </p>
-<p>Figure 4 shows an XML representation of Identity of the first Individual Seller.</p>
+<p>Example 4 shows an XML representation of Identity of the first Individual Seller.</p>
 <pre><code>&lt;dpir:Identity&gt;
  &lt;dpir:IndividualSeller&gt;
    &lt;dpir:Standard&gt;
@@ -940,7 +940,7 @@ margin-left: 38px;
  &lt;/dpir:IndividualSeller&gt;
 &lt;/dpir:Identity&gt;
 &lt;dpir:RelevantActivities/&gt;</code></pre>
-<p><strong>Figure 4: Example – Identity of Individual Seller data element.</strong></p>	
+<p><strong>Example 4: Example – Identity of Individual Seller data element.</strong></p>	
 <p>	The above example illustrates a case where an Individual Seller is a resident of Canada for the purpose of the Excise Tax Act, and has provided both BN9 (TIN) and BN15 (VAT) numbers to the Platform Operator. Hence the Platform Operator does not report the Seller’s taxes and sales. The Relevant Activities data element is empty, as shown in Figure 4.</p>
 <p>We next show an XML representation of the Relevant Activities data element for the first Entity Seller.</p>
 <p>Table 1 shows that the first Entity Seller (“Car Parts 2030”) has sold tangible personal properties to customers in both Ontario and Quebec, and the Platform Operator has collected GST/HST at different rates for these two provinces. The Platform Operator will report the total taxes and sales at the Seller level, but broken down by Province. The taxes and sales are reported at an annual level.</p>
@@ -964,7 +964,7 @@ margin-left: 38px;
     &lt;/dpir:Taxes&gt;
  &lt;/dpir:SaleOfGoods&gt;
 &lt;/dpir:RelevantActivities&gt;</code></pre>
-	<p><strong>Figure 5: Example – Relevant Activities data element</strong></p>
+	<p><strong>Example 5 – Relevant Activities data element</strong></p>
 <p>In the above example, the Entity Seller has made sales of qualifying tangible personal properties in Ontario in the amount of $137,979CAD and in Quebec in the amount of $65,919CAD, resulting in taxes collected by the Platform Operator in the amounts of $17,937CAD and $3,296CAD respectively. These numbers correspond to the total tax and sales columns shown in Table 1. The taxes and sales are rounded to the closest integer value.</p>	
 <pre><code>&lt;dpir:RelevantActivities&gt;
   &lt;dpir:SaleOfGoods Province=&quot;DPIR004&quot;&gt;
@@ -995,7 +995,7 @@ margin-left: 38px;
    &lt;/dpir:Taxes&gt;
   &lt;/dpir:SaleOfGoods&gt;
 &lt;/dpir:RelevantActivities&gt;</code></pre>	
-<p><strong>Figure 6: Example – Relevant Activities data element with unknown Province</strong></p>	
+<p><strong>Example 6 – Relevant Activities data element with unknown Province</strong></p>	
 <p>The above example shows Relevant Activities for the last Entity Seller in Table 1. The Seller has sold qualifying tangible personal properties in both Quebec and Nova Scotia. However, for some sales, the Province data field is unknown, leading to taxes that cannot be established. These are represented as “N/A” in Table 1 and as the value of 0 in Figure 6.
 
 </p>
@@ -1036,11 +1036,11 @@ margin-left: 38px;
  &lt;/dpir:PropertyListing&gt;
 &lt;/dpir:ImmovableProperty&gt;
 &lt;/dpir:RelevantActivities&gt;</code></pre>
-<p><strong>Figure 7: Example – Relevant Activities data element (short-term accommodation)</strong></p>	
-<p>	Figure 7 shows that each cell in the green background in the Total Sales and Total Tax columns in Table 2 is represented by Consideration and Annual Taxes data elements, respectively, with the Province attribute specifying the province where the rental property is located. The Duration Class attribute indicates that the property was rented on short-term basis (DPIR101).</p>
+<p><strong>Example 7 – Relevant Activities data element (short-term accommodation)</strong></p>	
+<p>	Example 7 shows that each cell in the green background in the Total Sales and Total Tax columns in Table 2 is represented by Consideration and Annual Taxes data elements, respectively, with the Province attribute specifying the province where the rental property is located. The Duration Class attribute indicates that the property was rented on short-term basis (DPIR101).</p>
 <p>The second Seller in Table 2 is registered for the GST/HST. The Platform Operator does not remit the GST/HST to the CRA, and does not include their sales and taxes in the information return. The Relevant Activities data element for such Sellers is empty, as the following figure shows.</p>
 <pre><code>&lt;dpir:RelevantActivities/&gt;</code></pre>
-<p><strong>Figure 8: Example – Relevant Activities for a registered seller</strong></p>
+<p><strong>Example 8 – Relevant Activities for a registered seller</strong></p>
 	<p> We next show the Relevant Activities data element for the third Seller in Table 2.</p>	
 <pre><code>&lt;dpir:RelevantActivities&gt;
   &lt;dpir:ImmovableProperty&gt;
@@ -1062,8 +1062,8 @@ margin-left: 38px;
     &lt;/dpir:PropertyListing&gt;
   &lt;/dpir:ImmovableProperty&gt;
 &lt;/dpir:RelevantActivities&gt;</code></pre>
-<p><strong>Figure 9: Example – Relevant Activities data element (short-term accommodation)</strong></p>
-<p>Figure 9 shows the Relevant Activities data element for the third Individual Seller in Table 2. The Seller rents two properties in Ontario. For one property, the Platform Operator does not have a corresponding Province, resulting in taxes that cannot be determined, which are represented as “N/A” in Table 2 and 0 in Figure 9. </p>
+<p><strong>Example 9 – Relevant Activities data element (short-term accommodation)</strong></p>
+<p>Example 9 shows the Relevant Activities data element for the third Individual Seller in Table 2. The Seller rents two properties in Ontario. For one property, the Platform Operator does not have a corresponding Province, resulting in taxes that cannot be determined, which are represented as “N/A” in Table 2 and 0 in Figure 9. </p>
 	<h2>Links</h2>
 	<p><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/schema-guide-digital-platform-information-returns.html">DPIR schema</a></p>
 <p>DPIR schema user guide</p>
