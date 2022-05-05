@@ -809,11 +809,25 @@ margin-left: 38px;
    <section class="gc-nav-section experimental provisional">
             <h1 property="name" id="wb-cont">Example data and resulting return</h1>
 			<span class="wb-prettify all-pre"></span>
-<h2>Examples of Digital Platform Information Returns </h2>	
+	<nav role="navigation">
+            <h2>On this page</h2>
+            <ul>
+                <li><a href="#h-1">Examples of Digital Platform Information Returns </a>
+				<ul>
+                <li><a href="#h-1-1">Message Specification data element</a></li>
+                <li><a href="#h-1-2">Platform Operator data element</a></li>
+				<li><a href="#h-1-3">Sales of Qualifying Tangible Personal Properties</a></li>
+				<li><a href="#h-1-4">Rental of Short-Term Accommodation</a></li>
+               </ul>
+                 </li>
+				 <li><a href="#h-2">Links</a></li>
+            </ul>
+        </nav>		
+<h2 id="h-1">Examples of Digital Platform Information Returns </h2>	
 <p>This page illustrate two examples in which Platform Operators use the DPIR schema to file information returns. The first example relates to sales of qualifying tangible personal properties, and the second example relates to rental of short-term accommodation.</p>
 <p>Message Specification and Platform Operators data elements are common to both examples and are shown first. </p>
 
-<h3>Message Specification data element </h3>	
+<h3 id="1-1">Message Specification data element </h3>	
 	<p>Figure 1 shows a Message Specification data element, where the Platform Operator is located in the United States, it has a BN15 of “123456789RT0001”, and is filing an information return for the calendar year 2022. The information return was filed on <span class="nowrap">April 17, 2023</span>, at 9:30 am.</p>
 <pre><code>&lt;dpir:MessageSpec&gt;
  &lt;dpir:SendingEntityIN&gt;123456789RT0001&lt;/dpir:SendingEntityIN&gt;
@@ -835,7 +849,7 @@ margin-left: 38px;
 <li>The Platform Operator's BN9 is "123456789" </li>
 <li>The message root is "10000101" </li>
 </ul>
-<h3>Platform Operator data element  </h3>
+<h3 id="1-2">Platform Operator data element  </h3>
 <p><strong>Figure 2 shows an example of a Platform Operator data element.</strong> </p>		
 <pre><code>&lt;dpir:PlatformOperator URL=&quot;http://www.digitalcart2050ee.com/&quot;&gt;
   &lt;dpir:ResCountryCode&gt;US&lt;/dpir:ResCountryCode&gt;
@@ -864,7 +878,7 @@ margin-left: 38px;
 <p> "76200A San Antonio Boulevard, San Bernardino, 92408, California, US". </p>
 <p>Therefore, its tax residency country code is US.</p>
 <p>The above example shows that the Document Reference ID of the Platform Operator is "US2022CADPIR123456789M10000101000001". The last six-digit message root ('10000101') number does not have to start from zero and can be any number as long as it is distinct from any other message root sent from the same Platform Operator for the same Reporting Period. </p>
-<h3>Sales of Qualifying Tangible Personal Properties </h3>
+<h3 id="1-3">Sales of Qualifying Tangible Personal Properties </h3>
 	<p>Consider an example data set containing transactional records of sales of qualifying tangible personal properties, which includes Seller’s details (both Individual Sellers and Entity Sellers), the provinces where the properties were sold, as well as the sales earned and the GST/HST collected. The example demonstrates the following:</p>
 
 <ul>
@@ -876,7 +890,7 @@ margin-left: 38px;
 <li>The Platform Operator should always have a valid Province data element. A Province value of UNKNOWN may be used only in exceptional circumstances </li>
 <li>Sales and taxes are aggregated at the Seller level, by Province and reported to the CRA </li>
 </ul>
-
+<p><strong>Table 1: Sales of qualifying tangible personal properties.</strong></p>
                            <p> <a class="wb-lbx " href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/tbl-1-e.jpg" title="Table 1: Sales of qualifying tangible personal properties. Only cells in green colour are reported">
                             <img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/tbl-1-e.jpg" alt="Table 1: Sales of qualifying tangible personal properties. Alternate text below" class="img-responsive">
                             </a></p>
@@ -1438,7 +1452,7 @@ Tax</th> </tr> </thead>
 &lt;/dpir:RelevantActivities&gt;</code></pre>	
 <p><strong>Figure 6: Example &ndash; Relevant Activities data element with unknown Province</strong></p>	
 <p>The above example shows Relevant Activities for the Seller 6. The Seller has sold qualifying tangible personal properties to both Quebec and Nova Scotia. However, for some sales, the Province data field is unknown, leading to taxes that cannot be established. These are represented as the value of 0 in Figure 6.</p>
-<h3>Rental of Short-Term Accommodation </h3>	
+<h3 id="h-4">Rental of Short-Term Accommodation </h3>	
 <p>This section illustrates an example of how to represent data on rental of short-term accommodation in XML using the DPIR schema.</p>
 <p>For simplicity, we include only four Individual Sellers and do not show Identity data elements. In general, both Individual Sellers and Entity Sellers may be engaged in rental of short-term accommodation.</p>
 <p>The example shows a breakdown of sales by property and rental duration. Property details, such as property address, do not have to be reported in the information return.</p>
@@ -1451,7 +1465,7 @@ Tax</th> </tr> </thead>
 <li>Platform Operators do not remit taxes on property rentals by Sellers who are registered for GST/HST. Seller 2 rents a property in Quebec (which has a tax rate of 5%), but the Platform Operator does not remit taxes on this rental because the individual is registered for GST/HST </li>
 <li>Platform Operators report taxes and sales by province for Sellers that are not registered. They do not have to include taxes and sales of registered Sellers in the information return.</li>
 </ul>
-
+<p><strong>Table 2: Sales of short-term accommodation rentals.</strong></p>
 <p> <a class="wb-lbx " href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/tbl-2-e.jpg" title="Table 2: Sales of short-term accommodation rentals. Only cells in the green colour are reported">
                             <img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/tbl-2-e.jpg" alt="Table 2: Sales of short-term accommodation rentals. Alternate text below" class="img-responsive">
                             </a></p>
@@ -1576,13 +1590,11 @@ Tax</th> </tr> </thead>
 <p><strong>Total sales of short-term accommodation for Seller 1 in Alberta:</strong> $616.05</p>
 <p>These sales are reported to the CRA</p>
 <p><strong>Total taxes of short-term accommodation for Seller 1 in Alberta:</strong> $30.80</p>
-<p>These taxes are reported to the CRA 
-<p></p>
-</p>
+<p>These taxes are reported to the CRA </p>
 <h4>Seller 2</h4>
 <p>Seller 2 is a registered seller, renting a single property. The property is rented both for short-term and long-term accommodation.</p>
-<p><strong>Business number: </strong>123456789</p>
-<p><strong>GST/HST registration number: </strong>123456789RT0001</p>
+<p><strong>Business number:</strong> 123456789</p>
+<p><strong>GST/HST registration number:</strong> 123456789RT0001</p>
 <h5>Seller 2 transactions</h5>
 
 
@@ -1826,7 +1838,7 @@ Tax</th> </tr> </thead>
 &lt;/dpir:RelevantActivities&gt;</code></pre>
 <p><strong>Figure 9: Example &ndash; Relevant Activities data element (short-term accommodation)</strong></p>
 <p>Figure 9 shows the Relevant Activities data element for Seller 3. The Seller rents two properties in Ontario. For the third property, the Platform Operator does not have a corresponding Province, resulting in taxes that cannot be determined, which are represented as “N/A” in Table 2 and 0 in Figure 9. </p>
-	<h2>Links</h2>
+	<h2 id="h-2">Links</h2>
 	<p><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/schema-guide-digital-platform-information-returns.html">DPIR schema</a></p>
 <p>DPIR schema user guide</p>
 
