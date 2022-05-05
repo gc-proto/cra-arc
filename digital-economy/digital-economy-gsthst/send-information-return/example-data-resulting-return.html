@@ -807,12 +807,12 @@ margin-left: 38px;
    <section class="gc-nav-section experimental provisional">
             <h1 property="name" id="wb-cont">Example data and resulting return</h1>
 			<span class="wb-prettify all-pre"></span>
-<h2>Examples of Digital Platform Information </h2>	
+<h2>Examples of Digital Platform Information Returns </h2>	
 <p>This page illustrate two examples in which Platform Operators use the DPIR schema to file information returns. The first example relates to sales of qualifying tangible personal properties, and the second example relates to rental of short-term accommodation.</p>
 <p>Message Specification and Platform Operators data elements are common to both examples and are shown first. </p>
 
 <h3>Message Specification data element </h3>	
-	<p>Example 1 shows a Message Specification data element, where the Platform Operator is located in the United States, it has a BN15 of “123456789RT0001”, and is filing an information return for the calendar year 2022. The information return was filed on <span class="nowrap">April 17, 2023</span>, at 9:30 am.</p>
+	<p>Figure 1 shows a Message Specification data element, where the Platform Operator is located in the United States, it has a BN15 of “123456789RT0001”, and is filing an information return for the calendar year 2022. The information return was filed on <span class="nowrap">April 17, 2023</span>, at 9:30 am.</p>
 <pre><code>&lt;dpir:MessageSpec&gt;
  &lt;dpir:SendingEntityIN&gt;123456789RT0001&lt;/dpir:SendingEntityIN&gt;
  &lt;dpir:TransmittingCountry&gt;US&lt;/dpir:TransmittingCountry&gt;
@@ -824,17 +824,17 @@ margin-left: 38px;
  &lt;dpir:ReportingPeriod&gt;2022-12-31&lt;/dpir:ReportingPeriod&gt;
  &lt;dpir:Timestamp&gt;2023-04-17T09:30:47Z&lt;/dpir:Timestamp&gt;
 &lt;/dpir:MessageSpec&gt;</code></pre>
-<p><strong>Example 1 &ndash; Message Spec data element</strong></p>		
-		<p>The above message has a unique identifier "US2022CADPIR123456789M10000101" which follows the format specified in the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/schema-guide-digital-platform-information-returns.html">DPIR schema user guide</a>. The message identifier consists of the following components:</p>
+<p><strong>Figure 1: Example &ndash; Message Spec data element</strong></p>		
+		<p>The above message has a unique identifier "US2022CADPIR123456789M10000101" which follows the format specified in the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/schema-guide-digital-platform-information-returns.html">DPIR schema user guide</a>. The message identifier specifies the following:</p>
 
 <ul>
-<li>The Platform Operator is located in the United States and is filing an information return for the calendar year 2022 </li>
-<li>The information return is filed and transmitted to Canada, as part of the "DPIR" program </li>
+<li>The Platform Operator is located in the United States (“US”) and is filing an information return for the calendar year 2022 (“2022”)</li>
+<li>The information return is filed and transmitted to Canada (“CA”), as part of the “DPIR” program</li>
 <li>The Platform Operator's BN9 is "123456789" </li>
 <li>The message root is "10000101" </li>
 </ul>
 <h3>Platform Operator data element  </h3>
-<p><strong>Example 2 shows an a Platform Operator data element.</strong> </p>		
+<p><strong>Figure 2 shows an example of a Platform Operator data element.</strong> </p>		
 <pre><code>&lt;dpir:PlatformOperator URL=&quot;http://www.digitalcart2050ee.com/&quot;&gt;
   &lt;dpir:ResCountryCode&gt;US&lt;/dpir:ResCountryCode&gt;
   &lt;dpir:TIN issuedBy=&quot;CA&quot;&gt;123456789&lt;/dpir:TIN&gt;
@@ -856,14 +856,14 @@ margin-left: 38px;
 	&lt;stf:DocRefId&gt; US2022CADPIR123456789M10000101000001&lt;/stf:DocRefId&gt;
   &lt;/dpir:DocSpec&gt;
 &lt;/dpir:PlatformOperator&gt;</code></pre>
-	<p><strong>Example 2 &ndash; Platform Operator data element</strong></p>
+	<p><strong>Figure 2: Example &ndash; Platform Operator data element</strong></p>
 		<p>Platform Operators will likely have both a BN9 (which is used as TIN) and a BN15 (which is used for a VAT), as Figure 2 shows. In the above example, the Platform operates under the business name "Digital Cart Universe", but is registered under the legal name "Cart 1". Figure 2 shows the URL of the Platform Operator.</p>
 <p>The Platform Operator's business address (legalAddressType ='OECD303') is: </p>
 <p> "76200A San Antonio Boulevard, San Bernardino, 92408, California, US". </p>
 <p>Therefore, its tax residency country code is US.</p>
-<p>The above example shows that the Document Reference ID of the Platform Operator is "US2022CADPIR123456789M10000101000001". The last six-digit message root (‘10000101') number does not have to start from zero and can be any number as long as it is distinct from any other message root sent from the same Platform Operator for the same Reporting Period. </p>
+<p>The above example shows that the Document Reference ID of the Platform Operator is "US2022CADPIR123456789M10000101000001". The last six-digit message root ('10000101') number does not have to start from zero and can be any number as long as it is distinct from any other message root sent from the same Platform Operator for the same Reporting Period. </p>
 <h3>Sales of Qualifying Tangible Personal Properties </h3>
-	<p>Consider tabular data set in Table 1 containing transactional records of sales of qualifying tangible personal properties. The example includes Seller's details (both Individual Sellers and Entity Sellers), the province where the properties were sold, as well as the sales earned and the GST/HST collected. Values that should be reported are in green. The example demonstrates the following:</p>
+	<p>Consider an example data set containing transactional records of sales of qualifying tangible personal properties, which includes Seller’s details (both Individual Sellers and Entity Sellers), the provinces where the properties were sold, as well as the sales earned and the GST/HST collected. The example demonstrates the following:</p>
 
 <ul>
 <li>Sellers can be either Individual Sellers or Entity Sellers. </li>
@@ -872,7 +872,7 @@ margin-left: 38px;
 <li>Platform Operators report taxes and sales of Sellers that are not registered. They do not have to include taxes and sales of registered Sellers in the information return </li>
 <li>Taxes are calculated and collected based on the province where the property is sold. Different provinces have different tax rates </li>
 <li>The Platform Operator should always have a valid Province data element. A Province value of UNKNOWN may be used only in exceptional circumstances </li>
-<li>Sales are aggregated at the Seller level, by Province.</li>
+<li>Sales and taxes are aggregated at the Seller level, by Province and reported to the CRA </li>
 </ul>
 
                            <p> <a class="wb-lbx " href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/tbl-1-e.jpg" title="Table 1: Sales of qualifying tangible personal properties. Only cells in green colour are reported">
@@ -887,13 +887,13 @@ margin-left: 38px;
 								<h5>Seller name</h5>
 								<p><strong>Legal name:</strong> Car Parts 2030</p>
 <p><strong>Operating name:</strong> Custom Car Parts</p>
-<h5>Seller address</h5>
+<h5>Seller 1 address</h5>
 <p><strong>Street:</strong> 34-245 Laurentian Boulevard</p>
 <p><strong>Province:</strong> Quebec</p>
 <p><strong>Postal code:</strong> H3B 2C5</p>
 <p><strong>City:</strong> Montréal</p>
 <p><strong>Country:</strong> CANADA</p>
-<h5>Seller transactions</h5>
+<h5>Seller 1 transactions</h5>
 								<table class="table table-bordered">
 
 <caption class="wb-inv">Seller 1 transactions</caption>
@@ -980,16 +980,16 @@ Tax</th> </tr> </thead>
 								<h5>Seller name</h5>
 								<p><strong>Legal name:</strong> Protein4U</p>
 <p><strong>Operating name:</strong> Not applicable</p>
-<h5>Seller address</h5>
+<h5>Seller 2 address</h5>
 <p><strong>Street:</strong> 564-122 Queensway West</p>
 <p><strong>Province:</strong> British Colombia</p>
 <p><strong>Postal code:</strong> V2A 2F8</p>
 <p><strong>City:</strong> Penticton</p>
 <p><strong>Country:</strong> CANADA</p>
-<h5>Seller ID</h5>
+<h5>Seller 2 ID</h5>
 <p><strong>Business number:</strong> 123456789</p>
 <p><strong>GST/HST registration number:</strong> 123456789RT0001</p>
-<h5>Seller transactions</h5>
+<h5>Seller 2 transactions</h5>
 <table class="table table-bordered">
 
 <caption class="wb-inv">Seller 2 transactions</caption>
@@ -1025,25 +1025,305 @@ Tax</th> </tr> </thead>
 	<td class="align-right">$117.32 </td>
 </tr>
  </tbody> </table>
+<p><strong>Total sales for Seller 2 in British Colombia</strong> $25,904.81</p>
+<p>These sales are not reported to the CRA</p>
+
+<p><strong>Total tax for Seller 2 in British Columbia:</strong> $1,295.24</p>
+<p>This tax is not reported to the CRA</p>
 
 
+<h4>Seller 3</h4>
+							<p>Seller 3 is an entity seller, located in Alberta, which has a business number but is not registered for the GST/HST.</p>
+								<h5>Seller name</h5>
+								<p><strong>Legal name:</strong> Remote Office Experts</p>
+<p><strong>Operating name:</strong> Office Lighting</p>
+<h5>Seller 3 address</h5>
+<p><strong>Street:</strong> 45A Moose Lane </p>
+<p><strong>Province:</strong> Alberta</p>
+<p><strong>Postal code:</strong> T3A 4D8</p>
+<p><strong>City:</strong> Calgary</p>
+<p><strong>Country:</strong> CANADA</p>
+<h5>Seller 3 ID</h5>
+<p><strong>Business number:</strong> 987654321</p>
+<h5>Seller 3 transactions</h5>
+<table class="table table-bordered">
 
+<caption class="wb-inv">Seller 3 transactions</caption>
+<thead>
+
+<tr class="active">
+	<th scope="col">
+Province </th>
+	<th scope="col">
+Sale </th>
+	<th scope="col">
+Tax  Rate</th>
+	<th scope="col">
+Tax</th> </tr> </thead>
+<tbody>
+
+<tr>
+	<td>Alberta</td>
+	<td class="align-right">$2,567.16</td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$128.36</td>
+</tr>
+<tr>
+	<td>Alberta</td>
+	<td class="align-right">$17,684.32</td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$884.22</td>
+</tr>
+<tr>
+	<td>Alberta</td>
+	<td class="align-right">$22,316.33</td>
+	<td class="align-right">0.05</td>
+	<td class="align-right">$1,115.82</td>
+</tr>
+ </tbody> </table>
+<p><strong>Total sales for Seller 3 in Alberta:</strong> $42,567.81</p>
+<p>These sales are reported to the CRA</p>
+
+<p><strong>Total taxes for Seller 3 in Alberta:</strong> $2,128.39</p>
+<p>These taxes are reported to the CRA</p>
+<h4>Seller 4</h4>
+							<p>Seller 4 is a registered individual seller, located in Quebec.</p>
+								<h5>Seller 4 name</h5>
+								<p><strong>First name:</strong> Jannique</p>
+<p><strong>Middle name:</strong> Claire</p>
+<p><strong>Last name:</strong> Lalonde</p>
+<h5>Seller 3 address</h5>
+<p><strong>Street:</strong> 45D Liberte Ave  </p>
+<p><strong>Province:</strong> Quebec</p>
+<p><strong>Postal code:</strong> G8B 2S3</p>
+<p><strong>City:</strong> Alma</p>
+<p><strong>Country:</strong> CANADA</p>
+<h5>Seller 4 ID</h5>
+<p><strong>Business number:</strong> 102030405</p>
+<p><strong>GST/HST registration number:</strong> 102030405RT0004</p>
+<h5>Seller 4 transactions</h5>
+<table class="table table-bordered">
+
+<caption class="wb-inv">Seller 4 transactions</caption>
+<thead>
+
+<tr class="active">
+	<th scope="col">
+Province </th>
+	<th scope="col">
+Sale </th>
+	<th scope="col">
+Tax  Rate</th>
+	<th scope="col">
+Tax</th> </tr> </thead>
+<tbody>
+
+<tr>
+	<td>Quebec</td>
+	<td class="align-right">$97,565.00</td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$4,878.25</td>
+</tr>
+<tr>
+	<td>Quebec</td>
+	<td class="align-right">$32,123.44</td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$1,606.17</td>
+</tr>
+<tr>
+	<td>Quebec</td>
+	<td class="align-right">$857.33</td>
+	<td class="align-right">0.05</td>
+	<td class="align-right">$42.87</td>
+</tr>
+ </tbody> </table>
+<p><strong>Total sales for Seller 4 in Quebec:</strong> $130,545.77</p>
+<p>These sales are not reported to the CRA</p>
+
+<p><strong>Total taxes for Seller 4 in Quebec:</strong> $6,527.29</p>
+<p>These taxes are not reported to the CRA</p>
+<h4>Seller 5</h4>
+							<p>Seller 5 is a registered individual seller, located in Ontario, selling qualifying tangible personal properties in Alberta.</p>
+								<h5>Seller 5 name</h5>
+								<p><strong>First name:</strong> Mark</p>
+<p><strong>Middle name:</strong> Miller</p>
+<p><strong>Last name:</strong> Lalonde</p>
+<h5>Seller 5 address</h5>
+<p><strong>Street:</strong> 240-34 Scott Ave </p>
+<p><strong>Province:</strong> Ontario</p>
+<p><strong>Postal code:</strong> M5A 3T7</p>
+<p><strong>City:</strong> Toronto</p>
+<p><strong>Country:</strong> CANADA</p>
+<h5>Seller 5 ID</h5>
+<p><strong>Business number:</strong> 101010102</p>
+<p><strong>GST/HST registration number:</strong> 101010102RT0002</p>
+<h5>Seller 5 transactions</h5>
+<table class="table table-bordered">
+
+<caption class="wb-inv">Seller 5 transactions</caption>
+<thead>
+
+<tr class="active">
+	<th scope="col">
+Province </th>
+	<th scope="col">
+Sale </th>
+	<th scope="col">
+Tax  Rate</th>
+	<th scope="col">
+Tax</th> </tr> </thead>
+<tbody>
+
+<tr>
+	<td>Alberta</td>
+	<td class="align-right">$2,345.67</td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$117.28</td>
+</tr>
+<tr>
+	<td>Alberta</td>
+	<td class="align-right">$67,345.66</td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$3,367.28</td>
+</tr>
+<tr>
+	<td>Alberta</td>
+	<td class="align-right">$2,316.33</td>
+	<td class="align-right">0.05</td>
+	<td class="align-right">$115.82</td>
+</tr>
+ </tbody> </table>
+<p><strong>Total sales for Seller 5 in Alberta:</strong> 72,007.66</p>
+<p>These sales are not reported to the CRA</p>
+
+<p><strong>Total taxes for Seller 5 in Alberta:</strong> $3,600.38</p>
+<p>This tax is not reported to the CRA</p>
+<h4>Seller 6</h4>
+							<p>Seller 6 is an entity that is not registered which sells qualifying tangible personal properties in Quebec and Nova Scotia. However, for some sales, the province data field is unknown leading to taxes that cannot be determined.</p>
+								<h5>Seller 6 name</h5>
+								<p><strong>Legal name:</strong> Furniture on Demand</p>
+<p><strong>Operating name:</strong> Furniture 2100 Inc.</p>
+<h5>Seller 6 address</h5>
+<p><strong>Street:</strong> 12 Main Street</p>
+<p><strong>Province:</strong> Ontario</p>
+<p><strong>Postal code:</strong> P7G 1A3</p>
+<p><strong>City:</strong> Thunder Bay</p>
+<p><strong>Country:</strong> CANADA</p>
+<h5>Seller 6 transactions</h5>
+<table class="table table-bordered">
+
+<caption class="wb-inv">Seller 6 transactions
+ </caption>
+<thead>
+
+<tr class="active">
+	<th scope="col">
+<strong>Province</strong> </th>
+	<th scope="col">
+<strong>Sale</strong> </th>
+	<th scope="col">
+<strong>Tax  Rate</strong> </th>
+	<th scope="col">
+<strong>Tax</strong> </th> </tr> </thead>
+<tbody>
+
+<tr>
+	<td>Quebec </td>
+	<td class="align-right">$33,754.14 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$1,687.71 </td>
+</tr>
+<tr>
+	<td>Quebec </td>
+	<td class="align-right">$19,807.32 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$990.37 </td>
+</tr>
+<tr>
+	<td>Quebec </td>
+	<td class="align-right">$6,965.65 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$348.28 </td>
+</tr>
+<tr>
+	<td>Quebec </td>
+	<td class="align-right">$10,640.07 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$532.00 </td>
+</tr>
+<tr>
+	<td>Unknown </td>
+	<td class="align-right">$23,456.44 </td>
+	<td>N/A </td>
+	<td class="align-right">$0.00 </td>
+</tr>
+<tr>
+	<td>Unknown </td>
+	<td class="align-right">$89.33 </td>
+	<td>N/A </td>
+	<td class="align-right">$0.00 </td>
+</tr>
+<tr>
+	<td>Nova Scotia </td>
+	<td class="align-right">$8,692.33 </td>
+	<td class="align-right">0.15 </td>
+	<td class="align-right">$1,303.85 </td>
+</tr>
+<tr>
+	<td>Nova Scotia </td>
+	<td class="align-right">$43,280.65 </td>
+	<td class="align-right">0.15 </td>
+	<td class="align-right">$6,492.10 </td>
+</tr>
+<tr>
+	<td>Nova Scotia </td>
+	<td class="align-right">$907.34 </td>
+	<td class="align-right">0.15 </td>
+	<td class="align-right">$136.10 </td>
+</tr>
+<tr>
+	<td>Nova Scotia </td>
+	<td class="align-right">$1,234.20 </td>
+	<td class="align-right">0.15 </td>
+	<td class="align-right">$185.13 </td>
+</tr>
+<tr>
+	<td>Nova Scotia </td>
+	<td class="align-right">$13,394.72 </td>
+	<td class="align-right">0.15 </td>
+	<td class="align-right">$2,009.21 </td>
+</tr> </tbody> </table>
+<p><strong>Total sales for Seller 6 in Quebec:</strong> $71,167.18</p>
+<p>These sales are reported to the CRA</p>
+
+<p><strong>Total taxes for Seller 6 in Quebec:</strong> $3,558.36</p>
+<p>These taxes are reported to the CRA</p>
+<p><strong>Total sales for Seller 6 where the province is unknown:</strong> $23,545.77</p>
+<p>These sales are reported to the CRA</p>
+
+<p><strong>Total tax for Seller 6 where the province is unknown:</strong> N/A (assuming that the platform operator never collected any tax on these transactions) </p>
+<p>These taxes are reported to the CRA</p>
+<p><strong>Total sales for Seller 6 in Nova Scotia </strong> $67,509.23</p>
+<p>These sales are reported to the CRA</p>
+
+<p><strong>Total tax for Seller 6 in Nova Scotia:</strong> $10,126.39 </p>
+<p>These taxes are reported to the CRA</p>
 
 
 
 </details>
 </li>
 </ul>
-<p>The DPIR message for the information return in Table 1 would consist of six Reportable Sellers, two of which are Individual Sellers and the remaining four are Entity Sellers.</p>
-<p>In this section, we show four XML segments:</p>
+<p>The DPIR message for the information return for the above examples would consist of six Reportable Sellers, two of which are Individual Sellers (Seller 4 and Seller 5) and the remaining four are Entity Sellers.</p>
+<p>We next show four XML segments:</p>
 
 <ul>
-<li>Identity data element for the first Entity Seller in Table 1 </li>
-<li>Identity data element for the first Individual Seller in Table 1 </li>
-<li>Two Relevant Activities data elements: one for the first Entity Seller in which Province for all sales is known, and one for the last Entity Seller in which Province for some sales is not known </li>
+<li>Identity data element for Seller 1, which is an Entity Seller</li>
+<li>Identity data element for Seller 4, which is an Individual Seller</li>
+<li>Two Relevant Activities data elements: one for Seller 1 in which Province for all sales is known, and one for Seller 6 in which Province for some sales is unknown.</li>
 </ul>
 <p>All Reportable Seller data elements must be uniquely identified though a Document Specification data element. These are similar to the previous example.</p>
-<p>The following examples show XML representation of the Identity of the first seller ("Car Parts 2030") in Figure 3.</p>
+<p>The following examples shows XML representation of the Identity for Seller 1 (”Car Parts 2030”) in Example 3.</p>
 <pre><code>&lt;dpir:Identity&gt;
  &lt;dpir:EntitySeller&gt;
   &lt;dpir:Standard&gt;
@@ -1067,10 +1347,10 @@ Tax</th> </tr> </thead>
    &lt;/dpir:Standard&gt;
   &lt;/dpir:EntitySeller&gt;
 &lt;/dpir:Identity&gt;</code></pre>
-<p><strong>Example 3 – Identity of Entity Seller data element</strong></p>	
+<p><strong>Figure 3: Example &ndash; Identity of Entity Seller data element</strong></p>	
 <p>The above example shows that for tax purposes, the Seller is a resident of Canada. This can be established based on the Seller's Primary Address. </p>
 <p>The Seller has reported two names: one is a legal name, and the other is an operating name. The Platform Operator is reporting the Seller's address in a structured format (through the Address Fix data element). The Seller does not have a BN9 or BN15. </p>
-<p>Example 4 shows an XML representation of Identity of the first Individual Seller.</p>
+<p>Figure 4 shows an XML representation of Identity of the Seller 4.</p>
 <pre><code>&lt;dpir:Identity&gt;
  &lt;dpir:IndividualSeller&gt;
    &lt;dpir:Standard&gt;
@@ -1099,10 +1379,10 @@ Tax</th> </tr> </thead>
  &lt;/dpir:IndividualSeller&gt;
 &lt;/dpir:Identity&gt;
 &lt;dpir:RelevantActivities/&gt;</code></pre>
-<p><strong>Example 4: Example – Identity of Individual Seller data element.</strong></p>	
-<p>	The above example illustrates a case where an Individual Seller is a resident of Canada for the purpose of the Excise Tax Act, and has provided both BN9 (TIN) and BN15 (VAT) numbers to the Platform Operator. Hence the Platform Operator does not report the Seller’s taxes and sales. The Relevant Activities data element is empty, as shown in Figure 4.</p>
-<p>We next show an XML representation of the Relevant Activities data element for the first Entity Seller.</p>
-<p>Table 1 shows that the first Entity Seller (“Car Parts 2030”) has sold tangible personal properties to customers in both Ontario and Quebec, and the Platform Operator has collected GST/HST at different rates for these two provinces. The Platform Operator will report the total taxes and sales at the Seller level, but broken down by Province. The taxes and sales are reported at an annual level.</p>
+<p><strong>Figure 4: Example &ndash; Identity of Individual Seller data element.</strong></p>	
+<p>The above example illustrates a case where an Individual Seller is a resident of Canada for the purpose of the Excise Tax Act, and has provided both BN9 (TIN) and BN15 (VAT) numbers to the Platform Operator. Hence the Platform Operator does not report the Seller’s taxes and sales. The Relevant Activities data element is empty, as shown in Figure 4.</p>
+<p>We next show an XML representation of the Relevant Activities data element for Seller 1.</p>
+<p>Seller 1 ("Car Parts 2030") has sold tangible personal properties to customers in both Ontario and Quebec, and the Platform Operator has collected taxes at different rates for these two provinces. The Platform Operator will report the total taxes and sales at the Seller level, but broken down by Province. The taxes and sales are reported at an annual level.</p>
 <pre><code>&lt;dpir:RelevantActivities&gt;
  &lt;dpir:SaleOfGoods Province=&quot;DPIR005&quot;&gt;
     &lt;!-- Ontario --&gt;
@@ -1123,8 +1403,8 @@ Tax</th> </tr> </thead>
     &lt;/dpir:Taxes&gt;
  &lt;/dpir:SaleOfGoods&gt;
 &lt;/dpir:RelevantActivities&gt;</code></pre>
-	<p><strong>Example 5 – Relevant Activities data element</strong></p>
-<p>In the above example, the Entity Seller has made sales of qualifying tangible personal properties in Ontario in the amount of $137,979CAD and in Quebec in the amount of $65,919CAD, resulting in taxes collected by the Platform Operator in the amounts of $17,937CAD and $3,296CAD respectively. These numbers correspond to the total tax and sales columns shown in Table 1. The taxes and sales are rounded to the closest integer value.</p>	
+	<p><strong>Figure 5: Example &ndash; Relevant Activities data element</strong></p>
+<p>In the above example, the Entity Seller has made sales of tangible personal properties in Ontario in the amount of $137,979 CAD, and in Quebec in the amount of $65,919 CAD, resulting in taxes collection by the Platform Operator in the amount of $65,919 CAD and $3,296 CAD, respectively. These numbers correspond to the total taxes and sales for Seller 1. The taxes and sales are rounded to the closest integer value.</p>	
 <pre><code>&lt;dpir:RelevantActivities&gt;
   &lt;dpir:SaleOfGoods Province=&quot;DPIR004&quot;&gt;
    &lt;!-- Quebec --&gt;
@@ -1154,24 +1434,346 @@ Tax</th> </tr> </thead>
    &lt;/dpir:Taxes&gt;
   &lt;/dpir:SaleOfGoods&gt;
 &lt;/dpir:RelevantActivities&gt;</code></pre>	
-<p><strong>Example 6 – Relevant Activities data element with unknown Province</strong></p>	
-<p>The above example shows Relevant Activities for the last Entity Seller in Table 1. The Seller has sold qualifying tangible personal properties in both Quebec and Nova Scotia. However, for some sales, the Province data field is unknown, leading to taxes that cannot be established. These are represented as “N/A” in Table 1 and as the value of 0 in Figure 6.
-
-</p>
+<p><strong>Figure 6: Example &ndash; Relevant Activities data element with unknown Province</strong></p>	
+<p>The above example shows Relevant Activities for the Seller 6. The Seller has sold qualifying tangible personal properties to both Quebec and Nova Scotia. However, for some sales, the Province data field is unknown, leading to taxes that cannot be established. These are represented as the value of 0 in Figure 6.</p>
 <h3>Rental of Short-Term Accommodation </h3>	
-<p>This section illustrates an example of how to represent data on rental of short-term accommodation (shown in Table 2) in XML using the DPIR schema.</p>
-<p>As in the previous section, the example in Table 2 shows both seller information and transactions of sales. For ease of exposition, we include only Individual Sellers and do not show Identity data elements. In general, both Individual Sellers and Entity Sellers may be engaged in rental of short-term accommodation.</p>
-<p>The example in Table 2 shows a breakdown of sales by property and rental duration. Property details, such as property address, are not shown in the example. Only values in the green background colour are to be reported in the information return. </p>
+<p>This section illustrates an example of how to represent data on rental of short-term accommodation in XML using the DPIR schema.</p>
+<p>For simplicity, we include only four Individual Sellers and do not show Identity data elements. In general, both Individual Sellers and Entity Sellers may be engaged in rental of short-term accommodation.</p>
+<p>The example shows a breakdown of sales by property and rental duration. Property details, such as property address, do not have to be reported in the information return.</p>
 <p>The example illustrates the following:</p>
 
 <ul>
-<li>During a Reporting Period, a property may be rented on both a short-term basis (continuous rental duration of less than one month) and long-term basis (continuous duration of more than one month). Sales and taxes are aggregated separately for short-term rentals and long-term rentals, and only short-term totals are to be reported. </li>
-<li>Taxes charged on a property are based on the province where the property is located. For example, Individual 1 rents two properties: one property is located in Ontario (where the GST/HST rate is 13%) and the other property is located in Alberta (where the GST/HST rate is 5%). </li>
-<li>Platform Operators do not remit GST/HST on property rentals by Sellers who are registered for GST/HST. In Table 2, Individual 2 rents a property in Quebec (which has a GST/HST rate of 5%), but the Platform Operator does not remit GST/HST on this rental because the individual is registered for GST/HST. </li>
-<li>Taxes and sales of registered Sellers do not have to be included in the information return. </li>
+<li>During a Reporting Period, a property may be rented on both a short-term basis (continuous rental duration of less than one month) and long-term basis (continuous duration of more than one month). Sales and taxes are aggregated separately for short-term rentals and long-term rentals, and only short-term totals are to be reported </li>
+<li>Taxes charged on a property are based on the province where the property is located. For example, Seller 1 rents two properties: one property is located in Ontario (where the tax rate is 13%) and the other property is located in Alberta (where the tax rate is 5%) </li>
+<li>Properties rented on long-term basis are not taxed </li>
+<li>Platform Operators do not remit taxes on property rentals by Sellers who are registered for GST/HST. Seller 2 rents a property in Quebec (which has a tax rate of 5%), but the Platform Operator does not remit taxes on this rental because the individual is registered for GST/HST </li>
+<li>Platform Operators report taxes and sales by province for Sellers that are not registered. They do not have to include taxes and sales of registered Sellers in the information return.</li>
 </ul>
-<p>Placeholder: Table 2</p>
-<p><strong>Table 2: Sales of short-term accommodation rentals. Only cells in the green colour are reported</strong></p>
+
+<p> <a class="wb-lbx " href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/tbl-2-e.jpg" title="Table 2: Sales of short-term accommodation rentals. Only cells in the green colour are reported">
+                            <img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/tbl-2-e.jpg" alt="Table 2: Sales of short-term accommodation rentals. Alternate text below" class="img-responsive">
+                            </a></p>
+	<ul class="list-unstyled">
+	<li>						
+  <details>                     
+<summary>Alternate text &ndash; Table 2</summary>
+
+<h4>Seller 1</h4>
+<p>Seller 1 is not registered and rents two properties: the first property is located in Ontario and the second property is located in Alberta. Both properties are rented for short-term and long-term accommodation.</p>
+<p><strong>Business number:</strong> N/A</p>
+<p><strong>GST/HST registration number:</strong> N/A</p>
+<h5>Seller 1 transactions</h5>
+
+<table class="table table-bordered">
+
+<caption class="wb-inv">Seller 1 transactions
+ </caption>
+<thead>
+
+<tr class="active">
+	<th scope="col">
+<strong>Province</strong> </th>
+	<th scope="col">
+<strong>Property</strong> </th>
+	<th scope="col">
+<strong>Sale</strong> </th>
+	<th scope="col">
+<strong>Tax  Rate</strong> </th>
+	<th scope="col">
+<strong>Tax</strong> </th>
+	<th scope="col">
+<strong>Days rented</strong> </th>
+	<th scope="col">
+<strong>Length</strong> </th> </tr> </thead>
+<tbody>
+
+<tr>
+	<td>Ontario </td>
+	<td>Property 1 </td>
+	<td class="align-right">$314.60 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$40.90 </td>
+	<td class="align-right">4 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 1 </td>
+	<td class="align-right">$235.95 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$30.67 </td>
+	<td class="align-right">3 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 1 </td>
+	<td class="align-right">$550.55 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$71.57 </td>
+	<td class="align-right">7 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 1 </td>
+	<td class="align-right">$2,450.00 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$318.50 </td>
+	<td class="align-right">30 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 1 </td>
+	<td class="align-right">$2,359.50 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$0.00 </td>
+	<td class="align-right">32 </td>
+	<td>long-term </td>
+</tr>
+<tr>
+	<td>Alberta </td>
+	<td>Property 2 </td>
+	<td class="align-right">$246.42 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$12.32 </td>
+	<td class="align-right">2 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Alberta </td>
+	<td>Property 2 </td>
+	<td class="align-right">$369.63 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$18.48 </td>
+	<td class="align-right">3 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Alberta </td>
+	<td>Property 2 </td>
+	<td class="align-right">$4,312.35 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$0.00 </td>
+	<td class="align-right">35 </td>
+	<td>long-term </td>
+</tr>
+<tr>
+	<td>Alberta </td>
+	<td>Property 2 </td>
+	<td class="align-right">$4,928.40 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$0.00 </td>
+	<td class="align-right">40 </td>
+	<td>long-term </td>
+</tr> </tbody> </table>
+<p><strong>Total sales of short-term accommodation for Seller 1 in Ontario: </strong>$3,551.10</p>
+<p>These sales are reported to the CRA</p>
+<p><strong>Total taxes of short-term accommodation for Seller 1 in Ontario:</strong> $461.64</p>
+<p>These taxes are reported to the CRA</p>
+<p><strong>Total sales of short-term accommodation for Seller 1 in Alberta:</strong> $616.05</p>
+<p>These sales are reported to the CRA</p>
+<p><strong>Total taxes of short-term accommodation for Seller 1 in Alberta:</strong> $30.80</p>
+<p>These taxes are reported to the CRA 
+<p></p>
+</p>
+<h4>Seller 2</h4>
+<p>Seller 2 is a registered seller, renting a single property. The property is rented both for short-term and long-term accommodation.</p>
+<p><strong>Business number: </strong>123456789</p>
+<p><strong>GST/HST registration number: </strong>123456789RT0001</p>
+<h5>Seller 2 transactions</h5>
+
+
+<table class="table table-bordered">
+
+<caption class="wb-inv">Seller 2 transactions
+ </caption>
+<thead>
+
+<tr class="active">
+	<th scope="col">
+<strong>Province</strong> </th>
+	<th scope="col">
+<strong>Property</strong> </th>
+	<th scope="col">
+<strong>Sale</strong> </th>
+	<th scope="col">
+<strong>Tax  Rate</strong> </th>
+	<th scope="col">
+<strong>Tax</strong> </th>
+	<th scope="col">
+<strong>Days rented</strong> </th>
+	<th scope="col">
+<strong>Length</strong> </th> </tr> </thead>
+<tbody>
+
+<tr>
+	<td>Quebec </td>
+	<td>Property 3 </td>
+	<td class="align-right">$1,499.85 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$74.99 </td>
+	<td class="align-right">15 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Quebec </td>
+	<td>Property 3 </td>
+	<td class="align-right">$3,499.65 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$0.00 </td>
+	<td class="align-right">35 </td>
+	<td>long-term </td>
+</tr>
+<tr>
+	<td>Quebec </td>
+	<td>Property 3 </td>
+	<td class="align-right">$3,359.99 </td>
+	<td class="align-right">0.05 </td>
+	<td class="align-right">$0.00 </td>
+	<td class="align-right">31 </td>
+	<td>long-term </td>
+</tr> </tbody> </table>
+<p><strong>Total sales of short-term accommodation for Seller 2 in Quebec:</strong> $1,499.85</p>
+<p>These sales are not reported to the CRA</p>
+<p><strong>Total taxes of short-term accommodation for Seller 2 in Quebec:</strong> $74.99</p>
+<p>These taxes are not reported to the CRA</p>
+<h4>Seller 3</h4>
+<p>Seller 3 is not registered and is renting two properties in the same province. One property was rented only for short-term accommodation, while the second property was rented for both short-term and long-term accommodation.</p>
+<h5>Individual</h5>
+<p><strong>Business number:</strong> N/A</p>
+<p><strong>GST/HST registration number:</strong> N/A</p>
+<h5>Seller 3 transactions</h5>
+
+
+<table class="table table-bordered">
+
+<caption class="wb-inv">Seller 3 transactions
+ </caption>
+<thead>
+
+<tr class="active">
+	<th scope="col">
+<strong>Province</strong> </th>
+	<th scope="col">
+<strong>Property</strong> </th>
+	<th scope="col">
+<strong>Sale</strong> </th>
+	<th scope="col">
+<strong>Tax  Rate</strong> </th>
+	<th scope="col">
+<strong>Tax</strong> </th>
+	<th scope="col">
+<strong>Days rented</strong> </th>
+	<th scope="col">
+<strong>Length</strong> </th> </tr> </thead>
+<tbody>
+
+<tr>
+	<td>Ontario </td>
+	<td>Property 4 </td>
+	<td class="align-right">$1,588.29 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$206.48 </td>
+	<td class="align-right">11 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 4 </td>
+	<td class="align-right">$2,021.46 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$262.79 </td>
+	<td class="align-right">14 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 4 </td>
+	<td class="align-right">$288.78 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$37.54 </td>
+	<td class="align-right">2 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 4 </td>
+	<td class="align-right">$3,754.14 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$488.04 </td>
+	<td class="align-right">26 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 5 </td>
+	<td class="align-right">$592.76 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$77.06 </td>
+	<td class="align-right">4 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 5 </td>
+	<td class="align-right">$3,111.99 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$404.56 </td>
+	<td class="align-right">21 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 5 </td>
+	<td class="align-right">$1,630.09 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$211.91 </td>
+	<td class="align-right">11 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 5 </td>
+	<td class="align-right">$444.57 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$57.79 </td>
+	<td class="align-right">3 </td>
+	<td>short-term </td>
+</tr>
+<tr>
+	<td>Ontario </td>
+	<td>Property 5 </td>
+	<td class="align-right">$5,131.22 </td>
+	<td class="align-right">0.13 </td>
+	<td class="align-right">$0.00 </td>
+	<td class="align-right">38 </td>
+	<td>long-term </td>
+</tr>
+<tr>
+	<td>Unknown </td>
+	<td>Property 6 </td>
+	<td class="align-right">$345.55 </td>
+	<td>N/A </td>
+	<td>N/A </td>
+	<td class="align-right">3 </td>
+	<td>short-term </td>
+</tr> </tbody> </table>
+<p>Total <strong>sales of short-term accommodation for Seller 3 in Ontario:</strong> $13,432.0</p>
+<p>These sales are reported to the CRA</p>
+<p><strong>Total taxes of short-term accommodation for Ontario:</strong> $1,746.17</p>
+<p>These taxes are reported to the CRA</p>
+<p><strong>Total sales of short-term accommodation for Unknown province:</strong> $345.55</p>
+<p>These sales are reported to the CRA</p>
+<p><strong>Total taxes of short-term accommodation for Unknown province:</strong> N/A</p>
+<p>The taxes (with a value of $0) are reported to the CRA. </p>
+
+</details>
+</li>
+</ul>
+
+
 <p>We now illustrate how the above data is represented in XML, only as it relates to the Relevant Activities data element. The XML representation of Sellers is the same as in the case of sales of qualifying tangible personal properties, discussed previously.</p>
 <pre><code>&lt;dpir:RelevantActivities&gt;
 &lt;dpir:ImmovableProperty&gt;
@@ -1195,12 +1797,12 @@ Tax</th> </tr> </thead>
  &lt;/dpir:PropertyListing&gt;
 &lt;/dpir:ImmovableProperty&gt;
 &lt;/dpir:RelevantActivities&gt;</code></pre>
-<p><strong>Example 7 – Relevant Activities data element (short-term accommodation)</strong></p>	
-<p>	Example 7 shows that each cell in the green background in the Total Sales and Total Tax columns in Table 2 is represented by Consideration and Annual Taxes data elements, respectively, with the Province attribute specifying the province where the rental property is located. The Duration Class attribute indicates that the property was rented on short-term basis (DPIR101).</p>
-<p>The second Seller in Table 2 is registered for the GST/HST. The Platform Operator does not remit the GST/HST to the CRA, and does not include their sales and taxes in the information return. The Relevant Activities data element for such Sellers is empty, as the following figure shows.</p>
+<p><strong>Figure 7: Example &ndash; Relevant Activities data element (short-term accommodation)</strong></p>	
+<p>Figure 7 shows that total sales and taxes of short-term accommodation, aggregated at the province level, are represented using Consideration and Taxes data elements, respectively, with the Province attribute specifying the province where the rental property is located. The Duration Class attribute indicates that the property was rented for short-term accommodation (DPIR101).</p>
+<p>Seller 2 in the previous example is registered for the GST/HST. The Platform Operator does not remit the taxes to the CRA, and does not include their sales and taxes in the information return. The Relevant Activities data element is empty, as the following figure shows.</p>
 <pre><code>&lt;dpir:RelevantActivities/&gt;</code></pre>
-<p><strong>Example 8 – Relevant Activities for a registered seller</strong></p>
-	<p> We next show the Relevant Activities data element for the third Seller in Table 2.</p>	
+<p><strong>Figure 8: Example &ndash; Relevant Activities for a registered seller</strong></p>
+	<p> We next show the Relevant Activities data element for Seller 3.</p>	
 <pre><code>&lt;dpir:RelevantActivities&gt;
   &lt;dpir:ImmovableProperty&gt;
     &lt;dpir:PropertyListing DurationClass=&quot;DPIR101&quot; Province=&quot;DPIR005&quot;&gt;
@@ -1221,8 +1823,8 @@ Tax</th> </tr> </thead>
     &lt;/dpir:PropertyListing&gt;
   &lt;/dpir:ImmovableProperty&gt;
 &lt;/dpir:RelevantActivities&gt;</code></pre>
-<p><strong>Example 9 – Relevant Activities data element (short-term accommodation)</strong></p>
-<p>Example 9 shows the Relevant Activities data element for the third Individual Seller in Table 2. The Seller rents two properties in Ontario. For one property, the Platform Operator does not have a corresponding Province, resulting in taxes that cannot be determined, which are represented as “N/A” in Table 2 and 0 in Figure 9. </p>
+<p><strong>Figure 9: Example &ndash; Relevant Activities data element (short-term accommodation)</strong></p>
+<p>Figure 9 shows the Relevant Activities data element for Seller 3. The Seller rents two properties in Ontario. For the third property, the Platform Operator does not have a corresponding Province, resulting in taxes that cannot be determined, which are represented as “N/A” in Table 2 and 0 in Figure 9. </p>
 	<h2>Links</h2>
 	<p><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/schema-guide-digital-platform-information-returns.html">DPIR schema</a></p>
 <p>DPIR schema user guide</p>
