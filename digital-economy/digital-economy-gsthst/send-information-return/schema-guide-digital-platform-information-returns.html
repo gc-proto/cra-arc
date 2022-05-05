@@ -767,10 +767,12 @@ margin-left: 38px;
 </script>
 
 <main role="main" property="mainContentOfPage" class="container">
+  <div class="mwsgeneric-base-html parbase section">
 
 
-    <div class="row">
 
+        <div class="container">
+        <div class="gcnav">
          <section class="gc-nav">
             <h1 property="name" id="wb-cont-nav">GST/HST for digital economy businesses</h1>
             <ul id="gc-navseq-nav" class="hidden-xs hidden-sm">
@@ -848,7 +850,7 @@ margin-left: 38px;
 <h2 id="h-1">Introduction </h2>
 <p>Accommodation platform operators and distribution platform operators must file GST/HST information returns with the Canada Revenue Agency (CRA), as outlined by sections 211.21 and 211.25 of the Excise Tax Act (ETA). These information returns are to be filed in XML, according to the Digital Platform Information Returns (DPIR) schema, as described here.</p>
 <p>The DPIR schema is based on schema introduced by the Organisation of Economic Co-operation and Development (OECD) Model Rules for Reporting by Platform Operators (“Model Rules”). The DPIR schema includes the applicable Model Rules data elements and introduces new data elements only when needed.</p>
-<p>The DPIR schema user guide is similar to the Model Rules user guide, both in structure and content. This makes filing information returns with the CRA similar to reporting to other tax administrations using the OECD’s Model Rules.</p>
+<p>The DPIR schema user guide is similar to the Model Rules user guide, both in structure and content. This makes filing information returns with the CRA similar to reporting to other tax administrations using the OECD's Model Rules.</p>
 
 
 
@@ -873,7 +875,7 @@ margin-left: 38px;
 <li>Relevant Activities (RelevantActivities), which describes services provided by the Seller,  earnings (or consideration) derived from those services and related taxes</li>
 </ul>
 <p>The DPIR schema also provides a mechanism to uniquely identify Platform Operator and Reportable Seller data elements.</p>
-<p>More details are in the <a href="#h-3">Identification of data elements</a> section.
+<p>More details are in the <a href="#h-3">Identification of data elements</a> section.</p>
 <p>A DPIR message must have exactly one DPIR Body data element, even though the DPIR schema allows for any number of DPIR Body data elements or none at all. The more general message structure in Figure 1 aligns the DPIR schema with the Model Rules schema, and provides for a wide range of applications for consistency with international standards. </p>
 
 <h2 id="h-2">Schema elements</h2>
@@ -979,7 +981,7 @@ margin-left: 38px;
         </dl>	
 		
 <h4>ReportingPeriod data element </h4>	
-	<p>Identifies the end of the calendar year to which the information in the DPIR message relates. It is to be provided in YYYY-MM-DD format. For example, if the information relates to the 2022 Reportable Period, the field would read <span class="nowrap">ʻ2022-12-31’</span>.</p>
+	<p>Identifies the end of the calendar year to which the information in the DPIR message relates. It is to be provided in YYYY-MM-DD format. For example, if the information relates to the 2022 Reportable Period, the field would read <span class="nowrap">ʻ2022-12-31'</span>.</p>
 <dl class="dl-horizontal">
          
           <dt>Input type:</dt>
@@ -988,7 +990,7 @@ margin-left: 38px;
           <dd>Mandatory</dd>
         </dl>			
 	<h4>Timestamp data element </h4>	
-	<p>Identifies the date and time when the message was compiled. The format is YYYY-MM-DD’T’hh:mm:ss.nnn. Fractions of seconds may be used (in such a case, the milliseconds will be provided with three digits). Examples: <span class="nowrap">ʻ2015-03-15T09:45:30ʼ</span> or <span class="nowrap">ʻ2015-03-15T09:45:30.789ʼ</span> (with milliseconds)</p>
+	<p>Identifies the date and time when the message was compiled. The format is YYYY-MM-DD'T'hh:mm:ss.nnn. Fractions of seconds may be used (in such a case, the milliseconds will be provided with three digits). Examples: <span class="nowrap">ʻ2015-03-15T09:45:30ʼ</span> or <span class="nowrap">ʻ2015-03-15T09:45:30.789ʼ</span> (with milliseconds)</p>
 <dl class="dl-horizontal">
          
           <dt>Input type:</dt>
@@ -1012,7 +1014,7 @@ margin-left: 38px;
           <dd>Optional</dd>
         </dl>	
 	<h4>ResCountryCode data element </h4>
-<p>Repeatable data element which specifies the tax residency country of an entity. An entity’s tax residency country is determined based on its Primary Address. Additionally, Residency Country Codes may be obtained using a tax administration’s API-based service, if and/or when it is available.</p>
+<p>Repeatable data element which specifies the tax residency country of an entity. An entity's tax residency country is determined based on its Primary Address. Additionally, Residency Country Codes may be obtained using a tax administration's API-based service, if and/or when it is available.</p>
 <dl class="dl-horizontal">
          <dt>Size:</dt>
           <dd>2-character</dd>
@@ -1022,7 +1024,7 @@ margin-left: 38px;
           <dd>Optional</dd>
         </dl>		
 	<h4>TIN data element </h4>
-<p>Provides the identification number used by the CRA and corresponds to a BN9 (defined in the Definition of key terms section). In case the entity does not have a TIN, or the TIN is not known, the value ‘NOTIN’ should be entered and the unknown attribute (see below) must be set to ‘true’.</p>
+<p>Provides the identification number used by the CRA and corresponds to a BN9 (defined in the Definition of key terms section). In case the entity does not have a TIN, or the TIN is not known, the value 'NOTIN' should be entered and the unknown attribute (see below) must be set to 'true'.</p>
 <dl class="dl-horizontal">
          <dt>Size:</dt>
           <dd>1 to 200 characters</dd>
@@ -1032,7 +1034,7 @@ margin-left: 38px;
           <dd>Mandatory</dd>
         </dl>	
 	<h4>issuedBy attribute</h4>
-<p>Specifies the jurisdiction that issued the TIN, unless the TIN element is flagged as ‘unknown’. It is used for future alignment with the Model Rules.</p>
+<p>Specifies the jurisdiction that issued the TIN, unless the TIN element is flagged as 'unknown'. It is used for future alignment with the Model Rules.</p>
 <dl class="dl-horizontal">
          <dt>Size:</dt>
           <dd>2-character</dd>
@@ -1112,7 +1114,7 @@ margin-left: 38px;
           <dd>Mandatory</dd>
         </dl>
 		
-<p><strong>Note:</strong> In case of Entity Sellers, the Name data element may be used for the legal names and operating names – both should be provided if available. If Name does not exist, then the value of ‘UNKNOWN’ must be entered.</p>
+<p><strong>Note:</strong> In case of Entity Sellers, the Name data element may be used for the legal names and operating names – both should be provided if available. If Name does not exist, then the value of 'UNKNOWN' must be entered.</p>
 <p>In the case of Platform Operators, the Name data element is to be used for their legal name only.</p>
 <h4>PlatformBusinessName data element </h4>
 <p>Business or operating name(s) of the Platform(s) in respect of which the Platform Operator is reporting. This element must not be used for Entity Sellers.</p>
@@ -1126,7 +1128,7 @@ margin-left: 38px;
           <dd>Optional</dd>
         </dl>
 <h4>Address data element </h4>
-<p>Entity’s address. It should include at least the Primary Address. Additional addresses should be provided, if available.</p>
+<p>Entity's address. It should include at least the Primary Address. Additional addresses should be provided, if available.</p>
 
 <dl class="dl-horizontal">
          
@@ -1152,7 +1154,7 @@ margin-left: 38px;
 
 <p>Image placeholder: Figure 4: Address type</p>
 <p>An address can be specified in either free text or fixed format optionally followed by free text. Fixed format should be used whenever possible.</p>
-<p><strong>Note: </strong>Address is mandatory for both Entity Sellers and Individual Sellers. If a Platform Operator does not have an address, it should report ‘UNKNOWN' in the AddressFree data element and "XX" for CountryCode. This is a temporary measure and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have addresses for all Sellers. </p>
+<p><strong>Note: </strong>Address is mandatory for both Entity Sellers and Individual Sellers. If a Platform Operator does not have an address, it should report 'UNKNOWN' in the AddressFree data element and "XX" for CountryCode. This is a temporary measure and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have addresses for all Sellers. </p>
 <p>The following are descriptions of data elements that comprise the definition of the Address type.</p>
 <h4>legalAddressType attribute</h4>
 <p>Legal character of the address (residential, business etc.). The possible values are:</p>
@@ -1164,7 +1166,7 @@ margin-left: 38px;
 <li>OECD304 = Registered Office </li>
 <li>OECD305 = Unspecified </li>
 </ul>
-<p>The address of the Platform Operator must represent the ‘Registered Office Address' (OECD304).</p>
+<p>The address of the Platform Operator must represent the 'Registered Office Address' (OECD304).</p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1178,9 +1180,9 @@ margin-left: 38px;
 <p>The code of the country where the address is located. It uses the 2-character alphabetic code based on the ISO 3166-1 Alpha 2 standard.</p>
 
 <dl class="dl-horizontal">
-<dt>Size:</dt><dd>2-character</dt>
-<dt>Input Type:</dt><dd>iso:CountryCode_Type</dt>
-<dt>Requirement:</dt><dd>Mandatory</dt>
+<dt>Size:</dt><dd>2-character</dd>
+<dt>Input Type:</dt><dd>iso:CountryCode_Type</dd>
+<dt>Requirement:</dt><dd>Mandatory</dd>
   </dl>
 <h4>AddressFree data element </h4>
 <p>Allows input of address information in free text. It should only be used in exceptional circumstances when it is impossible to provide the address in fixed format.</p>
@@ -1405,7 +1407,7 @@ margin-left: 38px;
 <p>Image placeholder:Figure 8: Person Party type</p>
 <p>The following data elements comprise the Person Party type.</p>
 <h4>ResCountryCode data element </h4>
-<p>The Residency Country Code is a repeatable data element, which specifies the tax residency country of an Individual Seller. An Individual Seller's tax residency country is determined based on their Primary Address. Additionally, Residency Country Codes may be obtained using a tax administration's API-based service, if and/or when it is available. If no API-based service exists and no Primary Address is available, then any available address should be used. If a Seller's address is not known to the Platform Operator, then ‘XX' must be entered. However, this should be a temporary measure only, and can be used for the Reporting Period for the year 2022 only. In subsequent Reporting Periods, Platform Operators are expected to have addresses for all Sellers.</p>
+<p>The Residency Country Code is a repeatable data element, which specifies the tax residency country of an Individual Seller. An Individual Seller's tax residency country is determined based on their Primary Address. Additionally, Residency Country Codes may be obtained using a tax administration's API-based service, if and/or when it is available. If no API-based service exists and no Primary Address is available, then any available address should be used. If a Seller's address is not known to the Platform Operator, then 'XX' must be entered. However, this should be a temporary measure only, and can be used for the Reporting Period for the year 2022 only. In subsequent Reporting Periods, Platform Operators are expected to have addresses for all Sellers.</p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1417,7 +1419,7 @@ margin-left: 38px;
 
   </dl>
 <h4>TIN data element </h4>
-<p>Individual Seller's identification number. If an Individual Seller operates as a sole proprietorship and has a BN9, then it should be used as their TIN. If they do not, then the unknown attribute (see below) must be set to ‘true' and the value of ʻNOTINʼ must be entered.</p>
+<p>Individual Seller's identification number. If an Individual Seller operates as a sole proprietorship and has a BN9, then it should be used as their TIN. If they do not, then the unknown attribute (see below) must be set to 'true' and the value of ʻNOTINʼ must be entered.</p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1429,7 +1431,7 @@ margin-left: 38px;
 
   </dl>
 <h5>issuedBy attribute</h5>
-<p>The jurisdiction that issued the TIN, unless the TIN element is flagged as ‘unknown'. It is used for future alignment with the Model Rules.</p>
+<p>The jurisdiction that issued the TIN, unless the TIN element is flagged as 'unknown'. It is used for future alignment with the Model Rules.</p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1489,7 +1491,7 @@ margin-left: 38px;
 <h3 id="h-2-8">Name Person type </h3>
 	<p>The Name Person type specifies the structure that may be used to fully specify the name of an individual, including all of its components. </p>
 
-<p>Image placeholder: Figure 9: Name Person type</strong></p>
+<p><strong>Image placeholder: Figure 9: Name Person type</strong></p>
 <p>The following data elements comprise the Name Person type.</p>
 <h4>nameType attribute</h4>
 <p>The type of an individual name, and can have one of the following values:</p>
@@ -1539,7 +1541,7 @@ margin-left: 38px;
 
   </dl>
 <h4>FirstName data element </h4>
-<p>An individual's first name. It is a required data element. If no first name exists, the initialism NFN (‘No First Name') may be used. This is a temporary measure, and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have the full names of Individual Sellers. </p>
+<p>An individual's first name. It is a required data element. If no first name exists, the initialism NFN ('No First Name') may be used. This is a temporary measure, and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have the full names of Individual Sellers. </p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1612,7 +1614,7 @@ margin-left: 38px;
   </dl>
 <h4>LastName data element </h4>
 <p>An individual's last name. It is a required data element. As the Last Name data element is a string, it can be used for a free format name or two last names. Wherever possible, the structured first name and last name should be used.</p>
-<p>If no last name exists, the initialism NLN (‘No Last Name') may be used. This is a temporary measure, and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have the full names of Individual Sellers. </p>
+<p>If no last name exists, the initialism NLN ('No Last Name') may be used. This is a temporary measure, and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have the full names of Individual Sellers. </p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1850,17 +1852,17 @@ margin-left: 38px;
 <p>For example, US2023CADPIR123456789M11110201 is a valid Message Reference ID. It means that:</p>
 
 <ul>
-<li>The Platform Operator is located in the USA (‘US'), is filing the information return to Canada (‘CA') for the calendar year 2023 (‘2023') </li>
-<li>Information return is filed as part of the Digital Platform Information Returns (‘DPIR') program </li>
-<li>The BN9 of the Platform Operator is ‘123456789' </li>
-<li>Message root is ‘11110201' </li>
+<li>The Platform Operator is located in the USA ('US'), is filing the information return to Canada ('CA') for the calendar year 2023 ('2023') </li>
+<li>Information return is filed as part of the Digital Platform Information Returns ('DPIR') program </li>
+<li>The BN9 of the Platform Operator is '123456789' </li>
+<li>Message root is '11110201' </li>
 </ul>
 
 <h3 id="h-3-2">Format of Document Reference ID </h3>
 	<p>Identifiers of Platform Operators and Reportable Sellers are specified in the Document Reference ID (DocRefId) data element, which is found in the Document Specification (DocSpec) data element. Data elements containing the DocSpec data element are called correctable data elements.</p>
 <p>The following is the format of the Document Reference ID:</p>
 <p><code>&lt;Message Reference ID&gt;&lt;data element identifier&gt;</code></p>
-<p><code>&lt;Message Reference ID&gt;</code> represents a DPIR message ID and is detailed in the previous section. The <data element identifier> is a six-digit number generated by the Platform Operator that, along with <Message Reference ID>, uniquely identifies each data element in space and time.</p>
+<p><code>&lt;Message Reference ID&gt;</code> represents a DPIR message ID and is detailed in the previous section. The &lt;data element identifier&gt; is a six-digit number generated by the Platform Operator that, along with &lt;Message Reference ID&gt;, uniquely identifies each data element in space and time.</p>
 
 <h3 id="h-3-3">Document Specification type </h3>
 <p>The Document Specification data type defines the structure for identification of data elements, and it specifies the type of corrections that can be made on those data elements. </p>
@@ -1974,8 +1976,8 @@ margin-left: 38px;
 
 <h2 id="h-4">Links </h2>
 <p>DPIR schema</p>
-<p>DPIR schema user guide</p>
-<p>DPIR examples</p>
+<p><a href="#">DPIR schema user guide</a></p>
+<p><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/example-data-resulting-return.html">DPIR examples</a></p>
 
 
 			<nav role="navigation" class="mrgn-bttm-lg mrgn-tp-lg">
@@ -1986,6 +1988,8 @@ margin-left: 38px;
                </nav>
            <div class="hidden-md hidden-lg" data-ajax-replace="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/file-digital-platform-information-return.html#related-menu"> </div>
   </section> 
+</div>
+</div>
 </div>
 
     
@@ -2002,23 +2006,14 @@ margin-left: 38px;
 	});
 </script>
 
-		</main>
-		<div id="def-footer">
-
-		</div>
-		<!-- Write closure template -->
-		<script type="text/javascript">
-			var defFooter = document.getElementById("def-footer");
-			defFooter.outerHTML = wet.builder.footer({
-				showFooter: true,
-				showFeatures: true
-			});
-		</script>
+		 </main>
+		
 		<!-- Write closure template -->
 		<script type="text/javascript">
 			document.write(wet.builder.refFooter({
 			}));
 		</script>
+		</body>
 		</html>
 
 
