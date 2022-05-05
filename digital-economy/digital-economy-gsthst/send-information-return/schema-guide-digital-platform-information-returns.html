@@ -867,8 +867,8 @@ margin-left: 38px;
 <li>Document Specification (DocSpec)</li>
  </ul>
 <p>The user guide refers to XML elements using their full name (for example, "Message Specification") but provides its XML name in brackets (MessageSpec) for clarity. </p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-1-e.png" alt="Figure 1: Overall document structure" class="img-responsive"></p>
-<p>Figure 1: Overall document structure</p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-1-e.png" alt="Overall document structure. Text version follows" class="img-responsive"></p>
+<p><strong>Figure 1: Overall document structure</strong></p>
 <p>The root of the DPIR message is a DPIR data element. Each DPIR message must contain a Message Specification and a DPIR Body (DPIRBody). It may optionally contain a version attribute, which specifies the version of the schema to which the message complies.</p>
 <p>A DPIR Body includes data about the Platform Operator and its Reportable Sellers. Each Reportable Seller includes:</p>
 <ul>
@@ -882,8 +882,8 @@ margin-left: 38px;
 <h2 id="h-2">Schema elements</h2>
 <h3 id="h-2-1">Message Specification type </h3>
 <p>The Message Specification (MessageSpec) type represents a message header. It includes the Platform Operator identifier (SendingEntityIN), the time when the message was created, the Reportable Period, the nature of the data in the message (original, correction or deletion), contact information, and other data elements.</p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-2-e.png" alt="Figure 2: Message Specification type" class="img-responsive"></p>
-<p>Figure 2: Message Specification type</p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-2-e.png" alt="Visual depiction of the Message Specification type. Text version follows" class="img-responsive"></p>
+<p><strong>Figure 2: Message Specification type</strong></p>
 <p>The following data elements are used to define the Message Specification type.</p>
 
 <h4>SendingEntityIN data element</h4>
@@ -983,7 +983,7 @@ margin-left: 38px;
         </dl>	
 		
 <h4>ReportingPeriod data element </h4>	
-	<p>Identifies the end of the calendar year to which the information in the DPIR message relates. It is to be provided in YYYY-MM-DD format. For example, if the information relates to the 2022 Reportable Period, the field would read <span class="nowrap">ʻ2022-12-31'</span>.</p>
+	<p>Identifies the end of the calendar year to which the information in the DPIR message relates. It is to be provided in YYYY-MM-DD format. For example, if the information relates to the 2022 Reportable Period, the field would read <span class="nowrap">"2022-12-31"</span>.</p>
 <dl class="dl-horizontal">
          
           <dt>Input type:</dt>
@@ -992,7 +992,7 @@ margin-left: 38px;
           <dd>Mandatory</dd>
         </dl>			
 	<h4>Timestamp data element </h4>	
-	<p>Identifies the date and time when the message was compiled. The format is YYYY-MM-DD'T'hh:mm:ss.nnn. Fractions of seconds may be used (in such a case, the milliseconds will be provided with three digits). Examples: <span class="nowrap">ʻ2015-03-15T09:45:30ʼ</span> or <span class="nowrap">ʻ2015-03-15T09:45:30.789ʼ</span> (with milliseconds)</p>
+	<p>Identifies the date and time when the message was compiled. The format is YYYY-MM-DD'T'hh:mm:ss.nnn. Fractions of seconds may be used (in such a case, the milliseconds will be provided with three digits). Examples: <span class="nowrap">"2015-03-15T09:45:30"</span> or <span class="nowrap">"2015-03-15T09:45:30.789"</span> (with milliseconds)</p>
 <dl class="dl-horizontal">
          
           <dt>Input type:</dt>
@@ -1003,9 +1003,9 @@ margin-left: 38px;
 <h3 id="h-2-2">Platform Operator data element </h3>
 <p>The Platform Operator data element is of the Correctable Platform Operator (CorrectablePlatformOperator) type, which extends the Organisation Party (OrganisationParty) type and adds the Document Specification data element to it. For more details about the Document Specification data element, please refer to the <a href="#h-3">Identification of data elements</a> section.</p>
 <p>The Organisation Party type defines the structure that represents either a Platform Operator or an Entity Seller. </p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-3-e.png" alt="Figure 3: Organization Party type" class="img-responsive"></p>
-<p>Figure 3: Organization Party type</p>
-<p>The following are descriptions of elements comprising the Organization Party type.</p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-3-e.png" alt="Visual depiction of the Organisation Party type. Text version follows" class="img-responsive"></p>
+<p>Figure 3: Organisation Party type</p>
+<p>The following are descriptions of elements comprising the Organisation Party type.</p>
 <h4>URL attribute</h4>
 <p>Specifies the URL of the Platform Operator or an Entity Seller. While this field is optional, Platform Operators are expected to have it, while not all Entity Sellers are expected to have it.</p>
 <dl class="dl-horizontal">
@@ -1027,7 +1027,7 @@ margin-left: 38px;
           <dd>Optional</dd>
         </dl>		
 	<h4>TIN data element </h4>
-<p>Provides the identification number used by the CRA and corresponds to a BN9 (defined in the Definition of key terms section). In case the entity does not have a TIN, or the TIN is not known, the value 'NOTIN' should be entered and the unknown attribute (see below) must be set to 'true'.</p>
+<p>Provides the identification number used by the CRA and corresponds to a BN9 (defined in the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/definitions-schema-user-guide.html">Definition of key terms</a> section). In case the entity does not have a TIN, or the TIN is not known, the value "NOTIN" should be entered and the unknown attribute (see below) must be set to "true".</p>
 <dl class="dl-horizontal">
          <dt>Size:</dt>
           <dd>1 to 200 characters</dd>
@@ -1037,7 +1037,7 @@ margin-left: 38px;
           <dd>Mandatory</dd>
         </dl>	
 	<h4>issuedBy attribute</h4>
-<p>Specifies the jurisdiction that issued the TIN, unless the TIN element is flagged as 'unknown'. It is used for future alignment with the Model Rules.</p>
+<p>Specifies the jurisdiction that issued the TIN, unless the TIN element is flagged as "unknown". It is used for future alignment with the Model Rules.</p>
 <dl class="dl-horizontal">
          <dt>Size:</dt>
           <dd>2-character</dd>
@@ -1117,7 +1117,7 @@ margin-left: 38px;
           <dd>Mandatory</dd>
         </dl>
 		
-<p><strong>Note:</strong> In case of Entity Sellers, the Name data element may be used for the legal names and operating names – both should be provided if available. If Name does not exist, then the value of 'UNKNOWN' must be entered.</p>
+<p><strong>Note:</strong> In case of Entity Sellers, the Name data element may be used for the legal names and operating names – both should be provided if available. If Name does not exist, then the value of "UNKNOWN" must be entered.</p>
 <p>In the case of Platform Operators, the Name data element is to be used for their legal name only.</p>
 <h4>PlatformBusinessName data element </h4>
 <p>Business or operating name(s) of the Platform(s) in respect of which the Platform Operator is reporting. This element must not be used for Entity Sellers.</p>
@@ -1154,10 +1154,10 @@ margin-left: 38px;
 		
 <h3 id="h-2-3">Address type </h3>
 <p>Address of a Platform Operator, an Entity Seller or an Individual Seller.</p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-4-e.png" alt="Figure 4: Address type" class="img-responsive"></p>
-<p>Figure 4: Address type</p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-4-e.png" alt="Visual depiction of the Address type. Text version follows" class="img-responsive"></p>
+<p><strong>Figure 4: Address type</strong></p>
 <p>An address can be specified in either free text or fixed format optionally followed by free text. Fixed format should be used whenever possible.</p>
-<p><strong>Note: </strong>Address is mandatory for both Entity Sellers and Individual Sellers. If a Platform Operator does not have an address, it should report 'UNKNOWN' in the AddressFree data element and "XX" for CountryCode. This is a temporary measure and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have addresses for all Sellers. </p>
+<p><strong>Note: </strong>Address is mandatory for both Entity Sellers and Individual Sellers. If a Platform Operator does not have an address, it should report "UNKNOWN" in the AddressFree data element and "XX" for CountryCode. This is a temporary measure and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have addresses for all Sellers. </p>
 <p>The following are descriptions of data elements that comprise the definition of the Address type.</p>
 <h4>legalAddressType attribute</h4>
 <p>Legal character of the address (residential, business etc.). The possible values are:</p>
@@ -1169,7 +1169,7 @@ margin-left: 38px;
 <li>OECD304 = Registered Office </li>
 <li>OECD305 = Unspecified </li>
 </ul>
-<p>The address of the Platform Operator must represent the 'Registered Office Address' (OECD304).</p>
+<p>The address of the Platform Operator must represent the "Registered Office Address" (OECD304).</p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1215,8 +1215,8 @@ margin-left: 38px;
 
 <h3 id="h-2-4">Address Fix type </h3>
 	<p>The Address Fix type specifies the address in structured format.</p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-5-e.png" alt="Figure 5: Fixed address type" class="img-responsive"></p>
-<p>Figure 5: Fixed address type</p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-5-e.png" alt="Visual depiction of the Address Fix type. Text version follows" class="img-responsive"></p>
+<p><strong>Figure 5: Fixed address type</strong></p>
 <p>The following are descriptions of data elements comprising the Address Fix type, all of which are optional except for the City data element.</p>
 <h4>Street data element</h4>
 <p>The street component of the address.</p>
@@ -1323,8 +1323,8 @@ margin-left: 38px;
 
 <h3 id="h-2-5">Reportable Seller type </h3>
 <p>The Reportable Seller data element is of the Correctable Reportable Seller (CorrectableReportableSeller) type, which extends the Reportable Seller (ReportableSeller) type. We only describe the Reportable Seller type here. The Correctable Reportable Seller type will be apparent after the <a href="#h-3">Identification of data elements</a>section.</p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-6-e.png" alt="Figure 6: Reportable Seller type" class="img-responsive"></p>
-<p>Figure 6: Reportable Seller type</p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-6-e.png" alt="Visual depiction of the Reportable Seller type. Text version follows" class="img-responsive"></p>
+<p><strong>Figure 6: Reportable Seller type</strong></p>
 <p>The following are descriptions of the two components that define Reportable Seller type.</p>
 <h4>Identity data element </h4>
 <p>Specifies the Seller identity, and is detailed below.</p>
@@ -1350,8 +1350,8 @@ margin-left: 38px;
 
 <h3 id="h-2-6">Seller Identity data element</h3>
 	<p>The DPIR schema requires a minimal amount of identifying information about a Seller. This includes only the Organisation Party type for Entity Sellers (specified in the Platform Operator section) and the Person Party (PersonParty) type for Individual Sellers (detailed below). Both types are under the Identity data element (Figure 7). The Entity Seller, Individual Seller and Standard data elements are containers that may be further expanded in the future.</p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-7-e.png" alt="Figure 7: Seller identity element" class="img-responsive"></p>
-<p>Figure 7: Seller identity element</p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-7-e.png" alt="Visual depiction of the Identity data element. Text version follows" class="img-responsive"></p>
+<p><strong>Figure 7: Seller identity element</strong></p>
 <p>The following data elements comprise the Identity data element.</p>
 <h4>Identity data element </h4>
 <p>Can include either an Entity Seller data element or an Individual Seller data element, depending on the legal form of the Seller.</p>
@@ -1406,11 +1406,11 @@ margin-left: 38px;
 
 <h3 id="h-2-7">Person Party type </h3>
 <p>Data elements that may be used to establish an individual's identity.</p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-8-e.png" alt="Figure 8: Person Party type" class="img-responsive"></p>
-
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-8-e.png" alt="Visual depiction of the Identity data element. Text version follows" class="img-responsive"></p>
+<p><strong>Figure 8: Person Party type</strong></p>
 <p>The following data elements comprise the Person Party type.</p>
 <h4>ResCountryCode data element </h4>
-<p>The Residency Country Code is a repeatable data element, which specifies the tax residency country of an Individual Seller. An Individual Seller's tax residency country is determined based on their Primary Address. Additionally, Residency Country Codes may be obtained using a tax administration's API-based service, if and/or when it is available. If no API-based service exists and no Primary Address is available, then any available address should be used. If a Seller's address is not known to the Platform Operator, then 'XX' must be entered. However, this should be a temporary measure only, and can be used for the Reporting Period for the year 2022 only. In subsequent Reporting Periods, Platform Operators are expected to have addresses for all Sellers.</p>
+<p>The Residency Country Code is a repeatable data element, which specifies the tax residency country of an Individual Seller. An Individual Seller's tax residency country is determined based on their Primary Address. Additionally, Residency Country Codes may be obtained using a tax administration's API-based service, if and/or when it is available. If no API-based service exists and no Primary Address is available, then any available address should be used. If a Seller's address is not known to the Platform Operator, then "XX" must be entered. However, this should be a temporary measure only, and can be used for the Reporting Period for the year 2022 only. In subsequent Reporting Periods, Platform Operators are expected to have addresses for all Sellers.</p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1422,7 +1422,7 @@ margin-left: 38px;
 
   </dl>
 <h4>TIN data element </h4>
-<p>Individual Seller's identification number. If an Individual Seller operates as a sole proprietorship and has a BN9, then it should be used as their TIN. If they do not, then the unknown attribute (see below) must be set to 'true' and the value of ʻNOTINʼ must be entered.</p>
+<p>Individual Seller's identification number. If an Individual Seller operates as a sole proprietorship and has a BN9, then it should be used as their TIN. If they do not, then the unknown attribute (see below) must be set to "true" and the value of "NOTIN" must be entered.</p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1433,8 +1433,8 @@ margin-left: 38px;
           <dd>Mandatory</dd>
 
   </dl>
-<h5>issuedBy attribute</h5>
-<p>The jurisdiction that issued the TIN, unless the TIN element is flagged as 'unknown'. It is used for future alignment with the Model Rules.</p>
+<h4>issuedBy attribute</h4>
+<p>The jurisdiction that issued the TIN, unless the TIN element is flagged as "unknown". It is used for future alignment with the Model Rules.</p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1444,7 +1444,7 @@ margin-left: 38px;
 		   <dt>Requirement:</dt>
           <dd>Optional</dd>
   </dl>
-<h5>Unknown attribute</h5>
+<h4>Unknown attribute</h4>
 <p>The unknown attribute must be provided if the TIN is not available or non-existent. Any value provided for a TIN flagged as unknown will be discarded.</p>
 
 <dl class="dl-horizontal">
@@ -1493,8 +1493,8 @@ margin-left: 38px;
 
 <h3 id="h-2-8">Name Person type </h3>
 	<p>The Name Person type specifies the structure that may be used to fully specify the name of an individual, including all of its components. </p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-9-e.png" alt="Figure 9: Name Person type" class="img-responsive"></p>
-
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-9-e.png" alt="Visual depiction of the Name Person type. Text version follows" class="img-responsive"></p>
+<p><strong>Figure 9: Name Person type</strong></p>
 
 <p>The following data elements comprise the Name Person type.</p>
 <h4>nameType attribute</h4>
@@ -1545,7 +1545,7 @@ margin-left: 38px;
 
   </dl>
 <h4>FirstName data element </h4>
-<p>An individual's first name. It is a required data element. If no first name exists, the initialism NFN ('No First Name') may be used. This is a temporary measure, and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have the full names of Individual Sellers. </p>
+<p>An individual's first name. It is a required data element. If no first name exists, the initialism "NFN" (No First Name) may be used. This is a temporary measure, and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have the full names of Individual Sellers. </p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1618,7 +1618,7 @@ margin-left: 38px;
   </dl>
 <h4>LastName data element </h4>
 <p>An individual's last name. It is a required data element. As the Last Name data element is a string, it can be used for a free format name or two last names. Wherever possible, the structured first name and last name should be used.</p>
-<p>If no last name exists, the initialism NLN ('No Last Name') may be used. This is a temporary measure, and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have the full names of Individual Sellers. </p>
+<p>If no last name exists, the initialism "NLN" (No Last Name) may be used. This is a temporary measure, and can be used only for the 2022 Reporting Period. In subsequent Reporting Periods, Platform Operators are expected to have the full names of Individual Sellers. </p>
 
 <dl class="dl-horizontal">
 <dt>Size:</dt>
@@ -1677,10 +1677,10 @@ margin-left: 38px;
 
 <h3 id="h-2-9">Relevant Activities data element</h3>
 <p>The Relevant Activities data element includes information on Relevant Services provided by Sellers including the Consideration and Taxes derived from those services. The Relevant Activities include a supply of short-term accommodation (Immovable Property) and a supply of qualifying tangible personal property (Sale Of Goods).</p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-10-e.png" alt="Figure 10: Relevant Activities data element" class="img-responsive"></p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-10-e.png" alt="Visual depiction of the Relevant Activities data element. Text version follows" class="img-responsive"></p>
 
-<p>Figure 10: Relevant Activities data element</p>
-<p>The Relevant Activities data element may contain Immovable Property and zero or more Sale Of Goods data elements. The Immovable Property data element is a container of Property Listing data elements.</p>
+<p><strong>Figure 10: Relevant Activities data element</strong></p>
+<p>The Relevant Activities data element may contain Immovable Property and Sale Of Goods data elements. The Immovable Property data element is a container of Property Listing data elements.</p>
 <p>The following elements make up the Relevant Activities data element.</p>
 <h4>RelevantActivities data element </h4>
 <p>Describes Relevant Services provided by Sellers including the Consideration and Taxes derived from those services.</p>
@@ -1718,18 +1718,18 @@ margin-left: 38px;
 
 <h3 id="h-2-10">Property Listing type </h3>
 <p>The Property Listing type specifies aggregate information on Consideration earned and Taxes collected from rental of all properties located in a given province. </p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-11-e.png" alt="Figure 11: Property Listing type" class="img-responsive"></p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-11-e.png" alt="Visual depiction of the Property Listing type. Text version follows" class="img-responsive"></p>
 
-<p>Figure 11: Property Listing type</p>
+<p><strong>Figure 11: Property Listing type</strong></p>
 <p>The following elements define the Property Listing type.</p>
 <h4>DurationClass attribute</h4>
 <p>Indicates if the rental is a short-term accommodation (defined as a rental of less than one month) or long-term accommodation (defined as a rental of more than one month). It can have one of the following values:</p>
 
 <ul>
-<li>DPIR101 = Short-term accommodation (continuous rental occupancy of less than one month). </li>
-<li>DPIR102 = Long-term accommodation (continuous rental occupancy of at least one month). </li>
-<li>DPIR103 = Short-term and long-term accommodation combined. </li>
-<li>DPIR104 = Rental occupancy of unknown duration. </li>
+<li>DPIR101 = Short-term accommodation (continuous rental occupancy of less than one month) </li>
+<li>DPIR102 = Long-term accommodation (continuous rental occupancy of at least one month) </li>
+<li>DPIR103 = Short-term and long-term accommodation combined </li>
+<li>DPIR104 = Rental occupancy of unknown duration </li>
 </ul>
 <p>If the Duration Class is not specified, then the value of DPIR101 is assumed.</p>
 <p><strong>Size: </strong>enum</p>
@@ -1767,7 +1767,7 @@ margin-left: 38px;
   </dl>
 
 <h4>Consideration data element </h4>
-<p>Contains information on the consideration or earnings received by a Seller in relation to rental of one or more properties located in the same province. It is of the Consideration type and is described next.</p>
+<p>Contains information on the total consideration or earnings received by a Seller in relation to the rental of all properties located in a province. It is of the Consideration type and is described next.</p>
 <dl class="dl-horizontal">
 
   <dt>Input Type: </dt>
@@ -1779,7 +1779,7 @@ margin-left: 38px;
 
 
 <h4>Taxes data element </h4>
-<p>Contains information on the VAT or GST/HST taxes collected in relation to rental of one or more properties located in the same province. It is of the Taxes type and is described next.</p>
+<p>Contains information on the total taxes received by a Seller in relation to the rental of all properties located in a province. It is of the Taxes type and is described next.</p>
 <dl class="dl-horizontal">
 
   <dt>Input Type: </dt>
@@ -1792,9 +1792,9 @@ margin-left: 38px;
 
 <h3 id="h-2-11">Consideration type</h3>	
 <p>Specifies the considerations or earnings amounts received by the Seller.</p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-12-e.png" alt="Figure 12: Consideration type" class="img-responsive"></p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-12-e.png" alt="Visual depiction of the Consideration type. Text version follows" class="img-responsive"></p>
 
-<p>Figure 12: Consideration type</p>
+<p><strong>Figure 12: Consideration type</strong></p>
 <p>Consideration is to be provided at annual level using the AnnualConsideration data element. The QuarterlyConsideration data element is reserved for potential future use. </p>
 <p>The following provides more details about data elements comprising the Consideration type.</p>
 <h4>AnnualConsideration data element </h4>
@@ -1811,15 +1811,15 @@ margin-left: 38px;
 
   </dl>
 <h4>QuarterlyConsideration data element </h4>
-<p>This data element is reserved for potential future use only.</p>
+<p>This data element is reserved for potential future use.</p>
 
 
 <h3 id="h-2-12">Taxes type</h3>	
-<p>Specifies the total VAT or GST/HST taxes collected on behalf of the Seller.</p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-13-e.png" alt="Figure 13: Consideration type" class="img-responsive"></p>
+<p>Specifies the total taxes collected on behalf of the Seller.</p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-13-e.png" alt="Visual depiction of the Consideration type. Text version follows" class="img-responsive"></p>
 
-<p>Figure 13: Consideration type</p>
-<p>Taxes are to be provided at the annual level using the AnnualTaxes data element. The QuarterlyTaxes data element is reserved for the potential future use. </p>
+<p><strong>Figure 13: Consideration type</strong></p>
+<p>Taxes are to be provided at the annual level using the AnnualTaxes data element. The Quarterly Taxes data element is reserved for potential future use.  </p>
 <p>The following provides more details about data elements comprising the Consideration type.</p>
 <h4>AnnualTaxes data element </h4>
 <p>Specifies the Taxes collected on behalf of a Reportable Seller during the Reporting Period, where the Taxes are aggregated at the annual level and is specified using the Monetary Amount (MonAmnt) type.</p>
@@ -1835,15 +1835,15 @@ margin-left: 38px;
 
   </dl>
 <h4>QuarterlyTaxes data element </h4>
-<p>This data element is reserved for potential future use only.</p>
+<p>This data element is reserved for potential future use.</p>
 
 <h3 id="h-2-13">Sale Of Goods Activities type</h3>
 <p>The Sale Of Goods Activities (SaleOfGoodsActivities) type extends the Other Activities type, which currently includes only the Consideration and Taxes types (described above). This provides flexibility for future extensions.</p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-14-e.png" alt="Figure 14: Sale of Goods Activities type" class="img-responsive"></p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-14-e.png" alt="Visual depiction of the Sale of Goods Activities type. Text version follows" class="img-responsive"></p>
 
-<p>Figure 14: Sale of Goods Activities type</p>
+<p><strong>Figure 14: Sale of Goods Activities type</strong></p>
 <h2 id="h-3">Identification of data elements </h2>	
-<p>In each DPIR message, the Platform Operator and Reportable Seller data elements must have unique identifiers. An identifier of a DPIR message is specified in the Message Reference ID (MessageRefId), while the Platform Operator's and Reportable Seller's identifiers are specified in the Document Reference ID (DocRefId), which is found in the Document Specification (DocSpec) data element, which each Platform Operator and Reportable Seller contain. </p>
+<p>In each DPIR message, the Platform Operator and Reportable Seller data elements must have unique identifiers. An identifier of a DPIR message is specified in the Message Reference ID (MessageRefId), while the Platform Operator’s and Reportable Seller’s identifiers are specified in the Document Reference ID (DocRefId), which is found in the Document Specification (DocSpec) data element that each Platform Operator and Reportable Seller contain. </p>
 <p>In this section, we first describe the format of Message Reference ID and Document Reference ID. Then, we detail the Document Specification (DocSpec) data element, and outline how it applies to Platform Operators and Reportable Sellers. </p>
 
 
@@ -1864,10 +1864,10 @@ margin-left: 38px;
 <p>For example, US2023CADPIR123456789M11110201 is a valid Message Reference ID. It means that:</p>
 
 <ul>
-<li>The Platform Operator is located in the USA ('US'), is filing the information return to Canada ('CA') for the calendar year 2023 ('2023') </li>
-<li>Information return is filed as part of the Digital Platform Information Returns ('DPIR') program </li>
-<li>The BN9 of the Platform Operator is '123456789' </li>
-<li>Message root is '11110201' </li>
+<li>The Platform Operator is located in the USA ("US"), is filing the information return to Canada ("CA") for the calendar year 2023 ("2023") </li>
+<li>Information return is filed as part of the Digital Platform Information Returns ("DPIR") program </li>
+<li>The BN9 of the Platform Operator is "123456789" </li>
+<li>Message root is "11110201" </li>
 </ul>
 
 <h3 id="h-3-2">Format of Document Reference ID </h3>
@@ -1878,9 +1878,9 @@ margin-left: 38px;
 
 <h3 id="h-3-3">Document Specification type </h3>
 <p>The Document Specification data type defines the structure for identification of data elements, and it specifies the type of corrections that can be made on those data elements. </p>
-<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-15-e.png" alt="Figure 15: Doc Spec type" class="img-responsive"></p>
+<p><img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-15-e.png" alt="Visual depiction of the Document Specification type. Text version follows" class="img-responsive"></p>
 
-<p>Figure 15: Doc Spec type</p>
+<p><strong>Figure 15: Doc Spec type</strong></p>
 <p>The following data elements define the Document Specification type.</p>
 <h4>DocTypeIndic data element  </h4>
 <p>Specifies if the data being sent is new data, or if it is a correction or deletion of previously filed data. It can contain one of the following values:</p>
@@ -1892,7 +1892,7 @@ margin-left: 38px;
 <li>OECD3 = Deletion of data </li>
 <li>OECD10, OECD11, OECD12, OECD13 are reserved for future use only </li>
 </ul>
-<p>A DPIR message can contain new data, amendments to previously filed data, or corrections or deletions of previously filed data, as described in the Filing, amending and correcting information returns section.</p>
+<p>A DPIR message can contain new data, amendments to previously filed data, or corrections or deletions of previously filed data, as described in the Modifying previously filed returns page.</p>
 <dl class="dl-horizontal">
          <dt>Size:</dt>
           <dd>enum</dd>
@@ -1932,10 +1932,10 @@ margin-left: 38px;
 <p>The following rules govern the use of the Document Specification data element for Platform Operators:</p>
 
 <ul>
-<li>Platform Operator data elements cannot be deleted. Therefore, the only acceptable values for the Document Type Indicator (DocTypeIndic) are OECD0, OECD1 and OECD2. </li>
-<li>The Document Type Indicator will be set to OECD0 when a DPIR message contains updates of seller data (amendments, corrections or deletions) but the Platform Operator data element does not change. </li>
-<li>If a Platform Operator data element was filed with incorrect data, then a new information return must be filed with correct Platform Operator data. The new Platform Operator data element will have the Document Type Indicator set to OECD2 and will replace the Platform Operator identified in the CorrDocRefId data element. </li>
-<li>If a DPIR message exceeds the 150MB size limit and has to be split into several smaller messages, then each Platform Operator data element in the smaller messages will have unique Document Reference ID. </li>
+<li>Platform Operator data elements cannot be deleted. Therefore, the only acceptable values for the Document Type Indicator (DocTypeIndic) are OECD0, OECD1 and OECD2 </li>
+<li>The Document Type Indicator will be set to OECD0 when a DPIR message contains updates of seller data (amendments, corrections or deletions) but the Platform Operator data element does not change </li>
+<li>If a Platform Operator data element was filed with incorrect data, then a new information return must be filed with correct Platform Operator data. The new Platform Operator data element will have the Document Type Indicator set to OECD2 and will replace the Platform Operator identified in the CorrDocRefId data element </li>
+<li>If a DPIR message exceeds the 150MB size limit and has to be split into several smaller messages, then each Platform Operator data element in the smaller messages will have unique Document Reference ID </li>
 </ul>
 
 
@@ -1943,9 +1943,9 @@ margin-left: 38px;
 <p>The following rules govern the use of the Document Specification data element for Reportable Sellers:</p>
 
 <ul>
-<li>Seller's data can be corrected (OECD2) or deleted (OECD3). </li>
-<li>If the Document Type Indicator is set to OECD2, then the Reportable Seller data element replaces the Reportable Seller identified in the CorrDocRefId data element. </li>
-<li>If the Document Type Indicator is set to OECD3, then Relevant Activities within the Reportable Seller data element must not contain any data elements. This would indicate that the data for the Reportable Seller specified in CorrDocRefId should be deleted. </li>
+<li>Seller's data can be corrected (OECD2) or deleted (OECD3) </li>
+<li>If the Document Type Indicator is set to OECD2, then the Reportable Seller data element replaces the Reportable Seller identified in the CorrDocRefId data element </li>
+<li>If the Document Type Indicator is set to OECD3, then Relevant Activities within the Reportable Seller data element must not contain any data elements. This would indicate that the data for the Reportable Seller specified in CorrDocRefId should be deleted </li>
 </ul>
 <p>Any past filed information returns can be modified, as long as the modifications being filed do not impact subsequent returns. If they do, a correction should be filed for every impacted return in reverse order. In other words, start with the most recently filed information return, and end with the oldest.</p>
 
@@ -1989,10 +1989,10 @@ margin-left: 38px;
 
 
 <h2 id="h-4">Links </h2>
+<p><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/definitions-schema-user-guide.html">Definition of key terms</a></p>
 <p>DPIR schema</p>
-<p><a href="#">DPIR schema user guide</a></p>
 <p><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/example-data-resulting-return.html">DPIR examples</a></p>
-
+<p><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/correct-submitted-return.html">Modifying previously filed returns</a></p>
 
 			<nav role="navigation" class="mrgn-bttm-lg mrgn-tp-lg">
                   <h3 class="wb-inv">Document navigation</h3>
