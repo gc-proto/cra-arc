@@ -855,7 +855,7 @@ margin-left: 38px;
 
 <h2 id="h-1">Introduction </h2>
 <p>Accommodation platform operators and distribution platform operators must file GST/HST information returns with the Canada Revenue Agency (CRA), as outlined by sections 211.21 and 211.25 of the Excise Tax Act (ETA).</p>
-<p>The DPIR schema is based on schema introduced by the Organisation of Economic Co-operation and Development (OECD) Model Rules for Reporting by Platform Operators (“Model Rules”). The DPIR schema includes the applicable Model Rules data elements and introduces new data elements only when needed.</p>
+<p>The DPIR schema is based on the schema introduced by the Organisation of Economic Co-operation and Development (OECD) Model Rules for Reporting by Platform Operators (“Model Rules”). The DPIR schema includes the applicable Model Rules data elements and introduces new data elements only when needed.</p>
 <p>The DPIR schema user guide is similar to the Model Rules user guide, both in structure and content. This makes filing information returns with the CRA similar to reporting to other tax administrations using the OECD's Model Rules.</p>
 
 
@@ -884,7 +884,7 @@ margin-left: 38px;
 <li>Relevant Activities (RelevantActivities), which describes services provided by the Seller,  earnings (or consideration) derived from those services and related taxes</li>
 </ul>
 <p>The DPIR schema also provides a mechanism to uniquely identify Platform Operator and Reportable Seller data elements.</p>
-<p>More details are in the <a href="#h-3">Identification of data elements</a>.</p>
+<p>More details are in <a href="#h-3">Identification of data elements</a>.</p>
 <p>A DPIR message must have exactly one DPIR Body data element, even though the DPIR schema allows for any number of DPIR Body data elements or none at all. The more general message structure in Figure 1 aligns the DPIR schema with the Model Rules schema, and provides for a wide range of applications for consistency with international standards. </p>
 
 <h2 id="h-2">Schema elements</h2>
@@ -983,7 +983,7 @@ margin-left: 38px;
 <li>DPI402 = The message contains corrections/deletions of previously sent information</li>
 <li>DPI403 = The message advises that there is no data to report (This value must not be used)</li>
 </ul>
-<p>Corrections, amendments or deletions of previously sent data should never be included with new information returns. For more details, please see the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/correct-submitted-return.html">Modifying previously filed returns</a>. </p>
+<p>Corrections, amendments or deletions of previously sent data should never be included with new information returns. For more details, please see <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/correct-submitted-return.html">Modify a previously filed return</a> page. </p>
 <dl class="dl-horizontal">
           <dt>Size:</dt>
           <dd>enum</dd>
@@ -998,7 +998,7 @@ margin-left: 38px;
 <dl class="dl-horizontal">
          
           <dt>Input type:</dt>
-          <dd>xsd:dateTime</dd>
+          <dd>xsd:date</dd>
 		   <dt>Requirement:</dt>
           <dd>Mandatory</dd>
         </dl>			
@@ -1019,7 +1019,7 @@ margin-left: 38px;
                             <img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-3-e.png" alt="Visual depiction of the Organisation Party type. Text version follows" class="img-responsive">
                             </a></p>
 
-<p>Figure 3: Organisation Party type</p>
+<p><strong>Figure 3: Organisation Party type</strong></p>
 <p>The following are descriptions of elements comprising the Organisation Party type.</p>
 <h4>URL attribute</h4>
 <p>Specifies the URL of the Platform Operator or an Entity Seller. While this field is optional, Platform Operators are expected to have it, while not all Entity Sellers are expected to have it.</p>
@@ -1156,7 +1156,7 @@ margin-left: 38px;
           <dd>Required</dd>
         </dl>
 <h4>DocSpec data element </h4>
-<p>Provides a mechanism to uniquely identify a Platform Operator or Reportable Seller data elements, not only within the current DPIR message but across all DPIR messages, all Platform Operators and all Reportable Periods. The Document Specification data element is detailed in the <a href="#h-3">Identification of data elements</a>.</p>
+<p>Provides a mechanism to uniquely identify a Platform Operator or Reportable Seller data elements, not only within the current DPIR message but across all DPIR messages, all Platform Operators and all Reportable Periods. The Document Specification data element is detailed in <a href="#h-3">Identification of data elements</a>.</p>
 
 <dl class="dl-horizontal">
          
@@ -1425,7 +1425,7 @@ margin-left: 38px;
 
 <dl class="dl-horizontal">
 <dt>Input type:</dt>
-          <dd>dpir:OrganisationParty_Type</dd>
+          <dd>dpir:PersonParty_Type</dd>
 		   <dt>Requirement:</dt>
           <dd>Mandatory</dd>
   </dl>
@@ -1866,7 +1866,7 @@ margin-left: 38px;
                             <img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-13-e.png" alt="Visual depiction of the Consideration type. Text version follows" class="img-responsive">
                             </a></p>
 <p><strong>Figure 13: Consideration type</strong></p>
-<p>Taxes are to be provided at the annual level using the AnnualTaxes data element. The Quarterly Taxes data element is reserved for potential future use.  </p>
+<p>Taxes are to be provided at the annual level using the AnnualTaxes data element. The QuarterlyTaxes data element is reserved for potential future use.  </p>
 <p>The following provides more details about data elements comprising the Consideration type.</p>
 <h4>AnnualTaxes data element </h4>
 <p>Specifies the Taxes collected on behalf of a Reportable Seller during the Reporting Period, where the Taxes are aggregated at the annual level and is specified using the Monetary Amount (MonAmnt) type.</p>
@@ -1891,6 +1891,8 @@ margin-left: 38px;
                             <img src="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/fgr-14-e.png" alt="Visual depiction of the Sale of Goods Activities type. Text version follows" class="img-responsive">
                             </a></p>
 <p><strong>Figure 14: Sale of Goods Activities type</strong></p>
+
+
 <h2 id="h-3">Identification of data elements </h2>	
 <p>In each DPIR message, the Platform Operator and Reportable Seller data elements must have unique identifiers. An identifier of a DPIR message is specified in the Message Reference ID (MessageRefId), while the Platform Operator's and Reportable Seller's identifiers are specified in the Document Reference ID (DocRefId), which is found in the Document Specification (DocSpec) data element that each Platform Operator and Reportable Seller contain. </p>
 <p>In this section, we first describe the format of Message Reference ID and Document Reference ID. Then, we detail the Document Specification (DocSpec) data element, and outline how it applies to Platform Operators and Reportable Sellers. </p>
@@ -1943,7 +1945,7 @@ margin-left: 38px;
 <li>OECD3 = Deletion of data </li>
 <li>OECD10, OECD11, OECD12, OECD13 are reserved for future use only </li>
 </ul>
-<p>A DPIR message can contain new data, amendments to previously filed data, or corrections or deletions of previously filed data, as described in the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/correct-submitted-return.html">Modifying previously filed returns</a> page.</p>
+<p>A DPIR message can contain new data, amendments to previously filed data, or corrections or deletions of previously filed data, as described in the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/correct-submitted-return.html">Modify a previously filed return</a> page.</p>
 <dl class="dl-horizontal">
          <dt>Size:</dt>
           <dd>enum</dd>
@@ -1954,7 +1956,7 @@ margin-left: 38px;
         </dl>
 
 <h4>DocRefId data element </h4>
-<p>The Document Reference ID (DocRefId) uniquely identifies a Platform Operator or Reportable Seller data element. Its follows the format described in the Format of Document Reference ID section.</p>
+<p>The Document Reference ID (DocRefId) uniquely identifies a Platform Operator or Reportable Seller data element. Its follows the format described in the <a href="#h-3-2">Format of Document Reference ID</a> section.</p>
 <dl class="dl-horizontal">
          <dt>Size:</dt>
           <dd>1-200 characters</dd>
@@ -2020,7 +2022,7 @@ margin-left: 38px;
 <tr>
 	<td>dpir </td>
 	<td>DPIR types </td>
-	<td><s>CPSS_DPIR_CDC_Schema_External_v6.5.xsd</s>CRA_DPIR_v1.0.xsd </td>
+	<td>CRA_DPIR_v1.0.xsd </td>
 </tr>
 <tr>
 	<td>dpi </td>
@@ -2044,7 +2046,7 @@ margin-left: 38px;
 	<li><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/definitions-schema-user-guide.html">Definition of key terms</a></li>
 	<li><a href="./CRA_DPIR_v1.0.zip">DPIR schema</a></li> 
 	<li><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/example-data-resulting-return.html">DPIR examples</a></li>
-	<li><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/correct-submitted-return.html">Modifying previously filed returns</a></li>
+	<li><a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/correct-submitted-return.html">Modify a previously filed return</a></li>
 </ul>
 			
            <div class="hidden-md hidden-lg" data-ajax-replace="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/file-digital-platform-information-return.html#related-menu"> </div>
@@ -2076,5 +2078,4 @@ margin-left: 38px;
 		</script>
 		</body>
 		</html>
-
 
