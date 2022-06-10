@@ -998,28 +998,37 @@ input[type='radio'] {
 			<section class="gc-nav-section experimental provisional">
 				<h1 property="name" id="wb-cont">Modify a previously filed return</h1>
 
-				<p>The Message Type Indicator in the Message Specification data element, and Document Type Indicator in the
-					Document Specification data element, described in the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/schema-guide-digital-platform-information-returns.html">DPIR schema user guide</a>,
-					specify how data in a DPIR message should be treated: whether it is new information, an amendment to previously filed information, or corrections or deletions of previously filed data.</p>
-				<p>Below, we describe the most common scenarios, each characterised by specific values of Message Type Indicator and the values of the Document Type Indicator for the Platform Operator and Reportable Sellers. 
-					For simplicity the Message Reference IDs are shown in short form as three character variables representing alphanumeric identifiers of length 30, as described in the DPIR schema user guide. 
-					The Document Reference IDs are derived by concatenating the Message Reference ID and an 8-digit number.</p>
-				
+
+<p>
+You can modify a previously filed return by filing another return which follows the DPIR schema and which includes only those data elements that must be added, corrected or deleted from the previously filed return. A Platform Operator data element can be corrected, but Reportable Seller data elements can be added, corrected or deleted. A correcting data element will overwrite a previously filed data element. In order to modify a previously filed return, you need to specify the type of modification that needs to take place (this is described through different scenarios below) and identifiers of affected data elements (this is specified though a Document Reference ID).  
+
+</p>
+
 				<nav role="navigation">
 					<h2>On this page</h2>
 					<ul>
-						<li><a href="#h-1">Filing new information return</a></li>
-						<li><a href="#h-2">Amending previously filed information return</a></li>
-						<li><a href="#h-3">Correcting previously filed information return</a></li>
-						<li><a href="#h-4">Deleting seller data from previously filed information return</a></li>
-						<li><a href="#h-5">Correcting a Platform Operator data element</a></li>
-						<li><a href="#h-6">Related</a></li>
+						<li><a href="#h-1">Previously filed information return</a></li>
+						<li><a href="#h-2">Amendment: adding sellers to a previously filed information return</a></li>
+						<li><a href="#h-3">Correction: correcting seller data in a previously filed information return</a></li>
+						<li><a href="#h-5">Correction: correcting a Platform Operator data element</a></li>
+						<li><a href="#h-4">Deletion: deleting sellers from a previously filed information return</a></li>
+						<!-- <li><a href="#h-6">Related</a></li> -->
 					</ul>
 				</nav>
-				<h2 id="h-1"> Filing new information return</h2>
+
+
+
+				<p>The Message Type Indicator in the Message Specification data element, and Document Type Indicator in the
+					Document Specification data element, described in the <a href="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/send-information-return/dpir-schema.html">DPIR schema user guide</a>,
+					specify how data in a DPIR message should be treated: whether it is new information, an amendment to previously filed information, or corrections or deletions of previously filed data.</p>
+				<p>Below, we describe the most common scenarios, each characterised by specific values of Message Type Indicator and the values of the Document Type Indicator for both the Platform Operator and Reportable Sellers. For simplicity the Message Reference IDs are shown in short form as three character variables representing alphanumeric identifiers of length 30, as described in the DPIR schema user guide. The Document Reference IDs are derived by concatenating the Message Reference ID and an 8-digit number.</p>
+				
+
+				<h2 id="h-1"> Previously filed information return</h2>
 				<p>The first information return filed for a given Reporting Period is considered the new information
 					return. Every other information return filed for the same Reporting Period is considered either an
 					amendment, or a return which seeks to correct or delete data in the previous return.</p>
+				<p>In this example, both the Platform Operator and Reportable Seller data elements contain new data. </p>
 				
 				<!-- <details>
 					<summary> 
@@ -1090,12 +1099,13 @@ input[type='radio'] {
 						
 					</div>
 					<!-- <p class="align-center">Figure 3: Filing a new information return (Reportable Sellers)</p> -->
-					<p>In the above example, both the Platform Operator and Reportable Seller data elements contain new
-						data. </p>
 				<!-- </details> -->
-				<h2 id="h-2">Amending previously filed information return</h2>
-					<p>A Platform Operator is required to file an amendment if a previously filed information return did
-						not include all Reportable Sellers.</p>
+				<h2 id="h-2">Amendment: adding sellers to a previously filed information return</h2>
+					<p>You are required to file an amendment if a previously filed information return did not include all Reportable Sellers.</p>
+<p>
+This example amends the previously filed return outlined in Tables 1-3.
+</p>
+
 				<!-- <details>
 					<summary>
 					<h4>Example:</h4>
@@ -1119,7 +1129,7 @@ input[type='radio'] {
 						<!-- <p class="align-center">Figure 4: Amending previously filed information return (Message Header) -->
 						</p>
 						<br>
-						<h5>>Table 5: Platform Operator data element </h5>
+						<h5>Table 5: Platform Operator data element </h5>
 						<div>
 							
 							<table class="table table-condensed table-bordered">
@@ -1172,7 +1182,7 @@ input[type='radio'] {
 						</div>
 					<!-- <p class="align-center">Figure 6: Amending previously filed information return (Reportable
 							Sellers)</p> -->
-						<p>The above example amends a return filed in Scenario 1<mark>secario labels not included</mark>. In addition to having the values of
+						<p>In addition to having the values of
 							the Document Type Indicator for the Platform Operator and Reportable Seller as outlined
 							above, the amending information return has to meet the following criteria:</p>
 
@@ -1187,10 +1197,10 @@ input[type='radio'] {
 								message. </li>
 						</ul>
 					<!-- </details> -->
-						<h2 id="h-3">Correcting previously filed information return</h2>
-						<p>If Reportable Seller data in a previously filed information return is not correct, then a
-							Platform Operator must file a correction. This could be due to system errors, cancellation
-							or refunds.</p>
+						<h2 id="h-3">Correction: correcting seller data in a previously filed information return</h2>
+						<p>If Reportable Seller data in a previously filed information return is not correct, then you must file a correction. This could be due to system errors, cancellation or refunds.</p>
+<p>This example includes corrections to Reportable Seller data elements filed in
+								<a href="#h-1">Previously filed information return</a>.</p>
 						<!-- <details>
 							<summary>
 							<h4>Example </h4>
@@ -1266,22 +1276,71 @@ input[type='radio'] {
 							</div>
 							<!-- <p class="align-center">Figure 9: Correcting previously filed information return (Reportable
 								Sellers)</p> -->
-							<p>The above example includes corrections to Reportable Seller data elements filed in
-								Scenario 1 <mark>missing</mark>. The value of each CorrDocRefId in Table 9 matches a DocRefId of a
-								Reportable Seller in Table 3.</p>
+							<p>The value of each CorrDocRefId in Table 9 matches a DocRefId of a Reportable Seller in Table 3. After the above correction is filed, each Reportable Seller identified by DocRefId in Table 9 will overwrite a Reportable Seller with matching DocRefId in Table 3.</p>
 							<!-- </details> -->
+
+
 								
-							<h2 id="h-4">Deleting seller data from previously filed information return</h2>
-							<p>If a previously filed information return included Reportable Sellers that should not have
-								been included, then a Platform Operator must send a DPIR message and specify the IDs of
-								the Reportable Sellers that must be deleted. Relevant Activities of Reportable Sellers
-								in the new DPIR message must be empty. </p>
+
+							<h2 id="h-5">Correction: correcting a Platform Operator data element</h2>
+							<p>If the value in the Platform Operator data elements changes from the last time an information return for the given Reporting Period was filed, then you must file another return with updated values. The DPIR Body containing the Platform Operator data element must not contain any Reportable Seller data elements.</p>
+<p>This example illustrates that a previously filed Platform Operator with the DocRefId shown in  Table 2 will be overwritten by a Platform Operator with the DocRefId shown in Table 11.</p>
 							<!-- <details>
 								<summary>
 								<h4>Example </h4>
 								</summary>
 							-->
 							<h5>Table 10: Message Header data element </h5>
+							<div>
+								
+								<table class="table table-condensed table-bordered">
+									<tr class="active">
+										<th scope="col" class="text-center">MessageRefId</th>
+										<th scope="col" class="text-center">MessageTypeIndic</th>
+									</tr>
+									<tr>
+										<td scope="row" class="text-center">xuv</td>
+										<td scope="row" class="text-center">DPI402</td>
+									</tr>
+								</table>
+								
+							</div>
+							<!-- <p class="align-center">Figure 13: Correcting Platform Operator data (Message Header)</p> -->
+							<br>
+							<h5>Table 11: Platform Operator data element </h5>
+							<div>
+								
+								<table class="table table-condensed table-bordered">
+									<tr class="active">
+										<th scope="col" class="text-center">DocRefId</th>
+										<th scope="col" class="text-center">DocTypeIndic</th>
+										<th scope="col" class="text-center">CorrDocRefId</th>
+									</tr>
+									<tr>
+										<td scope="row" class="text-center">xuv00000001</td>
+										<td scope="row" class="text-center">OECD2</td>
+										<td scope="row" class="text-center">xyw00000001</td>
+									</tr>
+								</table>
+								
+							</div>
+						 <!-- <p class="align-center">Figure 14: Correcting Platform Operator data (Platform Operator)</p> -->
+
+
+
+
+
+
+
+							<h2 id="h-4">Deletion: deleting sellers from a previously filed information return</h2>
+							<p>If a previously filed information return included Reportable Sellers that should not have been included, then you must file another return and specify the IDs of the Reportable Sellers that must be deleted. Relevant Activities of Reportable Sellers in the new DPIR message must be empty. </p>
+<p>This example illustrates how two Reportable Sellers shown in Table 3 are  deleted. These are specified in the CorrDocRefId elements in Table 14.</p>
+							<!-- <details>
+								<summary>
+								<h4>Example </h4>
+								</summary>
+							-->
+							<h5>Table 12: Message Header data element </h5>
 							<div>
 								
 								<table class="table table-condensed table-bordered">
@@ -1299,7 +1358,7 @@ input[type='radio'] {
 							<!-- <p class="align-center">Figure 10: Deleting sellers from a previously filed information
 								return (Message Header)</p> -->
 								<br>
-							<h5>Table 11: Platform Operator data element </h5>
+							<h5>Table 13: Platform Operator data element </h5>
 							<div>
 								
 								<table class="table table-condensed table-bordered">
@@ -1317,7 +1376,7 @@ input[type='radio'] {
 							<!-- <p class="align-center">Figure 11: Deleting sellers from a previously filed information
 								return (Platform Operator)</p> -->
 								<br>
-							<h5>Table 12: Reportable Seller data elements </h5>
+							<h5>Table 14: Reportable Seller data elements </h5>
 							<div>
 								
 								<table class="table table-condensed table-bordered">
@@ -1345,65 +1404,17 @@ input[type='radio'] {
 							</div>
 							<!-- <p class="align-center">Figure 12: Deleting sellers from a previously filed information
 								return (Reportable Sellers)</p> -->
-							<p>The above example illustrates that two Reportable Sellers shown in Table 3 must be
-								deleted. These are specified in the CorrDocRefId elements in Table 12.</p>
 
 								<!-- </details> -->
 
-							<h2 id="h-5">Correcting a Platform Operator data element</h2>
-							<p>If the value in the Platform Operator data elements changes from the last time an
-								information return for the given Reporting Period was filed, then a Platform Operator
-								must send a new DPIR message with updated values. The DPIR Body containing the Platform
-								Operator data element must not contain any Reportable Seller data elements.</p>
-							<!-- <details>
-								<summary>
-								<h4>Example </h4>
-								</summary>
-							-->
-							<h5>Table 13: Message Header data element </h5>
-							<div>
-								
-								<table class="table table-condensed table-bordered">
-									<tr class="active">
-										<th scope="col" class="text-center">MessageRefId</th>
-										<th scope="col" class="text-center">MessageTypeIndic</th>
-									</tr>
-									<tr>
-										<td scope="row" class="text-center">xuv</td>
-										<td scope="row" class="text-center">DPI402</td>
-									</tr>
-								</table>
-								
-							</div>
-							<!-- <p class="align-center">Figure 13: Correcting Platform Operator data (Message Header)</p> -->
-							<br>
-							<h5>Table 14: Platform Operator data element </h5>
-							<div>
-								
-								<table class="table table-condensed table-bordered">
-									<tr class="active">
-										<th scope="col" class="text-center">DocRefId</th>
-										<th scope="col" class="text-center">DocTypeIndic</th>
-										<th scope="col" class="text-center">CorrDocRefId</th>
-									</tr>
-									<tr>
-										<td scope="row" class="text-center">xuv00000001</td>
-										<td scope="row" class="text-center">OECD2</td>
-										<td scope="row" class="text-center">xyw00000001</td>
-									</tr>
-								</table>
-								
-							</div>
-						 <!-- <p class="align-center">Figure 14: Correcting Platform Operator data (Platform Operator)</p> -->
-							<p>The above example illustrates that a Platform Operator data element filed in Table 2
-								must be updated with the new values contained in the DPIR message with MessageRefId
-								shown in Table 13.</p>
 
-							<!-- </details> -->
+
+
+							<!-- </details> 
 							<h2 id="h-6">Related</h2>
 							<li><a href="./CRA_DPIR_v1.0.zip">DPIR schema</a></li>
 							<li><a href="#">DPIR schema user guide</a></li>
-							
+							-->
 							<div class="hidden-md hidden-lg"
 								data-ajax-replace="https://test.canada.ca/cra-arc/digital-economy/digital-economy-gsthst/file-digital-platform-information-return.html#related-menu">
 							</div>
