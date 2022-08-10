@@ -8,7 +8,7 @@
       <head>
          <meta charset="utf-8">
          <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-         <title>Find a tax topic</title>
+         <title>Find information about types of income, deductions, credits and expenses</title>
          <meta content="width=device-width,initial-scale=1" name="viewport">
          <meta name="robots" content="noindex, follow">
          <!-- Meta data -->
@@ -58,7 +58,7 @@
 
       <div aria-hidden="true">
     <p class="lead mrgn-tp-md mrgn-bttm-0 text-muted">Tax guide for volunteers</p>
-    <h1 class="gc-thickline mrgn-tp-0">Find a tax topic</h1>
+    <h1 class="gc-thickline mrgn-tp-0">Find information about types of income, deductions, credits and expenses</h1>
   </div>
 
 
@@ -70,56 +70,35 @@
         
 <div class="col-md-8">
 
-<div>
+<div class="wb-frmvld">
 <!--Filter by topic-->
-<p class="h3"><span class="fas fa-sliders-h"></span> Filter by topic: </p>
-<form class="wb-tables-filter mrgn-bttm-lg" data-bind-to="table1">
-<div class="row">
-<div class="col-sm-6">
-<ul class="list-unstyled mrgn-bttm-0">
-<li class="checkbox provisional gc-chckbxrdio">
-<input type="checkbox" id="fltr1" name="fltr1" value="Benefits and COVID-19" data-column="3">
-<label for="fltr1">Benefits and COVID-19</label>
-</li>
-<li class="checkbox provisional gc-chckbxrdio">
-<input type="checkbox" id="fltr2" name="fltr2" value="Child care and caregivers" data-column="3">
-<label for="fltr2">Child care and caregivers</label>
-</li>
-<li class="checkbox provisional gc-chckbxrdio">
-<input type="checkbox" id="fltr3" name="fltr3" value="Disability" data-column="3">
-<label for="fltr3">Disability</label>
-</li>
-<li class="checkbox provisional gc-chckbxrdio">
-<input type="checkbox" id="fltr4" name="fltr4" value="Education" data-column="3">
-<label for="fltr4">Education</label>
-</li>
-</ul>
-</div>
-<div class="col-sm-6 col-md-5">
-<ul class="list-unstyled mrgn-bttm-0">
-<li class="checkbox provisional gc-chckbxrdio">
-<input type="checkbox" id="fltr5" name="fltr5" value="Employment and self-employment" data-column="3">
-<label for="fltr5">Employment and <span class="nowrap">self-employment</span></label>
-</li>
-<li class="checkbox provisional gc-chckbxrdio">
-<input type="checkbox" id="fltr6" name="fltr6" value="Family" data-column="3">
-<label for="fltr6">Family</label>
-</li>
-<li class="checkbox provisional gc-chckbxrdio">
-<input type="checkbox" id="fltr7" name="fltr7" value="Pension and savings plan" data-column="3">
-<label for="fltr7">Pension and savings plan</label>
-</li>
-</ul>
-</div>
-</div>
-<div class="form-group mrgn-tp-md">
-<button class="btn btn-primary mrgn-rght-lg" aria-controls="table1" type="submit">Filter your choices</button>
-<button class="btn btn-link" type="reset">Reset all filters</button>
-</div>
-</form>
+
+<form method="get">
+    <div class="wb-fieldflow" data-wb-fieldflow='
+            {
+                "srctype": "tblfilter",
+                "noForm": true,
+                "source": "#table1",
+                "fltrseq": [
+                    {"column": 3, "defaultselectedlabel": "All topics"}   
+                ],
+                "limit": 3 
+            }'></div>
+    </form>
 </div>
 
 <!--Filter Table-->
+
+<style>
+.field-name {
+    font-size: 18pt;
+}
+.field-name::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900;
+    content: "\f1de";
+}
+</style>
              
 <table id="table1" class="wb-tables table table-striped small" data-wb-tables='{
    "paging" : false,
@@ -135,7 +114,7 @@
   <th>Line number</th>
   <th>Line name</th>
   <th>Type</th>
-  <th>Filter</th>
+  <th> Filter by topic: </th>
  </tr>
 </thead>
 <tbody> 
@@ -148,7 +127,7 @@
 	  </ul>		  
   </td>
   <td>Income</td>
-  <td>Employment and self-employment</td>
+  <td><ul><li>Employment and self-employment</li></ul></td>
  </tr>
  <tr>
   <td>10400</td>
@@ -159,7 +138,7 @@
     </ul>		  
     </td>
   <td>Income</td>
-  <td>Employment and self-employment</td>
+  <td><ul><li>Employment and self-employment</li></ul></td>
  </tr>
  <tr>
   <td>11300</td>
@@ -170,7 +149,7 @@
     </ul>		  
     </td>
   <td>Income</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
  </tr>
  <tr>
   <td>11400</td>
@@ -181,7 +160,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Pension and savings plans</td> 
+  <td><ul><li>Pension and savings plans</li></ul></td> 
  </tr>
  <tr>
   <td>11500</td>
@@ -192,7 +171,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
  </tr>
  <tr>
   <td>11500</td>
@@ -203,7 +182,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
  </tr>
  <tr>
   <td>11500</td>
@@ -214,7 +193,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
  </tr>
  <tr>
   <td>11600</td>
@@ -225,7 +204,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
  </tr>
  <tr>
   <td>11900</td>
@@ -236,7 +215,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Benefits and COVID-19, Employment and self-employment</td>
+  <td><ul><li>Benefits and COVID-19</li><li>Employment and self-employment</li></ul></td>
  </tr>
  <tr>
   <td>12100</td>
@@ -247,7 +226,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
  </tr>
  <tr>
   <td>12500</td>
@@ -258,7 +237,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
  </tr>
  <tr>
   <td>12700</td>
@@ -269,7 +248,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Employment and self-employment; Pension and savings plan; Benefits and COVID-19; Education; Family, child care and caregivers; Disability</td>
+  <td><ul><li>Employment and self-employment</li><li>Pension and savings plans</li><li>Benefits and COVID-19</li><li>Education</li><li>Family, child care and caregivers</li><li>Disability</td>
  </tr>
  <tr>
   <td>12900</td>
@@ -280,7 +259,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
 </tr>
  <tr>
   <td>13000</td>
@@ -291,7 +270,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Pension and savings plans; Education</td>
+  <td><ul><li>Pension and savings plans</li><li>Education</li></ul></td>
  </tr>
  <tr>
   <td>13000</td>
@@ -302,7 +281,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Benefits and COVID-19</td>
+  <td><ul><li>Benefits and COVID-19</li></ul></td>
  </tr>
  <tr>
   <td>13010</td>
@@ -313,7 +292,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Education</td>
+  <td><ul><li>Education</li></ul></td>
  </tr>
  <tr>
   <td>13500</td>
@@ -324,7 +303,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Employment and self-employment</td>
+  <td><ul><li>Employment and self-employment</li></ul></td>
  </tr>
  <tr>
   <td>14400</td>
@@ -335,7 +314,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Benefits and COVID-19</td>
+  <td><ul><li>Benefits and COVID-19</li></ul></td>
  </tr>
  <tr>
   <td>14500</td>
@@ -357,7 +336,7 @@
     </ul>
   </td>
   <td>Income</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
  </tr>
  <tr>
   <td>20800</td>
@@ -368,7 +347,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
  </tr>
  <tr>
   <td>21400</td>
@@ -379,7 +358,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Family, child care and caregivers</td>
+  <td><ul><li>Family, child care and caregivers</li></ul></td>
  </tr>
  <tr>
   <td>21500</td>
@@ -390,7 +369,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Disability</td>
+  <td><ul><li>Disability</li></ul></td>
  </tr>
  <!-- <tr>
   <td>22200</td>
@@ -401,7 +380,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Employment and self-employment</td>
+  <td><ul><li>Employment and self-employment</li></ul></td>
  </tr> -->
  <tr>
   <td>22900</td>
@@ -412,7 +391,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Employment and self-employment</td>
+  <td><ul><li>Employment and self-employment</li></ul></td>
  </tr>
  <tr>
   <td>23200</td>
@@ -423,7 +402,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Benefits and COVID-19</td>
+  <td><ul><li>Benefits and COVID-19</li></ul></td>
  </tr>
  <tr>
   <td>23210</td>
@@ -435,7 +414,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Benefits and COVID-19</td>
+  <td><ul><li>Benefits and COVID-19</li></ul></td>
  </tr>
  <!-- <tr>
   <td>23500</td>
@@ -457,7 +436,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Benefits and COVID-19</td>
+  <td><ul><li>Benefits and COVID-19</li></ul></td>
  </tr>
  <tr>
   <td>25500</td>
@@ -468,7 +447,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Employment and self-employment; Pension and savings plan; Benefits and COVID-19; Education; Family, child care and caregivers; Disability</td>
+  <td><ul><li>Employment and self-employment</li><li>Pension and savings plans</li><li>Benefits and COVID-19</li><li>Education</li><li>Family, child care and caregivers</li><li>Disability</li></ul></td>
  </tr>
  <tr>
   <td>30000</td>
@@ -478,7 +457,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Employment and self-employment; Pension and savings plan; Benefits and COVID-19; Education; Family, child care and caregivers; Disability</td>
+  <td><ul><li>Employment and self-employment</li><li>Pension and savings plans</li><li>Benefits and COVID-19</li><li>Education</li><li>Family, child care and caregivers</li><li>Disability</li></ul></td>
  </tr>
  <tr>
   <td>30100</td>
@@ -488,7 +467,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Pension and savings plans</td>
+  <td><ul><li>Pension and savings plans</li></ul></td>
  </tr>
  <tr>
   <td>30300</td>
@@ -498,7 +477,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Family, child care and caregivers</td>
+  <td><ul><li>Family, child care and caregivers</li></ul></td>
  </tr>
  <tr>
   <td>30400</td>
@@ -508,7 +487,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Family, child care and caregivers</td>
+  <td><ul><li>Family, child care and caregivers</li></ul></td>
  </tr>
  <tr>
   <td>30425, 30450, 30500</td>
@@ -519,7 +498,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Family, child care and caregivers</td>
+  <td><ul><li>Family, child care and caregivers</li></ul></td>
  </tr>
  
 <!--
@@ -532,7 +511,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Family, child care and caregivers</td>
+  <td><ul><li>Family, child care and caregivers</li></ul></td>
  </tr>-->
  <tr>
   <td>31600</td>
@@ -543,7 +522,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Disability</td>
+  <td><ul><li>Disability</li></td>
  </tr>
  <tr>
   <td>31800</td>
@@ -554,7 +533,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Family, child care and caregivers; Disability</td>
+  <td><ul><li>Family, child care and caregivers</li><li>Disability</li></td>
  </tr>
  <tr>
   <td>31900</td>
@@ -565,7 +544,7 @@
     </ul>
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Education</td>
+  <td><ul><li>Education</li></ul></td>
  </tr>
  <tr>
   <td>32300</td>
@@ -576,7 +555,7 @@
     </ul>		
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Education</td>
+  <td><ul><li>Education</li></ul></td>
  </tr>
  <tr>
   <td>32400</td>
@@ -587,7 +566,7 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Family, child care and caregivers; Education</td>
+  <td><ul><li>Family, child care and caregivers</li><li>Education</td>
  </tr>
  <tr>
   <td>32600</td>
@@ -597,7 +576,7 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Family, child care and caregivers</td>
+  <td><ul><li>Family, child care and caregivers</li></ul></td>
  </tr>
  <tr>
   <td>33099</td>
@@ -608,7 +587,7 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Employment and self-employment; Pension and savings plan; Benefits and COVID-19; Education; Family, child care and caregivers; Disability</td>
+  <td><ul><li>Employment and self-employment</li><li>Pension and savings plans</li><li>Benefits and COVID-19</li><li>Education</li><li>Family, child care and caregivers</li><li>Disability</li></td>
  </tr>
  <!-- <tr>
   <td>33199</td>
@@ -619,7 +598,7 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Family, child care and caregivers</td>
+  <td><ul><li>Family, child care and caregivers</li></ul></td>
  </tr> -->
  <tr>
   <td>34900</td>
@@ -630,7 +609,7 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Employment and self-employment; Pension and savings plan; Benefits and COVID-19; Education; Family, child care and caregivers; Disability</td>
+  <td><ul><li>Employment and self-employment</li><li>Pension and savings plans</li><li>Benefits and COVID-19</li><li>Education</li><li>Family, child care and caregivers</li><li>Disability</li></ul></td>
  </tr>
  <tr>
   <td>41500</td>
@@ -641,7 +620,7 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Employment and self-employment</td>
+  <td><ul><li>Employment and self-employment</li></ul></td>
  </tr>
  <!-- <tr>
   <td>42200</td>
@@ -652,7 +631,7 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Benefits and COVID-19</td>
+  <td><ul><li>Benefits and COVID-19</li></ul></td>
  </tr> -->
  <tr>
   <td>42100</td>
@@ -662,7 +641,7 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Employment and self-employment; Pension and savings plan; Benefits and COVID-19; Education; Family, child care and caregivers; Disability</td>
+  <td><ul><li>Employment and self-employment</li><li>Pension and savings plans</li><li>Benefits and COVID-19</li><li>Education</li><li>Family, child care and caregivers</li><li>Disability</li></ul></td>
  </tr>
  <tr>
   <td>45200</td>
@@ -672,7 +651,7 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Employment and self-employment</td>
+  <td><ul><li>Employment and self-employment</li></ul></td>
  </tr>
  <tr>
   <td>45300</td>
@@ -682,7 +661,7 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Employment and self-employment</td>
+  <td><ul><li>Employment and self-employment</li></ul></td>
  </tr>
  <tr>
   <td>45350</td>
@@ -693,16 +672,13 @@
     </ul>  
   </td>
   <td>Deductions, credits and expenses</td>
-  <td>Education</td>
+  <td><ul><li>Education</li></ul></td>
  </tr>
 </tbody> 
 </table>
 
-<p class="mrgn-tp-md small">If you can't find what you're looking for in this table you can also browse the following pages:<p>
-<ul>
-    <li class="small"><a href="step-by-step.html">UFile's interview setup</a></li>
-    <li class="small"><a href="types-income-deductions-info.html">Types of income, deductions, tax credits and expenses</a></li>
-</ul>   
+<p class="mrgn-tp-md">If you can't find what you're looking for in this table you can also browse <span class="nowrap"><a href="types-income-deductions-info.html">All types of income, deductions, tax credits and expenses</a></span>.</p>
+
 
 </div>
 </div><br>
