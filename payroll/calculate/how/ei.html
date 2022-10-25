@@ -139,18 +139,18 @@
                   <div class="col-md-5">
                      <h3 class="mrgn-tp-sm text-muted h4">Use when</h3>
                      <ul class="fa-ul">
-                        <li><span class="fas fa-check text-success fa-li"></span> The payment is made <strong>with </strong>regular pay</li>
-                        <li><span class="fas fa-check text-success fa-li"></span> You received Form TD1-IN (in addition to the TD1) from your employee, <strong>only use these tables on the portion of their income which is taxable</strong> with the claims information reported on the TD1</li>
+                        <li><span class="fas fa-check text-success fa-li"></span> The payment is for regular employment income or was made with regular pay for one of the common or uncommon pay periods for which tables are provided</li>
+                        <li><span class="fas fa-check text-success fa-li"></span> If you received Form TD1-IN (in addition to the TD1) from your employee, <strong>only use these tables on the portion of their income which is taxable</strong></li>
                      </ul>
                   </div>
                   <div class="col-md-7">
                      <h3 class="mrgn-tp-sm text-muted h4">Do not use when</h3>
                      <ul class="fa-ul">
-                        <li><span class="fas fa-times text-danger fa-li"></span>The payment (for example, bonuses, commissions, retroactive pay or other types of regular payments) is made <strong>separately </strong>from regular pay</li>
-                        <li><span class="fas fa-times text-danger fa-li"></span>The payment is for deductions in a single period, multiple periods, or year-end verification</li>
-                        <li><span class="fas fa-times text-danger fa-li"></span>The employee reached the EI maximum contributions for the year</li>
-                        <li><span class="fas fa-times text-danger fa-li"></span>You received Form TD1X from your employee</li>
-                        <li><span class="fas fa-times text-danger fa-li"></span>You received Form TD3F from the individual</li>
+                        <li><span class="fas fa-times text-danger fa-li"></span> The payment (for example, bonuses, commissions, retroactive pay) is made <strong>separately </strong>from regular pay</li>
+                        <li><span class="fas fa-times text-danger fa-li"></span> Your pay period does not have a table provided in the common or uncommon pay periods per year</li>
+                        <li><span class="fas fa-times text-danger fa-li"></span> You are doing a year-end verification of your EI premiums</li>
+                        <li><span class="fas fa-times text-danger fa-li"></span> The employee already reached their EI premium contributions for the year</li>
+                        
                      </ul>
                   </div>
                </div>
@@ -161,48 +161,39 @@
                <li><div id="ajax-detmax">
                   <h4>Determine if the employee reached the maximum contribution</h4>
 
-            <ul class="fa-ul lst-spcd mrgn-bttm-lg mrgn-lft-lg">
-               <li><span class="fa-stack text-success">
-                  <span class="far fa-circle fa-stack-2x"></span>
-                  <i class="fas fa-dollar-sign fa-stack-1x"></i>
-                  </span><span class="mrgn-tp-0 text-muted h5"> Employee's maximum EI premiums for the year</span> 
-               </li>
-               <li class="brdr-bttm">
-                  <span class="fas  fa-li"><span class="fa-2x">-</span><span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
-                  <span class="far fa-circle fa-stack-2x"></span>
-                  <i class="fas fa-dollar-sign fa-stack-1x"></i>
-                  </span>  <span class="mrgn-tp-0 text-muted h5"> Employee's premiums to date for the year in their employment with you</span>
-                  <div class="mrgn-tp-md"></div>
-               </li>
-               <li><span class="fas  fa-li"><span class="fa-lg">=</span><span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
-                  <span class="fas fa-circle fa-stack-2x"></span>
-                  <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
-                  </span> <span class="mrgn-tp-0 text-muted h5"> This amount is the maximum EI premium that you can deduct from your employee's pay for the rest of the year</span></span> 
-               </li>
-            </ul>
-    <p><strong>If they have not reached the maximum</strong>, continue to next step</p>   
+              <ul class="fa-ul lst-spcd mrgn-tp-md mrgn-bttm-lg mrgn-lft-lg">
+                                 <li><span class="fa-stack text-success">
+                                    <span class="far fa-circle fa-stack-2x"></span>
+                                    <i class="fas fa-dollar-sign fa-stack-1x"></i>
+                                    </span><span class="mrgn-tp-0 text-muted h5"> <a href="#max" aria-controls="mid-screen" class="overlay-lnk" role="button">Maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a> in their <strong>employment with you</strong></span> 
+                                 </li>
+                                 <li class="brdr-bttm">
+                                    <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                    <span class="far fa-circle fa-stack-2x"></span>
+                                    <i class="fas fa-dollar-sign fa-stack-1x"></i>
+                                    </span>  <span class="mrgn-tp-0 text-muted h5"> Employee's contributions to date for the year in their <strong>employment with you</strong></span>
+                                    <div class="mrgn-tp-md"></div>
+                                 </li>
+                                 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                    <span class="fas fa-circle fa-stack-2x"></span>
+                                    <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
+                                    </span> <span class="mrgn-tp-0 text-muted h5"> This amount is the maximum EI contribution that you can deduct from your employee's pay for the rest of the year
+                                     </span></span> </li>
+		       </ul>
+
             <details class="mrgn-bttm-md">
-               <summary>Example</summary>
-              <ul class="fa-ul lst-spcd mrgn-bttm-lg mrgn-lft-lg">
-                  <li><span class="fa-stack text-success">
-                     <span class="far fa-circle fa-stack-2x"></span>
-                     <i class="fas fa-dollar-sign fa-stack-1x"></i>
-                     </span><span class="mrgn-tp-0 text-muted h5"> Add example here</span> 
-                  </li>
-                  <li class="brdr-bttm">
-                     <span class="fas  fa-li"><span class="fa-2x">-</span><span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
-                     <span class="far fa-circle fa-stack-2x"></span>
-                     <i class="fas fa-dollar-sign fa-stack-1x"></i>
-                     </span>  <span class="mrgn-tp-0 text-muted h5"> $ is the amount he contributed to date for the year</span>
-                     <div class="mrgn-tp-md"></div>
-                  </li>
-                  <li><span class="fas  fa-li"><span class="fa-lg">=</span><span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
-                     <span class="fas fa-circle fa-stack-2x"></span>
-                     <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
-                     </span> <span class="mrgn-tp-0 text-muted h5"> $ is the maximum EI amount you can deduct</span></span> 
-                  </li>
-               </ul>
+               <summary>Calculation example</summary>
+             
             </details>
+
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-tp-lg">
+  
+ <li class="cnjnctn-col">
+   <span class="fas fa-ban text-danger fa-lg"></span> Do not deduct CPP contributions if they have <strong>reached</strong> the maximum.</li>
+ <li class="cnjnctn-col">
+    <span class="fas fa-arrow-down text-success fa-lg"></span> Continue to next step if they have <strong>not reached</strong> the maximum.</li>
+</ul>
+
 </div>
 
                  
@@ -295,6 +286,19 @@
             </ul>
 
 
+
+ <section id="max" class="wb-overlay modal-content overlay-def wb-popup-mid">
+               <header class="modal-header">
+                  <h2 class="modal-title">EI premium rates and maximums</h2>
+               </header>
+               <div class="modal-body">
+	<p class="bg-warning"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the Maximum annual employee premium (column 4) that matches the year (column 1) </p>
+                  <div data-ajax-replace="/cra-arc/payroll/calculate/when/eirates.html #ajax-eirate"></div>
+               </div>
+            </section>
+
+
+
             <section id="table" class="mfp-hide modal-dialog modal-content overlay-def modal-xl">
                <header class="modal-header">
                   <h2 class="modal-title">When to use EI premiums tables</h2>
@@ -304,14 +308,8 @@
                </div>
             </section>
 
-<section id="stop1" class="mfp-hide modal-dialog modal-content overlay-def modal-xl">
-  <header class="modal-header"><h2 class="modal-title">When to stop deducting CPP contributions</h2></header>
-  <div class="modal-body">
-       <div data-ajax-replace="/cra-arc/payroll/calculate/when/learncpp.html #ajax-stopcpp"></div>
-  </div>
-</section>
 
-<section id="cpprate" class="mfp-hide modal-dialog modal-content overlay-def modal-xl">
+<section id="eirate" class="mfp-hide modal-dialog modal-content overlay-def modal-xl">
   <header class="modal-header"><h2 class="modal-title">CPP contributions rates, maximums and exemptions</h2></header>
   <div class="modal-body">
        <div data-ajax-replace="/cra-arc/payroll/calculate/when/cpprates.html #ajax-cpprate"></div>
@@ -340,34 +338,6 @@
   </div>
 </section>
 
-<section id="eitables" class="mfp-hide modal-dialog modal-content overlay-def modal-xl">
-  <header class="modal-header"><h2 class="modal-title">EI premiums tables</h2></header>
-  <div class="modal-body">
-       <div data-ajax-replace="#ajax-eitables"></div>
-  </div>
-</section>
-
-
-<section id="it" class="mfp-hide modal-dialog modal-content overlay-def">
-  <header class="modal-header"><h2 class="modal-title">What amounts to include or not include when calculating the remuneration</h2></header>
-  <div class="modal-body">
-       <div data-ajax-replace="/cra-arc/payroll/calculate/when/learnit.html #ajax-it"></div>
-  </div>
-</section>
-
-<section id="itcodes" class="mfp-hide modal-dialog modal-content overlay-def">
-  <header class="modal-header"><h2 class="modal-title">Federal, provincial and territorial income tax claim codes</h2></header>
-  <div class="modal-body">
-       <div data-ajax-replace="#ajax-codes"></div>
-  </div>
-</section>
-
-<section id="ittables" class="mfp-hide modal-dialog modal-content overlay-def">
-  <header class="modal-header"><h2 class="modal-title">Federal, provincial and territorial income tax tables</h2></header>
-  <div class="modal-body">
-       <div data-ajax-replace="#ajax-ittables"></div>
-  </div>
-</section>
 
 
 
