@@ -214,7 +214,7 @@
 </ol>
 </li>
 
-<li><h4>Get the federal, provincial and territorial claim codes tables</h4>	
+<li><h4>Get the claim codes tables</h4>	
 
   <ol class="lst-stps-sub">
 
@@ -1133,15 +1133,23 @@
 
 </li>
 
-<li> <h4>Determine the federal and provincial or territorial claim code to use </h4>
-<div id="ajax-findcode">
-<p>Find the letter in the "Claim code" column which is next to the the column "Total claim amount" in <strong>both </strong>federal claim codes tables <strong>and</strong> provincial or territorial claim codes tables (if applicable).</p>
-
+<li> <h4>Determine the claim code to use</h4>
 <p>If your employee did not complete new TD1 forms, continue&nbsp;to&nbsp;deduct income tax using the same claim code that you used previously.</p>
+<p>The claim code "0" may be used if the employee indicated they have more than one employer or payer at the same time and have entered "0" on the front page of Form TD1.</p>
 
- <p>If the federal claim code is "0" because the employee is a non-resident, the provincial claim code <strong>must</strong> also be "0."  </p>
- <p>This code may also be used if the employee indicated they have more than one employer or payer at the same time and have entered "0" on the front page of Form TD1.</p>
- </div>      
+<ol class="lst-stps-sub">
+<li> <h5>Determine the federal claim code</h5> 
+<div id="ajax-fedfind">
+<p>In the federal claim codes table, find the letter in the "Claim code" column which is next to the the column "Total claim amount".</p>
+</div>
+</li>
+<li><h5>Determine the provincial or territorial claim code</h5> 
+<div id="ajax-provfind">
+<p>In the provincial or territorial claim codes table, find the letter in the "Claim code" column which is next to the the column "Total claim amount".</p>
+<p>If the federal claim code is "0" because the employee is a non-resident, the provincial claim code <strong>must</strong> also be "0."  </p>
+</div>
+</li>
+</ol>
 </li>
 
 <li><h4>Get the federal, provincial and territorial income tax tables</h4>
@@ -1666,7 +1674,6 @@
 </li>
 
 
-
 <li><h4>Get the federal, provincial and territorial claim codes tables </h4>
 <ol class="lst-stps-sub">
 <li>
@@ -1677,6 +1684,20 @@
 <p><div data-ajax-replace="#ajax-provcodes"></div></p></li>
 </ol>
 </li>
+
+<li> <h4>Determine the claim code to use</h4>
+<p>If your employee did not complete new TD1 forms, continue&nbsp;to&nbsp;deduct income tax using the same claim code that you used previously.</p>
+<p>The claim code "0" may be used if the employee indicated they have more than one employer or payer at the same time and have entered "0" on the front page of Form TD1.</p>
+<ol class="lst-stps-sub">
+<li>
+<h5> Determine the federal claim code</h5>  
+<p><div data-ajax-replace="#ajax-fedfind"></div></p></li>
+<li>
+<h5> Determine the provincial or territorial claim code</h5> 
+<p><div data-ajax-replace="#ajax-provfind"></div></p></li>
+</ol>
+</li>
+
 
 
 <details class="mrgn-bttm-md">
