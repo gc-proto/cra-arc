@@ -114,6 +114,18 @@
 </nav>
 
 <h1 property="name" id="wb-cont" class="gc-thickline">Calculate income tax deductions</h1>
+ <div class="col-xs-12">
+               <div class="row">
+                  <p class="pull-left small"><strong>You may be looking for:</strong></p>
+                  <ul class="pull-left mrgn-lft-md list-unstyled small">
+                     <li><a href="/cra-arc/payroll/calculate/when/itrates.html">Income tax rates and income thresholds</a></li>
+                  </ul>
+                  <div class="clearfix">&nbsp;</div>
+               </div>
+            </div>
+
+
+
 <p>How to use the income tax tables and how to calculate manually the amount to withhold.</p>
  
  <h2 class="h3">On this page</h2>
@@ -128,7 +140,8 @@
 	<p>Calculate income tax deductions based on the type of payment:</p>
             <ul class="mrgn-bttm-lg">
                <li><a href="#tab-reg" class="wb-tabs-ext"> Regular payments (income tax tables)</a></li>
-               <li><a href="#tab-bonus" class="wb-tabs-ext"> Bonuses, retroactive or irregular payments</a></li>
+   	       <li><a href="#tab-retro" class="wb-tabs-ext">Retroactive payments</a></li>
+               <li><a href="#tab-bonus" class="wb-tabs-ext">Bonuses or irregular payments</a></li>
                <li><a href="#tab-mnl" class="wb-tabs-ext"> Any payments (manual calculation)</a> </li> 
               
             </ul>
@@ -136,7 +149,7 @@
  <div class="wb-tabs">
                <div class="tabpanels">
  <details id="tab-reg">
-                     <summary>Regular payments (income tax tables)</summary>
+                     <summary>Regular payments (tax tables)</summary>
                  
 <p class="mrgn-tp-md">Income tax tables calculate the required income tax for you on given ranges of income for a specified pay period. </p>
 
@@ -175,43 +188,47 @@
  </li> 
 
 <li><h4>Review the completed TD1 forms to determine if you need to deduct tax</h4>
-<p>Review the <a href="/cra-arc/payroll/employee/td1.html">completed TD1 forms</a> and verify if the employee checked the box “Total income less than total claim amount”. </p>
+<div id="ajax-review">
+<p>Review the completed <a href="/cra-arc/payroll/employee/td1.html">TD1 forms</a> and verify if the employee checked the box “Total income less than total claim amount”. </p>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-tp-lg">
   
  <li class="cnjnctn-col">
    <span class="fas fa-ban text-danger fa-lg"> </span> If they checked this box, <strong>do not deduct</strong> any federal or provincial tax. <strong>Do not</strong> use the tax tables.</li>
  <li class="cnjnctn-col">
     <span class="fas fa-arrow-down text-success fa-lg"> </span> If they checked this box but <strong>you believe it is a false statement</strong>, continue to next step.</li>
-</ul>
+</ul></div>
 </li>
 
-<li> <h4>Determine which claim code to use</h4>
-<p>Find the <strong>"TOTAL CLAIM AMOUNT"</strong> on the following <a href="/cra-arc/payroll/employee/td1.html">completed TD1 forms</a>: </p>
-
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-tp-lg">
-	      <li class="cnjnctn-col"> Federal TD1 only, if they are claiming less than the basic personal amount</li>
-	      <li class="cnjnctn-col"> Federal TD1 <strong>and the provincial or territorial TD1</strong>, if they are claiming more than the basic personal amount </li>
-</ul>
-<p>The claim amounts that correspond&nbsp;to&nbsp;the federal claim codes are not the same as the claim amounts that correspond&nbsp;to&nbsp;the provincial claim codes.</p>
+<li> <h4>Get the total claim amount from the TD1 forms</h4>
+<ol class="lst-stps-sub">
+<li> <h5>Get the federal TD1 form</h5> 
+<div id="ajax-fedtd1">
+<p>Find the <strong>"TOTAL CLAIM AMOUNT"</strong> on the completed federal <a href="/cra-arc/payroll/employee/td1.html">TD1 form</a></p>
+</div>
+</li>
+<li><h5>Get the provincial or territorial TD1 form</h5> 
+<div id="ajax-provtd1">
+<p>If they are claiming more than the basic personal amount, find the <strong>"TOTAL CLAIM AMOUNT"</strong> on the completed provincial or territorial <a href="/cra-arc/payroll/employee/td1.html">TD1 form</a></p>
+</div>
+</li>
+</ol>
 </li>
 
-<li><h4>Get the federal, provincial and territorial claim codes tables</h4>	
-<p>Use the federal, provincial or territorial claim codes tables that matches your employee's province of employment.</p>
+<li><h4>Get the claim codes tables</h4>	
 
-            <div id="ajax-codes">
-              
-              
-               <p>If your employee did not complete the federal and provincial TD1 forms for 2022, continue&nbsp;to&nbsp;deduct income tax using the same claim code that you used last year.</p>
-               <p>If the federal claim code is "0" because the employee is a non-resident, the provincial claim code <strong>must</strong> also be "0." This code may also be used if the employee indicated they have more than one employer or payer at the same time and have entered "0" on the front page of Form TD1 for 2022.</p>
-           
+  <ol class="lst-stps-sub">
 
+<li> <h5>Get the federal claim codes table</h5>    
+<div id="ajax-fedcodes">
+<p>Use the federal claim codes table.</p> 
     <details> <summary>Federal claim codes tables</summary>
+        
                      <h3><span class="fa-stack text-success">
                      <span class="far fa-calendar-check fa-stack-2x"></span>
                      
                      </span> 2022 tax year</h3>
                 
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 Federal claim codes</caption>
                      <thead>
                         <tr>
@@ -287,7 +304,11 @@
                   <li><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4008-payroll-deductions-supplementary-tables-previous-years.html">Uncommon pay periods (T4008)</a></li>
                </ul>
               
-</details>
+</details></div>
+</li>
+<li><h5>Get the provincial or territorial claim codes table</h5>  
+<div id="ajax-provcodes">
+<p>Use the provincial or territorial claim codes table that matches your employee's province of employment.</p>
  <details>
                   <summary>Provincial and territorial claim codes tables </summary>
  <h3><span class="fa-stack text-success">
@@ -297,7 +318,7 @@
                <details>
                   <summary>Alberta </summary>
                  
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 Alberta claim codes
                      </caption>
                      <thead>
@@ -418,7 +439,7 @@
                </details>
                <details>
                   <summary> British Columbia </summary>
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 British Columbia claim codes
                      </caption>
                      <thead>
@@ -485,7 +506,7 @@
                </details>
                <details>
                   <summary> Manitoba </summary>
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 Manitoba claim codes
                      </caption>
                      <thead>
@@ -552,7 +573,7 @@
                </details>
                <details>
                   <summary> July 2022 - New Brunswick </summary>
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>July 2022 New Brunswick claim codes
                      </caption>
                      <thead>
@@ -619,7 +640,7 @@
                </details>
                <details>
                   <summary> Newfoundland and Labrador </summary>
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 Newfoundland and Labrador claim codes
                      </caption>
                      <thead>
@@ -686,7 +707,7 @@
                </details>
                <details>
                   <summary> Northwest Territories </summary>
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 Northwest Territories claim codes
                      </caption>
                      <thead>
@@ -753,7 +774,7 @@
                </details>
                <details>
                   <summary> Nova Scotia </summary>
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 Nova Scotia claim codes
                      </caption>
                      <thead>
@@ -820,7 +841,7 @@
                </details>
                <details>
                   <summary> Nunavut </summary>
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 Nunavut claim codes
                      </caption>
                      <thead>
@@ -887,7 +908,7 @@
                </details>
                <details>
                   <summary> Ontario </summary>
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 Ontario claim codes
                      </caption>
                      <thead>
@@ -954,7 +975,7 @@
                </details>
                <details>
                   <summary> Prince Edward Island </summary>
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 Prince Edward Island claim codes
                      </caption>
                      <thead>
@@ -1025,7 +1046,7 @@
                </details>
                <details>
                   <summary> Saskatchewan </summary>
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-striped small table-condensed">
                      <caption>2022 Saskatchewan claim codes
                      </caption>
                      <thead>
@@ -1107,28 +1128,37 @@
                   <li>			   <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables-previous-years.html">Common pay periods (T4032)</a></li>
                   <li><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4008-payroll-deductions-supplementary-tables-previous-years.html">Uncommon pay periods (T4008)</a></li>
                </ul>
-            </details></div>
+             </details></div></li></ol>
 
 
 </li>
 
-<li> <h4>Determine the pay range</h4>
-<p>Find the range that includes your employee's gross remuneration (including any taxable benefits) in the column "Total claim amount".</p>
-</li>
+<li> <h4>Determine the claim code to use</h4>
+<p>If your employee did not complete new TD1 forms, use the same claim code that you used previously.</p>
+<p>If the employee check the box they have more than one employer or payer at the same time, claim code "0" may be used.</p>
 
-<li> <h4>Get the claim code</h4>
+<ol class="lst-stps-sub">
+<li> <h5>Determine the federal claim code</h5> 
+<div id="ajax-fedfind">
 <p>Find the letter in the "Claim code" column which is next to the the column "Total claim amount".</p>
+</div>
+</li>
+<li><h5>Determine the provincial or territorial claim code</h5> 
+<div id="ajax-provfind">
+<p>Find the letter in the "Claim code" column which is next to the the column "Total claim amount".</p>
+<p>If the federal claim code is "0" because the employee is a non-resident, the provincial claim code <strong>must</strong> also be "0."  </p>
+</div>
+</li>
+</ol>
 </li>
 
 <li><h4>Get the federal, provincial and territorial income tax tables</h4>
-                           <div id="ajax-ittable">
-                              <h3><span class="fa-stack text-success">
-                                 <span class="far fa-calendar-check fa-stack-2x"></span>
-                                 </span> 2022 tax year
-                              </h3>
-                              <p>Use the federal, provincial and territorial income tax tables that matches your employee's province of employment and your pay period.</p>
+<div id="ajax-ittable">
+                             
+                              <p>Use the federal, provincial and territorial income tax tables that matches your employee's province of employment and your pay period. </p>
+			<p>The federal and provincial or territorial tables are combined for each income tax tables.</p>
                              <details><summary>Federal, provincial and territorial income tax tables</summary>
-            <div id="ajax-ittables">
+            
 			<h3><span class="fa-stack text-success">
                      <span class="far fa-calendar-check fa-stack-2x"></span>
                      
@@ -1493,36 +1523,57 @@
 			   <li><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables-previous-years.html">Common pay periods (T4032)</a></li>
 			   <li><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4008-payroll-deductions-supplementary-tables-previous-years.html">Uncommon pay periods (T4008)</a></li>
 			   </ul>
-            </div></details>
+            </details>
                            </div>
 
  </li> 
 
-
-<li> <h4>Determine the pay range</h4>
-<p>Find the range that includes your employee's gross remuneration (including any taxable benefits) (the "13. Total claim amount" reported on your employee's or pensionner's Form TD1) in the "Total claim amount" column</p>
+<li> <h4>Determine the pay range </h4>
+<ol class="lst-stps-sub">
+<li> <h5>Determine the federal pay range</h5> 
+<div id="ajax-fedpay">
+<p>Find the range that includes your employee's gross remuneration (including any taxable benefits) in the "Pay" column.</p>
+</div>
+</li>
+<li><h5>Determine the provincial or territorial pay range</h5> 
+<div id="ajax-provpay">
+<p>Find the range that includes your employee's gross remuneration (including any taxable benefits) in the "Pay" column.</p>
+</div>
+</li>
+</ol>
 </li>
 
 
 <li> <h4>Get the amount of income tax to deduct</h4>
-<p>Find the federal amount in the "??" column which is next to the column "???". </p>
-<p>If applicable, find the provincial or territorial amount of provincial in the "??" column which is next to the column "???". </p>
+<ol class="lst-stps-sub">
+<li> <h5>Get the federal amount of income tax to deduct</h5> 
+<div id="ajax-fedamt">
+<p>Find the amount in the "CC" column from the claim code which is next to the the column "Pay".</p>
+</div>
+</li>
+<li><h5>Get the provincial or territorial amount of income tax to deduct</h5> 
+<div id="ajax-provamt">
+<p>Find the amount in the "CC" column from the claim code which is next to the the column "Pay".</p>
+</div>
+</li>
+</ol>
 </li>
 
 
 <li> <h4>Calculate the amount of income tax you have to withhold and remit</h4>
+<div id="ajax-remit">
 <ul class="fa-ul lst-spcd mrgn-bttm-lg mrgn-lft-lg">
                               <li><span class="fa-stack text-success">
                                  <span class="far fa-circle fa-stack-2x"></span>
                                  <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                 </span><span class="mrgn-tp-0 text-muted h5"> Federal income tax you have to withhold from your employee (step 6)</span> 
+                                 </span><span class="mrgn-tp-0 text-muted h5"> Federal income tax you have to withhold from your employee (step a)</span> 
                               </li>
                               			
    			   <li class="brdr-bttm">
                                  <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
                                  <span class="far fa-circle fa-stack-2x"></span>
                                  <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                 </span>  <span class="mrgn-tp-0 text-muted h5"> If applicable, provincial or territorial income tax you have to withhold from your employee (step 6)</span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5"> If applicable, provincial or territorial income tax you have to withhold from your employee (step b)</span>
                                  <div class="mrgn-tp-md"></div>
                               </li>
 
@@ -1537,20 +1588,19 @@
 <details class="mrgn-bttm-md">
                               <summary>Calculation example</summary>
  </details>
-
+</div>
 </li>
 
 </ol>
 
    </details>
-	     
 
- <details id="tab-bonus" >
-                     <summary>Bonuses, retroactive or irregular payments</summary>
-                     <p class="mrgn-tp-md">In addition to regular types of payments, you must deduct income tax from bonuses, retroactive payments or other types of irregular payments.</p>
+<details id="tab-retro" >
+                     <summary>Retroactive payments</summary>
+   <p class="mrgn-tp-md">In addition to regular types of payments, you must deduct income tax from retroactive payments.</p>
             <h3>Steps</h3>
                      <ol class="lst-stps stps-strpd">
-        <li> <h4>Determine if you can use the bonus method</h4>
+       <li> <h4>Determine if you can use the retroactive method</h4>
   
 
                            <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
@@ -1559,7 +1609,7 @@
                                  
                                 <p><span class="fas fa-ban text-danger fa-lg"></span> If the payment is made <strong>with </strong>regular pay, <strong>do not</strong> use the following steps to calculate. Use one of the following:</p>
 								 <ul class="fa-ul lst-spcd"><li><span class="fas fa-calculator fa-li text-muted"></span><a href="https://www.canada.ca/en/revenue-agency/services/e-services/e-services-businesses/payroll-deductions-online-calculator.html?utm_campaign=not-applicable&amp;utm_medium=vanity-url&amp;utm_source=canada-ca_pdoc">Payroll Deductions Online Calculator (PDOC)</a></li>
-								 <li><span class="fas fa-th fa-li text-muted"></span><a href="#tab-reg.html">Calculations of CPP, EI and income tax deductions using the tax tables</a></li>
+								 <li><span class="fas fa-th fa-li text-muted"></span><a href="#tab-reg">Regular payments (tax tables)</a></li>
 								 </ul>
                               </li>
 			 <li class="cnjnctn-col">
@@ -1569,15 +1619,21 @@
                            </ul>                         
 
  </li> 
-	<li><h4>Calculate the amount of income tax you have to withhold and remit</h4>
-<p>Use the calculation depending on your employee total remuneration for the year (<strong>including the bonus or increase</strong>) and the frequency of when the bonus is paid within a year.</p> 
+ <li> <h4> Determine the calculation to use </h4>
+ <p>The calculation depends on your employee total remuneration for the year, <strong>including the increase</strong>. If your employee's total remuneration is:</p> 
+  <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+              
+               <li class="cnjnctn-col"><strong>Less than $5,000</strong>, continue to <a href="#2">step 3</a></li>
+               <li class="cnjnctn-col"><strong>More than $5,000</strong>, continue to <a href="#3">step 4</a></li>
+            </ul>
+</li> 
 
-<details><summary>Calculation - Employee total remuneration is <strong>$5,000 or less</strong></summary>
+<li> <h4 id="2">Less than $5,000 - Calculate the amount of income tax you have to withhold and remit</h4>
 <ul class="fa-ul lst-spcd mrgn-bttm-lg mrgn-lft-lg">
                               <li><span class="fa-stack text-success">
                                  <span class="far fa-circle fa-stack-2x"></span>
                                  <i class="fas fa-dollar-sign fa-stack-1x"></i>
-                                 </span><span class="mrgn-tp-0 text-muted h5"> Bonus payment or the retroactive pay increase</span> 
+                                 </span><span class="mrgn-tp-0 text-muted h5"> Retroactive pay increase</span> 
                               </li>
 			<li class="brdr-bttm">
                                  <span class="fas  fa-li"><span class="fas fa-times"></span><span class="wb-inv">multiply by</span></span> <span class="fa-stack text-success">
@@ -1589,15 +1645,212 @@
  			 <li><span class="fas  fa-li"><span class="fas fa-equals"></span><span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
                                  <span class="fas fa-circle fa-stack-2x"></span>
                                  <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
-                                 </span> <span class="mrgn-tp-0 text-muted h5"> This amount is the income tax that you must deduct from your employee's pay 
+                                 </span> <span class="mrgn-tp-0 text-muted h5"> This amount is the income tax that you must withhold and remit from your employee's pay 
                                  </span></span> 
                               </li>
 
                   </ul>
 <details class="mrgn-bttm-md">
                               <summary>Calculation example</summary>
+<p>Joseph's pay increased from $440 to $460 per week. His total remuneration for the year is $3,500. His province of employment is Manitoba. </p>
+<ul class="fa-ul lst-spcd mrgn-bttm-lg mrgn-lft-lg">
+                              <li><span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <i class="fas fa-dollar-sign fa-stack-1x"></i>
+                                 </span><span class="mrgn-tp-0 text-muted h5"> Retroactive pay increase</span> 
+                              </li>
+			<li class="brdr-bttm">
+                                 <span class="fas  fa-li"><span class="fas fa-times"></span><span class="wb-inv">multiply by</span></span> <span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <i class="fas fa-percent fa-stack-1x"></i>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5">15% income tax </span>
+                                 <div class="mrgn-tp-md"></div>
+                              </li>
+ 			 <li><span class="fas  fa-li"><span class="fas fa-equals"></span><span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                 <span class="fas fa-circle fa-stack-2x"></span>
+                                 <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
+                                 </span> <span class="mrgn-tp-0 text-muted h5"> $XXX is the income tax that you must withhold and remit from Joseph's pay 
+                                 </span></span> 
+                              </li>
+
+                  </ul>
  </details>
+</li>
+
+<li><h4 id="3">More than $5,000 - Review the completed TD1 forms to determine if you need to deduct tax</h4>
+<p>  <div data-ajax-replace="#ajax-review"></div></p>
+</li>
+
+
+<li><h4>Get the total claim amount from the TD1 forms</h4>
+<ol class="lst-stps-sub">
+<li>
+<h5>Get the federal TD1 form</h5>  
+<p><div data-ajax-replace="#ajax-fedtd1"></div></p></li>
+<li>
+<h5>Get the provincial or territorial TD1 form</h5> 
+<p><div data-ajax-replace="#ajax-provtd1"></div></p></li>
+</ol>
+</li>
+
+
+<li><h4>Get the federal, provincial and territorial claim codes tables </h4>
+<ol class="lst-stps-sub">
+<li>
+<h5>Get the federal claim codes table</h5>  
+<p><div data-ajax-replace="#ajax-fedcodes"></div></p></li>
+<li>
+<h5>Get the provincial or territorial claim codes table</h5> 
+<p><div data-ajax-replace="#ajax-provcodes"></div></p></li>
+</ol>
+</li>
+
+<li> <h4>Determine the claim code to use</h4>
+<p>If your employee did not complete new TD1 forms, use the same claim code that you used previously.</p>
+<p>If the employee check the box they have more than one employer or payer at the same time, claim code "0" may be used.</p>
+<ol class="lst-stps-sub">
+<li>
+<h5> Determine the federal claim code</h5>  
+<p><div data-ajax-replace="#ajax-fedfind"></div></p></li>
+<li>
+<h5> Determine the provincial or territorial claim code</h5> 
+<p><div data-ajax-replace="#ajax-provfind"></div></p></li>
+</ol>
+</li>
+
+<li><h4>Get the federal, provincial and territorial income tax tables</h4>
+<p>  <div data-ajax-replace="#ajax-ittable"></div></p>
+</li>
+
+<li> <h4>Determine the pay range </h4>
+<ol class="lst-stps-sub">
+<li>
+<h5> Determine the federal pay range</h5>  
+<p><div data-ajax-replace="#ajax-fedpay"></div></p></li>
+<li>
+<h5> Determine the provincial or territorial pay range</h5> 
+<p><div data-ajax-replace="#ajax-provpay"></div></p></li>
+</ol>
+</li>
+
+
+<li> <h4>Get the amount of income tax to deduct</h4>
+<ol class="lst-stps-sub">
+<li>
+<h5> Get the federal amount of income tax to deduct</h5>  
+<p><div data-ajax-replace="#ajax-fedamt"></div></p></li>
+<li>
+<h5> Get the provincial or territorial amount of income tax to deduct</h5> 
+<p><div data-ajax-replace="#ajax-provamt"></div></p></li>
+</ol>
+</li>
+
+<li> <h4>Calculate the amount of income tax you have to withhold and remit</h4>
+<p>  <div data-ajax-replace="#ajax-remit"></div></p>
+</li>
+
+<details class="mrgn-bttm-md">
+                              <summary>Calculation example</summary>
+
+<p>Irene's pay increased from $440 to $460 per week. The increase was retroactive to 12 weeks, which gives her a total retroactive payment of $240 (12 × $20). Her province of employment is Nova Scotia. The claim code that applies to her TD1 and TD1NS forms is "6."</p>
+<p>In the payroll deductions tables, choose the weekly tables (52 pay periods a year) to find the increase in the weekly federal and provincial tax that you should deduct because of the increased pay rate.</p>
+<p>Find the federal and provincial tax that you deduct on $460 per week. </p>
+<p>Subtract the federal and provincial tax that you deduct on $440 per week.</p>
+<p>The result is the tax you have to deduct on the additional $20 per week.</p>
+<p>Multiply the increase in the weekly tax that you deduct by the number of weeks to which the retroactive pay increase applies.</p>
+<p>This amount is the tax that you must deduct from the retroactive payment.</p>
+ </details>
+</li>
+
+</ol>
 </details>
+     
+
+ <details id="tab-bonus" >
+                     <summary>Bonuses or irregular payments</summary>
+                     <p class="mrgn-tp-md">In addition to regular types of payments, you must deduct income tax from bonuses or other types of irregular payments.</p>
+            <h3>Steps</h3>
+                     <ol class="lst-stps stps-strpd">
+        <li> <h4>Determine if you can use the bonus method</h4>
+  
+
+                           <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+                             
+                              <li class="cnjnctn-col">
+                                 
+                                <p><span class="fas fa-ban text-danger fa-lg"></span> If the payment is made <strong>with </strong>regular pay, <strong>do not</strong> use the following steps to calculate. Use one of the following:</p>
+								 <ul class="fa-ul lst-spcd"><li><span class="fas fa-calculator fa-li text-muted"></span><a href="https://www.canada.ca/en/revenue-agency/services/e-services/e-services-businesses/payroll-deductions-online-calculator.html?utm_campaign=not-applicable&amp;utm_medium=vanity-url&amp;utm_source=canada-ca_pdoc">Payroll Deductions Online Calculator (PDOC)</a></li>
+								 <li><span class="fas fa-th fa-li text-muted"></span><a href="#tab-reg">Regular payments (tax tables)</a></li>
+								 </ul>
+                              </li>
+			 <li class="cnjnctn-col">
+                                
+                                 <p><span class="fas fa-arrow-down text-success fa-lg"></span> If the payment is made <strong>separately </strong>from regular pay, continue to next step</p>
+                              </li>
+                           </ul>                         
+
+ </li> 
+
+<li> <h4> Determine the calculation to use </h4>
+ <p>The calculation depends on your employee total remuneration for the year, <strong>including the bonus</strong>. If your employee's total remuneration is:</p> 
+  <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+              
+               <li class="cnjnctn-col"><strong>Less than $5,000</strong>, continue to <a href="#3">step 3</a></li>
+               <li class="cnjnctn-col"><strong>More than $5,000</strong>, continue to <a href="#4">step 4</a></li>
+            </ul>
+</li> 
+
+<li> <h4 id="3">Less than $5,000 - Calculate the amount of income tax you have to withhold and remit</h4>
+<ul class="fa-ul lst-spcd mrgn-bttm-lg mrgn-lft-lg">
+                              <li><span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <i class="fas fa-dollar-sign fa-stack-1x"></i>
+                                 </span><span class="mrgn-tp-0 text-muted h5"> Bonus or irregular payment</span> 
+                              </li>
+			<li class="brdr-bttm">
+                                 <span class="fas  fa-li"><span class="fas fa-times"></span><span class="wb-inv">multiply by</span></span> <span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <i class="fas fa-percent fa-stack-1x"></i>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5">15% tax (10 % tax if you are in Quebec) </span>
+                                 <div class="mrgn-tp-md"></div>
+                              </li>
+ 			 <li><span class="fas  fa-li"><span class="fas fa-equals"></span><span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                 <span class="fas fa-circle fa-stack-2x"></span>
+                                 <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
+                                 </span> <span class="mrgn-tp-0 text-muted h5"> This amount is the income tax that you must withhold and remit from your employee's pay 
+                                 </span></span> 
+                              </li>
+
+                  </ul>
+<details class="mrgn-bttm-md">
+                              <summary>Calculation example</summary>
+<p>Joseph earns a salary of $400 per week. In September, you gave him a bonus of $300. His province of employment is Manitoba.</p>
+<ul class="fa-ul lst-spcd mrgn-bttm-lg mrgn-lft-lg">
+                              <li><span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <i class="fas fa-dollar-sign fa-stack-1x"></i>
+                                 </span><span class="mrgn-tp-0 text-muted h5"> $300 is the amount for the bonus</span> 
+                              </li>
+			<li class="brdr-bttm">
+                                 <span class="fas  fa-li"><span class="fas fa-times"></span><span class="wb-inv">multiply by</span></span> <span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <i class="fas fa-percent fa-stack-1x"></i>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5">15% income tax </span>
+                                 <div class="mrgn-tp-md"></div>
+                              </li>
+ 			 <li><span class="fas  fa-li"><span class="fas fa-equals"></span><span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                 <span class="fas fa-circle fa-stack-2x"></span>
+                                 <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
+                                 </span> <span class="mrgn-tp-0 text-muted h5"> $XXX is the income tax that you must withhold and remit from Joseph's pay 
+                                 </span></span> 
+                              </li>
+
+                  </ul>
+ </details>
+</li>
+
+	<li><h4 id="4">More than $5,000 - XXX</h4>
+<p>Use the calculation depending on your employee total remuneration for the year (<strong>including the bonus</strong>) and the frequency of when the bonus is paid within a year.</p> 
 
 <details><summary>Calculation - Employee total remuneration is more than $5,000 and it is the first or only bonus payment in the year</summary>
 <ul class="fa-ul lst-spcd mrgn-bttm-lg mrgn-lft-lg">
@@ -1740,35 +1993,13 @@
 
 </details>
 
-<details><summary>Calculation - Employee total remuneration is more than $5,000 and it is a retroactive pay increase</summary>
-<ol class="lst-stps stps-strpd">
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<details><summary>Calculation example &ndash; Retroactive pay increase</summary>
-<p>Irene's pay increased from $440 to $460 per week. The increase was retroactive to 12 weeks, which gives her a total retroactive payment of $240 (12 × $20). Her province of employment is Nova Scotia. The claim code that applies to her TD1 and TD1NS forms is "6."</p>
-<p>In the payroll deductions tables, choose the weekly tables (52 pay periods a year) to find the increase in the weekly federal and provincial tax that you should deduct because of the increased pay rate.</p>
-<p>Find the federal and provincial tax that you deduct on $460 per week. </p>
-<p>Subtract the federal and provincial tax that you deduct on $440 per week.</p>
-<p>The result is the tax you have to deduct on the additional $20 per week.</p>
-<p>Multiply the increase in the weekly tax that you deduct by the number of weeks to which the retroactive pay increase applies.</p>
-<p>This amount is the tax that you must deduct from the retroactive payment.</p>
-</details>
-
-
-</ol>	 
-<details class="mrgn-bttm-md">
-                              <summary>Calculation example</summary>
- </details>
-</details>
  </li> 
 	
 </ol>
 
    </details>
 
+ 
 <details id="tab-mnl" >
                      <summary>Any payments (manual calculation)</summary>
  <p class="mrgn-tp-md">Manual calculation can also be used for all payments made to employees to calculate the income tax contribution that must be withheld for the pay period. </p>		  	
