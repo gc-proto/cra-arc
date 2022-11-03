@@ -299,6 +299,69 @@
 <li><a href="#h_6">References</a>
 </li>
 </ul>
+
+<h2 id="h_0">TESTING ONLY - DETERMINE IF THE MOTOR VEHICLE IS AN AUTOMOBILE</h2>
+
+<h4>Vehicle is a car with seating for the driver and up to four passengers and <strong>not</strong> bought for:</h4>
+
+<p>Select the situation that applies: </p>
+<section>
+<ul class="checkbox-lg checkbox-zebra">
+  
+<li class="checkbox">
+<input type="checkbox" id="eg1" class="action-checkbox cb-dmm">
+<label for="eg1">The vehicle is used primarily as a taxi</label>
+						 
+						  						   
+						  
+</li>
+  
+<li class="checkbox">
+                           <input type="checkbox" id="eg2" class="action-checkbox cb-dmm">
+                           <label for="eg2">The vehicle is bought to sell, rent, or lease in a sales, rental or leasing business</label>
+                        </li>
+  
+<li class="checkbox">
+                           <input type="checkbox" id="eg3" class="action-checkbox cb-dmm">
+                           <label for="eg3">XXX</label>
+                        </li>
+  
+<li class="checkbox">
+                           <input type="checkbox" id="eg4" class="action-checkbox cb-dmm">
+                           <label for="eg4">XXX</label>
+                           
+</li>
+  
+                     </ul>
+                     <div class="alert alert-warning" id="action-no-msg">
+                        <p>The vehicle is is considered a motor vehicle.</p>
+                     </div>
+                     <div class="alert alert-success hidden provisional" id="action-msg1">
+                        <p>The vehicle is au automobile. </p>
+                     </div>
+                  </section>
+
+
+
+
+<!--script below adds the skip to section navigation at top of page when .gcnav class exists //-->
+		   <script>
+            $(".action-checkbox").change(function(){
+            if ($('.action-checkbox:checked').length == $('.action-checkbox').length) {
+            $("#action-msg1").removeClass("hidden").addClass("visible");
+            $("#action-no-msg").addClass("hidden").removeClass("visible");
+            }
+            if ($('.action-checkbox:checked').length !== $('.action-checkbox').length) {
+            $("#action-msg1").addClass("hidden").removeClass("visible");
+            $("#action-no-msg").removeClass("hidden").addClass("visible");
+            }
+            })
+            
+         </script>
+
+
+
+
 <h2 id="h_0">Steps</h2>
  <ol class="lst-stps stps-strpd">
   <li><h3 id="h_1">Determine if a motor vehicle is an automobile</h3>
