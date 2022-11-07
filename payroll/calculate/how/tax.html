@@ -157,7 +157,7 @@
                      <h3>Steps</h3>
 
 <ol class="lst-stps stps-strpd">
-        <li><h4>Determine if you can use income tax contribution tables</h4>
+        <li><h4>Determine if you can use income tax tables</h4>
                            <p>Income tax tables can be used in most common situations.</p>
                            <details>
                               <summary>When to use or not to use the tax tables</summary>
@@ -1135,17 +1135,17 @@
 
 <li> <h4>Determine the claim code to use</h4>
 <p>If your employee did not complete new TD1 forms, use the same claim code that you used previously.</p>
-<p>If the employee check the box they have more than one employer or payer at the same time, claim code "0" may be used.</p>
+<p>If the employee checked the box indicating they have more than one employer or payer at the same time, claim code "0" may be used.</p>
 
 <ol class="lst-stps-sub">
 <li> <h5>Determine the federal claim code</h5> 
 <div id="ajax-fedfind">
-<p>Find the letter in the "Claim code" column which is next to the the column "Total claim amount".</p>
+<p>Find the code in the "Claim code" column which corresponds with the range that includes your employee's "Total claim amount".</p>
 </div>
 </li>
 <li><h5>Determine the provincial or territorial claim code</h5> 
 <div id="ajax-provfind">
-<p>Find the letter in the "Claim code" column which is next to the the column "Total claim amount".</p>
+<p>Find the code in the "Claim code" column which corresponds with the range that includes your employee's "Total claim amount".</p>
 <p>If the federal claim code is "0" because the employee is a non-resident, the provincial claim code <strong>must</strong> also be "0."  </p>
 </div>
 </li>
@@ -1156,7 +1156,7 @@
 <div id="ajax-ittable">
                              
                               <p>Use the federal, provincial and territorial income tax tables that matches your employee's province of employment and your pay period. </p>
-			<p>The federal and provincial or territorial tables are combined for each income tax tables.</p>
+			<p>The tax tables that matches your employee’s province of employment and pay period contains both the federal table and the provincial/territorial table.</p>
                              <details><summary>Federal, provincial and territorial income tax tables</summary>
             
 			<h3><span class="fa-stack text-success">
@@ -1528,14 +1528,15 @@
 
  </li> 
 
-<li> <h4>Determine the pay range </h4>
+<li> <h4>Determine the pay range and get the amount of income tax to deduct</h4>
 <ol class="lst-stps-sub">
-<li> <h5>Determine the federal pay range</h5> 
+<li> <h5>Determine the federal income tax to deduct</h5> 
+	
 <div id="ajax-fedpay">
 
  <div class="row">
 						  <div class="col-md-6">
-                           <p>Find the range that includes your employee's gross remuneration (including any taxable benefits) in the "Pay" column.</p>
+                           <p>Find the range that includes your employee's gross remuneration (including any taxable benefits) in the "Pay" column. </p>
 						   </div>
 						   <div class="col-md-6">
 						   
@@ -1543,10 +1544,29 @@
    
   
   </div>
+
 </div>
+
+
+ 
+ <div class="row">
+						  <div class="col-md-6">
+                         
+<p>Find the applicable "CC" column that matches the employee’s claim code (for example, if the employee’s claim code is 4, go to the CC 4 column).</p>
+						   </div>
+						   <div class="col-md-6">
+						   
+    <img src="/cra-arc/payroll/calculate/how/images/tax-table-fed-code-e.JPG" class="img-responsive" alt="Screenshot of the federal tax table, highlighting the field: Claim codes">
+   
+  
+  </div>
 </div>
+<p>This is the federal income tax to deduct.</p>
+</div>
+
 </li>
-<li><h5>Determine the provincial or territorial pay range</h5> 
+
+<li><h5>Determine the provincial or territorial income tax to deduct</h5> 
 <div id="ajax-provpay">
 
  <div class="row">
@@ -1560,37 +1580,10 @@
   
   </div>
 </div>
-</div>
-</li>
-</ol>
-</li>
-
-
-<li> <h4>Get the amount of income tax to deduct</h4>
-<ol class="lst-stps-sub">
-<li> <h5>Get the federal amount of income tax to deduct</h5> 
-  <div id="ajax-fedamt">
  <div class="row">
 						  <div class="col-md-6">
                          
-<p>Find the amount in the "CC" column from the claim code which is next to the the column "Pay".</p>
-						   </div>
-						   <div class="col-md-6">
-						   
-    <img src="/cra-arc/payroll/calculate/how/images/tax-table-fed-code-e.JPG" class="img-responsive" alt="Screenshot of the federal tax table, highlighting the field: Claim codes">
-   
-  
-  </div>
-</div>
-</div>
-</li>
-<li><h5>Get the provincial or territorial amount of income tax to deduct</h5> 
-<div id="ajax-provamt">
-
- <div class="row">
-						  <div class="col-md-6">
-                         
-<p>Find the amount in the "CC" column from the claim code which is next to the the column "Pay".</p>
+<p>Find the applicable "CC" column that matches the employee’s claim code (for example, if the employee’s claim code is 4, go to the CC 4 column).</p>
 						   </div>
 						   <div class="col-md-6">
 						   
@@ -1599,10 +1592,12 @@
   
   </div>
 </div>
+<p>This is the provincial or territorial income tax to deduct.</p>
 </div>
 </li>
 </ol>
 </li>
+
 
 
 <li> <h4>Calculate the amount of income tax you have to withhold and remit</h4>
