@@ -306,6 +306,95 @@
 	<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true}'>
 		<p>Type of benefit</p>
 		<ul>
+			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-car", "live": true}'>Car with seating for the driver and up to four passengers</li>
+			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-trans", "live": true}'>You lease the automobile</li>
+			
+		</ul>
+	</div>
+
+<div id="ajax-car" class="hidden">
+<h5>The vehicle is a car with seating for the driver and up to four passengers. The vehicle is:</h5>
+
+<section>
+<ul>
+<li class="checkbox">
+<input type="checkbox" id="eg0" class="action-checkbox cb-dmm">
+<label for="eg0"><strong>not</strong> used primarily as a taxi</label>
+</li>
+
+<li class="checkbox">
+<input type="checkbox" id="eg2" class="action-checkbox cb-dmm">
+<label for="eg1"><strong>not</strong> bought to sell, rent, or lease in a sales, rental or leasing business</label>
+</li>
+  
+  
+  
+                     </ul>
+                     <div class="alert alert-warning" id="action-no-msg">
+                        <p>The vehicle is considered a motor vehicle. If they meet both conditions, the vehicle is considered an automobile.</p>
+                     </div>
+                     <div class="alert alert-success hidden provisional" id="action-msg1">
+                        <p>The vehicle is considered an automobile. </p>
+                     </div>
+                  </section>
+</div>
+
+<div id="ajax-trans" class="hidden">
+
+<section>
+<h5>The vehicle is designed or adapted for transporting up to eight passengers. The vehicle is:</h5>
+<ul>
+<li class="checkbox">
+<input type="checkbox" id="trans1" class="action-checkbox cb-dmm">
+<label for="trans1"><strong>not</strong> bought to be used primarily as a taxi</label>
+</li>
+
+<li class="checkbox">
+<input type="checkbox" id="trans2" class="action-checkbox cb-dmm">
+<label for="trans2"><strong>not</strong> bought to be used primarily in a business of transporting passengers</label>
+</li>
+
+<li class="checkbox">
+<input type="checkbox" id="trans3" class="action-checkbox cb-dmm">
+<label for="trans3"><strong>not</strong> bought to sell, rent, or lease in a sales, rental or leasing business</label>
+</li>
+                    </ul>
+  <div class="alert alert-warning" id="action-no-msg">
+                        <p>The vehicle is considered a motor vehicle. If they meet both conditions, the vehicle is considered an automobile.</p>
+                     </div>
+                     <div class="alert alert-success hidden provisional" id="action-msg1">
+                        <p>The vehicle is considered an automobile. </p>
+                     </div>
+
+                  </section>
+</div>
+	
+
+	
+
+</form></div>
+
+<!--1st situation - Script below adds the skip to section navigation at top of page when .gcnav class exists //-->
+		   <script>
+            $(".action-checkbox").change(function(){
+            if ($('.action-checkbox:checked').length == $('.action-checkbox').length) {
+            $("#action-msg1").removeClass("hidden").addClass("visible");
+            $("#action-no-msg").addClass("hidden").removeClass("visible");
+            }
+            if ($('.action-checkbox:checked').length !== $('.action-checkbox').length) {
+            $("#action-msg1").addClass("hidden").removeClass("visible");
+            $("#action-no-msg").removeClass("hidden").addClass("visible");
+            }
+            })
+            
+         </script>
+
+
+
+<div class="wb-frmvld"><form method="get">
+	<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true}'>
+		<p>Type of benefit</p>
+		<ul>
 			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#own", "live": true}'>You own the automobile</li>
 			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#lease", "live": true}'>You lease the automobile</li>
 			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#employee", "live": true}'>Your employee sells or leases automobiles</li>
