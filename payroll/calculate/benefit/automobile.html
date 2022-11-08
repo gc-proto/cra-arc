@@ -364,7 +364,7 @@
 </li>
                     </ul>
  <div class="alert alert-warning" id="action-no-msg2">
-                        <p>The vehicle is considered a motor vehicle. If they meet both conditions, the vehicle is considered an automobile.</p>
+                        <p>The vehicle is considered a motor vehicle. If they meet all conditions, the vehicle is considered an automobile.</p>
                      </div>
 <div class="alert alert-success hidden provisional" id="action-msg2">
                         <p>The vehicle is considered an automobile. </p>
@@ -375,57 +375,69 @@
  </details>
 
 <details><summary>Type: Emergency response vehicle (police/fire/medical)</summary>
-<table class="table table-bordered">
+<div id="ajax-emergency">
 
-<caption>
- </caption>
-<thead>
-
-<tr>
-	<th scope="col">
-The emergency response vehicle <strong>is not </strong>an automobile if <strong>any</strong> of the following apply:</th>
-	<th scope="col">
-The motor vehicle <strong>is </strong>an automobile </th> </tr> </thead>
-<tbody>
-
-<tr>
-	<td>
+<section>
+<h5>The vehicle is an emergency response vehicle. The vehicle is:</h5>
 <ul>
-<li>The vehicle is an ambulance </li>
-<li>The vehicle is clearly marked as a police or fire emergency response vehicle </li>
-<li>The vehicle is clearly marked as an emergency medical response vehicle that you use to carry emergency medical equipment and one or more emergency medical attendants or paramedics </li>
-</ul>
-</td>
-	<td>Any other situation </td>
-</tr> </tbody> </table>
+<li class="checkbox">
+<input type="checkbox" id="emer1" class="action-checkbox cb-dmm">
+<label for="emer1">an ambulance</label>
+</li>
+
+<li class="checkbox">
+<input type="checkbox" id="emer2" class="action-checkbox cb-dmm">
+<label for="emer2">clearly marked as a police or fire emergency response vehicle </label>
+</li>
+
+<li class="checkbox">
+<input type="checkbox" id="emer3" class="action-checkbox cb-dmm">
+<label for="emer3">clearly marked as an emergency medical response vehicle that you use to carry emergency medical equipment and one or more emergency medical attendants or paramedics </label>
+</li>
+                    </ul>
+ <div class="alert alert-warning" id="action-no-msg3">
+                        <p>The vehicle is considered a motor vehicle. If they meet all conditions, the vehicle is considered an automobile.</p>
+                     </div>
+<div class="alert alert-success hidden provisional" id="action-msg3">
+                        <p>The vehicle is considered an automobile. </p>
+                     </div>
+
+                  </section>
+</div>
+
  </details>
 
 <details><summary>Type: Pick-up truck</summary>
-<table class="table table-bordered">
+<div id="ajax-pick">
 
-<caption>
- </caption>
-<thead>
-
-<tr>
-	<th scope="col">
-The pick-up truck <strong>is not </strong>an automobile if <strong>any</strong> of the following apply: </th>
-	<th scope="col">
-The motor vehicle <strong>is </strong>an automobile </th> </tr> </thead>
-<tbody>
-
-<tr>
-	<td>
+<section>
+<h5>The vehicle is an emergency response vehicle. The vehicle is:</h5>
 <ul>
-<li>You used it at a remote work location or at a special work site primarily to transport goods or equipment in the course of business </li>
-<li>The vehicle can seat <strong>no more than </strong>the driver and two passengers and you used it primarily to transport goods or equipment in the course of business </li>
-<li>you used it exclusively to transport goods or equipment in the course of business </li>
-</ul>
- 
-<br />
-at least 30 kilometres away from any community having a population of at least 40,000 </td>
-	<td>Any other situation </td>
-</tr> </tbody> </table>
+<li class="checkbox">
+<input type="checkbox" id="pick1" class="action-checkbox cb-dmm">
+<label for="pick1">used at a remote work location or at a special work site primarily to transport goods or equipment in the course of business (at least 30 kilometres away from any community having a population of at least 40,000)</label>
+</li>
+
+<li class="checkbox">
+<input type="checkbox" id="pick2" class="action-checkbox cb-dmm">
+<label for="pick2">can seat <strong>equal or less than </strong>the driver and two passengers and you used it primarily to transport goods or equipment in the course of business</label>
+</li>
+
+<li class="checkbox">
+<input type="checkbox" id="pick3" class="action-checkbox cb-dmm">
+<label for="pick3">used exclusively to transport goods or equipment in the course of business</label>
+</li>
+                    </ul>
+ <div class="alert alert-warning" id="action-no-msg4">
+                        <p>The vehicle is considered a motor vehicle. If they meet all conditions, the vehicle is considered an automobile.</p>
+                     </div>
+<div class="alert alert-success hidden provisional" id="action-msg4">
+                        <p>The vehicle is considered an automobile. </p>
+                     </div>
+
+                  </section>
+</div>
+
  </details>
 
  
@@ -771,20 +783,6 @@ The motor vehicle <strong>is </strong>an automobile </th> </tr> </thead>
             
          </script>
 
-<!--2nd situation - Script below adds the skip to section navigation at top of page when .gcnav class exists //-->
-		   <script>
-            $(".action-checkbox").change(function(){
-            if ($('.action-checkbox:checked').length == $('.action-checkbox').length) {
-            $("#action-msg2").removeClass("hidden").addClass("visible");
-            $("#action-no-msg2").addClass("hidden").removeClass("visible");
-            }
-            if ($('.action-checkbox:checked').length !== $('.action-checkbox').length) {
-            $("#action-msg2").addClass("hidden").removeClass("visible");
-            $("#action-no-msg2").removeClass("hidden").addClass("visible");
-            }
-            })
-            
-         </script>
 
       </body>
    </html>
