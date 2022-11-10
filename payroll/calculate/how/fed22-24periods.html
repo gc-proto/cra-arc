@@ -109,7 +109,35 @@
 <h1 property="name" id="wb-cont" class="gc-thickline">TESTING ONLY - 2022 Federal tax deductions table - Semi-monthly (24 pay periods a year)</h1>
  
 
-<table id="fed-22-24per" class="wb-tables table table-condensed small table-striped table-hover" data-wb-tables='{"columnDefs": [ { "visible": false, "targets": [ 1 ] } ], "paging": false, "oLanguage": {
+  <form class="wb-tables-filter mrgn-bttm-lg" data-bind-to="table">
+				 
+                     <div class="form-group">
+                        <fieldset class="legend-brdr-bttm">
+                           <legend class="h4">Filter by category</legend>
+                           <ul class="list-unstyled mrgn-bttm-0 colcount-md-2">
+                              <li class="checkbox gc-chckbxrdio mrgn-tp-0"><input type="checkbox" id="payrange-aside" name="payrange-aside" value="Pay range" data-column="1">
+                                 <label for="payrange-aside">Pay range</label>
+                              </li>
+                              <li class="checkbox gc-chckbxrdio">
+                                 <input type="checkbox" id="cc-aside"  name="cc-aside" value="Claim code" data-column="2">
+                                 <label for="cc-aside">Claim Code</label>
+                              </li>
+                             
+                           </ul>
+                        </fieldset>
+                     </div>
+                     <ul class="form-group list-inline">
+                        <li>
+                           <button type="submit" class="btn btn-primary" aria-controls="table">Filter</button>
+                        </li>
+                        <li>
+                           <button type="reset" class="btn btn-link">Reset</button>
+                        </li>
+                     </ul>
+                  </form>
+
+
+<table id="table" class="wb-tables table small table-striped table-hover" data-wb-tables='{"columnDefs": [ { "visible": false, "targets": [ 1 ] } ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
                      } }'>
 
