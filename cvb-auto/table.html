@@ -51,9 +51,9 @@
          </script>
          <main role="main" property="mainContentOfPage" class="container">
           <h1 property="name" id="wb-cont">Automobile data table json</h1>
-
-<button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader1", "url": "2008_cars_fuel_tax.json"}'>2008 vehicles</button>
-<button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader1", "url": "2007_cars_fuel_tax.json"}'>2007 vehicles</button>
+<ul class="list-inline mrgn-bttm-lg">
+<li><button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader1", "url": "2008_cars_fuel_tax.json"}'>2008 vehicles</button></li>
+<li><button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader1", "url": "2007_cars_fuel_tax.json"}'>2007 vehicles</button></li>
 
 <div id="testLoader1" data-wb-jsonmanager='{
 		"url": "https://wet-boew.github.io/GCWeb/components/wb-doaction/demo/empty.json",
@@ -61,12 +61,12 @@
 	}'>
 
 <table id="tb-test" class="table wb-tables table-striped table-hover" data-wb-tables='{ "ordering" : false}' id="table-filtering-example" data-wb-json='{
-	"url": "#[jmanager1]/addressList",
+	"url": "#[jmanager1]/data",
 	"source": "#tbl4",
 	"trigger": true,
 	"mapping": [
-		{ "selector": "td:nth-of-type(1)", "value": "/make" },
-	{ "selector": "td:nth-of-type(2)", "value": "/model" },
+	{ "selector": "td:nth-of-type(1)", "value": "/make", "isHTML": "true" },
+	{ "selector": "td:nth-of-type(2)", "value": "/model", "isHTML": "true" },
   { "selector": "td:nth-of-type(3)", "value": "/engine_size" },
    { "selector": "td:nth-of-type(4)", "value": "/cylinders" },                                   
      { "selector": "td:nth-of-type(5)", "value": "/fuel_type" },
@@ -103,6 +103,7 @@
 	<tbody>
 		<tr>
      <td></td>
+			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
