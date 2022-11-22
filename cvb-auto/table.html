@@ -1,0 +1,65 @@
+<button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader1", "url": "2008_cars_fuel_tax.json"}'>2008 vehicles</button>
+<button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader1", "url": "2007_cars_fuel_tax.json"}'>2007 vehicles</button>
+
+<div id="testLoader1" data-wb-jsonmanager='{
+		"url": "https://wet-boew.github.io/GCWeb/components/wb-doaction/demo/empty.json",
+		"name": "jmanager1"
+	}'>
+
+<table id="tb-test" class="table wb-tables table-striped table-hover" data-wb-tables='{ "ordering" : false}' id="table-filtering-example" data-wb-json='{
+	"url": "#[jmanager1]/addressList",
+	"source": "#tbl4",
+	"trigger": true,
+	"mapping": [
+		{ "selector": "td:nth-of-type(1)", "value": "/make" },
+	{ "selector": "td:nth-of-type(2)", "value": "/model" },
+  { "selector": "td:nth-of-type(3)", "value": "/engine_size" },
+   { "selector": "td:nth-of-type(4)", "value": "/cylinders" },                                   
+     { "selector": "td:nth-of-type(5)", "value": "/fuel_type" },
+    { "selector": "td:nth-of-type(6)", "value": "/transmission" },
+    { "selector": "td:nth-of-type(7)", "value": "/city_range" },
+     { "selector": "td:nth-of-type(8)", "value": "/highway_range" },
+     { "selector": "td:nth-of-type(9)", "value": "/weighted_fuel_consumption" },
+    { "selector": "td:nth-of-type(10)", "value": "/fuel_inefficient_vehicle_tax" }                                                      
+	]
+}'>
+
+	<caption>Binding with the data table plugin <code>wb-tables</code></caption>
+	<thead>
+			<th>Make</th>
+			<th>Model</th>
+			<th>Engine Size (L)</th>
+			<th>CYL</th>
+			<th>Fuel Type</th>
+			<th>Transmission</th>
+			<th>City</th>
+			<th>Highway</th>
+			<th>Fuel Consump.</th>
+			<th>FIVT</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+<template id="tbl4">
+  <table>
+	<thead>
+	
+	</thead>
+	<tbody>
+		<tr>
+     <td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+    </tr>
+	</tbody>
+</table>
+  
+</template>
