@@ -112,6 +112,51 @@
             document.write(wet.builder.refFooter({
             }));
          </script>
-         <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
+      <script>
+wb.doc.on( "wb-ready.wb-tables", function() {
+    Modernizr.load( {
+        load: [
+            "https://cdn.datatables.net/rowgroup/1.1.0/js/dataTables.rowGroup" + wb.getMode() + ".js",
+        ],
+       complete: function() {
+           let selector = "#table-filtering-example", table;
+            if ( $.fn.dataTable.isDataTable( selector ) ) {
+                table = $( selector ).DataTable();
+                new $.fn.dataTable.RowGroup( table, {
+				 retrieve: true,
+                  order: [["make", 'asc'], ["model", 'asc']],
+        rowGroup: {
+            dataSrc: ["make", "model"],
+			className: 'h2'
+        }
+                } 
+				);
+				table.rowGroup().order.fixed({
+					 pre: [ 2, 'asc' ]
+				}).dataSrc(["make", "model"]).draw();
+				
+              
+            }
+		$("#table-filtering-example").find("td[colspan]").parent().attr("aria-hidden","true");	
+				$("#table-filtering-example").find("th[rowspan=2]:nth-child(n+2):nth-child(-n+3), td:not([colspan]):nth-child(n+2):nth-child(-n+3)").addClass("wb-inv");
+table.on("draw.dt", function () {$(this).find("td[colspan]").parent().attr("aria-hidden","true");
+$(this).find("th[rowspan=2]:nth-child(n+2):nth-child(-n+3),td:not([colspan]):nth-child(n+2):nth-child(-n+3)").addClass("wb-inv");
+
+});	
+			
+			
+	
+
+
+		    }
+			
+	
+	
+    } );
+	
+} );	
+	 
+
+		 </script>
       </body>
    </html>
