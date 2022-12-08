@@ -52,8 +52,8 @@
          <main role="main" property="mainContentOfPage" class="container">
           <h1 property="name" id="wb-cont">Automobile data table json</h1>
 <ul class="list-inline mrgn-bttm-lg">
-<li><button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader1", "url": "2008_cars_fuel_tax.json"}'>2008 vehicles</button></li>
-<li><button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader1", "url": "2007_cars_fuel_tax.json"}'>2007 vehicles</button></li>
+<li><button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader1", "url": "2008_cars_fuel_tax.json"}' class="yr-btn">2008 vehicles</button></li>
+<li><button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader1", "url": "2007_cars_fuel_tax.json"}' class="yr-btn">2007 vehicles</button></li>
 
 <div id="testLoader1" data-wb-jsonmanager='{
 		"url": "https://wet-boew.github.io/GCWeb/components/wb-doaction/demo/empty.json",
@@ -146,6 +146,19 @@
             document.write(wet.builder.refFooter({
             }));
          </script>
-         <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
+        <script>
+
+$(".yr-btn").on("click", function() {
+let selector = "#table-filtering-example";
+if ( $.fn.dataTable.isDataTable( selector ) ) {
+table = $( selector ).DataTable();
+
+table.clear().draw();
+}
+
+
+});
+
+</script>
       </body>
    </html>
