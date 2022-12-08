@@ -1,0 +1,42 @@
+
+	<!--<div id="testLoader1" data-wb-jsonmanager='{
+
+		"url": "2007_cars_fuel_tax.json",
+		"name": "jmanager1"
+	}'></div>//-->
+
+
+<table  class="table wb-tables table-striped table-hover" data-wb-tables='{ "ordering" : false, "destroy": true}' id="tbl-ex" data-wb-json='{
+	"url": "2007_cars_fuel_tax.json#/data",
+	"source": "#tbl-template",
+	 "nocache": true,
+	"mapping": [
+	{ "selector": "td:nth-of-type(1) li", "value": "/make", "isHTML": "true"},
+	{ "selector": "td:nth-of-type(2) li", "value": "/model", "isHTML": "true" },
+  { "selector": "td:nth-of-type(3)", "value": "/engine_size" },
+   { "selector": "td:nth-of-type(4)", "value": "/cylinders" },                                   
+     { "selector": "td:nth-of-type(5)", "value": "/fuel_type" },
+    { "selector": "td:nth-of-type(6)", "value": "/transmission" },
+    { "selector": "td:nth-of-type(7) .city-fc", "value": "/city_range","isHTML": "true" },
+     { "selector": "td:nth-of-type(7) .hwy-fc", "value": "/highway_range", "isHTML": "true" },
+     { "selector": "td:nth-of-type(7) .weigh-fc", "value": "/weighted_fuel_consumption", "isHTML": "true" },
+    { "selector": "td:nth-of-type(8) .fvit", "value": "/fuel_inefficient_vehicle_tax", "isHTML": "true" }                                                      
+	]
+}'>
+
+	<caption>2007 type vehicles</caption>
+	<thead>
+	<tr>
+			<th>Make</th>
+			<th>Model</th>
+			<th>Engine Size (L)</th>
+			<th>CYL</th>
+			<th>Fuel Type</th>
+			<th>Transmission</th>
+			
+			<th>Fuel Consump.</th>
+			<th>FIVT</th>
+		</tr>
+	</thead>
+	<tbody id="tbl-tbody"></tbody>
+</table>
