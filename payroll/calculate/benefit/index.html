@@ -94,51 +94,222 @@
 <h1 property="name" id="wb-cont" class="gc-thickline">Determine if a benefit is taxable</h1>
 
     <p>Overview: <a href="what.html">What is a taxable benefit</a></p>
-<p>Before you calculate, you need to: </p>
-		<ul><li> Determine if a benefit is taxable</li> 
-                <li> Calculate the value of the benefit</li></ul>  
- <h2 id="h_2">Types of benefits</h2>
-
-  <h3>Make your selection</h3>
-  <ul class="wb-filter">
-  <li><a href="">Aircraft</a></li>
  
-  <li><a href="automobile.html">Automobile - Standby charges and operating expense benefits</a> <span class="label label-info">In development</span></li>
-  <li><a href="board-expenses.html">Board and lodging expenses </a> <span class="wb-inv">Keywords: Travel</span></li>
-  <li><a href="cell.html">Cell phone and internet services</a> <span class="label label-success">Redesign - Oct 4, 2022</span></li>
-  <li><a href="child.html">Child care expenses</a></li>
-  <li><a href="counselling.html">Counselling services and tax preparation</a> <span class="label label-danger">In review with ABSB - Dec 2022</span></li>
-  <li><a href="disability.html">Disability-related employment benefits</a> <span class="label label-success">Redesign - Oct 5, 2022</span></li>
-  <li><a href="education.html">Educational allowances for children</a></li>
-  <li><a href="ei.html">Employment insurance premium rebate</a></li>
-  <li><a href="gifts.html">Gifts, awards, and long-service awards</a> <span class="label label-warning">Update - Oct 18, 2022</span></li>
-  <li><a href="group.html">Group term life insurance policies</a></li>
-  <li><a href="housing.html">Housing or utilities</a></li>
-  <li><a href="loans.html">Loans and employee debt</a> <span class="label label-info">In development</span></li>
-  <li><a href="income.html">Income maintenance plans and other insurance plans</a></li>
-  <li><a href="loyalty.html">Loyalty or other points programs</a> <span class="label label-success">Redesign - Oct 6, 2022</span></li>
-  <li><a href="meal-expenses.html">Meal expenses </a> <span class="wb-inv">Keywords: Travel</span></li>
-  <li><a href="medical.html">Medical expenses</a></li>
-  <li><a href="merchandise.html">Merchandise discounts and commissions from personal purchases</a> <span class="label label-success">Redesign - Dec 13, 2022</span></li>
- <li><a href="motor-vehicle.html">Motor vehicle - Operating costs, allowances and reimbursements</a> <span class="label label-info">In development</span></li>
-  <li><a href="moving">Moving expenses and relocation benefits</a> <span class="wb-inv">Keywords: Travel</span></li>
-  <li><a href="municipal.html">Municipal officer's expense allowance</a></li>
-  <li><a href="parking.html">Parking</a> <span class="label label-warning">Update - Oct 13, 2022</span> <span class="wb-inv">Keywords: Travel</span></li>
-  <li><a href="premiums.html">Premiums under provincial hospitalization, medical care insurance, and certain Government of Canada plans</a></li>
-  <li><a href="professional.html">Professional membership dues</a> <span class="label label-danger">In review with ABSB - Dec 2022</span></li>
-  <li><a href="recreational.html">Recreational facilities and club dues</a> <span class="label label-danger">In review with ABSB - Dec 2022</span></li>
-  <li><a href="rrsps.html">Registered retirement savings plans (RRSPs)</a></li>
-  <li><a href="scholarships.html">Scholarships, bursaries, tuition, and training</a></li>
-  <li><a href="security.html">Security options</a></li>
-  <li><a href="social.html">Social events and hospitality functions</a> <span class="label label-warning">Update - Oct 18, 2022</span></li>
-  <li><a href="spouse.html">Spouse's or common-law partner's travelling expenses</a> <span class="wb-inv">Keywords: Travel</span></li>
-  <li><a href="tsfa.html">Tax-free savings account (TFSA)</a></li>
-  <li><a href="tickets.html">Tickets</a></li>
-  <li><a href="tool.html">Tool reimbursements, allowances and rental payments</a> <span class="wb-inv">Keywords: power saws tree trimmers forestry apprentice mechanics</span> <span class="label label-danger">In review with ABSB - Dec 2022</span></li>
-  <li><a href="transportation-pass.html">Transportation and airline passes</a> <span class="wb-inv">Keywords: Travel</span> <span class="label label-danger">In review with ABSB - Dec 2022</span></li>
-  <li><a href="travel-expenses.html">Travel expenses </a> <span class="wb-inv">Keywords: Travel</span></li>
-  <li><a href="uniform.html">Uniforms and protective clothing</a></li>
-  </ul>
+<p>Before you calculate, determine if a benefit is taxable and if you need to deduct CPP, EI and income tax.</p> 
+    <form class="wb-tables-filter mrgn-bttm-lg" data-bind-to="table">
+				 
+                     <div class="form-group">
+                        <fieldset class="legend-brdr-bttm">
+                           <legend class="h4">Filter by category</legend>
+                           <ul class="list-unstyled mrgn-bttm-0 colcount-md-2">
+				
+				   <li class="checkbox gc-chckbxrdio mrgn-tp-0">
+                                 <input type="checkbox" id="board-aside"  name="board-aside" value="Board and lodging" data-column="1">
+                                 <label for="board-aside">Board and lodging</label>
+                              </li>   
+				   
+                              <li class="checkbox gc-chckbxrdio"><input type="checkbox" id="job-aside" name="job-aside" value="Job related benefits" data-column="1">
+                                 <label for="job-aside">Job related benefits</label>
+                              </li>
+                              <li class="checkbox gc-chckbxrdio">
+                                 <input type="checkbox" id="personal-aside"  name="personal-aside" value="Personal and family needs" data-column="1">
+                                 <label for="personal-aside">Personal and family needs</label>
+                              </li>
+                             
+                              <li class="checkbox gc-chckbxrdio">
+                                 <input type="checkbox" id="transportation-aside"  name="transportation-aside" value="Transportation" data-column="1">
+                                 <label for="transportation-aside">Transportation</label>
+                              </li>
+                           </ul>
+                        </fieldset>
+                     </div>
+                     <ul class="form-group list-inline">
+                        <li>
+                           <button type="submit" class="btn btn-primary" aria-controls="table">Filter</button>
+                        </li>
+                        <li>
+                           <button type="reset" class="btn btn-link">Reset</button>
+                        </li>
+                     </ul>
+                  </form>
+              
+                  <table id="table" class="wb-tables table table-striped table-hover" data-wb-tables='{"columnDefs": [ { "visible": false, "targets": [ 1 ] } ], "paging": false, "oLanguage": {
+                     "sSearch": "Filter by keyword"
+                     } }'>
+                     <thead>
+                        <tr class="wb-inv">
+                           <th scope="col">
+                              Type of benefits
+                           </th>
+                           <th scope="col">
+                              Category 
+                           </th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                     
+   		                       
+                     
+                        <tr>
+                           <td><a href="cell.html">Cell phone and internet services</a> <span class="label label-success">Redesign - Oct 4, 2022</span>
+ </td>
+                           <td>Job related benefits </td>
+                        </tr>
+			      <tr>
+                           <td><a href="gifts.html">Gifts, awards, and long-service awards</a> <span class="label label-warning">Update - Oct 18, 2022</span> </td>
+                           <td>Job related benefits </td>
+                        </tr>  
+  	<tr>
+                           <td> <a href="income.html">Income maintenance plans and other insurance plans</a></td>
+                           <td>Job related benefits </td>
+                        </tr>
+			     <tr>
+                           <td> <a href="loyalty.html">Loyalty or other points programs</a> <span class="label label-success">Redesign - Oct 6, 2022</span></td>
+                           <td>Job related benefits </td>
+                        </tr>
+			     <tr>
+                           <td><a href="merchandise.html">Merchandise discounts and commissions from personal purchases</a> <span class="label label-success">Redesign - Dec 13, 2022</span>   </td>
+                           <td>Job related benefits </td>
+                        </tr>
+			     <tr>
+                           <td> <a href="municipal.html">Municipal officer's expense allowance</a></td>
+                           <td>Job related benefits </td>
+                        </tr>
+			     <tr>
+                           <td><a href="rrsps.html">Registered retirement savings plans (RRSPs)</a> </td>
+                           <td>Job related benefits </td>
+                        </tr>
+			        <tr>
+                           <td> <a href="security.html">Security options</a></td>
+                           <td>Job related benefits </td>
+                        </tr>
+			        <tr>
+                           <td> <a href="social.html">Social events and hospitality functions</a> <span class="label label-warning">Update - Oct 18, 2022</span></td>
+                           <td>Job related benefits </td>
+                        </tr>
+			        <tr>
+                           <td> <a href="tsfa.html">Tax-free savings account (TFSA)</a></td>
+                           <td>Job related benefits </td>
+                        </tr>
+			        <tr>
+                           <td><a href="tickets.html">Tickets</a> </td>
+                           <td>Job related benefits </td>
+                        </tr>
+			         <tr>
+                           <td> <a href="tool.html">Tool reimbursements, allowances and rental payments</a> <span class="wb-inv">Keywords: power saws tree trimmers forestry apprentice mechanics</span> <span class="label label-danger">In review with ABSB - Dec 2022</span></td>
+                           <td>Job related benefits </td>
+                        </tr>
+			         <tr>
+                           <td> <a href="uniform.html">Uniforms and protective clothing</a></td>
+                           <td>Job related benefits </td>
+                        </tr>
+			      <tr>
+                           <td><a href="board-expenses.html">Board and lodging expenses </a> <span class="wb-inv">Keywords: Travel</span></td>
+                           <td>Board and lodging </td>
+                        </tr>
+			      
+                      <tr>
+                           <td><a href="housing.html">Housing or utilities</a></td>
+                           <td>Board and lodging </td>
+                        </tr>
+                        <tr>
+                           <td><a href="meal-expenses.html">Meal expenses </a> <span class="wb-inv">Keywords: Travel</span></td>
+                           <td>Board and lodging </td>
+                        </tr>
+                       
+                        <tr>
+                           <td><a href="moving">Moving expenses and relocation benefits</a> <span class="wb-inv">Keywords: Travel</span></td>
+                           <td>Board and lodging </td>
+                        </tr>
+		 <tr>
+                           <td><a href="aircraft.html">Aircraft</a>  </td>
+                           <td>Transportation </td>
+                        </tr>
+
+                       
+                        <tr>
+                           <td><a href="automobile.html">Automobile - Standby charges and operating expense benefits</a> <span class="label label-info">In development</span>  </td>
+                           <td>Transportation </td>
+                        </tr>
+                          <tr>
+                           <td> <a href="motor-vehicle.html">Motor vehicle - Operating costs, allowances and reimbursements</a> <span class="label label-info">In development</span> </td>
+                           <td>Transportation </td>
+                        </tr>
+
+		  <tr>
+                           <td> <a href="parking.html">Parking</a> <span class="label label-warning">Update - Oct 13, 2022</span> <span class="wb-inv">Keywords: Travel</span> </td>
+                           <td>Transportation </td>
+                        </tr>
+
+                      
+                        <tr>
+                           <td><a href="spouse.html">Spouse's or common-law partner's travelling expenses</a> <span class="wb-inv">Keywords: Travel</span>  </td>
+                           <td>Transportation </td>
+                        </tr>
+                     
+                          <tr>
+                           <td> <a href="transportation-pass.html">Transportation and airline passes</a> <span class="wb-inv">Keywords: Travel</span> <span class="label label-danger">In review with ABSB - Dec 2022</span> </td>
+                           <td>Transportation </td>
+                        </tr>
+			     <tr>
+                           <td> <a href="travel-expenses.html">Travel expenses </a> <span class="wb-inv">Keywords: Travel</span> </td>
+                           <td>Transportation </td>
+                        </tr>
+			  
+
+			 <tr>
+                           <td> <a href="child.html">Child care expenses</a></td>
+                           <td>Personal and family needs</td>
+                        </tr>
+			 <tr>
+                           <td> <a href="counselling.html">Counselling services and tax preparation</a> <span class="label label-danger">In review with ABSB - Dec 2022</span></td>
+                           <td>Personal and family needs</td>
+                        </tr>
+                      <tr>
+                           <td><a href="disability.html">Disability-related employment benefits</a> <span class="label label-success">Redesign - Oct 5, 2022</span> </td>
+                           <td>Personal and family needs</td>
+                        </tr>
+                        <tr>
+                           <td> <a href="education.html">Educational allowances for children</a></td>
+                           <td>Personal and family needs</td>
+                        </tr>
+			    <tr>
+                           <td> <a href="ei.html">Employment insurance premium rebate</a></td>
+                           <td>Personal and family needs</td>
+                        </tr>
+			<tr>
+                           <td> <a href="group.html">Group term life insurance policies</a></td>
+                           <td>Personal and family needs</td>
+                        </tr> 
+			     <tr>
+                           <td> <a href="loans.html">Loans and employee debt</a> <span class="label label-info">In development</span></td>
+                           <td>Personal and family needs</td>
+                        </tr> 
+			     <tr>
+                           <td><a href="medical.html">Medical expenses</a> </td>
+                           <td>Personal and family needs</td>
+                        </tr> 
+			         <tr>
+                           <td> <a href="premiums.html">Premiums under provincial hospitalization, medical care insurance, and certain Government of Canada plans</a></td>
+                           <td>Personal and family needs</td>
+                        </tr> 
+			         <tr>
+                           <td> <a href="professional.html">Professional membership dues</a> <span class="label label-danger">In review with ABSB - Dec 2022</span></td>
+                           <td>Personal and family needs</td>
+                        </tr> 
+			         <tr>
+                           <td> <a href="recreational.html">Recreational facilities and club dues</a> <span class="label label-danger">In review with ABSB - Dec 2022</span></td>
+                           <td>Personal and family needs</td>
+                        </tr> 
+			       <tr>
+                           <td> <a href="scholarships.html">Scholarships, bursaries, tuition, and training</a></td>
+                           <td>Personal and family needs</td>
+                        </tr> 
+			 
+                      
+
+                     </tbody>
+                  </table>
 
 
             <div id="def-preFooter"></div>
