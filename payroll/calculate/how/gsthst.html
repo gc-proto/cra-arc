@@ -332,7 +332,7 @@
                                  <span class="fas  fa-li"><span class="fas fa-times"></span><span class="wb-inv">multiply by</span></span> <span class="fa-stack text-success">
                                  <span class="far fa-circle fa-stack-2x"></span>
                                  <span class="fas fa-percent fa-stack-1x"></span>
-                                 </span>  <span class="mrgn-tp-0 text-muted h5"> GST/HST calculation (if applicable)</span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5"> Applicable <a href="#gstother" aria-controls="centred-popup" class="wb-lbx" role="button">GST/HST tax fraction&nbsp;<span class="far fa-question-circle"></span></a> </span>
                                  <div class="mrgn-tp-md"></div>
                               </li>
 		<li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
@@ -838,38 +838,27 @@
 </div>
 
 
- <section id="ei-prem" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
-               <header class="modal-header">
-                  <h2 class="modal-title">EI premium rates and maximums</h2>
-               </header>
-               <div class="modal-body">
-	<p class="lead hidden" id="max"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual employee premium" (<strong>column&nbsp;4)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
-	<p class="lead hidden" id="max1"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual insurable earnings" (<strong>column&nbsp;2)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong></p>
-	<p class="lead hidden" id="eirate"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Rate" (<strong>column 3</strong>) that matches the "Year" (<strong>column 1</strong>) </p>			   
-                  <div data-ajax-replace="/cra-arc/payroll/calculate/when/eirates.html #ajax-eirate"></div>
-               </div>
-            </section>
+ <section id="gststand" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">GST/HST rates on automobile standby charges</h2>
+	</header>	<div class="modal-body">
+ <div data-ajax-replace="/cra-arc/payroll/calculate/when/gsthstrates.html #ajax-gststand"></div>		
+	
+	</div></section>
+
+
+<section id="gstoper" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">GST/HST rates on automobile operating expenses</h2>
+	</header>	<div class="modal-body">		
+	<div data-ajax-replace="/cra-arc/payroll/calculate/when/gsthstrates.html #ajax-gstoper"></div>
+	</div></section>
+
+<section id="gstother" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">GST/HST rates on reimbursements other than standby charge or operating expense of an automobile</h2>
+	</header>	<div class="modal-body">		
+	<div data-ajax-replace="/cra-arc/payroll/calculate/when/gsthstrates.html #ajax-gstother"></div>
+	</div></section>
 
 
 
-<section id="redrate" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
-               <header class="modal-header">
-                  <h2 class="modal-title">EI Premium Reduction Program</h2>
-               </header>
-               <div class="modal-body">
-	           <div data-ajax-replace="/cra-arc/payroll/calculate/when/learnei.html #ajax-redrate"></div>
-               </div>
-            </section>
 
 
-            <section id="table" class="mfp-hide modal-dialog modal-content overlay-def modal-xl">
-               <header class="modal-header">
-                  <h2 class="modal-title">When to use EI premiums tables</h2>
-               </header>
-               <div class="modal-body">
-                  <div data-ajax-replace="#ajax-table"></div>
-               </div>
-            </section>
 
 		 
 <nav class="mrgn-bttm-lg mrgn-tp-lg">
