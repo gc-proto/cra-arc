@@ -504,16 +504,34 @@ Consideration </th> </tr> </thead>
 <p>The client is the organisation who is or will be receiving the services of a contractor. They may also be known as the engager, hirer or end client.</p>
 </details>
 
-<div id="contract1"><div class="wb-frmvld gc-font-2019"><form>
 
-<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "noForm": true}'>
+
+
+<div id="contract1">
+<div class="wb-frmvld gc-font-2019"><form method="get">
+
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "noForm": true, "isoptional": true}'>
 <p>At the time of contracting, how did the parties intend to characterize the relationship? </p><ul> 
  <li data-wb-fieldflow='{"action":"ajax", "url": "#employee", "live": true}'>Employer-employee</li>
  <li data-wb-fieldflow='{"action":"ajax", "url": "#self", "live": true}'>Self-employed (indipendent contractor)</li>
  </ul></div>
 
-<div id="employee" class="hidden">
+<section id="employee" >
+<div data-ajax-replace="#ajax-employee"></div>
+</section>
 
+<section id="self" >
+<div data-ajax-replace="#ajax-self"></div>
+</section>
+
+<div id="ajax-employee" class="hidden">
+<div class="row">
+	<div class="col-md-6">
+		<section class="panel panel-default">
+			<header class="panel-heading">
+				<h5 class="panel-title">Result: Indicator that the worker is an employee </h5>
+			</header>
+<div class="panel-body">
 <p>Result: Employee</p>
 <p>The two parties intend to enter into a contract <strong>of</strong> service (COS)</p>
 <p>If the contract of service is in writing, it normally contains information such as:</p>
@@ -529,10 +547,19 @@ Consideration </th> </tr> </thead>
 
 <p>Robert and Heather have entered into a valid verbal contract of service and, as a result, they have an employer-employee relationship. </p>
 </details>
-</div>
 
-<div id="self" class="hidden">
+		</div>
+		</section>
+	</div></div>
 
+
+<div id="ajax-self" class="hidden">
+<div class="col-md-6">
+		<section class="panel panel-default">
+			<header class="panel-heading">
+				<h5 class="panel-title">Result: Indicator that the worker is self-employed </h5>
+			</header>
+		<div class="panel-body">
 <p>Result: Self-employed (indipendent contractor</p>
 <p>The two parties intend to enter into a contract <strong>for</strong> services</p> (CFS)
 
@@ -543,8 +570,13 @@ Consideration </th> </tr> </thead>
 
 <p>In this case, Paul has an agreement to perform specific work for IT Computers Ltd. in return for payment. Paul has entered into a valid contract for services with IT Computers Ltd. and is considered a self-employed individual.</p>
 </details>
-                     </div>
+		</div>
+		</section>
+	</div>
+</div></div>
 
+
+</form></div></div>
  
 
 </li>
