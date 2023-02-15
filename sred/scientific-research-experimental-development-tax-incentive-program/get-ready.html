@@ -212,48 +212,83 @@
 <p class="mrgn-tp-lg"><strong>Corporations</strong></p>
 <p><strong>T2 Corporation Income Tax  Return</strong> is due <strong>6 months</strong> after your tax year end </p>
 
-<form method="get" action="#">             
 <div class="form-group">
-	<label for="taxyearend">Enter your tax year end<span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-	<input class="form-control" type="date" id="enddate" name="enddate" min="2012-01-01" max="2022-12-31" />
-</div>
+    <label for="taxyearend">Enter your tax year end<span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+    <input class="form-control" type="date" id="enddate2" name="enddate2" min="2022-01-01" max="2022-12-31" value="">
+</div>             
 <div>
-<button class="btn btn-primary btn-lg" type="button" data-wb-doaction="{ &quot;action&quot;: &quot;removeClass&quot;, &quot;class&quot;: &quot;hidden&quot;, &quot;source&quot;: &quot;#corp1&quot; }">Get my dates</button>
-</div>
-</form>      
+<button class="btn btn-primary btn-lg" type="button" id="calculate2" data-wb-doaction="[ 
+    { &quot;action&quot;: &quot;removeClass&quot;, &quot;class&quot;: &quot;hidden&quot;, &quot;source&quot;: &quot;#corps1&quot; },
+    { &quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#smallLoader2&quot;, &quot;url&quot;: &quot;doaction-dates-en.json&quot; },
+    { &quot;action&quot;: &quot;withInput&quot;, &quot;srcInput&quot;: &quot;#enddate2&quot;, &quot;actions&quot;: [
+            {
+                &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#smallLoader2&quot;, &quot;match&quot;: &quot;^20[1,2][1,2,3]-[1,0][0-9]-[0,1,2,3][0-9]$&quot;, &quot;default&quot;: &quot;bad-date&quot;,
+                &quot;patches&quot; : [
+                    {
+                    &quot;op&quot;: &quot;copy&quot;,
+                    &quot;path&quot;: &quot;/date&quot;,
+                    &quot;from&quot;: &quot;/corps/{qval}&quot;
+                    }
+                ]
+            }                                                                                        
+        ] }
+    ]">Get my dates</button>
+</div>     
     
-<div id="corp1" class="hidden mrgn-tp-lg">
+<div id="smallLoader2" data-wb-jsonmanager="{
+    &quot;url&quot;:&quot;empty.json&quot;,
+    &quot;name&quot;: &quot;jsonsmall2&quot;,
+    &quot;wait&quot;: true
+    }"></div>
+
+<div id="corps1" class="hidden mrgn-tp-lg">
 <ul class="fa-ul">
-    <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your tax filing due date is: <strong>ABC/NN/NNNN</strong></li>
+    <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your tax filing due date is: <strong><span data-json-replace="#[jsonsmall2]/date">Date not loaded yet</span></strong></li>
 </ul>
 <ul class="fa-ul mrgn-bttm-md">
-    <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your SR&amp;ED reporting deadline is: <strong>ABC/NN/NNNN</strong></li>
+    <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your SR&amp;ED reporting deadline is: <strong><span data-json-replace="#[jsonsmall2]/date">Date not loaded yet</span></strong></li>
 </ul>    
 	<p>However, we recommend your <a href="#deadline">submit your SR&amp;ED claim early</a>, when you file your income taxes.</p>
 </div>
 <p class="mrgn-tp-lg"><strong>Trusts</strong></p>
 <p><strong>T3 Trust Income Tax and Information Return</strong> is due <strong>90 days</strong> after your tax year end </p>
 
-<form method="get" action="#">             
+       
 <div class="form-group">
 	<label for="taxyearend">Enter your tax year end<span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-	<input class="form-control" type="date" id="enddate1" name="enddate1" min="2022-01-01" max="2022-12-31" />
+	<input class="form-control" type="date" id="enddate1" name="enddate1" min="2022-01-01" max="2022-12-31" value="">
 </div>             
 <div>
-<button class="btn btn-primary btn-lg" type="button" data-wb-doaction="[ 
+<button class="btn btn-primary btn-lg" type="button" id="calculate1" data-wb-doaction="[ 
     { &quot;action&quot;: &quot;removeClass&quot;, &quot;class&quot;: &quot;hidden&quot;, &quot;source&quot;: &quot;#trusts1&quot; },
-
-
-]">Get my dates</button>
-</div>
-</form>    
+    { &quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#smallLoader&quot;, &quot;url&quot;: &quot;doaction-dates-en.json&quot; },
+    { &quot;action&quot;: &quot;withInput&quot;, &quot;srcInput&quot;: &quot;#enddate1&quot;, &quot;actions&quot;: [
+            {
+                &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#smallLoader&quot;, &quot;match&quot;: &quot;^20[1,2][1,2,3]-[1,0][0-9]-[0,1,2,3][0-9]$&quot;, &quot;default&quot;: &quot;bad-date&quot;,
+                &quot;patches&quot; : [
+                    {
+                    &quot;op&quot;: &quot;copy&quot;,
+                    &quot;path&quot;: &quot;/date&quot;,
+                    &quot;from&quot;: &quot;/trusts/{qval}&quot;
+                    }
+                ]
+            }                                                                                        
+        ] }
+    ]">Get my dates</button>
+</div> 
              
+<div id="smallLoader" data-wb-jsonmanager="{
+    &quot;url&quot;:&quot;empty.json&quot;,
+    &quot;name&quot;: &quot;jsonsmall&quot;,
+    &quot;wait&quot;: true
+    }"></div>
+
 <div id="trusts1" class="hidden mrgn-tp-lg">
 <ul class="fa-ul">
-    <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your tax filing due date is: <strong>ABC/NN/NNNN</strong></li>
+    <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your tax filing due date is: <strong><span data-json-replace="#[jsonsmall]/date">Date not loaded yet</span></strong></li>
 </ul>
 <ul class="fa-ul mrgn-bttm-md">
-    <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your SR&amp;ED  reporting deadline is: <strong>ABC/NN/NNNN</strong></li>
+    <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your SR&amp;ED  reporting deadline is: <strong><span data-json-replace="#[jsonsmall]/date">Date not loaded yet</span></strong></li>
 </ul>    
 	<p>However, we recommend  your <a href="#deadline">submit your SR&amp;ED claim early</a>, when you file your income taxes.</p>
 </div>
