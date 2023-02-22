@@ -82,7 +82,7 @@
 		"pymnt=b12": [{ "action": "removeClass", "source":"#payment-master, #btn-warning, #business-12-hdr", "class": "hidden" }, { "action": "addClass", "source": "#pymnt-ff, #online-5, #inperson-1, #inperson-4", "class": "hidden" }], 
 		"pymnt=b13": [{ "action": "removeClass", "source": "#payment-master, #btn-warning, #business-13-hdr", "class": "hidden" }, { "action": "addClass", "source": "#pymnt-ff, #online-5, #inperson-1, #inperson-4", "class": "hidden" }],
 		"pymnt=b14": [{ "action": "removeClass", "source":"#payment-master, #btn-warning, #business-14-hdr, #alert-3", "class": "hidden" }, { "action": "addClass", "source": "#pymnt-ff, #online-2, #online-3, #online-4, #online-5, #inperson-1, #inperson-2, #inperson-4, #inperson-5", "class": "hidden" }]}'></div>
-      <form id="pymnt-ff" class="hidden checkbox-lg" onchange="$('html, body').on('change', function() {setTimeout(function(){$('input[type=radio], html, body').animate({scrollTop: $('input[type=radio]').parents('fieldset').next().offset().top}, 200)}, 500)});">
+      <form id="pymnt-ff" class="hidden checkbox-lg" onchange="setTimeout(function(){$('input[type=radio], html, body').animate({scrollTop: $('input[type=radio]').parents().next('fieldset').offset().top}, 200).animate({scrollTop: $('input[type=radio]').parents().next('div#payment-master:not(.hidden)').offset().top}, 200)}, 100);">
 	   <p>You can quickly find what payments methods you can make to the CRA by selecting your account type from the dropdown.</p>
         <p id="pymnt-choose" class="wb-inv">Choose your account type</p>
         <div class="wb-fieldflow  gc-font-2019" data-wb-fieldflow='{"unhideelm": "#pymnt-ff", "renderas": "radio", "gcChckbxrdio":true,
@@ -91,10 +91,10 @@
           <p><span class="h4">You are making a </span></p>
           <ul>
             <li>tax payment as an individual
-				<div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas": "radio", "gcChckbxrdio":true, "default": [{"action": "removeClass", "source": "#pymnt-btn", "class": "hidden", "live": true}], "reset": [{ "action": "addClass", "source":"#payment-master, .hdrs>span, #alert-1, #alert-2, #alert-3, #pymnt-btn", "class": "hidden"}]}'>
+				<div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas": "radio", "gcChckbxrdio":true, "reset": [{ "action": "addClass", "source":"#payment-master, .hdrs>span, #alert-1, #alert-2, #alert-3, #pymnt-btn", "class": "hidden"}]}'>
 					<p>Choose the account type you are paying</p>
               <ul>
-                <li data-wb-fieldflow='[{ "action": "removeClass", "source":"#payment-master, #personal-1-hdr", "class": "hidden" }]'>Personal income tax (T1)</li>
+                <li data-wb-fieldflow='[{ "action": "removeClass", "source":"#payment-master, #personal-1-hdr", "class": "hidden", "live": true }]'>Personal income tax (T1)</li>
                 <li data-wb-fieldflow='[{ "action": "removeClass", "source":"#payment-master, #personal-2-hdr", "class": "hidden" }]'>Part XIII – non-resident withholding tax</li>
               </ul>
 					</div></li>
