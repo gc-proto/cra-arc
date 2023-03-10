@@ -297,28 +297,9 @@
 
 <h2>Steps</h2>
 <ol class="lst-stps stps-strpd">
-<li>
-<h3 id="h_1">Determine if a motor vehicle is an automobile</h3>   
-<p>The CRA defines <strong>motor vehicles</strong> and <strong>automobiles</strong> differently for tax purposes.</p>
-  <p>Answer a few questions to determine if the vehicle is an automobile or a motor vehicle.</p>
-  
-   <!--remove pull-left and mrgn-tp-sm from button contents before pushing to AEM //-->
-   <p><a href="#wizard-mv" class="wb-lbx btn btn-primary btn-lg d-flex max-content" aria-controls="wizard-mv" role="button" data-wb-doaction='{"action": "ajax", "url": "ajax/vehicle-wizard.txt", "container": "#container", "trigger": true}'><span class="fas fa-car fa-2x mrgn-rght-sm d-flex pull-left"></span><span class="d-flex align-self-center pull-left mrgn-tp-sm">Launch vehicle validator</span></a></p>
-<section id="wizard-mv" class="mfp-hide modal-dialog modal-content overlay-def wb-popup-mid">
-	<header class="modal-header">
-		<h2 class="modal-title"><span class="fas fa-car fa-lg mrgn-rght-sm "></span>vehicle validator</h2>
-	</header>
-     <div  id="container"></div>
-	 </section>
-	 
-	 <div data-ajax-replace="automobile.html#automobile-definitions"></div>
-	 		 
- 	<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><span class="fas fa-ban text-danger fa-lg"> </span> If the vehicle is an <strong>automobile</strong>, do not continue to next step. Refer to <a href="https://test.canada.ca/cra-arc/payroll/calculate/benefit/automobile.html">Automobile benefits - Automobile provided by the employer</a> </li>
-<li class="cnjnctn-col"><span class="fas fa-arrow-down text-success fa-lg"> </span> If the vehicle is a <strong>motor vehicle</strong>, continue to <a href="#h_2">Step 2 - Determine if the benefit is taxable</a></li>
-</ul>	 </li>
 
-<li><h3 id="h_2">Determine if the benefit is taxable</h3>
+
+<li><h3 id="step1">Determine if the benefit is taxable</h3>
 <p class="mrgn-bttm-lg">Generally, if your employee uses a motor vehicle to perform their duties of office or employment, the benefit is taxable. Depending on your situation, the benefit may not be taxable under the <a href="#adminpolicy" aria-controls="centred-popup" class="wb-lbx" role="button">CRA's administrative policy&nbsp;<span class="far fa-question-circle"></span></a>. </p>
 
 <h3>Situations</h3>
@@ -574,50 +555,23 @@ $0.49
 <p>Continue to <a href="#doc">Step 3 - Get the required records from your employee to accurately calculate the motor vehicle benefit</a>.</p>
 </details></li>
 
-<li><h3>Get the required records from your employee to accurately calculate the motor vehicle benefit</h3>
-<p id="doc">You must get the required records from your employee to accurately calculate the motor vehicle benefit. The employee must keep a logbook of the trips made with the motor vehicle and must give you a copy.</p>
-<p>The employee must record the following information:</p>
-
-<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col">Total number of days that the motor vehicle was made available them during the year </li>
-<li class="cnjnctn-col">Total number of kilometres travelled (on a daily, weekly or monthly basis) during the number of days that the motor vehicle was made available. </li>
-</ul>
-<details><summary><span class="fas fa-folder-open fa-lg"></span> Required records (logbook) of business and personal use</summary>
-<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col"><h4>Business use information</h4>
-<p>The employee must also record, on a daily basis, for each trip made to perform their duties, the following information:</p>
-
-<ul class="fa-ul">
-<li><span class="fas fa-check fa-lg fa-li text-success"></span> Place of departure and the place of destination </li>
-<li><span class="fas fa-check fa-lg fa-li text-success"></span> Number of kilometres travelled between those two places </li>
-<li><span class="fas fa-check fa-lg fa-li text-success"></span> Any other information to establish that the trip is made by the employee to perform their duties </li>
-</ul></li>
-<li class="cnjnctn-col"><h4>Personal use information</h4>
-<p>If the automobile is used only for <a href="#personal" aria-controls="centred-popup" class="wb-lbx" role="button">personal purposes&nbsp;<span class="far fa-question-circle"></span></a>, the employee must record the following information:</p>
-
-<ul class="fa-ul">
-<li><span class="fas fa-check fa-lg fa-li text-success"></span> Total number of days that the motor vehicle is made available to the employee (or to a person related to the employee) during the year; and </li>
-<li><span class="fas fa-check fa-lg fa-li text-success"></span> Kilometres registered on the odometer at the beginning and end of the year or of each period during which the motor vehicle is made available, on a continuous basis, to the employee </li>
-</ul></li></ul>
-</details>
+<li><h3>Review the required information (logbook) your employee must have kept</h3>
+<div data-ajax-replace="ajax/records-vehicle.txt"></div>
 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-                             
-                              <li class="cnjnctn-col">
-                                 
-                                <p><span class="fas fa-check fa-lg text-success"></span> If the employee <strong>kept the required records and you received a copy</strong>, continue to <a href="#detcalc">Step 4 - Determine the calculation to use</a></p>
+            <li class="cnjnctn-col">   <p><span class="fas fa-ban text-danger fa-lg"></span> If <strong>no</strong> record is kept, calculate the full allowance or reimbursement you made. Continue to <a href="#step5">Step 5 - Withhold payroll deductions and remit GST/HST</a></p>
+ 				                    </li>
+     
+             <li class="cnjnctn-col">
+                                <p><span class="fas fa-check fa-lg text-success"></span> If the employee <strong>kept the required records and you received a copy</strong>, continue to <a href="#step3">Step 3 - Determine the calculation to use</a></p>
 			
 			
                               </li>
-			 <li class="cnjnctn-col">
-                                
-                                <p><span class="fas fa-ban text-danger fa-lg"></span> If the employee <strong>did not</strong> keep the required records or you did not receive a copy, calculate the full allowance or reimbursement you made, continue to <a href="#h_3">Step 6 - Withhold payroll deductions and remit GST/HST</a></p>
- 				
-                              </li>
+			
                            </ul>
 </li>
 <li><h3>Determine the calculation to use </h3>
-<p id="detcalc">You need to determine if you can use the reduced rate calculation or the reasonable allowances rates calculation to calculate the employee's use of the vehicle between<strong> home and work</strong>. You can use the reduced rate calculation if <strong>all</strong> of the following conditions apply:</p>
+<p id="step3">You need to determine if you can use the reduced rate calculation or the reasonable allowances rates calculation to calculate the employee's use of the vehicle between<strong> home and work</strong>. You can use the reduced rate calculation if <strong>all</strong> of the following conditions apply:</p>
 
 <ul class="fa-ul">
 <li><span class="fas fa-check fa-li text-success"></span> The vehicle is <strong>not</strong> an automobile</li>
@@ -644,23 +598,23 @@ $0.49
                              
                               <li class="cnjnctn-col">
                                  
-                                <p><span class="fas fa-check fa-lg text-success"></span> If the benefit provided to the employee meets <strong>all</strong> conditions, continue to <a href="#oper1_1">Step 5a - Calculate <strong>using the reduced rate calculation</strong></a></p>
+                                <p><span class="fas fa-check fa-lg text-success"></span> If the benefit provided to the employee meets <strong>all</strong> conditions, continue to <a href="#step4a">Step 4a - Calculate <strong>using the reduced rate calculation</strong></a></p>
 			
 			
                               </li>
 			 <li class="cnjnctn-col">
                                 
-                                <p><span class="fas fa-ban text-danger fa-lg"></span> If the benefit <strong>does not</strong> meet all conditions, continue to <a href="#oper2">Step 5b - Calculate <strong>using the reasonable allowance rate</strong></a></p>
+                                <p><span class="fas fa-ban text-danger fa-lg"></span> If the benefit <strong>does not</strong> meet all conditions, continue to <a href="#step4b">Step 4b - Calculate <strong>using the reasonable allowance rate</strong></a></p>
  				
                               </li>
                            </ul></li>
 
 <li><h3>Calcule the value of the motor vehicle benefit</h3>
-<p id="oper1">You must calculate the benefit related to cost of the employee's <a href="#personal" aria-controls="centred-popup" class="wb-lbx" role="button">personal use&nbsp;<span class="far fa-question-circle"></span></a> of the vehicle.</p>
+<p id="step4">You must calculate the benefit related to cost of the employee's <a href="#personal" aria-controls="centred-popup" class="wb-lbx" role="button">personal use&nbsp;<span class="far fa-question-circle"></span></a> of the vehicle.</p>
 
 <ol class="lst-stps-sub">
 <li><details><summary>Calculate using the reduced rate calculation</summary>
-<p id="oper1_1">Use the reduced rate calculation ($0,33 fixed rate for 2023 (or $0.29 for 2022) per kilometre for personal use) if <strong>all conditions in <a href="#detcalc">Step 4</a> are met</strong> to calculate the employee's use of the vehicle.</p>
+<p id="oper1_1">Use the reduced rate calculation ($0,33 fixed rate for 2023 (or $0.29 for 2022) per kilometre for personal use) if <strong>all conditions in <a href="#step4">Step 4</a> are met</strong> to calculate the employee's use of the vehicle.</p>
 
 <h3>Calculations</h3>
 <ul class="fa-ul lst-spcd mrgn-tp-md mrgn-bttm-lg mrgn-lft-lg">
@@ -856,7 +810,7 @@ $0.49
 </details></li></ol></li>
 
 
-<li> <h3 id="h_3">Withhold payroll deductions and remit GST/HST</h3>
+<li> <h3 id="step5">Withhold payroll deductions and remit GST/HST</h3>
 <p><strong>If the benefit is taxable, </strong>you must withhold the following deductions<strong>. </strong>The amounts must be included in the pay period they were received or enjoyed. </p>
 <p class="mrgn-bttm-lg">The withholding and remitting requirement depends on the type of remuneration: <a href="#def-cash" aria-controls="centred-popup" class="wb-lbx" role="button">cash&nbsp;<span class="far fa-question-circle"></span></a>, <a href="#def-noncash" aria-controls="centred-popup" class="wb-lbx nowrap" role="button">non-cash&nbsp;<span class="far fa-question-circle"></span></a>, or <a href="#def-nearcash" aria-controls="centred-popup" class="wb-lbx nowrap" role="button">near-cash&nbsp;<span class="far fa-question-circle"></span></a>.</p>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
