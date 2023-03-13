@@ -60,7 +60,7 @@
 <!--Guide: p1 - Personal tax (T1), p2 - COVID 19 Benefit, p3 - Employment Insurance (EI), p4 -Canada Pension Plan (CPP), p5 - Grants and Contributions (G&C), p6 - Operations and Maintenance (O&M), p7 - Apprentic Loan (CAL), p8 - Student Loan (CSL), p9 - Training Allowance (TAPS), b1 - Corporate income tax (T2), b2 - Excise duty (incl cannabis), b3 - Excise tax (exports), b4 - Customs imports, b5 - Air travellers security charge, b6 - Excise tax (within Canada), b7 - Fuel charge, b8 - GST/HST, b9 - Insurance premium (tax), b10 - Luxury tax, b11 - Nova Scotia Workers Compensation Board (NSWCB), b12 - Softwood lumber (tax), b13 - Underused housing tax, b14 - Vaping product (excise duty), c1 - Charity (re-registering), t1 - Trust (T3) debt payment, n1 - Non-resident Part I,  n2 - Non-resident Part XIII, n3 - Non-resident GST/HST security deposit//-->
   <div data-wb-urlmapping='{
 				   
-		"pymnt=p1": [{ "action": "removeClass", "source": "#payment-opts, #reset-dt, #prsnl-tax-1-hdr", "class": "hidden" },{ "action": "addClass", "source": "#pymntsfrm, #pymntsintro", "class": "hidden" }], 
+		"pymnt=p1": [{ "action": "removeClass", "source": "#payment-opts, #reset-dt, #prsnl-tax-1-hdr, #t1-remit, #t1-duedate", "class": "hidden" },{ "action": "addClass", "source": "#pymntsfrm, #pymntsintro", "class": "hidden" }], 
 
 		"pymnt=p2": [{ "action": "removeClass", "source": "#payment-opts, #reset-dt, #prsnl-bnf-1-hdr,#alert-4", "class": "hidden" },{ "action": "addClass", "source": "#pymntsfrm, #pymntsintro", "class": "hidden" }],
 
@@ -124,20 +124,20 @@
   </div>
   <form id="pymntsfrm" class="checkbox-lg gc-font-2019 hidden">
     <p id="pymnt-choose" class="wb-inv">Choose your account type</p>
-    <div class="wb-fieldflow"  data-wb-fieldflow='{"unhideelm": "#pymntsfrm", "noForm": true, "isoptional": true, "renderas": "radio", "gcChckbxrdio":true, "reset": [{ "action": "addClass", "source":"#payment-opts, #hdrs>li, .payment-alert", "class": "hidden"}, { "action": "removeClass", "source":".pymnt-type, .pymnt-prnt, #online-top", "class": "hidden"}]}'>
+    <div class="wb-fieldflow"  data-wb-fieldflow='{"unhideelm": "#pymntsfrm", "noForm": true, "isoptional": true, "renderas": "radio", "gcChckbxrdio":true, "reset": [{ "action": "addClass", "source":"#payment-opts, #hdrs>li, .payment-alert, .remit-note, .duedate-note", "class": "hidden"}, { "action": "removeClass", "source":".pymnt-type, .pymnt-prnt, #online-top", "class": "hidden"}]}'>
       <p>You are making a payment as</p>
       <ul>
         <li>An individual
-          <div class="wb-fieldflow-sub" data-wb-fieldflow='{"isoptional": true, "renderas": "radio", "gcChckbxrdio":true, "reset": [{ "action": "addClass", "source":"#payment-opts, #hdrs>li, .payment-alert", "class": "hidden"}, { "action": "removeClass", "source":".pymnt-type, .pymnt-prnt, #online-top", "class": "hidden"}]}'>
+          <div class="wb-fieldflow-sub" data-wb-fieldflow='{"isoptional": true, "renderas": "radio", "gcChckbxrdio":true, "reset": [{ "action": "addClass", "source":"#payment-opts, #hdrs>li, .payment-alert, .remit-note, .duedate-note", "class": "hidden"}, { "action": "removeClass", "source":".pymnt-type, .pymnt-prnt, #online-top", "class": "hidden"}]}'>
             <p>What type of individual payment are you making</p>
             <ul>
               <li>Personal income tax (T1)
-                <div class="wb-fieldflow-sub" data-wb-fieldflow='{"isoptional": true, "renderas": "radio", "gcChckbxrdio":true, "reset": [{ "action": "addClass", "source":"#payment-opts, #hdrs>li, .payment-alert", "class": "hidden"}, { "action": "removeClass", "source":".pymnt-type, .pymnt-prnt, #online-top", "class": "hidden"}]}'>
+                <div class="wb-fieldflow-sub" data-wb-fieldflow='{"isoptional": true, "renderas": "radio", "gcChckbxrdio":true, "reset": [{ "action": "addClass", "source":"#payment-opts, #hdrs>li, .payment-alert, .remit-note, .duedate-note", "class": "hidden"}, { "action": "removeClass", "source":".pymnt-type, .pymnt-prnt, #online-top", "class": "hidden"}]}'>
                   <p>How are you applying the personal income tax payment</p>
                   <ul>
-                    <li data-wb-fieldflow='[{"action": "removeClass", "source": "#payment-opts,#prsnl-tax-1-hdr", "class": "hidden", "live": true}]'>Debt payment</li>
+                    <li data-wb-fieldflow='[{"action": "removeClass", "source": "#payment-opts,#prsnl-tax-1-hdr, #t1-remit, #t1-duedate", "class": "hidden", "live": true}]'>Debt payment</li>
                     <li data-wb-fieldflow='[{"action": "removeClass", "source": "#payment-opts,#prsnl-tax-1-hdr, #alert-5", "class": "hidden", "live": true}]'>Instalment payment (pre-pay)</li>
-                    <li data-wb-fieldflow='[{"action": "removeClass", "source": "#payment-opts,#prsnl-tax-1-hdr", "class": "hidden", "live": true}]'>Re-assessment debt payment</li>
+                    <li data-wb-fieldflow='[{"action": "removeClass", "source": "#payment-opts,#prsnl-tax-1-hdr, #t1-remit, #t1-duedate", "class": "hidden", "live": true}]'>Re-assessment debt payment</li>
                   </ul>
                 </div>
               </li>
@@ -311,7 +311,22 @@
       <div class="alert alert-info payment-alert hidden" id="alert-10">
         <h2 class="h3">Re-registering a charity application methods</h2>
         <p>Send a cheque or money order payable to the Receiver General for Canada with the application for re-registration. To help process the payment, write the organization’s business number (including the 4-digit RR account identifier) as well as Account 309 on the memo field of your cheque.</p>
-        <dl>
+       <div id="remits">
+	       <h2 class="h3">Remittance vouchers</h2>      
+	<div id="t1-remit" class="remit-note hidden">
+	       <p>You will need remittance voucher XX when you make a t1 income tax payment in these ways:</p>  
+		<ul><li>X</li><li>X</li></ul>
+	      </div>
+	      </div>
+	   <div id="duedates">
+	       <h2 class="h3">Payment dates</h2>      
+	<div id="t1-duedate" class="duedate-note hidden">
+	       <p>Payment for t1 personal income tax payment (or repayment) is due on:</p>  
+		<ul><li>X</li><li>X</li></ul>
+	      </div>
+	      </div>    
+	      
+	      <dl>
           <dt>Online</dt>
           <dd>Upload proof of payment (we recommend uploading a scanned copy of the cheque as an attachment) with the application, and send to:<br>
             Canada Revenue Agency<br>
