@@ -401,6 +401,7 @@
 <li class="cnjnctn-col">it must relate to travel between the work location and a location in Canada or in the country in which the employee is working</li>
 </ul></li>
 </ul>
+<div data-ajax-replace="/cra-arc/payroll/calculate/benefit/board-lodging-expenses.html #ajax-reduce1"></div>
 
 <details><summary>Examples</summary>
 <h4>Example 1 - CRA administrative policy applies</h4>
@@ -438,18 +439,59 @@
 
 <h4>Taxable situation</h4>
 <p>If the benefit <strong>does not</strong> meet <strong>all</strong> of the above conditions, the benefit is taxable.</p>
+<hr>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><span class="fas fa-arrow-down text-success fa-lg"></span> If the benefit is <strong>not</strong> related to housing expenses, continue to: <a href="#step7">Step 7 - Calculate the value of the benefit</a> </li>
+<li class="cnjnctn-col"><span class="fas fa-arrow-down text-success fa-lg"></span> If the benefit is related to <strong>housing</strong> expenses, continue to: <a href="#step6">Step 6 - Determine if your employee is eligible for the reduction</a></li>
+</ul>
 </li>
 
-<li><h3 id="step6">Calculate the value of the benefit</h3>
-<p><strong>If the benefit is taxable</strong>, the value of the benefit is equal to:</p>
+<li><h3 id="step6">Determine if your employee is eligible for the reduction</h3>	
+<div data-ajax-replace="/cra-arc/payroll/calculate/benefit/board-lodging-expenses.html #ajax-reduce2"></div>
+</li>
+
+<li><h3 id="step7">Calculate the value of the benefit</h3>
+<p><strong>If the benefit is taxable</strong>, the value of the benefit is:</p>
+<details><summary>What is the fair market value (FMV)</summary>
+<p>The FMV is the highest price that can be obtained on an open market for a property. This is where the buyer and seller consent to the transaction, are well-informed and are dealing at arm's length.</p>
+<p>The FMV of property or a service does not include GST/HST.</p>
+</details>
+
 <ul class="fa-ul lst-spcd mrgn-bttm-md mrgn-lft-lg">
                                     <li><span class="fa-stack text-success">
                                        <span class="far fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                       </span><span class="mrgn-tp-0 text-muted h5">Fair market value of the benefit received or enjoyed</span> 
+                                       </span><span class="mrgn-tp-0 text-muted h5">Fair market value (FMV) of the housing expense per month</span> 
                                     </li>
 		
-			
+			<li>
+                                       <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                       <span class="far fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                       </span>  <span class="mrgn-tp-0 text-muted h5">Value eligible for the reduction amount in respect of suitability of size (step 5a)</span>
+                                       <div class="mrgn-tp-md"></div>
+                                    </li>
+			<li>
+                                       <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                       <span class="far fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                       </span>  <span class="mrgn-tp-0 text-muted h5">Value eligible for the reduction amount in respect of loss of privacy and quiet enjoyment (step 5b)</span>
+                                       <div class="mrgn-tp-md"></div>
+                                    </li>
+			 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                       <span class="fas fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
+                                       </span> <span class="mrgn-tp-0 text-muted h5">Value of the housing benefit </span></span> 
+                                    </li>
+
+			<li>
+                                 <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5"> Value of the travel expense</span>
+                                 <div class="mrgn-tp-md"></div>
+                              </li>
+
  				<li class="brdr-bttm">
                                        <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
                                        <span class="far fa-circle fa-stack-2x"></span>
@@ -461,22 +503,20 @@
                      	 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
                                        <span class="fas fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                       </span> <span class="mrgn-tp-0 text-muted h5">Value of the benefit <strong>to be included on the T4 slip</strong> using code 40</span></span> 
+                                       </span> <span class="mrgn-tp-0 text-muted h5">Value of the benefit <strong>to be included on the T4 slip in code 40 and in box 14</strong></span></span> 
                                     </li>
-		
                   </ul>
 
 <p>The amounts must be included in the pay period they were received or enjoyed. </p>
-
 </li> 
 
-<li> <h3 id="step7">Withhold payroll deductions and remit GST/HST</h3>
+<li> <h3 id="step8">Withhold payroll deductions and remit GST/HST</h3>
   <p>  <div data-ajax-replace="/cra-arc/payroll/calculate/benefit/ajax/withhold.txt"></div></p>
 
 
 </li> 
 
-<li> <h3 id="step8">Report the benefit on a slip</h3>
+<li> <h3 id="step9">Report the benefit on a slip</h3>
 <div data-ajax-replace="/cra-arc/payroll/calculate/benefit/ajax/report.txt"></div>
 	</li> 	</ol> 
 		 
