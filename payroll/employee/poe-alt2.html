@@ -163,7 +163,7 @@
                           <p class="gc-font-2019 mrgn-tp-md">Where the income is from employment, you need to consider the employee or the employer residency status.</p>
                         </div>
                         <p class="wb-fieldflow-label">What is the residency status?</p>
-                        <p><a href="#residency" aria-controls="residency" class="overlay-lnk" role="button">If you don't know the residency status&nbsp;<span class="far fa-question-circle"></span></a>.</p>
+                        <p><a href="#residency" aria-controls="residency" class="overlay-lnk" role="button">If you don't know the residency status&nbsp;<span class="far fa-question-circle"></span></a></p>
                       </div>
                       <ul>
                         <li>Employee is a resident of Canada
@@ -178,18 +178,32 @@
                             <ul>
                               <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-3yesa", "live": true}'>Yes - Reports physically (in-person) to only 1 establishment</li>
                               <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-3yesb", "live": true}'>Yes - Reports physically (in-person) to more than 1 establishment</li>
-                              <li>No - Does not report physically
+                           <li>No - Does not report physically
+
                                 <div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
                                   <div class="wb-fieldflow-header">
                                     <div class="brdr-tp gc-font-2019 mrgn-bttm-lg">
-                                       <div data-ajax-replace="#ajax-ties"></div>
-                                        
-                                      <div data-ajax-replace="#ajax-attached"></div>
-                                     <div data-ajax-replace="#ajax-attached2"></div>
-                                     
+                                       
+   <p class="gc-font-2019 mrgn-tp-md"><span class="label label-warning"> New CRA administrative policy</span> Where the employee never reports physically, you need to consider if a full-time remote work agreement was made.</p>                                   
                                      
                                     </div>
-                                    <p class="wb-fieldflow-label">After reviewing and weighing the 6 factors above, can the employee be reasonably considered as attached to a specific establishment of the employer? </p>
+
+<p class="wb-fieldflow-label">Was a full-time remote work agreement entered into?</p>
+   <p> <a href="#agreement" aria-controls="centred-popup" class="overlay-lnk" role="button">What is considered a full-time remote work agreement&nbsp;<span class="far fa-question-circle"></span></a> </p>
+                                   
+                                  </div>
+                                  <ul>
+                                    <li>Yes
+
+                                 <div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
+                                  <div class="wb-fieldflow-header">
+                                    <div class="brdr-tp gc-font-2019 mrgn-bttm-lg">
+                      <p class="gc-font-2019 mrgn-tp-md"><span class="label label-warning"> New CRA administrative policy</span> Where a full-time remote work agreement was made, you need to consider if the employee is considered <strong>"attached to an establishment"</strong> of the employer. </p>                                                           
+                                                                                                            
+                                    </div>
+
+                                    <p class="wb-fieldflow-label">Based on the factors to be considered, can you determine if the employee is considered attached to a specific establishment of the employer? </p>
+	<p> <a href="#attached2" aria-controls="centred-popup" class="overlay-lnk" role="button">Determine if the employee is considered to be "attached to an establishment" of the employer&nbsp;<span class="far fa-question-circle"></span></a> </p>
                                   </div>
                                   <ul>
                                     <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-confirma", "live": true}'>Yes</li>
@@ -197,9 +211,10 @@
                                   </ul>
                                 </div>
                               </li>
-                            </ul>
-                          </div>
-                        </li>
+                                    <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-agreementb", "live": true}'>No</li>
+                                  </ul>
+                                </div>
+                             </li></ul></div></li>
                         <li>Employee is not a resident of Canada for the full year
                           <div class="wb-fieldflow-sub"  data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
                             <div class="wb-fieldflow-header">
@@ -240,16 +255,29 @@
                 Employee reports for work physically to more than 1 establishment of the employer</h3>
               <div data-ajax-replace="#ajax-resultperson2"></div>
             </div>
+<div id="ajax-agreementb" class="alert alert-info hidden">
+              <h3><small>Your POE result </small><br>
+                Employee works in Canada but does not report for work (never physically) and does not have a full-time remote work agreement</h3>
+<p><span class="fas fa-ban text-danger fa-lg"></span> If the employee is <strong>not</strong> considered to work remotely full-time, the new CRA administrative policy <strong>does not</strong> apply. </p>
+           <br> 
+  <div data-ajax-replace="#ajax-resultresnot1"></div>
+            </div>
+
             <div id="ajax-confirma" class="alert alert-info hidden">
              <h3><small><span class="label label-warning">New CRA administrative policy</span> <br> Your POE result </small><br>
-                Employee reports for work because they are considered attached to a specific establishment of the employer</h3>
-              <p>
-              <div data-ajax-replace="#ajax-resultperson1"></div>
-              </p>
+                Employee is considered to work remotely full-time and is considered "attached to a specific establishment" of the employer</h3>
+             
+  <p><div data-ajax-replace="#ajax-notapply"></div> </p>
+		   <br>
+	 <p>      <div data-ajax-replace="#ajax-resultperson1"></div> </p>
             </div>
+
             <div id="ajax-confirmb" class="alert alert-info hidden">
               <h3><small>Your POE result </small><br>
-                Employee works in Canada but does not report for work (never physically and not considered attached) at an establishment of the employer</h3>
+                Employee works in Canada but does not report for work (never physically) and not considered "attached at an establishment" of the employer</h3>
+
+<p><span class="fas fa-ban text-danger fa-lg"></span> If the employee is <strong>not</strong> considered "attached at an establishment" of the employer, the new CRA administrative policy <strong>does not</strong> apply. </p>
+ <br>
               <div data-ajax-replace="#ajax-resultresnot1"></div>
             </div>
             <div id="ajax-3nota" class="alert alert-info hidden">
@@ -318,21 +346,29 @@
               </li>            
             </ul>
 <hr>
+<div id="ajax-notapply"> 
 <p><span class="fa fa-balance-scale fa-lg text-muted"></span> This <strong>administrative policy only applies</strong> for determining POE for the purpose of CPP/QPP, EI and income tax deductions. It <strong>does not impact any provincial or federal law</strong> deeming you to have a <strong>permanent establishment</strong> in a province.</p>
-      
+</div>      
 </div>
-  <div id="ajax-attached">       
    <details>
               <summary>Determine if the employee is considered <strong>"attached to an establishment"</strong> of the employer</summary>
+  <div id="ajax-attached">       
   
     <p>To determine if the employee is reasonably considered <strong>"attached to an establishment"</strong> of the employer, all of the relevant facts in your case must be considered.</p>
-<p><span class="fa-stack">    <span class="fas fa-exchange-alt fa-stack-1x"></span>    <span class="fas fa-ban fa-stack-2x text-danger"></span>  </span> You <strong>cannot</strong> use the factors to attach the employee to an establishment of the employer to <strong>avoid source deductions or payroll contributions in any province</strong>. </p>
+<p><span class="fa-stack">    <span class="fas fa-exchange-alt fa-stack-1x"></span>    <span class="fas fa-ban fa-stack-2x text-danger"></span>  </span> You <strong>cannot</strong> use the factors to attach the employee to an establishment of the employer to <strong>avoid source deductions or payroll contributions in any province</strong>. </p></div>
 
 <ol class="lst-stps stps-strpd">
 <li><details><summary>Determine if a <strong>full-time remote work agreement</strong> was entered into</summary>
 		
               <div id="ajax-agreement">
-<p>Generally, the CRA considers a full-time remote work agreement to include <strong>both </strong>temporary and permanent arrangements where an employer <strong>directs or allows </strong>employees to perform their usual employment duties at an approved location away from the regular workplace.</p>
+<p>Generally, the CRA considers a full-time remote work agreement between the employer and the employee when the following arrangements are made:</p>
+
+<ul>
+<li>it is <strong>either </strong>temporary or permanent </li>
+<li>the employer <strong>directs or allows </strong>employees to perform their employment duties <strong>full-time </strong>(100%) remotely </li>
+<li>to an <strong>approved </strong>remote location away from the regular workplace </li>
+</ul>
+<p>The employer must be able to <strong>document </strong>that the full-time remote work agreement was made.</p>
 
 <details><summary>Examples of full-time remote workers by types of industries</summary>
 
@@ -364,9 +400,8 @@
 <br>
 <p>This is because employees may require more person-to-person contact, working with large machinery or have a limited scope for remote work because of different factors.</p>
 
-</li></ul>
-</details>
-              </div>
+</li></ul>  </details></div>
+           
            
      <hr>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
@@ -377,10 +412,12 @@
 </ul>
  </details></li>
 <li><details><summary>Determine where the employee is <strong>considered to be "attached to an establishment"</strong> of the employer</summary>
-<p id="step2">Once you have determine the employee is considered to have a <a href="#agreement" aria-controls="centred-popup" class="overlay-lnk" role="button">full-time remote work agreement&nbsp;<span class="far fa-question-circle"></span></a>, you need to determine where the employee is considered to be "attached to an establishment" of the employer.</p>
+
+<p id="step2">Once you have determine the employee is considered to have a <strong>full-time remote work agreement</strong>, you need to determine where the employee is considered to be "attached to an establishment" of the employer.</p>
+<div id="ajax-attached2"> 
 <p class="mrgn-bttm-md"> <strong>This determination must be done based on a thorough review of the facts in each specific case.</strong></p>
 
-<h4 class="mrgn-tp-lg">Significant factor</h4>
+<h4 class="mrgn-tp-lg">Primary factor</h4>
 <p>The establishment where the employee would physically come to work in person to carry out the functions related to their employment duties. </p>
 <p>For employees who physically reported to an establishment of the employer <strong>immediately before </strong>entering a full-time remote work agreement, that establishment is the one to which they would be considered to be attached. </p>
 <h4>Secondary factors </h4>
@@ -444,11 +481,11 @@
                     <p>Add content or example.</p>
                   </details>
 
-</div> </details>
+</div> </details></div>
               
             
                 
-               </details></li></ol></details></div>
+               </details></li></ol></details>
    		
    		
             
@@ -615,8 +652,7 @@
 	
 </div>
 		   </div>
-				</div>
-				</div>
+				
 
 
 <section id="agreement" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg"><header class="modal-header"><h2 class="modal-title">What is considered a full-time remote work agreement</h2>
@@ -624,8 +660,9 @@
 	<div data-ajax-replace="#ajax-agreement"></div>
 	</div></section>
 
-<section id="attached2" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg"><header class="modal-header"><h2 class="modal-title">6 criteria in order of importance </h2>
-	</header>	<div class="modal-body">		
+<section id="attached2" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg"><header class="modal-header"><h2 class="modal-title">Determine where the employee is considered to be "attached to an establishment" of the employer</h2>
+	</header>	<div class="modal-body">
+	 <div data-ajax-replace="#ajax-attached"></div>
 	<div data-ajax-replace="#ajax-attached2"></div>
 	</div></section>
 
