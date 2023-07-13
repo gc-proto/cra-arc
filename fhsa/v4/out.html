@@ -248,7 +248,7 @@
                <section>
                   <ul class="checkbox-lg checkbox-zebra gc-chckbxrdio">
                      <li class="checkbox">
-                        <input type="checkbox" id="eg1" class="action-checkbox cb-dmm">
+                        <input type="checkbox" id="eg1" name="action-checkbox">
                         <label for="eg1">You must be a first time home buyer for the purposes of making a withdrawal</label>
                         <details class="mrgn-lft-xl mrgn-rght-md mrgn-tp-md">
                            <summary>Who counts as a first-time home buyer when making a withdrawal</summary>
@@ -272,7 +272,7 @@
                         </details>
                      </li>
                      <li class="checkbox">
-                        <input type="checkbox" id="eg2" class="action-checkbox cb-dmm">
+                        <input type="checkbox" id="eg2" name="action-checkbox">
                         <label for="eg2">You must have a written agreement to buy or build a qualifying home with the <strong>acquisition or construction completion date</strong> of the qualifying home <strong>before October 1</strong> of the year following the date of the withdrawal</label>
                         <details class="mrgn-lft-xl mrgn-rght-md mrgn-tp-md">
                            <summary>What counts as a qualifying home</summary>
@@ -303,29 +303,29 @@
                         </details>
                      </li>
                      <li class="checkbox">
-                        <input type="checkbox" id="eg3" class="action-checkbox cb-dmm">
+                        <input type="checkbox" id="eg3" name="action-checkbox">
                         <label for="eg3">You must not have acquired the qualifying home more than 30 days before making the withdrawal</label>
                      </li>
                      <li class="checkbox">
-                        <input type="checkbox" id="eg4" class="action-checkbox cb-dmm">
+                        <input type="checkbox" id="eg4" name="action-checkbox">
                         <label for="eg4">You must be a resident of Canada from the time that you make your first qualifying withdrawal from one of your FHSAs until the earlier of the acquisition of the qualifying home, or the date of your death</label>
                      </li>
                      <li class="checkbox">
-                        <input type="checkbox" id="eg5" class="action-checkbox cb-dmm">
+                        <input type="checkbox" id="eg5" name="action-checkbox">
                         <label for="eg5">You must occupy or intend to occupy the qualifying home as your principal place of residence <strong>within one year</strong> after buying or building it</label>
                      </li>
                      <li class="checkbox">
-                        <input type="checkbox" id="eg6" class="action-checkbox cb-dmm">
+                        <input type="checkbox" id="eg6" name="action-checkbox">
                         <label for="eg6">You must fill our a form and give it to your FHSA issuer</label>
 			     <p class="mrgn-lft-xl mrgn-rght-md mrgn-tp-md"><a href="">RC725, Request to Make a Qualifying Withdrawal from your FHSA</a></p>
                      </li>
                     
                    
-                  <div class="alert alert-info">
+                  <div class="alert alert-info hidden provisional" id="action-not-qualify-msg">
                     <h3>You need all of the above to make a qualifying withdrawal</h3>
 			  <p>If you do not meet all of the conditions above, the amount withdrawn from your FHSA may be a taxable withdrawal. You must include the amount you withdraw as income on your income tax and benefit return for the year the withdrawal is received.</p>
                   </div>
-                  <div class="alert alert-success hidden provisional" id="action-msg1">
+                  <div class="alert alert-success hidden provisional" id="action-qualify-msg">
                     <p>Based on your selections above:</p>
 			  <h3>You meet the conditions for a qualifying withdrawal</h3>
 			  <p>Since you meet all of the conditions above, the amount withdrawn from your FHSA would be a qualifying withdrawal. You do not need to include the amount you withdraw as income on your income tax and benefit return. </p>
@@ -1290,6 +1290,16 @@ Other reason
 <script src="/etc/designs/canada/wet-boew/js/theme.min.js"></script>
 
 <script src="/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
-
+<script>
+	$(":input[type=checkbox][name=action-checkbox]").change(function() { 
+          if $(":input[type=checkbox][name=action-checkbox]:checked").length == $(":input[type=checkbox][name=action-checkbox]").length) {                
+            $("#action-not-qualify-msg").addClass("hidden").removeClass("visible");
+	    $("#action-qualify-msg").removeClass("hidden").addClass("visible");
+          } else {
+            $("#action-qualify-msg").addClass("hidden").removeClass("visible");
+	    $("#action-not-qualify-msg").removeClass("hidden").addClass("visible");
+          }
+        })
+</script>
 </body>
 </html>
