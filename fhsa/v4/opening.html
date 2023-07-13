@@ -409,7 +409,16 @@
                 </li>
             </ul>
 
-</fieldset>	 
+</fieldset>	
+		    <div class="alert alert-info hidden provisional" id="action-not-qualify-msg">
+                    <h3>You need all of the above to make a qualifying withdrawal</h3>
+			  <p>If you do not meet all of the conditions above you would not be a qualifying individual and could not open an FHSA.</p>
+                  </div>
+                  <div class="alert alert-success hidden provisional" id="action-qualify-msg">
+                    <p>Based on your selections above:</p>
+			  <h3>You may qualify to open an FHSA</h3>
+			  <p>If you meet the conditions above you would be a qualifying individual and can open an FHSA.</p>
+                  </div>
 			   
                     <details class="mrgn-lft-xl mrgn-rght-md mrgn-tp-md">
                     <summary>Example: Opening an FHSA the year you turn 18</summary>
@@ -1045,6 +1054,24 @@ Other reason
 <script src="/etc/designs/canada/wet-boew/js/theme.min.js"></script>
 
 <script src="/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
+<script defer>
+	"use strict";
+	
+	let updateCheckboxes = function() { 
+            if ($(":input[type=checkbox][name=action-checkbox]:checked").length === $(":input[type=checkbox][name=action-checkbox]").length) {                
+                $("#action-not-qualify-msg").addClass("hidden").removeClass("visible");
+                $("#action-qualify-msg").removeClass("hidden").addClass("visible");
+            } else {
+                $("#action-qualify-msg").addClass("hidden").removeClass("visible");
+                $("#action-not-qualify-msg").removeClass("hidden").addClass("visible");
+            }
+	};
 
+        if ($(":input[type=checkbox][name=action-checkbox]:checked").length > 0) {
+            updateCheckboxes();
+	}
+
+	$(":input[type=checkbox][name=action-checkbox]").change(function () {updateCheckboxes()});
+</script>
 </body>
 </html>
