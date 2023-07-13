@@ -121,6 +121,41 @@
          width: 9px;
          transform: translate(-185%, 40%) rotate(45deg);
          }
+		 @charset "utf-8";
+/*Fix checkboxes in zebra list*/
+.gc-chckbxrdio>li>input[type=checkbox]+label::before {
+    margin-left: -20px;
+    margin-top: 10px;
+}
+.gc-chckbxrdio>li>input[type=checkbox]+label::after {
+    margin-left: -20px;
+    margin-top: 10px;
+}
+.gc-chckbxrdio>li:nth-child(2n+1)>input[type=checkbox]+label::before {
+    margin-left: 30px;
+    margin-top: 20px;
+    background-color: #fff;
+}
+.gc-chckbxrdio>li:nth-child(2n+1)>input[type=checkbox]+label::after {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+/*fix OR pattern in checklists*/
+[class*=cnjnctn-type-] {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    margin-bottom: 15px;
+    margin-left: -15px; /*was 5*/
+    margin-right: 0px;
+    margin-top: 0px; /*was 15*/
+    position: relative;
+    min-height: 60px;
+}
+/*css to remove OR line for specific pages in dental/housing*/
+[class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child):after {
+    background-image: none !important;
+}	
       </style>
 	      
 	      
@@ -211,7 +246,7 @@
             <section>
                
                <section>
-                  <ul class="checkbox-lg checkbox-zebra">
+                  <ul class="checkbox-lg checkbox-zebra gc-chckbxrdio">
                      <li class="checkbox">
                         <input type="checkbox" id="eg1" class="action-checkbox cb-dmm">
                         <label for="eg1">You must be a first time home buyer for the purposes of making a withdrawal</label>
