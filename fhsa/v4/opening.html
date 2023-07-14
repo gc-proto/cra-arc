@@ -397,7 +397,7 @@
                      </li>
 
   <li class="checkbox mrgn-bttm-lg">
-                        <input type="checkbox" id="eg42" name="action-checkbox" value="additional">
+                        <input type="checkbox" id="eg4" name="action-checkbox" value="additional">
                         <label for="eg4">You are 71 years or younger as of December 31 of the year</label>
                      </li>
 			  
@@ -1090,6 +1090,8 @@ Other reason
 	
 	let chckbxGroupElm = $(":input[type=checkbox][name=action-checkbox]"), 
 	    chckElms = $(":input[type=checkbox][name=action-checkbox]:checked"), 
+            partialChckGroup = $(":input[type=checkbox][name=action-checkbox][value=additional]"),
+            partialChckElms = $(":input[type=checkbox][name=action-checkbox][value=additional]:checked"), 
             updateCheckboxes = function(chkbxGroup, chkbxChecked, validID, invalidID) { 
             if (chkbxGroup.length === chkbxChecked.length) {                
                 $("#" + invalidID).addClass("hidden").removeClass("visible");
@@ -1101,7 +1103,7 @@ Other reason
 	};
 
 	chckbxGroupElm.change(function () {updateCheckboxes(chckbxGroupElm, chckElms, "action-all-qualify-msg", "action-all-not-qualify-msg")});
-//	$(":input[type=checkbox][name=action-additional-checkbox]").change(function () {updateCheckboxes($(":input[type=checkbox][name=action-additional-checkbox]"), $(":input[type=checkbox][name=action-additional-checkbox]:checked"), "action-qualify-msg", "action-not-qualify-msg")});
+	partialChckGroup.change(function () {updateCheckboxes(partialChckGroup, partialChckElms, "action-qualify-msg", "action-not-qualify-msg")});
 </script>
 </body>
 </html>
