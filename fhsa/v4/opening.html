@@ -317,8 +317,8 @@
                   <ul class="checkbox-zebra gc-chckbxrdio">
 
  <li class="checkbox">
-                        <input type="checkbox" id="eg4" name="action-checkbox">
-                        <label for="eg4"><p>You did not live in a qualifying home that you owned or jointly owned</p>
+                        <input type="checkbox" id="eg1" name="action-checkbox" value="true">
+                        <label for="eg1"><p>You did not live in a qualifying home that you owned or jointly owned</p>
 	  <ul class="cnjnctn-type-or mrgn-tp-0">
                                     <li class="cnjnctn-col">
                                         in this calendar year
@@ -358,8 +358,8 @@
                      </li>
 		 
 		   <li class="checkbox">
-                        <input type="checkbox" id="eg5" name="action-checkbox">
-                        <label for="eg5"><p>Your spouse or common-law partner did not live in a qualifying home that they owned or jointly owned</p>
+                        <input type="checkbox" id="eg2" name="action-checkbox" value="true">
+                        <label for="eg2"><p>Your spouse or common-law partner did not live in a qualifying home that they owned or jointly owned</p>
 	  <ul class="cnjnctn-type-or mrgn-tp-0">
                                     <li class="cnjnctn-col">
                                         in this calendar year
@@ -388,8 +388,8 @@
 
 			  
                      <li class="checkbox">
-                        <input type="checkbox" id="eg1" name="action-checkbox">
-                        <label for="eg1">You are 18 years of age or older</label>
+                        <input type="checkbox" id="eg3" name="action-checkbox" value="additional">
+                        <label for="eg3">You are 18 years of age or older</label>
                         <details class="mrgn-lft-xl mrgn-rght-md mrgn-tp-md">
                            <summary>If legal age in your province is 19 years old</summary>
                            <p>In certain provinces and territories, the legal age at which an individual can enter into a contract (which includes opening an FHSA) is 19 years old.</p>
@@ -397,13 +397,13 @@
                      </li>
 
   <li class="checkbox mrgn-bttm-lg">
-                        <input type="checkbox" id="eg2" name="action-checkbox">
-                        <label for="eg2">You are 71 years or younger as of December 31 of the year</label>
+                        <input type="checkbox" id="eg42" name="action-checkbox" value="additional">
+                        <label for="eg4">You are 71 years or younger as of December 31 of the year</label>
                      </li>
 			  
                      <li class="checkbox">
-                        <input type="checkbox" id="eg3" name="action-checkbox">
-                        <label for="eg3">You are a resident of Canada</label>
+                        <input type="checkbox" id="eg5" name="action-checkbox" value="additional">
+                        <label for="eg5">You are a resident of Canada</label>
                         <details class="mrgn-lft-xl mrgn-rght-md mrgn-tp-md">
                            <summary>If you become a non-resident after opening an FHSA</summary>
                            	<p>If you become a non-resident of Canada after you open your FHSA, you can continue to participate normally in your FHSA, with one exception:</p>
@@ -413,7 +413,16 @@
 <p>One of the requirements of a qualifying withdrawal is that you must be a resident of Canada throughout the period that begins with the date of the first qualifying withdrawal and ends with the date of acquisition of the qualifying home.</p>
 <p>If you are a non-resident of Canada, any taxable withdrawal from your FHSA will be subject to withholding tax in the year of withdrawal.</p>
 
-    
+
+		 <div class="alert alert-info hidden provisional" id="action-all-not-qualify-msg">
+                    <h3>You need all of the above to make a qualifying withdrawal</h3>
+			  <p>If you do not meet all of the conditions above you would not be a qualifying individual and could not open an FHSA.</p>
+                  </div>
+                  <div class="alert alert-success hidden provisional" id="action-all-qualify-msg">
+                    <p>Based on your selections above:</p>
+			  <h3>You may qualify to open an FHSA</h3>
+			  <p>If you meet the conditions above you would be a qualifying individual and can open an FHSA.</p>
+                  </div>    
 
 
 <div class="mwsalerts section">
@@ -1079,17 +1088,20 @@ Other reason
 <script defer>
 	"use strict";
 	
-	let updateCheckboxes = function() { 
-            if ($(":input[type=checkbox][name=action-checkbox]:checked").length === $(":input[type=checkbox][name=action-checkbox]").length) {                
-                $("#action-not-qualify-msg").addClass("hidden").removeClass("visible");
-                $("#action-qualify-msg").removeClass("hidden").addClass("visible");
+	let chckbxGroupElm = $(":input[type=checkbox][name=action-checkbox]"), 
+	    chckElms = $(":input[type=checkbox][name=action-checkbox]:checked"), 
+            updateCheckboxes = function(chkbxGroup, chkbxChecked, validID, invalidID) { 
+            if (chkbxGroup.length === chkbxChecked.length) {                
+                $("#" + invalidID).addClass("hidden").removeClass("visible");
+                $("#" + validID).removeClass("hidden").addClass("visible");
             } else {
-                $("#action-qualify-msg").addClass("hidden").removeClass("visible");
-                $("#action-not-qualify-msg").removeClass("hidden").addClass("visible");
+                $("#" + validID).addClass("hidden").removeClass("visible");
+                $("#" + invalidID).removeClass("hidden").addClass("visible");
             }
 	};
 
-	$(":input[type=checkbox][name=action-checkbox]").change(function () {updateCheckboxes()});
+	chckbxGroupElm.change(function () {updateCheckboxes(chckbxGroupElm, chckElms, "action-all-qualify-msg", "action-all-not-qualify-msg")});
+//	$(":input[type=checkbox][name=action-additional-checkbox]").change(function () {updateCheckboxes($(":input[type=checkbox][name=action-additional-checkbox]"), $(":input[type=checkbox][name=action-additional-checkbox]:checked"), "action-qualify-msg", "action-not-qualify-msg")});
 </script>
 </body>
 </html>
