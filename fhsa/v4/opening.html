@@ -1076,8 +1076,10 @@ Other reason
         updateChkbx($(":input[type=checkbox][name=action-checkbox][value=true]"), $(":input[type=checkbox][name=action-checkbox][value=true]:checked"), "action-qualify-msg", "action-not-qualify-msg");
     };
     
-    window.onload = updateChkbxList;
-    window.onload = updatePartChkbxList;
+    window.onload = function () {
+        updateChkbxList;
+        updatePartChkbxList;
+    }
 
     $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
     $(":input[type=checkbox][name=action-checkbox][value=true]").change(updatePartChkbxList);
