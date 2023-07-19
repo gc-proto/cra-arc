@@ -1189,8 +1189,10 @@ Other reason
             $("#" + invalidID).removeClass("hidden").addClass("visible");
         }
     }, 
-    updateChkbxList = updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-qualify-msg", "action-not-qualify-msg");
-
+    updateChkbxList = function () {
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-qualify-msg", "action-not-qualify-msg");
+    };
+   
     window.onload = updateChkbxList;
 
     $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
