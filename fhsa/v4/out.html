@@ -1190,9 +1190,11 @@ Other reason
             }
 	};
 
-        if ($(":input[type=checkbox][name=action-checkbox]:checked").length > 0) {
-            updateCheckboxes();
-	}
+	window.onpopstate = function () {
+            if ($(":input[type=checkbox][name=action-checkbox]:checked").length > 0) {
+                updateCheckboxes();
+	    }
+	};
 
 	$(":input[type=checkbox][name=action-checkbox]").change(function () {updateCheckboxes()});
 </script>
