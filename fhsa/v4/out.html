@@ -1180,8 +1180,7 @@ Other reason
 <script defer>
     "use strict";
     
-    let chckbxGroupElm = $(":input[type=checkbox][name=action-checkbox]"), 
-    updateChkbx = function(chkbxGroup, chkbxChecked, validID, invalidID) { 
+    let updateChkbx = function(chkbxGroup, chkbxChecked, validID, invalidID) { 
         if (chkbxGroup.length === chkbxChecked.length) {                
             $("#" + invalidID).addClass("hidden").removeClass("visible");
             $("#" + validID).removeClass("hidden").addClass("visible");
@@ -1190,17 +1189,11 @@ Other reason
             $("#" + invalidID).removeClass("hidden").addClass("visible");
         }
     }, 
-    updateChkbxList = function () {
-        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-qualify-msg", "action-not-qualify-msg");
-    };
+    updateChkbxList = updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-qualify-msg", "action-not-qualify-msg");
 
     window.onload = updateChkbxList;
-//            if ($(":input[type=checkbox][name=action-checkbox]:checked").length > 0) {
-//                updateCheckboxes();
-//        }
 
     $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
-//    $(":input[type=checkbox][name=action-checkbox]").change(function () {updateCheckboxes()});
 </script>
 </body>
 </html>
