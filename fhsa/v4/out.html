@@ -318,9 +318,13 @@
                  <p class="mrgn-lft-xl mrgn-rght-md mrgn-tp-md"><a href="">RC725, Request to Make a Qualifying Withdrawal from your FHSA</a></p>
                      </li>
                     
-                   
-                  <div class="alert alert-info hidden provisional" id="action-not-qualify-msg">
+                  <div class="alert alert-info provisional" id="action-default-msg">
                     <h3>You need all of the above to make a qualifying withdrawal</h3>
+              <p>If you do not meet all of the conditions above, the amount withdrawn from your FHSA may be a taxable withdrawal. You must include the amount you withdraw as income on your income tax and benefit return for the year the withdrawal is received.</p>
+                  </div>
+                  <div class="alert alert-warning hidden provisional" id="action-not-qualify-msg">
+                    <p>Based on your selections above:</p>
+              <h3>You may not meet the conditions for a qualifying withdrawal</h3>
               <p>If you do not meet all of the conditions above, the amount withdrawn from your FHSA may be a taxable withdrawal. You must include the amount you withdraw as income on your income tax and benefit return for the year the withdrawal is received.</p>
                   </div>
                   <div class="alert alert-success hidden provisional" id="action-qualify-msg">
@@ -1180,17 +1184,19 @@ Other reason
 <script defer>
     "use strict";
     
-    let updateChkbx = function(chkbxGroup, chkbxChecked, validID, invalidID) { 
-        if (chkbxGroup.length === chkbxChecked.length) {                
+    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
+        if (chkbxGroup.length === chkbxChecked.length) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
             $("#" + invalidID).addClass("hidden").removeClass("visible");
             $("#" + validID).removeClass("hidden").addClass("visible");
-        } else {
+        } else if (chkbxChecked.length > 0) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
             $("#" + validID).addClass("hidden").removeClass("visible");
             $("#" + invalidID).removeClass("hidden").addClass("visible");
         }
     }, 
     updateChkbxList = function () {
-        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-qualify-msg", "action-not-qualify-msg");
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-deafult-msg", "action-qualify-msg", "action-not-qualify-msg");
     };
    
     window.onload = updateChkbxList;
