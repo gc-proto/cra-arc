@@ -372,7 +372,12 @@
           </ul>
          </fieldset>
 
-         <div class="alert alert-info hidden provisional" id="action-not-qualify-msg">
+                  <div class="alert alert-info provisional" id="action-default-msg">
+                    <p>Based on your selections above:</p>
+                    <h3>You need all of the above to qualify to open a FHSA</h3>
+                    <p>You are not a qualifying first-time home buyer for the purpose of opening an FHSA.</p>
+                  </div>
+                  <div class="alert alert-warning hidden provisional" id="action-not-qualify-msg">
                     <p>Based on your selections above:</p>
                     <h3>You need all of the above to qualify to open a FHSA</h3>
                     <p>You are not a qualifying first-time home buyer for the purpose of opening an FHSA.</p>
@@ -413,7 +418,11 @@
 </fieldset>    
 
 
-         <div class="alert alert-info hidden provisional" id="action-all-not-qualify-msg">
+             <div class="alert alert-info provisional" id="action-all-default-msg">
+                    <h3>You need all of the above to open an FHSA</h3>
+              <p>If you do not meet all of the conditions above you would not be a qualifying individual and could not open an FHSA.</p>
+                  </div>
+             <div class="alert alert-warning hidden provisional" id="action-all-not-qualify-msg">
                     <h3>You need all of the above to open an FHSA</h3>
               <p>If you do not meet all of the conditions above you would not be a qualifying individual and could not open an FHSA.</p>
                   </div>
@@ -1060,20 +1069,26 @@ Other reason
 <script defer>
     "use strict";
     
-    let updateChkbx = function(chkbxGroup, chkbxChecked, validID, invalidID) { 
-        if (chkbxGroup.length === chkbxChecked.length) {                
+    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) { 
+        if (chkbxChecked.length === 0) {
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + defaultID).removeClass("hidden").addClass("visible");
+        } else if (chkbxGroup.length === chkbxChecked.length) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
             $("#" + invalidID).addClass("hidden").removeClass("visible");
             $("#" + validID).removeClass("hidden").addClass("visible");
         } else {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
             $("#" + validID).addClass("hidden").removeClass("visible");
             $("#" + invalidID).removeClass("hidden").addClass("visible");
         }
     },
     updateChkbxList = function () {
-        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-all-qualify-msg", "action-all-not-qualify-msg");
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-all-default-msg", "action-all-qualify-msg", "action-all-not-qualify-msg");
     }, 
     updatePartChkbxList = function () {
-        updateChkbx($(":input[type=checkbox][name=action-checkbox][value=true]"), $(":input[type=checkbox][name=action-checkbox][value=true]:checked"), "action-qualify-msg", "action-not-qualify-msg");
+        updateChkbx($(":input[type=checkbox][name=action-checkbox][value=true]"), $(":input[type=checkbox][name=action-checkbox][value=true]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
     };
     
     window.onload = function () {
