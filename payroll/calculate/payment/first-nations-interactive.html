@@ -406,9 +406,10 @@ Indian Act</h3>
             </div>
 
             <div id="ajax-1b" class="alert alert-info hidden">
-              <h3><small>Your POE result </small><br>
-                POE for non-employment income <small>for example, pension income, retiring allowances, RRSP and CPP/QPP</small></h3>
-              <div data-ajax-replace="#ajax-resultnon"></div>
+              <h3><small>Your result </small><br>
+                Non-employment income <small>for example, pension income, retiring allowances, RRSP and CPP/QPP</small></h3>
+            <div data-ajax-replace="#ajax-self"></div>
+		    <div data-ajax-replace="#ajax-t4areport"></div>
             </div>
             <div id="ajax-3yesa" class="alert alert-info hidden">
               <h3><small>Your POE result </small><br>
@@ -1074,6 +1075,7 @@ Indian Act</h3>
 <p class="mrgn-bttm-lg">You must withhold and remit the deductions depending on <strong>who</strong> you made the payment to and the <strong>type of remuneration</strong>: <a href="#def-cash" aria-controls="centred-popup" class="wb-lbx" role="button">cash&nbsp;<span class="far fa-question-circle"></span></a>, <a href="#def-noncash" aria-controls="centred-popup" class="wb-lbx nowrap" role="button">non-cash&nbsp;<span class="far fa-question-circle"></span></a>, or <a href="#def-nearcash" aria-controls="centred-popup" class="wb-lbx nowrap" role="button">near-cash&nbsp;<span class="far fa-question-circle"></span></a>:</p>
 
 <details><summary>Payment made to an employee</summary>
+<div id="ajax-employee">
 <p>You must withhold the following deductions:</p>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
  <li class="cnjnctn-col">
@@ -1111,16 +1113,19 @@ Indian Act</h3>
 
 <p>CPP <strong>is only </strong>withheld on the portion of the income that is taxable. Where the income is not taxable, CPP is <strong>not </strong>withheld, <strong>except </strong>if the employer has filed a <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/cpt124.html">CPT124</a> election - Application to Cover the Employment of an Indian in Canada under the Canada Pension Plan whose Income is Exempt under the Income Tax Act.</p>
 <p>If the employer chooses not to apply for coverage, an <strong>Indian </strong>can elect to pay <strong>CPP </strong>on tax-exempt earnings on Form <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/cpt20.html">CPT20</a>, Election to Pay Canada Pension Plan Contributions when filing their personal income tax return.</p>
-
+ </div>
 </details>
 
 <details><summary>Payment made to a self-employed worker</summary>
-
+<div id="ajax-self">
 <p>Add info here</p>
+ </div>
 </details>
 
 <details><summary>Payment made to a person or partnership that was a shareholder</summary>
+<div id="ajax-person">
 <p>Add info here</p>
+ </div>
 </details>
 
 <p><span class="fas fa-calculator fa-xl text-muted"></span> Learn more: <a href="/cra-arc/payroll/calculate/how/index.html">How to calculate - Calculate payroll deductions and contributions</a></p>
@@ -1130,8 +1135,8 @@ Indian Act</h3>
 <li><h3 id="h_6">Report the payment on a slip</h3>
 <p class="mrgn-bttm-lg">You must report using the following slip depending on <strong>who</strong> you made the payment to:</p>
  <details><summary>T4 slip - Payment made to an employee</summary> 
-
-	<p>Report on: </p>
+<div id="ajax-t41report">
+	<p>Report on on a T4 slip payment made to an employee: </p>
         <ul class="fa-ul">
                        <li><span class="fas fa-check fa-li text-success"></span>Box 14 - Employment Income, on the portion of the taxable income</li>
                         <li><span class="fas fa-check fa-li text-success"></span>Box 24 - EI insurable earnings, on the portion of the taxable income</li>
@@ -1144,11 +1149,12 @@ Indian Act</h3>
 		 <li><span class="fas fa-check fa-li text-success"></span>Code 71 – Indian (tax-exempt income) – Employment</li>
 		
                      </ul>
+	 </div>
   </details>
 
  <details><summary>T4 slip - Payment made to a self-employed worker</summary> 
-   
-	<p>Report the self-employment income you paid to a person who is registered, or entitled to be registered under the Indian Act who is a self-employed fisher , a self-employed barber or hairdresser , or a self-employed taxi driver and driver of other passenger-carrying vehicles: </p>
+   <div id="ajax-t42report">
+	<p>Report on a T4 slip the self-employment income you paid to a person who is registered, or entitled to be registered under the Indian Act who is a self-employed fisher , a self-employed barber or hairdresser , or a self-employed taxi driver and driver of other passenger-carrying vehicles: </p>
         <ul class="fa-ul">
                        <li><span class="fas fa-check fa-li text-success"></span>Box 14 - Employment Income, on the portion of the taxable income</li>
                         <li><span class="fas fa-check fa-li text-success"></span>Box 24 - EI insurable earnings, on the portion of the taxable income</li>
@@ -1161,10 +1167,11 @@ Indian Act</h3>
 
 
                      </ul>
+	   </div>
   </details>
  <details><summary>T4A slip - Payment made to a person or partnership that was a shareholder</summary> 
-
-    <p>Report on: </p> <ul class="fa-ul">
+<div id="ajax-t4areport">
+    <p>Report on a T4A slip the payment made to a person or partnership that was a shareholder: </p> <ul class="fa-ul">
 	     <li><span class="fas fa-check fa-li text-success"></span> Box 016 – Pension or superannuation, on the portion of the taxable income</li>
 	     <li><span class="fas fa-check fa-li text-success"></span> Box 018 – Lump-sum payments, on the portion of the taxable income</li>
              <li><span class="fas fa-check fa-li text-success"></span> Code 144 – Indian (exempt income) – Other income</li>
@@ -1173,6 +1180,7 @@ Indian Act</h3>
 	     <li><span class="fas fa-check fa-li text-success"></span> Code 195 – Indian (exempt income) – PRPP payments</li>
 	   
                      </ul>
+ </div>
   </details>
 
 	<p><span class="fas fa-file-invoice fa-xl text-muted"></span> Learn more: <a href="/cra-arc/payroll/file/complete.html">Fill out the slips and summaries - File information returns (slips and summaries)</a> </p>
