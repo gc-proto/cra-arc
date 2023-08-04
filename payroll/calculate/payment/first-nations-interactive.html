@@ -281,7 +281,8 @@
           <div class="wb-frmvld gc-font-2019">
             <form>
               <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "noForm": true, "isoptional": true}'>
-	 <p>Select the situation</p>
+	 <p>Select the situation </p>
+ <div data-ajax-replace="#ajax-reg"></div>
 		 <ul>
 <li>Worker registered under the Indian Act
 <div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
@@ -372,9 +373,9 @@
                   </li>
                   <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-1b", "live": true}'>Non-employment income (for example: pension income, retiring allowances, RRSP and CPP/QPP)</li>
                 </ul> </div></li>
-	<li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-0b", "live": true}'>The worker is a treaty beneficiary of a First Nation with a final or self-government agreement that ends the tax exemption under section 87 of the 
+	<li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-0b", "live": true}'>Worker is a treaty beneficiary of a First Nation with a final or self-government agreement that ends the tax exemption under section 87 of the 
 Indian Act</li>
-	<li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-0c", "live": true}'>The worker is not registered under the Indian Act</li></ul>
+	<li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-0c", "live": true}'>Worker is not registered under the Indian Act</li></ul>
               </div>
             </form>
           </div>
@@ -382,14 +383,16 @@ Indian Act</li>
 
 <div id="ajax-0b" class="alert alert-info hidden">
               <h3><small>Your result </small><br>
-                You are a treaty beneficiary of a First Nation with a final or self-government agreement that ends the tax exemption under section 87 of the 
-Indian Act?</small></h3>
+                The worker is a treaty beneficiary of a First Nation with a final or self-government agreement that ends the tax exemption under section 87 of the 
+Indian Act</small></h3>
             <p> The worker is not exempt in this situation. To confirm the effective date of the agreements and the expiry dates: <a href="https://www.canada.ca/en/revenue-agency/services/indigenous-peoples/information-indians.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_tax-indigenous-end-dates">Information on the tax exemption under section 87 of the Indian Act</a>.</p>
-            </div>
+ <div data-ajax-replace="#ajax-notreg"></div>         
+  </div>
 <div id="ajax-0c" class="alert alert-info hidden">
-              <h3><small>Your XXX result </small><br>
-                POE for non-employment income <small>for example, pension income, retiring allowances, RRSP and CPP/QPP</small></h3>
-              <div data-ajax-replace="#ajax-resultnon"></div>
+              <h3><small>Your result </small><br>
+               The worker is not registered under the Indian Act</small></h3>
+ <p> The worker is not exempt in this situation.</p>
+               <div data-ajax-replace="#ajax-notreg"></div>
             </div>
 
             <div id="ajax-1b" class="alert alert-info hidden">
@@ -814,6 +817,7 @@ Indian Act?</small></h3>
   <ol class="lst-stps stps-strpd">
   <li>             
 <h3 id="h_1">Determine if the worker is registered with Indigenous Services Canada (ISC) </h3>
+<div id="ajax-reg">
 <p>You must determine if the worker is registered with ISC and their effective date for registration. </p>
 
 <p>The CRA requires proof of registration with ISC. The effective date for registration means the date that the First Nations worker is eligible for the tax exemption under section 87 of the Indian Act on the income they earn on a reserve.</p>
@@ -821,13 +825,14 @@ Indian Act?</small></h3>
 <p>ISC is responsible for the Indian Register and is the only one authorized to issue a "certificate of Indian status" to an individual.</p>
 
 <p>Learn more on how to prove registration from ISC: <a href="https://www.sac-isc.gc.ca/eng/1100100032463/1572459644986#sec6">How to prove registration</a>  </p> 
+</div>
 <hr>
 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col"><p><span class="fas fa-ban text-danger fa-lg"></span> If the worker <strong>does not</strong> have proof of registration, <strong>do not</strong> continue to next step.</p> 
-
+  <div id="ajax-notreg">
 <p>You must deduct CPP, EI and income tax the same as regular workers. </p> 
-<p> The exemption under section 87 only applies to a worker who is registered or entitled to be registered under the Indian Act. </p> </li>
+<p> The exemption under section 87 only applies to a worker who is registered or entitled to be registered under the Indian Act. </p> </div></li>
 <li class="cnjnctn-col"><span class="fas fa-arrow-down text-success fa-lg"></span> If the worker has proof of registration, continue to <a href="#step2">Step 2 - Determine if ???</a>.</li>
 </ul>
 	
