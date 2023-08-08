@@ -311,7 +311,8 @@
 
                       </div>
                       <ul>
-                        <li>Worker lives on a reserve and you are (employer or payer) resident on a reserve
+		<li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-2c", "live": true}'>Worker lives on a reserve and you are (employer or payer) resident on a reserve</li>
+                        <li>Worker lives on a reserve and you (employer or payer) are not resident on a reserve
                           <div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
                             <div class="wb-fieldflow-header">
                               <div class="brdr-tp">
@@ -359,7 +360,7 @@
                                   </ul>
                                 </div>
                              </li></ul></div></li>
-                        <li>Employee is not a resident of Canada for the full year
+                        <li>Employee does not live on a reserve and you (employer or payer) are resident on a reserve
                           <div class="wb-fieldflow-sub"  data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
                             <div class="wb-fieldflow-header">
                               <div class="brdr-tp gc-font-2019">
@@ -374,7 +375,23 @@
                             </ul>
                           </div>
                         </li>
-                        <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-2c", "live": true}'>Worker lives on a reserve and you are (employer or payer) resident on a reserve</li>
+		<li>Employee does not live on a reserve and you are not resident on a reserve but your employee is required to 
+perform duties on a reserve
+                          <div class="wb-fieldflow-sub"  data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
+                            <div class="wb-fieldflow-header">
+                              <div class="brdr-tp gc-font-2019">
+                                <div data-ajax-replace="#ajax-nonres"></div>
+                              </div>
+                              <p class="wb-fieldflow-label">What is the situation of the employee?</p>
+                            </div>
+                            <ul>
+                              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-4nota", "live": true}'>Option 1</li>
+                              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-4notb", "live": true}'>Option 2 </li>
+                              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-4notc", "live": true}'>Option 3</li>
+                            </ul>
+                          </div>
+                        </li>
+                        
                       </ul>
                     </div>
                   </li>
@@ -452,35 +469,11 @@ Indian Act</h3>
                 Employee reports for work physically to more than 1 establishment of the employer</h3>
               <div data-ajax-replace="#ajax-resultperson2"></div>
             </div>
-<div id="ajax-agreementb" class="alert alert-info hidden">
-              <h3><small>Your result </small><br>
-                Employee works in Canada but does not report for work (never physically) and does not have a full-time remote work agreement</h3>
-<p><span class="fas fa-ban text-danger fa-lg"></span> If the employee is <strong>not</strong> considered to work remotely full-time, the new CRA administrative policy <strong>does not</strong> apply. </p>
-           <br> 
-  <div data-ajax-replace="#ajax-resultresnot1"></div>
-            </div>
 
-            <div id="ajax-confirma" class="alert alert-info hidden">
-             <h3><small><span class="label label-warning">New CRA administrative policy</span> <br> Your POE result </small><br>
-                Employee is considered to work remotely full-time and is reasonably considered "attached to an establishment of the employer"</h3>
-             
-  <p><div data-ajax-replace="#ajax-notapply"></div> </p>
- <p><div data-ajax-replace="#ajax-warning"></div> </p>
-		 <hr> 
-	<p>The POE is where the <strong>employee is considered attached</strong>.</p>
-		<p>      <div data-ajax-replace="#ajax-resultperson1"></div> </p>
-            </div>
 
-            <div id="ajax-confirmb" class="alert alert-info hidden">
-              <h3><small>Your POE result </small><br>
-                Employee works in Canada but does not report for work (never physically) and not considered "attached to an establishment of the employer"</h3>
-
-<p><span class="fas fa-ban text-danger fa-lg"></span> If the employee is <strong>not</strong> considered "attached to an establishment of the employer", the new CRA administrative policy <strong>does not</strong> apply. </p>
- <br>
-              <div data-ajax-replace="#ajax-resultresnot1"></div>
-            </div>
+           
             <div id="ajax-3nota" class="alert alert-info hidden">
-              <h3><small>Your POE result </small><br>
+              <h3><small>Your result </small><br>
                 Employee is a non-resident, including a commuter</h3>
               <div data-ajax-replace="#ajax-resultnonres1"></div>
             </div>
@@ -490,7 +483,23 @@ Indian Act</h3>
               <div data-ajax-replace="#ajax-resultnonres2"></div>
             </div>
             <div id="ajax-3notc" class="alert alert-info hidden">
-              <h3><small>Your POE result </small><br>
+              <h3><small>Your result </small><br>
+                Employee is a deemed resident or sojourner</h3>
+              <div data-ajax-replace="#ajax-resultnonres3"></div>
+            </div>
+
+   <div id="ajax-4nota" class="alert alert-info hidden">
+              <h3><small>Your result </small><br>
+                Employee is a non-resident, including a commuter</h3>
+              <div data-ajax-replace="#ajax-resultnonres1"></div>
+            </div>
+            <div id="ajax-4notb" class="alert alert-warning hidden">
+              <h3><small>Your result </small><br>
+                Employee is part-year resident</h3>
+              <div data-ajax-replace="#ajax-resultnonres2"></div>
+            </div>
+            <div id="ajax-4notc" class="alert alert-info hidden">
+              <h3><small>Your result </small><br>
                 Employee is a deemed resident or sojourner</h3>
               <div data-ajax-replace="#ajax-resultnonres3"></div>
             </div>
