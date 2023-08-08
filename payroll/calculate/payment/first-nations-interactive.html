@@ -311,13 +311,13 @@
 
                       </div>
                       <ul>
-                        <li>Worker lives on a reserve
+                        <li>Worker lives on a reserve and you are (employer or payer) resident on a reserve
                           <div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
                             <div class="wb-fieldflow-header">
                               <div class="brdr-tp">
                                 <p class="gc-font-2019 mrgn-tp-md">Where the employee lives on a reserve, you need to consider ???</p>
                               </div>
-                              <p class="wb-fieldflow-label">Is the employer resident on a reserve?</p>
+                              <p class="wb-fieldflow-label">Next question?</p>
                               <p>Add info here</p>
                             </div>
                             <ul>
@@ -374,7 +374,7 @@
                             </ul>
                           </div>
                         </li>
-                        <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-2c", "live": true}'>Employer does not have an establishment in Canada but employee works in Canada</li>
+                        <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-2c", "live": true}'>Worker lives on a reserve and you are (employer or payer) resident on a reserve</li>
                       </ul>
                     </div>
                   </li>
@@ -477,10 +477,11 @@ Indian Act</h3>
                 Employee is a deemed resident or sojourner</h3>
               <div data-ajax-replace="#ajax-resultnonres3"></div>
             </div>
+
             <div id="ajax-2c" class="alert alert-info hidden">
-              <h3><small>Your POE result </small><br>
-                Employer does not have an establishment in Canada but employee works in Canada</h3>
-              <div data-ajax-replace="#ajax-resultresnot2"></div>
+              <h3><small>Your result </small><br>
+                Employee lives on a reserve and you are resident on a reserve</h3>
+               <div data-ajax-replace="#ajax-ex-emp"></div>
             </div>
           </div>
         </div>
@@ -526,21 +527,21 @@ Indian Act</h3>
 
 <details><summary>Situation: Your employee lives on a reserve and you are a resident on a reserve </summary>
 <h4>Exempt income situation</h4>
-<p>The status Indian individual's (status confirmed in step 1) income is exempt from income tax under section 87 of the Indian Act if <strong>all </strong>of the following apply:</p>
+ <div id="ajax-ex-emp">
+<p>The status Indian individual's income is exempt from income tax under section 87 of the Indian Act if <strong>all </strong>of the following apply:</p>
 
 <ul class="list-unstyled cnjnctn-type-and">
 <li class="cnjnctn-col"><a href="#ajax-def3" aria-controls="ajax-def3" class="overlay-lnk" role="button">Worker lives on a reserve <span class="far fa-question-circle"></span></a></li>
 <li class="cnjnctn-col"><a href="#ajax-def1" aria-controls="ajax-def1" class="overlay-lnk" role="button">Employer is a resident on a reserve <span class="far fa-question-circle"></span></a></li>
 </ul>
 
-<p><span class="fas fa-arrow-down text-success fa-lg"> </span> To find out what payroll deductions you have to withhold on <strong> exempt income</strong> in this situation, continue to: <a href="#ex">Step 4a: Withhold payroll deductions and remit GST/HST</a>.</p>
-
 <p> <a href="#ajax-example2a" aria-controls="centred-popup" class="wb-lbx" role="button">Examples where exempt (guideline 2) <span class="far fa-question-circle"></span></a> </p>
 <p> <a href="#ajax-example2b" aria-controls="centred-popup" class="wb-lbx" role="button">Examples where <strong>not</strong> exempt (guideline 2) <span class="far fa-question-circle"></span></a> </p>
-
-<p>Learn more: <a href="/cra-arc/payroll/file/t4slip.html#indian1">T4 slip - Information for employers</a> </p>
+</div>
 
 <p>Where an employee is a shareholder who controls the business (non-arm's length with the corporation), the source of the business income may be relevant in determining whether the tax exemption under section 87 of the Indian Act applies to the income received in the shareholder's capacity as an employee. Where the source of the business income in this situation is off the reserve, the employment income (salary and bonuses) will not be considered to be connected to the reserve and will not be exempt from tax. </p>
+<p><span class="fas fa-arrow-down text-success fa-lg"> </span> To find out what payroll deductions you have to withhold on <strong> exempt income</strong> in this situation, continue to: <a href="#ex">Step 4a: Withhold payroll deductions and remit GST/HST</a>.</p>
+
 </details>
 
 <details><summary>Situation: Other situations where your employee is required to perform duties on a reserve</summary>
@@ -873,8 +874,23 @@ Indian Act</h3>
 
 <li><h3 id="h_6">Report the payment on a slip</h3>
 <p class="mrgn-bttm-lg">You must report using the following slip depending on <strong>who</strong> you made the payment to:</p>
- <details><summary>T4 slip - Payment made to an employee</summary> 
-<div id="ajax-t41report">
+
+ <details><summary>T4 slip - Payment made to an employee (employment income all exempt)</summary> 
+<div id="ajax-t4-report-ex">
+	<p>Report on on a T4 slip payment made to an employee: </p>
+        <ul class="fa-ul">
+                     
+                
+		 <li><span class="fas fa-check fa-li text-success"></span>Code 66 – Eligible retiring allowances</li>
+		 <li><span class="fas fa-check fa-li text-success"></span>Code 69 – Indian (exempt income) – Non-eligible retiring allowances</li>
+		 <li><span class="fas fa-check fa-li text-success"></span>Code 71 – Indian (tax-exempt income) – Employment</li>
+		
+                     </ul>
+	 </div>
+  </details>
+
+ <details><summary>T4 slip - Payment made to an employee (employment income partly-exempt)</summary> 
+<div id="ajax-t4-report-part-ex">
 	<p>Report on on a T4 slip payment made to an employee: </p>
         <ul class="fa-ul">
                        <li><span class="fas fa-check fa-li text-success"></span>Box 14 - Employment Income, on the portion of the taxable income</li>
@@ -891,8 +907,19 @@ Indian Act</h3>
 	 </div>
   </details>
 
- <details><summary>T4 slip - Payment made to a self-employed worker</summary> 
-   <div id="ajax-t42report">
+ <details><summary>T4 slip - Payment made to a self-employed worker (employment income all exempt)</summary> 
+   <div id="ajax-t4-self-report-ex">
+	<p>Report on a T4 slip the self-employment income you paid to a person who is registered, or entitled to be registered under the Indian Act who is a self-employed fisher , a self-employed barber or hairdresser , or a self-employed taxi driver and driver of other passenger-carrying vehicles: </p>
+        <ul class="fa-ul">
+                      <li><span class="fas fa-check fa-li text-success"></span>Code 88 – Indian (exempt income) – Self-employment</li>
+
+
+                     </ul>
+	   </div>
+  </details>
+
+ <details><summary>T4 slip - Payment made to a self-employed worker (employment income partly-exempt)</summary> 
+   <div id="ajax-t4-self-report-part-ex">
 	<p>Report on a T4 slip the self-employment income you paid to a person who is registered, or entitled to be registered under the Indian Act who is a self-employed fisher , a self-employed barber or hairdresser , or a self-employed taxi driver and driver of other passenger-carrying vehicles: </p>
         <ul class="fa-ul">
                        <li><span class="fas fa-check fa-li text-success"></span>Box 14 - Employment Income, on the portion of the taxable income</li>
@@ -908,8 +935,21 @@ Indian Act</h3>
                      </ul>
 	   </div>
   </details>
- <details><summary>T4A slip - Payment made to a person or partnership that was a shareholder</summary> 
-<div id="ajax-t4areport">
+
+ <details><summary>T4A slip - Payment made to a person or partnership that was a shareholder (income all exempt)</summary> 
+<div id="ajax-t4a-report-ex">
+    <p>Report on a T4A slip the payment made to a person or partnership that was a shareholder: </p> <ul class="fa-ul">
+	    
+             <li><span class="fas fa-check fa-li text-success"></span> Code 144 – Indian (exempt income) – Other income</li>
+	     <li><span class="fas fa-check fa-li text-success"></span> Code 146 – Indian (exempt income) – Pension or superannuation </li>
+	     <li><span class="fas fa-check fa-li text-success"></span> Code 148 – Indian (exempt income) – Lump-sum payments</li>
+	     <li><span class="fas fa-check fa-li text-success"></span> Code 195 – Indian (exempt income) – PRPP payments</li>
+	   
+                     </ul>
+ </div>
+  </details>
+ <details><summary>T4A slip - Payment made to a person or partnership that was a shareholder (income partly-exempt)</summary> 
+<div id="ajax-t4a-report-part-ex">
     <p>Report on a T4A slip the payment made to a person or partnership that was a shareholder: </p> <ul class="fa-ul">
 	     <li><span class="fas fa-check fa-li text-success"></span> Box 016 – Pension or superannuation, on the portion of the taxable income</li>
 	     <li><span class="fas fa-check fa-li text-success"></span> Box 018 – Lump-sum payments, on the portion of the taxable income</li>
@@ -921,6 +961,7 @@ Indian Act</h3>
                      </ul>
  </div>
   </details>
+
 <div id="ajax-howreport">
 	<p><span class="fas fa-file-invoice fa-xl text-muted"></span> Learn more: <a href="/cra-arc/payroll/file/complete.html">Fill out the slips and summaries - File information returns (slips and summaries)</a> </p>
 	 </div>
