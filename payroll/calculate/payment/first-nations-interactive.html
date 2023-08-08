@@ -386,7 +386,9 @@ Indian Act</li>
               </div>
             </form>
           </div>
-          <div id="results" class="mrgn-tp-lg" aria-live="polite">
+
+
+<div id="results" class="mrgn-tp-lg" aria-live="polite">
 
 <div id="ajax-0b" class="alert alert-warning hidden">
               <h3><small>Your result </small><br>
@@ -395,32 +397,47 @@ Indian Act</h3>
             <p class="mrgn-bttm-md mrgn-tp-md"> The worker is <strong>not exempt</strong> in this situation.  </p>
  <p class="mrgn-tp-md">Lean more on the effective date of the agreements and the expiry dates from Crown-Indigenous Relations and Northern Affairs Canada (CIRNAC): <a href="https://www.rcaanc-cirnac.gc.ca/eng/1100100028568/1529354090684">Treaty and agreement negotiations</a></p>
 <hr> 
-<h4 class="mrgn-tp-md">Withholding obligations</h4>
-  <p> <div data-ajax-replace="#ajax-notreg"></div>     </p>      
+<h4 class="mrgn-tp-md">Withholding and reporting obligations</h4>
+  <p> <div data-ajax-replace="#ajax-notreg"></div>     </p> 
+ <details><summary>Withholding obligations </summary>
+         <div data-ajax-replace="/cra-arc/payroll/calculate/benefit/ajax/withhold.txt"></div>
+  </details>
+ <details><summary>Reporting obligations </summary>
+<div data-ajax-replace="/cra-arc/payroll/calculate/benefit/ajax/report.txt"></div>  
+  </details>
+    
 
   </div>
+
 <div id="ajax-0c" class="alert alert-warning hidden">
               <h3><small>Your result </small><br>
                The worker is not registered under the Indian Act</h3>
   <p class="mrgn-bttm-md mrgn-tp-md"> The worker is <strong>not exempt</strong> in this situation.  </p>
 <p>Learn more on how to prove registration from Indigenous Services Canada (ISC): <a href="https://www.sac-isc.gc.ca/eng/1100100032463/1572459644986#sec6">How to prove registration</a>  </p> 
 <hr>
- <h4 class="mrgn-tp-md">Withholding obligations</h4>
-              <p>   <div data-ajax-replace="#ajax-notreg"></div> </p> 
+<h4 class="mrgn-tp-md">Withholding and reporting obligations</h4>
+ <p> <div data-ajax-replace="#ajax-notreg"></div>     </p> 
+ <details><summary>Withholding obligations </summary>
+         <div data-ajax-replace="/cra-arc/payroll/calculate/benefit/ajax/withhold.txt"></div>
+  </details>
+ <details><summary>Reporting obligations </summary>
+<div data-ajax-replace="/cra-arc/payroll/calculate/benefit/ajax/report.txt"></div>  
+  </details>
+
             </div>
 
-            <div id="ajax-1b" class="alert alert-info hidden">
+  <div id="ajax-1b" class="alert alert-info hidden">
               <h3><small>Your result </small><br>
                 Non-employment income <small>for example, pension income, retiring allowances, RRSP and CPP/QPP</small></h3>
 <p>Add intro here. </p> 
 <hr>
-  <details><summary>Withholding obligations </summary>
-          <p>  <div data-ajax-replace="#ajax-self"></div></p>
+  <h4>Withholding obligations </h4>
+        <p>  <div data-ajax-replace="#ajax-t4a-withhold"></div></p>
 <p> <div data-ajax-replace="#ajax-howcalc"></div>     </p> 
-  </details>
- <details><summary>Reporting obligations - T4A slip </summary>
-		  <p>  <div data-ajax-replace="#ajax-t4areport"></div></p>
-  <p> <div data-ajax-replace="#ajax-howreport"></div>     </p> 
+  <h4>Reporting obligations - T4A slip </h4>
+		  <p>  <div data-ajax-replace="#ajax-t4a-report"></div></p>
+<p> <div data-ajax-replace="#ajax-howreport"></div>     </p> 
+  
   </details>
             </div>
             <div id="ajax-3yesa" class="alert alert-info hidden">
@@ -841,6 +858,7 @@ Indian Act</h3>
 </details>
 
 <h4>Payment made to a person or partnership that was a shareholder</h4>
+<div id="ajax-t4a-withhold">
 <details><summary>Income all exempt</summary>
 <div id="ajax-withhold-ex-person">
 <p>You must withhold the following deductions from payments made to a person or partnership that was a shareholder: </p>
@@ -879,7 +897,7 @@ Indian Act</h3>
 					 </ul>
  
  </div>
-</details>
+</details> </div>
 <div id="ajax-howcalc">
 <p class="mrgn-tp-md"><span class="fas fa-calculator fa-xl text-muted"></span> Learn more: <a href="/cra-arc/payroll/calculate/how/index.html">How to calculate - Calculate payroll deductions and contributions</a></p>
  </div>
@@ -952,6 +970,7 @@ Indian Act</h3>
   </details>
 
 <h4>Payment made to a person or partnership that was a shareholder - T4A slip</h4>
+<div id="ajax-t4a-report">
  <details><summary>Income all exempt</summary> 
 <div id="ajax-t4a-report-ex">
     <p>Report on a T4A slip the payment made to a person or partnership that was a shareholder: </p> <ul class="fa-ul">
@@ -977,7 +996,7 @@ Indian Act</h3>
                      </ul>
  </div>
   </details>
-
+</div>
 <div id="ajax-howreport">
 	<p class="mrgn-tp-md"><span class="fas fa-file-invoice fa-xl text-muted"></span> Learn more: <a href="/cra-arc/payroll/file/complete.html">Fill out the slips and summaries - File information returns (slips and summaries)</a> </p>
 	 </div>
