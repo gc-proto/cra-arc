@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>
+<html class="no-js lt-ie9" lang="en" dir="ltr">
+   <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" dir="ltr">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Description list (horizontal) extensions - Canada.ca</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="robots" content="noindex, follow">
+<!-- Meta data --> 
+<!-- Meta data--> 
+<!-- Load closure template scripts --> 
+
+<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_47/cdts/compiled/soyutils.js"></script> 
+<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_47/cdts/compiled/wet-en.js"></script>
+<link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
+<!-- Write closure template --> 
+<script type="text/javascript">
+            document.write(wet.builder.refTop({
+            }));
+         </script>
+<style>
+@media (min-width: 768px) {
+dl.dl-horizontal.max-content {
+    display: grid;
+    grid-template-columns: minmax(min-content, min-content) auto;
+}
+dl.dl-horizontal.max-content dt {
+    width: auto;
+}
+dl.dl-horizontal.max-content dd {
+    margin-left: 0;
+}
+	dl.dl-horizontal.gc-dt dt {width: 200px;}	
+
+
+ .dl-horizontal.v13_5 dt {
+    float: left;
+    width: 160px;
+    clear: left;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dl-horizontal.v13_5 dt {
+    border-top: 1px solid #ccc;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    padding: 10px 10px 10px 0;
+    text-align: left;
+    white-space: normal;
+    word-break: break-word;
+}	
+}
+.take2 {
+    display: grid;
+    grid-template-columns: minmax(min-content, min-content) auto;
+}
+.take2 dt {
+    width: auto;
+}
+.take2 dd {
+    margin-left: 0;
+}
+dl.grid-container {
+    display: grid;
+    grid-template-columns: minmax(min-content, min-content) auto;
+}
+dl.grid-container dt, dl.grid-container dd {
+    border-top: 1px solid #000;
+}
+</style>
+  
+</head>
+<body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+<div id="def-top"> </div>
+<!-- Write closure template --> 
+<script type="text/javascript">
+            var defTop = document.getElementById("def-top");
+            defTop.outerHTML = wet.builder.top({
+              lngLinks: [{
+                lang: "fr",
+                href: "#",
+                text: "Français"
+              }],
+              breadcrumbs: [{
+                title: "Canada.ca",
+                href: "https://www.canada.ca/en.html"
+              }
+              ],
+              search: true,
+              siteMenu: true,
+              showPreContent: true
+            });
+         </script>
+<main role="main" property="mainContentOfPage" class="container">
+  <h1 property="name" id="wb-cont" class="gc-thickline">Description list (horizontal) extension</h1>
+  <p>Finding ways to extend the GCWeb theme to <code>&lt;dl class="dl-horizontal"&gt;</code> lists which were develped for WET 4 and a smaller font size.</p>
+<h2>Background</h2>
+  <p>The horizontal description list design was developed for the WET4 theme and has been a great design.  However, the GCWeb theme has increased the WET4 font size from 16px, to 20px.  In turn, the width of the <code>&lt;dt&gt;</code> in horizontal mode has not increased in width, thus providing an uneven experience between the two themes.  More words are at risk of being truncated (especially in French).</p>
+  <p>In the examples below, the second term item would not be truncated, or wrapped in WET4, but it does in GCWeb theme.</p>
+<h2> DL horizontal (pre v13.5.0)</h2>
+	<p>Cuts off words (truncates), max wraps at 160px</p>
+  <dl class="dl-horizontal">
+    <dt>Term one</dt>
+    <dd>Term one informaton here</dd>
+    <dt>Terminologyismist two</dt>
+    <dd>Terminologyismist two information here</dd>
+    <dt>Terminologyismistism three</dt>
+    <dd>Terminologyismistism three information here</dd>
+  </dl>
+
+  
+<h2>Default DL horizontal (as of v13.5.0)</h2>
+	<p>word wraps, sometimes adds hyphen, sometimes not, max wraps at 160px</p>
+
+  <h3>Hyphen added in this example</h3>
+<dl class="dl-horizontal v13_5">
+<dt>Description title</dt>
+<dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</dd>
+<dt>Long word: incomprehensibilities</dt>
+<dd>Etiam at erat et sapien tempus vulputate.</dd>
+<dt>A fews filling words that take space</dt>
+<dd>Quisque tristique dui in ante mattis, nec commodo tortor eleifend.</dd>
+</dl>
+
+  <h3>Hyphen not added in this example (last item) simply word wraps</h3>
+  <dl class="dl-horizontal v13_5">
+    <dt>Term one</dt>
+    <dd>Term one informaton here</dd>
+    <dt>Terminologyismist two</dt>
+    <dd>Terminologyismist two information here</dd>
+    <dt>Terminologyismistism three</dt>
+    <dd>Terminologyismistism three information here</dd>
+  </dl>
+<p>The new word wrap does make a small improvement when the hyphen does appear (or else it could make one word look like two), but it does not address the font size change from GCWeb which puts an unfair burden on words in the GCWeb theme compared to WET4.</p>
+  <p>Below are some proposed examples that better address the descrepency, and may offer a bit more flexibility.</p>
+		<h2>DL horizontal with custom max-content class</h2>
+	<p>This extends the <code>&lt;dt&gt;</code> to the longest word so there is no truncation or word wrap, and keeps all other definition term widths inline.  </p>
+  <dl class="dl-horizontal max-content">
+    <dt>Term one</dt>
+    <dd>Term one informaton here</dd>
+    <dt>Terminologyismist two</dt>
+    <dd>Terminologyismist two information here</dd>
+    <dt>Terminologyismistism three</dt>
+    <dd>Terminologyismistism three information here</dd>
+  </dl>
+	<h2>DL horizontal with custom gc-dt class (or can simply default in GCWeb going forward)</h2>	
+	<p>This extends the width of the <code>&lt;dt&gt;</code> element to 200px to take into account the larger GCWeb font size.</p>
+<h3>Prev GCWeb v13.5.0</h3>	
+  <dl class="dl-horizontal gc-dt">
+    <dt>Term one</dt>
+    <dd>Term one informaton here</dd>
+    <dt>Terminologyismist two</dt>
+    <dd>Terminology two information here</dd>
+    <dt>Terminologyismistism three</dt>
+    <dd>Terminologyismistism  three information here</dd>
+  </dl>
+<h3>As of GCWeb v13.5.0</h3>
+	<p>The issue is still when a word is long enough, no hyphen will appear and the word may look like two words</p>
+  <dl class="dl-horizontal gc-dt v13_5">
+    <dt>Term one</dt>
+    <dd>Term one informaton here</dd>
+    <dt>Terminologyismist two</dt>
+    <dd>Terminology two information here</dd>
+    <dt>Terminologyismistism three</dt>
+    <dd>Terminologyismistism  three information here</dd>
+  </dl>
+	
+<h2>Possible custom sizing of definition term width</h2>
+	<p>Debate on if <code>col-*</code> should be used to provide custom grid sizes.</p> 
+  
+  <p>The risks are that the class is for setting grids and not really for width design, and risks that description lists could be too customized and not look consistant.</p>
+	<p>No current design, further discussion needed.</p>
+</main>
+ <div id="def-footer"> </div>
+<!-- Write closure template --> 
+<script type="text/javascript">
+			var defFooter = document.getElementById("def-footer");
+			defFooter.outerHTML = wet.builder.footer({
+				showFooter: true,
+				showFeatures: true
+			});
+		</script> 
+<!-- Write closure template --> 
+<script type="text/javascript">
+			document.write(wet.builder.refFooter({
+			}));
+		</script> 
+</body>
+</html> 
+  
