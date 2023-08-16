@@ -27,22 +27,23 @@
          </script>
 <style>
 @media (min-width: 768px) {
-dl.dl-horizontal.max-content {
+dl.dl-horizontal dt {width: 20ch;}	
+dl.dl-horizontal.max-dt {
     display: grid;
     grid-template-columns: minmax(min-content, min-content) auto;
 }
-dl.dl-horizontal.max-content dt {
+dl.dl-horizontal.max-dt dt {
     width: auto;
 }
-dl.dl-horizontal.max-content dd {
+dl.dl-horizontal.max-dt dd {
     margin-left: 0;
 }
-	dl.dl-horizontal.gc-dt dt {width: 200px;}	
+	dl.dl-horizontal dt {width: 20ch;}	
 
 
  .dl-horizontal.v13_5 dt {
     float: left;
-    width: 160px;
+    width: 20ch;
     clear: left;
     text-align: right;
     overflow: hidden;
@@ -145,7 +146,7 @@ dl.grid-container dt, dl.grid-container dd {
   <p>Below are some proposed examples that better address the descrepency, and may offer a bit more flexibility.</p>
 		<h2>DL horizontal with custom max-content class</h2>
 	<p>This extends the <code>&lt;dt&gt;</code> to the longest word so there is no truncation or word wrap, and keeps all other definition term widths inline.  </p>
-  <dl class="dl-horizontal max-content">
+  <dl class="dl-horizontal max-dt">
     <dt>Term one</dt>
     <dd>Term one informaton here</dd>
     <dt>Terminologyismist two</dt>
@@ -153,8 +154,8 @@ dl.grid-container dt, dl.grid-container dd {
     <dt>Terminologyismistism three</dt>
     <dd>Terminologyismistism three information here</dd>
   </dl>
-	<h2>DL horizontal with custom gc-dt class (or can simply default in GCWeb going forward)</h2>	
-	<p>This extends the width of the <code>&lt;dt&gt;</code> element to 200px to take into account the larger GCWeb font size.</p>
+	<h2>DL horizontal with width set to character instead of pixesl(or can simply default in GCWeb going forward)</h2>	
+	<p>This extends the width of the <code>&lt;dt&gt;</code> to 20ch and will mimic the same with for WET4 and increase the width for GCWeb.</p>
 <h3>Prev GCWeb v13.5.0</h3>	
   <dl class="dl-horizontal gc-dt">
     <dt>Term one</dt>
