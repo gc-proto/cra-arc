@@ -49,12 +49,590 @@
             	showPreContent: true
             });
          </script>
+	<script src="https://cdn.botframework.com/botframework-webchat/4.9.1/webchat-es5.js"></script>
+
+
+
+<!-- chatbot javascript starts -->     
+<SCRIPT>
+
+
+"use strict";
+
+window.onload = function () {
+
+  var isIE = !!navigator.userAgent.match(/Trident/g) || !!navigator.userAgent.match(/MSIE/g);
+if(isIE){
+//<p>This browser is not supported</p>
+$('#chat-bottom-bar header .iconparent').html("");
+$('#chat-bottom-bar').css( "width","455px" )
+$('#chat-bottom-bar header h2').removeAttr("data-gc-analytics-customclick title");
+$('#chat-bottom-bar header button.toprightbtn.rightMost').removeAttr("data-gc-analytics-customclick title");
+
+$('#chat-bottom-bar header button.toprightbtn.rightMost').html("");
+$('#chat-bottom-bar header h2').css( "margin-left","15px" )
+$('#chat-bottom-bar header h2').html("<strong>The chatbot is unsupported on this browser</strong>");
+$('section#chat-bottom-bar button').remove();
+$('#chat-bottom-bar header').css("cursor", "default");
+
+} else {
+
+  $("#chat-bottom-bar").show();
+  $("#chat-bottom-bar.chat.minimizedchat header").on("click", startChatSession);
+  $("#toggleCollapse").on("click", function (e) {
+    $("#toggleExpand").show();
+    $("#toggleCollapse").hide();
+    $("#toggleSmall").hide();
+    $("#toggleMax").show();
+    $("#chat-bottom-bar").addClass("smallchat");
+    $("#chat-bottom-bar").removeClass("fullchat");
+    $("#chat-bottom-bar").removeClass("expandedchat");
+    $("#chat-bottom-bar").addClass("minimizedchat");
+    $("#chat-bottom-bar").animate({
+      "height": "40px"
+    }, {
+      "duration": 200,
+      "queue": false
+    });
+    $("#chat-bottom-bar").animate({
+      "width": "275px"
+    }, {
+      "duration": 200,
+      "queue": false
+    }); //$("#chat-bottom-bar .modal-body").animate({"padding" : "0"}, {"duration":200, "queue": false});
+
+    $("#toggleSmall").hide();
+    $("#toggleMax").hide();
+    return false;
+  }); //when collapsed, register any click on header
+
+  $("#chat-bottom-bar.chat.minimizedchat header").on("click", function () {
+    $("#toggleExpand").hide();
+    $("#toggleCollapse").show();
+    $("#unreadMsgSpan").empty();
+    $("#unreadMsgSpanContainer").hide();
+    $("#chat-bottom-bar").addClass("expandedchat");
+    $("#chat-bottom-bar").removeClass("minimizedchat");
+    $("#chat-bottom-bar").animate({
+      "height": "80%"
+    }, {
+      "duration": 200,
+      "queue": false
+    });
+    $("#chat-bottom-bar").animate({
+      "width": "434px"
+    }, {
+      "duration": 200,
+      "queue": false
+    }); //$("#chat-bottom-bar .modal-body").animate({"padding" : "0"}, {"duration":200, "queue": false});
+
+    if ($("#chat-bottom-bar").hasClass("smallchat")) {
+      $("#toggleSmall").hide();
+      $("#toggleMax").show();
+    }
+
+    if ($("#chat-bottom-bar").hasClass("fullchat")) {
+      $("#toggleSmall").show();
+      $("#toggleMax").hide();
+    }
+
+    return false;
+  });
+  $("#toggleSmall").on("click", function () {
+    $("#toggleSmall").hide();
+    $("#toggleMax").show();
+    $("#chat-bottom-bar").animate({
+      "height": "80%"
+    }, {
+      "duration": 200,
+      "queue": false
+    });
+    $("#chat-bottom-bar").animate({
+      "width": "434px"
+    }, {
+      "duration": 200,
+      "queue": false
+    });
+    $("#chat-bottom-bar").addClass("smallchat");
+    $("#chat-bottom-bar").removeClass("fullchat");
+    return false;
+  });
+  $("#toggleMax").on("click", function () {
+    $("#toggleSmall").show();
+    $("#toggleMax").hide(); //$("#chat-bottom-bar").width("90%");
+
+    $("#chat-bottom-bar").animate({
+      "width": "90%"
+    }, {
+      "duration": 200,
+      "queue": false
+    });
+    $("#chat-bottom-bar").animate({
+      "height": "100%"
+    }, {
+      "duration": 200,
+      "queue": false
+    });
+    $("#chat-bottom-bar").removeClass("smallchat");
+    $("#chat-bottom-bar").addClass("fullchat");
+    return false;
+  });
+  if (/[&?]chat=1/.test(location.search)) $("#chat-bottom-bar header").click();
+}
+};
+
+function startChatSession() {
+  $("#chat-bottom-bar.chat.minimizedchat header").off("click", startChatSession);
+  $("#chatstatus").text("(connecting...)");
+  /*
+  
+     $("#chat-bottom-bar .modal-body").height() = 0;
+  
+     $("#chat-bottom-bar .modal-body iframe").css("minHeight", 0);
+  
+      $("#chat-bottom-bar #webchat").css("minHeight", 0);
+  
+      */
+  //$("#chat-bottom-bar .modal-body").hide();
+  // url: "https://cra-prod-bot-app.azurewebsites.net/directline/token",
+
+  $("#chat-bottom-bar").show();
+  if (/[&?]lang=fr/.test(location.search)) wb.lang = "fr";
+  $.ajax({
+    url: "https://cra-prod-bot-app.azurewebsites.net/directline/token",
+    type: "POST",
+    crossDomain: true,
+    dataType: 'json',
+    success: function success(response) {
+      var token = response.token;
+      var isIE = !!navigator.userAgent.match(/Trident/g) || !!navigator.userAgent.match(/MSIE/g);
+      var webSocket = true;
+
+      if (isIE) {
+        webSocket = false;
+      } //Send activity so we receive welcome card https://github.com/microsoft/BotFramework-WebChat/tree/master/samples/15.d.backchannel-send-welcome-event
+
+
+      var store = window.WebChat.createStore({}, function (_ref) {
+        var dispatch = _ref.dispatch;
+        return function (next) {
+          return function (action) {
+            if (action.type === 'DIRECT_LINE/CONNECT_FULFILLED') {
+              // When we receive DIRECT_LINE/CONNECT_FULFILLED action, we will send an event activity using WEB_CHAT/SEND_EVENT
+              // use value: { language: wb.lang }
+              dispatch({
+                type: 'WEB_CHAT/SEND_EVENT',
+                payload: {
+                  name: 'webchat/join',
+                  value: {
+                    "language": wb.lang,
+                    "introCard": ["intro"]
+                  }
+                }
+              });
+            }
+
+            if (action.type === 'DIRECT_LINE/INCOMING_ACTIVITY') {
+              var event = new Event('webchatincomingactivity');
+              event.data = action.payload.activity;
+              window.dispatchEvent(event);
+            }
+
+            return next(action);
+          };
+        };
+      }); //botAvatarInitials: 'CC'
+
+      var styleOptions = {
+        hideUploadButton: true,
+        //default: false
+        bubbleBackground: 'White',
+        //default: White
+        botAvatarBackgroundColor: 'White',
+        //default: undefined, WET blue is rgb(37, 114, 180) but it doesn't
+        bubbleFromUserBackground: 'White',
+        //default: White
+        userAvatarBackgroundColor: 'rgb(0,97,101)',
+        //default: undefined
+        botAvatarInitials: 'Bot',
+        userAvatarInitials: 'You',
+        botAvatarImage: "/content/dam/cra-arc/chatbot/avatar_head.png"
+      };
+      window.WebChat.renderWebChat({
+        directLine: window.WebChat.createDirectLine({
+          token: token,
+          webSocket: webSocket
+        }),
+        store: store,
+        resize: 'detect',
+        locale: wb.lang + '-CA',
+        styleOptions: styleOptions
+      }, document.getElementById('webchat')); // document.querySelector('#webchat > *').focus();
+    },
+    error: function error(xhr, status, _error) {
+      //alert("error: " + JSON.stringify(xhr));
+      $("#chatstatus").text(JSON.stringify(xhr));
+      $("#webchat").hide();
+    }
+  });
+  window.addEventListener('webchatincomingactivity', function (_ref2) {
+    var data = _ref2.data;
+    $("#chatstatus").empty();
+    $("#webchat").show();
+
+    if (data.type === "message" && $("#chat-bottom-bar").hasClass("minimizedchat") && data.from.role != "user") {
+      $("#unreadMsgSpanContainer").show(); //alert(Number($("#unreadMsgSpan").text()));
+
+      $("#unreadMsgSpan").text(Number($("#unreadMsgSpan").text()) + 1);
+    }
+  });
+}
+
+
+</SCRIPT>
+<!-- chatbot javascript ends -->
 <style>
             .max-content {
             max-width: -webkit-max-content;
             max-width: -moz-max-content;
             max-width: max-content; }
          </style>
+	<style>
+.ip-cover-img {
+        background-image: url("/content/dam/cra-arc/images/CRAHQexterior-white.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right;
+        margin-top: 15px;
+        padding-bottom: 25px;
+}
+
+.most-requested li {
+        font-family: 'Lato', sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 26px;
+        margin-top: 0
+}
+
+.most-requested h2 {
+        font-size: 1.2em;
+}
+
+.ip-btn {
+        font-size: 1em;
+}
+
+/* supports the 3 column layout for MR instead of 4 columns */
+.list-responsive-3 > li {
+    float: left;
+    padding-right: 5px;
+    width: 50%
+}
+
+.list-responsive-3 > li:nth-child(2n+2) {
+    clear: right
+}
+
+.list-responsive-3:before,
+.list-responsive-3:after {
+    content: " ";
+    display: table
+}
+
+.list-responsive-3:after {
+    clear: both
+}
+
+.followus.experimental {
+  background-color: #f5f5f5;
+  padding: 0;
+}
+
+.followus.experimental h2 {
+  display: block;
+}
+
+.followus.experimental h2,
+.followus.experimental ul {
+  margin-left: 0;
+}
+
+.followus.experimental ul li a {
+  border: solid 2px #f5f5f5;
+}
+
+.featured {
+  margin-bottom: 0em;
+  padding-top:20px;
+  padding-bottom:20px;
+  background: #31708f;
+}
+
+.featured a {
+  color:#fff
+}
+
+ul.feeds-cont li a {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1200px) {
+  .featured {
+    padding-left:.8em;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .list-responsive-3 > li {
+    width: 33%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .btn-call-to-action {
+    font-size: 19px !important;
+  }
+
+  .most-requested li {
+    font-size: 19px;
+  }
+
+  .list-responsive-3 > li {
+    clear: right;
+    width: 100%
+  }
+
+  .mobile-left {
+    float: left !important;
+  }
+
+  .ip-cover-hide-mobile {
+    background-image: url("none") !important;
+  }
+}
+@media screen and (max-width: 767px) {
+
+.ip-cover-hide-mobile {
+
+background-image:url(“none”) !important;
+
+}
+
+}
+
+</style>
+
+
+
+<style>
+/*chatbot styles start */
+
+  #chat-bottom-bar {overflow: visible !important;}
+  
+  .iconparent{
+    position: relative;
+    
+  }
+  
+  .iconmain{
+    top: -18px;
+    position: fixed;
+  }
+
+#chat-bottom-bar header h2 {
+                font-size: 0.95em;
+                margin-left: 70px;
+                font-weight: 400;
+}
+
+
+    #webchat div.ac-container button.ac-pushButton.style-positive {
+      text-decoration: underline;
+    }
+
+#chat-bottom-bar {
+  max-width: 90%;
+}
+
+      #webchat-container{
+        height:100%;
+      }
+
+      #webchat {
+      border: none;
+      font-size: 16px;
+      height: 100%;
+      padding-bottom: 42px;
+      line-height: normal;
+    }
+    
+    #webchat > div > div:first-child {
+      overflow-x: hidden;
+      overflow-y: auto;
+      /*height: 490px;*/
+    }
+    
+    #webchat > div > div:nth-child(2) {
+      /*height: 35px;*/
+    }
+    
+    #webchat div.ac-container button.ac-pushButton {
+      font-weight: normal;
+      line-height: normal;
+    }
+    
+    #webchat div.ac-container div.ac-textBlock {
+      font-size: 16px !important;
+    }
+
+
+      /*#webchat button.ac-pushButton {
+        justify-content: left;
+        border-style: none;
+        padding: 5px;
+      }*/
+      #webchat button.ac-pushButton div {
+        overflow:auto!important;
+        white-space:normal!important;
+      }
+      .chat {
+          background-color: #006165;
+          color: #fff;
+          border-color: #006165;
+          display: inline-block;
+          position: fixed;
+          bottom: 0px;
+          right: 5%;
+          border-bottom-color: currentColor;
+          border-bottom-width: 0px;
+          border-bottom-style: none;
+          min-width:200px;
+          height:40px;
+          width:275px;
+          z-index: 1050;
+          -webkit-transform: translateZ(0px);
+          box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+          -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+          outline: 0px;
+        }
+
+        .chat header {
+    padding: 10px 15px;
+    border-bottom-color: transparent;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    position: relative;
+    display: block;
+        }
+        
+        .chat header * {
+    color: inherit;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+#unreadMsgSpanContainer {
+    background-color: #fff;
+    color: #006165;
+    display: none;
+    padding: 3px 7px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: bold;
+    vertical-align: middle;
+    white-space: nowrap;
+    min-width: 10px;
+}
+
+
+      .chat.minimizedchat header{
+          cursor: pointer;
+        }
+
+        .chat.minimizedchat #toggleCollapse{
+          display:none;
+        }
+        .chat.minimizedchat #toggleExpand{
+          display:block;
+        }
+        .chat.expandedchat #toggleExpand{
+          display:none;
+        }
+        .chat.expandedchat #toggleCollapse{
+          display:block;
+        }
+
+        .chat.minimizedchat button.toprightbtn.secondFromRight{
+          display:none;
+        }
+
+
+        .chat.minimizedchat header:hover .toprightbtn{
+          opacity: 1;
+        }
+      
+        .toprightbtn:focus {
+          outline: rgb(255, 255, 255) dotted 1px;
+          outline-offset: -2px;
+          opacity: 1;
+      }
+      .toprightbtn:hover {
+          opacity: 1;
+      }
+      button.toprightbtn.innerbtn {
+        right: 44px !important;
+      }
+    
+      button.rightMost.toprightbtn {
+        right: 0px;
+      }
+      button.secondFromRight.toprightbtn {
+        right: 45px;
+      }
+      
+      button.toprightbtn {
+          background: none;
+          padding: 0px !important;
+          border: 0px currentColor;
+          border-image: none;
+          overflow: visible;
+          display: block;
+          z-index: 1046;
+          cursor: pointer;
+          box-shadow: none;
+          -webkit-appearance: none;
+          -webkit-box-shadow: none;
+          font-weight: 700;
+          padding: 0px 0px 18px 10px;
+          top: 0px;
+          width: 44px;
+          height: 44px;
+          text-align: center;
+          color: rgb(255, 255, 255);
+          line-height: 44px;
+          font-family: Arial,Baskerville,monospace;
+          font-style: normal;
+          text-decoration: none;
+          position: absolute;
+          opacity: 0.65;
+          margin: 0px;
+      }   
+
+.css-1dgbgmu {
+background-color: #00a89d !important
+}
+.css-1dgbgmu.from-user {
+background-color: #26384a !important
+}
+
+/*chatbot styles end */
+  
+</style>
+
 <main role="main" property="mainContentOfPage" class="container-fluid">
     <link href="https://cra-arc.gc.ca/wet-boew/css/custom/theme-topic.css" rel="stylesheet">
     <!--Need to move this CSS sheet to cra-arc.gc.ca //-->
@@ -99,7 +677,7 @@
                         <!-- <section class="alert alert-success">
                     <h3 class="h5">All CRA login services are available</h3>
                 </section>--> 
-                        <a class="btn btn-call-to-action ip-btn" href="/en/revenue-agency/services/e-services/cra-login-services.html">Sign in to a CRA account</a>
+                        <a class="btn btn-call-to-action ip-btn" href="https://www.canada.ca/en/revenue-agency/services/e-services/cra-login-services.html">Sign in to a CRA account</a>
                         <p>Administering tax laws for the Government of Canada and for most provinces and territories.</p>
                     </div>
                     <div class="clearfix"></div>
@@ -115,12 +693,12 @@
                     <div class="col-md-10">
                         <ul class="wb-eqht mrgn-tp-md mrgn-bttm-md colcount-md-2">
                             <!-- can use 'list-responsive' to get 4 column option -->
-                            <li><a href="/en/revenue-agency/services/child-family-benefits/dental-benefit.html">Canada Dental Benefit</a></li>
-                            <li><a href="/en/revenue-agency/services/e-services/digital-services-businesses/payroll-deductions-online-calculator.html">Payroll deductions calculator</a></li>
-                            <li><a href="/en/revenue-agency/services/e-services/digital-services-businesses/gst-hst-netfile.html">GST/HST NETFILE</a></li>
-                            <li><a href="/en/services/benefits/calendar.html">Benefits payment dates</a></li>
-                            <li><a href="/en/revenue-agency/services/forms-publications.html">Forms and publications</a></li>
-                            <li><a href="/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit/grocery-rebate.html">Grocery rebate</a></li>
+                            <li><a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/dental-benefit.html">Canada Dental Benefit</a></li>
+                            <li><a href="https://www.canada.ca/en/revenue-agency/services/e-services/digital-services-businesses/payroll-deductions-online-calculator.html">Payroll deductions calculator</a></li>
+                            <li><a href="https://www.canada.ca/en/revenue-agency/services/e-services/digital-services-businesses/gst-hst-netfile.html">GST/HST NETFILE</a></li>
+                            <li><a href="https://www.canada.ca/en/services/benefits/calendar.html">Benefits payment dates</a></li>
+                            <li><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications.html">Forms and publications</a></li>
+                            <li><a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/goods-services-tax-harmonized-sales-tax-gst-hst-credit/grocery-rebate.html">Grocery rebate</a></li>
                             <!--<li><a href="/content/canadasite/en/revenue-agency/services/subsidy/recovery-hiring-program.html">Canada Recovery Hiring Program (CRHP)</a></li>--> 
                             <!--li><a href="/content/canadasite/en/revenue-agency/services/payments-cra.html">Payments to the Canada Revenue Agency</a></li-->
                         </ul>
@@ -134,39 +712,39 @@
                     <h2 class="wb-inv">Services and information</h2>
                     <div class="wb-eqht">
                         <section class="col-md-4">
-                            <h3><a href="/en/services/taxes/income-tax.html">Income tax</a></h3>
+                            <h3><a href="/cra-arc/guides/alberta/income-tax.html">Income tax</a></h3>
                             <p> Personal, business, corporation, and trust income tax, and doing taxes for someone who died </p>
                         </section>
                         <section class="col-md-4">
-                            <h3><a href="/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses.html">GST/HST</a></h3>
+                            <h3><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses.html">GST/HST</a></h3>
                             <p> Register for the GST/HST; collect, file and remit the GST/HST; rebates, credits, and the GST/HST listing </p>
                         </section>
                         <section class="col-md-4">
-                            <h3><a href="/en/revenue-agency/services/tax/businesses/topics/payroll.html">Payroll</a></h3>
+                            <h3><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll.html">Payroll</a></h3>
                             <p> Payroll accounts; deductions and contributions; information returns; and benefits and allowances </p>
                         </section>
                         <section class="col-md-4">
-                            <h3><a href="/en/services/taxes/business-number.html">Business number</a></h3>
+                            <h3><a href="https://www.canada.ca/en/services/taxes/business-number.html">Business number</a></h3>
                             <p> When you need a number or program account, how to register, make account changes, and other government programs </p>
                         </section>
                         <section class="col-md-4">
-                            <h3><a href="/en/services/taxes/savings-and-pension-plans.html">Savings and pension plans</a></h3>
+                            <h3><a href="https://www.canada.ca/en/services/taxes/savings-and-pension-plans.html">Savings and pension plans</a></h3>
                             <p> Tax-free savings accounts, registered savings plans, pooled pension plans, and plan administrators </p>
                         </section>
                         <section class="col-md-4">
-                            <h3><a href="/en/services/taxes/child-and-family-benefits.html">Tax credits and benefits for individuals</a></h3>
+                            <h3><a href="https://www.canada.ca/en/services/taxes/child-and-family-benefits.html">Tax credits and benefits for individuals</a></h3>
                             <p> Payment dates, Canada child benefit, GST/HST credit, Disability tax credit, Canada workers benefit, and other benefits and credits </p>
                         </section>
                         <section class="col-md-4">
-                            <h3><a href="/en/services/taxes/excise-taxes-duties-and-levies.html">Excise and specialty taxes</a></h3>
+                            <h3><a href="https://www.canada.ca/en/services/taxes/excise-taxes-duties-and-levies.html">Excise and specialty taxes</a></h3>
                             <p>Customs; excise taxes and duties; air travellers security charge; fuel charge; luxury, underused housing and other taxes</p>
                         </section>
                         <section class="col-md-4">
-                            <h3><a href="/en/services/taxes/charities.html">Charities and giving</a></h3>
+                            <h3><a href="https://www.canada.ca/en/services/taxes/charities.html">Charities and giving</a></h3>
                             <p> Charities listings, charity registration and operation, and charitable tax credits </p>
                         </section>
                         <section class="col-md-4">
-                            <h3><a href="/en/revenue-agency/services/payments-cra.html">Payments to the CRA</a></h3>
+                            <h3><a href="https://www.canada.ca/en/revenue-agency/services/payments-cra.html">Payments to the CRA</a></h3>
                             <p> Find options to make a payment for your personal income taxes, business taxes, or some government programs</p>
                         </section>
                         <div class="clearfix"></div>
@@ -181,13 +759,13 @@
                         <h2 class="col-lg-3 h3">Contact us</h2>
                         <span class="clearfix"></span>
                         <section class="col-lg-4 col-sm-6">
-                            <h3 class="h5"><a href="/en/revenue-agency/corporate/contact-information.html">Contact the CRA</a></h3>
+                            <h3 class="h5"><a href="https://www.canada.ca/en/revenue-agency/corporate/contact-information.html">Contact the CRA</a></h3>
                         </section>
                         <section class="col-lg-4 col-sm-6">
-                            <h3 class="h5"><a href="/en/revenue-agency/corporate/contact-information/tax-services-offices-tax-centres.html">Find a mailing address</a></h3>
+                            <h3 class="h5"><a href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/tax-services-offices-tax-centres.html">Find a mailing address</a></h3>
                         </section>
                         <section class="col-lg-4 col-sm-6">
-                            <h3 class="h5"><a href="/en/revenue-agency/services/about-canada-revenue-agency-cra/complaints-disputes/make-a-service-complaint.html">Submit service feedback</a></h3>
+                            <h3 class="h5"><a href="https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/complaints-disputes/make-a-service-complaint.html">Submit service feedback</a></h3>
                         </section>
                     </div>
                 </div>
@@ -197,62 +775,62 @@
                         <div class="wb-eqht row">
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/corporate/about-canada-revenue-agency-cra/mission-vision-values.html">Mandate</a> </h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra/mission-vision-values.html">Mandate</a> </h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/corporate/about-canada-revenue-agency-cra/canada-revenue-agency-structure-operational-framework.html">Organizational structure</a> </h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra/canada-revenue-agency-structure-operational-framework.html">Organizational structure</a> </h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/corporate/about-canada-revenue-agency-cra/transparency-proactive-disclosure-canada-revenue-agency.html">Transparency</a> </h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra/transparency-proactive-disclosure-canada-revenue-agency.html">Transparency</a> </h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/campaigns/accessibility-plan.html">CRA’s Accessibility Plan</a> </h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/campaigns/accessibility-plan.html">CRA’s Accessibility Plan</a> </h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/corporate/careers-cra.html">Job opportunities</a> </h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/corporate/careers-cra.html">Job opportunities</a> </h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/programs/about-canada-revenue-agency-cra/corporate-reports-information.html">Reports</a> </h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/corporate-reports-information.html">Reports</a> </h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/programs/about-canada-revenue-agency-cra/compliance.html">Compliance and enforcement</a> </h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/compliance.html">Compliance and enforcement</a> </h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/news/newsroom/criminal-investigations-actions-charges-convictions.html">Enforcement notifications</a> </h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/news/newsroom/criminal-investigations-actions-charges-convictions.html">Enforcement notifications</a> </h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/corporate/about-canada-revenue-agency-cra/taxpayer-bill-rights.html">Taxpayer Bill of Rights</a> </h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra/taxpayer-bill-rights.html">Taxpayer Bill of Rights</a> </h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/corporate/security.html">Security and privacy</a></h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/corporate/security.html">Security and privacy</a></h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> <a href="/en/revenue-agency/campaigns/accessibility-plan/submitting-feedback-about-accessibility.html">Submit accessibility feedback</a> </h3>
+                                    <h3 class="h5"> <a href="https://www.canada.ca/en/revenue-agency/campaigns/accessibility-plan/submitting-feedback-about-accessibility.html">Submit accessibility feedback</a> </h3>
                                 </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
-                                    <h3 class="h5"> More: <a href="/en/revenue-agency/corporate/about-canada-revenue-agency-cra.html">About the CRA</a> </h3>
+                                    <h3 class="h5"> More: <a href="https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra.html">About the CRA</a> </h3>
                                 </section>
                             </div>
                         </div>
@@ -260,12 +838,12 @@
                     <div class="col-md-4 col-sm-5 pull-right mobile-left">
                         <section class="lnkbx">
                             <h2 class="h3">Minister</h2>
-                            <p><a href="/en/government/ministers/marie-claude-bibeau.html">The Honourable Marie-Claude Bibeau</a><br>
+                            <p><a href="https://www.canada.ca/en/government/ministers/marie-claude-bibeau.html">The Honourable Marie-Claude Bibeau</a><br>
                                 <small>Minister of National Revenue</small></p>
                         </section>
                         <section class="lnkbx">
                             <h2 class="h3">Taxpayers' Ombudsperson</h2>
-                            <p><a href="/en/taxpayers-ombudsperson.html">Office of the Taxpayers' Ombudsperson</a></p>
+                            <p><a href="https://www.canada.ca/en/taxpayers-ombudsperson.html">Office of the Taxpayers' Ombudsperson</a></p>
                         </section>
                         <section class="followus experimental">
                             <h2 class="mrgn-tp-lg h3">Follow us</h2>
