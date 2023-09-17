@@ -183,12 +183,14 @@
     </dt>	
 <dd>
     <p>Your SR&amp;ED  reporting deadline is 12&nbsp;months after your T2 Corporation Income Tax Return is due.</p>
-	
-<div class="input-group">
-  <label for="taxyearend">Enter your tax year end to get your dates<span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+
+<p><strong>Enter your tax year end to get your dates</strong></p>
+<form class="form-inline">
+  <div class="form-group">
+    <!--label class="wb-inv" for="enddate2">Enter your tax year end to get your dates<span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label-->
   <input class="form-control" type="date" id="enddate2" name="enddate2" min="2021-12-01" max="2023-12-31" value="">
-<span class="input-group-btn">
-      <button class="btn btn-primary btn-lg mrgn-bttm-md" type="button" id="calculate2" data-wb-doaction="[ 
+</div>
+      <button class="btn btn-primary btn-lg mrgn-lft-sm" type="button" id="calculate2" data-wb-doaction="[ 
     { &quot;action&quot;: &quot;removeClass&quot;, &quot;class&quot;: &quot;hidden&quot;, &quot;source&quot;: &quot;#corps1&quot; },
     { &quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#smallLoader2&quot;, &quot;url&quot;: &quot;doaction-dates-en.json&quot; },
     { &quot;action&quot;: &quot;withInput&quot;, &quot;srcInput&quot;: &quot;#enddate2&quot;, &quot;actions&quot;: [
@@ -209,8 +211,8 @@
             }                                                                                        
         ] }
     ]">Get your dates</button>
-</span>
-      </div>     
+
+      </form>    
     
     <div id="smallLoader2" data-wb-jsonmanager="{
     &quot;url&quot;:&quot;empty.json&quot;,
@@ -218,8 +220,9 @@
     &quot;wait&quot;: true
     }"></div>
     
-    <div id="corps1" class="hidden mrgn-tp-lg mrgn-bttm-md">
-      <p><strong>Your due dates</strong></p>    
+    <div tabindex="0" id="corps1" class="hidden mrgn-tp-lg mrgn-bttm-md">
+      <p class="text-muted small">Based on your selection</p>
+      <h4>Your dates are:</h4>    
       <ul class="fa-ul">
         <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your tax filing due date is: <strong><span class="nowrap" data-json-replace="#[jsonsmall2]/date">Date not loaded yet</span></strong><br><span class="small">(6 months after your tax year end)</span></li>
         </ul>
@@ -236,12 +239,13 @@
 <dd>	
 
     <p>Your SR&amp;ED reporting deadline is 12&nbsp;months after your T3 Trust Income Tax and Information Return is due </p>
-<div class="form-group">
-  <label for="taxyearend">Enter your tax year end to get your dates <span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-  <input class="form-control" type="date" id="enddate1" name="enddate1" min="2021-12-01" max="2023-12-31" value="">
-</div>             
-    <div>
-      <button class="btn btn-primary btn-lg mrgn-bttm-md" type="button" id="calculate1" data-wb-doaction="[ 
+<p><strong>Enter your tax year end to get your dates</strong></p>
+<form class="form-inline">
+  <div class="form-group">
+  <!--label for="taxyearend">Enter your tax year end to get your dates <span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label-->
+  <input class="form-control" type="date" id="enddate1" name="enddate1" min="2021-12-01" max="2023-12-31" value="">           
+</div>
+      <button class="btn btn-primary btn-lg mrgn-lft-sm" type="button" id="calculate1" data-wb-doaction="[ 
     { &quot;action&quot;: &quot;removeClass&quot;, &quot;class&quot;: &quot;hidden&quot;, &quot;source&quot;: &quot;#trusts1&quot; },
     { &quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#smallLoader&quot;, &quot;url&quot;: &quot;doaction-dates-en.json&quot; },
     { &quot;action&quot;: &quot;withInput&quot;, &quot;srcInput&quot;: &quot;#enddate1&quot;, &quot;actions&quot;: [
@@ -262,7 +266,7 @@
             }                                                                                        
         ] }
     ]">Get your dates</button>
-      </div> 
+      </form>
     
     <div id="smallLoader" data-wb-jsonmanager="{
     &quot;url&quot;:&quot;empty.json&quot;,
@@ -271,8 +275,8 @@
     }"></div>
     
 	
-    <div id="trusts1" class="hidden mrgn-tp-lg mrgn-bttm-md">
-      <p><strong>Your due dates</strong></p>     
+    <div tabindex="0" id="trusts1" class="alert alert-info provisional hidden mrgn-tp-lg mrgn-bttm-md">
+      <p class="text-muted small">Based on your selection</p>  
       <ul class="fa-ul">
         <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your tax filing due date is: <strong><span class="nowrap" data-json-replace="#[jsonsmall]/date">Date not loaded yet</span></strong><br><span class="small">(90 days after your tax year end)</span></li>
         </ul>
