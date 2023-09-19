@@ -2,10 +2,10 @@
 "use strict";
 var index = [];
 if (document.documentElement.lang === "en") {
-	index = ["menu-include-en.html", "footer-include-en.html"];
+	index = ["assets/menu-include-en.html", "assets/footer-include-en.html"];
 }
 if (document.documentElement.lang === "fr") {
-	index = ["menu-include-fr.html", "footer-include-fr.html"];
+	index = ["assets/menu-include-fr.html", "assets/footer-include-fr.html"];
 }
 var injectSpot = ["menu-include", "footer-include"];
 var request = new XMLHttpRequest();
