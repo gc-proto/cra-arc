@@ -18,6 +18,7 @@
          <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
          <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
          <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+		 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
          <!-- Write closure template -->
          <script type="text/javascript">
@@ -88,7 +89,7 @@
 			
 			
 			
-            <section id="filteredAppsList" class="wb-tagfilter provisional">
+             <section id="filteredEventsList" class="wb-tagfilter provisional">
                <div class="row">
                   <div class="col-sm-4">
                      <h2 class="h3 mrgn-tp-0"><span class="fas fa-filter"></span> Filter</h2>
@@ -132,7 +133,7 @@
                                  Finance and insurance
                               </option>
                               <option value="industry-8">
-                                 Health care and social a9sistance
+                                 Health care and social assistance
                               </option>
                               <option value="industry-10">
                                  Information and cultural industries
@@ -270,16 +271,24 @@
                      </div>
                   </div>
 
-                  <div class="col-sm-8">
-                     <p class="h3 wb-fltr-info mrgn-tp-0">Total: <span class="h3" data-nbitem></span>[#] out of <span class="h3" data-total></span>[#]</p>
-                     <div class="wb-tagfilter-items">
-					
-                        <div data-wb-tags="outcome-1 industry-1">
-                           <div class="well brdr-rds-0">
+                   <div class="col-md-8 wb-tagfilter provisional wb-filter" id="filteredFAQ"  data-wb-filter='{
+		"selector": ".link-list>li",
+		"section": ".wb-tagfilter-items",
+		"uiTemplate": "#searchFilter"
+	}'>
+        <div id="searchFilter">
+<p class="wb-fltr-info"><span class="h3" data-nbitem></span> out of <span class="h3" data-total></span></p>
+		
+          <input type="search" class="hidden" id="customSearchUI">
+      </div>
+        <div class="wb-tagfilter-items">
+          <ul class="list-unstyled link-list lst-spcd-2">
+				
+                        <li data-wb-tags="outcome-1 industry-1" class="well brdr-rds-0">
                               <p class="h4 mrgn-tp-0"><a href="#">[link]</a></p>
-                              <ul class="list-unstyled">
-                                 <li><strong>Decision from:</strong> [abc]</li>
-                                 <li><strong>Outcome:</strong> [def]</li>
+                              <ul class="list-unstyled mrgn-bttm-md">
+                                 <li><strong>Outcome:</strong> [abc]</li>
+                                 <li><strong>Decision from:</strong> [def]</li>
                                  <li><strong>Industry:</strong> [ghi]</li>
                               </ul>
                               <details>
@@ -303,13 +312,14 @@
                                     <li>[content]</li>
                                  </ul>
                               </details>
-                           </div>
-                        </div>
-						 <div class="wb-tagfilter-noresult">
+                        </li>
+						
+						</ul>
+						 
+                     </div>
+                    <div class="wb-tagfilter-noresult">
                         <p>No result.</p>
                      </div>
-                     </div>
-                     
                   </div>
                </div>
             </section>
