@@ -13,7 +13,7 @@
          <meta content="width=device-width,initial-scale=1" name="viewport">
          <meta name="robots" content="noindex, follow">
          <!-- Meta data -->
-         <!-- Load closure template scripts --> 
+          <!-- Load closure template scripts --> 
  <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
          <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
          <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
@@ -21,8 +21,8 @@
 		 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
-         <!-- Write closure template -->
-         <script type="text/javascript">
+<!-- Write closure template --> 
+<script type="text/javascript">
             document.write(wet.builder.refTop({
             }));
          </script>
@@ -95,6 +95,69 @@
 <!--Not sure //-->	
 <ol class="lst-stps ld-zr stps-strpd">	
 <li> <h3>Determine if the persons are related</h3>
+    <section id="filteredEventsList" class="wb-tagfilter provisional">
+               <div class="row">
+                  <div class="col-md-4">
+                     <details class="provisional wb-details-close" open><summary class="mrgn-lft-0 mrgn-rght-0"><span class="fas fa-filter"></span> Filter</summary>
+                     <div class="form-group">
+                        <fieldset>
+
+  <legend class="mrgn-bttm-0">Relationship</legend>
+
+                             <label for="per1">Person 1</label>
+                           <select id="per1" name="per1" class="full-width form-control wb-tagfilter-ctrl mrgn-bttm-md">
+                              <option value="">All</option>
+                              <option value="per1a">Corporation</option>
+			     			  <option value="per1b">Person related to a corporation</option>   
+                              <option value="per1c">Parnership</option>
+                            
+                           </select>
+                           <label for="per2">Person 2</label>
+                           <select id="per2" name="per2" class="full-width form-control wb-tagfilter-ctrl mrgn-bttm-md">
+                              <option value="">All</option>
+                              <option value="per2a">Corporation</option>
+   		 					  <option value="per2b">Person related to a corporation</option>			
+ 					  		  <option value="per2c">Parnership</option>
+                           </select>
+
+ 
+				           
+                        </fieldset>
+<p><a href="?" class="btn btn-default mrgn-bttm-0 mrgn-tp-md">Reset</a></p>
+                     </div>
+					 </details>
+                  </div>
+
+                   <div class="col-md-8 wb-tagfilter provisional wb-filter" id="filteredFAQ"  data-wb-filter='{
+		"selector": ".link-list>li",
+		"section": ".wb-tagfilter-items",
+		"uiTemplate": "#searchFilter"
+	}'>
+        <div id="searchFilter">
+<p class="wb-fltr-info small">Filter by key words: <input type="search" id="customSearchUI"> &nbsp; &nbsp; Showing <span data-nbitem></span> out of <span data-total></span> items</p>
+	         
+      </div>
+        <div class="wb-tagfilter-items">
+          <ul class="list-unstyled link-list">
+
+
+ <li data-wb-tags= "per1">
+<p>Yes</p>
+</li>
+
+ <li data-wb-tags= "per2">
+<p>No</p>
+</li>
+</ul>
+                     </div>
+                    <div class="wb-tagfilter-noresult">
+                        <p>Based on your filter selections, there are no results available.  Please select less filter options, or <a href="?">reset the page</a>.</p>
+                     </div>
+                  </div>
+               </div>
+<p>Add info here</p>
+            </section>
+
 <p id="step1">To determine if the persons are related, continue to:</p>
 <ul>
 <li><a href="#step1a">Step 1a: Determine if two individuals are related to each other</a></li>
