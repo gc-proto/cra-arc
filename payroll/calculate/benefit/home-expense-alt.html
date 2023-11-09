@@ -335,14 +335,29 @@
   <fieldset class="gc-chckbxrdio gc-font-2019">
                       
 
- <ul class="class="list-unstyled lst-spcd-2">		 
-<li class="checkbox gc-chckbxrdio"><legend class="wb-inv">Required</legend><input aria-controls="wb-auto-7" value="cond-1" id="1" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="1">You required your employee to use their home in the course of their employment duties </label> </li>
-<li class="checkbox gc-chckbxrdio"><legend class="wb-inv">More</legend><input aria-controls="wb-auto-7" value="cond-2" id="2" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="2">Your employee was working more than 50% remotely from home</label> </li>    
-<li class="checkbox gc-chckbxrdio"><legend class="wb-inv">Amount</legend><input aria-controls="wb-auto-7" value="cond-3" id="3" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="3">The amount paid is to compensate for home office expenses in the course of their employment duties</label></li>
-<li class="checkbox gc-chckbxrdio"><legend class="wb-inv">Less</legend><input aria-controls="wb-auto-7" value="cond-4" id="4" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="4">The total amount is $500 or less, including taxes</label></li>
-<li class="checkbox gc-chckbxrdio"><legend class="wb-inv">Reasonable</legend><input aria-controls="wb-auto-7" value="cond-5" id="5" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="5">The amount is considered reasonable  and you can justify your position</label></li>
-<li class="checkbox gc-chckbxrdio"><legend class="wb-inv">Records</legend><input aria-controls="wb-auto-7" value="cond-6" id="6" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="6">If you reimbursed or provided an accountable advance, you received the required records from your employee of the home office expense to support these expenses</label></li>
+ <ul class="checkbox-lg checkbox-zebra gc-chckbxrdio">		 
+<li class="checkbox "><legend class="wb-inv">Required</legend><input aria-controls="wb-auto-7" value="cond-1" id="eg1" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="1">You required your employee to use their home in the course of their employment duties </label> </li>
+<li class="checkbox "><legend class="wb-inv">More</legend><input aria-controls="wb-auto-7" value="cond-2" id="eg2" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="2">Your employee was working more than 50% remotely from home</label> </li>    
+<li class="checkbox "><legend class="wb-inv">Amount</legend><input aria-controls="wb-auto-7" value="cond-3" id="eg3" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="3">The amount paid is to compensate for home office expenses in the course of their employment duties</label></li>
+<li class="checkbox "><legend class="wb-inv">Less</legend><input aria-controls="wb-auto-7" value="cond-4" id="eg4" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="4">The total amount is $500 or less, including taxes</label></li>
+<li class="checkbox "><legend class="wb-inv">Reasonable</legend><input aria-controls="wb-auto-7" value="cond-5" id="eg5" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="5">The amount is considered reasonable  and you can justify your position</label></li>
+<li class="checkbox "><legend class="wb-inv">Records</legend><input aria-controls="wb-auto-7" value="cond-6" id="eg6" class="form-control wb-tagfilter-ctrl" type="checkbox"><label for="6">If you reimbursed or provided an accountable advance, you received the required records from your employee of the home office expense to support these expenses</label></li>
 </ul>
+
+  <div class="alert alert-info provisional" id="action-default-msg">
+                    <h3>You need all of the above to make a qualifying withdrawal</h3>
+              <p>If you do not meet all of the conditions above, the amount withdrawn from your FHSA may be a taxable withdrawal. You must include the amount you withdraw as income on your income tax and benefit return for the year the withdrawal is received.</p>
+                  </div>
+                  <div class="alert alert-warning hidden provisional" id="action-not-qualify-msg">
+                    <p>Based on your selections above:</p>
+              <h3>You may not meet the conditions for a qualifying withdrawal</h3>
+              <p>If you do not meet all of the conditions above, the amount withdrawn from your FHSA may be a taxable withdrawal. You must include the amount you withdraw as income on your income tax and benefit return for the year the withdrawal is received. If the CRA has already assessed your income tax and benefit return for that year, the CRA will reassess it to include the taxable withdrawal in your income.</p>
+                  </div>
+                  <div class="alert alert-success hidden provisional" id="action-qualify-msg">
+                    <p>Based on your selections above:</p>
+              <h3>You meet the conditions for a qualifying withdrawal</h3>
+              <p>Since you meet all of the conditions above, the amount withdrawn from your FHSA would be a qualifying withdrawal. You do not need to include the amount you withdraw as income on your income tax and benefit return. </p>
+                  </div>
 
 </fieldset>
                      </div>
@@ -745,6 +760,33 @@
             }));
          </script>
          <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
+<script defer>
+    "use strict";
+    
+    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
+        if (chkbxChecked.length === 0) {
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + defaultID).removeClass("hidden").addClass("visible");
+        } else if (chkbxGroup.length === chkbxChecked.length) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).removeClass("hidden").addClass("visible");
+        } else {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).removeClass("hidden").addClass("visible");
+        }
+    }, 
+    updateChkbxList = function () {
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
+    };
+   
+    window.onload = updateChkbxList;
+
+    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
+</script>
 
       </body>
    </html>
