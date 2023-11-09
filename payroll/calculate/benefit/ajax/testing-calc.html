@@ -7,14 +7,14 @@
 <head>
     <meta charset="utf-8">
     <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-    <title>How to calculate allowable home office expenses - Canada.ca</title>
+    <title>Testing calculations</title>
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <!-- Meta data -->
     <!-- Meta data-->
     <!-- Load closure template scripts -->
     <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/cdts/compiled/soyutils.js"></script>
     <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/cdts/compiled/wet-en.js"></script>
-   
+
     <!-- Write closure template -->
     <script type="text/javascript">
         document.write(wet.builder.refTop({}));
@@ -23,147 +23,6 @@
     <link href="../../css/h1-underline.css" rel="stylesheet">
     <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" />
     <link href="https://test.canada.ca/cra/css/custom.css" rel="stylesheet">
-  <style type="text/css">
-         div.hidden-action {
-         transform: scaleX(0);
-         overflow: hidden;
-         display: none;
-         }
-         div.visible-action {
-         transform: scaleX(1);
-         display: visible;
-         }
-         /*Checkbox/Fieldflow radio input sizing,positioning*/
-         .checkbox-zebra > li:nth-child(2n+1) {
-         background-color: #f5f5f5;
-         margin-left: -50px;
-         padding-top: 10px;
-         padding-bottom: 15px;
-         padding-left: 50px;
-         }
-         .checkbox-zebra [role="checkbox"]::before {
-         background-color: #fff;
-         }
-         .std-blt {
-         font-size: 20px;
-         line-height: 1.65em;
-         }
-         .std-blt {
-         list-style-type: disc;
-         }
-         .std-blt li label {
-         display: block;
-         padding-left: 0px;
-         }
-         /********
-         ********
-         ** New checklist example
-         ** May 15, 2020
-         ** Replacing checkkboxes with clickable divs that convey a sense of success to the user
-         ********
-         ********/
-         /* One input per line */
-         .provisional [role="checkbox"] { /* (0,2,0) */
-         cursor: pointer;
-         display: inline-block;
-         padding-left: 15px;
-         position: relative;
-         }
-         .provisional [role="checkbox"]::before,
-         .provisional [role="checkbox"]::after { /* (0,2,1) */
-         content: "";
-         left: 0;
-         position: absolute;
-         top: 0;
-         transform: translate(-100%, 0%);
-         }
-         .provisional .wb-checklist.wb-checklist-sm { /* (0,3,0) */
-         font-size: 17px;
-         }
-         /* the basic, unchecked style */
-         .provisional [role="checkbox"]::before { /* (0,2,1) */
-         border: 4px solid #fff;
-         box-shadow: 0 0 0 2px #000;
-         display: inline-block;
-         height: 36px;
-         width: 36px;
-         }
-         .provisional .wb-checklist-sm [role="checkbox"]::before { /* (0,3,1) */
-         border-width: 3px;
-         height: 24px;
-         transform: translate(-100%, 20%);
-         width: 24px;
-         }
-         /* hover styling */
-         .provisional [role="checkbox"][aria-checked="false"]:hover::before { /* (0,3,1) */
-         background-image: linear-gradient(to bottom, hsl(10, 0%, 90%), hsl(10, 0%, 100%) 50%);
-         }
-         /* focus styling */
-         .provisional [role="checkbox"]:focus { /* (0,3,0) */
-         outline: none;
-         }
-         .provisional [role="checkbox"]:focus::before { /* (0,3,2) */
-         box-shadow: 0 0 0 2px #000, 0 0 8px 4px rgb(59, 153, 252);
-         }
-         /* the checked style using the [aria-checked='true'] pseudo class and aria-checked=true attribute */
-         .provisional [role="checkbox"][aria-checked="true"]::before { /* (0,3,1) */
-         background-color: #318000;
-         border: none;
-         }
-         .provisional [role="checkbox"][aria-checked="true"]::after { /* (0,3,1) */
-         border-color: white;
-         border-style: solid;
-         border-width: 0 5px 5px 0;
-         display: inline-block;
-         height: 26px;
-         width: 13px;
-         transform: translate(-185%, 10%) rotate(45deg);
-         }
-         .provisional .wb-checklist-sm [role="checkbox"][aria-checked="true"]::after { /* (0,3,1) */
-         border-width: 0 4px 4px 0;
-         height: 16px;
-         width: 9px;
-         transform: translate(-185%, 40%) rotate(45deg);
-         }
-         @charset "utf-8";
-/*Fix checkboxes in zebra list*/
-.gc-chckbxrdio>li>input[type=checkbox]+label::before {
-    margin-left: -20px;
-    margin-top: 10px;
-}
-.gc-chckbxrdio>li>input[type=checkbox]+label::after {
-    margin-left: -20px;
-    margin-top: 10px;
-}
-.gc-chckbxrdio>li:nth-child(2n+1)>input[type=checkbox]+label::before {
-    margin-left: 30px;
-    margin-top: 20px;
-    background-color: #fff;
-}
-.gc-chckbxrdio>li:nth-child(2n+1)>input[type=checkbox]+label::after {
-    margin-left: 30px;
-    margin-top: 20px;
-}
-/*fix OR pattern in checklists*/
-[class*=cnjnctn-type-] {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    margin-bottom: 15px;
-    margin-left: -15px; /*was 5*/
-    margin-right: 0px;
-    margin-top: 0px; /*was 15*/
-    position: relative;
-    min-height: 60px;
-}
-/*css to remove OR line for specific pages in dental/housing*/
-[class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child):after {
-    background-image: none !important;
-}    
-      </style>
-          
-
-
 <style>
 
 
@@ -895,15 +754,24 @@ font-size: 22px;
                 title: "Taxes",
                 href: "taxes.html"
             }, {
-               title: "Payroll",
-                href: "https://test.canada.ca/cra-arc/payroll/index.html"
+                title: "Income tax",
+                href: "income-tax.html"
             }, {
-                title: "Calculate payroll deductions and contributions",
-                href: "https://test.canada.ca/cra-arc/payroll/calculate/index.html"
+                title: "Personal income tax",
+                href: "personal-income-tax.html"
             }, {
-                title: "Determine if a benefit is taxable",
+                title: "Completing a tax return",
                 href: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return.html"
-          
+            }, {
+                title: "Deductions, credits, and expenses",
+                href: "deductions-credits-expenses.html"
+            }, {
+                title: "Line 22900 - Other employment expenses",
+                href: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-22900-other-employment-expenses.html"
+            }, {
+                title: "Home office expenses for employees",
+                href: "work-space-home-expenses.html"
+
             }],
             search: true,
             siteMenu: true,
@@ -919,7 +787,7 @@ font-size: 22px;
     
     <div class="container">
  
- 
+  <section class="gc-nav-section experimental">
     <h1 property="name" id="wb-cont">Calculate your expenses</h1>
 <section data-ajax-replace="content/home-office.txt#alert-en"></section>
     <noscript>
@@ -927,62 +795,8 @@ font-size: 22px;
       <p>This page requires JavaScript.</p>
     </div>
     </noscript>
-
-         
-           
-            <section>
-               
-               <section>
-                  <ul class="checkbox-lg checkbox-zebra gc-chckbxrdio">
-                     <li class="checkbox">
-                        <input type="checkbox" id="eg1" name="action-checkbox">
-                        <label for="eg1">Condition 1</label>
-                     </li>
-                     <li class="checkbox">
-                        <input type="checkbox" id="eg2" name="action-checkbox">
-                        <label for="eg2">Condition 2</label>
-                       </li>
-                     <li class="checkbox">
-                        <input type="checkbox" id="eg3" name="action-checkbox">
-                        <label for="eg3">Condition 3</label>
-                     </li>
-                     <li class="checkbox">
-                        <input type="checkbox" id="eg4" name="action-checkbox">
-                        <label for="eg4">Condition 4</label>
-                     </li>
-                     <li class="checkbox">
-                        <input type="checkbox" id="eg5" name="action-checkbox">
-                        <label for="eg5">Condition 5</label>
-                     </li>
-                     <li class="checkbox">
-                        <input type="checkbox" id="eg6" name="action-checkbox">
-                        <label for="eg6">Condition 6</label>
-                
-                     </li>
-                    
-                  <div class="alert alert-info provisional" id="action-default-msg">
-                    <h3>You need all of the above to make a qualifying withdrawal</h3>
-              <p>If you do not meet all of the conditions above, the amount withdrawn from your FHSA may be a taxable withdrawal. You must include the amount you withdraw as income on your income tax and benefit return for the year the withdrawal is received.</p>
-                  </div>
-                  <div class="alert alert-warning hidden provisional" id="action-not-qualify-msg">
-                    <p>Based on your selections above:</p>
-              <h3>You may not meet the conditions for a qualifying withdrawal</h3>
-              <p>If you do not meet all of the conditions above, the amount withdrawn from your FHSA may be a taxable withdrawal. You must include the amount you withdraw as income on your income tax and benefit return for the year the withdrawal is received. If the CRA has already assessed your income tax and benefit return for that year, the CRA will reassess it to include the taxable withdrawal in your income.</p>
-                  </div>
-                  <div class="alert alert-success hidden provisional" id="action-qualify-msg">
-                    <p>Based on your selections above:</p>
-              <h3>You meet the conditions for a qualifying withdrawal</h3>
-              <p>Since you meet all of the conditions above, the amount withdrawn from your FHSA would be a qualifying withdrawal. You do not need to include the amount you withdraw as income on your income tax and benefit return. </p>
-                  </div>
-               </section>
-               <div class="clearfix"></div>
-            </section>
-      
-     
-        
-
-
-     	 <p class="mrgn-bttm-md">To use the calculator, select from the options below.</p>
+     <p>To understand the math behind the home office expenses calculation, refer to <a href="how-calculated.html">how the claim is calculated</a>.</p>
+		 <p class="mrgn-bttm-md">To use the calculator, select from the options below.</p>
 	<details class="mrgn-bttm-lg">
       <summary>This form does not collect or store your information</summary>
       <p>The CRA is not collecting or retaining any of the information you enter on this page. These amounts are only
@@ -2368,46 +2182,6 @@ font-size: 22px;
 		showFeedback: true,
 		showShare: true
 	});
-</script>
-
-   <script type="text/javascript">_satellite.pageBottom();</script>
-
-
-
-
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/ep-pp.min.js"></script>
-<script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/wet-boew.min.js"></script> 
-<script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script>
-
-<script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
-<script defer>
-    "use strict";
-    
-    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
-        if (chkbxChecked.length === 0) {
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + defaultID).removeClass("hidden").addClass("visible");
-        } else if (chkbxGroup.length === chkbxChecked.length) {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).removeClass("hidden").addClass("visible");
-        } else {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).removeClass("hidden").addClass("visible");
-        }
-    }, 
-    updateChkbxList = function () {
-        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
-    };
-   
-    window.onload = updateChkbxList;
-
-    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
 </script>
 
 </main>
