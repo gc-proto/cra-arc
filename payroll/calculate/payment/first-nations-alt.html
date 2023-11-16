@@ -20,8 +20,8 @@
 		 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
-            <!-- Write closure template -->
-         <script type="text/javascript">
+<!-- Write closure template --> 
+<script type="text/javascript">
             document.write(wet.builder.refTop({
             }));
          </script>
@@ -306,12 +306,29 @@
 <p> The exemption from tax under section 87 of the Indian Act <strong>only</strong> applies to an individual who is registered or entitled to be registered under the Indian Act. </p> 
 
 <p>To determine if the <a href="#fnterm" aria-controls="fnterm" class="overlay-lnk" role="button">First Nations employee’s <span class="far fa-question-circle"></span></a> employment income is tax-exempt or partially tax-exempt, ask your employee to fill out part 1 of Form <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/td1-in.html">TD1-IN</a>, Determination of Exemption of an Indian's Employment Income to certify they meet <strong>all</strong> of the following conditions for the exemption:</p>
+<div class="wb-frmvld gc-font-2019">
+<div class="form-group">
+  <fieldset class="gc-chckbxrdio gc-font-2019">
+   
+  <ul class="checkbox-lg checkbox-zebra gc-chckbxrdio">
+	<li class="checkbox">
+            <input type="checkbox" id="eg1" name="action-checkbox">
+            <label for="eg1">Your employee is registered under the Indian Act</label> 
+	 </li>      
 
-<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col">Your employee is registered under the Indian Act</li> 	 
-<li class="cnjnctn-col">Your employee is not a treaty beneficiary of a First Nation with a final or self-government agreement that ends the tax exemption under section 87 of the Indian Act</li>
-<li class="cnjnctn-col">If your employee lives on a reserve, it is their principal place of residence and is the centre of their daily routine</li>  
+         <li class="checkbox">
+            <input type="checkbox" id="eg2" name="action-checkbox">
+            <label for="eg2">Your employee is not a treaty beneficiary of a First Nation with a final or self-government agreement that ends the tax exemption under section 87 of the Indian Act</label> 
+	 </li>
+   
+
+ <li class="checkbox">
+            <input type="checkbox" id="eg3" name="action-checkbox">
+            <label for="eg3">If your employee lives on a reserve, it is their principal place of residence and is the centre of their daily routine</label> 
+	 </li>   
+	
 </ul>
+
 <p>You must also certify that information you provided on Form TD1-IN is correct and complete.</p>
 
 <details><summary>What if the First Nations employee's employment situation changes</summary>
@@ -328,17 +345,33 @@
 <li>From <abbr title="Indegenous Services Canada">ISC</abbr>: <a href="https://www.sac-isc.gc.ca/eng/1100100032463/1572459644986#sec6">How to prove registration</a>  </li>
 <li>From <abbr title="Crown-Indigenous Relations and Northern Affairs Canada">CIRNAC</abbr>: <a href="https://www.rcaanc-cirnac.gc.ca/eng/1100100028568/1529354090684">Treaty and agreement negotiations</a></li>
 </ul> 
-</div>
-<hr>
 
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><p><span class="fas fa-ban text-danger fa-lg"></span> If the employee <strong>does not</strong> meet all conditions for the exemption, <strong>do not</strong> continue to next step.</p> 
+
+  <div class="alert alert-info provisional" id="action-default-msg">
+                    <h3>Your employee must meet all conditions above for the exemption to apply</h3>
+           	  <p><span class="fas fa-ban text-danger fa-lg"></span> If your employee <strong>does not</strong> meet all conditions for the exemption, <strong>do not</strong> continue to next step.</p> 
   <div id="ajax-notreg">
 <p>You must deduct CPP, EI and income tax as you would for your other employees. </p> 
-</div></li>
-<li class="cnjnctn-col"><span class="fas fa-arrow-down text-success fa-lg"></span> If the First Nations employee meets all conditions for the exemption, continue to <a href="#step2">Step 2 - Determine if you can use the guidance to determine if the employment income is tax-exempt or partially tax-exempt</a>.</li>
-</ul>
-	
+</div>
+	  
+                  </div>
+                  <div class="alert alert-warning hidden provisional" id="action-not-qualify-msg">
+                   <h3><small>Your result </small><br> Your employee must meet all 3 conditions above for the exemption to apply</h3>
+ <p><span class="fas fa-ban text-danger fa-lg"></span> If your employee <strong>does not</strong> meet all 3 conditions for the exemption, <strong>do not</strong> continue to next step.</p>
+<p>You must deduct CPP, EI and income tax as you would for your other employees. </p> 
+
+                        </div>
+
+                  <div class="alert alert-success hidden provisional" id="action-qualify-msg">
+                   
+              <h3><small>Your result </small><br> Your employee meets all conditions for the exemption</h3>
+              <p>Your employee meets all conditions for the exemption, continue to <a href="#step2">Step 2 - Determine if you can use the guidance to determine if the employment income is tax-exempt or partially tax-exempt</a>. </p>
+	                  </div>
+
+</fieldset>
+                     </div> </div>
+       
+
  </li>
 
   <li>
