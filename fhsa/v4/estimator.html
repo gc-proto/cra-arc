@@ -21,6 +21,8 @@
     <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
     <style type="text/css">
+        @charset "utf-8";
+	    
         div.hidden-action {
             transform: scaleX(0);
             overflow: hidden;
@@ -151,8 +153,6 @@
             transform: translate(-185%, 40%) rotate(45deg);
         }
 
-        @charset "utf-8";
-
         /*Fix checkboxes in zebra list*/
         .gc-chckbxrdio>li>input[type=checkbox]+label::before {
             margin-left: -20px;
@@ -192,6 +192,143 @@
         [class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child):after {
             background-image: none !important;
         }
+    </style>
+    <style>
+      .provisional.wb-steps .wb-tggle-fildst>legend:before {
+          background-color: #fff;
+          padding: 4px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          border: 3px solid #6f6f6f;
+          height: 1.2em;
+          width: 1.2em;
+          box-sizing: content-box;
+          margin-right: 10px;
+          display: inline-block;
+          text-align: center;
+          line-height: 1.2;
+          content: counter(fieldset_counter);
+      }
+      
+      .panel-default>.panel-heading.wb-steps-active {
+          background-color: #fff;
+      }
+      
+      .provisional.wb-steps .wb-tggle-fildst>legend.wb-steps-active:before {
+          background-color: #1c578a;
+          border-color: #1c578a;
+          color: #fff;
+      }
+      
+      .provisional.wb-steps .wb-tggle-fildst>legend:not(.wb-steps-active) {
+          font-size: 18px;
+      }
+      
+      .provisional.wb-steps .wb-tggle-fildst>legend.wb-steps-active {
+          font-weight: bold;
+      }
+      
+      fieldset+.buttons {
+          margin-left: 15px;
+      }
+      
+      .wb-steps-active .panel-title {
+          font-size: 1.3em;
+      }
+      
+      fieldset fieldset {
+          min-width: 1px;
+      }
+      
+      .ds-example {
+          margin-top: 15px;
+          border: 1px solid #e3e3e3;
+          box-shadow: 0px 0px 8px #e3e3e3;
+      }
+      
+      .ds-example>.wb-tabs>.tabpanels {
+          background: #f9f9f9;
+      }
+      
+      .ds-example>.wb-tabs>.tabpanels legend {
+          font-size: 80%;
+          font-weight: 700;
+          margin: 0 0 5px;
+      }
+      
+      .ds-example>.wb-tabs>.tabpanels fieldset {
+          padding-top: 0;
+      }
+      
+      .ds-example>.wb-tabs>.tabpanels>details>summary {
+          background: #fff;
+          border-radius: 0;
+      }
+      
+      .ds-example>.wb-tabs [role=tablist]>li:focus,
+      .ds-example>.wb-tabs [role=tablist]>li:hover {
+          background: #ddd;
+      }
+      
+      .ds-example>.wb-tabs {
+          margin-bottom: 0;
+      }
+      
+      .ds-example>.wb-tabs>.tabpanels>details {
+          margin-bottom: 0;
+      }
+      
+      .ds-example .panel-body {
+          box-shadow: none;
+      }
+      
+      @media screen and (max-width: 991px) {
+          .ds-example>.wb-tabs .tgl-panel {
+              margin-top: 15px;
+          }
+      }
+      
+      @media screen and (min-width: 992px) {
+          .ds-example>.wb-tabs>.tabpanels>details {
+              border: none;
+              padding: 15px;
+          }
+      
+          .ds-example>.wb-tabs [role=tablist]>li {
+              border: none;
+              background: none;
+          }
+      
+          .ds-example>.wb-tabs [role=tablist]>li.active a {
+              border-width: 0 0 4px;
+          }
+      
+          .ds-example>.wb-tabs>.tabpanels>details {
+              padding: 30px;
+          }
+      
+          .ds-example>.wb-tabs>.tabpanels>details {
+              background: #f9f9f9;
+              padding: 30px;
+              margin-bottom: 0;
+          }
+      }
+      
+      .prev-wb-step .btn-lgnd {
+          margin: 1px;
+          text-decoration-line: underline;
+      }
+      
+      .prev-wb-step:focus,
+      .prev-wb-step:hover {
+          color: #0535d2;
+      }
+      
+      .prev-wb-step:focus {
+          outline: 5px auto;
+          outline-offset: -2px;
+      }
     </style>
     <style>
         .wb-input-range>datalist {
@@ -705,7 +842,6 @@
         <template id="noInvestText">
             <abbr title="Not applicable">N/A</abbr>
         </template>
-        </div>
 
         <!--		 <section class="alert alert-danger">
   <h3>Disclaimer</h3>
