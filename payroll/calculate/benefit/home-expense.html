@@ -13,14 +13,16 @@
          <meta content="width=device-width,initial-scale=1" name="viewport">
          <meta name="robots" content="noindex, follow">
          <!-- Meta data -->
-          <!-- Load closure template scripts --> 
+         <!-- Load closure template scripts --> 
  <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
          <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
          <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
          <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
 		 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
-         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">         <!-- Write closure template -->
-         <script type="text/javascript">
+         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<!-- Write closure template --> 
+<script type="text/javascript">
             document.write(wet.builder.refTop({
             }));
          </script>
@@ -282,7 +284,7 @@
  <div class="alert alert-warning">
 <p>Content has been updated to include the <strong>new CRA administrative policy</strong>. This change is effective <strong>January 1, 2024</strong>.</p>
 </div>
-<p class="mrgn-bttm-lg">You may provide an <a href="#allowance" aria-controls="centred-popup" class="wb-lbx" role="button">allowance&nbsp;<span class="far fa-question-circle"></span></a>, a <a href="#reimbursement" aria-controls="centred-popup" class="wb-lbx" role="button">reimbursement&nbsp;<span class="far fa-question-circle"></span></a> or an <a href="#advance" aria-controls="centred-popup" class="wb-lbx" role="button">advance&nbsp;<span class="far fa-question-circle"></span></a> to your employee to compensate for use of their home or for home office expenses in connection with or in the course of their office or employment duties.</p>
+<p class="mrgn-bttm-lg">You may provide an <a href="#allowance" aria-controls="centred-popup" class="wb-lbx" role="button">allowance&nbsp;<span class="far fa-question-circle"></span></a> or a <a href="#reimbursement" aria-controls="centred-popup" class="wb-lbx" role="button">reimbursement&nbsp;<span class="far fa-question-circle"></span></a> to your employee to compensate for use of their home or for home office expenses in connection with or in the course of their office or employment duties.</p>
 
   <h2 class="h3">On this page</h2>
   	
@@ -301,25 +303,43 @@
 <h2 id="h_1">Determine if a benefit is taxable</h2>
 <p class="mrgn-bttm-lg">Generally, if you provide a benefit to your employee to compensate for use of their home or for home office expenses in connection with or in the course of their office or employment duties, the benefit is taxable. Depending on the situation, the benefit may not be taxable under the new <a href="#adminpolicy" aria-controls="centred-popup" class="wb-lbx" role="button">CRA's administrative policy&nbsp;<span class="far fa-question-circle"></span></a>. </p>
 
-<details><summary>Situation: You provide your employee with an allowance for home office expenses </summary>
-<h3>Non-taxable situation</h3>
-<p>Under the CRA's new administrativey policy, the benefit is <strong>not</strong> taxable if <strong>all</strong> of the following apply:</p>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col">You <strong>required</strong> your employee to use their home in the course of their employment duties</li>
-<li class="cnjnctn-col">Your employee was working <strong>more than 50% remotely from home</strong></li>
-<li class="cnjnctn-col">The amount paid is to <strong>compensate for home office expenses</strong> in the course of their employment duties</li>
-<li class="cnjnctn-col"><p>The following total amount of the allowance is <strong>equal or less</strong> than: </p>
-<div id="ajax-max">
+<p>Under the CRA's new administrative policy, the benefit is <strong>not</strong> taxable if <strong>all</strong> of the following conditions apply:</p>
+ <div class="wb-frmvld gc-font-2019">
+            
+<div class="form-group">
+  <fieldset class="gc-chckbxrdio gc-font-2019">
+   
+  <ul class="checkbox-lg checkbox-zebra gc-chckbxrdio">
+	<li class="checkbox">
+            <input type="checkbox" id="eg5" name="action-checkbox">
+            <label for="eg5">The amount paid is to <strong>compensate for home office expenses</strong> in the course of their employment duties</label> 
+	 </li>      
+
+         <li class="checkbox">
+            <input type="checkbox" id="eg1" name="action-checkbox">
+            <label for="eg1">You <strong>required</strong> or <strong>provided the choice</strong> to your employee to use their home in the course of their employment duties</label> 
+	 </li>
+   
+
+ <li class="checkbox">
+            <input type="checkbox" id="eg2" name="action-checkbox">
+            <label for="eg2">Your employee performed their employment duties <strong>more than 50% of the time</strong> from home</label> 
+	 </li>   
+	
+	
+	<li class="checkbox">
+            <input type="checkbox" id="eg6" name="action-checkbox">
+            <label for="eg6">The value of the benefit is <strong>not</strong> more than the following limit for the year: </label> <div id="ajax-max" class="mrgn-lft-xl">
 <div class="table-responsive">
-      <table class="table table-striped small table-condensed">
+      <table class="table">
         <caption class="wb-inv">
        Total amount for the taxable year
         </caption>
-<thead class="small">
+<thead>
 <tr>
-<th scope="col">Average days per week working at home</th>
-<th scope="col">Allowable percentage</th>
-<th scope="col">Amount of allowance</th>
+<th scope="col">Average <a href="#work-days-lbx" class="wb-lbx">days per week <span class="nowrap">&nbsp;<span class="far fa-question-circle"></span></span></a> the employee worked from home</th>
+<th scope="col">Percentage</th>
+<th scope="col">Limit</th>
 </tr>
 </thead>
 <tbody>
@@ -330,7 +350,7 @@
 	<td class="align-right">$500 </td>
 </tr>
 <tr>
-	<td>More than 4, but less than 5 </td>
+	<td>More than 4 days, but less than 5 </td>
 	<td class="align-right">90% </td>
 	<td class="align-right">$450 </td>
 </tr>
@@ -340,7 +360,7 @@
 	<td class="align-right">$400 </td>
 </tr>
 <tr>
-	<td>More than 3, but less than 4 </td>
+	<td>More than 3 days, but less than 4 </td>
 	<td class="align-right">70% </td>
 	<td class="align-right">$350 </td>
 </tr>
@@ -349,68 +369,44 @@
 	<td class="align-right">60% </td>
 	<td class="align-right">$300 </td>
 </tr> 
+<tr>
+	<td>More than 50%, but less than 3 days</td>
+	<td class="align-right">50% </td>
+	<td class="align-right">$250 </td>
+</tr> 
 
 
-</tbody> </table></div></div></li>
-<li class="cnjnctn-col">You <strong>did not</strong> reimburse your employee for all of their home office expenses</li>
-<li class="cnjnctn-col">You <strong>certify</strong> the percentage of time working from a home office using <strong>box 11</strong> of the T4 slip</li>
+</tbody> </table></div></div>
+	 </li> 
+
+<li class="checkbox">
+            <input type="checkbox" id="eg8" name="action-checkbox">
+            <label for="eg8">You <strong>certify</strong> the percentage of time working from a home office using <strong>box 11</strong> of the T4 slip</label> 
+	 </li>
 </ul>
 
-<h3>Taxable situation</h3>
-<p>If the total amount of the home office expenses are <strong>more than the allowable limit</strong>, the amount over the limit is taxable.</p>
-<p>To calculate the benefit, refer to: <a href="#h_2">Calculate the value of the benefit</a></p> 
-</details>
+  <div class="alert alert-info provisional" id="action-default-msg">
+                    <h3>You must meet all conditions above for the CRA administrative policy to apply</h3>
+              <p>If you do not meet all conditions above, the benefit is taxable.</p>
+	  <p>To calculate the benefit, continue to: <a href="#h_2">Calculate the value of the benefit</a></p> 
+                  </div>
+                  <div class="alert alert-warning hidden provisional" id="action-not-qualify-msg">
+                   <h3><small>Your result </small><br> You must meet all 8 conditions above for the CRA administrative policy to apply</h3>
+              <p>If you do not meet all of 8 conditions above, the benefit is taxable. </p>
+	 <p>If you meet 7 conditions but the value of the benefit is <strong>more than the limit</strong>, the amount over the limit is taxable.</p>
+<p>To calculate the benefit, continue to: <a href="#h_2">Calculate the value of the benefit</a></p> 
+                  </div>
+                  <div class="alert alert-success hidden provisional" id="action-qualify-msg">
+                   
+              <h3><small>Your result </small><br> You meet all conditions for the CRA administrative policy to apply</h3>
+              <p>The benefit is not taxable because you meet all 8 conditions above. </p>
+	<p><span class="fas fa-ban text-danger fa-lg"></span> You do not need to do any calculations. </p>
+                  </div>
 
-<details><summary>Situation: You reimburse your employee for their home office expenses</summary>
-<h3>Non-taxable situation</h3>
-<p>Under the CRA's new administrativey policy, the benefit is <strong>not</strong> taxable if <strong>all</strong> of the following apply:</p>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col">You <strong>required</strong> your employee to use their home in the course of their employment duties</li>
-<li class="cnjnctn-col">Your employee was working <strong>more than 50% remotely from home</strong></li>
-<li class="cnjnctn-col">The amount paid is to <strong>compensate for home office expenses</strong> in the course of their employment duties</li>
-<li class="cnjnctn-col">The <a href="#flat" aria-controls="centred-popup" class="wb-lbx" role="button">amount is considered reasonable&nbsp;<span class="far fa-question-circle"></span></a> and you can justify your position</li>
-<li class="cnjnctn-col">You receive the <a href="#log" aria-controls="centred-popup" class="wb-lbx" role="button">required records&nbsp;<span class="far fa-question-circle"></span></a> from your employee of the home office expense (for example: receipts, vouchers, log books) to support these expenses</li>
-<li class="cnjnctn-col">You provide your employee with a completed and signed Form T2200 Declaration of Conditions of Employment</li>
-</ul>
-<details><summary>What is a reasonable amount</summary>
-<div id="ajax-flat">
-<ul class="list-unstyled cnjnctn-type-or">
-<li class="cnjnctn-col"><h4>Using the allowable amount under the CRA administrative policy</h4>
-<p><div data-ajax-replace="#ajax-max"></div></p>
-</li>
-
-<li class="cnjnctn-col"><h4>Using higher or lower amount </h4>
-<div id="ajax-rates2">
-<p>Generally, if you use an amount to cover your employee’s home office expenses for using their own home as part of their employment duties, it is considered reasonable. </p>
-<p>If you use an amount that is <strong>lower or higher</strong> than the amount, it may <strong>not</strong> be considered reasonable. </p>
-<p><strong>All of the facts</strong> relevant to your employee’s situation must be considered to determine if a lower or higher amount is considered reasonable. For example, factors such as the type of building, or a higher hydro cost at a specific location, may be situations where you determine that the reasonable amounts are higher or lower.</p>
-
-<p>If you think that your employee’s situation justifies using an amount that is lower or higher than the CRA administrative policy but you are not sure if the CRA will accept it, you can ask for an advance income tax ruling that is binding on the CRA. </p>
-<p>However, if you pay your employee an allowance based on an amount that is <strong>not</strong> considered reasonable in the situation, the allowance is taxable.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/tax-professionals/income-tax-rulings-interpretations.html">Income tax rulings and technical interpretations</a>  </p>
-</div>
-</li>
-</ul>
-</div>
-</details>
-<details><summary>What are the required records</summary>
-<div id="ajax-log">
-<p>If you provide a reimbursement or an accountable advance to your employee to compensate them for expenses paid for the use of their home in the course of their employment duties, your employee should keep records of the total home office expenses. </p>
-<p>The records, such as expense claims or a log, will justify that the allowance or the reimbursement that you paid was based solely on the business use of the home. <strong>You must get the records from your employee</strong>.</p>
-
-<p>Your employee should record the following information in their records:</p>
- <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col">A log of all days they worked at home as part of their employment duties</li>
-<li class="cnjnctn-col">A log of each days worked at home that includes the date and the location</li>
-</ul>
-</div>
-<hr>
-<p><span class="fas fa-ban text-danger fa-lg"></span> If <strong>no record</strong> is kept, the benefit is taxable.</p>
-</details>
-<h3>Taxable situation</h3>
-<p>If the total amount of the home office expenses are <strong>more than the allowable limit</strong>, the amount over the limit is taxable.</p>
-<p>To calculate the benefit, refer to: <a href="#h_2">Calculate the value of the benefit</a></p> 
-</details>	
+</fieldset>
+                     </div>
+       
+ </div>
 
 
 <h2 id="h_2">Calculate the value of the benefit</h2>
@@ -424,18 +420,13 @@
                                     </span><span class="mrgn-tp-0 text-muted h5">Value of the home office expense</span> 
                                  </li>
 
-<li class="brdr-bttm">
-                                 <span class="fas  fa-li"><span class="fas fa-times"></span><span class="wb-inv">multiply by</span></span> <span class="fa-stack text-success">
-                                 <span class="far fa-circle fa-stack-2x"></span>
-                                 <span class="fas fa-percent fa-stack-1x"></span>
-                                 </span>  <span class="mrgn-tp-0 text-muted h5">% of days your employee worked from home</span>
-                                 <div class="mrgn-tp-md"></div>
-                              </li>
-  <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
-                                    <span class="fas fa-circle fa-stack-2x"></span>
-                                    <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                    </span> <span class="mrgn-tp-0 text-muted h5"> Result
-                                    </span></span></li>
+<li>
+                                    <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                    <span class="far fa-circle fa-stack-2x"></span>
+                                    <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                    </span>  <span class="mrgn-tp-0 text-muted h5"> Limit if the benefit meets all other conditions under the CRA administrative policy</span>
+                                    <div class="mrgn-tp-md"></div>
+                                 </li>
 
 <li class="brdr-bttm">
                                     <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
@@ -447,47 +438,90 @@
                                  <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
                                     <span class="fas fa-circle fa-stack-2x"></span>
                                     <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                    </span> <span class="mrgn-tp-0 text-muted h5"> Value of the benefit to be included on the T4 slip to be included on the T4 slip in code 28 and box 14</span></span> </li>
+                                    </span> <span class="mrgn-tp-0 text-muted h5"> Value of the benefit to be included on the T4 slip in code 28 and box 14</span></span> </li>
 </ul>
 
 <p>The amounts must be included in the pay period they were received or enjoyed. </p>
-<details><summary>Example - Calculations</summary>
-<p>Add scenario here</p>
 
-<h4>Utilities expenses</h4>
+<details><summary>Example 1 - Calculations</summary>
+<p>You provide your employee with a $600 benefit to compensate your employee for the use of their home in the course of their employment duties. You determine that your employee works an average of 1 day per week from the office and 4 days from their home.</p>
 <ul class="fa-ul lst-spcd mrgn-bttm-md mrgn-lft-lg">
                                     <li><span class="fa-stack text-success">
                                        <span class="far fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                       </span><span class="mrgn-tp-0 text-muted h5">Cost of utilities per month</span> 
+                                       </span><span class="mrgn-tp-0 text-muted h5">$600 is the value of the home office expense</span> 
                                     </li>
 		
+<li>
+                                       <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                       <span class="far fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                       </span>  <span class="mrgn-tp-0 text-muted h5">$400 is the limit because the employee meets all other conditions under the CRA administrative policy</span>
+                                       <div class="mrgn-tp-md"></div>
+                                    </li>
+
 			<li class="brdr-bttm">
                                        <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
                                        <span class="far fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                       </span>  <span class="mrgn-tp-0 text-muted h5">Any amounts your employee reimbursed you</span>
+                                       </span>  <span class="mrgn-tp-0 text-muted h5">$0 because the employee did not reimburse the employer</span>
                                        <div class="mrgn-tp-md"></div>
                                     </li>
                      	 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
                                        <span class="fas fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                       </span> <span class="mrgn-tp-0 text-muted h5">Value of the benefit for utilities expenses to be included on the T4 slip in code 40 and box 14</span></span> 
+                                       </span> <span class="mrgn-tp-0 text-muted h5">$200 is the value of the benefit to be included on the T4 slip in code 28 and box 14</span></span> 
                                     </li>
                   </ul>
 
 
 </details>
+<details><summary>Example 2 - Calculations</summary>
+<p>You require an employee to work from home and you supply that employee with a desk and chair for their home office. Your employee will not have to return them to you.</p>
 
-<h2 id="h_3">Determine if you need to fill out Form T2200 if the benefit is taxable</h2>
-<p>You may need to fill out <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2200.html">Form T2200, Declaration of Conditions of Employment</a>, if your employee is eligible to deduct employment expenses (other than home office expenses) from their income on their income tax and benefit return.</p>
+<ul class="fa-ul lst-spcd mrgn-bttm-md mrgn-lft-lg">
+                                    <li><span class="fa-stack text-success">
+                                       <span class="far fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                       </span><span class="mrgn-tp-0 text-muted h5">$800 is the value of the home office expense</span> 
+                                    </li>
+		
+<li>
+                                       <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                       <span class="far fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                       </span>  <span class="mrgn-tp-0 text-muted h5">$0 is the limit because the employee does not meet all conditions under the CRA administrative policy</span>
+                                       <div class="mrgn-tp-md"></div>
+                                    </li>
+
+			<li class="brdr-bttm">
+                                       <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                       <span class="far fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                       </span>  <span class="mrgn-tp-0 text-muted h5">$0 because the employee did not reimburse the employer</span>
+                                       <div class="mrgn-tp-md"></div>
+                                    </li>
+                     	 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                       <span class="fas fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
+                                       </span> <span class="mrgn-tp-0 text-muted h5">$800 is the value of the benefit to be included on the T4 slip in code 28 and box 14</span></span> 
+                                    </li>
+                  </ul>
+</details>
+
+
+<h2 id="step6">Determine if you need to fill out Form T2200 if the benefit is taxable</h2>
+<p>You do not have to fill out Form T2200 if your employee is claiming a home office deduction using the flat-rate. Your employee will claim this deduction based on the percentage you entered in box 11 of their T4 slip.</p>
+
+<p>However, you may need to fill out <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2200.html">Form T2200, Declaration of Conditions of Employment</a>, if your employee is eligible to deduct employment expenses (other than home office expenses) from their income on their income tax and benefit return.</p>
+
 <p>It is your employee’s responsibility to claim the expenses on their income tax and benefit return and to keep records to support the claim.</p>
 
-<h2 id="h_4">Withhold payroll deductions and remit GST/HST</h2>
+<h2 id="h_3">Withhold payroll deductions and remit GST/HST</h2>
   <p>  <div data-ajax-replace="/cra-arc/payroll/calculate/benefit/ajax/withhold.txt"></div></p>
 
 
-<h2 id="h_5">Report the benefit on a slip</h2>
+<h2 id="h_4">Report the benefit on a slip</h2>
 <div id="ajax-report">
 <p>You must report the following amounts on the T4 slip:</p>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
@@ -523,7 +557,7 @@
 	
 		 
 		 
-<h2 id="h_6">References</h2>
+<h2 id="ref">References</h2>
 
 <h3 id="h_6_2">Legislation</h3>
 <div class="row">
@@ -552,6 +586,18 @@
 </dl>
 </div>
 </div>
+
+
+    <section id="work-days-lbx" class="mfp-hide modal-dialog modal-content overlay-def">
+      <header class="modal-header">
+        <h2 class="modal-title">Days worked from home</h2>
+      </header>
+      <div class="modal-body">
+ <div data-ajax-replace="https://www.canada.ca/content/canadasite/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-22900-other-employment-expenses/work-space-home-expenses/how-claim.html #dys"></div>
+<div class="data-ajax" data-ajax-replace="https://www.canada.ca/content/canadasite/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-22900-other-employment-expenses/work-space-home-expenses/how-claim.html #dw-example-ajax"></div>
+</div>
+    </section>
+
 
 <section id="log" class="mfp-hide modal-dialog modal-content overlay-def"> <header class="modal-header"><h2 class="modal-title">What are the required records</h2>
 	</header>	<div class="modal-body">		
@@ -643,6 +689,33 @@
             }));
          </script>
          <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
+<script defer>
+    "use strict";
+    
+    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
+        if (chkbxChecked.length === 0) {
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + defaultID).removeClass("hidden").addClass("visible");
+        } else if (chkbxGroup.length === chkbxChecked.length) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).removeClass("hidden").addClass("visible");
+        } else {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).removeClass("hidden").addClass("visible");
+        }
+    }, 
+    updateChkbxList = function () {
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
+    };
+   
+    window.onload = updateChkbxList;
+
+    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
+</script>
 
       </body>
    </html>
