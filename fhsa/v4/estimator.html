@@ -1516,7 +1516,7 @@
                 return parseInt($("#paymentAmount").val(), 10) || 0;
             }, 
             paymentInterest = function () {
-                return parseInt($("#paymentInterest").val(), 10) / 100 || 0;
+                return parseFloat($("#paymentInterest").val(), 10) / 100 || 0;
             }, 
             hasPriorSavingFHSA = function () {
                 return $(":input[type=radio][name=hasPriorSavingFHSA]:checked", savingsformId).data("priorsaving-fhsa") || false;
@@ -1559,7 +1559,7 @@
             }, 
             savingInterest = function () {
                 if (hasSavingInvestGrowth() === true) {
-                    return parseInt($("#savingInterest").val(), 10) / 100 || 0;
+                    return parseFloat($("#savingInterest").val(), 10) / 100 || 0;
                 }
                 return 0;
             }, 
