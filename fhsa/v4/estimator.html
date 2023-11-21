@@ -855,11 +855,11 @@
             <div class="wb-frmvld col-sm-12 provisional wb-steps">
                 <form id="fhsa_downpay_form" name="fhsa_cal_form" action="#" method="get" autocomplete="off" class="panel panel-default">
                     <!-- Form 1 STEP 1-->
-                    <fieldset id="priorPaymentBalance" class="panel-default p-0">
+                    <fieldset id="priorPaymentCheck" class="panel-default p-0">
                         <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">FHSA prior years additions</span></legend>
                         <div class="panel-body mrgn-lft-sm">
 
-                            <fieldset id="priorPaymentBalance-question" class="mrgn-lft-md gc-chckbxrdio chckbxrdio-grp gc-font-2019 provisional">
+                            <fieldset id="priorPaymentCheck-question" class="mrgn-lft-md gc-chckbxrdio chckbxrdio-grp gc-font-2019 provisional">
 
                                 <legend class="h5 required" tabindex="-1"><span class="gc-font-2019">Did you add to your FHSA in prior years? <strong class="required">(required)</strong></span></legend>
 
@@ -878,24 +878,24 @@
 
                             <div id="priorPaymentFHSAfields" class="mrgn-lft-md hidden">
                                 <div id="priorPaymentAmountFHSAElm" class="form-group">
-                                    <label id="priorPaymentYearsFHSALabel" for="priorPaymentYearsFHSA" class="required"><span class="field-name">Number of prior years you added to your FHSA</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span>) <strong id="priorPaymentYearsFHSALabelRequire" class="required">(required)</strong></label>
+                                    <label id="priorPaymentYearsFHSALabel" for="priorPaymentYearsFHSA" class="required"><span class="field-name">How many years ago did you open a FHSA?</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span>) <strong class="required">(required)</strong></label>
                                     <div class="input-group col-xs-2 col-sm-1">
                                         <input type="number" name="priorPaymentYearsFHSA" min="1" max="14" value="" id="priorPaymentYearsFHSA" data-rule-minlength="1" data-rule-maxlength="2" class="form-control text-right" data-rule-rangelength="[1,14]">
                                     </div>
                                 </div>
-                                <div id="priorPaymentYearsFHSAElm" class="form-group">
-                                    <label id="priorPaymentAmountFHSALabel" for="priorPaymentAmountFHSA" class="required"><span class="field-name">Your total FHSA additions for prior years</span><span class="wb-inv"> (dollars only, no cents)</span> <strong id="priorPaymentAmountFHSALabelRequire" class="required">(required)</strong></label>
+                                <div id="priorPaymentBalanceElm" class="form-group">
+                                    <label id="priorPaymentBalanceLabel" for="priorPaymentBalance" class="required"><span class="field-name">Your current FHSA account balance</span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorPaymentAmountFHSA" size="7" maxlength="7" value="" id="priorPaymentAmountFHSA" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" max="40000" data-rule-digits="true">
+                                        <input type="text" name="priorPaymentBalance" size="7" maxlength="7" value="" id="priorPaymentBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
-                                <div id="priorPaymentYearsInvestElm" class="form-group">
-                                    <label id="priorPaymentYearsInvestLabel" for="priorPaymentYearsInvest" class="required"><span class="field-name">Your FHSA investment income for prior years</span><span class="wb-inv"> (dollars only, no cents)</span> <strong id="priorPaymentYearsInvestRequire" class="required">(required)</strong></label>
+                                <div id="priorPaymentYearsFHSAElm" class="form-group">
+                                    <label id="priorPaymentAmountFHSALabel" for="priorPaymentAmountFHSA" class="required"><span class="field-name">Your total FHSA additions for prior years</span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorPaymentYearsInvest" size="7" maxlength="7" value="" id="priorPaymentYearsInvest" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                        <input type="text" name="priorPaymentAmountFHSA" size="7" maxlength="7" value="" id="priorPaymentAmountFHSA" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" max="40000" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -932,7 +932,7 @@
 
                             <div class="form-group">
                                 <div class="mrgn-lft-md">
-                                    <label for="paymentAmount">Amount you plan to add yearly to FHSA<span class="wb-inv"> (in $250 increments)</span></label>
+                                    <label for="paymentAmount">Amount you plan to contribute or transfer yearly to your FHSA<span class="wb-inv"> (in $250 increments)</span></label>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="wb-input-range form-group mrgn-tp-xs mrgn-bttm-md">
@@ -957,31 +957,13 @@
 
                             <div class="clearfix"></div>
 
-                            <div class="mrgn-lft-md gc-chckbxrdio chckbxrdio-grp gc-font-2019 provisional">
-                                <fieldset id="hasPaymentInvestment-question" class="mrgn-lft-md gc-chckbxrdio chckbxrdio-grp gc-font-2019 provisional">
-
-                                    <legend class="h5 required" tabindex="-1"><span class="field-name gc-font-2019">Would you like to include the investment growth for your FHSA?</span> <strong class="required">(required)</strong></legend>
-
-                                    <ul class="list-unstyled">
-                                        <li class="radio">
-                                            <input type="radio" name="hasPaymentInvestment" id="hasPaymentInvestment-true" value="true" data-haspaymentinvestment="true" data-rule-required="true" required="required">
-                                            <label for="hasPaymentInvestment-true">Yes</label>
-                                        </li>
-                                        <li class="radio">
-                                            <input type="radio" name="hasPaymentInvestment" id="hasPaymentInvestment-false" value="false" data-haspaymentinvestment="false" data-rule-required="true" required="required">
-                                            <label for="hasPaymentInvestment-false">No</label>
-                                        </li>
-                                    </ul>
-                                </fieldset>
-                            </div>
-
-                            <div id="paymentInvestPercentGroup" class="form-group hidden">
+                            <div id="paymentInvestPercentGroup" class="form-group">
                                 <div class="mrgn-lft-md">
-                                    <label for="paymentInterest">Expected annual rate of return from investments</label>
-                                    <p><a href="#returnrate-help" aria-controls="returnrate-help" class="wb-lbx" role="button">What is a rate of return?<span class="glyphicon glyphicon-question-sign"></span></a></p>
+                                    <label for="paymentInterest" class="required"><span class="field-name">Expected annual rate of return from investments</span> <strong class="required">(required)</strong></label>
+                                    <p><a href="#return-rate-help" aria-controls="returnrate-help" class="wb-lbx" role="button">What is a rate of return?<span class="glyphicon glyphicon-question-sign"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
-                                    <input type="text" name="paymentInterest" value="" id="paymentInterest" class="form-control input-lg text-right" inputmode="decimal" pattern="[0-9]+\.?[0-9]*">
+                                    <input type="text" name="paymentInterest" value="" id="paymentInterest" class="form-control input-lg text-right" inputmode="decimal" pattern="[0-9]+\.?[0-9]*" required="required">
                                     <span class="input-group-addon">%</span>
                                 </div>
                             </div>
@@ -993,7 +975,7 @@
                                     <hr>
                                     <h3>Account holdings estimate</h3>
                                     <p class="small">based on the numbers you entered:</p>
-                                    <p>Your possible FHSA savings towards your down payment could be approximately:</p>
+                                    <p>Your possible FHSA amount towards your down payment could be approximately:</p>
                                     <ul class="list-unstyled">
                                         <li><strong data-output="holdings-total">$0</strong> in account holdings</li>
                                         <li id="paymentGrowthResult"><strong data-output="investment-growth-total">$0</strong> in growth</li>
@@ -1037,11 +1019,11 @@
 
 
                     <!-- Form 2 STEP 1-->
-                    <fieldset id="priorBalance" class="panel-default p-0">
+                    <fieldset id="priorSavingsCheck" class="panel-default p-0">
                         <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">FHSA prior years additions</span></legend>
                         <div class="panel-body mrgn-lft-sm">
 
-                            <fieldset id="priorSavingBalance-question" class="mrgn-lft-md gc-chckbxrdio chckbxrdio-grp gc-font-2019 provisional">
+                            <fieldset id="priorSavingsCheck-question" class="mrgn-lft-md gc-chckbxrdio chckbxrdio-grp gc-font-2019 provisional">
 
                                 <legend class="h5 required" tabindex="-1"><span class="gc-font-2019">Did you add to your FHSA in prior years?</span> <strong class="required">(required)</strong></legend>
 
@@ -1060,24 +1042,24 @@
 
                             <div id="priorSavingFHSAfields" class="mrgn-lft-md hidden">
                                 <div id="priorSavingAmountFHSAElm" class="form-group">
-                                    <label id="priorSavingYearsFHSALabel" for="priorSavingYearsFHSA" class="required"><span class="field-name">Number of prior years you added to your FHSA</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span>) <strong id="priorSavingYearsFHSALabelRequire" class="required">(required)</strong></label>
+                                    <label id="priorSavingYearsFHSALabel" for="priorSavingYearsFHSA" class="required"><span class="field-name">How many years ago did you open an FHSA?</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span>) <strong class="required">(required)</strong></label>
                                     <div class="input-group col-xs-2 col-sm-1">
                                         <input type="number" name="priorSavingYearsFHSA" min="1" max="14" value="" id="priorSavingYearsFHSA" class="form-control text-right" data-rule-minlength="1" data-rule-maxlength="2" data-rule-rangelength="[1,14]">
                                     </div>
                                 </div>
-                                <div id="priorSavingYearsFHSAElm" class="form-group">
-                                    <label id="priorSavingAmountFHSALabel" for="priorSavingAmountFHSA" class="required"><span class="field-name">Your total FHSA additions for prior years</span><span class="wb-inv"> (dollars only, no cents)</span> <strong id="priorSavingAmountFHSALabelRequire" class="required">(required)</strong></label>
+                                <div id="priorSavingBalanceElm" class="form-group">
+                                    <label id="priorSavingBalanceLabel" for="priorSavingBalance" class="required"><span class="field-name">Your current FHSA account balance</span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required"> (required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorSavingAmountFHSA" size="7" maxlength="7" value="" id="priorSavingAmountFHSA" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" max="40000" data-rule-digits="true">
+                                        <input type="text" name="priorSavingBalance" size="7" maxlength="7" value="" id="priorSavingBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
-                                <div id="priorSavingYearsInvestElm" class="form-group">
-                                    <label id="priorSavingYearsInvestLabel" for="priorSavingYearsInvest" class="required"><span class="field-name">Your FHSA investment income for prior years</span><span class="wb-inv"> (dollars only, no cents)</span> <strong id="priorSavingYearsInvestRequire" class="required"> (required)</strong></label>
+                                <div id="priorSavingYearsFHSAElm" class="form-group">
+                                    <label id="priorSavingAmountFHSALabel" for="priorSavingAmountFHSA" class="required"><span class="field-name">Your total FHSA additions for prior years</span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorSavingYearsInvest" size="7" maxlength="7" value="" id="priorSavingYearsInvest" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                        <input type="text" name="priorSavingAmountFHSA" size="7" maxlength="7" value="" id="priorSavingAmountFHSA" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" max="40000" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -1170,7 +1152,7 @@
                                                 <option value="8000" label="$8,000"></option>
                                                 <!--[if lte IE 9]></select><![endif]-->
                                             </datalist>
-                                            <input id="savingsAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="yearlySavingsAmountList">
+                                            <input id="savingsAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="yearlySavingsAmountList" aria-controls="savingsDirectAmount">
                                             <output for="savingsAmount" class="wb-input-range-display" data-wb-input-range='{"func": "currencyFormatter.format"}' id="savingsAmountOutput"></output>
                                         </div>
                                     </div>
@@ -1179,6 +1161,7 @@
                                 <div class="form-group">
                                     <div class="mrgn-lft-md">
                                         <label for="savingsDirectAmount"><span class="field-name">Amount directly contributed (not transferred)</span><span class="wb-inv"> (in $250 increments)</span></label>
+                                        <p><a href="#direct-contribute-help" aria-controls="direct-contribute-help" class="wb-lbx" role="button">What is the amount directly contributed?<span class="glyphicon glyphicon-question-sign"></span></a></p>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="wb-input-range form-group mrgn-tp-xs mrgn-bttm-md">
@@ -1195,7 +1178,7 @@
                                                 <option value="8000" label="$8,000"></option>
                                                 <!--[if lte IE 9]></select><![endif]-->
                                             </datalist>
-                                            <input id="savingsDirectAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="savingsDirectAmountList">
+                                            <input id="savingsDirectAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="savingsDirectAmountList" aria-controls="savingsAmount">
                                             <output for="savingsDirectAmount" class="wb-input-range-display" data-wb-input-range='{"func": "currencyFormatter.format"}'  id="savingsDirectAmountOutput"></output>
                                         </div>
                                     </div>
@@ -1226,7 +1209,7 @@
                             <div id="savingInvestPercentGroup" class="form-group hidden">
                                 <div class="mrgn-lft-md">
                                     <label for="savingInterest"><span class="field-name">Expected rate of return from qualifying investments</span></label>
-                                    <p><a href="#returnrate-help" aria-controls="returnrate-help" class="wb-lbx" role="button">What is a rate of return?<span class="glyphicon glyphicon-question-sign"></span></a></p>
+                                    <p><a href="#qualify-invest-return-rate-help" aria-controls="qualify-invest-return-rate-help" class="wb-lbx" role="button">What is a rate of return from qualifying investments?<span class="glyphicon glyphicon-question-sign"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
                                     <input type="text" name="savingInterest" value="" id="savingInterest" class="form-control input-lg text-right" inputmode="decimal" pattern="[0-9]+\.?[0-9]*">
@@ -1271,16 +1254,31 @@
                 </form>
             </div>
 
+      <section id="direct-contribute-help" class="mfp-hide modal-dialog modal-content overlay-def">
+          <header class="modal-header">
+              <h2 class="modal-title">Amount directly contributed</h2>
+          </header>
+          <div class="modal-body">
+              <p>Explanation of amount directly contributed</p>
+          </div>
+      </section>
+      <section id="return-rate-help" class="mfp-hide modal-dialog modal-content overlay-def">
+        <header class="modal-header">
+            <h2 class="modal-title">Rate of return</h2>
+        </header>
+        <div class="modal-body">
+            <p>Explanation of rate of return</p>
         </div>
-        <section id="returnrate-help" class="mfp-hide modal-dialog modal-content overlay-def">
-            <header class="modal-header">
-                <h2 class="modal-title">Rate of return</h2>
-            </header>
-            <div class="modal-body">
-                <p>Explanation of rate of return</p>
-            </div>
-        </section>
-        <template id="noInvestText">
+    </section>
+    <section id="qualify-invest-return-rate-help" class="mfp-hide modal-dialog modal-content overlay-def">
+          <header class="modal-header">
+              <h2 class="modal-title">Rate of return from qualifying investments</h2>
+          </header>
+          <div class="modal-body">
+              <p>Explanation of Rate of return from qualifying investments</p>
+          </div>
+      </section>
+      <template id="noInvestText">
             <abbr title="Not applicable">N/A</abbr>
         </template>
 
@@ -1505,9 +1503,9 @@
                 }
                 return 0;
             }, 
-            priorPaymentInvestment = function () {
+            priorPaymentBalance = function () {
                 if (hasPriorPaymentFHSA() === true) {
-                    return parseInt($("#priorPaymentYearsInvest").val(), 10) || 0;
+                    return parseInt($("#priorPaymentBalance").val(), 10) || 0;
                 }
                 return 0;
             }, 
@@ -1517,14 +1515,8 @@
             paymentAmount = function () {
                 return parseInt($("#paymentAmount").val(), 10) || 0;
             }, 
-            hasPaymentInvestGrowth = function () {
-                return $(":input[type=radio][name=hasPaymentInvestment]:checked", paymentformId).data("haspaymentinvestment") || false;
-            }, 
             paymentInterest = function () {
-                if (hasPaymentInvestGrowth() === true) {
-                    return parseInt($("#paymentInterest").val(), 10) / 100 || 0;
-                }
-                return 0;
+                return parseInt($("#paymentInterest").val(), 10) / 100 || 0;
             }, 
             hasPriorSavingFHSA = function () {
                 return $(":input[type=radio][name=hasPriorSavingFHSA]:checked", savingsformId).data("priorsaving-fhsa") || false;
@@ -1541,9 +1533,9 @@
                 }
                 return 0;
             }, 
-            priorSavingsInvestment = function () {
+            priorSavingBalance = function () {
                 if (hasPriorSavingFHSA() === true) {
-                    return parseInt($("#priorSavingYearsInvest").val(), 10) || 0;
+                    return parseInt($("#priorSavingBalance").val(), 10) || 0;
                 }
                 return 0;
             }, 
@@ -1591,14 +1583,13 @@
                 }
                 return clientYear;
             }, 
-            generateHoldingsTableData = function (holdingYears, paymentAmount, hasInvestGrowth, investment, hasPriorPay, priorPaymentYrs, priorPayAmount, priorPayInvest, priorYearMax, maxContribution) {
+            generateHoldingsTableData = function (holdingYears, paymentAmount, investment, hasPriorPay, priorPaymentYrs, priorPayAmount, priorPayInvest, priorYearMax, maxContribution) {
                 let yearIncrement, 
                     loopYears = priorPaymentYrs + holdingYears, 
                     amountCompound = 0, 
                     investmentCompound = 0, 
-                    hasInvestment = hasInvestGrowth === true || priorPayInvest > 0, 
-                    createHoldingsTableBody = function (evalYear, isPriorYear, amountCompound, hasInvestment, investmentCompound) {
-                        let holdingCell, noInvestText, 
+                    createHoldingsTableBody = function (evalYear, isPriorYear, amountCompound, investmentCompound) {
+                        let holdingCell, 
                             holdingRow = document.createElement("tr"), 
                             holdingHeader = document.createElement("th");
 
@@ -1613,14 +1604,7 @@
                         holdingCell.textContent = currencyFormatter.format(amountCompound);
                         holdingRow.appendChild(holdingCell);
                         holdingCell = document.createElement("td");
-                        if (hasInvestment === true) {
-                            holdingCell.textContent = currencyFormatter.format(investmentCompound);
-                        } else {
-                            if ("content" in document.createElement("template")) {
-                                noInvestText = document.getElementById("noInvestText").content.cloneNode(true);
-                            }
-                            holdingCell.appendChild(noInvestText);
-                        }
+                        holdingCell.textContent = currencyFormatter.format(investmentCompound);
                         holdingRow.appendChild(holdingCell);
                         holdingCell = document.createElement("td");
                         holdingCell.setAttribute("data-wb-charts-value", amountCompound + investmentCompound + "$");
@@ -1633,7 +1617,7 @@
                 if (hasPriorPay === true) {
                     amountCompound = priorPayAmount;
                     investmentCompound = priorPayInvest;
-                    createHoldingsTableBody(priorPaymentYrs, true, amountCompound, hasInvestment, investmentCompound);
+                    createHoldingsTableBody(priorPaymentYrs, true, amountCompound, investmentCompound);
                 }
 
                 if (amountCompound < maxContribution) {
@@ -1647,7 +1631,7 @@
                             amountCompound = maxContribution;
                         }
                         investmentCompound = investmentCompound + (investmentCompound + amountCompound) * investment;
-                        createHoldingsTableBody(yearIncrement, false, amountCompound, hasInvestment, investmentCompound);
+                        createHoldingsTableBody(yearIncrement, false, amountCompound, investmentCompound);
                     }
                     return {
                         "addedAmount": amountCompound, 
@@ -1731,25 +1715,28 @@
                     }, 
                     federalRates = areaRates(federalName, incomeRates, currentYear, startYear, pagelang), 
                     provinceRates = areaRates(area, incomeRates, currentYear, startYear, pagelang), 
-                    getRefundAmount = function (income, qualifyDeductible, rates) {
+                    getRefundAmount = function (income, qualifyDeductible, tax) {
                         let rateLoop, lastRate, 
                             maxlimit = 0, 
                             currentIncome = income;
 
-                        for (rateLoop = rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
-                            if (rates[rateLoop].threshold < currentIncome && rates[rateLoop].threshold < currentIncome - qualifyDeductible) {
-                                maxlimit = qualifyDeductible * rates[rateLoop].rate;
-                                break;
-                            } else if (rates[rateLoop].threshold < currentIncome - qualifyDeductible) {
-                                maxlimit = (rates[rateLoop].threshold) * rates[rateLoop].rate + (currentIncome - rates[rateLoop].threshold) * lastRate;
-                                break;
+                        if (tax.hasOwnProperty("rates") === true) {
+                            for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
+                                if (tax.rates[rateLoop].threshold < currentIncome && tax.rates[rateLoop].threshold < currentIncome - qualifyDeductible) {
+                                    maxlimit = qualifyDeductible * tax.rates[rateLoop].rate;
+                                    break;
+                                } else if (tax.rates[rateLoop].threshold < currentIncome - qualifyDeductible) {
+                                    maxlimit = (tax.rates[rateLoop].threshold) * tax.rates[rateLoop].rate + (currentIncome - tax.rates[rateLoop].threshold) * lastRate;
+                                    break;
+                                }
+                                lastRate = tax.rates[rateLoop].rate;
                             }
-                            lastRate = rates[rateLoop].rate;
+                            return {
+                                "min": qualifyDeductible * tax.rates[0].rate, 
+                                "max": maxlimit
+                            }
                         }
-                        return {
-                            "min": qualifyDeductible * rates[0].rate, 
-                            "max": maxlimit
-                        };
+                        return {};
                     };
 
                 $("#savingsResultsBody").html("");
@@ -1775,8 +1762,8 @@
                         deductCumulative = deductCumulative + deductContribAmt;
                         investmentAmount = (investmentCompound + amountCompound) * investment;
                         investmentCompound = investmentCompound + investmentAmount;
-                        fedSavingsAmt = getRefundAmount(income, investmentAmount + deductContribAmt, federalRates.rates);
-                        areaSavingsAmt = getRefundAmount(income, investmentAmount + deductContribAmt, provinceRates.rates);
+                        fedSavingsAmt = getRefundAmount(income, investmentAmount + deductContribAmt, federalRates);
+                        areaSavingsAmt = getRefundAmount(income, investmentAmount + deductContribAmt, provinceRates);
                         fedMinCumulative = fedMinCumulative + fedSavingsAmt.min;
                         fedMaxCumulative = fedMaxCumulative + fedSavingsAmt.max;
                         areaMinCumulative = areaMinCumulative + areaSavingsAmt.min;
@@ -1788,6 +1775,9 @@
                     savingsRow.setAttribute("class", "success text-right");
                     createSavingsTableBody(savingsRow, $("#savingsResultsBody").data("total-header"), 0, investmentCompound, deductCumulative, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, hasInvestment, false, true);
                     return {
+                        "addedAmount": amountCompound, 
+                        "investment": investmentCompound, 
+                        "deductContribute": deductCumulative, 
                         "fedAmountMin": fedMinCumulative, 
                         "fedAmountMax": fedMaxCumulative, 
                         "areaAmountMin": areaMinCumulative, 
@@ -1812,10 +1802,11 @@
                 }
             }, 
             updatePaymentResults = function (priorYearMax, maxContribution, paymentformId) {
-                let paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), hasPaymentInvestGrowth(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment(), priorYearMax, maxContribution);
+                let priorPaymentInvestment = priorPaymentBalance() - priorPaymentAmount(), 
+                    paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
 
                 $("[data-output=holdings-total]", paymentformId).html(currencyFormatter.format(paymentTotals.addedAmount + paymentTotals.investment));
-                if (hasPaymentInvestGrowth() === true || priorPaymentInvestment() > 0) {
+                if (priorPaymentInvestment > 0) {
                     $("#paymentGrowthResult", paymentformId).removeClass("hidden");
                     $("[data-output=investment-growth-total]", paymentformId).html(currencyFormatter.format(paymentTotals.investment));
                 } else {
@@ -1828,7 +1819,8 @@
             }, 
             updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId) {
                 let fedTotal, areaTotal, 
-                    savingsTotals = generateSavingsTableData(province(), $("#province").data("fed"), yearlyIncome(), savingYears(), savingsAmount(), savingsDirectAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment(), priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
+                    priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
+                    savingsTotals = generateSavingsTableData(province(), $("#province").data("fed"), yearlyIncome(), savingYears(), savingsAmount(), savingsDirectAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
                 if (savingsTotals.yearsheld === 1) {
                     $("[data-savings-year-range=true]", savingsformId).addClass("hidden");
                 }
@@ -1857,30 +1849,22 @@
             if (hasPriorPaymentFHSA() === true) {
                 $("#priorPaymentFHSAfields").removeClass("hidden");
                 $("#priorPaymentYearsFHSA").attr("required", "required");
+                $("#priorPaymentBalance").attr("required", "required");
                 $("#priorPaymentAmountFHSA").attr("required", "required");
-                $("#priorPaymentYearsInvest").attr("required", "required");
                 if (priorPaymentYears() === 0 && priorSavingYears() !== 0) {
                     $("#priorPaymentYearsFHSA").val($("#priorSavingYearsFHSA").val());
+                }
+                if (priorPaymentBalance() === 0 && priorSavingBalance() !== 0) {
+                    $("#priorPaymentBalance").val($("#priorSavingBalance").val());
                 }
                 if (priorPaymentAmount() === 0 && priorSavingAmount() !== 0) {
                     $("#priorPaymentAmountFHSA").val($("#priorSavingAmountFHSA").val());
                 }
-                if (priorPaymentInvestment() === 0 && priorSavingsInvestment() !== 0) {
-                    $("#priorPaymentYearsInvest").val($("#priorSavingYearsInvest").val());
-                }
             } else {
                 $("#priorPaymentFHSAfields").addClass("hidden");
                 $("#priorPaymentYearsFHSA").removeAttr("required");
+                $("#priorPaymentBalance").removeAttr("required");
                 $("#priorPaymentAmountFHSA").removeAttr("required");
-                $("#priorPaymentYearsInvest").removeAttr("required");
-            }
-        });
-
-        $(paymentformId).on("click vclick touchstart", "input[type=radio][name=hasPaymentInvestment]", function () {
-            if (hasPaymentInvestGrowth() === true) {
-                $("#paymentInvestPercentGroup").removeClass("hidden");
-            } else {
-                $("#paymentInvestPercentGroup").addClass("hidden");
             }
         });
 
@@ -1902,11 +1886,11 @@
                     $("#holdingsResults").removeClass("hidden");
                 }
                 parentPreviousClassList.remove("wb-steps-error");
-                /*
-                    $("#holdingsresultstable").addClass("wb-charts wb-charts-area");
-                    $("#holdingsresultstable").trigger("wb-init.wb-charts");
-                */
                 updatePaymentResults(priorYearMax, maxContribution, paymentformId);
+                /*
+                $("#holdingsresultstable").addClass("wb-charts wb-charts-area");
+                $("#holdingsresultstable").trigger("wb-init.wb-charts");
+                */
             }
 
         });
@@ -1915,8 +1899,8 @@
             if (hasPriorSavingFHSA() === true) {
                 $("#priorSavingFHSAfields").removeClass("hidden");
                 $("#priorSavingYearsFHSA").attr("required", "required");
+                $("#priorSavingBalance").attr("required", "required");
                 $("#priorSavingAmountFHSA").attr("required", "required");
-                $("#priorSavingYearsInvest").attr("required", "required");
                 if (priorSavingYears() === 0 && priorPaymentYears() !== 0) {
                     $("#priorSavingYearsFHSA").val($("#priorPaymentYearsFHSA").val());
                 }
@@ -1929,8 +1913,8 @@
             } else {
                 $("#priorSavingFHSAfields").addClass("hidden");
                 $("#priorSavingYearsFHSA").removeAttr("required");
+                $("#priorSavingBalance").removeAttr("required");
                 $("#priorSavingAmountFHSA").removeAttr("required");
-                $("#priorSavingYearsInvest").removeAttr("required");
             }
         });
 
