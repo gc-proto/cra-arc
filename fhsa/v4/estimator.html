@@ -877,13 +877,13 @@
 
 
                             <div id="priorPaymentFHSAfields" class="mrgn-lft-md hidden">
-                               <div class="mrgn-tp-md gc-chckbxrdio chckbxrdio-grp gc-font-2019 provisional">
-                                   <div class="checkbox">
-                                       <input id="priorPaymentSameInfo" name="priorPaymentSameInfo" type="checkbox" value="true" data-same-prior="true">
-                                       <label for="priorPaymentSameInfo"><span class="gc-font-2019">Use the same prior information as the other form</span></label>
-                                   </div>
-                               </div>
-                               <div id="priorPaymentAmountFHSAElm" class="form-group">
+                                <div class="mrgn-tp-md gc-chckbxrdio chckbxrdio-grp gc-font-2019 provisional">
+                                    <div class="checkbox">
+                                        <input id="priorPaymentSameInfo" name="priorPaymentSameInfo" type="checkbox" value="true" data-same-prior="true">
+                                        <label for="priorPaymentSameInfo"><span class="gc-font-2019">Use the same prior information as the other form</span></label>
+                                    </div>
+                                </div>
+                                <div id="priorPaymentAmountFHSAElm" class="form-group">
                                     <label id="priorPaymentYearsFHSALabel" for="priorPaymentYearsFHSA" class="required"><span class="field-name">How many years ago did you open a FHSA?</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span>) <strong class="required">(required)</strong></label>
                                     <div class="input-group col-xs-2 col-sm-1">
                                         <input type="number" name="priorPaymentYearsFHSA" min="1" max="14" value="" id="priorPaymentYearsFHSA" data-rule-minlength="1" data-rule-maxlength="2" class="form-control text-right" data-rule-rangelength="[1,14]">
@@ -940,7 +940,7 @@
 
                             <div class="form-group">
                                 <div class="mrgn-lft-md">
-                                    <label for="paymentAmount">Amount you plan to contribute or transfer yearly to your FHSA ($250 increments)</span></label>
+                                    <label for="paymentAmount"><span class="field-name">Amount you plan to contribute or transfer yearly to your FHSA ($250 increments)</span></label>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="wb-input-range form-group mrgn-tp-xs mrgn-bttm-md">
@@ -1304,11 +1304,6 @@
 </section> -->
 </div>
 
-
-        <div class="mwsgeneric-base-html parbase section">
-        </div>
-
-
         <div class="mwsgeneric-base-html parbase section">
             <div class="row row-no-gutters mrgn-tp-xl">
                 <div class="col-sm-7 col-lg-6">
@@ -1507,6 +1502,9 @@
             hasPriorPaymentFHSA = function () {
                 return $(":input[type=radio][name=hasPriorPaymentFHSA]:checked", paymentformId).data("priorpayment-fhsa") || false;
             }, 
+            hasSamePriorPaymentInfo = function () {
+                return $(":input[type=checkbox][name=priorPaymentSameInfo]:checked", paymentformId).data("same-prior") || false;
+            }, 
             priorPaymentYears = function () {
                 if (hasPriorPaymentFHSA() === true) {
                     return parseInt($("#priorPaymentYearsFHSA").val(), 10) || 0;
@@ -1536,6 +1534,9 @@
             }, 
             hasPriorSavingFHSA = function () {
                 return $(":input[type=radio][name=hasPriorSavingFHSA]:checked", savingsformId).data("priorsaving-fhsa") || false;
+            }, 
+            hasSamePriorSavingsInfo = function () {
+                return $(":input[type=checkbox][name=priorSavingsSameInfo]:checked", savingsformId).data("same-prior") || false;
             }, 
             priorSavingYears = function () {
                 if (hasPriorSavingFHSA() === true) {
@@ -1578,6 +1579,36 @@
                     return parseFloat($("#savingInterest").val(), 10) / 100 || 0;
                 }
                 return 0;
+            }, 
+            updatePriorPaymentYears = function () {
+                if (hasSamePriorSavingsInfo() === true || (priorPaymentYears() === 0 && priorSavingYears() !== 0)) {
+                    $("#priorPaymentYearsFHSA").val($("#priorSavingYearsFHSA").val());
+                }
+            }, 
+            updatepriorPaymentBalance = function () {
+                if (hasSamePriorSavingsInfo() === true || (priorPaymentBalance() === 0 && priorSavingBalance() !== 0)) {
+                    $("#priorPaymentBalance").val($("#priorSavingBalance").val());
+                }
+            }, 
+            updatepriorPaymentAmount = function () {
+                if (hasSamePriorSavingsInfo() === true || (priorPaymentAmount() === 0 && priorSavingAmount() !== 0)) {
+                    $("#priorPaymentAmountFHSA").val($("#priorSavingAmountFHSA").val());
+                }
+            }, 
+            updatePriorSavingYears = function () {
+                if (hasSamePriorPaymentInfo() === true || (priorSavingYears() === 0 && priorPaymentYears() !== 0)) {
+                    $("#priorSavingYearsFHSA").val($("#priorPaymentYearsFHSA").val());
+                }
+            }, 
+            updatePriorSavingBalance = function () {
+                if (hasSamePriorPaymentInfo() === true || (priorSavingBalance() === 0 && priorPaymentBalance() !== 0)) {
+                    $("#priorSavingBalance").val($("#priorPaymentBalance").val());
+                }
+            }, 
+            updatePriorSavingAmount = function () {
+                if (hasSamePriorPaymentInfo() === true || (priorSavingAmount() === 0 && priorPaymentAmount() !== 0)) {
+                    $("#priorSavingAmountFHSA").val($("#priorPaymentAmountFHSA").val());
+                }
             }, 
             initForms = function (fhsaStartYear, currentYear, priorYearMax, yearlyMaxContribution, maxContribution, paymentformId, savingsformId) {
                 let adjustedPriorContributeMax;
@@ -1884,6 +1915,18 @@
             }
         });
 
+        $(paymentformId).on("change", "#priorPaymentYearsFHSA", function () {
+            updatePriorSavingYears();
+        });
+
+        $(paymentformId).on("change", "#priorPaymentBalance", function () {
+            updatePriorSavingBalance();
+        });
+
+        $(paymentformId).on("change", "#priorPaymentAmountFHSA", function () {
+            updatePriorSavingAmount();
+        });
+
         $(paymentformId).on("click vclick touchstart", "#paymentresultsbtn", function (event) {
             event.preventDefault();
             var isFormValid = true, 
@@ -1932,6 +1975,18 @@
                 $("#priorSavingBalance").removeAttr("required");
                 $("#priorSavingAmountFHSA").removeAttr("required");
             }
+        });
+
+        $(savingsformId).on("change", "#priorSavingYearsFHSA", function () {
+            updatePriorPaymentYears();
+        });
+
+        $(savingsformId).on("change", "#priorSavingBalance", function () {
+            updatePriorPaymentBalance();
+        });
+
+        $(savingsformId).on("change", "#priorSavingAmountFHSA", function () {
+            updatePriorPaymentAmount();
         });
 
         $(savingsformId).on("click vclick touchstart", "input[type=radio][name=hasSavingInvestment]", function () {
