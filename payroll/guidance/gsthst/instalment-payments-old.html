@@ -798,6 +798,8 @@
 		document.getElementById('i2_R13').innerText = '$'+data.calc.value;
 		document.getElementById('i_I3').innerText = '$'+document.getElementById('nextAmount').value;
 		document.getElementById('i_R7').innerText = '$'+document.getElementById('nextAmount').value;
+		document.getElementById('i_R2').innerText = '$'+document.getElementById('nextAmount').value;
+		document.getElementById('i_R5').innerText = '$'+document.getElementById('nextAmount').value;
 		document.getElementById('i_R10').innerText = '$'+document.getElementById('nextAmount').value;
 		document.getElementById('i_R12').innerText = '$'+document.getElementById('nextAmount').value;
 		document.getElementById('i_R15').innerText = '$'+document.getElementById('nextAmount').value;
@@ -903,13 +905,13 @@
 </div>
 	
 <div class="alert alert-info hidden" id="Result2">
-	<h3><small>Your result</small> <br> Result 2 You became a GST/HST registrant during the current fiscal year</h3>
-<ul class="fa-ul mrgn-lft-xl">
- <li><span class="fas fa-check text-success fa-li"></span> Your estimated net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i_R2"></strong> (calculation: <small id="calcR2"></small>)</li>
-	  <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to make GST/HST instalment payments for the <strong>current</strong> year because it is your first year as a GST/HST registrant</li>
-             <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to make quarterly instalment payments for the <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>next</strong> fiscal year to be <strong>less than $3,000</strong></li>
- <li><span class="fas fa-check text-success fa-li"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                               </ul>
+	<h3><small>Your result</small> <br> You became a GST/HST registrant during the current fiscal year</h3>
+<ul class="list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col"><span class="fas fa-times text-danger "></span> You do <strong>not</strong> have to make GST/HST instalment payments during your <strong>first</strong> year that you have become a GST/HST registrant</li>
+<li class="cnjnctn-col"><span class="fas fa-times text-danger "></span> You do <strong>not</strong> have to make GST/HST instalment payments for the <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>next</strong> fiscal year to be <strong>less than $3,000</strong>  (<small id="i_R2"></small>)</li>
+<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
+                </ul>	
+
 </div>
 
 <div class="alert alert-info hidden" id="Result4">
@@ -923,12 +925,13 @@
 </div>
 
 <div class="alert alert-info hidden" id="Result5">
-	<h3><small>Your result</small><br> Result 5 You became a GST/HST registrant during the current fiscal year</h3>
-<ul class="fa-ul mrgn-lft-xl">
-	  <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to make quarterly instalment payments for the <strong>current</strong> year because it is your first year as a GST/HST registrant</li>
-             <li><span class="fas fa-check text-success fa-li"></span> You have to make quarterly instalment payments for the <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year to be <strong>$3,000 or more</strong> </li>
- <li><span class="fas fa-check text-success fa-li"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                               </ul>
+	<h3><small>Your result</small><br>You became a GST/HST registrant during the current fiscal year</h3>
+<ul class="list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col"><span class="fas fa-times text-danger "></span> You do <strong>not</strong> have to make GST/HST instalment payments during your <strong>first</strong> year that you have become a GST/HST registrant</li>
+<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to make GST/HST instalment payments for the <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>next</strong> fiscal year to be <strong>$3,000 or more</strong> (<small id="i_R5"></small>)</li>
+<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
+                </ul>	
+
 </div>
 
 <div class="alert alert-info hidden" id="Result6">
@@ -998,7 +1001,7 @@
 
 
 <div class="container hidden" id="payment">
-<h4>Payment due date</h4>
+<h4 class="mrgn-lft-lg">Payment due date and amounts</h4>
 	<form class="form-horizontal">
 		<div class="form-group">
 			<label id="T1_P" class="col-sm-4 control-label"></label>
@@ -1049,7 +1052,7 @@
 			</div>
 		</div>
 	</form>
-<h4>What happens if your estimation is wrong </h4>
+<h4 class="mrgn-lft-lg mrgn-tp-md">What happens if your estimation is wrong </h4>
 </div>
 
 
@@ -1057,9 +1060,10 @@
 
 
 <div class="hidden  mrgn-lft-xl" id="I1A">
-<p>Based on your current fiscal year calculation, the estimated net GST/HST amount will be <strong id="i_I1A"></strong> (calculation: <small id="calcI1A"></small>). </p>	
+<h4>What happens if your estimation is wrong </h4>
 <p>If your actual next fiscal year net GST/HST amount is <strong>$3,000 or more</strong>, you would be required to pay instalments. In this situation, the CRA charges <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/file-a-gst-hst-return/gst-hst-penalties-interest.html#instalment" target="_blank">instalment interest</a> on instalment payments paid late or that you did not pay.</p>
-	
+
+<p>For example, if your actual next fiscal year net GST/HST amount is <strong id="i_I1A"></strong> (<small id="calcI1A"></small>), we would charge instalment interest on the required instalment payments. </p>	
 </div>
 	
 <div class="hidden  mrgn-lft-xl" id="I2">
