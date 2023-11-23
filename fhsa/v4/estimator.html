@@ -990,7 +990,7 @@
                                         <li><strong data-output="holdings-total">$0</strong> in account holdings</li>
                                         <li id="paymentGrowthResult"><strong data-output="investment-growth-total">$0</strong> in investment growth</li>
                                     </ul>
-                                    <p>Over <strong data-output="payment-years">0</strong> year<span data-payment-year-range="true">s</span></p>
+                                    <p>Over <strong data-output="payment-years">0</strong> year<span data-payment-year-range="true">s</span>.<span id="paymentThresholdData"> By year <strong><span id="paymentThresholdYear" data-threshold-year="true">0</span></strong>, you will have hit your lifetime participation room of <strong><span id="paymentMaxContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></p>
 
                                     <table id="holdingsresultstable" class="text-right table table-condensed table-bordered table-striped table-hover" data-wb-charts="{&quot;reversettblparsing&quot;: true, &quot;legendinline&quot;: true}" data-flot="{&quot;series&quot;: {&quot;area&quot;: {&quot;label&quot;: {&quot;show&quot;: true}}}}">
                                         <caption>Account holdings by type</caption>
@@ -1251,7 +1251,7 @@
                                     <li><span data-output="area-tax"><strong>$0</strong> to <strong>$0</strong></span> in <span data-area-name="provincial-territorial">Provincial and Territorial</span> tax</li>
                                     <li><span data-output="fed-tax"><strong>$0</strong> to <strong>$0</strong></span> in Federal tax</li>
                                 </ul>
-                                <p>Over <strong data-output="saving-years">0</strong> year<span data-savings-year-range="true">s</span></p>
+                                <p>Over <strong data-output="saving-years">0</strong> year<span data-savings-year-range="true">s</span>.<span id="savingsThresholdData"> By year <strong><span id="savingsThresholdYear" data-threshold-year="true">0</span></strong>, you will have hit your lifetime participation room of <strong><span id="savingsContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></p>
 
                                 <table id="savingsTable" class="table table-condensed table-bordered table-striped table-hover">
                                     <caption>Your possible FHSA tax savings</caption>
@@ -1674,6 +1674,7 @@
                     loopYears = priorPaymentYrs + holdingYears, 
                     amountCompound = 0, 
                     investmentCompound = 0, 
+                    maxContributeYear = loopYears, 
                     createHoldingsTableBody = function (evalYear, isPriorYear, amountCompound, investmentCompound) {
                         let holdingCell, 
                             holdingRow = document.createElement("tr"), 
@@ -1709,11 +1710,15 @@
                 if (amountCompound < maxContribution) {
                     if (loopYears >= priorYearMax + 1) {
                         loopYears = priorYearMax + 1;
+                        maxContributeYear = loopYears;
                     }
                     for (yearIncrement = priorPaymentYrs + 1; yearIncrement <= loopYears; yearIncrement = yearIncrement + 1) {
                         if (amountCompound + paymentAmount < maxContribution) {
                             amountCompound = amountCompound + paymentAmount;
                         } else {
+                            if (amountCompound !== maxContribution) {
+                                maxContributeYear = yearIncrement;
+                            }
                             amountCompound = maxContribution;
                         }
                         investmentCompound = investmentCompound + (investmentCompound + amountCompound) * investment;
@@ -1722,6 +1727,7 @@
                     return {
                         "addedAmount": amountCompound, 
                         "investment": investmentCompound, 
+                        "maxContributeYear": maxContributeYear, 
                         "yearsheld": loopYears
                     };
                 }
@@ -1739,6 +1745,7 @@
                     fedMaxCumulative = 0, 
                     areaMinCumulative = 0, 
                     areaMaxCumulative = 0, 
+                    maxContributeYear = loopYears, 
                     hasInvestment = hasInvestGrowth === true || priorSavingsInvest > 0, 
                     createSavingsTableBody = function (savingsRow, evalYear, amountCompound, investmentCompound, deductContribAmt, fedMinVal, fedMaxVal, areaMinVal, areaMaxVal, hasInvestment, isPriorYear, isTotal) {
                         let savingsCell, 
@@ -1835,14 +1842,17 @@
                 if (amountCompound < maxContribution) {
                     if (loopYears >= priorYearMax + 1) {
                         loopYears = priorYearMax + 1;
+                        maxContributeYear = loopYears;
                     }
                     for (yearIncrement = priorSavingYears + 1; yearIncrement <= loopYears; yearIncrement = yearIncrement + 1) {
                         if (amountCompound + savingsAmount < maxContribution) {
                             deductContribAmt = savingsDirectAmount;
-
                             amountCompound = amountCompound + savingsAmount;
                         } else {
                             deductContribAmt = (savingsDirectAmount / savingsAmount) * (maxContribution - amountCompound);
+                            if (amountCompound !== maxContribution) {
+                                maxContributeYear = yearIncrement;
+                            }
                             amountCompound = maxContribution;
                         }
                         deductCumulative = deductCumulative + deductContribAmt;
@@ -1868,6 +1878,7 @@
                         "fedAmountMax": fedMaxCumulative, 
                         "areaAmountMin": areaMinCumulative, 
                         "areaAmountMax": areaMaxCumulative, 
+                        "maxContributeYear": maxContributeYear, 
                         "yearssaved": loopYears
                     };
                 }
@@ -1892,11 +1903,18 @@
                     paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
 
                 $("[data-output=holdings-total]", paymentformId).html(currencyFormatter.format(paymentTotals.addedAmount + paymentTotals.investment));
-                if (priorPaymentInvestment > 0) {
+                if (priorPaymentInvestment + paymentTotals.investment > 0) {
                     $("#paymentGrowthResult", paymentformId).removeClass("hidden");
                     $("[data-output=investment-growth-total]", paymentformId).html(currencyFormatter.format(paymentTotals.investment));
                 } else {
                     $("#paymentGrowthResult", paymentformId).addClass("hidden");
+                }
+                $("#paymentThresholdYear", paymentformId).html(paymentTotals.maxContributeYear);
+                $("#paymentContributeTotal", paymentformId).html(currencyFormatter.format(paymentTotals.addedAmount));
+                if (paymentTotals.addedAmount === maxContribution) {
+                    $("#paymentThresholdData", paymentformId).removeClass("hidden");
+                } else {
+                    $("#paymentThresholdData", paymentformId).addClass("hidden");
                 }
                 if (paymentTotals.yearsheld === 1) {
                     $("[data-payment-year-range=true]", paymentformId).addClass("hidden");
@@ -1924,6 +1942,13 @@
                 }
                 $("[data-output=fed-tax]", savingsformId).html(fedTotal);
                 $("[data-output=area-tax]", savingsformId).html(areaTotal);
+                $("#savingsThresholdYear", savingsformId).html(savingsTotals.maxContributeYear);
+                $("#savingsContributeTotal", savingsformId).html(currencyFormatter.format(savingsTotals.addedAmount));
+                if (savingsTotals.addedAmount === maxContribution) {
+                    $("#savingsThresholdData", savingsformId).removeClass("hidden");
+                } else {
+                    $("#savingsThresholdData", savingsformId).addClass("hidden");
+                }
             };
 
 
