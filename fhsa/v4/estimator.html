@@ -1518,20 +1518,20 @@
                 }
                 return 0;
             }, 
-            priorPaymentAmount = function () {
-                if (hasPriorPaymentFHSA() === true) {
-                    return parseInt($("#priorPaymentAmountFHSA").val(), 10) || 0;
-                }
-                return 0;
-            }, 
             priorPaymentBalance = function () {
                 if (hasPriorPaymentFHSA() === true) {
                     return parseInt($("#priorPaymentBalance").val(), 10) || 0;
                 }
                 return 0;
             }, 
+            priorPaymentAmount = function () {
+                if (hasPriorPaymentFHSA() === true) {
+                    return parseInt($("#priorPaymentAmountFHSA").val(), 10) || 0;
+                }
+                return 0;
+            }, 
             paymentYears = function () {
-                return parseInt($("#paymentYears").val(), 10) || 0;
+                return parseInt($("#paymentYears").val(), 10) || 1;
             }, 
             paymentAmount = function () {
                 return parseInt($("#paymentAmount").val(), 10) || 0;
@@ -1551,15 +1551,15 @@
                 }
                 return 0;
             }, 
-            priorSavingAmount = function () {
-                if (hasPriorSavingsFHSA() === true) {
-                    return parseInt($("#priorSavingAmountFHSA").val(), 10) || 0;
-                }
-                return 0;
-            }, 
             priorSavingBalance = function () {
                 if (hasPriorSavingsFHSA() === true) {
                     return parseInt($("#priorSavingBalance").val(), 10) || 0;
+                }
+                return 0;
+            }, 
+            priorSavingAmount = function () {
+                if (hasPriorSavingsFHSA() === true) {
+                    return parseInt($("#priorSavingAmountFHSA").val(), 10) || 0;
                 }
                 return 0;
             }, 
@@ -1570,7 +1570,7 @@
                 return parseInt($("#approxYearlyIncome").val(), 10) || 0;
             }, 
             savingYears = function () {
-                return parseInt($("#savingYears").val(), 10) || 0;
+                return parseInt($("#savingYears").val(), 10) || 1;
             }, 
             savingsAmount = function () {
                 return parseInt($("#savingsAmount").val(), 10) || 0;
@@ -1588,32 +1588,32 @@
                 return 0;
             }, 
             updatePriorPaymentYears = function () {
-                if (hasSamePriorSavingsInfo() === true || (priorPaymentYears() === 0 && priorSavingYears() !== 0)) {
+                if (priorSavingYears() !== 0 && priorSavingYears() !== priorPaymentYears()) {
                     $("#priorPaymentYearsFHSA").val($("#priorSavingYearsFHSA").val());
                 }
             }, 
             updatePriorPaymentBalance = function () {
-                if (hasSamePriorSavingsInfo() === true || (priorPaymentBalance() === 0 && priorSavingBalance() !== 0)) {
+                if (priorSavingBalance() !== 0 && priorSavingBalance() !== priorPaymentBalance()) {
                     $("#priorPaymentBalance").val($("#priorSavingBalance").val());
                 }
             }, 
             updatePriorPaymentAmount = function () {
-                if (hasSamePriorSavingsInfo() === true || (priorPaymentAmount() === 0 && priorSavingAmount() !== 0)) {
+                if (priorSavingAmount() !== 0 && priorSavingAmount() !== priorPaymentAmount()) {
                     $("#priorPaymentAmountFHSA").val($("#priorSavingAmountFHSA").val());
                 }
             }, 
             updatePriorSavingYears = function () {
-                if (hasSamePriorPaymentInfo() === true || (priorSavingYears() === 0 && priorPaymentYears() !== 0)) {
+                if (priorPaymentYears() !== 0 && priorPaymentYears() !== priorSavingYears()) {
                     $("#priorSavingYearsFHSA").val($("#priorPaymentYearsFHSA").val());
                 }
             }, 
             updatePriorSavingBalance = function () {
-                if (hasSamePriorPaymentInfo() === true || (priorSavingBalance() === 0 && priorPaymentBalance() !== 0)) {
+                if (priorPaymentBalance() !== 0 && priorPaymentBalance() !== priorSavingBalance()) {
                     $("#priorSavingBalance").val($("#priorPaymentBalance").val());
                 }
             }, 
             updatePriorSavingAmount = function () {
-                if (hasSamePriorPaymentInfo() === true || (priorSavingAmount() === 0 && priorPaymentAmount() !== 0)) {
+                if (priorPaymentAmount() !== 0 && priorPaymentAmount() !== priorSavingAmount()) {
                     $("#priorSavingAmountFHSA").val($("#priorPaymentAmountFHSA").val());
                 }
             }, 
@@ -1962,15 +1962,9 @@
                 $("#priorPaymentYearsFHSA").attr("required", "required");
                 $("#priorPaymentBalance").attr("required", "required");
                 $("#priorPaymentAmountFHSA").attr("required", "required");
-                if (priorPaymentYears() === 0 && priorSavingYears() !== 0) {
-                    $("#priorPaymentYearsFHSA").val($("#priorSavingYearsFHSA").val());
-                }
-                if (priorPaymentBalance() === 0 && priorSavingBalance() !== 0) {
-                    $("#priorPaymentBalance").val($("#priorSavingBalance").val());
-                }
-                if (priorPaymentAmount() === 0 && priorSavingAmount() !== 0) {
-                    $("#priorPaymentAmountFHSA").val($("#priorSavingAmountFHSA").val());
-                }
+                    updatePriorPaymentYears();
+                    updatePriorPaymentBalance();
+                    updatePriorPaymentAmount();
             } else {
                 $("#priorPaymentFHSAfields").addClass("hidden");
                 $("#priorPaymentYearsFHSA").removeAttr("required");
@@ -1979,16 +1973,30 @@
             }
         });
 
+        $(paymentformId).on("click vclick touchstart", "input[type=checkbox][name=priorPaymentSameInfo]", function () {
+            if (hasSamePriorPaymentInfo() === true) {
+                updatePriorPaymentYears();
+                updatePriorPaymentBalance();
+                updatePriorPaymentAmount();
+            }
+        });
+
         $(paymentformId).on("change", "#priorPaymentYearsFHSA", function () {
-            updatePriorSavingYears();
+            if (hasSamePriorPaymentInfo() === true || priorSavingYears() === 0) {
+                updatePriorSavingYears();
+            }
         });
 
         $(paymentformId).on("change", "#priorPaymentBalance", function () {
-            updatePriorSavingBalance();
+            if (hasSamePriorPaymentInfo() === true || priorSavingBalance() === 0) {
+                updatePriorSavingBalance();
+            }
         });
 
         $(paymentformId).on("change", "#priorPaymentAmountFHSA", function () {
-            updatePriorSavingAmount();
+            if (hasSamePriorPaymentInfo() === true || priorSavingAmount() === 0) {
+                updatePriorSavingAmount();
+            }
         });
 
         $(paymentformId).on("click vclick touchstart", "#paymentresultsbtn", function (event) {
@@ -2024,15 +2032,9 @@
                 $("#priorSavingYearsFHSA").attr("required", "required");
                 $("#priorSavingBalance").attr("required", "required");
                 $("#priorSavingAmountFHSA").attr("required", "required");
-                if (priorSavingYears() === 0 && priorPaymentYears() !== 0) {
-                    $("#priorSavingYearsFHSA").val($("#priorPaymentYearsFHSA").val());
-                }
-                if (priorSavingBalance() === 0 && priorPaymentBalance() !== 0) {
-                    $("#priorSavingBalance").val($("#priorPaymentYearsInvest").val());
-                }
-                if (priorSavingAmount() === 0 && priorPaymentAmount() !== 0) {
-                    $("#priorSavingAmountFHSA").val($("#priorPaymentAmountFHSA").val());
-                }
+                    updatePriorSavingYears();
+                    updatePriorSavingBalance();
+                    updatePriorSavingAmount();
             } else {
                 $("#priorSavingFHSAfields").addClass("hidden");
                 $("#priorSavingYearsFHSA").removeAttr("required");
@@ -2041,16 +2043,30 @@
             }
         });
 
+        $(savingsformId).on("click vclick touchstart", "input[type=checkbox][name=priorSavingsSameInfo]", function () {
+            if (hasSamePriorSavingsInfo() === true) {
+                updatePriorSavingYears();
+                updatePriorSavingBalance();
+                updatePriorSavingAmount();
+            }
+        });
+
         $(savingsformId).on("change", "#priorSavingYearsFHSA", function () {
-            updatePriorPaymentYears();
+            if (hasSamePriorSavingsInfo() === true || priorPaymentYears() === 0) {
+                updatePriorPaymentYears();
+            }
         });
 
         $(savingsformId).on("change", "#priorSavingBalance", function () {
-            updatePriorPaymentBalance();
+            if (hasSamePriorSavingsInfo() === true || priorPaymentBalance() === 0) {
+                updatePriorPaymentBalance();
+            }
         });
 
         $(savingsformId).on("change", "#priorSavingAmountFHSA", function () {
-            updatePriorPaymentAmount();
+            if (hasSamePriorSavingsInfo() === true || priorPaymentAmount() === 0) {
+                updatePriorPaymentAmount();
+            }
         });
 
         $(savingsformId).on("click vclick touchstart", "input[type=radio][name=hasSavingInvestment]", function () {
@@ -2093,8 +2109,8 @@
             event.stopPropagation();
             if (parseInt(document.getElementById("savingsDirectAmount").value, 10) > parseInt(document.getElementById("savingsAmount").value, 10)) {
                 document.getElementById("savingsDirectAmount").value = document.getElementById("savingsAmount").value;
-//                event.preventDefault();
-//                return false;
+                event.preventDefault();
+                return false;
             }
         });
     </script>
