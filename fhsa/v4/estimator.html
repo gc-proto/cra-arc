@@ -2090,10 +2090,11 @@
         });
 
         $(savingsformId).on("change input", "#savingsDirectAmount", function (event) {
+            event.stopPropagation();
             if (parseInt(document.getElementById("savingsDirectAmount").value, 10) > parseInt(document.getElementById("savingsAmount").value, 10)) {
                 document.getElementById("savingsDirectAmount").value = document.getElementById("savingsAmount").value;
-                event.preventDefault();
-                return false;
+//                event.preventDefault();
+//                return false;
             }
         });
     </script>
