@@ -2,6 +2,7 @@ let setValue = function(valDisplayRange, rangeValue) {
   document.getElementById(valDisplayRange).innerHTML = rangeValue;
 };
 
+/*
 document.addEventListener("DOMContentLoaded", function() { 
   setValue("paymentYearsOutput", document.getElementById("paymentYears").value); 
 });
@@ -26,29 +27,30 @@ document.addEventListener("DOMContentLoaded", function() {
     setValue("savingsDirectAmountOutput", currencyFormatter.format(document.getElementById("savingsAmount").value)); 
   }
 });
-
-document.getElementById("paymentYears").addEventListener("input", function() { 
+*/
+  
+$("#paymentYears").on("change input", function() { 
   setValue("paymentYearsOutput", this.value); 
 });
 
-document.getElementById("savingYears").addEventListener("input", function() { 
+$("#savingYears").on("change input", function() { 
   setValue("savingYearsOutput", this.value); 
 });
 
 //currency formatted
-document.getElementById("paymentAmount").addEventListener("input", function() { 
+$("#paymentAmount").on("change input", function() { 
   setValue("paymentAmountOutput", currencyFormatter.format(this.value)); 
 });
 
 //conditional functions
-document.getElementById("savingsAmount").addEventListener("input", function() { 
+$("#savingsAmount").on("change input", function() { 
   if (parseInt(this.value, 10) <= parseInt(document.getElementById("savingsDirectAmount").value, 10)) {
     setValue("savingsDirectAmountOutput", currencyFormatter.format(this.value)); 
   }
   setValue("savingsAmountOutput", currencyFormatter.format(this.value)); 
 });
 
-document.getElementById("savingsDirectAmount").addEventListener("input", function() { 
+$("#savingsDirectAmount").on("change input", function() { 
   if (parseInt(this.value, 10) <= parseInt(document.getElementById("savingsAmount").value, 10)) {
     setValue("savingsDirectAmountOutput", currencyFormatter.format(this.value)); 
   }
