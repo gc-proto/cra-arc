@@ -1808,24 +1808,24 @@
                     }, 
                     federalRates = areaRates(federalName, incomeRates, currentYear, startYear, pagelang), 
                     provinceRates = areaRates(area, incomeRates, currentYear, startYear, pagelang), 
-                    getRefundAmount = function (income, qualifyDeductible, tax) {
+                    getRefundAmount = function (income, investmentAmount, deductContribAmt, tax) {
                         let rateLoop, lastRate, 
                             maxlimit = 0, 
                             currentIncome = income;
 
                         if (tax.hasOwnProperty("rates") === true) {
                             for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
-                                if (tax.rates[rateLoop].threshold < currentIncome && tax.rates[rateLoop].threshold < currentIncome - qualifyDeductible) {
-                                    maxlimit = qualifyDeductible * tax.rates[rateLoop].rate;
+                                if (tax.rates[rateLoop].threshold < currentIncome && tax.rates[rateLoop].threshold < currentIncome - deductContribAmt) {
+                                    maxlimit = (deductContribAmt + investmentAmount) * tax.rates[rateLoop].rate;
                                     break;
-                                } else if (tax.rates[rateLoop].threshold < currentIncome - qualifyDeductible) {
+                                } else if (tax.rates[rateLoop].threshold < currentIncome - deductContribAmt) {
                                     maxlimit = (tax.rates[rateLoop].threshold) * tax.rates[rateLoop].rate + (currentIncome - tax.rates[rateLoop].threshold) * lastRate;
                                     break;
                                 }
                                 lastRate = tax.rates[rateLoop].rate;
                             }
                             return {
-                                "min": qualifyDeductible * tax.rates[0].rate, 
+                                "min": (deductContribAmt + investmentAmount) * tax.rates[0].rate, 
                                 "max": maxlimit
                             }
                         }
@@ -1858,8 +1858,8 @@
                         deductCumulative = deductCumulative + deductContribAmt;
                         investmentAmount = (investmentCompound + amountCompound) * investment;
                         investmentCompound = investmentCompound + investmentAmount;
-                        fedSavingsAmt = getRefundAmount(income, investmentAmount + deductContribAmt, federalRates);
-                        areaSavingsAmt = getRefundAmount(income, investmentAmount + deductContribAmt, provinceRates);
+                        fedSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, federalRates);
+                        areaSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, provinceRates);
                         fedMinCumulative = fedMinCumulative + fedSavingsAmt.min;
                         fedMaxCumulative = fedMaxCumulative + fedSavingsAmt.max;
                         areaMinCumulative = areaMinCumulative + areaSavingsAmt.min;
