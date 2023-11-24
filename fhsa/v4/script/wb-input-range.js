@@ -2,7 +2,6 @@ let setValue = function(valDisplayRange, rangeValue) {
   document.getElementById(valDisplayRange).innerHTML = rangeValue;
 };
 
-/*
 document.addEventListener("DOMContentLoaded", function() { 
   setValue("paymentYearsOutput", document.getElementById("paymentYears").value); 
 });
@@ -22,12 +21,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener("DOMContentLoaded", function() { 
   setValue("savingsAmountOutput", currencyFormatter.format(document.getElementById("savingsAmount").value));
-  if (parseInt(document.getElementById("savingsAmount").value, 10) < parseInt(document.getElementById("savingsDirectAmount").value, 10)) {
+  if (parseInt(document.getElementById("savingsAmount").value, 10) <= parseInt(document.getElementById("savingsDirectAmount").value, 10)) {
     document.getElementById("savingsDirectAmount").value = document.getElementById("savingsAmount").value;
     setValue("savingsDirectAmountOutput", currencyFormatter.format(document.getElementById("savingsAmount").value)); 
   }
 });
-*/
   
 $("#paymentYears").on("change input", function() { 
   setValue("paymentYearsOutput", this.value); 
