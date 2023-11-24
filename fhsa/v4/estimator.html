@@ -1510,7 +1510,10 @@
                 return $(":input[type=radio][name=hasPriorPaymentFHSA]:checked", paymentformId).data("priorpayment-fhsa") || false;
             }, 
             hasSamePriorPaymentInfo = function () {
-                return $(":input[type=checkbox][name=priorPaymentSameInfo]:checked", paymentformId).data("same-prior") || false;
+                if (hasPriorPaymentFHSA() === true) {
+                    return $(":input[type=checkbox][name=priorPaymentSameInfo]:checked", paymentformId).data("same-prior") || false;
+                }
+                return false;
             }, 
             priorPaymentYears = function () {
                 if (hasPriorPaymentFHSA() === true) {
@@ -1543,7 +1546,10 @@
                 return $(":input[type=radio][name=hasPriorSavingFHSA]:checked", savingsformId).data("priorsaving-fhsa") || false;
             }, 
             hasSamePriorSavingsInfo = function () {
-                return $(":input[type=checkbox][name=priorSavingsSameInfo]:checked", savingsformId).data("same-prior") || false;
+                if (hasPriorSavingsFHSA() === true) {
+                    return $(":input[type=checkbox][name=priorSavingsSameInfo]:checked", savingsformId).data("same-prior") || false;
+                }
+                return false;
             }, 
             priorSavingYears = function () {
                 if (hasPriorSavingsFHSA() === true) {
