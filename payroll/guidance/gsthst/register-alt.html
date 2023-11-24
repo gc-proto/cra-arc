@@ -79,14 +79,14 @@
 <p>The accuracy of your results depends on the accuracy of the information you enter. Later calculations made by the CRA may be different.</p>
 <p><strong>This tools does not collect or store the information you enter.</strong></p>
     </div>
+<div class="alert alert-danger">
+	<p>You can <strong>only</strong> use the tool if your business started receiving revenue in less than 8 calendar quarters or if your business has not started receiving revenue yet. </p>
+</div>
  <p>Use this ITT to: </p>
 <ol>
 <li>Find out if you have to register and when to register</li>
 <li>When to start charging the GST/HST</li>
 	 </ol>
-<div class="alert alert-danger">
-	<p>You can <strong>only</strong> use the tool if your business started receiving revenue in less than 8 calendar quarters or if your business has not started receiving revenue yet. </p>
-</div>
 
 <hr>
  
@@ -97,7 +97,7 @@
     
     <form id="myForm">
 	<!--QUESTION 1-->
-<div class="form-group">
+<div class="form-group mrgn-lft-md">
 	
 	<fieldset name="quest" id="question1" class="mrgn-bttm-md">
 		<legend class="h5 required">Do you supply taxable goods or services? <strong class="required">(required)</strong></legend>
@@ -225,8 +225,8 @@
 			}	
 		">
 			<option value="5" selected>Make your selection...</option> 
-			<option value="0" name="q3">Sole proprietor, a partnership, or a corporation</option>
-			<option value="1" name="q3">Public service body</option>
+			<option value="0" name="q3">Sole proprietor, a partnership or a corporation</option>
+			<option value="1" name="q3">Public service body (other than a charity or public institution)</option>
 			<option value="2" name="q3">Charity or public institution</option>
 			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
 		</select>
@@ -235,7 +235,8 @@
 	
 	<!--QUESTION 4 -->
 	<fieldset name="quest" id="question4" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
+<h2 class="mrgn-tp-sm">You are sole proprietor, a partnership or a corporation</h2>
+		<legend class="h5 required mrgn-lft-md">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
 		<p>Even if you consider yourself to be self-employed, you might be an employee. To determine whether you’re an employee or self-employed, ask yourself the following questions:</p>
 		<ul>
 			<li>In your everyday work, the decisions about what work is to be done are made by whom, how, and where?</li>
@@ -243,7 +244,7 @@
 			<li>Are you able to subcontract work or hire assistants?</li>
 			<li>Who’s taking the financial risk and has the opportunity for reward?</li>
 		</ul>
-		<div class="radio" onchange="
+		<div class="radio mrgn-lft-md" onchange="
 			var q = getElementsByName('quest') ;
 			for (i=5; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -270,9 +271,11 @@
 	
 	<!--QUESTION 5-->
 	<fieldset name="quest" id="question5" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Are you a branch or division of an incorporated municipality? <strong class="required">(required)</strong></legend>
-		<p>A public service body means a charity, non-profit organization, municipality, university, public college, school authority, or hospital authority. For the purpose of GST/HST registration, charities and public institutions have different rules. Choose the option that best describes your organization.</p>
-		<div class="radio" onchange="
+<h2 class="mrgn-tp-sm">You are a public service body (other than a charity or public institution)</h2>
+	<p>A public service body means a charity, non-profit organization, municipality, university, public college, school authority, or hospital authority. For the purpose of GST/HST registration, charities and public institutions have different rules. Choose the option that best describes your organization.</p>
+		<legend class="h5 required mrgn-lft-md">Are you a branch or division of the public service body? <strong class="required">(required)</strong></legend>
+		
+		<div class="radio mrgn-lft-md" onchange="
 			var q = getElementsByName('quest') ;
 			for (i=6; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -298,14 +301,20 @@
 	</fieldset>
 	
 	<!--QUESTION 12-->
-	<fieldset name="quest" id="question12" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">How much revenue do you estimate from your taxable sales, leases and other supplies for the next 4 quarters? <strong class="required">(required)</strong></legend><br>	
+	<fieldset name="quest" id="question12" class="mrgn-lft-md mrgn-bttm-md hidden">
+		<legend class="h5 required">Q12 How much revenue do you estimate from your taxable sales, leases and other supplies for the next 4 quarters? <strong class="required">(required)</strong></legend><br>	
 		
 		<section>
 			
 			<p>You must include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including zero-rated supplies) from all your businesses and those of your associates.</p>
 			<p><strong>Do not</strong> include revenue from financial services, sales of capital property and goodwill from the sale of a business.</p>
 <hr>
+<div class="alert alert-warning">
+	<p>You can use the tool to <strong>create scenarios</strong> based on your <strong>estimated figures</strong>. The results are only provided as a guideline to help you understand when you may need to register.</p>
+</div>
+
+<h3 class="mrgn-lft-md"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span>
+Enter your estimated figures</h3>
 		</section>
 	
 	
@@ -376,10 +385,12 @@
 	
 
 	<!--QUESTION 6-->
-	<fieldset name="quest" id="question6" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Are you a branch or division of an incorporated municipality? <strong class="required">(required)</strong></legend>
-		<p>A charity means a registered charity or registered Canadian amateur athletic association for income tax purposes, but does not include a public institution.</p>
+	<fieldset name="quest" id="question6" class="mrgn-bttm-md mrgn-lft-md hidden">
+<h2 class="mrgn-tp-sm">You are a charity or public institution</h2>
+<p>A charity means a registered charity or registered Canadian amateur athletic association for income tax purposes, but does not include a public institution.</p>
 		<p>A public institution means a registered charity for income tax purposes that is also a school authority, a public college, a university, a hospital authority, or a local authority determined by the Minister of National Revenue to be a municipality.</p>
+		<legend class="h5 required">Are you a branch or division of the charity or public institution? <strong class="required">(required)</strong></legend>
+		
 			<div class="radio" onchange="
 			var q = getElementsByName('quest') ;
 			for (i=7; i<=q.length; i++)
@@ -420,7 +431,7 @@
 	</fieldset>
 	
 	<!--QUESTION 7-->
-	<fieldset name="quest" id="question7" class="mrgn-bttm-md hidden">
+	<fieldset name="quest" id="question7" class="mrgn-bttm-md mrgn-lft-md hidden">
 		<legend class="h5 required">Is this your first fiscal year of operation? <strong class="required">(required)</strong></legend>
 		<div class="radio" onchange="				
 			var q = getElementsByName('quest') ;
@@ -449,7 +460,7 @@
 	</fieldset>
 	
 	<!--QUESTION 8-->
-	<fieldset name="quest" id="question8" class="mrgn-bttm-md hidden">
+	<fieldset name="quest" id="question8" class="mrgn-bttm-md mrgn-lft-md hidden">
 		<legend class="h5 required">Is this your second fiscal year of operation? <strong class="required">(required)</strong></legend>
 		<div class="radio" onchange="
 			var q = getElementsByName('quest') ;
@@ -485,7 +496,7 @@
 	</fieldset>
 	
 	<!--QUESTION 9-->
-	<fieldset name="quest" id="question9" class="mrgn-bttm-md hidden">
+	<fieldset name="quest" id="question9" class="mrgn-bttm-md mrgn-lft-md hidden">
 		<legend class="h5 required">What is your gross revenue from your first fiscal year of operation? <strong class="required">(required)</strong></legend>
 			
 		<section>
@@ -554,7 +565,7 @@
 	</fieldset>
 	
 	<!--QUESTION 10-->
-	<fieldset name="quest" id="question10" class="mrgn-bttm-md hidden">
+	<fieldset name="quest" id="question10" class="mrgn-bttm-md mrgn-lft-md hidden">
 		<legend class="h5 required">What is your gross revenue for each of your two previous fiscal years? <strong class="required">(required)</strong></legend>
 		
 		<section>
@@ -665,7 +676,10 @@
 	</fieldset>
 	
 	<!--QUESTION 11-->
-	<fieldset name="quest" id="question11" class="mrgn-bttm-md hidden">
+	<fieldset name="quest" id="question11" class="mrgn-bttm-md mrgn-lft-md hidden">
+<h2 class="mrgn-tp-sm">You are a taxi operator or a commercial ride-sharing driver</h2>
+<p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
+	
 		<legend class="h5 required">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
 		
 		<p>You are usually self-employed if you are in one of the following situations:</p>
@@ -692,17 +706,21 @@
 	</fieldset>
 
 	<!--QUESTION 14-->
-	<fieldset name="quest" id="question14" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">How much was the revenue from your taxable sales, leases and other supplies for these recent quarters? <strong class="required">(required)</strong></legend>
+	<fieldset name="quest" id="question14" class="mrgn-bttm-md mrgn-lft-md hidden">
+		<legend class="h5 required">Q14 How much was the revenue from your taxable sales, leases and other supplies for these recent quarters? <strong class="required">(required)</strong></legend>
 		
 		<section>
 			<p>You must include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including zero-rated supplies) from all your businesses and those of your associates.</p>
 			<p><strong>Do not</strong> include revenue from financial services, sales of capital property and goodwill from the sale of a business.</p>
 			<label class="wb-inv">Enter the revenue from your taxable sales, leases and other supplies for recent quarters. Navigate forward through the following fields by using Tab or backward using Shift + Tab.</label>
 <hr>
-
+<div class="alert alert-danger">
+	<p>You can <strong>only</strong> use the tool if your business started receiving revenue in less than 8 calendar quarters or if your business has not started receiving revenue yet. </p>
+</div>
+<h3 class="mrgn-lft-md"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span>
+Enter your actual amounts</h3>			
 		</section>
-		<div class="checkbox-inline" onchange="
+		<div class="checkbox-inline mrgn-lft-xl" onchange="
 			document.getElementById('error_Old').classList.add('hidden') ;
 			fields = document.getElementsByName('q12_Old') ;
 			if (document.getElementById('noRev').checked) {
@@ -829,7 +847,16 @@
 		<br>
 
 		<div id="question14.2" class="hidden ">
-			<legend class="h5 required">How much revenue do you estimate from your taxable sales, leases and other supplies for the next 4 quarters? <strong class="required">(required)</strong></legend>
+<hr>
+			<legend class="h5 required">Q14.2 How much revenue do you estimate from your taxable sales, leases and other supplies for the next 4 quarters? <strong class="required">(required)</strong></legend>
+
+<br><br>
+<div class="alert alert-warning mrgn-tp-lg">
+	<p>You can use the tool to <strong>create scenarios</strong> based on your <strong>estimated figures</strong>. The results are only provided as a guideline to help you understand when you may need to register.</p>
+</div>
+
+<h3 class="mrgn-lft-md"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span>
+Enter your estimated figures</h3>
 		
 			<div class="row mrgn-bttm-sm">
 				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter9_Old" name="q12_date_Old" id="q12_date8_Old"></label>
@@ -890,7 +917,7 @@
 	
 	</fieldset>
 	
-	<fieldset name="quest" id="question13" class="mrgn-bttm-md hidden">
+	<fieldset name="quest" id="question13" class="mrgn-bttm-md mrgn-lft-md hidden">
 		<label for="datePick" id="q13_text" class="h5 required"><span class="wb-inv" id="screenreader_error"></span> What is the date of the taxable supply that <span id="made">made</span> you exceed $<span id="q13_text_amountString"></span> in the following quarter: <span id="q13_text_quarter"></span>? <strong class="required">(required)</strong></label>
 		<input class="form-control input-md" id="datePick" type="date" required onfocus="this.select()" onblur="
 			document.getElementById('validDate').click();
@@ -1533,7 +1560,7 @@
 
 
 
-<section class="alert alert-info hidden" id="R1" name="results">
+<section class="alert alert-info hidden mrgn-lft-md" id="R1" name="results">
 	<h3><small>Your result </small><br> You do not supply goods or services that are taxable</h3>
           <ul class="fa-ul mrgn-lft-xl mrgn-lft-xl">
              <li><span class="fas fa-times text-danger fa-li "></span> You <strong>cannot</strong> register for a GST/HST account</li>
@@ -1543,20 +1570,20 @@
 <p class="mrgn-tp-md">Learn more if you are a listed financial institution: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/notice265/gst-hst-registration-listed-financial-institutions-including-selected-listed-financial-institutions.html">GST/HST Notice 265</a></p>
 </section>
 
-<section class="alert alert-warning hidden" id="R2" name="results">
+<section class="alert alert-warning hidden mrgn-lft-md" id="R2" name="results">
 	<h3><small>Your result </small><br> You are not sure if you are an employee or self-employed</h3>
 	<p>You need to consider multiple factors to determine if you are an employee or self-employed. </p>
 <p>If you are not sure if you are an employee or self-employed, you can ask for a CPP/EI ruling.</p>
 <p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained/canada-pension-plan-employment-insurance-explained-11.html">How to get a CPP/EI ruling</a></p>
 </section>
 
-<section class="alert alert-info hidden" id="R3" name="results">
-	<h3><small>Your result </small><br> You are a branch or division of an incorporated municipality</h3>
-	<p><span class="fas fa-times text-danger"></span> You <strong>cannot</strong> register separately for a GST/HST account</p>
+<section class="alert alert-info hidden mrgn-lft-md" id="R3" name="results">
+	<h3><small>Your result </small><br> You are a branch or division </h3>
+	<p><span class="fas fa-times text-danger"></span> You <strong>cannot</strong> register separately for a GST/HST account because you are a branch or a division.</p>
 <p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4049/gst-hst-information-municipalities.html" target="_blank"> GST/HST information for municipalities</a></p>
 </section>
 
-<section class="alert alert-info hidden" id="R4" name="results">
+<section class="alert alert-info hidden mrgn-lft-md" id="R4" name="results">
 	<h3><small>Your result </small><br> You are a charity or public institution</h3>
 <ul class="fa-ul mrgn-lft-xl">
              <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to register for a GST/HST account</li>
@@ -1571,7 +1598,7 @@
 <p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4082/gst-hst-information-charities.html" target="_blank"> GST/HST Information for Charities</a></p>
 </section>
 
-<section class="alert alert-info hidden" id="R5" name="results">
+<section class="alert alert-info hidden mrgn-lft-md" id="R5" name="results">
 	<h3><small>Your result </small><br> You are a taxi operator or a commercial ride-sharing driver</h3>
   <ul class="fa-ul  mrgn-lft-xl">
 	  <li><span class="fas fa-check text-success fa-li"></span> You have to charge the GST/HST as of the date your business began</li>
@@ -1582,17 +1609,17 @@
 
 </section>
 
-<section class="alert alert-info hidden" id="R6" name="results">
+<section class="alert alert-info hidden mrgn-lft-md" id="R6" name="results">
 	<h3><small>Your result </small><br> Your only commercial activity is the sale of real property<small>, other than in the course of a business</small>  </h3>
 <ul class="fa-ul mrgn-lft-xl">
-<li><span class="fas fa-times text-danger"></span> You do <strong>not</strong> have to register for a GST/HST account</li>	
+<li><span class="fas fa-times text-danger fa-li"></span> You do <strong>not</strong> have to register for a GST/HST account</li>	
  <li><span class="fas fa-check text-success fa-li"></span> You may choose to register voluntarily</li>
  <li><span class="fas fa-check text-success fa-li"></span> You may still have to charge and collect the tax on your sale of real property on that <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#commercial" target="_blank">commercial activity</a></li>
 </ul>
 <p class="mrgn-tp-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#real">Real property</a></p>
 </section>
 
-<section class="alert alert-info hidden" id="R7" name="results">
+<section class="alert alert-info hidden mrgn-lft-md" id="R7" name="results">
 	<h3><small>Your result </small><br> You are a sole proprietor, a partnership, or a corporation - You do not exceed the threshold</h3>
 <ul class="fa-ul mrgn-lft-xl">
 	  <li><span class="fas fa-times text-danger fa-li "></span> You did <strong>not</strong> exceed $30,000 over 4 consecutive calendar quarters</li>
@@ -1605,7 +1632,7 @@
 
 </section>
 
-<section class="alert alert-info hidden" id="R8" name="results">
+<section class="alert alert-info hidden mrgn-lft-md" id="R8" name="results">
 	<h3><small>Your result </small><br> You exceed the threshold over 4 consecutive calendar quarters</h3>
 <ul class="fa-ul mrgn-lft-xl">
 	  <li><span class="fas fa-check text-success fa-li"></span> You <span id="have0"></span> to charge (based on the amounts you <span id="estimate"></span>) the GST/HST on the first taxable supply starting <label id="chargeDate1"></label>, or starting the date of GST/HST registration, whichever is earlier</li>
@@ -1614,7 +1641,7 @@
                 </ul>
 </section>
 
-<section class="alert alert-info hidden" id="R9" name="results">
+<section class="alert alert-info hidden mrgn-lft-md" id="R9" name="results">
 	<h3><small>Your result </small><br> You exceed the threshold in a single calendar quarter</h3>
 <ul class="fa-ul mrgn-lft-xl">
 	  <li><span class="fas fa-check text-success fa-li"></span> You <span id="tense151"></span> to charge the GST/HST starting on <label id="chargeDate0"></label> for the taxable supply that made you exceed <label>$</label><label id="chargeAmount"></label></li>
@@ -1623,7 +1650,7 @@
                 </ul>
 </section>
 
-<section class="alert alert-info hidden" id="R10" name="results">
+<section class="alert alert-info hidden mrgn-lft-md" id="R10" name="results">
 	<h3><small>Your result </small><br> You are a public service body - You do not exceed the threshold</h3>
 <ul class="fa-ul mrgn-lft-xl">
 	  <li><span class="fas fa-times text-danger fa-li "></span> You did <strong>not</strong> exceed $50,000 over 4 consecutive calendar quarters</li>
@@ -1641,7 +1668,7 @@
 	
 </section>
 
-<section class="alert alert-warning hidden" id="R12" name="results">
+<section class="alert alert-warning hidden mrgn-lft-md" id="R12" name="results">
 	<h3><small>Your result </small><br> You are a non-resident business</h3>
 	<p>The tool does <strong>not</strong> provide results if you are a non-resident business. </p>
 <p class="mrgn-tp-md">Learn more to find out if you need to register if you are a non-resident business: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027-doing-business-canada-gst-hst-information-non-residents/doing-business-canada-gst-hst-information-non-residents.html">Guide RC4027, Doing Business in Canada</a></p>
