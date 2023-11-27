@@ -1065,7 +1065,7 @@
                                     </div>
                                 </div>
                                 <div id="priorSavingBalanceElm" class="form-group">
-                                    <label id="priorSavingBalanceLabel" for="priorSavingBalance" class="required"><span class="field-name">Your current FHSA balance</span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required"> (required)</strong></label>
+                                    <label id="priorSavingBalanceLabel" for="priorSavingBalance" class="required"><span class="field-name">Your current FHSA balance</span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
                                         <input type="text" name="priorSavingBalance" size="7" maxlength="7" value="" id="priorSavingBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
@@ -1871,6 +1871,8 @@
                         "addedAmount": amountCompound, 
                         "investment": investmentCompound, 
                         "deductContribute": deductCumulative, 
+			"fedExempt": federalRates.exemption, 
+			"areaExempt": provinceRates.exemption, 
                         "fedAmountMin": fedMinCumulative, 
                         "fedAmountMax": fedMaxCumulative, 
                         "areaAmountMin": areaMinCumulative, 
@@ -1925,7 +1927,7 @@
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
                     savingsTotals = generateSavingsTableData(province(), $("#province").data("fed"), yearlyIncome(), savingYears(), savingsAmount(), savingsDirectAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
 
-                if (savingsTotals.yearsheld === 1) {
+                if (savingsTotals.yearssaved === 1) {
                     $("[data-savings-year-range=true]", savingsformId).addClass("hidden");
                 } else {
                     $("[data-savings-year-range=true]", savingsformId).removeClass("hidden");
@@ -1941,6 +1943,13 @@
                     areaTotal = $("#savingsResultsBody").data("savings-text") + "<strong>" + currencyFormatter.format(savingsTotals.areaAmountMax) + "</strong>"
                 } else {
                     areaTotal = "<strong>" + currencyFormatter.format(savingsTotals.areaAmountMin) + "</strong>" + $("#savingsResultsBody").data("savings-range-text") + "<strong>" + currencyFormatter.format(savingsTotals.areaAmountMax) + "</strong>"
+                }
+                if (yearlyIncome() <= savingsTotals.areaExempt && yearlyIncome() <= savingsTotals.fedExempt) {
+                    $("#aboveMinThresholdText").addClass("hidden");
+                    $("#belowMinThresholdText").removeClass("hidden");
+                } else {
+                    $("#aboveMinThresholdText").removeClass("hidden");
+                    $("#belowMinThresholdText").addClass("hidden");
                 }
                 $("[data-output=fed-tax]", savingsformId).html(fedTotal);
                 $("[data-output=area-tax]", savingsformId).html(areaTotal);
