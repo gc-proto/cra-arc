@@ -989,7 +989,7 @@
                                     <ul class="list-unstyled">
                                         <li><strong data-output="holdings-total">$0</strong> in total account holdings</li>
                                         <li id="paymentGrowthResult">Including <strong data-output="investment-growth-total">$0</strong> in investment growth</li>
-                                         <li>after <strong data-output="payment-years">0</strong> year<span data-payment-year-range="true">s</span>.<span id="paymentThresholdData"> By year <strong><span id="paymentThresholdYear" data-threshold-year="true">0</span></strong>, you will have hit your lifetime participation room of <strong><span id="paymentMaxContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></li>
+                                         <li>after <strong data-output="payment-years">0</strong> year<span data-payment-year-range="true">s</span><span id="paymentThresholdData">. By year <strong><span id="paymentThresholdYear" data-threshold-year="true">0</span></strong>, you will have hit your lifetime participation room of <strong><span id="paymentMaxContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></li>
                                     </ul>
 
                                     <table id="holdingsresultstable" class="text-right table table-condensed table-bordered table-striped table-hover" data-wb-charts="{&quot;reversettblparsing&quot;: true, &quot;legendinline&quot;: true}" data-flot="{&quot;series&quot;: {&quot;area&quot;: {&quot;label&quot;: {&quot;show&quot;: true}}}}">
@@ -1210,8 +1210,8 @@
                             </div>
 
 
-                            <div class="mrgn-lft-md gc-chckbxrdio chckbxrdio-grp provisional">
-                                <fieldset id="hasSavingInvestment-question" class="mrgn-lft-md">
+                            <div class="mrgn-lft-md">
+                                <fieldset id="hasSavingInvestment-question">
                                     <legend class="gc-font-2019 required" tabindex="-1"><strong><span class="field-name">Would you like to include the expected rate of investment growth for your FHSA?</span></strong> <strong class="required">(required)</strong></legend>
                                     <ul class="list-unstyled gc-chckbxrdio chckbxrdio-grp">
                                         <li class="radio">
@@ -1245,11 +1245,11 @@
                             <div id="savingsResults" class="table-responsive hidden" aria-live="polite">
                                 <hr>
                                 <h3>Potential tax savings</h3>
-                                <p class="small">Based on the numbers you entered<span id="aboveMinThresholdText">, your possible FHSA tax savings could be approximately:</span><span id="belowMinThresholdText"> your annual income would not be taxed, and therefore you may not have any tax savings from your FHSA. By changing the future annual income you entered to account for future earnings, you can use the chart below to understand the potential tax savings to you in the future.</span></p>
+                                <p class="small">Based on the numbers you entered<span id="aboveMinThresholdText">, your possible FHSA tax savings could be approximately:</span><span id="belowMinThresholdText" class="hidden"> your annual income would not be taxed, and therefore you may not have any tax savings from your FHSA. By changing the future annual income you entered to account for future earnings, you can use the chart below to understand the potential tax savings to you in the future.</span></p>
                                 <ul class="list-unstyled">
                                     <li><span data-output="area-tax"><strong>$0</strong> to <strong>$0</strong></span> in <span data-area-name="provincial-territorial">provincial and territorial</span> tax</li>
                                     <li><span data-output="fed-tax"><strong>$0</strong> to <strong>$0</strong></span> in federal tax</li>
-                                    <li>after <strong data-output="saving-years">0</strong> year<span data-savings-year-range="true">s</span>.<span id="savingsThresholdData"> By year <strong><span id="savingsThresholdYear" data-threshold-year="true">0</span></strong>, you will have hit your lifetime participation room of <strong><span id="savingsContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></li>
+                                    <li>after <strong data-output="saving-years">0</strong> year<span data-savings-year-range="true">s</span><span id="savingsThresholdData">. By year <strong><span id="savingsThresholdYear" data-threshold-year="true">0</span></strong>, you will have hit your lifetime participation room of <strong><span id="savingsContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></li>
                                 </ul>
 
                                 <table id="savingsTable" class="table table-condensed table-bordered table-striped table-hover">
@@ -1924,6 +1924,8 @@
                 }
                 if (paymentTotals.yearsheld === 1) {
                     $("[data-payment-year-range=true]", paymentformId).addClass("hidden");
+                } else {
+                    $("[data-payment-year-range=true]", paymentformId).removeClass("hidden");
                 }
                 $("[data-output=payment-years]", paymentformId).html(paymentTotals.yearsheld);
             }, 
@@ -1931,8 +1933,11 @@
                 let fedTotal, areaTotal, 
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
                     savingsTotals = generateSavingsTableData(province(), $("#province").data("fed"), yearlyIncome(), savingYears(), savingsAmount(), savingsDirectAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
+
                 if (savingsTotals.yearsheld === 1) {
                     $("[data-savings-year-range=true]", savingsformId).addClass("hidden");
+                } else {
+                    $("[data-savings-year-range=true]", savingsformId).removeClass("hidden");
                 }
                 $("[data-output=saving-years]", savingsformId).html(savingsTotals.yearssaved);
                 $("[data-area-name=provincial-territorial]", savingsformId).html(province());
