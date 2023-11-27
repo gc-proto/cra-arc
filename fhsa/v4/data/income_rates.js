@@ -350,6 +350,7 @@ const incomeRates = [
         {
           "year": 2023, 
           "exemption": 17183, 
+            "abatement": 0.835,
           "rates": [
             {
               "rate": 0.14, 
