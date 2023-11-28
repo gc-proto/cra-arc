@@ -10,7 +10,7 @@ const incomeRates = [
             {
               "QC": 0.835,
             }
-          ]
+          ], 
           "rates": [
             {
               "rate": 0.15, 
