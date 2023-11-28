@@ -920,7 +920,7 @@
                         <div class="panel-body mrgn-lft-sm mrgn-bttm-lg">
 
                             <div class="form-group">
-                                <div class="mrgn-lft-md">
+                                <div class="mrgn-lft-md mrgn-bttm-sm">
                                     <label for="paymentYears">Number of years you plan to participate in your FHSA</label>
                                 </div>
                                 <div class="col-md-12 mrgn-tp-sm">
@@ -942,7 +942,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <div class="form-group">
-                                <div class="mrgn-lft-md mrgn-tp-lg">
+                                <div class="mrgn-lft-md mrgn-tp-lg mrgn-bttm-sm">
                                     <label for="paymentAmount"><span class="field-name">Amount you plan to contribute and transfer yearly to your FHSA ($250 increments)</span></label>
                                 </div>
                                 <div class="col-md-12 mrgn-tp-sm">
@@ -988,7 +988,7 @@
                                     <p class="small">Based on the numbers you entered, your possible FHSA amount towards your down payment could be approximately:</p>
                                     <ul class="list-unstyled">
                                         <li><strong data-output="holdings-total">$0</strong> in total account holdings</li>
-                                        <li id="paymentGrowthResult">Including <strong data-output="investment-growth-total">$0</strong> in investment growth</li>
+                                        <li id="paymentGrowthResult">including <strong data-output="investment-growth-total">$0</strong> in investment growth</li>
                                          <li>after <strong data-output="payment-years">0</strong> year<span data-payment-year-range="true">s</span><span id="paymentThresholdData">. By year <strong><span id="paymentThresholdYear" data-threshold-year="true">0</span></strong>, you will have hit your lifetime participation room of <strong><span id="paymentMaxContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></li>
                                     </ul>
 
@@ -1005,7 +1005,7 @@
                                         <tbody id="holdingsResultsBody" data-prior-payment-year-rows="1 to ">
                                         </tbody>
                                     </table>
-                                   <p>These results may not fully capture your particular financial situation, which  may affect their accuracy.</p>
+                                    <p>These results may not fully capture your particular financial situation, which  may affect their accuracy.</p>
                                 </div>
                             </div>
                         </div>
@@ -1112,7 +1112,7 @@
                                     <option value="Nunavut">Nunavut</option>
                                     <option value="Ontario">Ontario</option>
                                     <option value="Prince Edward Island">Prince Edward Island</option>
-                                    <option value="Quebec">Quebec</option>
+                                    <option value="Quebec" data-id="QC">Quebec</option>
                                     <option value="Saskatchewan">Saskatchewan</option>
                                     <option value="Yukon">Yukon</option>
                                 </select>
@@ -1131,7 +1131,7 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="mrgn-lft-md">
+                                <div class="mrgn-lft-md mrgn-bttm-sm">
                                     <label for="savingYears"><span class="field-name">Number of years you plan to participate in your FHSA</span></label>
                                 </div>
                                 <div class="clearfix"></div>
@@ -1155,7 +1155,7 @@
                             <div class="clearfix"></div>
                             <div class="well mrgn-rght-md mrgn-tp-sm">
                                 <div class="form-group">
-                                    <div class="mrgn-lft-md">
+                                    <div class="mrgn-lft-md mrgn-bttm-sm">
                                         <label for="savingsAmount"><span class="field-name">Total amount contributed and transferred yearly to your FHSA ($250 increments)</span></label>
                                     </div>
                                     <div class="clearfix"></div>
@@ -1186,7 +1186,7 @@
                                         <p id="direct-relation-info">The amount you contribute may be only a portion of the total amount of participation and cannot exceed it</p>
                                         <p><a href="#direct-contribute-help" aria-controls="direct-contribute-help" class="wb-lbx" role="button">What is the difference between transfers versus contributions in your FHSA account?<span class="glyphicon glyphicon-question-sign"></span></a></p>
                                     </div>
-                                    <div class="col-md-12 mrgn-tp-sm">
+                                    <div class="col-md-12 mrgn-tp-md">
                                         <div class="wb-input-range form-group mrgn-tp-xs mrgn-bttm-md">
                                             <datalist id="savingsDirectAmountList" class="d-flex mrgn-tp-lg">
                                                 <!--[if lte IE 9]><select><![endif]-->
@@ -1266,7 +1266,7 @@
                                     <tbody id="savingsResultsBody" class="text-right" data-prior-savings-year-rows="1 to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     </tbody>
                                 </table>
-                               <p>These results may not fully capture your particular tax situation, which  may affect their accuracy.</p>
+                                <p>These results may not fully capture your particular tax situation, which  may affect their accuracy.</p>
                             </div>
                         </div>
                     </fieldset>
@@ -1561,7 +1561,7 @@
                 return 0;
             }, 
             province = function () {
-                return $("#province").find(":selected").val() || null;
+                return $("#province").find(":selected") || null;
             }, 
             yearlyIncome = function () {
                 return parseInt($("#approxYearlyIncome").val(), 10) || 0;
@@ -1729,10 +1729,9 @@
                     };
                 }
             }, 
-            generateSavingsTableData = function (area, federalName, income, savingYears, savingsAmount, savingsDirectAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, priorYearMax, maxContribution, startYear, currentYear, incomeRates, pagelang) {
-                let yearIncrement, savingsRow, 
+            generateSavingsTableData = function (area, federalName, abatementID, income, savingYears, savingsAmount, savingsDirectAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, priorYearMax, maxContribution, startYear, currentYear, incomeRates, pagelang) {
+                let yearIncrement, federalRates, fedSavingsAmt, provinceRates, areaSavingsAmt, juristictionArr, abatement, savingsRow, 
                     loopYears = priorSavingYears + savingYears, 
-                    fedSavingsAmt, areaSavingsAmt, 
                     amountCompound = 0, 
                     investmentAmount = 0, 
                     investmentCompound = 0, 
@@ -1785,27 +1784,7 @@
                         savingsRow.appendChild(cellContentEval(savingsCell, getRateCalcRange(fedMinVal, fedMaxVal), isPriorYear === true));
                         document.getElementById("savingsResultsBody").appendChild(savingsRow);
                     }, 
-                    areaRates = function (area, incomeRates, rateYear, startYear, pagelang) {
-                        let ratesArr, timeframeArr, evalYear, yearRateArrLen;
-
-                        if (typeof incomeRates !== "undefined" && incomeRates.length > 0) {
-                            ratesArr = incomeRates;
-                            timeframeArr = ratesArr.find(function findLoc(rateLocs) {
-                                return rateLocs[pagelang] === area;
-                            }, pagelang, area);
-                            for (yearRateArrLen = timeframeArr.timeframe.length - 1; yearRateArrLen >= 0; yearRateArrLen = yearRateArrLen - 1) {
-                                for (evalYear = rateYear; evalYear >= startYear; evalYear = evalYear - 1) {
-                                    if (timeframeArr.timeframe[yearRateArrLen].year === evalYear) {
-                                        return timeframeArr.timeframe[yearRateArrLen];
-                                    }
-                                }
-                            }
-                        }
-                        return {};
-                    }, 
-                    federalRates = areaRates(federalName, incomeRates, currentYear, startYear, pagelang), 
-                    provinceRates = areaRates(area, incomeRates, currentYear, startYear, pagelang), 
-                    getRefundAmount = function (income, investmentAmount, deductContribAmt, tax) {
+                    getRefundAmount = function (income, investmentAmount, deductContribAmt, tax, abatement) {
                         let rateLoop, lastRate, 
                             maxlimit = 0, 
                             currentIncome = income;
@@ -1813,21 +1792,60 @@
                         if (tax.hasOwnProperty("rates") === true) {
                             for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
                                 if (tax.rates[rateLoop].threshold < currentIncome && tax.rates[rateLoop].threshold < currentIncome - deductContribAmt) {
-                                    maxlimit = (deductContribAmt + investmentAmount) * tax.rates[rateLoop].rate;
+                                    maxlimit = (deductContribAmt + investmentAmount) * tax.rates[rateLoop].rate * abatement;
                                     break;
                                 } else if (tax.rates[rateLoop].threshold < currentIncome - deductContribAmt) {
-                                    maxlimit = (tax.rates[rateLoop].threshold) * tax.rates[rateLoop].rate + (currentIncome - tax.rates[rateLoop].threshold) * lastRate;
+                                    maxlimit = (tax.rates[rateLoop].threshold) * tax.rates[rateLoop].rate + (currentIncome - tax.rates[rateLoop].threshold) * lastRate * abatement;
                                     break;
                                 }
                                 lastRate = tax.rates[rateLoop].rate;
                             }
                             return {
-                                "min": (deductContribAmt + investmentAmount) * tax.rates[0].rate, 
+                                "min": (deductContribAmt + investmentAmount) * tax.rates[0].rate * abatement, 
                                 "max": maxlimit
                             }
                         }
                         return {};
+                    }, 
+                    getRatesArr = function(area, ratesArr, pagelang) {
+                        if (typeof incomeRates !== "undefined" && incomeRates.length > 0) {
+                            return ratesArr.find(function findLoc(rateLocs) {
+                                return rateLocs[pagelang] === area;
+                            }, pagelang, area);
+                        }
+                        return {};
+                    }, 
+                    areaRates = function (juristictionArr, rateYear, startYear) {
+                        let evalYear, yearRateArrLen;
+
+                        for (yearRateArrLen = juristictionArr.timeframe.length - 1; yearRateArrLen >= 0; yearRateArrLen = yearRateArrLen - 1) {
+                            for (evalYear = rateYear; evalYear >= startYear; evalYear = evalYear - 1) {
+                                if (juristictionArr.timeframe[yearRateArrLen].year === evalYear) {
+                                    return juristictionArr.timeframe[yearRateArrLen];
+                                }
+                            }
+                        }
+                        return {};
+                    }, 
+                    getAbatement = function(juristictionArr, abatementId) {
+                        var abate;
+
+                        if (abatementId !== "undefined" && juristictionArr.hasOwnProperty("abatement") === true) {
+                            abate = juristictionArr.abatement.find(function findLoc(abateVal) {
+                                return Object.keys(abateVal)[0] === abatementId;
+                            }, abatementId);
+                            if (typeof abate === "object") {
+                                return abate[abatementId];
+                            }
+                        }
+                        return 1;
                     };
+
+                juristictionArr = getRatesArr(area, incomeRates, pagelang);
+                provinceRates = areaRates(juristictionArr, currentYear, startYear);
+                juristictionArr = getRatesArr(federalName, incomeRates, pagelang);
+                federalRates = areaRates(juristictionArr, currentYear, startYear);
+                abatement = getAbatement(juristictionArr, abatementID);
 
                 $("#savingsResultsBody").html("");
                 if (hasPriorSavings === true) {
@@ -1855,8 +1873,8 @@
                         deductCumulative = deductCumulative + deductContribAmt;
                         investmentAmount = (investmentCompound + amountCompound) * investment;
                         investmentCompound = investmentCompound + investmentAmount;
-                        fedSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, federalRates);
-                        areaSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, provinceRates);
+                        fedSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, federalRates, abatement);
+                        areaSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, provinceRates, 1);
                         fedMinCumulative = fedMinCumulative + fedSavingsAmt.min;
                         fedMaxCumulative = fedMaxCumulative + fedSavingsAmt.max;
                         areaMinCumulative = areaMinCumulative + areaSavingsAmt.min;
@@ -1871,8 +1889,8 @@
                         "addedAmount": amountCompound, 
                         "investment": investmentCompound, 
                         "deductContribute": deductCumulative, 
-			"fedExempt": federalRates.exemption, 
-			"areaExempt": provinceRates.exemption, 
+                        "fedExempt": federalRates.exemption, 
+                        "areaExempt": provinceRates.exemption, 
                         "fedAmountMin": fedMinCumulative, 
                         "fedAmountMax": fedMaxCumulative, 
                         "areaAmountMin": areaMinCumulative, 
@@ -1924,8 +1942,9 @@
             }, 
             updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId) {
                 let fedTotal, areaTotal, 
+                    prov = province(), 
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
-                    savingsTotals = generateSavingsTableData(province(), $("#province").data("fed"), yearlyIncome(), savingYears(), savingsAmount(), savingsDirectAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
+                    savingsTotals = generateSavingsTableData(prov.val(), $("#province").data("fed"), prov.data("id"), yearlyIncome(), savingYears(), savingsAmount(), savingsDirectAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
 
                 if (savingsTotals.yearssaved === 1) {
                     $("[data-savings-year-range=true]", savingsformId).addClass("hidden");
@@ -1933,7 +1952,7 @@
                     $("[data-savings-year-range=true]", savingsformId).removeClass("hidden");
                 }
                 $("[data-output=saving-years]", savingsformId).html(savingsTotals.yearssaved);
-                $("[data-area-name=provincial-territorial]", savingsformId).html(province());
+                $("[data-area-name=provincial-territorial]", savingsformId).html(prov.val());
                 if (parseInt(savingsTotals.fedAmountMin, 10) === parseInt(savingsTotals.fedAmountMax, 10)) {
                     fedTotal = $("#savingsResultsBody").data("savings-text") + "<strong>" + currencyFormatter.format(savingsTotals.fedAmountMax) + "</strong>";
                 } else {
