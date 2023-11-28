@@ -6,6 +6,11 @@ const incomeRates = [
         {
           "year": 2023, 
           "exemption": 15000, 
+          "abatement": [
+            {
+              "QC": 0.835,
+            }
+          ]
           "rates": [
             {
               "rate": 0.15, 
@@ -350,7 +355,7 @@ const incomeRates = [
         {
           "year": 2023, 
           "exemption": 17183, 
-            "abatement": 0.835,
+            "abatement": "QC",
           "rates": [
             {
               "rate": 0.14, 
