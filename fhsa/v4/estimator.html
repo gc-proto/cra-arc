@@ -1789,7 +1789,7 @@
                             maxlimit = 0, 
                             currentIncome = income;
 
-                        if (tax.hasOwnProperty("rates") === true) {
+                        if (Object.prototype.hasOwnProperty.call(tax, "rates") === true) {
                             for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
                                 if (tax.rates[rateLoop].threshold < currentIncome && tax.rates[rateLoop].threshold < currentIncome - deductContribAmt) {
                                     maxlimit = (deductContribAmt + investmentAmount) * tax.rates[rateLoop].rate * abatement;
@@ -1830,7 +1830,7 @@
                     getAbatement = function(juristictionArr, abatementId) {
                         var abate;
 
-                        if (abatementId !== "undefined" && juristictionArr.hasOwnProperty("abatement") === true) {
+                        if (abatementId !== "undefined" && Object.prototype.hasOwnProperty.call(juristictionArr, "abatement") === true) {
                             abate = juristictionArr.abatement.find(function findLoc(abateVal) {
                                 return Object.keys(abateVal)[0] === abatementId;
                             }, abatementId);
