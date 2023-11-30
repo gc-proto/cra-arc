@@ -375,7 +375,7 @@ Enter your estimated figures</h3>
 			document.getElementById('reached').click();
 			var tempMaxDate = new Date(document.getElementById('maxDate').value);
 			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-			document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
+			document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 		">Next
 		</button>
 
@@ -851,7 +851,7 @@ Enter your actual amounts</h3>
 			document.getElementById('reached').click();
 			var tempMaxDate = new Date(document.getElementById('maxDate').value);
 			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-			document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
+			document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 		">Next
 		</button>
 		<br>
@@ -914,7 +914,7 @@ Enter your estimated figures</h3>
 				document.getElementById('reached').click();
 				var tempMaxDate = new Date(document.getElementById('maxDate').value);
 				var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-				document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
+				document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 			">Next
 			</button>
 		
@@ -1403,20 +1403,20 @@ Enter your estimated figures</h3>
 
 			if (capPeriod >= 8 || numOfQuarters == 4){
 				document.getElementById('estimate').innerHTML = 'estimated' ;
-				document.getElementById('have0').innerHTML = 'have' ;
-				document.getElementById('have1').innerHTML = 'have' ;
+				document.getElementById('have0').innerHTML = 'would' ;
+				document.getElementById('have1').innerHTML = 'would have' ;
 			}else{
 				document.getElementById('estimate').innerHTML = 'received' ;
 				if(n > midDateComp.getTime()){
-					document.getElementById('have0').innerHTML = 'had' ;
+					document.getElementById('have0').innerHTML = 'would' ;
 					if (n < midDateComp.getTime() + 2592000000){
-						document.getElementById('have1').innerHTML = 'have' ;
+						document.getElementById('have1').innerHTML = 'would have' ;
 					}else{
-						document.getElementById('have1').innerHTML = 'had' ;
+						document.getElementById('have1').innerHTML = 'would have' ;
 					}
 				}else{
-					document.getElementById('have0').innerHTML = 'have' ;
-					document.getElementById('have1').innerHTML = 'have' ;
+					document.getElementById('have0').innerHTML = 'would' ;
+					document.getElementById('have1').innerHTML = 'would have' ;
 				}
 			}
 			document.getElementById('R8').classList.remove('hidden');	
@@ -1438,20 +1438,20 @@ Enter your estimated figures</h3>
 			if ((!isNaN(datePicked.getUTCMonth()))&amp;&amp;(datePicked.getUTCMonth() == (temp.getUTCMonth()+3)%12)) {
 				if (capPeriod >= 8 || numOfQuarters == 4){
 					document.getElementById('estimate').innerHTML = 'estimated' ;
-					document.getElementById('have0').innerHTML = 'have' ;
-					document.getElementById('have1').innerHTML = 'have' ;
+					document.getElementById('have0').innerHTML = 'would' ;
+					document.getElementById('have1').innerHTML = 'would have' ;
 				}else{
 					document.getElementById('estimate').innerHTML = 'received' ;
 					if(n>m){
-						document.getElementById('have0').innerHTML = 'had' ;
+						document.getElementById('have0').innerHTML = 'would' ;
 						if (n<l){
-							document.getElementById('have1').innerHTML = 'have' ;
+							document.getElementById('have1').innerHTML = 'would have' ;
 						}else{
-							document.getElementById('have1').innerHTML = 'had' ;
+							document.getElementById('have1').innerHTML = 'would had' ;
 						}
 					}else{
-						document.getElementById('have0').innerHTML = 'have' ;
-						document.getElementById('have1').innerHTML = 'have' ;
+						document.getElementById('have0').innerHTML = 'would' ;
+						document.getElementById('have1').innerHTML = 'would have' ;
 					}
 				}
 				
@@ -1470,20 +1470,20 @@ Enter your estimated figures</h3>
 			else {
 				if (capPeriod >= 8 || numOfQuarters == 4){
 					document.getElementById('estimate').innerHTML = 'estimated' ;
-					document.getElementById('have0').innerHTML = 'have' ;
-					document.getElementById('have1').innerHTML = 'have' ;
+					document.getElementById('have0').innerHTML = 'would' ;
+					document.getElementById('have1').innerHTML = 'would have' ;
 				}else{
 					document.getElementById('estimate').innerHTML = 'received' ;
 					if(n>m){
-						document.getElementById('have0').innerHTML = 'had' ;
+						document.getElementById('have0').innerHTML = 'would' ;
 						if (n<l){
-							document.getElementById('have1').innerHTML = 'have' ;
+							document.getElementById('have1').innerHTML = 'would have' ;
 						}else{
-							document.getElementById('have1').innerHTML = 'had' ;
+							document.getElementById('have1').innerHTML = 'would have' ;
 						}
 					}else{
-						document.getElementById('have0').innerHTML = 'have' ;
-						document.getElementById('have1').innerHTML = 'have' ;
+						document.getElementById('have0').innerHTML = 'would' ;
+						document.getElementById('have1').innerHTML = 'would have' ;
 					}
 				}
 				document.getElementById('R8').classList.remove('hidden');	
@@ -1643,11 +1643,11 @@ Enter your estimated figures</h3>
 </section>
 
 <section class="alert alert-info hidden mrgn-lft-lg" id="R8" name="results">
-	<h3><small>Your result </small><br> R8 You exceed the threshold over 4 consecutive calendar quarters</h3>
+	<h3><small>Your scenario </small><br> R8 Threshold exceeded over 4 consecutive calendar quarters</h3>
 <ul class="fa-ul mrgn-lft-xl">
-	  <li><span class="fas fa-check text-success fa-li"></span> You <span id="have0"></span> to charge (based on the amounts you <span id="estimate"></span>) the GST/HST on the first taxable supply starting <label id="chargeDate1"></label>, or starting the date of GST/HST registration, whichever is earlier</li>
-             <li><span class="fas fa-check text-success fa-li"></span> You <span id="have1"></span><span id="plus29"></span><label id="plus291"></label> to register for your GST/HST account number<span id="differenceAB"></span><label id="chargeDate11"></label> (for example, if you made a taxable sale on <label id="chargeDateExStart"></label>, you have until <label id="chargeDateExEnd"></label> to register for your GST/HST account number)</li>
-        <li><span class="fas fa-check text-success fa-li"></span>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses</li>
+	  <li><span class="fas fa-check text-success fa-li"></span> You <span id="have0"></span> charge the GST/HST on your taxable supplies starting <label id="chargeDate1"></label></li>
+             <li><span class="fas fa-check text-success fa-li"></span> You <span id="have1"></span>until <span id="plus29"></span><label id="plus291"></label> to register for your GST/HST account number<span id="differenceAB"></span><label id="chargeDate11"></label> (for example, if you made a taxable sale on <label id="chargeDateExStart"></label>, you have until <label id="chargeDateExEnd"></label> to register for your GST/HST account number)</li>
+        <li><span class="fas fa-check text-success fa-li"></span>You would be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses that relate to taxable supplies you made after your registration date.</li>
                 </ul>
 </section>
 
