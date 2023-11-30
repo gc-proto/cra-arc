@@ -375,7 +375,7 @@ Enter your estimated figures</h3>
 			document.getElementById('reached').click();
 			var tempMaxDate = new Date(document.getElementById('maxDate').value);
 			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-			document.getElementById('datePick').value = maxDate.toDateString() ;
+			document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
 		">Next
 		</button>
 
@@ -851,7 +851,7 @@ Enter your actual amounts</h3>
 			document.getElementById('reached').click();
 			var tempMaxDate = new Date(document.getElementById('maxDate').value);
 			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-			document.getElementById('datePick').value = maxDate.toDateString() ;
+			document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
 		">Next
 		</button>
 		<br>
@@ -914,7 +914,7 @@ Enter your estimated figures</h3>
 				document.getElementById('reached').click();
 				var tempMaxDate = new Date(document.getElementById('maxDate').value);
 				var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-				document.getElementById('datePick').value = maxDate.toDateString() ;
+				document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
 			">Next
 			</button>
 		
@@ -1353,7 +1353,7 @@ Enter your estimated figures</h3>
 	
 	if (!isNaN(capPeriod)) {
 		var temp = new Date(document.getElementById('q'+capPeriod+'_monthStart_'+age).value) ;
-		var midDate = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1).toDateString() ;
+		var midDate = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1).toLocaleDateString() ;
 		var midDateComp = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1) ;
 		var start = new Date(temp.getUTCFullYear(), temp.getUTCMonth(), 6);
 		var end = new Date(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()+29).toLocaleDateString();
@@ -1387,8 +1387,8 @@ Enter your estimated figures</h3>
 			}
 		}
 		document.getElementById('R9').classList.remove('hidden');
-		document.getElementById('chargeDate0').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
-		document.getElementById('chargeDate01').innerHTML = datePicked30.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+		document.getElementById('chargeDate0').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+		document.getElementById('chargeDate01').innerHTML = datePicked30 ;
 		document.getElementById('chargeAmount').innerHTML = amountString ;
 
 
@@ -1425,7 +1425,7 @@ Enter your estimated figures</h3>
 			document.getElementById('plus291').innerHTML = '' ;
 			document.getElementById('differenceAB').innerHTML = ' from the date of your first taxable supply starting ';
 			document.getElementById('chargeDate11').innerHTML = midDate ;
-			document.getElementById('chargeDateExStart').innerHTML = start.toDateString() ;
+			document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString() ;
 			document.getElementById('chargeDateExEnd').innerHTML = end ;
 		
 		}
@@ -1458,12 +1458,12 @@ Enter your estimated figures</h3>
 				
 
 				document.getElementById('R8').classList.remove('hidden');	
-				document.getElementById('chargeDate1').innerHTML = datePicked.toDateString() ;
+				document.getElementById('chargeDate1').innerHTML = datePicked.toLocaleDateString() ;
 				document.getElementById('plus29').innerHTML = ' until ' ;
 				document.getElementById('plus291').innerHTML = datePicked30 ;
 				document.getElementById('differenceAB').innerHTML = '' ;
 				document.getElementById('chargeDate11').innerHTML = '' ;
-				document.getElementById('chargeDateExStart').innerHTML = start.toDateString() ;
+				document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString() ;
 				document.getElementById('chargeDateExEnd').innerHTML = end ;
 
 			}
@@ -1492,7 +1492,7 @@ Enter your estimated figures</h3>
 				document.getElementById('plus291').innerHTML = '' ;
 				document.getElementById('differenceAB').innerHTML = ' from the date of your first taxable supply starting ' ;
 				document.getElementById('chargeDate11').innerHTML = midDate ;
-				document.getElementById('chargeDateExStart').innerHTML = start.toDateString() ;
+				document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString() ;
 				document.getElementById('chargeDateExEnd').innerHTML = end ;
 
 			}
