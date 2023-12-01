@@ -96,13 +96,11 @@
 
 <div class="form-group mrgn-tp-md gc-font-2019" id="step1">
 	<fieldset class="mrgn-bttm-md">
-<p align="right"><strong>Progress:</strong> <progress id="pg" value="0" max=100></progress><span id="pgt"> 0%</span></p>
 
 	<legend class="h5 required">Are you an annual filer? <strong class="required">(required)</strong></legend>
 	<div class="radio"> 
 	<label for="Q1Y"><input type="radio" name="Q1" id="Q1Y" required="required" onclick="
-		document.getElementById('pg').value = 12.5;
-		document.getElementById('pgt').innerText = ' 12.5%';
+	
 
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
@@ -133,8 +131,7 @@
 	</div>
 	<div class="radio"> 
 	<label for="Q1N"><input type="radio" name="Q1" id="Q1N" onclick="
-		document.getElementById('pg').value = 12.5;
-		document.getElementById('pgt').innerText = ' 12.5%';
+	
 
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
@@ -168,8 +165,7 @@
 		</div>
 
 		<input class="form-control" type="date" id="yearEnd" name="yearEnd" required="required" onchange="
-			document.getElementById('pg').value = 12.5;
-			document.getElementById('pgt').innerText = ' 12.5%';
+		
 
 			document.getElementById('Exit_S4').click();
 			document.getElementById('Exit_S3').click();
@@ -186,8 +182,7 @@
 				var minDate = new Date(document.getElementById('yearEnd').min.substring(0, 4), eval(document.getElementById('yearEnd').min.substring(5, 7) + '- 1'), document.getElementById('yearEnd').min.substring(8, 10));
 
 				if(minDate.getTime() <= x.getTime() && x.getTime() <= maxDate.getTime()) {
-					document.getElementById('pg').value = 25;
-					document.getElementById('pgt').innerText = ' 25.0%';
+				
 
 					document.getElementById('datePickIt1').innerText = x.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 				
@@ -216,8 +211,7 @@
 	<legend class="h5 required">Have you become a GST/HST registrant during the current fiscal year: <strong id="i_T_S2"></strong> to <strong id="i2_T_S2"></strong>? <strong class="required">(required)</strong></legend>
 	<div class="radio">
 	<label for="Q2Y"><input type="radio" name="Q2" id="Q2Y" required="required" onclick="
-		document.getElementById('pg').value = 50;
-		document.getElementById('pgt').innerText = ' 50.0%';
+		
 
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
@@ -237,8 +231,7 @@
 	</div>
 	<div class="radio">
 	<label for="Q2N"><input type="radio" name="Q2" id="Q2N" onclick="
-		document.getElementById('pg').value = 37.5;
-		document.getElementById('pgt').innerText = ' 37.5%';
+		
 
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
@@ -258,8 +251,7 @@
 	<legend class="h5 required">Did you become a GST/HST registrant during the last fiscal year: <strong id="i_T_2_S2"></strong> to <strong id="i2_T_2_S2"></strong>? <strong class="required">(required)</strong></legend>
 	<div class="radio">
 	<label for="Q2.2Y"><input type="radio" name="Q2.2" id="Q2.2Y" required="required" onclick="
-		document.getElementById('pg').value = 50;
-		document.getElementById('pgt').innerText = ' 50.0%';
+		
 
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
@@ -274,8 +266,7 @@
 	</div>
 	<div class="radio">
 	<label for="Q2.2N"><input type="radio" name="Q2.2" id="Q2.2N" onclick="
-		document.getElementById('pg').value = 62.5;
-		document.getElementById('pgt').innerText = ' 62.5%';
+		
 
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
@@ -310,8 +301,7 @@
 		</div>
 
 		<input class="form-control" type="date" id="registration" name="registration" required="required" onchange="
-			document.getElementById('pg').value = 50;
-			document.getElementById('pgt').innerText = ' 50.0%';
+			
 
 			document.getElementById('Exit_S4').click();
 			document.getElementById('Exit_S3').click();
@@ -326,8 +316,7 @@
 				var maxDate = new Date(document.getElementById('registration').max.substring(0, 4), eval(document.getElementById('registration').max.substring(5, 7) + '- 1'), document.getElementById('registration').max.substring(8, 10));
 				var minDate = new Date(document.getElementById('registration').min.substring(0, 4), eval(document.getElementById('registration').min.substring(5, 7) + '- 1'), document.getElementById('registration').min.substring(8, 10));
 				if(minDate.getTime() <= x.getTime() && x.getTime() <= maxDate.getTime()){ 
-					document.getElementById('pg').value = 62.5;
-					document.getElementById('pgt').innerText = ' 62.5%';
+					
 
 					document.getElementById('B_S2').click();
 					}
@@ -356,8 +345,7 @@
 		<div class="input-group col-xs-2">
 		<span class="input-group-addon">$</span>
 		<input class="form-control" id="curAmount" required="required" onblur="
-			document.getElementById('pg').value = 62.5;
-			document.getElementById('pgt').innerText = ' 62.5%';
+			
 
 			document.getElementById('Exit_S4').click();
 			document.getElementById('3_S3').classList.add('hidden');
@@ -389,8 +377,7 @@
 					data.curAmountSave.value = '';
 					}
 				else{
-					document.getElementById('pg').value = 75;
-					document.getElementById('pgt').innerText = ' 75.0%';
+					
 
 					var calc = val * (parseInt(data.daysYear.value) / parseInt(data.days.value));
 					data.calcNum.value = calc;
@@ -431,8 +418,7 @@
 
 					if (calc < 3000){																	
 						if (data.map.value == 'Q2Y'){
-							document.getElementById('pg').value = 100;
-							document.getElementById('pgt').innerText = ' 100%';
+							
 
 							data.R.value = '1';
 							data.I.value = 'none';
@@ -472,8 +458,7 @@
 	<p class="small" id="calcS3"></p>
 	<div class="radio">
 	<label for="Q3Y"><input type="radio" name="Q3" id="Q3Y" required="required" onclick="
-		document.getElementById('pg').value = 87.5;
-		document.getElementById('pgt').innerText = ' 87.5%';
+		
 
 		document.getElementById('Exit_S4').click();
 		document.getElementById('E2_S3').classList.add('hidden');
@@ -488,8 +473,7 @@
 	</div>
 	<div class="radio">
 	<label for="Q3N"><input type="radio" name="Q3" id="Q3N" required="required" onclick="
-		document.getElementById('pg').value = 100;
-		document.getElementById('pgt').innerText = ' 100%';
+		
 
 		document.getElementById('Exit_S4').click();
 		document.getElementById('3_S3').classList.add('hidden');
@@ -537,8 +521,7 @@
 		<div class="input-group col-xs-2">
 		<span class="input-group-addon">$</span>
 		<input class="form-control" id="nextAmount" required="required" onblur="
-			document.getElementById('pg').value = 87.5;
-			document.getElementById('pgt').innerText = ' 87.5%';
+			
 
 			document.getElementById('Exit_S4').click();
 			document.getElementById('E2_S3').classList.add('hidden');
@@ -584,8 +567,7 @@
 						document.getElementById('t_E3.2_S3').innerText = 'higher';
 						}
 					else {
-						document.getElementById('pg').value = 100;
-						document.getElementById('pgt').innerText = ' 100%';
+						
 
 						if (val < 3000){
 							if (data.map.value == 'Q2Y'){
