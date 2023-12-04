@@ -77,7 +77,7 @@
  <div class="well brdr-rds-0"> <span class="fa-stack text-muted fa-lg  mrgn-lft-sm pull-right"><i class="far fa-circle fa-stack-2x"></i><i class="fas fa-balance-scale-right fa-stack-1x"></i></span>
   <p>The interactive tax tool (ITT) gives you personalized results based on your answers to a series of questions. The tool uses plain language to explain the most common tax situations.  <strong>It is provided as a guideline only and does not replace the law.</strong></p>
 <p>The accuracy of your results depends on the accuracy of the information you enter. Later calculations made by the CRA may be different.</p>
-<p><strong>This tools does not collect or store the information you enter.</strong></p>
+<p><strong>This tool does not collect or store the information you enter.</strong></p>
     </div>
 <div class="alert alert-danger">
 	<p>Use this tool <strong>only</strong> if your business began operating within the last 8 calendar quarters (including the current one). </p>
@@ -1403,7 +1403,7 @@ Enter your estimated figures</h3>
 
 			if (capPeriod >= 8 || numOfQuarters == 4){
 				document.getElementById('estimate').innerHTML = 'estimated' ;
-				document.getElementById('have0').innerHTML = 'have' ;
+				document.getElementById('have0').innerHTML = 'has' ;
 				document.getElementById('have1').innerHTML = 'have' ;
 			}else{
 				document.getElementById('estimate').innerHTML = 'received' ;
@@ -1630,7 +1630,7 @@ Enter your estimated figures</h3>
 </section>
 
 <section class="alert alert-info hidden mrgn-lft-lg" id="R7" name="results">
-	<h3><small>Your result </small><br> You are a sole proprietor, a partnership, or a corporation - You do not exceed the threshold</h3>
+	<h3><small>Your result </small><br> You are a sole proprietor, a partnership, or a corporation - Threshold not exceeded</h3>
 <ul class="fa-ul mrgn-lft-xl">
 	  <li><span class="fas fa-times text-danger fa-li "></span> You did <strong>not</strong> exceed $30,000 over 4 consecutive calendar quarters</li>
              <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to register for a GST/HST account</li>
@@ -1643,11 +1643,16 @@ Enter your estimated figures</h3>
 </section>
 
 <section class="alert alert-info hidden mrgn-lft-lg" id="R8" name="results">
-	<h3><small>Your result </small><br> R8 You exceed the threshold over 4 consecutive calendar quarters</h3>
+	<h3><small>Your result </small><br> R8 Threshold exceeded over 4 consecutive calendar quarters</h3>
 <ul class="fa-ul mrgn-lft-xl">
-	  <li><span class="fas fa-check text-success fa-li"></span> You <span id="have0"></span> to charge (based on the amounts you <span id="estimate"></span>) the GST/HST on the first taxable supply starting <label id="chargeDate1"></label>, or starting the date of GST/HST registration, whichever is earlier</li>
-             <li><span class="fas fa-check text-success fa-li"></span> You <span id="have1"></span><span id="plus29"></span><label id="plus291"></label> to register for your GST/HST account number<span id="differenceAB"></span><label id="chargeDate11"></label> (for example, if you made a taxable sale on <label id="chargeDateExStart"></label>, you have until <label id="chargeDateExEnd"></label> to register for your GST/HST account number)</li>
-        <li><span class="fas fa-check text-success fa-li"></span>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses</li>
+	  <li><span class="fas fa-check text-success fa-li"></span> A person is <strong>no longer</strong> a small supplier at the end of the month following the quarter in which they exceeded <label>$</label> (in this situation, the person is no longer a supplier on <label id="chargeDateExEnd"></label>)</li>
+	
+	 <li><span class="fas fa-check text-success fa-li"></span> The effective date of registration is <strong>no later than</strong> the beginning of the month after a person is no longer a small supplier (in this situation, the effective date of registration is <label id="chargeDate1"></label>)</li>
+	
+		
+	  <li><span class="fas fa-check text-success fa-li"></span> A person has 29 days to register for a GST/HST account number from their effective date of registration (in this situation, the person has until <label id="chargeDate11"></label> to register for a GST/HST account number)</li>
+            
+        <li><span class="fas fa-check text-success fa-li"></span>New GST/HST registrant are eligible to claim input tax credits for the GST/HST they pay on their purchases and expenses that relate to taxable supplies they made after their registration date</li>
                 </ul>
 </section>
 
@@ -1661,7 +1666,7 @@ Enter your estimated figures</h3>
 </section>
 
 <section class="alert alert-info hidden mrgn-lft-lg" id="R10" name="results">
-	<h3><small>Your result </small><br> You are a public service body - You do not exceed the threshold</h3>
+	<h3><small>Your result </small><br> You are a public service body -Threshold not exceeded</h3>
 <ul class="fa-ul mrgn-lft-xl">
 	  <li><span class="fas fa-times text-danger fa-li "></span> You did <strong>not</strong> exceed $50,000 over 4 consecutive calendar quarters</li>
              <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to register for a GST/HST account</li>
