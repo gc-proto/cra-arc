@@ -77,7 +77,7 @@
  <div class="well brdr-rds-0"> <span class="fa-stack text-muted fa-lg  mrgn-lft-sm pull-right"><i class="far fa-circle fa-stack-2x"></i><i class="fas fa-balance-scale-right fa-stack-1x"></i></span>
   <p>The interactive tax tool (ITT) gives you personalized results based on your answers to a series of questions. The tool uses plain language to explain the most common tax situations.  <strong>It is provided as a guideline only and does not replace the law.</strong></p>
 <p>The accuracy of your results depends on the accuracy of the information you enter. Later calculations made by the CRA may be different.</p>
-<p><strong>This tool does not collect or store the information you enter.</strong></p>
+<p><strong>This tools does not collect or store the information you enter.</strong></p>
     </div>
 <div class="alert alert-danger">
 	<p>Use this tool <strong>only</strong> if your business began operating within the last 8 calendar quarters (including the current one). </p>
@@ -375,7 +375,7 @@ Enter your estimated figures</h3>
 			document.getElementById('reached').click();
 			var tempMaxDate = new Date(document.getElementById('maxDate').value);
 			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-			document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+			document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
 		">Next
 		</button>
 
@@ -851,7 +851,7 @@ Enter your actual amounts</h3>
 			document.getElementById('reached').click();
 			var tempMaxDate = new Date(document.getElementById('maxDate').value);
 			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-			document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+			document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
 		">Next
 		</button>
 		<br>
@@ -914,7 +914,7 @@ Enter your estimated figures</h3>
 				document.getElementById('reached').click();
 				var tempMaxDate = new Date(document.getElementById('maxDate').value);
 				var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-				document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+				document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
 			">Next
 			</button>
 		
@@ -1356,7 +1356,7 @@ Enter your estimated figures</h3>
 		var midDate = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1).toLocaleDateString() ;
 		var midDateComp = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1) ;
 		var start = new Date(temp.getUTCFullYear(), temp.getUTCMonth(), 6);
-		var end = new Date(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()+29).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+		var end = new Date(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()+29).toLocaleDateString();
 	}
 	var datePick = document.getElementById('datePick').value;
 	var dateTemp = new Date(datePick) ;
@@ -1403,27 +1403,27 @@ Enter your estimated figures</h3>
 
 			if (capPeriod >= 8 || numOfQuarters == 4){
 				document.getElementById('estimate').innerHTML = 'estimated' ;
-				document.getElementById('have0').innerHTML = 'has' ;
-				
+				document.getElementById('have0').innerHTML = 'have' ;
+				document.getElementById('have1').innerHTML = 'have' ;
 			}else{
 				document.getElementById('estimate').innerHTML = 'received' ;
 				if(n > midDateComp.getTime()){
 					document.getElementById('have0').innerHTML = 'had' ;
 					if (n < midDateComp.getTime() + 2592000000){
-						
+						document.getElementById('have1').innerHTML = 'have' ;
 					}else{
-						
+						document.getElementById('have1').innerHTML = 'had' ;
 					}
 				}else{
 					document.getElementById('have0').innerHTML = 'have' ;
-					
+					document.getElementById('have1').innerHTML = 'have' ;
 				}
 			}
 			document.getElementById('R8').classList.remove('hidden');	
 			document.getElementById('chargeDate1').innerHTML = midDate ;
 			document.getElementById('plus29').innerHTML = ' 29 days' ;
 			document.getElementById('plus291').innerHTML = '' ;
-			
+			document.getElementById('differenceAB').innerHTML = ' from the date of your first taxable supply starting ';
 			document.getElementById('chargeDate11').innerHTML = midDate ;
 			document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 			document.getElementById('chargeDateExEnd').innerHTML = end ;
@@ -1439,19 +1439,19 @@ Enter your estimated figures</h3>
 				if (capPeriod >= 8 || numOfQuarters == 4){
 					document.getElementById('estimate').innerHTML = 'estimated' ;
 					document.getElementById('have0').innerHTML = 'have' ;
-					
+					document.getElementById('have1').innerHTML = 'have' ;
 				}else{
 					document.getElementById('estimate').innerHTML = 'received' ;
 					if(n>m){
 						document.getElementById('have0').innerHTML = 'had' ;
 						if (n<l){
-							
+							document.getElementById('have1').innerHTML = 'have' ;
 						}else{
-							
+							document.getElementById('have1').innerHTML = 'had' ;
 						}
 					}else{
 						document.getElementById('have0').innerHTML = 'have' ;
-						
+						document.getElementById('have1').innerHTML = 'have' ;
 					}
 				}
 				
@@ -1461,7 +1461,7 @@ Enter your estimated figures</h3>
 				document.getElementById('chargeDate1').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 				document.getElementById('plus29').innerHTML = ' until ' ;
 				document.getElementById('plus291').innerHTML = datePicked30 ;
-				
+				document.getElementById('differenceAB').innerHTML = '' ;
 				document.getElementById('chargeDate11').innerHTML = '' ;
 				document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 				document.getElementById('chargeDateExEnd').innerHTML = end ;
@@ -1471,26 +1471,26 @@ Enter your estimated figures</h3>
 				if (capPeriod >= 8 || numOfQuarters == 4){
 					document.getElementById('estimate').innerHTML = 'estimated' ;
 					document.getElementById('have0').innerHTML = 'have' ;
-					
+					document.getElementById('have1').innerHTML = 'have' ;
 				}else{
 					document.getElementById('estimate').innerHTML = 'received' ;
 					if(n>m){
 						document.getElementById('have0').innerHTML = 'had' ;
 						if (n<l){
-							
+							document.getElementById('have1').innerHTML = 'have' ;
 						}else{
-							
+							document.getElementById('have1').innerHTML = 'had' ;
 						}
 					}else{
 						document.getElementById('have0').innerHTML = 'have' ;
-						
+						document.getElementById('have1').innerHTML = 'have' ;
 					}
 				}
 				document.getElementById('R8').classList.remove('hidden');	
 				document.getElementById('chargeDate1').innerHTML = midDate ;
 				document.getElementById('plus29').innerHTML = ' 29 days' ;
 				document.getElementById('plus291').innerHTML = '' ;
-				
+				document.getElementById('differenceAB').innerHTML = ' from the date of your first taxable supply starting ' ;
 				document.getElementById('chargeDate11').innerHTML = midDate ;
 				document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })  ;
 				document.getElementById('chargeDateExEnd').innerHTML = end ;
@@ -1630,7 +1630,7 @@ Enter your estimated figures</h3>
 </section>
 
 <section class="alert alert-info hidden mrgn-lft-lg" id="R7" name="results">
-	<h3><small>Your result </small><br> You are a sole proprietor, a partnership, or a corporation - Threshold not exceeded</h3>
+	<h3><small>Your result </small><br> You are a sole proprietor, a partnership, or a corporation - You do not exceed the threshold</h3>
 <ul class="fa-ul mrgn-lft-xl">
 	  <li><span class="fas fa-times text-danger fa-li "></span> You did <strong>not</strong> exceed $30,000 over 4 consecutive calendar quarters</li>
              <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to register for a GST/HST account</li>
@@ -1643,45 +1643,12 @@ Enter your estimated figures</h3>
 </section>
 
 <section class="alert alert-info hidden mrgn-lft-lg" id="R8" name="results">
-	<h3><small>Your result </small><br> R8 Threshold exceeded over 4 consecutive calendar quarters</h3>
-
-  <div class="table-responsive">
-     <table class="table small table-striped table-condensed" id="over1">
-        <caption class="wb-inv">
-       
-        </caption>
-        <thead>
-<tr>
-	<th scope="col">
-Description </th>
-	<th scope="col">
-Conditions </th>
-	<th scope="col">
-Examples </th> </tr> </thead>
-<tbody>
-<tr><td>Date of registration </td>
-<td><p>The effective date of registration is <strong>no later than</strong> the beginning of the month after a person is no longer a small supplier. </p>
-<p>A person is <strong>no longer</strong> a small supplier at the end of the month following the quarter in which the person exceeded </p></td>
-<td>The effective date of registration is <label id="chargeDate1"></label>. </td>
-</tr>
-<tr><td>Register </td>
-<td>The person must register for a GST/HST account number <strong>29 days</strong> from the effective date of registration </td>
-<td>The person has until <span id="plus29"></span><label id="plus291"></label> to register for a GST/HST account number</td>
-</tr>
-<tr><td>Charge </td>
-<td>The person must charge GST/HST on the taxable supplies starting on the effective date of registration </td>
-<td>The person must charge GST/HST on the first taxable supply made after <label id="chargeDate11"></label></td>
-</tr>
-<tr><td>Input tax credits</td>
-<td>The person is eligible to ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies made after the registration date </td>
-<td>The new GST/HST registrant is eligible to claim input tax credits for the GST/HST they pay on their purchases and expenses that relate to taxable supplies they made after <label id="chargeDate11"></label></td>
-</tr> </tbody> </table></div>
-
-<p>	
-<span id="have0"></span>
-<span id="estimate"></span>
-<label id="chargeDateExEnd"></label></p>
-
+	<h3><small>Your result </small><br> R8 You exceed the threshold over 4 consecutive calendar quarters</h3>
+<ul class="fa-ul mrgn-lft-xl">
+	  <li><span class="fas fa-check text-success fa-li"></span> You <span id="have0"></span> to charge (based on the amounts you <span id="estimate"></span>) the GST/HST on the first taxable supply starting <label id="chargeDate1"></label>, or starting the date of GST/HST registration, whichever is earlier</li>
+             <li><span class="fas fa-check text-success fa-li"></span> You <span id="have1"></span><span id="plus29"></span><label id="plus291"></label> to register for your GST/HST account number<span id="differenceAB"></span><label id="chargeDate11"></label> (for example, if you made a taxable sale on <label id="chargeDateExStart"></label>, you have until <label id="chargeDateExEnd"></label> to register for your GST/HST account number)</li>
+        <li><span class="fas fa-check text-success fa-li"></span>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses</li>
+                </ul>
 </section>
 
 <section class="alert alert-info hidden mrgn-lft-lg" id="R9" name="results">
@@ -1694,7 +1661,7 @@ Examples </th> </tr> </thead>
 </section>
 
 <section class="alert alert-info hidden mrgn-lft-lg" id="R10" name="results">
-	<h3><small>Your result </small><br> You are a public service body -Threshold not exceeded</h3>
+	<h3><small>Your result </small><br> You are a public service body - You do not exceed the threshold</h3>
 <ul class="fa-ul mrgn-lft-xl">
 	  <li><span class="fas fa-times text-danger fa-li "></span> You did <strong>not</strong> exceed $50,000 over 4 consecutive calendar quarters</li>
              <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to register for a GST/HST account</li>
