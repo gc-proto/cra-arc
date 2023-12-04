@@ -1964,11 +1964,11 @@
                     areaTotal = "<strong>" + currencyFormatter.format(savingsTotals.areaAmountMin) + "</strong>" + $("#savingsResultsBody").data("savings-range-text") + "<strong>" + currencyFormatter.format(savingsTotals.areaAmountMax) + "</strong>"
                 }
                 if (yearlyIncome() <= savingsTotals.areaExempt && yearlyIncome() <= savingsTotals.fedExempt) {
-                    $("[data-min-threshold=false]").addClass("hidden");
-                    $("[data-min-threshold=true]").removeClass("hidden");
-                } else {
                     $("[data-min-threshold=false]").removeClass("hidden");
                     $("[data-min-threshold=true]").addClass("hidden");
+                } else {
+                    $("[data-min-threshold=false]").addClass("hidden");
+                    $("[data-min-threshold=true]").removeClass("hidden");
                 }
                 $("[data-output=fed-tax]", savingsformId).html(fedTotal);
                 $("[data-output=area-tax]", savingsformId).html(areaTotal);
