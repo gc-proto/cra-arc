@@ -1404,26 +1404,26 @@ Enter your estimated figures</h3>
 			if (capPeriod >= 8 || numOfQuarters == 4){
 				document.getElementById('estimate').innerHTML = 'estimated' ;
 				document.getElementById('have0').innerHTML = 'has' ;
-				document.getElementById('have1').innerHTML = 'have' ;
+				
 			}else{
 				document.getElementById('estimate').innerHTML = 'received' ;
 				if(n > midDateComp.getTime()){
 					document.getElementById('have0').innerHTML = 'had' ;
 					if (n < midDateComp.getTime() + 2592000000){
-						document.getElementById('have1').innerHTML = 'have' ;
+						
 					}else{
-						document.getElementById('have1').innerHTML = 'had' ;
+						
 					}
 				}else{
 					document.getElementById('have0').innerHTML = 'have' ;
-					document.getElementById('have1').innerHTML = 'have' ;
+					
 				}
 			}
 			document.getElementById('R8').classList.remove('hidden');	
 			document.getElementById('chargeDate1').innerHTML = midDate ;
 			document.getElementById('plus29').innerHTML = ' 29 days' ;
 			document.getElementById('plus291').innerHTML = '' ;
-			document.getElementById('differenceAB').innerHTML = ' from the date of your first taxable supply starting ';
+			
 			document.getElementById('chargeDate11').innerHTML = midDate ;
 			document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 			document.getElementById('chargeDateExEnd').innerHTML = end ;
@@ -1439,19 +1439,19 @@ Enter your estimated figures</h3>
 				if (capPeriod >= 8 || numOfQuarters == 4){
 					document.getElementById('estimate').innerHTML = 'estimated' ;
 					document.getElementById('have0').innerHTML = 'have' ;
-					document.getElementById('have1').innerHTML = 'have' ;
+					
 				}else{
 					document.getElementById('estimate').innerHTML = 'received' ;
 					if(n>m){
 						document.getElementById('have0').innerHTML = 'had' ;
 						if (n<l){
-							document.getElementById('have1').innerHTML = 'have' ;
+							
 						}else{
-							document.getElementById('have1').innerHTML = 'had' ;
+							
 						}
 					}else{
 						document.getElementById('have0').innerHTML = 'have' ;
-						document.getElementById('have1').innerHTML = 'have' ;
+						
 					}
 				}
 				
@@ -1461,7 +1461,7 @@ Enter your estimated figures</h3>
 				document.getElementById('chargeDate1').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 				document.getElementById('plus29').innerHTML = ' until ' ;
 				document.getElementById('plus291').innerHTML = datePicked30 ;
-				document.getElementById('differenceAB').innerHTML = '' ;
+				
 				document.getElementById('chargeDate11').innerHTML = '' ;
 				document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 				document.getElementById('chargeDateExEnd').innerHTML = end ;
@@ -1471,26 +1471,26 @@ Enter your estimated figures</h3>
 				if (capPeriod >= 8 || numOfQuarters == 4){
 					document.getElementById('estimate').innerHTML = 'estimated' ;
 					document.getElementById('have0').innerHTML = 'have' ;
-					document.getElementById('have1').innerHTML = 'have' ;
+					
 				}else{
 					document.getElementById('estimate').innerHTML = 'received' ;
 					if(n>m){
 						document.getElementById('have0').innerHTML = 'had' ;
 						if (n<l){
-							document.getElementById('have1').innerHTML = 'have' ;
+							
 						}else{
-							document.getElementById('have1').innerHTML = 'had' ;
+							
 						}
 					}else{
 						document.getElementById('have0').innerHTML = 'have' ;
-						document.getElementById('have1').innerHTML = 'have' ;
+						
 					}
 				}
 				document.getElementById('R8').classList.remove('hidden');	
 				document.getElementById('chargeDate1').innerHTML = midDate ;
 				document.getElementById('plus29').innerHTML = ' 29 days' ;
 				document.getElementById('plus291').innerHTML = '' ;
-				document.getElementById('differenceAB').innerHTML = ' from the date of your first taxable supply starting ' ;
+				
 				document.getElementById('chargeDate11').innerHTML = midDate ;
 				document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })  ;
 				document.getElementById('chargeDateExEnd').innerHTML = end ;
@@ -1659,13 +1659,9 @@ Conditions </th>
 	<th scope="col">
 Examples </th> </tr> </thead>
 <tbody>
-<tr><td>Small supplier </td>
-<td><strong>No longer</strong> a small supplier at the end of the month following the quarter in which the person exceeds <label>$</label></td>
-<td>The person is no longer a supplier on <label id="chargeDateExEnd"></label></td>
-</tr>
 <tr><td>Effective date of registration </td>
-<td>Effective date of registration is <strong>no later than</strong> the beginning of the month after a person is no longer a small supplier </td>
-<td>The effective date of registration is <label id="chargeDateExEnd"></label> </td>
+<td>Effective date of registration is <strong>no later than</strong> the beginning of the month after a person is no longer a small supplier. A person is <strong>no longer</strong> a small supplier at the end of the month following the quarter in which the person exceeded </td>
+<td>The effective date of registration is <label id="chargeDate1"></label> </td>
 </tr>
 <tr><td>When to register </td>
 <td>Register for a GST/HST account number 29 days from the effective date of registration </td>
@@ -1677,15 +1673,14 @@ Examples </th> </tr> </thead>
 </tr>
 <tr><td>When to claim input tax credits (ITCs) </td>
 <td>Eligible to ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies made after the registration date </td>
-<td>The new GST/HST registrant is eligible to claim input tax credits for the GST/HST they pay on their purchases and expenses that relate to taxable supplies they made after <label id="chargeDate1"></label></td>
+<td>The new GST/HST registrant is eligible to claim input tax credits for the GST/HST they pay on their purchases and expenses that relate to taxable supplies they made after <label id="chargeDate11"></label></td>
 </tr> </tbody> </table></div>
 
-<p><span id="differenceAB"></span>	
-<span id="have1"></span><span id="plus29"></span><label id="plus291"></label>
+<p>	
+<span id="plus29"></span><label id="plus291"></label>
 <span id="have0"></span>
 <span id="estimate"></span>
 <label id="chargeDateExEnd"></label></p>
-	               
 
 </section>
 
