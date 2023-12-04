@@ -1791,7 +1791,7 @@
 
                         if (Object.prototype.hasOwnProperty.call(tax, "rates") === true) {
                             for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
-                                if (tax.rates[rateLoop].threshold < currentIncome && tax.rates[rateLoop].threshold < currentIncome - deductContribAmt) {
+                                if (tax.rates[rateLoop].threshold < currentIncome && tax.rates[rateLoop].threshold <= Math.max(0, currentIncome - deductContribAmt)) {
                                     maxlimit = (deductContribAmt + investmentAmount) * tax.rates[rateLoop].rate * abatement;
                                     break;
                                 } else if (tax.rates[rateLoop].threshold < currentIncome - deductContribAmt) {
