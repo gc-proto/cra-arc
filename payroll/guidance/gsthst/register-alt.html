@@ -302,7 +302,7 @@
 	</fieldset>
 	
 	<!--QUESTION 12-->
-	<fieldset name="quest" id="question12" class="mrgn-lft-md mrgn-bttm-md hidden gc-font-2019">
+	<fieldset name="quest" id="question12" class="mrgn-lft-md mrgn-bttm-md hidden">
 
 <h2 class="mrgn-tp-sm">Your business is not yet operating - You want to create scenarios to understand the conditions to register</h2>
 		<legend class="h5 required">Enter revenue estimates for the next 4 quarters <strong class="required">(required)</strong></legend><br>	
@@ -717,15 +717,20 @@ Enter your estimated amounts</h3>
 <hr>
 <h2 class="mrgn-tp-sm">Your business is already operating - You want to know if you need to register and what is your registration date</h2>
 
-		<legend class="h5 required">Q14 How much was the revenue from your taxable sales, leases and other supplies for these recent quarters? <strong class="required">(required)</strong></legend>
+		<legend class="h5 required">Q14 Enter your revenue from your taxable sales, leases and other supplies for these 8 recent quarters <strong class="required">(required)</strong></legend>
 		
 		<section>
-			<p>You must include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including zero-rated supplies) from all your businesses and those of your associates.</p>
-			<p><strong>Do not</strong> include revenue from financial services, sales of capital property and goodwill from the sale of a business.</p>
-			<label class="wb-inv">Enter the revenue from your taxable sales, leases and other supplies for recent quarters. Navigate forward through the following fields by using Tab or backward using Shift + Tab.</label>
+			<p>Include the total of all revenues from your worldwide taxable supplies from all your businesses and those of your associates.</p>
+			<p><strong>Do not</strong> include:</p>
+			<ul>
+<li>Supplies of financial services</li>
+<li>Sales of capital property</li>
+<li>Goodwill from the sale of a business</li>
+</ul>
+			<label class="wb-inv">Enter your the revenue from your taxable sales, leases and other supplies for recent 8 quarters. Navigate forward through the following fields by using Tab or backward using Shift + Tab.</label>
 
 <div class="alert alert-danger">
-	<p>You can <strong>only</strong> use the tool if your business started receiving revenue in less than 8 calendar quarters or if your business has not started receiving revenue yet. </p>
+	<p>Use this tool <strong>only</strong> if your business began operating within the last 8 calendar quarters (including the current one). </p>
 </div>
 <h3 class="mrgn-lft-md"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span>
 Enter your actual amounts</h3>			
@@ -928,7 +933,7 @@ Enter your estimated amounts</h3>
 	</fieldset>
 	
 	<fieldset name="quest" id="question13" class="mrgn-bttm-md mrgn-lft-md hidden">
-		<label for="datePick" id="q13_text" class="h5 required"><span class="wb-inv" id="screenreader_error"></span> What is the date of the taxable supply that <span id="made">made</span> you exceed $<span id="q13_text_amountString"></span> in the following quarter: <span id="q13_text_quarter"></span>? <strong class="required">(required)</strong></label>
+		<label for="datePick" id="q13_text" class="h5 required"><span class="wb-inv" id="screenreader_error"></span> Enter a date for the taxable supply that <span id="made">made</span> you exceed $<span id="q13_text_amountString"></span> in the following quarter: <span id="q13_text_quarter"></span> <strong class="required">(required)</strong></label>
 		<input class="form-control input-md" id="datePick" type="date" required onfocus="this.select()" onblur="
 			document.getElementById('validDate').click();
 		">
@@ -1179,7 +1184,7 @@ Enter your estimated amounts</h3>
 					document.getElementById('datePick').min = minDateS.getUTCFullYear()+'-'+months[minDateS.getUTCMonth()]+'-01' ;
 
 					if (minDateS > Date.now())
-						document.getElementById('made').innerHTML = 'will make' ;
+						document.getElementById('made').innerHTML = 'would make' ;
 					else
 						document.getElementById('made').innerHTML = 'made' ;
 
@@ -1430,7 +1435,7 @@ Enter your estimated amounts</h3>
 			document.getElementById('chargeDate111').innerHTML = midDate ;
 			document.getElementById('warning_amount').innerHTML = amountString ;
 			document.getElementById('warning_amount2').innerHTML = amountString ;
-			document.getElementById('chargeDate1111').innerHTML = datePicked30 ;		
+			document.getElementById('chargeDate1111').innerHTML = midDate ;		
 		}
 
 		//single quarter capped the amount immediately following the added quarters
@@ -1465,7 +1470,7 @@ Enter your estimated amounts</h3>
 				document.getElementById('plus29').innerHTML = ' until ' ;
 				document.getElementById('plus291').innerHTML = datePicked30 ;
 				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
-				document.getElementById('chargeDate11').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+				document.getElementById('chargeDate11').innerHTML = midDate ;
 				document.getElementById('chargeDate111').innerHTML = midDate ;
 				document.getElementById('warning_amount').innerHTML = amountString ;
 				document.getElementById('warning_amount2').innerHTML = amountString ;
@@ -1496,11 +1501,11 @@ Enter your estimated amounts</h3>
 				document.getElementById('plus29').innerHTML = ' 29 days' ;
 				document.getElementById('plus291').innerHTML = '' ;
 				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
-				document.getElementById('chargeDate11').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+				document.getElementById('chargeDate11').innerHTML = midDate ;
 				document.getElementById('chargeDate111').innerHTML = midDate ;
 				document.getElementById('warning_amount').innerHTML = amountString ;
 				document.getElementById('warning_amount2').innerHTML = amountString ;
-				document.getElementById('chargeDate1111').innerHTML = datePicked30 ;
+				document.getElementById('chargeDate1111').innerHTML = midDate ;
 
 			}
 
