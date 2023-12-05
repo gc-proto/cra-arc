@@ -1423,7 +1423,7 @@ Enter your estimated amounts</h3>
 			document.getElementById('chargeDate1').innerHTML = midDate ;
 			document.getElementById('plus29').innerHTML = ' 29 days' ;
 			document.getElementById('plus291').innerHTML = '' ;
-			document.getElementById('differenceAB').innerHTML = ' on the taxable supplies starting ';
+			document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ';
 			document.getElementById('chargeDate11').innerHTML = midDate ;
 			document.getElementById('chargeDate111').innerHTML = midDate ;
 			document.getElementById('warning_amount').innerHTML = amountString ;
@@ -1462,8 +1462,8 @@ Enter your estimated amounts</h3>
 				document.getElementById('chargeDate1').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 				document.getElementById('plus29').innerHTML = ' until ' ;
 				document.getElementById('plus291').innerHTML = datePicked30 ;
-				document.getElementById('differenceAB').innerHTML = '' ;
-				document.getElementById('chargeDate11').innerHTML = '' ;
+				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
+				document.getElementById('chargeDate11').innerHTML = midDate ;
 				document.getElementById('chargeDate111').innerHTML = midDate ;
 				document.getElementById('warning_amount').innerHTML = amountString ;
 				document.getElementById('warning_amount2').innerHTML = amountString ;
@@ -1493,7 +1493,7 @@ Enter your estimated amounts</h3>
 				document.getElementById('chargeDate1').innerHTML = midDate ;
 				document.getElementById('plus29').innerHTML = ' 29 days' ;
 				document.getElementById('plus291').innerHTML = '' ;
-				document.getElementById('differenceAB').innerHTML = ' from the date of your first taxable supply starting ' ;
+				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
 				document.getElementById('chargeDate11').innerHTML = midDate ;
 				document.getElementById('chargeDate111').innerHTML = midDate ;
 				document.getElementById('warning_amount').innerHTML = amountString ;
@@ -1660,26 +1660,27 @@ Enter your estimated amounts</h3>
 	<th scope="col">
 Description </th>
 	<th scope="col">
-Conditions </th>
+Dates based on the information entered </th>
 	<th scope="col">
-Examples - Amounts entered </th> </tr> </thead>
+Conditions </th>
+	 </tr> </thead>
 <tbody>
 <tr><td>Date of registration </td>
+<td>The effective date of registration is <strong>no later than</strong> <label id="chargeDate1"></label>. </td>
 <td><p>The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
 <p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2">30,000</span></strong> threshold </p></td>
-<td>Effective date of registration is <label id="chargeDate1"></label>. </td>
 </tr>
 <tr><td>Register </td>
+<td><span id="have1"></span> register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate1111"></label></td>
 <td>You must register for a GST/HST account number <strong><span id="plus29"></span><label id="plus291"></label></strong> from your effective date of registration </td>
-<td><span id="have1"></span> register for a GST/HST account number on <label id="chargeDate1111"></label></td>
 </tr>
 <tr><td>Charge </td>
+<td>Must charge GST/HST <span id="differenceAB"></span> <strong>no later than</strong> <label id="chargeDate11"></label></td>
 <td>You must charge GST/HST on the taxable supplies starting on your effective date of registration </td>
-<td>Must charge GST/HST <span id="differenceAB"></span> <label id="chargeDate11"></label></td>
 </tr>
 <tr><td>Input tax credits</td>
+<td>Eligible to claim ITCs for purchases that relate to taxable supplies made after <label id="chargeDate111"></label></td>
 <td>You are eligible to claim ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies you made after your registration date </td>
-<td>Eligibile to claim ITCs after <label id="chargeDate111"></label></td>
 </tr> </tbody> </table></div>
 
 <p>	
