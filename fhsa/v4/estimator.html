@@ -970,7 +970,7 @@
 
                             <div id="paymentInvestPercentGroup" class="form-group mrgn-tp-sm">
                                 <div class="mrgn-lft-md">
-                                    <label for="paymentInterest" class="required"><span class="field-name">Expected annual rate of return from your investments</span> <strong class="required">(required)</strong></label>
+                                    <label for="paymentInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (0.##%)</span> <strong class="required">(required)</strong></label>
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments?<span class="glyphicon glyphicon-question-sign"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
@@ -1228,7 +1228,7 @@
 
                             <div id="savingInvestPercentGroup" class="form-group hidden">
                                 <div class="mrgn-lft-md">
-                                    <label for="savingInterest"><span class="field-name">Expected annual rate of return from your investments</span></label>
+                                    <label for="savingInterest" class="reqired"><span class="field-name">Expected annual rate of return from your investments (0.##%)</span> <strong class="required">(required)</strong></label>
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments?<span class="glyphicon glyphicon-question-sign"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
@@ -1267,7 +1267,7 @@
                                     <tbody id="savingsResultsBody" class="text-right" data-prior-savings-year-rows="1 to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     </tbody>
                                 </table>
-                                <p>These results may not fully capture your particular tax situation, which  may affect their accuracy. Investment income savings are based on taxing this income at your highest possible tax rate. </p>
+                                <p>These results may not fully capture your particular tax situation, which  may affect their accuracy.<span data-min-threshold="true"> Investment income savings are based on taxing this income at your highest possible tax rate.</span></p>
                             </div>
                         </div>
                     </fieldset>
@@ -2099,8 +2099,11 @@
         $(savingsformId).on("click vclick touchstart", "input[type=radio][name=hasSavingInvestment]", function () {
             if (hasSavingInvestGrowth() === true) {
                 $("#savingInvestPercentGroup").removeClass("hidden");
+                $("#savingInterest").attr("required", "required");
+               
             } else {
                 $("#savingInvestPercentGroup").addClass("hidden");
+                $("#savingInterest").removeAttr("required");
             }
         });
 
