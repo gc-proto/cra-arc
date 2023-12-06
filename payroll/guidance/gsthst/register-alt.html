@@ -1354,9 +1354,11 @@ Enter your estimated amounts</h3>
 		var temp = new Date(document.getElementById('q'+capPeriod+'_monthStart_'+age).value) ;
 		var midDate = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 		var midDateComp = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1) ;
-		var start = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+		var start = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 30).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 		var end = new Date(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()+29).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 	}
+
+		
 	var datePick = document.getElementById('datePick').value;
 	var dateTemp = new Date(datePick) ;
 	var datePicked = new Date(dateTemp.getUTCFullYear(), dateTemp.getUTCMonth(), dateTemp.getUTCDate()) ;
@@ -1427,7 +1429,7 @@ Enter your estimated amounts</h3>
 			document.getElementById('plus29').innerHTML = ' 29 days' ;
 			document.getElementById('plus291').innerHTML = '' ;
 			document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ';
-			document.getElementById('chargeDate11').innerHTML = end ;
+			document.getElementById('chargeDate11').innerHTML = start ;
 			document.getElementById('chargeDate111').innerHTML = midDate ;
 			document.getElementById('warning_amount').innerHTML = amountString ;
 			document.getElementById('warning_amount2').innerHTML = amountString ;
@@ -1466,7 +1468,7 @@ Enter your estimated amounts</h3>
 				document.getElementById('plus29').innerHTML = ' until ' ;
 				document.getElementById('plus291').innerHTML = datePicked30 ;
 				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
-				document.getElementById('chargeDate11').innerHTML = end ;
+				document.getElementById('chargeDate11').innerHTML = start ;
 				document.getElementById('chargeDate111').innerHTML = midDate ;
 				document.getElementById('warning_amount').innerHTML = amountString ;
 				document.getElementById('warning_amount2').innerHTML = amountString ;
@@ -1497,7 +1499,7 @@ Enter your estimated amounts</h3>
 				document.getElementById('plus29').innerHTML = ' 29 days' ;
 				document.getElementById('plus291').innerHTML = '' ;
 				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
-				document.getElementById('chargeDate11').innerHTML = end;
+				document.getElementById('chargeDate11').innerHTML = start;
 				document.getElementById('chargeDate111').innerHTML = midDate ;
 				document.getElementById('warning_amount').innerHTML = amountString ;
 				document.getElementById('warning_amount2').innerHTML = amountString ;
