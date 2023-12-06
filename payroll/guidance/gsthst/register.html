@@ -74,24 +74,34 @@
          <main role="main" property="mainContentOfPage" class="container">
 
  <h1 id="gc-document-nav">Find out if you have to register for a GST/HST account</h1>
-
-  <p>Use this interactive tax tool (ITT) to find out if you have to register, when to register and when to start charging the GST/HST. </p>
  <div class="well brdr-rds-0"> <span class="fa-stack text-muted fa-lg  mrgn-lft-sm pull-right"><i class="far fa-circle fa-stack-2x"></i><i class="fas fa-balance-scale-right fa-stack-1x"></i></span>
-  
-<p>The ITT will give you personalized results based on your answers to a series of questions. <strong>The ITT is provided as a guideline and does not replace the law.</strong></p>
-  </div>
+  <p>The interactive tax tool (ITT) gives you personalized results based on your answers to a series of questions. The tool uses plain language to explain the most common tax situations.  <strong>It is provided as a guideline only and does not replace the law.</strong></p>
+<p>The accuracy of your results depends on the accuracy of the information you enter. Later calculations made by the CRA may be different.</p>
+<p><strong>This tool does not collect or store the information you enter.</strong></p>
+    </div>
+<div class="alert alert-warning">
+	<p>Use this tool <strong>only</strong> if your business began operating within the last 8 <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a></p> calendar quarters (including the current one). The results are only provided as a guideline to help you understand when you may need to register.</p>
+</div>
+ <p>Use this ITT to: </p>
+<ol>
+<li>Find out if you have to register and when to register</li>
+<li>When to start charging the GST/HST</li>
+	 </ol>
 
+<hr>
+ 
 <div class="wb-frmvld gc-font-2019">
-  
+  <h3 class="mrgn-tp-sm">Answer a few questions to find out if you have to register</h3>
+          <p class="text-muted small">Make a selection and <strong> scroll down</strong> for further questions or results</p>	  
 
     
     <form id="myForm">
 	<!--QUESTION 1-->
-<div class="form-group">
+<div class="form-group mrgn-lft-md">
 	
 	<fieldset name="quest" id="question1" class="mrgn-bttm-md">
-		<legend class="h5 required">Do you supply (or plan to supply) goods or services that are taxable? <strong class="required">(required)</strong></legend>
-		<p><a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">Examples of taxable supplies</a> and <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">Examples of zero-rated supplies (taxable at 0%)</a></p>
+		<legend class="h5 required">Do you supply taxable goods or services? <strong class="required">(required)</strong></legend>
+		<p>Meaning of the terms: <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">Taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> and <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">Zero-rated supplies (taxable at the rate of 0%)&nbsp;<span class="far fa-question-circle"></span></a></p>
 		<div class="radio" onchange="
 			
 			//For reset hide/show
@@ -131,7 +141,7 @@
 	
 	
 	<!--QUESTION 2-->
-	<fieldset name="quest" id="question2" class="mrgn-bttm-md hidden">	
+<fieldset name="quest" id="question2" class="mrgn-bttm-md hidden">	
 		<label class="h5 required" for="q2">Which option best describes your situation? <strong class="required">(required)</strong></label>
 		<select class="form-control required" id="q2" onchange="
 			var q = getElementsByName('quest') ;
@@ -163,15 +173,16 @@
 			}
 		">
 			<option value="5" selected>Make your selection...</option>
-			<option value="1">My business has already started receiving revenue</option>
-			<option value="0">My business hasn’t started receiving revenue yet</option>
-			<option value="3">I am a non-resident</option>
-			<option value="2">My only commercial activity is the sale of real property, other than in the course of a business</option>
+			<option value="1">Your business is already operating - You want to know if you need to register and what is your registration date </option>
+			<option value="0">Your business is not yet operating - You want to create scenarios to understand the conditions to register</option>
+			<option value="3">You are a non-resident business</option>
+			<option value="2">Your only commercial activity is the sale of real property, other than in the course of a business</option>
+			
 		</select>
 	</fieldset>
 	
 	<!--QUESTION 3 - DROPDOWN-->
-	<fieldset name="quest" id="question3" class="mrgn-bttm-md hidden">
+<fieldset name="quest" id="question3" class="mrgn-bttm-md hidden">
 		<label class="h5 required" for="q3">Which option best describes your business? <strong class="required">(required)</strong></label>
 		<select class="form-control required" id="q3" onchange="
 			var q = getElementsByName('quest') ;
@@ -215,8 +226,8 @@
 			}	
 		">
 			<option value="5" selected>Make your selection...</option> 
-			<option value="0" name="q3">Sole proprietor, a partnership, or a corporation</option>
-			<option value="1" name="q3">Public service body</option>
+			<option value="0" name="q3">Sole proprietor, a partnership or a corporation</option>
+			<option value="1" name="q3">Public service body (other than a charity or public institution)</option>
 			<option value="2" name="q3">Charity or public institution</option>
 			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
 		</select>
@@ -225,15 +236,13 @@
 	
 	<!--QUESTION 4 -->
 	<fieldset name="quest" id="question4" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Do you know for sure whether you are self-employed or an employee? <strong class="required">(required)</strong></legend>
-		<p>Even if you consider yourself to be self-employed, you might be an employee. To determine whether you’re an employee or self-employed, ask yourself the following questions:</p>
-		<ul>
-			<li>In your everyday work, the decisions about what work is to be done are made by whom, how, and where?</li>
-			<li>Who provides the tools and equipment to do the work?</li>
-			<li>Are you able to subcontract work or hire assistants?</li>
-			<li>Who’s taking the financial risk and has the opportunity for reward?</li>
-		</ul>
-		<div class="radio" onchange="
+<h2 class="mrgn-tp-sm">You are a sole proprietor, a partnership or a corporation</h2>
+		<legend class="h5 required mrgn-lft-md">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
+		<p class="mrgn-lft-md">Even if you consider yourself to be self-employed, you might be an employee.</p>
+		<p class="mrgn-lft-md">Learn more: <a href="https://test.canada.ca/cra-arc/payroll/guidance/index.html">Employment status: Employee or self-employed, including conditions for employees operating a personal services business (PSB)</a></p>
+
+		
+		<div class="radio mrgn-lft-md" onchange="
 			var q = getElementsByName('quest') ;
 			for (i=5; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -260,9 +269,11 @@
 	
 	<!--QUESTION 5-->
 	<fieldset name="quest" id="question5" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Are you a branch or division of an incorporated municipality? <strong class="required">(required)</strong></legend>
-		<p>A public service body means a charity, non-profit organization, municipality, university, public college, school authority, or hospital authority. For the purpose of GST/HST registration, charities and public institutions have different rules. Choose the option that best describes your organization.</p>
-		<div class="radio" onchange="
+<h2 class="mrgn-tp-sm">You are a public service body (other than a charity or public institution)</h2>
+<p>Meaning of the term: <a href="#ajax-service" aria-controls="ajax-service" class="overlay-lnk" role="button">public service body&nbsp;<span class="far fa-question-circle"></span></a></p>
+		<legend class="h5 required mrgn-lft-md">Are you a branch or division of the public service body? <strong class="required">(required)</strong></legend>
+		
+		<div class="radio mrgn-lft-md" onchange="
 			var q = getElementsByName('quest') ;
 			for (i=6; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -288,19 +299,31 @@
 	</fieldset>
 	
 	<!--QUESTION 12-->
-	<fieldset name="quest" id="question12" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">How much revenue do you estimate from your taxable sales, leases and other supplies for the next four quarters? <strong class="required">(required)</strong></legend><br>	
+	<fieldset name="quest" id="question12" class="mrgn-lft-md mrgn-bttm-md hidden">
+
+<h2 class="mrgn-tp-sm">Your business is not yet operating - You want to create scenarios to understand the conditions to register</h2>
+		<legend class="h5 required">Enter revenue estimates for the next 4 quarters <strong class="required">(required)</strong></legend><br>	
 		
 		<section>
 			
-			<p>You must include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including zero-rated supplies) from all your businesses and those of your associates.</p>
-			<p><strong>Do not</strong> include revenue from financial services, sales of capital property and goodwill from the sale of a business.</p>
-<hr>
+			<p>Include the total of all revenues from worldwide taxable supplies from all your businesses and those of your associates.</p>
+			<p><strong>Do not</strong> include:</p>
+<ul>
+<li>Supplies of financial services</li>
+<li>Sales of capital property</li>
+<li>Goodwill from the sale of a business</li>
+</ul>
+<div class="alert alert-warning">
+	<p>Use this tool to <strong>create scenarios</strong> based on <strong>estimated amounts</strong>. The results are only provided as a guideline to help you understand when you may need to register.</p>
+</div>
+
+<h3 class="mrgn-lft-md"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span>
+Enter your estimated amounts</h3>
 		</section>
 	
 	
 			<div class="row mrgn-bttm-sm">
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter1_New" name="q12_date_New" id="q12_date0_New"></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_New" name="q12_date_New" id="q12_date0_New"></label>
 			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
@@ -311,7 +334,7 @@
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter2_New" name="q12_date_New" id="q12_date1_New"></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter2_New" name="q12_date_New" id="q12_date1_New"></label>
 			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
@@ -322,7 +345,7 @@
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter3_New" name="q12_date_New" id="q12_date2_New"></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter3_New" name="q12_date_New" id="q12_date2_New"></label>
 			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
@@ -333,7 +356,7 @@
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter4_New" name="q12_date_New" id="q12_date3_New"></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter4_New" name="q12_date_New" id="q12_date3_New"></label>
 			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
@@ -349,7 +372,7 @@
 			document.getElementById('reached').click();
 			var tempMaxDate = new Date(document.getElementById('maxDate').value);
 			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-			document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
+			document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })  ;
 		">Next
 		</button>
 
@@ -366,11 +389,12 @@
 	
 
 	<!--QUESTION 6-->
-	<fieldset name="quest" id="question6" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Are you a branch or division of an incorporated municipality? <strong class="required">(required)</strong></legend>
-		<p>A charity means a registered charity or registered Canadian amateur athletic association for income tax purposes, but does not include a public institution.</p>
-		<p>A public institution means a registered charity for income tax purposes that is also a school authority, a public college, a university, a hospital authority, or a local authority determined by the Minister of National Revenue to be a municipality.</p>
-			<div class="radio" onchange="
+	<fieldset name="quest" id="question6" class="mrgn-bttm-md mrgn-lft-md hidden">
+<h2 class="mrgn-tp-sm">You are a charity or public institution</h2>
+<p>Meaning of the terms: <a href="#ajax-charity" aria-controls="ajax-charity" class="overlay-lnk" role="button">charity&nbsp;<span class="far fa-question-circle"></span></a> and <a href="#ajax-public" aria-controls="ajax-public" class="overlay-lnk" role="button">public institution&nbsp;<span class="far fa-question-circle"></span></a></p>
+		<legend class="h5 required mrgn-lft-md">Are you a branch or division of the charity or public institution? <strong class="required">(required)</strong></legend>
+		
+			<div class="radio mrgn-lft-md" onchange="
 			var q = getElementsByName('quest') ;
 			for (i=7; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -410,9 +434,9 @@
 	</fieldset>
 	
 	<!--QUESTION 7-->
-	<fieldset name="quest" id="question7" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Is this your first fiscal year of operation? <strong class="required">(required)</strong></legend>
-		<div class="radio" onchange="				
+	<fieldset name="quest" id="question7" class="mrgn-bttm-md mrgn-lft-md hidden">
+		<legend class="h5 required mrgn-lft-md">Is this your first fiscal year of operation? <strong class="required">(required)</strong></legend>
+		<div class="radio mrgn-lft-md" onchange="				
 			var q = getElementsByName('quest') ;
 			for (i=8; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -439,9 +463,9 @@
 	</fieldset>
 	
 	<!--QUESTION 8-->
-	<fieldset name="quest" id="question8" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Is this your second fiscal year of operation? <strong class="required">(required)</strong></legend>
-		<div class="radio" onchange="
+	<fieldset name="quest" id="question8" class="mrgn-bttm-md mrgn-lft-md hidden">
+		<legend class="h5 required mrgn-lft-md">Is this your second fiscal year of operation? <strong class="required">(required)</strong></legend>
+		<div class="radio mrgn-lft-md" onchange="
 			var q = getElementsByName('quest') ;
 			for (i=9; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -475,12 +499,15 @@
 	</fieldset>
 	
 	<!--QUESTION 9-->
-	<fieldset name="quest" id="question9" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">What is your gross revenue from your first fiscal year of operation? <strong class="required">(required)</strong></legend>
+	<fieldset name="quest" id="question9" class="mrgn-bttm-md mrgn-lft-md hidden">
+<h2 class="mrgn-tp-sm">You are on your second fiscal year of operation</h2>
+<p></p>
+
+		<legend class="h5 required mrgn-lft-md">What is your gross revenue from your first fiscal year of operation? <strong class="required">(required)</strong></legend>
 			
 		<section>
 			
-			<p>You must include in your <strong>gross revenue</strong> amount:</p>
+			<p>Include in your <strong>gross revenue</strong> amount:</p>
 			<ul>
 				<li>Income from a business, or from an adventure or concern in the nature of trade</li>
 				<li>Gifts and donations</li>
@@ -544,8 +571,11 @@
 	</fieldset>
 	
 	<!--QUESTION 10-->
-	<fieldset name="quest" id="question10" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">What is your gross revenue for each of your two previous fiscal years? <strong class="required">(required)</strong></legend>
+	<fieldset name="quest" id="question10" class="mrgn-bttm-md mrgn-lft-md hidden">
+<h2 class="mrgn-tp-sm">You are on your third fiscal year of operation or later</h2>
+<p></p>
+		
+		<legend class="h5 required mrgn-lft-md">What is your gross revenue for each of your two previous fiscal years? <strong class="required">(required)</strong></legend>
 		
 		<section>
 			
@@ -655,9 +685,12 @@
 	</fieldset>
 	
 	<!--QUESTION 11-->
-	<fieldset name="quest" id="question11" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Do you know for sure whether you are self-employed or an employee? <strong class="required">(required)</strong></legend>
-		<p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
+	<fieldset name="quest" id="question11" class="mrgn-bttm-md mrgn-lft-md hidden">
+<h2 class="mrgn-tp-sm">You are a taxi operator or a commercial ride-sharing driver</h2>
+<p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
+	
+		<legend class="h5 required">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
+		
 		<p>You are usually self-employed if you are in one of the following situations:</p>
 		<ul>
 			<li>You own your taxicab/motor vehicle</li>
@@ -682,16 +715,26 @@
 	</fieldset>
 
 	<!--QUESTION 14-->
-	<fieldset name="quest" id="question14" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">How much was the revenue from your taxable sales, leases and other supplies for these recent quarters? <strong class="required">(required)</strong></legend>
+	<fieldset name="quest" id="question14" class="mrgn-bttm-md mrgn-lft-md hidden">
+
+<h2 class="mrgn-tp-sm">Your business is already operating - You want to know if you need to register and what is your registration date</h2>
+
+		<legend class="h5 required">Q14 Enter your revenue from your taxable sales, leases and other supplies for these 8 recent quarters <strong class="required">(required)</strong></legend>
 		
 		<section>
-			<p>You must include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including zero-rated supplies) from all your businesses and those of your associates.</p>
-			<p><strong>Do not</strong> include revenue from financial services, sales of capital property and goodwill from the sale of a business.</p>
-			<label class="wb-inv">Enter the revenue from your taxable sales, leases and other supplies for recent quarters. Navigate forward through the following fields by using Tab or backward using Shift + Tab.</label>
-<hr>
+			<p>Include the total of all revenues from your worldwide taxable supplies from all your businesses and those of your associates.</p>
+			<p><strong>Do not</strong> include:</p>
+			<ul>
+<li>Supplies of financial services</li>
+<li>Sales of capital property</li>
+<li>Goodwill from the sale of a business</li>
+</ul>
+			<label class="wb-inv">Enter your the revenue from your taxable sales, leases and other supplies for recent 8 quarters. Navigate forward through the following fields by using Tab or backward using Shift + Tab.</label>
+
+<h3 class="mrgn-lft-md"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span>
+Enter your actual amounts</h3>			
 		</section>
-		<div class="checkbox-inline" onchange="
+		<div class="checkbox-inline mrgn-lft-xl" onchange="
 			document.getElementById('error_Old').classList.add('hidden') ;
 			fields = document.getElementsByName('q12_Old') ;
 			if (document.getElementById('noRev').checked) {
@@ -711,7 +754,7 @@
 		<br>
 		<br>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter1_Old" name="q12_date_Old" id="q12_date0_Old"></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_Old" name="q12_date_Old" id="q12_date0_Old"></label>
 			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 		    	<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
@@ -723,7 +766,7 @@
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter2_Old" name="q12_date_Old" id="q12_date1_Old"></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter2_Old" name="q12_date_Old" id="q12_date1_Old"></label>
 		    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
@@ -735,7 +778,7 @@
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter3_Old" name="q12_date_Old" id="q12_date2_Old"></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter3_Old" name="q12_date_Old" id="q12_date2_Old"></label>
 			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
@@ -747,7 +790,7 @@
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter4_Old" name="q12_date_Old" id="q12_date3_Old"></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter4_Old" name="q12_date_Old" id="q12_date3_Old"></label>
 			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
@@ -759,7 +802,7 @@
 			</div>
 		</div>	
 		<div class="row mrgn-bttm-sm">
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter5_Old" name="q12_date_Old" id="q12_date4_Old"></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter5_Old" name="q12_date_Old" id="q12_date4_Old"></label>
 			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
@@ -771,7 +814,7 @@
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter6_Old" name="q12_date_Old" id="q12_date5_Old"></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter6_Old" name="q12_date_Old" id="q12_date5_Old"></label>
 			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
@@ -783,7 +826,7 @@
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter7_Old" name="q12_date_Old" id="q12_date6_Old"></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter7_Old" name="q12_date_Old" id="q12_date6_Old"></label>
 			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
@@ -795,7 +838,7 @@
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter8_Old" name="q12_date_Old" id="q12_date7_Old"></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter8_Old" name="q12_date_Old" id="q12_date7_Old"></label>
 			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
@@ -812,16 +855,25 @@
 			document.getElementById('reached').click();
 			var tempMaxDate = new Date(document.getElementById('maxDate').value);
 			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-			document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
+			document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })  ;
 		">Next
 		</button>
-		<br>
+		
 
 		<div id="question14.2" class="hidden ">
-			<legend class="h5 required">How much revenue do you estimate from your taxable sales, leases and other supplies for the next four quarters? <strong class="required">(required)</strong></legend>
+<hr>
+			<legend class="h5 required">Q14.2 Enter revenue estimates for the next 4 quarters <strong class="required">(required)</strong></legend>
+
+<br><br><br>
+<div class="alert alert-warning mrgn-tp-lg">
+	<p>Use this tool to <strong>create scenarios</strong> based on your <strong>estimated amounts</strong>. The results are only provided as a guideline to help you understand when you may need to register.</p>
+</div>
+
+<h3 class="mrgn-lft-md"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span>
+Enter your estimated amounts</h3>
 		
 			<div class="row mrgn-bttm-sm">
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter9_Old" name="q12_date_Old" id="q12_date8_Old"></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter9_Old" name="q12_date_Old" id="q12_date8_Old"></label>
 				<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
@@ -831,7 +883,7 @@
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter10_Old" name="q12_date_Old" id="q12_date9_Old"></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter10_Old" name="q12_date_Old" id="q12_date9_Old"></label>
 				<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
@@ -841,7 +893,7 @@
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter11_Old" name="q12_date_Old" id="q12_date10_Old"></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter11_Old" name="q12_date_Old" id="q12_date10_Old"></label>
 				<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
@@ -851,7 +903,7 @@
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter12_Old" name="q12_date_Old" id="q12_date11_Old"></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter12_Old" name="q12_date_Old" id="q12_date11_Old"></label>
 				<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
@@ -866,7 +918,7 @@
 				document.getElementById('reached').click();
 				var tempMaxDate = new Date(document.getElementById('maxDate').value);
 				var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-				document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
+				document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })  ;
 			">Next
 			</button>
 		
@@ -879,8 +931,8 @@
 	
 	</fieldset>
 	
-	<fieldset name="quest" id="question13" class="mrgn-bttm-md hidden">
-		<label for="datePick" id="q13_text" class="h5 required"><span class="wb-inv" id="screenreader_error"></span> What is the date of the taxable supply that <span id="made">made</span> you exceed $<span id="q13_text_amountString"></span> in the following quarter: <span id="q13_text_quarter"></span>? Enter the date in the following format: YYYY-MM-DD. <strong class="required">(required)</strong></label>
+	<fieldset name="quest" id="question13" class="mrgn-bttm-md mrgn-lft-md hidden">
+		<label for="datePick" id="q13_text" class="h5 required"><span class="wb-inv" id="screenreader_error"></span> Enter a date for the taxable supply that <span id="made">made</span> you exceed $<span id="q13_text_amountString"></span> in the following quarter: <span id="q13_text_quarter"></span> <strong class="required">(required)</strong></label>
 		<input class="form-control input-md" id="datePick" type="date" required onfocus="this.select()" onblur="
 			document.getElementById('validDate').click();
 		">
@@ -891,15 +943,15 @@
 				document.getElementById('showResults').click() ;
 			}
 			else {
-				document.getElementById('screenreader_error').innerHTML = 'Error. Enter a valid date (YYYY-MM-DD) within the appropriate quarter.';
+				document.getElementById('screenreader_error').innerHTML = 'Error. Enter a valid date within the appropriate quarter.';
 				document.getElementById('datePick').focus() ;
 			}
-		">Result
+		">Next
 		</button>
 		<br>
 		<br>
 		<div class="alert alert-danger hidden" id="error_date">
-			<p>Enter a valid date (YYYY-MM-DD) within the appropriate quarter.</p>
+			<p>Enter a valid date within the appropriate quarter.</p>
 		</div>
 
 	</fieldset>
@@ -1131,7 +1183,7 @@
 					document.getElementById('datePick').min = minDateS.getUTCFullYear()+'-'+months[minDateS.getUTCMonth()]+'-01' ;
 
 					if (minDateS > Date.now())
-						document.getElementById('made').innerHTML = 'will make' ;
+						document.getElementById('made').innerHTML = 'would make' ;
 					else
 						document.getElementById('made').innerHTML = 'made' ;
 
@@ -1305,15 +1357,17 @@
 	
 	if (!isNaN(capPeriod)) {
 		var temp = new Date(document.getElementById('q'+capPeriod+'_monthStart_'+age).value) ;
-		var midDate = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1).toLocaleDateString() ;
+		var midDate = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 		var midDateComp = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1) ;
-		var start = new Date(temp.getUTCFullYear(), temp.getUTCMonth(), 6);
-		var end = new Date(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()+29).toLocaleDateString();
+		var start = new Date(temp.getUTCFullYear(), temp.getUTCMonth()+4, 1);
+		var end = new Date(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()+29).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 	}
+
+		
 	var datePick = document.getElementById('datePick').value;
 	var dateTemp = new Date(datePick) ;
 	var datePicked = new Date(dateTemp.getUTCFullYear(), dateTemp.getUTCMonth(), dateTemp.getUTCDate()) ;
-	var datePicked30 = new Date(datePicked.getUTCFullYear(), datePicked.getUTCMonth(), datePicked.getUTCDate()+29).toLocaleDateString();
+	var datePicked30 = new Date(datePicked.getUTCFullYear(), datePicked.getUTCMonth(), datePicked.getUTCDate()+29).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 
 
 	var n = Date.now();
@@ -1327,22 +1381,26 @@
 	if (calcReturn.value == 0) {
 		
 		if (n<m){
-			document.getElementById('tense151').innerHTML = 'have';
-			document.getElementById('tense152').innerHTML = 'have';
+			document.getElementById('tense151').innerHTML = 'must';
+			document.getElementById('tense152').innerHTML = 'Must';
 		}else{
 			if (n<l){
-				document.getElementById('tense151').innerHTML = 'had';
-				document.getElementById('tense152').innerHTML = 'have';
+				document.getElementById('tense151').innerHTML = 'must';
+				document.getElementById('tense152').innerHTML = 'Must';
 			}else{
-				document.getElementById('tense151').innerHTML = 'had';
-				document.getElementById('tense152').innerHTML = 'had';
+				document.getElementById('tense151').innerHTML = 'must';
+				document.getElementById('tense152').innerHTML = 'Must';
 			}
 		}
 		document.getElementById('R9').classList.remove('hidden');
-		document.getElementById('chargeDate0').innerHTML = datePicked.toLocaleDateString() ;
+		document.getElementById('chargeDate0').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 		document.getElementById('chargeDate01').innerHTML = datePicked30 ;
+		document.getElementById('chargeDate011').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+		document.getElementById('chargeDate0111').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 		document.getElementById('chargeAmount').innerHTML = amountString ;
-
+		document.getElementById('chargeAmount2').innerHTML = amountString ;
+		document.getElementById('chargeAmount3').innerHTML = amountString ;
+		document.getElementById('chargeAmount4').innerHTML = amountString ;
 
 	}
 	
@@ -1354,32 +1412,33 @@
 		if (date.classList.contains('hidden')) {
 
 			if (capPeriod >= 8 || numOfQuarters == 4){
-				document.getElementById('estimate').innerHTML = 'estimated' ;
-				document.getElementById('have0').innerHTML = 'have' ;
-				document.getElementById('have1').innerHTML = 'have' ;
+				document.getElementById('estimate').innerHTML = '' ;
+				document.getElementById('have0').innerHTML = '' ;
+				document.getElementById('have1').innerHTML = 'Must' ;
 			}else{
-				document.getElementById('estimate').innerHTML = 'received' ;
+				document.getElementById('estimate').innerHTML = '' ;
 				if(n > midDateComp.getTime()){
-					document.getElementById('have0').innerHTML = 'had' ;
+					document.getElementById('have0').innerHTML = '' ;
 					if (n < midDateComp.getTime() + 2592000000){
-						document.getElementById('have1').innerHTML = 'have' ;
+						document.getElementById('have1').innerHTML = 'Must' ;
 					}else{
-						document.getElementById('have1').innerHTML = 'had' ;
+						document.getElementById('have1').innerHTML = 'Must' ;
 					}
 				}else{
-					document.getElementById('have0').innerHTML = 'have' ;
-					document.getElementById('have1').innerHTML = 'have' ;
+					document.getElementById('have0').innerHTML = '' ;
+					document.getElementById('have1').innerHTML = 'Must' ;
 				}
 			}
 			document.getElementById('R8').classList.remove('hidden');	
 			document.getElementById('chargeDate1').innerHTML = midDate ;
 			document.getElementById('plus29').innerHTML = ' 29 days' ;
 			document.getElementById('plus291').innerHTML = '' ;
-			document.getElementById('differenceAB').innerHTML = ' from the date of your first taxable supply starting ';
-			document.getElementById('chargeDate11').innerHTML = midDate ;
-			document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString() ;
-			document.getElementById('chargeDateExEnd').innerHTML = end ;
-		
+			document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ';
+			document.getElementById('chargeDate11').innerHTML = end ;
+			document.getElementById('chargeDate111').innerHTML = midDate ;
+			document.getElementById('warning_amount').innerHTML = amountString ;
+			document.getElementById('warning_amount2').innerHTML = amountString ;
+			document.getElementById('chargeDate1111').innerHTML = midDate ;		
 		}
 
 		//single quarter capped the amount immediately following the added quarters
@@ -1389,63 +1448,67 @@
 			// if datePicked is in the first month of the quarter that capped the amount (by itself)
 			if ((!isNaN(datePicked.getUTCMonth()))&amp;&amp;(datePicked.getUTCMonth() == (temp.getUTCMonth()+3)%12)) {
 				if (capPeriod >= 8 || numOfQuarters == 4){
-					document.getElementById('estimate').innerHTML = 'estimated' ;
-					document.getElementById('have0').innerHTML = 'have' ;
-					document.getElementById('have1').innerHTML = 'have' ;
+					document.getElementById('estimate').innerHTML = '' ;
+					document.getElementById('have0').innerHTML = '' ;
+					document.getElementById('have1').innerHTML = 'Must' ;
 				}else{
-					document.getElementById('estimate').innerHTML = 'received' ;
+					document.getElementById('estimate').innerHTML = '' ;
 					if(n>m){
-						document.getElementById('have0').innerHTML = 'had' ;
+						document.getElementById('have0').innerHTML = '' ;
 						if (n<l){
-							document.getElementById('have1').innerHTML = 'have' ;
+							document.getElementById('have1').innerHTML = 'Must' ;
 						}else{
-							document.getElementById('have1').innerHTML = 'had' ;
+							document.getElementById('have1').innerHTML = 'Must' ;
 						}
 					}else{
-						document.getElementById('have0').innerHTML = 'have' ;
-						document.getElementById('have1').innerHTML = 'have' ;
+						document.getElementById('have0').innerHTML = '' ;
+						document.getElementById('have1').innerHTML = 'Must' ;
 					}
 				}
 				
 				
 
 				document.getElementById('R8').classList.remove('hidden');	
-				document.getElementById('chargeDate1').innerHTML = datePicked.toLocaleDateString() ;
+				document.getElementById('chargeDate1').innerHTML = midDate ;
 				document.getElementById('plus29').innerHTML = ' until ' ;
 				document.getElementById('plus291').innerHTML = datePicked30 ;
-				document.getElementById('differenceAB').innerHTML = '' ;
-				document.getElementById('chargeDate11').innerHTML = '' ;
-				document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString() ;
-				document.getElementById('chargeDateExEnd').innerHTML = end ;
+				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
+				document.getElementById('chargeDate11').innerHTML = end ;
+				document.getElementById('chargeDate111').innerHTML = midDate ;
+				document.getElementById('warning_amount').innerHTML = amountString ;
+				document.getElementById('warning_amount2').innerHTML = amountString ;
+				document.getElementById('chargeDate1111').innerHTML = midDate ;
 
 			}
 			else {
 				if (capPeriod >= 8 || numOfQuarters == 4){
-					document.getElementById('estimate').innerHTML = 'estimated' ;
-					document.getElementById('have0').innerHTML = 'have' ;
-					document.getElementById('have1').innerHTML = 'have' ;
+					document.getElementById('estimate').innerHTML = '' ;
+					document.getElementById('have0').innerHTML = '' ;
+					document.getElementById('have1').innerHTML = 'Must' ;
 				}else{
-					document.getElementById('estimate').innerHTML = 'received' ;
+					document.getElementById('estimate').innerHTML = '' ;
 					if(n>m){
-						document.getElementById('have0').innerHTML = 'had' ;
+						document.getElementById('have0').innerHTML = '' ;
 						if (n<l){
-							document.getElementById('have1').innerHTML = 'have' ;
+							document.getElementById('have1').innerHTML = 'Must' ;
 						}else{
-							document.getElementById('have1').innerHTML = 'had' ;
+							document.getElementById('have1').innerHTML = 'Must' ;
 						}
 					}else{
-						document.getElementById('have0').innerHTML = 'have' ;
-						document.getElementById('have1').innerHTML = 'have' ;
+						document.getElementById('have0').innerHTML = '' ;
+						document.getElementById('have1').innerHTML = 'Must' ;
 					}
 				}
 				document.getElementById('R8').classList.remove('hidden');	
 				document.getElementById('chargeDate1').innerHTML = midDate ;
 				document.getElementById('plus29').innerHTML = ' 29 days' ;
 				document.getElementById('plus291').innerHTML = '' ;
-				document.getElementById('differenceAB').innerHTML = ' from the date of your first taxable supply starting ' ;
-				document.getElementById('chargeDate11').innerHTML = midDate ;
-				document.getElementById('chargeDateExStart').innerHTML = start.toLocaleDateString() ;
-				document.getElementById('chargeDateExEnd').innerHTML = end ;
+				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
+				document.getElementById('chargeDate11').innerHTML = end;
+				document.getElementById('chargeDate111').innerHTML = midDate ;
+				document.getElementById('warning_amount').innerHTML = amountString ;
+				document.getElementById('warning_amount2').innerHTML = amountString ;
+				document.getElementById('chargeDate1111').innerHTML = midDate ;
 
 			}
 
@@ -1470,8 +1533,8 @@
 				amount == 30000 ? temp = 7 : temp = 10 ;
 				document.getElementById('R'+temp).classList.remove('hidden') ;
 				document.getElementById('R11').classList.remove('hidden') ;
-				document.getElementById('warning_amount').innerHTML = amountString ;
-				document.getElementById('warning_amount2').innerHTML = amountString ;
+				document.getElementById('warning_amount3').innerHTML = amountString ;
+				document.getElementById('warning_amount4').innerHTML = amountString ;
 			}
 		}
 	}	
@@ -1522,99 +1585,316 @@
 
 
 
-<section class="alert alert-danger hidden" id="R1" name="results">
-	<h3><small>Your result </small></h3>
-	<p>You <strong>cannot</strong> register for a GST/HST account.</p>
-	<p>You do <strong>not</strong> charge GST/HST.</p>
-	<p>You do <strong>not</strong> claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchase. </p>
-<p>Learn more if you are a listed financial institution: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/notice265/gst-hst-registration-listed-financial-institutions-including-selected-listed-financial-institutions.html" target="_blank">GST/HST Notice 265</a></p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R1" name="results">
+	<h3><small>Your result </small><br> You do not supply goods or services that are taxable</h3>
+         
+ <div>
+     <table class="table table-condensed mrgn-lft-lg" id="over5">
+        <caption class="wb-inv">
+       
+        </caption>
+        <thead>
+<tr>
+	<th scope="col">
+Description </th>
+	
+	<th scope="col">
+Conditions </th>
+	 </tr> </thead>
+<tbody>
+<tr><td><strong>Register</strong> </td>
+<td><p>You <strong>cannot</strong> register for a GST/HST account number because you <strong>do not</strong> supply goods or services that are taxable </p> 
+</td>
+</tr>
+<tr><td><strong>Charge</strong> </td>
+<td>You do <strong>not</strong> charge GST/HST</td>
+</tr>
+<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
+<td>You do <strong>not</strong> claim input tax credits for the GST/HST you pay on your purchase </td>
+</tr> </tbody> </table></div>
+<p class="mrgn-tp-md mrgn-lft-lg">Learn more if you are a listed financial institution: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/notice265/gst-hst-registration-listed-financial-institutions-including-selected-listed-financial-institutions.html">GST/HST Notice 265</a></p>
 </section>
 
-<section class="alert alert-warning hidden" id="R2" name="results">
-	<h3><small>Your result </small></h3>
-	<p>You need to consider multiple factors to determine if you are an employee or self-employed. If you are not sure if you are an employee or self-employed, you can ask for a CPP/EI ruling.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained/canada-pension-plan-employment-insurance-explained-11.html">How to get a CPP/EI ruling</a></p>
+<section class="alert alert-warning hidden mrgn-lft-lg" id="R2" name="results">
+	<h3><small>Your result </small><br> You are not sure if you are an employee or self-employed</h3>
+	<p>You need to consider multiple factors to determine if you are an employee or self-employed. </p>
+	<p>Learn more: <a href="https://test.canada.ca/cra-arc/payroll/guidance/index.html">Employment status: Employee or self-employed, including conditions for employees operating a personal services business (PSB)</a></p>
+<p>If you are not sure if you are an employee or self-employed, you can ask for a CPP/EI ruling.</p>
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained/canada-pension-plan-employment-insurance-explained-11.html">How to get a CPP/EI ruling</a></p>
+<p class="mrgn-tp-lg"><span class="fas fa-check text-success fa-lg"></span> <strong>You can continue to use this tool</strong>.</p>	
 </section>
 
-<section class="alert alert-danger hidden" id="R3" name="results">
-	<h3><small>Your result </small></h3>
-	<p>You <strong>cannot</strong> register separately for a GST/HST account. </p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4049/gst-hst-information-municipalities.html" target="_blank"> GST/HST information for municipalities</a></p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R3" name="results">
+	<h3><small>Your result </small><br> You are a branch or division </h3>
+	<p><span class="fas fa-times text-danger"></span> You <strong>cannot</strong> register separately for a GST/HST account because you are a branch or a division.</p>
+
 </section>
 
-<section class="alert alert-info hidden" id="R4" name="results">
-	<h3><small>Your result </small></h3>
-	<p>You do <strong>not</strong> have to register for a GST/HST account.</p>
-	<p>You do <strong>not</strong> charge GST/HST.</p>
-	<p>You have to make the same calculation at the end of every quarter.</p>
-	<p>You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses.</p>
-	<p>You may choose to register voluntarily.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R4" name="results">
+	<h3><small>Your result </small><br> R4 Charity or public institution not yet operating or on the first year of operation </h3>
+ <div>
+     <table class="table table-condensed mrgn-lft-lg" id="over5">
+        <caption class="wb-inv">
+       
+        </caption>
+        <thead>
+<tr>
+	<th scope="col">
+Description </th>
+	
+	<th scope="col">
+Conditions </th>
+	 </tr> </thead>
+<tbody>
+<tr><td><strong>Register</strong> </td>
+<td><p>You are a small supplier.</p>
+<p>You <strong>do not</strong> have to register for a GST/HST account number because your business is a charity or public institution and one of the following apply: </p>
+<ul class="list-unstyled cnjnctn-type-or">
+<li class="cnjnctn-col">You are <strong>not</strong> yet operating</li>
+<li class="cnjnctn-col">You are in your <strong>first fiscal year</strong> of operation</li>
+<li class="cnjnctn-col">You are in your <strong>second fiscal year</strong> of operation and your gross revenue from your first fiscal year is <strong>$250,000 or less</strong></li>
+<li class="cnjnctn-col">You are in your <strong>third fiscal year</strong> of operation and your gross revenue from either or both of your <strong>previous 2 fiscal years</strong> is <strong>$250,000 or less</strong></li>
+</ul>
+<h5>Register voluntarily</h5>
+<p>You may choose to register voluntarily if you are a small supplier.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html">Register voluntarily for a GST/HST account</a></p>
+</td>
+</tr>
+<tr><td><strong>Charge</strong> </td>
+<td>You do <strong>not</strong> charge GST/HST</td>
+</tr>
+<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
+<td>You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses. </td>
+</tr> </tbody> </table></div>
+<p class="mrgn-tp-md mrgn-lft-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4082/gst-hst-information-charities.html" target="_blank"> GST/HST Information for Charities</a></p>
 </section>
 
-<section class="alert alert-info hidden" id="R5" name="results">
-	<h3><small>Your result </small></h3>
-	<p>You have to charge the GST/HST.</p>
-	<p>You have to register for a GST/HST account.</p>
-	<p>You may be eligible for to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchase and expenses.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R5" name="results">
+	<h3><small>Your result </small><br> You are a taxi operator or a commercial ride-sharing driver</h3>
+ <div class="table-responsive  mrgn-lft-lg">
+     <table class="table table-condensed" id="over2">
+        <caption class="wb-inv">
+       
+        </caption>
+        <thead>
+<tr>
+	<th scope="col">
+Description </th>
+	
+	<th scope="col">
+Conditions </th>
+	 </tr> </thead>
+<tbody>
+<tr><td><strong>Register</strong> </td>
+<td><p>You have to register for a GST/HST account as of the date your business began as a taxi operator or a commercial ride-sharing driver.</p>
+</td>
+</tr>
+<tr><td><strong>Charge</strong> </td>
+<td>You have to charge the GST/HST as of the date your business began.</td>
+</tr>
+<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
+<td>You may be eligible for to claim input tax credits for the GST/HST you pay on your purchase and expenses. </td>
+</tr> </tbody> </table></div>
+
+<p class="mrgn-tp-md mrgn-lft-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/taxi-ride-sharing-drivers.html" target="_blank"> GST/HST information for taxi operators and commercial ride-sharing drivers</a></p>
+ 
 </section>
 
-<section class="alert alert-info hidden" id="R6" name="results">
-	<h3><small>Your result </small></h3>
-<p>You do <strong>not</strong> have to register for a GST/HST account.</p>	
-	<p>You may still have to charge and collect the tax on your sale of real property on that <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#commercial" target="_blank">commercial activity</a>. </p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#real" target="_blank">Real property</a></p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R6" name="results">
+	<h3><small>Your result </small><br> Your only commercial activity is the sale of real property<small>, other than in the course of a business</small>  </h3>
+<div>
+     <table class="table table-condensed mrgn-lft-lg" id="over5">
+        <caption class="wb-inv">
+       
+        </caption>
+        <thead>
+<tr>
+	<th scope="col">
+Description </th>
+	
+	<th scope="col">
+Conditions </th>
+	 </tr> </thead>
+<tbody>
+<tr><td><strong>Register</strong> </td>
+<td><p>You are a small supplier.</p>
+<p>You <strong>do not</strong> have to register for a GST/HST account number because your only commercial activity is the sale of real property, other than in the course of a business. </p> 
+<h5>Register voluntarily</h5>
+<p>You may choose to register voluntarily if you are a small supplier.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html">Register voluntarily for a GST/HST account</a></p>
+</td>
+</tr>
+<tr><td><strong>Charge</strong> </td>
+<td>You may still have to charge and collect the tax on your sale of real property on that <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#commercial" target="_blank">commercial activity</a></td>
+</tr>
+ </tbody> </table></div>
+<p class="mrgn-tp-md mrgn-lft-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#real">Real property</a></p>
 </section>
 
-<section class="alert alert-info hidden" id="R7" name="results">
-	<h3><small>Your result </small></h3>
-	<p>You do <strong>not</strong> have to register for a GST/HST account because you did not exceed $30,000 over four consecutive calendar quarters.</p>
-	<p>You do <strong>not</strong> charge GST/HST.</p>
-	<p>You have to make the same calculation at the end of every quarter.</p>
-	<p>You may choose to register voluntarily.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R7" name="results">
+	<h3><small>Your result </small><br> R7 <strong>$30,000</strong> threshold not exceeded</h3>
+  <div class="table-responsive  mrgn-lft-lg">
+     <table class="table table-condensed" id="over2">
+        <caption class="wb-inv">
+       
+        </caption>
+        <thead>
+<tr>
+	<th scope="col">
+Description </th>
+	
+	<th scope="col">
+Conditions </th>
+	 </tr> </thead>
+<tbody>
+<tr><td><strong>Register</strong> </td>
+<td><p>You are a small supplier.</p>
+<p>You <strong>do not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed <strong>$30,000</strong> over 4 consecutive calendar quarters.</p> 
+<p> You must continue to monitor your sales to determine when you exceed the <strong>$30,000</strong> threshold.</p> 	
+<h5>Register voluntarily</h5>
+<p>You may choose to register voluntarily if you are a small supplier.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html">Register voluntarily for a GST/HST account</a></p>
+</td>
+</tr>
+<tr><td><strong>Charge</strong> </td>
+<td>You do <strong>not</strong> charge GST/HST</td>
+</tr>
+<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
+<td>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses </td>
+</tr> </tbody> </table></div>
 </section>
 
-<section class="alert alert-info hidden" id="R8" name="results">
-	<h3><small>Your result </small></h3>
-	<p>Based on the amounts you <span id="estimate"></span>, you <span id="have0"></span> to charge the GST/HST on the first taxable supply starting <label id="chargeDate1"></label>, or starting the date of GST/HST registration, whichever is earlier.</p>
-	<p>You <span id="have1"></span><span id="plus29"></span><label id="plus291"></label> to register for your GST/HST account number<span id="differenceAB"></span><label id="chargeDate11"></label>.</p>
-	<p>For example, if you made a taxable sale on <label id="chargeDateExStart"></label>, you have until <label id="chargeDateExEnd"></label> to register for your GST/HST account number.</p>
-	<p>You may be eligible to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchases and expenses.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R8" name="results">
+	<h3><small>Your result </small><br> R8 <strong>$<span id="warning_amount">30,000</span></strong> threshold exceeded over 4 consecutive calendar quarters</h3>
+
+  <div class="table-responsive  mrgn-lft-lg">
+     <table class="table table-condensed" id="over1">
+        <caption class="wb-inv">
+       
+        </caption>
+        <thead>
+<tr>
+	<th scope="col">
+Description </th>
+	<th scope="col">
+Based on information entered </th>
+	<th scope="col">
+Conditions </th>
+	 </tr> </thead>
+<tbody>
+<tr><td><strong>Date&nbsp;of&nbsp;registration</strong> </td>
+<td>The effective date of registration is <strong>no later than</strong> <label id="chargeDate1"></label> </td>
+<td><p>The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
+<p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2">30,000</span></strong> threshold </p></td>
+</tr>
+<tr><td><strong>Register</strong> </td>
+<td><span id="have1"></span> register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate11"></label></td>
+<td>You must register for a GST/HST account number <strong><span id="plus29"></span><label id="plus291"></label></strong> from your effective date of registration </td>
+</tr>
+<tr><td><strong>Charge </strong></td>
+<td>Must charge GST/HST <span id="differenceAB"></span> <strong>no later than</strong> <label id="chargeDate111"></label></td>
+<td>You must charge GST/HST on the taxable supplies starting on your effective date of registration </td>
+</tr>
+<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
+<td>Eligible to claim ITCs for purchases that relate to taxable supplies made after <label id="chargeDate1111"></label></td>
+<td>You are eligible to claim ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies you made after your registration date </td>
+</tr> </tbody> </table></div>
+
+<p>	
+<span id="have0"></span>
+<span id="estimate"></span>
+</p>
 </section>
 
-<section class="alert alert-info hidden" id="R9" name="results">
-	<h3><small>Your result </small></h3>
-	<p>You <span id="tense151"></span> to charge the GST/HST starting on <label id="chargeDate0"></label> for the taxable supply that made you exceed <label>$</label><label id="chargeAmount"></label>.</p>
-	<p>You <span id="tense152"></span> until <label id="chargeDate01"></label> to register for your GST/HST account number.</p>
-	<p>You may be eligible to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchases and expenses.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R9" name="results">
+	<h3><small>Your result </small><br> R9 <strong>$<span id="chargeAmount"></span></strong> threshold exceeded in a single calendar quarter</h3>
+  <div class="table-responsive mrgn-lft-lg">
+     <table class="table table-condensed" id="over1">
+        <caption class="wb-inv">
+       
+        </caption>
+        <thead>
+<tr>
+	<th scope="col">
+Description </th>
+	<th scope="col">
+Based on information entered </th>
+	<th scope="col">
+Conditions </th>
+	 </tr> </thead>
+<tbody>
+<tr><td><strong>Date&nbsp;of&nbsp;registration</strong> </td>
+<td>The effective date of registration is <label id="chargeDate0"></label>. </td>
+<td><p>You are <strong>no longer</strong> a small supplier and the effective date of registration is <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount2"></span></strong> threshold </p></td>
+</tr>
+<tr><td><strong>Register</strong></td>
+<td><span id="tense152"></span> register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate01"></label></td>
+<td>You must register for a GST/HST account number <strong><span id="plus29"></span><label id="plus291"></label></strong> 
+ <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount3"></span></strong> threshold. </td>
+</tr>
+<tr><td><strong>Charge </strong></td>
+<td>Must charge GST/HST <span id="differenceAB"></span> starting <label id="chargeDate011"></label>, including on the sale that made you exceed the threshold</td>
+<td>You <span id="tense151"></span> charge GST/HST on the sale that made you exceed the <label>$</label><label id="chargeAmount4"></label> threshold</td>
+</tr>
+<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
+<td>Eligible to claim ITCs for purchases that relate to taxable supplies made after <label id="chargeDate0111"></label></td>
+<td>You are eligible to claim ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies you made after your registration date </td>
+</tr> </tbody> </table></div>
 </section>
 
-<section class="alert alert-info hidden" id="R10" name="results">
-	<h3><small>Your result </small></h3>
-	<p>You do <strong>not</strong> have to register for a GST/HST account because you did not exceed $50,000 over four consecutive calendar quarters.</p>
-	<p>You do <strong>not</strong> charge GST/HST.</p>
-	<p>You have to make the same calculation at the end of every quarter.</p>
-	<p>You may be eligible for GST/HST rebates that allow certain public service bodies to recover a percentage of the GST/HST they pay on their purchases and expenses.</p>
-	<p>You may choose to register voluntarily.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R10" name="results">
+	<h3><small>Your result </small><br> R10 <strong>$50,000</strong> threshold not exceeded </h3>
+ <div>
+     <table class="table table-condensed mrgn-lft-lg" id="over5">
+        <caption class="wb-inv">
+       
+        </caption>
+        <thead>
+<tr>
+	<th scope="col">
+Description </th>
+	
+	<th scope="col">
+Conditions </th>
+	 </tr> </thead>
+<tbody>
+<tr><td><strong>Register</strong> </td>
+<td><p>You are a small supplier.</p>
+<p>You <strong>do not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed <strong>$50,000</strong> over 4 consecutive calendar quarters.</p> 
+<p> You must continue to monitor your sales to determine when you exceed the <strong>$50,000</strong> threshold.</p> 	
+<h5>Register voluntarily</h5>
+<p>You may choose to register voluntarily if you are a small supplier.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html">Register voluntarily for a GST/HST account</a></p>
+</td>
+</tr>
+<tr><td><strong>Charge</strong> </td>
+<td>You do <strong>not</strong> charge GST/HST</td>
+</tr>
+<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
+<td>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses </td>
+</tr> </tbody> </table></div>
+</section>
+
+<section class="hidden  mrgn-lft-lg" id="R11" name="results">
+	<h4 class="mrgn-lft-xl">R11 What if you exceed the threshold in a single calendar quarter</h4>
+<p class="mrgn-lft-xl">If you exceed <strong>$<span id="warning_amount3">30,000</span></strong> in a <strong>single calendar quarter</strong>, you have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed <strong>$<span id="warning_amount4">30,000</span></strong>.</p>
+	
+</section>
+
+<section class="alert alert-warning hidden mrgn-lft-lg" id="R12" name="results">
+	<h3><small>Your result </small><br> R12 You are a non-resident business</h3>
+	<p>This tool does <strong>not</strong> provide results if you are a non-resident business. </p>
+<p class="mrgn-tp-md">Learn more to find out if you need to register if you are a non-resident business: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027-doing-business-canada-gst-hst-information-non-residents/doing-business-canada-gst-hst-information-non-residents.html">Guide RC4027, Doing Business in Canada</a></p>
 </section>
 
 
-<section class="alert alert-warning hidden" id="R11" name="results">
-	<h3><small>Your result </small></h3>
-	<p>If you exceed $<span id="warning_amount">30,000</span> in one quarter, you have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed $<span id="warning_amount2">30,000</span>.</p>
-</section>
-
-<section class="alert alert-info hidden" id="R12" name="results">
-	<h3><small>Your result </small></h3>
-	<p>The ITT <strong>does not</strong> provide results if you are a non-resident business. </p>
-<p>Learn more to find out if you need to register if you are a non-resident business: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027-doing-business-canada-gst-hst-information-non-residents/doing-business-canada-gst-hst-information-non-residents.html" target="_blank">Guide RC4027, Doing Business in Canada – GST/HST Information for Non-Residents</a></p>
-</section>
-
-
-<section id="Ex-TaxableSupplies" class="wb-overlay modal-content overlay-def wb-panel-r">
+<section id="Ex-TaxableSupplies" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
 	<header class="modal-header">
-		<p class="modal-title">Examples of taxable supplies</p>
+		<h2 class="modal-title">Meaning of the term taxable supplies</h2>
 	</header>
 	<div class="modal-body">
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#taxablesupply"></div>
+	
 		<p>Examples of taxable supplies are:</p>
 		<ul>
 			<li>Sales of new housing</li>
@@ -1622,7 +1902,7 @@
 			<li>Sales and leases of automobiles</li>
 			<li>Car repairs</li>
 			<li>Soft drinks, candies, and potato chips</li>
-			<li>Hotel accommodation</li>
+			<li>Hotel and other short-term accommodation</li>
 			<li>Clothing and footwear</li>
 			<li>Taxi and limousine transportation</li>
 			<li>Legal and accounting services</li>
@@ -1632,12 +1912,13 @@
 	</div>
 </section>
 
-<section id="Ex-TaxableSupplies0" class="wb-overlay modal-content overlay-def wb-panel-r">
+<section id="Ex-TaxableSupplies0" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
 	<header class="modal-header">
-		<p class="modal-title">Examples of zero-rated (taxable at 0%) supplies</p>
+		<h2 class="modal-title">Meaning of the term zero-rated supplies (taxable at the rate of 0%)</h2>
 	</header>
 	<div class="modal-body">
-		<p>Some examples of taxable supplies are:</p>
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#zero"></div>
+		<p>Examples of zero-rated supplies are:</p>
 		<ul>
 			<li>Basic groceries such as milk, bread, and vegetables</li>
 			<li>Agricultural products such as grain, raw wool, and died tobacco leaves</li>
@@ -1684,6 +1965,42 @@
 <label>Quarter11 <input id="q10_monthStart_Old"><input id="q10_monthEnd_Old"><input id="q10_year_Old"></label><br>
 <label>Quarter12 <input id="q11_monthStart_Old"><input id="q11_monthEnd_Old"><input id="q11_year_Old"></label><br>
 </div>
+
+<section id="ajax-charity" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
+	<header class="modal-header">
+		<h2 class="modal-title">Meaning of the term charity</h2>
+	</header>
+	<div class="modal-body">
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#charity"></div>
+	</div>
+</section>	
+
+<section id="ajax-public" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
+	<header class="modal-header">
+		<h2 class="modal-title">Meaning of the term public institution</h2>
+	</header>
+	<div class="modal-body">
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#public"></div>
+	</div>
+</section>	
+
+<section id="ajax-service" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
+	<header class="modal-header">
+		<h2 class="modal-title">Meaning of the term public service body</h2>
+	</header>
+	<div class="modal-body">
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#service"></div>
+	</div>
+</section>	
+
+<section id="ajax-quarter" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
+	<header class="modal-header">
+		<h2 class="modal-title">Meaning of the term calendar quarter</h2>
+	</header>
+	<div class="modal-body">
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#quarter"></div>
+	</div>
+</section>		
 
 </div>
 
