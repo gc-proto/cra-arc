@@ -887,7 +887,7 @@
 -->
                                 <div id="priorPaymentAmountFHSAElm" class="form-group">
                                     <label id="priorPaymentYearsFHSALabel" for="priorPaymentYearsFHSA" class="required"><span class="field-name">Number of years your FHSA has been open</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span> max) <strong class="required">(required)</strong></label>
-                                    <p data-prior-year-range="true">If you opened your FHSA in 2023, enter "1" as the number of years</p>
+                                    <p data-single-year-range="true">If you opened your FHSA in 2023, enter "1" as the number of years</p>
                                     <div class="input-group col-xs-2 col-sm-1">
                                         <input type="number" name="priorPaymentYearsFHSA" min="1" max="14" id="priorPaymentYearsFHSA" data-rule-minlength="1" data-rule-maxlength="2" class="form-control text-right" data-rule-rangelength="[1,14]">
                                     </div>
@@ -1991,6 +1991,11 @@
 
 
         currentYear = getCurrentYear(fhsaStartYear);
+        if (currentYear > fhsaStartYear + 1) {
+             $("[data-single-year-range=true]").addClass("hidden");
+        } else {
+            $("[data-single-year-range=true]").removeClass("hidden");
+        }
         if (currentYear <= fhsaStartYear) {
             currentYear = fhsaStartYear + 1;
             $("[data-first-year-date=true]").html(fhsaStartYear);
