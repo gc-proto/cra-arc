@@ -893,7 +893,7 @@
                                     </div>
                                 </div>
                                 <div id="priorPaymentBalanceElm" class="form-group">
-                                    <label id="priorPaymentBalanceLabel" for="priorPaymentBalance" class="required"><span class="field-name">Your FHSA balance as of December 31, <span data-prior-year="true">2023</span></span> <span class="wb-inv">(dollars only, no cents) </span><strong class="required">(required)</strong></label>
+                                    <label id="priorPaymentBalanceLabel" for="priorPaymentBalance" class="required"><span class="field-name">Your<span data-first-year="true" class="hidden"> current</span> FHSA balance<span data-first-year="false"> as of December 31, <span data-prior-year="true">2023</span></span></span> <span class="wb-inv">(dollars only, no cents) </span><strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
                                         <input type="text" name="priorPaymentBalance" size="7" maxlength="7" id="priorPaymentBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
@@ -1069,7 +1069,7 @@
                                     </div>
                                 </div>
                                 <div id="priorSavingBalanceElm" class="form-group">
-                                    <label id="priorSavingBalanceLabel" for="priorSavingBalance" class="required"><span class="field-name">Your FHSA balance as of December 31, <span data-prior-year="true">2023</span></span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
+                                    <label id="priorSavingBalanceLabel" for="priorSavingBalance" class="required"><span class="field-name">Your<span data-first-year="true" class="hidden"> current</span> FHSA balance<span data-first-year="false"> as of December 31, <span data-prior-year="true">2023</span></span></span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
                                         <input type="text" name="priorSavingBalance" size="7" maxlength="7" id="priorSavingBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
@@ -1270,7 +1270,7 @@
                                     <tbody id="savingsResultsBody" class="text-right" data-prior-savings-year-rows="1 to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     </tbody>
                                 </table>
-                                <p>These results may not fully capture your particular tax situation, which may affect their accuracy.<span data-min-threshold="true"> Investment income savings are based on taxing this income at your highest possible tax rate.</span> These results include tax savings from deductible FHSA contributions as well as the investments that would have otherwise had to be included in income.</p>
+                                <p>These results may not fully capture your particular tax situation, which may affect their accuracy.<span data-min-threshold="true"> Investment income savings are based on taxing this income at your highest possible tax rate.</span> These results include tax savings from deductible FHSA contributions as well as the investments that would have otherwise been included in income.</p>
                             </div>
                         </div>
                     </fieldset>
@@ -2001,8 +2001,11 @@
             currentYear = fhsaStartYear + 1;
             $("[data-first-year-date=true]").html(fhsaStartYear);
             $("[data-first-year=true]").removeClass("hidden");
+            $("[data-first-year=false]").addClass("hidden");
             $("[data-prior-year=true]").html(fhsaStartYear);
         } else {
+            $("[data-first-year=true]").addClass("hidden");
+            $("[data-first-year=false]").removeClass("hidden");
             $("[data-prior-year=true]").html(currentYear - 1);
         }
         initForms(fhsaStartYear, currentYear, priorYearMax, yearlyMaxContribution, maxContribution, paymentformId, savingsformId);
