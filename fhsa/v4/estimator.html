@@ -893,7 +893,7 @@
                                     </div>
                                 </div>
                                 <div id="priorPaymentBalanceElm" class="form-group">
-                                    <label id="priorPaymentBalanceLabel" for="priorPaymentBalance" class="required"><span class="field-name">Your current FHSA balance as of <span data-prior-year="true">2023</span></span> <span class="wb-inv">(dollars only, no cents) </span><strong class="required">(required)</strong></label>
+                                    <label id="priorPaymentBalanceLabel" for="priorPaymentBalance" class="required"><span class="field-name">Your current FHSA balance as of December 31, <span data-prior-year="true">2023</span></span> <span class="wb-inv">(dollars only, no cents) </span><strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
                                         <input type="text" name="priorPaymentBalance" size="7" maxlength="7" id="priorPaymentBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
@@ -971,7 +971,7 @@
 
                             <div id="paymentInvestPercentGroup" class="form-group mrgn-tp-sm">
                                 <div class="mrgn-lft-md">
-                                    <label for="paymentInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (e.g. 1.25%)</span> <strong class="required">(required)</strong></label>
+                                    <label for="paymentInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (e.g. 1.75%)</span> <strong class="required">(required)</strong></label>
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments? <span class="glyphicon glyphicon-question-sign"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
@@ -1068,7 +1068,7 @@
                                     </div>
                                 </div>
                                 <div id="priorSavingBalanceElm" class="form-group">
-                                    <label id="priorSavingBalanceLabel" for="priorSavingBalance" class="required"><span class="field-name">Your current FHSA balance as of <span data-prior-year="true">2023</span></span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
+                                    <label id="priorSavingBalanceLabel" for="priorSavingBalance" class="required"><span class="field-name">Your current FHSA balance as of December 31, <span data-prior-year="true">2023</span></span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
                                         <input type="text" name="priorSavingBalance" size="7" maxlength="7" id="priorSavingBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
@@ -1229,7 +1229,7 @@
 
                             <div id="savingInvestPercentGroup" class="form-group hidden">
                                 <div class="mrgn-lft-md">
-                                    <label for="savingInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (e.g. 1.25%)</span> <strong class="required" aria-hidden="true">(required)</strong></label>
+                                    <label for="savingInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (e.g. 1.75%)</span> <strong class="required" aria-hidden="true">(required)</strong></label>
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments? <span class="glyphicon glyphicon-question-sign"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
@@ -1268,7 +1268,7 @@
                                     <tbody id="savingsResultsBody" class="text-right" data-prior-savings-year-rows="1 to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     </tbody>
                                 </table>
-                                <p>These results may not fully capture your particular tax situation, which  may affect their accuracy.<span data-min-threshold="true"> Investment income savings are based on taxing this income at your highest possible tax rate.</span></p>
+                                <p>These results may not fully capture your particular tax situation, which may affect their accuracy.<span data-min-threshold="true"> Investment income savings are based on taxing this income at your highest possible tax rate.</span> These results include tax savings from deductible FHSA contributions as well as the investments that would have otherwise had to be included in income.</p>
                             </div>
                         </div>
                     </fieldset>
@@ -1760,7 +1760,9 @@
                                 return savingsCell;
                             }, 
                             getRateCalcRange = function (minVal, maxVal) {
-                                if (parseInt(minVal, 10) === parseInt(maxVal, 10) && parseInt(minVal, 10) !== 0) {
+                                if (parseInt(maxVal, 10) !== 0) {
+                                    return currencyFormatter.format(maxVal);
+                                } else if (parseInt(minVal, 10) === parseInt(maxVal, 10)) {
                                     return $("#savingsResultsBody").data("savings-text") + currencyFormatter.format(maxVal);
                                 }
                                 return currencyFormatter.format(minVal) + $("#savingsResultsBody").data("savings-range-text") + currencyFormatter.format(maxVal);
@@ -1987,6 +1989,9 @@
             currentYear = fhsaStartYear + 1;
             $("[data-first-year-date=true]").html(fhsaStartYear);
             $("[data-first-year=true]").removeClass("hidden");
+            $("[data-prior-year=true]").html(fhsaStartYear);
+        } else {
+            $("[data-prior-year=true]").html(currentYear - 1);
         }
         initForms(fhsaStartYear, currentYear, priorYearMax, yearlyMaxContribution, maxContribution, paymentformId, savingsformId);
 
