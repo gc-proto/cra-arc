@@ -233,7 +233,7 @@ TEST SECTION
 <div class="form-group">
 <label for="province" class="required"><span class="field-name">Province or territory</span></label>
 <select class="form-control" id="province" name="province" required="required">
-   <option label="Select a province"></option>
+   <option label="Select a province or territory"></option>
    <option value="Alberta">Alberta</option>
    <option value="British">British Columbia</option>
    <option value="Manitoba">Manitoba</option>
@@ -251,17 +251,17 @@ TEST SECTION
 
 
 <div class="form-group">
-   <label for="pcodeca1" class="required"><span class="field-name">Postal code</span> (ex. A1A 1A1)</label>
+   <label for="pcodeca1" class="required"><span class="field-name">Postal code</span> (e.g. A1A 1A1)</label>
    <input class="form-control" id="pcodeca1" name="pcodeca1" type="text" autocomplete="postal-code" size="7" maxlength="7" required="required" data-rule-postalCodeCA="true" />
 </div>
 
 <div class="form-group mrgn-tp-lg">
-<label for="fbhphn1" class="required"><span class="field-name">Telephone number</span><br><span class="">(brackets, spaces or dashes not accepted)</label>
+<label for="fbhphn1" class="required"><span class="field-name">Telephone number</span></label>
+<p><span class="">(brackets, spaces or dashes not accepted)</span></p>
 <input class="form-control" id="fbhphn1" name="fbhphn1" type="tel" autocomplete="tel" size="10" maxlength="10" required="required" data-rule-phoneUS="true" />
 </div>
 
-
-<div class="form-group">
+<div class="form-group grouped">
    <label for="tel1" class="required"><span class="field-name">Telephone number</span> </label>
    <div class="form-inline">
      <span class="h3">(</span> <input id="tel1" name="tel1" type="text" required="required" data-rule-digits="true" size="3" maxlength="3" data-rule-minlength="3" data-rule-require_from_group='[3,".group"]' class="group"> <span class="h3"> )</span>
@@ -270,9 +270,29 @@ TEST SECTION
    </div>
 </div>
 
+<script>
+var container = document.getElementsByClassName("grouped")[0];
+container.onkeyup = function(e) {
+    var target = e.srcElement;
+    var maxLength = parseInt(target.attributes["maxlength"].value, 10);
+    var myLength = target.value.length;
+    if (myLength >= maxLength) {
+        var next = target;
+        while (next = next.nextElementSibling) {
+            if (next == null)
+                break;
+            if (next.tagName.toLowerCase() == "input") {
+                next.focus();
+                break;
+            }
+        }
+    }
+}
+</script>
 
 <div class="form-group mrgn-tp-lg">
-<label for="fbhphn5"><span class="field-name">Alternate phone number</span> (brackets, spaces or dashes not accepted) </label>
+<label for="fbhphn5"><span class="field-name">Alternate phone number</span></label>
+<p><span class="">(brackets, spaces or dashes not accepted)</span></p>
 <input class="form-control" type="tel" id="fbhphn5" name="fbhphn5" size="12" maxlength="12" data-rule-phoneUS="true" >
 </div>
 
