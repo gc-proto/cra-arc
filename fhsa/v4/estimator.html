@@ -831,10 +831,10 @@
             showPreContent: true
         });
     </script>
-    <main property="mainContentOfPage" class="container" contenteditable="true">
+    <main property="mainContentOfPage" class="container">
 
         <h1 property="name" id="wb-cont" class="gc-thickline">FHSA estimators</h1>
-        <p>You can use these estimators to help you understand how a first home savings account (FHSA) can help you save for your first home. The first tool estimates your down payment, and the second tool shows your potential tax savings.</p>
+        <p>You can use these estimators to help you understand how a first home savings account (FHSA) can help you save for your first home. The first tool estimates how much you can save for your down payment, and the second tool shows your potential tax savings.</p>
         <p><a href="index.html">Learn about the FHSA</a> before using these tools.</p>
         <p>These tools provide <strong>estimates</strong> based on the information you entered. They are intended for illustrative and general information purposes. They may not fully capture your particular tax situation, which may affect the accuracy of the results. The results generated are examples only.</p>
         <p>Your data is not collected or saved. If you leave or refresh the page, you will need to enter your information again.</p>
@@ -877,20 +877,23 @@
 
 
                             <div id="priorPaymentFHSAfields" class="mrgn-lft-md hidden">
+<!--
                                 <div class="mrgn-tp-md gc-chckbxrdio chckbxrdio-grp provisional">
                                     <div class="checkbox">
                                         <input id="priorPaymentSameInfo" name="priorPaymentSameInfo" type="checkbox" value="true" data-same-prior="true">
                                         <label for="priorPaymentSameInfo"><span class="gc-font-2019">Use the "prior years" information from the second tool</span></label>
                                     </div>
                                 </div>
+-->
                                 <div id="priorPaymentAmountFHSAElm" class="form-group">
                                     <label id="priorPaymentYearsFHSALabel" for="priorPaymentYearsFHSA" class="required"><span class="field-name">Number of years your FHSA has been open</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span> max) <strong class="required">(required)</strong></label>
+                                    <p data-prior-year-range="true">If you opened your FHSA in 2023, enter "1" as the number of years</p>
                                     <div class="input-group col-xs-2 col-sm-1">
                                         <input type="number" name="priorPaymentYearsFHSA" min="1" max="14" id="priorPaymentYearsFHSA" data-rule-minlength="1" data-rule-maxlength="2" class="form-control text-right" data-rule-rangelength="[1,14]">
                                     </div>
                                 </div>
                                 <div id="priorPaymentBalanceElm" class="form-group">
-                                    <label id="priorPaymentBalanceLabel" for="priorPaymentBalance" class="required"><span class="field-name">Your current FHSA balance</span> <span class="wb-inv">(dollars only, no cents) </span><strong class="required">(required)</strong></label>
+                                    <label id="priorPaymentBalanceLabel" for="priorPaymentBalance" class="required"><span class="field-name">Your current FHSA balance as of <span data-prior-year="true">2023</span></span> <span class="wb-inv">(dollars only, no cents) </span><strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
                                         <input type="text" name="priorPaymentBalance" size="7" maxlength="7" id="priorPaymentBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
@@ -968,7 +971,7 @@
 
                             <div id="paymentInvestPercentGroup" class="form-group mrgn-tp-sm">
                                 <div class="mrgn-lft-md">
-                                    <label for="paymentInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (max 99.99%)</span> <strong class="required">(required)</strong></label>
+                                    <label for="paymentInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (e.g. 1.25%)</span> <strong class="required">(required)</strong></label>
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments? <span class="glyphicon glyphicon-question-sign"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
@@ -1050,12 +1053,14 @@
 
 
                             <div id="priorSavingFHSAfields" class="mrgn-lft-md hidden">
+<!--
                                 <div class="mrgn-tp-md gc-chckbxrdio chckbxrdio-grp provisional">
                                     <div class="checkbox">
                                         <input id="priorSavingsSameInfo" name="priorSavingsSameInfo" type="checkbox" value="true" data-same-prior="true">
                                         <label for="priorSavingsSameInfo"><span class="gc-font-2019">Use the "<span data-first-year-date="true">prior years</span>" information from the first tool</span></label>
                                     </div>
                                 </div>
+-->
                                 <div id="priorSavingAmountFHSAElm" class="form-group">
                                     <label id="priorSavingYearsFHSALabel" for="priorSavingYearsFHSA" class="required"><span class="field-name">Number of years your FHSA has been open</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span> max) <strong class="required">(required)</strong></label>
                                     <div class="input-group col-xs-2 col-sm-1">
@@ -1063,7 +1068,7 @@
                                     </div>
                                 </div>
                                 <div id="priorSavingBalanceElm" class="form-group">
-                                    <label id="priorSavingBalanceLabel" for="priorSavingBalance" class="required"><span class="field-name">Your current FHSA balance</span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
+                                    <label id="priorSavingBalanceLabel" for="priorSavingBalance" class="required"><span class="field-name">Your current FHSA balance as of <span data-prior-year="true">2023</span></span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
                                         <input type="text" name="priorSavingBalance" size="7" maxlength="7" id="priorSavingBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
@@ -1224,7 +1229,7 @@
 
                             <div id="savingInvestPercentGroup" class="form-group hidden">
                                 <div class="mrgn-lft-md">
-                                    <label for="savingInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (max 99.99%)</span> <strong class="required" aria-hidden="true">(required)</strong></label>
+                                    <label for="savingInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (e.g. 1.25%)</span> <strong class="required" aria-hidden="true">(required)</strong></label>
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments? <span class="glyphicon glyphicon-question-sign"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
@@ -1502,11 +1507,13 @@
                 return $(":input[type=radio][name=hasPriorPaymentFHSA]:checked", paymentformId).data("priorpayment-fhsa") || false;
             }, 
             hasSamePriorPaymentInfo = function () {
+/*
                 if (hasPriorPaymentFHSA() === true) {
                     return $(":input[type=checkbox][name=priorPaymentSameInfo]:checked", paymentformId).data("same-prior") || false;
                 }
+*/
                 return false;
-            }, 
+            },
             priorPaymentYears = function () {
                 if (hasPriorPaymentFHSA() === true) {
                     return parseInt($("#priorPaymentYearsFHSA").val(), 10) || 0;
@@ -1538,9 +1545,11 @@
                 return $(":input[type=radio][name=hasPriorSavingFHSA]:checked", savingsformId).data("priorsaving-fhsa") || false;
             }, 
             hasSamePriorSavingsInfo = function () {
+/*
                 if (hasPriorSavingsFHSA() === true) {
                     return $(":input[type=checkbox][name=priorSavingsSameInfo]:checked", savingsformId).data("same-prior") || false;
                 }
+*/
                 return false;
             }, 
             priorSavingYears = function () {
@@ -1999,6 +2008,7 @@
             }
         });
 
+/*
         $(paymentformId).on("click vclick touchstart", "input[type=checkbox][name=priorPaymentSameInfo]", function () {
             if (hasSamePriorPaymentInfo() === true) {
                 updatePriorPaymentYears();
@@ -2006,6 +2016,7 @@
                 updatePriorPaymentAmount();
             }
         });
+*/
 
         $(paymentformId).on("change", "#priorPaymentYearsFHSA", function () {
             if (hasSamePriorSavingsInfo() === true || priorSavingYears() === 0) {
@@ -2071,6 +2082,7 @@
             }
         });
 
+/*
         $(savingsformId).on("click vclick touchstart", "input[type=checkbox][name=priorSavingsSameInfo]", function () {
             if (hasSamePriorSavingsInfo() === true) {
                 updatePriorSavingYears();
@@ -2078,6 +2090,7 @@
                 updatePriorSavingAmount();
             }
         });
+*/
 
         $(savingsformId).on("change", "#priorSavingYearsFHSA", function () {
             if (hasSamePriorPaymentInfo() === true || priorPaymentYears() === 0) {
