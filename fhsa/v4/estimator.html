@@ -831,7 +831,7 @@
             showPreContent: true
         });
     </script>
-    <main property="mainContentOfPage" class="container">
+    <main property="mainContentOfPage" class="container" contenteditable="true">
 
         <h1 property="name" id="wb-cont" class="gc-thickline">FHSA estimators</h1>
         <p>You can use these estimators to help you understand how a first home savings account (FHSA) can help you save for your first home. The first tool estimates your down payment, and the second tool shows your potential tax savings.</p>
@@ -1751,7 +1751,7 @@
                                 return savingsCell;
                             }, 
                             getRateCalcRange = function (minVal, maxVal) {
-                                if (parseInt(minVal, 10) === parseInt(maxVal, 10)) {
+                                if (parseInt(minVal, 10) === parseInt(maxVal, 10) && parseInt(minVal, 10) !== 0) {
                                     return $("#savingsResultsBody").data("savings-text") + currencyFormatter.format(maxVal);
                                 }
                                 return currencyFormatter.format(minVal) + $("#savingsResultsBody").data("savings-range-text") + currencyFormatter.format(maxVal);
