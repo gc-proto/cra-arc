@@ -1978,10 +1978,12 @@
                 $("[data-output=area-tax]", savingsformId).html(areaTotal);
                 $("#savingsThresholdYear", savingsformId).html(savingsTotals.maxContributeYear);
                 $("#savingsContributeTotal", savingsformId).html(currencyFormatter.format(savingsTotals.addedAmount));
-                if (savingsTotals.addedAmount === 0 && savingsTotals.deductContribute === 0) {
+                if (savingsTotals.deductContribute === 0 && savingsTotals.investment === 0) {
                     $("[data-zero-val=true]").removeClass("hidden");
+                    $("[data-min-threshold=true]").addClass("hidden");
                 } else {
                     $("[data-zero-val=true]").addClass("hidden");
+                    $("[data-min-threshold=true]").removeClass("hidden");
                 }
                 if (savingsTotals.addedAmount === maxContribution) {
                     $("#savingsThresholdData", savingsformId).removeClass("hidden");
