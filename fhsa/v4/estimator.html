@@ -1252,7 +1252,8 @@
                                     <li data-min-threshold="true"><span data-output="fed-tax"><strong>$0</strong> to <strong>$0</strong></span> in federal tax</li>
                                     <li><span data-min-threshold="true">after <strong data-output="saving-years">0</strong> year<span data-savings-year-range="true">s</span></span><span id="savingsThresholdData"><span data-min-threshold="true">. </span>By year <strong><span id="savingsThresholdYear" data-threshold-year="true">0</span></strong>, you will have reached your lifetime FHSA limit of <strong><span id="savingsContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></li>
                                 </ul>
-                                <p data-show-prior="true">These results do not display tax savings for information you entered for prior years</p>
+                               <p data-zero-val="true">You must include contributions or investment income to get tax savings from your FHSA.</p>
+                               <p data-show-prior="true">These results do not display tax savings for information you entered for prior years</p>
                                 <table data-min-threshold="true" id="savingsTable" class="table table-condensed table-bordered table-striped table-hover">
                                     <caption>Your potential FHSA tax savings</caption>
                                     <thead>
@@ -1976,6 +1977,11 @@
                 $("[data-output=area-tax]", savingsformId).html(areaTotal);
                 $("#savingsThresholdYear", savingsformId).html(savingsTotals.maxContributeYear);
                 $("#savingsContributeTotal", savingsformId).html(currencyFormatter.format(savingsTotals.addedAmount));
+                if (savingsTotals.addedAmount === 0 && savingsTotals.deductContribute === 0) {
+                    $("[data-zero-val=true]").removeClass("hidden");
+                } else {
+                    $("[data-zero-val=true]").addClass("hidden");
+                }
                 if (savingsTotals.addedAmount === maxContribution) {
                     $("#savingsThresholdData", savingsformId).removeClass("hidden");
                 } else {
