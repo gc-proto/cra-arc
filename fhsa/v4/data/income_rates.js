@@ -309,15 +309,23 @@ const incomeRates = [
               "threshold": 49231
             }, 
             {
-              "rate": 0.1116, 
+              "rate": 0.1098, 
+              "threshold": 86698
+            }, 
+            {
+              "rate": 0.13392, 
               "threshold": 98463
             }, 
             {
-              "rate": 0.1216, 
+              "rate": 0.174096, 
+              "threshold": 102135
+            }, 
+            {
+              "rate": 0.189696, 
               "threshold": 150000
             }, 
             {
-              "rate": 0.1316, 
+              "rate": 0.205296, 
               "threshold": 220000
             }
           ]
@@ -343,6 +351,10 @@ const incomeRates = [
             {
               "rate": 0.167, 
               "threshold": 63969
+            }, 
+            {
+              "rate": 0.1837, 
+              "threshold": 101104
             }
           ]
         }
