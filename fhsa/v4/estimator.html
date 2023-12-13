@@ -1967,23 +1967,22 @@
                 } else {
                     areaTotal = "<strong>" + currencyFormatter.format(savingsTotals.areaAmountMin) + "</strong>" + $("#savingsResultsBody").data("savings-range-text") + "<strong>" + currencyFormatter.format(savingsTotals.areaAmountMax) + "</strong>"
                 }
+                $("[data-output=fed-tax]", savingsformId).html(fedTotal);
+                $("[data-output=area-tax]", savingsformId).html(areaTotal);
+                $("#savingsThresholdYear", savingsformId).html(savingsTotals.maxContributeYear);
+                $("#savingsContributeTotal", savingsformId).html(currencyFormatter.format(savingsTotals.addedAmount));
                 if (yearlyIncome() <= savingsTotals.areaExempt && yearlyIncome() <= savingsTotals.fedExempt) {
                     $("[data-min-threshold=false]").removeClass("hidden");
                     $("[data-min-threshold=true]").addClass("hidden");
                 } else {
                     $("[data-min-threshold=false]").addClass("hidden");
-                    $("[data-min-threshold=true]").removeClass("hidden");
-                }
-                $("[data-output=fed-tax]", savingsformId).html(fedTotal);
-                $("[data-output=area-tax]", savingsformId).html(areaTotal);
-                $("#savingsThresholdYear", savingsformId).html(savingsTotals.maxContributeYear);
-                $("#savingsContributeTotal", savingsformId).html(currencyFormatter.format(savingsTotals.addedAmount));
-                if (savingsTotals.deductContribute === 0 && savingsTotals.investment === 0) {
-                    $("[data-zero-val=true]").removeClass("hidden");
-                    $("[data-min-threshold=true]").addClass("hidden");
-                } else {
-                    $("[data-zero-val=true]").addClass("hidden");
-                    $("[data-min-threshold=true]").removeClass("hidden");
+                    if (savingsTotals.deductContribute === 0 && savingsTotals.investment === 0) {
+                        $("[data-zero-val=true]").removeClass("hidden");
+                        $("[data-min-threshold=true]").addClass("hidden");
+                    } else {
+                        $("[data-zero-val=true]").addClass("hidden");
+                        $("[data-min-threshold=true]").removeClass("hidden");
+                    }
                 }
                 if (savingsTotals.addedAmount === maxContribution) {
                     $("#savingsThresholdData", savingsformId).removeClass("hidden");
@@ -2050,11 +2049,11 @@
             if (hasSamePriorSavingsInfo() === true || priorSavingBalance() === 0) {
                 updatePriorSavingBalance();
             }
-           if (this.value === 0) {
-              $("#priorPaymentAmountFHSA").attr("min", 0);
-           } else {
-              $("#priorPaymentAmountFHSA").attr("min", 1);
-           }
+            if (this.value === 0) {
+                $("#priorPaymentAmountFHSA").attr("min", 0);
+            } else {
+                $("#priorPaymentAmountFHSA").attr("min", 1);
+            }
         });
 
         $(paymentformId).on("change", "#priorPaymentAmountFHSA", function () {
@@ -2129,11 +2128,11 @@
             if (hasSamePriorPaymentInfo() === true || priorPaymentBalance() === 0) {
                 updatePriorPaymentBalance();
             }
-           if (this.value === 0) {
-              $("#priorSavingAmountFHSA").attr("min", 0);
-           } else {
-              $("#priorSavingAmountFHSA").attr("min", 1);
-           }
+            if (this.value === 0) {
+                $("#priorSavingAmountFHSA").attr("min", 0);
+            } else {
+                $("#priorSavingAmountFHSA").attr("min", 1);
+            }
         });
 
         $(savingsformId).on("change", "#priorSavingAmountFHSA", function () {
