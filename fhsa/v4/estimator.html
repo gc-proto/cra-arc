@@ -971,7 +971,7 @@
 
                             <div id="paymentInvestPercentGroup" class="form-group mrgn-tp-sm">
                                 <div class="mrgn-lft-md">
-                                    <label for="paymentInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (e.g. 1.75%)</span> <strong class="required">(required)</strong></label>
+                                    <label for="paymentInterest" class="required"><span class="field-name">Expected annual rate of return from your investments</span> <strong class="required">(required)</strong></label>
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments? <span class="glyphicon glyphicon-question-sign"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
@@ -1230,7 +1230,7 @@
 
                             <div id="savingInvestPercentGroup" class="form-group hidden">
                                 <div class="mrgn-lft-md">
-                                    <label for="savingInterest" class="required"><span class="field-name">Expected annual rate of return from your investments (e.g. 1.75%)</span> <strong class="required" aria-hidden="true">(required)</strong></label>
+                                    <label for="savingInterest" class="required"><span class="field-name">Expected annual rate of return from your investments</span> <strong class="required" aria-hidden="true">(required)</strong></label>
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments? <span class="glyphicon glyphicon-question-sign"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
@@ -1253,6 +1253,7 @@
                                     <li data-min-threshold="true"><span data-output="fed-tax"><strong>$0</strong> to <strong>$0</strong></span> in federal tax</li>
                                     <li><span data-min-threshold="true">after <strong data-output="saving-years">0</strong> year<span data-savings-year-range="true">s</span></span><span id="savingsThresholdData"><span data-min-threshold="true">. </span>By year <strong><span id="savingsThresholdYear" data-threshold-year="true">0</span></strong>, you will have reached your lifetime FHSA limit of <strong><span id="savingsContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></li>
                                 </ul>
+                               <p data-zero-val="false" class="hidden">You must participate in your FHSA to get tax savings from your FHSA.</p>
                                <p data-zero-val="true">You must include contributions or investment income to get tax savings from your FHSA.</p>
                                <p data-show-prior="true">These results do not display tax savings for information you entered for prior years</p>
                                 <table data-min-threshold="true" id="savingsTable" class="table table-condensed table-bordered table-striped table-hover">
@@ -1974,13 +1975,20 @@
                 if (yearlyIncome() <= savingsTotals.areaExempt && yearlyIncome() <= savingsTotals.fedExempt) {
                     $("[data-min-threshold=false]").removeClass("hidden");
                     $("[data-min-threshold=true]").addClass("hidden");
+                    $("[data-zero-val]").addClass("hidden");
                 } else {
                     $("[data-min-threshold=false]").addClass("hidden");
                     if (savingsTotals.deductContribute === 0 && savingsTotals.investment === 0) {
-                        $("[data-zero-val=true]").removeClass("hidden");
+                        if (savingsAmount() === 0) {
+                            $("[data-zero-val=false]").removeClass("hidden");
+                            $("[data-zero-val=true]").addClass("hidden");
+                        } else {
+                            $("[data-zero-val=false]").addClass("hidden");
+                            $("[data-zero-val=true]").removeClass("hidden");
+                        }
                         $("[data-min-threshold=true]").addClass("hidden");
                     } else {
-                        $("[data-zero-val=true]").addClass("hidden");
+                        $("[data-zero-val]").addClass("hidden");
                         $("[data-min-threshold=true]").removeClass("hidden");
                     }
                 }
