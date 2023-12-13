@@ -1270,7 +1270,7 @@
                                     <tbody id="savingsResultsBody" class="text-right" data-prior-savings-year-rows="1 to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     </tbody>
                                 </table>
-                                <p>These results may not fully capture your particular tax situation, which may affect their accuracy.<span data-min-threshold="true"> Investment income savings are based on taxing this income at your highest possible tax rate.</span> These results include tax savings from deductible FHSA contributions as well as the investments that would have otherwise been included in income.</p>
+                                <p>These results may not fully capture your particular tax situation, which may affect their accuracy. These results include tax savings from deductible FHSA contributions as well as the investments that would have otherwise been included in income.<span data-min-threshold="true"> Investment income savings are based on taxing this income at your highest possible tax rate.</span></p>
                             </div>
                         </div>
                     </fieldset>
@@ -2050,6 +2050,11 @@
             if (hasSamePriorSavingsInfo() === true || priorSavingBalance() === 0) {
                 updatePriorSavingBalance();
             }
+           if (this.value === 0) {
+              $("#priorPaymentAmountFHSA").attr("min", 0);
+           } else {
+              $("#priorPaymentAmountFHSA").attr("min", 1);
+           }
         });
 
         $(paymentformId).on("change", "#priorPaymentAmountFHSA", function () {
@@ -2124,6 +2129,11 @@
             if (hasSamePriorPaymentInfo() === true || priorPaymentBalance() === 0) {
                 updatePriorPaymentBalance();
             }
+           if (this.value === 0) {
+              $("#priorSavingAmountFHSA").attr("min", 0);
+           } else {
+              $("#priorSavingAmountFHSA").attr("min", 1);
+           }
         });
 
         $(savingsformId).on("change", "#priorSavingAmountFHSA", function () {
