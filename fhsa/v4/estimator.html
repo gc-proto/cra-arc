@@ -1972,7 +1972,7 @@
                 $("[data-output=area-tax]", savingsformId).html(areaTotal);
                 $("#savingsThresholdYear", savingsformId).html(savingsTotals.maxContributeYear);
                 $("#savingsContributeTotal", savingsformId).html(currencyFormatter.format(savingsTotals.addedAmount));
-                if (yearlyIncome() <= savingsTotals.areaExempt && yearlyIncome() <= savingsTotals.fedExempt) {
+                if ((yearlyIncome() <= savingsTotals.areaExempt && yearlyIncome() <= savingsTotals.fedExempt) || (savingsTotals.fedAmountMax === 0 && savingsTotals.areaAmountMax === 0)) {
                     $("[data-min-threshold=false]").removeClass("hidden");
                     $("[data-min-threshold=true]").addClass("hidden");
                     $("[data-zero-val]").addClass("hidden");
