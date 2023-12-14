@@ -1972,13 +1972,14 @@
                 $("[data-output=area-tax]", savingsformId).html(areaTotal);
                 $("#savingsThresholdYear", savingsformId).html(savingsTotals.maxContributeYear);
                 $("#savingsContributeTotal", savingsformId).html(currencyFormatter.format(savingsTotals.addedAmount));
-                if ((yearlyIncome() <= savingsTotals.areaExempt && yearlyIncome() <= savingsTotals.fedExempt) || (savingsTotals.fedAmountMax === 0 && savingsTotals.areaAmountMax === 0)) {
+                if (yearlyIncome() <= savingsTotals.areaExempt && yearlyIncome() <= savingsTotals.fedExempt) {
                     $("[data-min-threshold=false]").removeClass("hidden");
                     $("[data-min-threshold=true]").addClass("hidden");
                     $("[data-zero-val]").addClass("hidden");
                 } else {
                     $("[data-min-threshold=false]").addClass("hidden");
-                    if (savingsTotals.deductContribute === 0 && savingsTotals.investment === 0) {
+                    if ((savingsTotals.deductContribute === 0 && savingsTotals.investment === 0) || (savingsTotals.fedAmountMax === 0 && savingsTotals.areaAmountMax === 0) {
+                        $("[data-min-threshold=true]").addClass("hidden");
                         if (savingsAmount() === 0) {
                             $("[data-zero-val=false]").removeClass("hidden");
                             $("[data-zero-val=true]").addClass("hidden");
@@ -1986,7 +1987,6 @@
                             $("[data-zero-val=false]").addClass("hidden");
                             $("[data-zero-val=true]").removeClass("hidden");
                         }
-                        $("[data-min-threshold=true]").addClass("hidden");
                     } else {
                         $("[data-zero-val]").addClass("hidden");
                         $("[data-min-threshold=true]").removeClass("hidden");
