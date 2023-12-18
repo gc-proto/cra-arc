@@ -297,29 +297,10 @@
 <div class="form-group mrgn-tp-lg">
 <label for="fbhphn" class="required"><span class="field-name">Telephone number</span></label>
 <p><span class="">(brackets, spaces or dashes not accepted)</span></p>
-<input class="form-control" id="fbhphn" name="fbhphn" type="tel" autocomplete="tel" size="10" maxlength="10" required="required" data-rule-phoneUS="true" onpaste="return false" />
+<input class="form-control" id="fbhphn" name="fbhphn" type="tel" autocomplete="tel" size="10" maxlength="10" required="required" pattern="^[0-9]+$" data-rule-phoneUS="true" />
 <span id="error-box"></span>
 </div>
 
-<script type="text/javascript">
-
-function showError (key) {
-  var errBox = document.querySelector("#error-box");
-  errBox.textContent = "The character " + key.toString() + " is not allowed!";
-  //Dismiss the error
-  window.setTimeout(function () {
-      errBox.textContent = "";
-  }, 10000)
-}
-
-document.getElementById("fbhphn").onkeypress = function(e) {
-var chr = String.fromCharCode(e.which);
-
-if (/^[A-Z]\D{2,30}$/.indexOf(chr) >= 0)
-  showError(chr)
-  return false;
-};
-</script>
 
 <!--div class="form-group grouped">
    <label for="tel1" class="required"><span class="field-name">Telephone number</span> </label>
