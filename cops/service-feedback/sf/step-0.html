@@ -67,31 +67,10 @@
 <p class="mrgn-tp-lg"><strong>Fields marked with an asterisk (<span class="text-danger">*</span>) are required.</strong></p>
 
 <script type="text/javascript">
-    function valueChanged()
-    {
-        if($('.feedback-1').is(":checked"))   
-            $(".complaint-1").show();
-        else
-            $(".complaint-1").hide();
+    window.onload = function() {
+    document.getElementById('validation-example').reset()
     }
-</script>
-
-
-<fieldset class="chkbxrdio-grp mrgn-tp-lg">
-<legend class="required"><span class="field-name">Select the feedback type(s) that you would like to submit:</span></legend>
-
-<ul class="form-group list-unstyled">
-   <li class="checkbox">
-      <label for="fbcntc1"><input type="checkbox" name="fbcntc1" id="fbcntc1" value="yes" class="feedback-1" value="1" data-rule-required="true" onchange="valueChanged()" /> Complaint</label>
-   </li>
-   <li class="checkbox">
-      <label for="fbcntc2"><input type="checkbox" name="fbcntc2" id="fbcntc2" value="yes" onclick="location.href='https://gc-proto-cra.github.io/404.html';" onchange="this.checked = !this.checked"> Suggestion</label>
-   </li>
-   <li class="checkbox">
-      <label for="fbcntc3"><input type="checkbox" name="fbcntc3" id="fbcntc3" value="yes" onclick="location.href='https://gc-proto-cra.github.io/404.html';" onchange="this.checked = !this.checked"> Compliment</label>
-   </li>   
-</ul>
-</fieldset>
+</script>   
 
 <script type="text/javascript">
     function valueChanged()
@@ -102,6 +81,8 @@
             $(".complaint-1").hide();
     }
 </script>
+
+
 
 <script type="text/javascript">
    function inline1() {
@@ -114,6 +95,44 @@
    }
 }
 </script>
+
+<script type="text/javascript">
+    function valueChanged2()
+    {
+        if($('.radio4').is(":checked"))   
+            $(".sincls").show();
+            $(".otheracc").hide();
+    }
+</script>
+
+<script type="text/javascript">
+    function valueChanged3()
+    {
+        if($('.radio5').is(":checked"))   
+            $(".otheracc").show();
+            $(".sincls").hide();
+    }
+</script>
+
+<fieldset class="chkbxrdio-grp mrgn-tp-lg">
+<legend class="required"><span class="field-name">Select the feedback type(s) that you would like to submit:</span></legend>
+
+<ul class="form-group list-unstyled">
+   <li class="checkbox">
+      <label for="fbcntc1"><input type="checkbox" name="fbcntc1" id="fbcntc1" value="yes" class="feedback-1" data-rule-required="true" onchange="valueChanged()" /> Complaint</label>
+   </li>
+   <li class="checkbox">
+      <label for="fbcntc2"><input type="checkbox" name="fbcntc2" id="fbcntc2" value="yes" onclick="location.href='https://gc-proto-cra.github.io/404.html';" onchange="this.checked = !this.checked"> Suggestion</label>
+   </li>
+   <li class="checkbox">
+      <label for="fbcntc3"><input type="checkbox" name="fbcntc3" id="fbcntc3" value="yes" onclick="location.href='https://gc-proto-cra.github.io/404.html';" onchange="this.checked = !this.checked"> Compliment</label>
+   </li>   
+</ul>
+</fieldset>
+
+
+
+<section class="complaint-1" style="display:none">
 
 <fieldset class="chkbxrdio-grp">
 <legend class="required"><span class="field-name">How are you submitting service feedback?</span>&nbsp;<a role="button" class="help-glyph" aria-controls="inlineHelp" aria-expanded="false" href="#" onclick="inline1()"><span class="glyphicon glyphicon-question-sign"></span></a></legend>
@@ -130,24 +149,33 @@
 </div>
 </div>
 
+</fieldset>
+
+
+<script type="text/javascript">
+    function valueChangedd()
+    {
+        if($('.submitting-1').is(":checked"))   
+            $(".complaint-2").show();
+        else
+            $(".complaint-2").hide();
+    }
+</script>
+
 <div class="radio">
-   <label for="radio1"><input id="radio1" type="radio" name="optradio" data-rule-required="true">As an individual</label>
+   <label for="radio1"><input id="radio1" type="radio" name="optradio" class="submitting-1" value="yes" data-rule-required="true" onchange="valueChangedd()" />As an individual</label>
 </div>
 <div class="radio">
-   <label for="radio2"><input id="radio2" type="radio" name="optradio" onclick="location.href='https://gc-proto-cra.github.io/404.html';" onchange="this.checked = !this.checked">As a business owner</label>
+   <label for="radio2"><input id="radio2" type="radio" name="optradio">As a business owner</label>
 </div>
 <div class="radio">
-   <label for="radio3"><input id="radio3" type="radio" name="optradio" onclick="location.href='https://gc-proto-cra.github.io/404.html';" onchange="this.checked = !this.checked">As an authorized representative for an individual or business</label>
+   <label for="radio3"><input id="radio3" type="radio" name="optradio">As an authorized representative for an individual or business</label>
 </div>
 </fieldset>
 
-<section class="complaint-1" style="display:none">
 
-TEST SECTION
+<section class="complaint-2" style="display:none">
 
-</section>
-
-<div class="form-group mrgn-tp-lg">
 <hr class="brdr-bttm">  
 <h2 class="h3 mrgn-tp-0">Individual's information</h2>
 
@@ -173,23 +201,7 @@ TEST SECTION
    <label for="radio5"><input id="radio5" type="radio" name="optradio1" class="radio5" onchange="valueChanged3()" />Other account number (ex:Trust account number, Non-resident number)</label>   
 </div>
 
-<script type="text/javascript">
-    function valueChanged2()
-    {
-        if($('.radio4').is(":checked"))   
-            $(".sincls").show();
-            $(".otheracc").hide();
-    }
-</script>
 
-<script type="text/javascript">
-    function valueChanged3()
-    {
-        if($('.radio5').is(":checked"))   
-            $(".otheracc").show();
-            $(".sincls").hide();
-    }
-</script>
 
 <div class="form-group mrgn-tp-lg sincls" style="display:none">
 <label for="sin" class="required"><span class="field-name">Social Insurance Number (or ITN, TTN)</span></label>
@@ -226,7 +238,7 @@ TEST SECTION
 <input class="form-control" type="text" id="city" name="city" size="45" maxlength="50" data-rule-letterswithbasicpunc="true">
 </div>
 
-<div class="form-group">
+<div class="form-group mrgn-tp-lg">
 <label for="province" class="required"><span class="field-name">Province or territory</span></label>
 <select class="form-control" id="province" name="province" required="required">
    <option label="Select a province or territory"></option>
@@ -245,17 +257,45 @@ TEST SECTION
 </select>
 </div>
 
-
-<div class="form-group">
+<div class="form-group mrgn-tp-lg">
    <label for="pcodeca1" class="required"><span class="field-name">Postal code</span> (e.g. A1A 1A1)</label>
    <input class="form-control" id="pcodeca1" name="pcodeca1" type="text" autocomplete="postal-code" size="7" maxlength="7" required="required" data-rule-postalCodeCA="true" />
 </div>
 
+
 <div class="form-group mrgn-tp-lg">
-<label for="fbhphn1" class="required"><span class="field-name">Telephone number</span></label>
-<p><span class="">(brackets, spaces or dashes not accepted)</span></p>
-<input class="form-control" id="fbhphn1" name="fbhphn1" type="tel" autocomplete="tel" size="10" maxlength="10" required="required" data-rule-phoneUS="true" />
+<label for="numbers-only" class="required"><span class="field-name">Telephone number</span></label>
+<p><span class="">Telephone number (numbers only)</span></p>
+<input class="form-control" id="numbers-only" name="numbers-only" type="text" size="12" maxlength="12" required="required" pattern="\d{1,}" onkeyup="this.value = this.value.replace(/[^0-9]/g, '')" />
 </div>
+
+
+<div class="form-group mrgn-tp-lg">
+<label for="fbhphn" class="required"><span class="field-name">Telephone number</span></label>
+<p><span class="">(brackets, spaces or dashes not accepted)</span></p>
+<input class="form-control" id="fbhphn" name="fbhphn" type="tel" autocomplete="tel" size="10" maxlength="10" required="required" data-rule-phoneUS="true" onpaste="return false" />
+<span id="error-box"></span>
+</div>
+
+<script type="text/javascript">
+
+function showError (key) {
+  var errBox = document.querySelector("#error-box");
+  errBox.textContent = "The character " + key.toString() + " is not allowed!";
+  //Dismiss the error
+  window.setTimeout(function () {
+      errBox.textContent = "";
+  }, 10000)
+}
+
+document.getElementById("fbhphn").onkeypress = function(e) {
+var chr = String.fromCharCode(e.which);
+
+if (/^[A-Z]\D{2,30}$/.indexOf(chr) >= 0)
+  showError(chr)
+  return false;
+};
+</script>
 
 <!--div class="form-group grouped">
    <label for="tel1" class="required"><span class="field-name">Telephone number</span> </label>
@@ -266,7 +306,7 @@ TEST SECTION
    </div>
 </div-->
 
-<script>
+<!--script>
 var container = document.getElementsByClassName("grouped")[0];
 container.onkeyup = function(e) {
     var target = e.srcElement;
@@ -284,7 +324,7 @@ container.onkeyup = function(e) {
         }
     }
 }
-</script>
+</script-->
 
 <div class="form-group mrgn-tp-lg">
 <label for="fbhphn5"><span class="field-name">Alternate phone number</span></label>
@@ -293,6 +333,9 @@ container.onkeyup = function(e) {
 </div>
 
 
+
+
+</section>
 </section>
 
 
@@ -300,7 +343,6 @@ container.onkeyup = function(e) {
 <a href="index.html" type="submit" name="fbsbmt10" id="fbsbmt10" value="Previous" class="btn btn-default btn-lg">Previous</a>
 <input type="submit" name="fbsbmt11" id="fbsbmt11" value="Next" class="btn btn-primary btn-lg">
 </div>
-
 
 </form>
 </div>
