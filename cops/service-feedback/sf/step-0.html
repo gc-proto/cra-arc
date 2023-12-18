@@ -157,7 +157,27 @@
     {
         if($('.submitting-1').is(":checked"))   
             $(".complaint-2").show();
-        else
+        
+            $(".complaint-3").hide();
+    }
+</script>
+
+<script type="text/javascript">
+    function valueChangeddd()
+    {
+        if($('.submitting-2').is(":checked"))   
+            $(".complaint-3").show();
+        
+            $(".complaint-2").hide();
+    }
+</script>
+
+<script type="text/javascript">
+    function valueChangedddd()
+    {
+        if($('.submitting-3').is(":checked"))   
+            $(".complaint-3").show();
+        
             $(".complaint-2").hide();
     }
 </script>
@@ -166,13 +186,17 @@
    <label for="radio1"><input id="radio1" type="radio" name="optradio" class="submitting-1" value="yes" data-rule-required="true" onchange="valueChangedd()" />As an individual</label>
 </div>
 <div class="radio">
-   <label for="radio2"><input id="radio2" type="radio" name="optradio">As a business owner</label>
+   <label for="radio2"><input id="radio2" type="radio" name="optradio" class="submitting-2" value="yes" data-rule-required="true" onchange="valueChangeddd()" />As a business owner</label>
 </div>
 <div class="radio">
-   <label for="radio3"><input id="radio3" type="radio" name="optradio">As an authorized representative for an individual or business</label>
+   <label for="radio3"><input id="radio3" type="radio" name="optradio" class="submitting-3" value="yes" data-rule-required="true" onchange="valueChangedddd()" />As an authorized representative for an individual or business</label>
 </div>
 </fieldset>
 
+<section class="complaint-3 alert alert-danger" style="display:none">
+<p><strong>Choose another selection</strong></p>
+</section>    
+<div class="clearfix"></div>
 
 <section class="complaint-2" style="display:none">
 
