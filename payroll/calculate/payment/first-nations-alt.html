@@ -311,7 +311,7 @@
 		"noForm": true,
 		"isoptional": true,
 		"base": { "live": true },
-		"default": { "action": "addClass", "source":"#EI-R1, #EI-R2, #EI-R3, #EI-R4, #EI-R5, #ER-R1, #ER-R2, #ER-R3, #ER-R4, #ER-R5, #SE1-R1, #SE1-R2, #SE1-R3, #SE1-R4, #SE1-R5, #SE2-R1, #SE2-R2, #SE2-R3, #SE2-R4, #SE2-R5, #Condition1", "class": "hidden" }
+		"default": { "action": "addClass", "source":"#EI-R1, #EI-R2, #EI-R3, #EI-R4, #EI-R5, #EI-R6, #EI-R7, #ER-R1, #ER-R2, #ER-R3, #ER-R4, #ER-R5, #SE1-R1, #SE1-R2, #SE1-R3, #SE1-R4, #SE1-R5, #SE2-R1, #SE2-R2, #SE2-R3, #SE2-R4, #SE2-R5, #Condition1", "class": "hidden" }
 	}'>
 
 		<div class="wb-fieldflow-header mrgn-lft-lg">
@@ -448,8 +448,9 @@
 		<div class="wb-fieldflow-header">
 			<hr>
 		<h2 class="mrgn-lft-0 mrgn-bttm-md">Common employment situation</h2>	
-			<p class="wb-fieldflow-label">Does the employee live on a reserve?</p>
-	<p><a href="#ajax-def3" aria-controls="ajax-def3" class="overlay-lnk" role="button">Meaning of employee lives on a reserve <span class="far fa-question-circle"></span></a> 	</p>		
+			<p class="wb-fieldflow-label">Is the employee living on a reserve?</p>
+	<p><a href="#ajax-def3" aria-controls="ajax-def3" class="overlay-lnk" role="button">Meaning of employee lives on a reserve <span class="far fa-question-circle"></span></a> 	</p>
+<p class="text-muted small">Examples: <a href="#ajax-example2a" aria-controls="ajax-example2a" class="overlay-lnk" role="button">Exempt  <span class="far fa-question-circle"></span></a> and <a href="#ajax-example2b" aria-controls="ajax-example2b" class="overlay-lnk" role="button"><strong>not</strong> exempt <span class="far fa-question-circle"></span></a> </p>		
 		</div>
 		<ul>
         		<li data-wb-fieldflow='{"action": "append", "source": "#question-5a"}'>Yes</li>
@@ -463,12 +464,64 @@
 		<div class="wb-fieldflow-header">
 			<hr>
 		<h2 class="mrgn-lft-0 mrgn-bttm-md">Your employee lives on a reserve</h2>	
-			<p class="wb-fieldflow-label">Are you (as an employer) resident on a reserve?</p>
+			<p class="wb-fieldflow-label">Are you (as the employer) considered resident on a reserve?</p>
 	<p><a href="#ajax-def1" aria-controls="ajax-def1" class="overlay-lnk" role="button">Meaning of employer resident on a reserve <span class="far fa-question-circle"></span></a></p>		
 		</div>
 		<ul>
         		<li data-wb-fieldflow='{"action": "removeClass", "source":"#EI-R3", "class":"hidden", "live": true}'>Yes</li>
-			<li data-wb-fieldflow='{"action": "append", "source": "#question-6b"}'>No</li>
+			<li data-wb-fieldflow='{"action": "append", "source": "#question-6a"}'>No</li>
+			
+      		</ul>
+	</div>
+ <!-- Question 6a-->
+	<div id="question-6a" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
+		<div class="wb-fieldflow-header">
+			<hr>
+		<h2 class="mrgn-lft-0 mrgn-bttm-md">Your employee does not live and you are not a resident on a reserve</h2>	
+			<p class="wb-fieldflow-label">Are you in one of the following situation?</p>
+			<p><ul class="list-unstyled cnjnctn-type-and">
+			<div data-ajax-replace="#ajax-tab1-step3ba"></div>	
+			</ul>
+			
+	<p><a href="#ajax-def1" aria-controls="ajax-def1" class="overlay-lnk" role="button">Meaning of employer resident on a reserve <span class="far fa-question-circle"></span></a></p>
+		<p class="text-muted small">Examples: <a href="#ajax-example4a" aria-controls="ajax-example4a" class="overlay-lnk" role="button">Exempt <span class="far fa-question-circle"></span></a> and <a href="#ajax-example4b" aria-controls="ajax-example4b" class="overlay-lnk" role="button"><strong>not</strong> exempt <span class="far fa-question-circle"></span></a> </p>	
+		</div>
+		<ul>
+        		<li data-wb-fieldflow='{"action": "removeClass", "source":"#EI-R3", "class":"hidden", "live": true}'>Yes</li>
+			<li data-wb-fieldflow='{"action": "append", "source": "#question-7a"}'>No</li>
+			
+      		</ul>
+	</div>
+ <!-- Question 7a-->
+	<div id="question-7a" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
+		<div class="wb-fieldflow-header">
+			<hr>
+		
+			<p class="wb-fieldflow-label">Does the employee performs more than 50% of their employment duties on a reserve?</p>
+<p><a href="#ajax-morethan" aria-controls="ajax-morethan" class="overlay-lnk" role="button">How to calculate the percentage of the employment duties<span class="far fa-question-circle"></span></a> on a reserve </p>
+
+<p class="text-muted small"> Examples: <a href="#ajax-example3a" aria-controls="ajax-example3a" class="overlay-lnk" role="button">Exempt  <span class="far fa-question-circle"></span></a> and <a href="#ajax-example3b" aria-controls="ajax-example3b" class="overlay-lnk" role="button"><strong>not</strong> exempt <span class="far fa-question-circle"></span></a> </p>		
+		</div>
+		<ul>
+        		<li data-wb-fieldflow='{"action": "removeClass", "source":"#EI-R3", "class":"hidden", "live": true}'>Yes</li>
+			<li data-wb-fieldflow='{"action": "append", "source": "#question-8a"}'>No</li>
+			
+      		</ul>
+	</div>
+		    
+ <!-- Question 8a-->
+	<div id="question-8a" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
+		<div class="wb-fieldflow-header">
+			<hr>
+		
+			<p class="wb-fieldflow-label">Does the employee performs at least 90% of their employment duties on a reserve?</p>
+<p class="text-muted small">Examples: <a href="#ajax-example1a" aria-controls="ajax-example1a" class="overlay-lnk" role="button">Exempt  <span class="far fa-question-circle"></span></a> and <a href="#ajax-example1b" aria-controls="ajax-example1b" class="overlay-lnk" role="button"><strong>not</strong> exempt <span class="far fa-question-circle"></span></a> </p>
+
+		
+		</div>
+		<ul>
+        		<li data-wb-fieldflow='{"action": "removeClass", "source":"#EI-R3", "class":"hidden", "live": true}'>Yes</li>
+			<li data-wb-fieldflow='{"action": "removeClass", "source":"#EI-R4", "class":"hidden", "live": true}'>No</li>
 			
       		</ul>
 	</div>
@@ -513,6 +566,23 @@
 
 </section>
 
+<section class="alert alert-info hidden gc-font-2019" id="EI-R4">
+	<h3><small>Your result</small><br> Your withholding and reporting obligations when the income is partly tax-exempt</h3>
+<div data-ajax-replace="#ajax-tab1-step3"></div>
+<ul class="list-unstyled cnjnctn-type-and ">
+<li class="cnjnctn-col"><h5 class="text-muted">Withhold</h5>
+<div data-ajax-replace="#ajax-tab1-step4"></div>
+<div data-ajax-replace="#ajax-tab1-step4a"></div>
+<div data-ajax-replace="#ajax-tab1-step4c"></div>	
+</li>
+<li class="cnjnctn-col"><h5 class="text-muted">Report on a T4A slip</h5>
+<div data-ajax-replace="#ajax-tab1-step5"></div>
+<div data-ajax-replace="#ajax-tab1-step5b"></div>
+<div data-ajax-replace="#ajax-tab1-step5c"></div>
+</li>
+</ul>	
+</section>
+
 <section class="alert alert-info hidden gc-font-2019" id="ER-R1">
 	<h3><small>Your result</small><br> You must deduct income tax as you would for your other employees</h3>
 <div data-ajax-replace="#ajax-reg-tab2"></div>
@@ -536,7 +606,7 @@
 </section>
 
 <section class="alert alert-info hidden gc-font-2019" id="ER-R3">
-	<h3><small>Your result</small><br> Your withholding and reporting obligations when the income is fully tax-exempt</h3>
+	<h3><small>Your result</small><br> Your withholding and reporting obligations when the income is partly tax-exempt</h3>
 <ul class="list-unstyled cnjnctn-type-and ">
 <li class="cnjnctn-col"><h5 class="text-muted">Withhold</h5>
 <div data-ajax-replace="#ajax-tab2-step3"></div>
@@ -750,14 +820,14 @@
 
 <ul class="list-unstyled cnjnctn-type-and">
 <li class="cnjnctn-col">You (as the employer) are resident on a reserve </li>
-<li class="cnjnctn-col"> <p>You (as the employer) are:</p>
+<div id="ajax-tab1-step3ba"><li class="cnjnctn-col"><p>You (as the employer) are:</p>
 <ul class="list-unstyled cnjnctn-type-or">
 <li class="cnjnctn-col">A First Nations band which has a reserve, or a tribal council representing 1 or more First Nations bands that have reserves  </li>
 <li class="cnjnctn-col">A <a href="#fncontrol" aria-controls="fncontrol" class="overlay-lnk" role="button">First Nations organization controlled <span class="far fa-question-circle"></span></a> by a First Nations band which has a reserve, or a tribal council representing 1 or more First Nations bands that have reserves, and the organization is dedicated exclusively to the <a href="#ajax-def5" aria-controls="ajax-def5" class="overlay-lnk" role="button">social, cultural, educational, or economic development <span class="far fa-question-circle"></span></a> of First Nations individuals who for the most part live on reserves </li>
 </ul>
 </li>
 <li class="cnjnctn-col">Employee's duties of employment are in connection with the employer's non-commercial activities carried on exclusively for the benefit of First Nations individuals who for the most part live on reserves </li>
-</ul>
+</div></ul>
 
 <p class="text-muted small">Examples: <a href="#ajax-example4a" aria-controls="ajax-example4a" class="overlay-lnk" role="button">Exempt <span class="far fa-question-circle"></span></a> and <a href="#ajax-example4b" aria-controls="ajax-example4b" class="overlay-lnk" role="button"><strong>not</strong> exempt <span class="far fa-question-circle"></span></a> </p>
 <hr>
@@ -802,9 +872,11 @@ on a reserve </li>
 </li>
 
 <li><h4 id="step3e">Determine if a prorated exemption applies to the employment income (guideline 1 – proration rule)</h4>
+<div id="ajax-tab1-step3">
 <p>Generally, the income is partly tax-exempt from income tax if your <a href="#fnterm" aria-controls="fnterm" class="overlay-lnk" role="button">First Nations employee <span class="far fa-question-circle"></span></a> performs less than 90% of the duties related to their employment on a reserve and the income is not exempt in other situations.</p>
 <p>The exemption is prorated to the  <a href="#ajax-morethan" aria-controls="ajax-morethan" class="overlay-lnk" role="button">portion of the income related to the duties the employee performed on the reserve<span class="far fa-question-circle"></span></a>.</p>
 <p class="text-muted small">Examples of proration: <a href="#ajax-example1apro" aria-controls="ajax-example1apro" class="overlay-lnk" role="button">Exempt <span class="far fa-question-circle"></span></a> and <a href="#ajax-example1bpro" aria-controls="ajax-example1bpro" class="overlay-lnk" role="button"><strong>not</strong> exempt <span class="far fa-question-circle"></span></a> </p>
+</div>
 <hr>
 <p class="mrgn-tp-lg"><span class="fas fa-arrow-down text-success fa-lg"> </span> Continue to <a href="#tab1-step4">Step 4 - Withhold deductions on the employment income </a> and select <strong>income partly tax-exempt</strong>.</p>
 </li>
