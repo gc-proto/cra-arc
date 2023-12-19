@@ -448,7 +448,7 @@
 		<div class="wb-fieldflow-header">
 			<hr>
 		<h2 class="mrgn-lft-0 mrgn-bttm-md">Common employment situation</h2>	
-			<p class="wb-fieldflow-label">Does the employee lives on a reserve?</p>
+			<p class="wb-fieldflow-label">Does the employee live on a reserve?</p>
 	<p><a href="#ajax-def3" aria-controls="ajax-def3" class="overlay-lnk" role="button">Meaning of employee lives on a reserve <span class="far fa-question-circle"></span></a> 	</p>		
 		</div>
 		<ul>
@@ -457,6 +457,21 @@
 			
       		</ul>
 	</div>	
+
+ <!-- Question 5a-->
+	<div id="question-5a" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
+		<div class="wb-fieldflow-header">
+			<hr>
+		<h2 class="mrgn-lft-0 mrgn-bttm-md">Your employee lives on a reserve</h2>	
+			<p class="wb-fieldflow-label">Are you (as an employer) resident on a reserve?</p>
+	<p><a href="#ajax-def1" aria-controls="ajax-def1" class="overlay-lnk" role="button">Meaning of employer resident on a reserve <span class="far fa-question-circle"></span></a></p>		
+		</div>
+		<ul>
+        		<li data-wb-fieldflow='{"action": "removeClass", "source":"#EI-R3", "class":"hidden", "live": true}'>Yes</li>
+			<li data-wb-fieldflow='{"action": "append", "source": "#question-6b"}'>No</li>
+			
+      		</ul>
+	</div>
 
 	    </form>  
 </div>
@@ -469,14 +484,33 @@
 </section>
 	  
 <section class="alert alert-info hidden gc-font-2019" id="EI-R1">
-	<h3><small>Your result</small><br> You must deduct CPP, EI and income tax as you would for your other employees</h3>
+	<h3><small>Your result</small><br> Your withholding and reporting obligations</h3>
+<p>You must deduct CPP, EI and income tax as you would for your other employees.</p>
 <div data-ajax-replace="#ajax-reg"></div>
 </section>
 
 <section class="alert alert-info hidden gc-font-2019" id="EI-R2">
-	<h3><small>Your result</small><br> You must deduct CPP, EI and income tax as you would for your other employees</h3>
+	<h3><small>Your result</small><br> Your withholding and reporting obligations</h3>
+<p>You must deduct CPP, EI and income tax as you would for your other employees.</p>
 <div data-ajax-replace="#ajax-uncommon"></div>
 <div data-ajax-replace="#ajax-notreg2"></div>
+</section>
+
+<section class="alert alert-info hidden gc-font-2019" id="EI-R3">
+	<h3><small>Your result</small><br> Your withholding and reporting obligations when the income is fully tax-exempt</h3>
+<ul class="list-unstyled cnjnctn-type-and ">
+<li class="cnjnctn-col"><h5 class="text-muted">Withhold</h5>
+<div data-ajax-replace="#ajax-tab1-step4"></div>
+<div data-ajax-replace="#ajax-tab1-step4a"></div>
+
+</li>
+<li class="cnjnctn-col"><h5 class="text-muted">Report on a T4 slip</h5>
+<div data-ajax-replace="#ajax-tab1-step5"></div>
+<div data-ajax-replace="#ajax-tab1-step5a"></div>
+<div data-ajax-replace="#ajax-tab1-step5c"></div>
+</li>
+</ul>	
+
 </section>
 
 <section class="alert alert-info hidden gc-font-2019" id="ER-R1">
@@ -491,7 +525,7 @@
 <li class="cnjnctn-col"><h5 class="text-muted">Withhold</h5>
 <div data-ajax-replace="#ajax-tab2-step3"></div>
 <div data-ajax-replace="#ajax-tab2-step3a"></div>
-<div data-ajax-replace="#ajax-tab2-step3c"></div>
+
 </li>
 <li class="cnjnctn-col"><h5 class="text-muted">Report on a T4A slip</h5>
 <div data-ajax-replace="#ajax-tab2-step4"></div>
@@ -779,38 +813,41 @@ on a reserve </li>
  </li>
 
 <li><h3 id="step4">Withhold deductions on the employment income </h3>
-<p class="mrgn-bttm-lg">Generally, you must withhold the following deductions on the employment income you paid to your First Nations employee depending if the income is:</p>
-
+<div id="ajax-tab1-step4">
+<p class="mrgn-bttm-lg">Generally, you must withhold the following deductions on the employment income you paid to your First Nations employee:</p>
+</div>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col"><h4>Fully tax-exempt</h4>
+<div id="ajax-tab1-step4a">
  <ul class="fa-ul mrgn-bttm-lg">
 <li><span class="fas fa-times text-danger fa-li"></span> Income tax <small>- <strong>Do not</strong> withhold</small></li> 	 
  <li><span class="fas fa-check fa-li text-success"></span> EI <small>- Withhold on <strong>all</strong> income</small></li>
  <li><span class="fas fa-check fa-li text-success"></span> CPP <small>- Withhold <strong>only</strong> if you filed Form <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/cpt124.html">CPT124</a></small></li>
 </ul></li>
 <li class="cnjnctn-col"><h4>Partly tax-exempt</h4>
+<div id="ajax-tab1-step4b">
  <ul class="fa-ul mrgn-bttm-lg">
 <li><span class="fas fa-check fa-li text-success"></span> Income tax <small>- Withhold <strong>only</strong> on taxable income</small></li> 	
  <li><span class="fas fa-check fa-li text-success"></span> EI <small>- Withhold on <strong>all</strong> income</small></li> 	
 <li><span class="fas fa-check fa-li text-success"></span> CPP <small>- Withhold <strong>only</strong> on taxable income <strong>or</strong> on all income if you filed Form <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/cpt124.html">CPT124</a></small></li>  
- </ul></li></ul>
-
+ </div></ul></li></ul>
 <div id="ajax-cpp-info">
 <p>CPP <strong>is only </strong>withheld on the portion of the income that is taxable. Where the income is not taxable, CPP is <strong>not </strong>withheld, <strong>except </strong>if the employer has filed Form <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/cpt124.html">CPT124</a> - Application to Cover the Employment of an Indian in Canada under the Canada Pension Plan whose Income is Exempt under the Income Tax Act.</p>
 <p>If the employer chooses not to apply for coverage, a <strong>First Nations employee</strong> can elect to pay <strong>CPP </strong>on tax-exempt earnings on Form <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/cpt20.html">CPT20</a>, Election to Pay Canada Pension Plan Contributions when filing their personal income tax return.</p>
   </div>
 
-
+<div id="ajax-tab1-step4c">
 <p class="mrgn-tp-lg">Learn more: <span class="fas fa-calculator fa-xl text-muted"></span> <a href="/cra-arc/payroll/calculate/how/index.html">How to calculate payroll deductions and contributions</a> </p>
- 
+ </div> 
  </li>
 
 <li><h3 id="tab1-step5">Report the payment on a T4 slip</h3>
-
-<p class="mrgn-bttm-lg">Generally, you must report on a <strong>T4 slip</strong> the employment income paid to your First Nations employee depending if the income is:</p>
-
+<div id="ajax-tab1-step5">
+<p class="mrgn-bttm-lg">Generally, you must report on a <strong>T4 slip</strong> the following employment income paid to your First Nations employee:</p>
+</div> 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col"><h4>Fully tax-exempt</h4>
+<div id="ajax-tab1-step5a">
  <h5>Income and source deductions</h5>
  <ul class="fa-ul mrgn-bttm-lg">
 <li><span class="fas fa-check fa-li text-success"></span>Code 71 <small>- Report <strong>tax-exempt</strong> employment income</small></li>
@@ -832,7 +869,7 @@ on a reserve </li>
 
  </li>
 <li class="cnjnctn-col"><h4>Partly tax-exempt</h4>
-
+<div id="ajax-tab1-step5b">
  <h5>Income and source deductions</h5>
  <ul class="fa-ul mrgn-bttm-lg">
 <li><span class="fas fa-check fa-li text-success"></span>Boxes 14 <small>- Report <strong>only on taxable</strong>  employment income</small></li>
@@ -864,12 +901,15 @@ on a reserve </li>
  <ul class="fa-ul mrgn-bttm-lg">
 <li><span class="fas fa-check fa-li text-success"></span>Codes for taxable benefits (for example, code 40) <small class="text-muted">- Report <strong>only on taxable income</strong> if you provided employment benefits</small> </li>
 </ul>
-</li>
+</div></li>
 
 </ul>
+<div id="ajax-tab1-step5c">
 <p class="mrgn-tp-lg">Under the CRA administrative policy, a slip <strong>must</strong> be issued if the total of all payments in the calendar year were <strong>more than $500</strong> or you deducted CPP, EI or income tax from the payment.</p>   
-	 
+</div>	
+<div id="ajax-tab1-step5d"> 
 <p class="mrgn-tp-lg">Learn more: <span class="fas fa-file-invoice fa-xl text-muted"></span> <a href="/cra-arc/payroll/file/t4slip.html">T4 slip - Information for employers</a></p>
+</div>
 </li>
 
 </ol>
