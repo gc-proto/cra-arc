@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-    <title>FHSA estimators - Canada.ca</title>
+    <title>Tax-Free First Home Savings Account Estimators - Canada.ca</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta name="robots" content="noindex, follow">
     <!-- Meta data -->
@@ -835,7 +835,7 @@
     <div class="mwsgeneric-base-html parbase section">
 
     <div class="container">
-        <h1 property="name" id="wb-cont" class="gc-thickline">First Home Savings Account Estimators</h1>
+        <h1 property="name" id="wb-cont" class="gc-thickline">Tax-Free First Home Savings Account Estimators</h1>
         <p>You can use these estimators to help you understand how a tax-free first home savings account (FHSA) can help you save for your first home. The first tool estimates how much you can save for your down payment, and the second tool shows your potential tax savings.</p>
         <p><a href="index.html">Learn about the FHSA</a> before using these tools.</p>
         <p>These tools provide <strong>estimates</strong> based on the information you entered. They are intended for illustrative and general information purposes. They may not fully capture your particular tax situation, which may affect the accuracy of the results. The results generated are examples only.</p>
@@ -1318,7 +1318,7 @@
                             <input type="hidden" name="institutionopt" value="CRA">
                             <input type="hidden" name="themeopt" value="Taxes">
                             <input type="hidden" name="sectionopt" value="FHSA">
-                            <input type="hidden" name="pageTitle" value="First home savings account estimator - First home savings account">
+                            <input type="hidden" name="pageTitle" value="Tax-Free First Home Savings Account Estimators">
                             <input type="hidden" name="emailTemplate" value="servcan/gc-pagesuccessen">
                             <div class="gc-pg-hlpfl-btn">
                                 <div class="row row-no-gutters">
@@ -1386,7 +1386,7 @@
             <div class="pagedetails">
                 <dl id="wb-dtmd">
                     <dt>Date modified:</dt>
-                    <dd><time property="dateModified">2023-12-20</time></dd>
+                    <dd><time property="dateModified">2023-12-21</time></dd>
                 </dl>
             </div>
         </div>
@@ -1641,285 +1641,285 @@
                 let tempYear, xmlHttp;
 
                 function srvTime() {
+                try {
+                    //FF, Opera, Safari, Chrome
+                    xmlHttp = new XMLHttpRequest();
+                }
+                catch (err1) {
+                    //IE
                     try {
-                        //FF, Opera, Safari, Chrome
-                        xmlHttp = new XMLHttpRequest();
+                        xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
                     }
-                    catch (err1) {
-                        //IE
+                    catch (err2) {
                         try {
-                            xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
                         }
-                        catch (err2) {
-                            try {
-                                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-                            }
-                            catch (eerr3) {
-                                return new Date().getFullYear();
-                            }
+                        catch (eerr3) {
+                            return new Date().getFullYear();
                         }
                     }
-                    xmlHttp.open("HEAD", window.location.href.toString(), false);
-                    xmlHttp.setRequestHeader("Content-Type", "text/html");
-                    xmlHttp.send("");
-                    return new Date(xmlHttp.getResponseHeader("Date")).getFullYear();
+                }
+                xmlHttp.open("HEAD", window.location.href.toString(), false);
+                xmlHttp.setRequestHeader("Content-Type", "text/html");
+                xmlHttp.send("");
+                return new Date(xmlHttp.getResponseHeader("Date")).getFullYear();
                 }
                 return srvTime();
             }, 
-            generateHoldingsTableData = function (holdingYears, paymentAmount, investment, hasPriorPay, priorPaymentYrs, priorPayAmount, priorPayInvest, priorYearMax, maxContribution) {
-                let yearIncrement, 
-                    loopYears = priorPaymentYrs + holdingYears, 
-                    amountCompound = 0, 
-                    investmentCompound = 0, 
-                    maxContributeYear = loopYears, 
-                    createHoldingsTableBody = function (evalYear, isPriorYear, amountCompound, investmentCompound) {
-                        let holdingCell, 
-                            holdingRow = document.createElement("tr"), 
-                            holdingHeader = document.createElement("th");
+                    generateHoldingsTableData = function (holdingYears, paymentAmount, investment, hasPriorPay, priorPaymentYrs, priorPayAmount, priorPayInvest, priorYearMax, maxContribution) {
+                    let yearIncrement, 
+                        loopYears = priorPaymentYrs + holdingYears, 
+                            amountCompound = 0, 
+                            investmentCompound = 0, 
+                            maxContributeYear = loopYears, 
+                            createHoldingsTableBody = function (evalYear, isPriorYear, amountCompound, investmentCompound) {
+                                let holdingCell, 
+                                holdingRow = document.createElement("tr"), 
+                                holdingHeader = document.createElement("th");
 
-                        if (isPriorYear === true && evalYear > 1) {
-                            holdingHeader.textContent = $("#holdingsResultsBody").data("prior-payment-year-rows") + evalYear;
-                        } else {
-                            holdingHeader.textContent = evalYear;
-                        }
-                        holdingRow.appendChild(holdingHeader);
-                        holdingCell = document.createElement("td");
-                        holdingCell.setAttribute("data-wb-charts-value", amountCompound + "$");
-                        holdingCell.textContent = currencyFormatter.format(amountCompound);
-                        holdingRow.appendChild(holdingCell);
-                        holdingCell = document.createElement("td");
-                        holdingCell.textContent = currencyFormatter.format(investmentCompound);
-                        holdingRow.appendChild(holdingCell);
-                        holdingCell = document.createElement("td");
-                        holdingCell.setAttribute("data-wb-charts-value", amountCompound + investmentCompound + "$");
-                        holdingCell.textContent = currencyFormatter.format(amountCompound + investmentCompound);
-                        holdingRow.appendChild(holdingCell);
-                        document.getElementById("holdingsResultsBody").appendChild(holdingRow);
-                    };
-
-                $("#holdingsResultsBody").html("");
-                if (hasPriorPay === true) {
-                    amountCompound = priorPayAmount;
-                    investmentCompound = priorPayInvest;
-                    createHoldingsTableBody(priorPaymentYrs, true, amountCompound, investmentCompound);
-                }
-
-                if (amountCompound < maxContribution) {
-                    if (loopYears >= priorYearMax + 1) {
-                        loopYears = priorYearMax + 1;
-                        maxContributeYear = loopYears;
-                    }
-                    for (yearIncrement = priorPaymentYrs + 1; yearIncrement <= loopYears; yearIncrement = yearIncrement + 1) {
-                        if (amountCompound + paymentAmount < maxContribution) {
-                            amountCompound = amountCompound + paymentAmount;
-                        } else {
-                            if (amountCompound !== maxContribution) {
-                                maxContributeYear = yearIncrement;
-                            }
-                            amountCompound = maxContribution;
-                        }
-                        investmentCompound = investmentCompound + (investmentCompound + amountCompound) * investment;
-                        createHoldingsTableBody(yearIncrement, false, amountCompound, investmentCompound);
-                    }
-                    return {
-                        "addedAmount": amountCompound, 
-                        "investment": investmentCompound, 
-                        "maxContributeYear": maxContributeYear, 
-                        "yearsheld": loopYears
-                    };
-                }
-            }, 
-            generateSavingsTableData = function (area, federalName, abatementID, income, savingYears, savingsAmount, savingsDirectAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, priorYearMax, maxContribution, startYear, currentYear, incomeRates, pagelang) {
-                let yearIncrement, federalRates, fedSavingsAmt, provinceRates, areaSavingsAmt, juristictionArr, abatement, savingsRow, 
-                    loopYears = priorSavingYears + savingYears, 
-                    amountCompound = 0, 
-                    investmentAmount = 0, 
-                    investmentCompound = 0, 
-                    deductContribAmt = 0, 
-                    deductCumulative = 0, 
-                    fedMinCumulative = 0, 
-                    fedMaxCumulative = 0, 
-                    areaMinCumulative = 0, 
-                    areaMaxCumulative = 0, 
-                    maxContributeYear = loopYears, 
-                    hasInvestment = hasInvestGrowth === true || priorSavingsInvest > 0, 
-                    createSavingsTableBody = function (savingsRow, evalYear, amountCompound, investmentCompound, deductContribAmt, fedMinVal, fedMaxVal, areaMinVal, areaMaxVal, hasInvestment, isPriorYear, isTotal) {
-                        let savingsCell, 
-                            savingsHeader = document.createElement("th"), 
-                            cellContentEval = function (savingsCell, cellContent, naCondCheck) {
-                                let noInvestText;
-
-                                if (naCondCheck) {
-                                    if ("content" in document.createElement("template")) {
-                                        noInvestText = document.getElementById("noInvestText").content.cloneNode(true);
-                                    }
-                                    savingsCell.appendChild(noInvestText);
+                                if (isPriorYear === true && evalYear > 1) {
+                                    holdingHeader.textContent = $("#holdingsResultsBody").data("prior-payment-year-rows") + evalYear;
                                 } else {
-                                    savingsCell.textContent = cellContent;
+                                    holdingHeader.textContent = evalYear;
                                 }
-                                return savingsCell;
-                            }, 
-                            getRateCalcRange = function (minVal, maxVal) {
-                                if (parseInt(maxVal, 10) === 0) {
-                                    return currencyFormatter.format(maxVal);
-                                } else if (parseInt(minVal, 10) === parseInt(maxVal, 10)) {
-                                    return $("#savingsResultsBody").data("savings-text") + currencyFormatter.format(maxVal);
-                                }
-                                return currencyFormatter.format(minVal) + $("#savingsResultsBody").data("savings-range-text") + currencyFormatter.format(maxVal);
+                                holdingRow.appendChild(holdingHeader);
+                                holdingCell = document.createElement("td");
+                                holdingCell.setAttribute("data-wb-charts-value", amountCompound + "$");
+                                holdingCell.textContent = currencyFormatter.format(amountCompound);
+                                holdingRow.appendChild(holdingCell);
+                                holdingCell = document.createElement("td");
+                                holdingCell.textContent = currencyFormatter.format(investmentCompound);
+                                holdingRow.appendChild(holdingCell);
+                                holdingCell = document.createElement("td");
+                                holdingCell.setAttribute("data-wb-charts-value", amountCompound + investmentCompound + "$");
+                                holdingCell.textContent = currencyFormatter.format(amountCompound + investmentCompound);
+                                holdingRow.appendChild(holdingCell);
+                                document.getElementById("holdingsResultsBody").appendChild(holdingRow);
                             };
 
-                        if (isPriorYear === true && evalYear > 1) {
-                            savingsHeader.textContent = $("#savingsResultsBody").data("prior-savings-year-rows") + evalYear;
-                        } else {
-                            savingsHeader.textContent = evalYear;
-                        }
-                        savingsRow.appendChild(savingsHeader);
-                        savingsCell = document.createElement("td");
-                        savingsRow.appendChild(cellContentEval(savingsCell, currencyFormatter.format(amountCompound), isTotal === true));
-                        savingsCell = document.createElement("td");
-                        savingsRow.appendChild(cellContentEval(savingsCell, currencyFormatter.format(deductContribAmt), isPriorYear === true));
-                        savingsCell = document.createElement("td");
-                        savingsRow.appendChild(cellContentEval(savingsCell, currencyFormatter.format(investmentCompound), hasInvestment === false));
-                        savingsCell = document.createElement("td");
-                        savingsRow.appendChild(cellContentEval(savingsCell, getRateCalcRange(areaMinVal, areaMaxVal), isPriorYear === true));
-                        savingsCell = document.createElement("td");
-                        savingsRow.appendChild(cellContentEval(savingsCell, getRateCalcRange(fedMinVal, fedMaxVal), isPriorYear === true));
-                        document.getElementById("savingsResultsBody").appendChild(savingsRow);
-                    }, 
-                    getRefundAmount = function (income, investmentAmount, deductContribAmt, tax, abatement) {
-                        let rateLoop, lastRate, 
-                            maxlimit = 0, 
-                            currentIncome = income;
+                            $("#holdingsResultsBody").html("");
+                            if (hasPriorPay === true) {
+                                amountCompound = priorPayAmount;
+                                investmentCompound = priorPayInvest;
+                                createHoldingsTableBody(priorPaymentYrs, true, amountCompound, investmentCompound);
+                            }
 
-                        if (Object.prototype.hasOwnProperty.call(tax, "rates") === true) {
-                            for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
-                                if (tax.rates[rateLoop].threshold < currentIncome && tax.rates[rateLoop].threshold <= Math.max(0, currentIncome - deductContribAmt)) {
-                                    maxlimit = (deductContribAmt + investmentAmount) * tax.rates[rateLoop].rate * abatement;
-                                    break;
-                                } else if (tax.rates[rateLoop].threshold < currentIncome - deductContribAmt) {
-                                    maxlimit = (tax.rates[rateLoop].threshold) * tax.rates[rateLoop].rate + (currentIncome - tax.rates[rateLoop].threshold) * lastRate * abatement;
-                                    break;
+                            if (amountCompound < maxContribution) {
+                                if (loopYears >= priorYearMax + 1) {
+                                    loopYears = priorYearMax + 1;
+                                    maxContributeYear = loopYears;
                                 }
-                                lastRate = tax.rates[rateLoop].rate;
+                                for (yearIncrement = priorPaymentYrs + 1; yearIncrement <= loopYears; yearIncrement = yearIncrement + 1) {
+                                    if (amountCompound + paymentAmount < maxContribution) {
+                                        amountCompound = amountCompound + paymentAmount;
+                                    } else {
+                                        if (amountCompound !== maxContribution) {
+                                            maxContributeYear = yearIncrement;
+                                        }
+                                        amountCompound = maxContribution;
+                                    }
+                                    investmentCompound = investmentCompound + (investmentCompound + amountCompound) * investment;
+                                    createHoldingsTableBody(yearIncrement, false, amountCompound, investmentCompound);
+                                }
+                                return {
+                                    "addedAmount": amountCompound, 
+                                    "investment": investmentCompound, 
+                                    "maxContributeYear": maxContributeYear, 
+                                    "yearsheld": loopYears
+                                };
                             }
-                            return {
-                                "min": (deductContribAmt + investmentAmount) * tax.rates[0].rate * abatement, 
-                                "max": maxlimit
-                            }
-                        }
-                        return {};
                     }, 
-                    getRatesArr = function (area, ratesArr, pagelang) {
-                        if (typeof incomeRates !== "undefined" && incomeRates.length > 0) {
-                            return ratesArr.find(function findLoc(rateLocs) {
-                                return rateLocs[pagelang] === area;
-                            }, pagelang, area);
-                        }
-                        return {};
-                    }, 
-                    areaRates = function (juristictionArr, rateYear, startYear) {
-                        let evalYear, yearRateArrLen;
+                    generateSavingsTableData = function (area, federalName, abatementID, income, savingYears, savingsAmount, savingsDirectAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, priorYearMax, maxContribution, startYear, currentYear, incomeRates, pagelang) {
+                    let yearIncrement, federalRates, fedSavingsAmt, provinceRates, areaSavingsAmt, juristictionArr, abatement, savingsRow, 
+                        loopYears = priorSavingYears + savingYears, 
+                        amountCompound = 0, 
+                        investmentAmount = 0, 
+                        investmentCompound = 0, 
+                        deductContribAmt = 0, 
+                        deductCumulative = 0, 
+                        fedMinCumulative = 0, 
+                        fedMaxCumulative = 0, 
+                        areaMinCumulative = 0, 
+                        areaMaxCumulative = 0, 
+                        maxContributeYear = loopYears, 
+                        hasInvestment = hasInvestGrowth === true || priorSavingsInvest > 0, 
+                        createSavingsTableBody = function (savingsRow, evalYear, amountCompound, investmentCompound, deductContribAmt, fedMinVal, fedMaxVal, areaMinVal, areaMaxVal, hasInvestment, isPriorYear, isTotal) {
+                            let savingsCell, 
+                                savingsHeader = document.createElement("th"), 
+                                cellContentEval = function (savingsCell, cellContent, naCondCheck) {
+                                    let noInvestText;
 
-                        for (yearRateArrLen = juristictionArr.timeframe.length - 1; yearRateArrLen >= 0; yearRateArrLen = yearRateArrLen - 1) {
-                            for (evalYear = rateYear; evalYear >= startYear; evalYear = evalYear - 1) {
-                                if (juristictionArr.timeframe[yearRateArrLen].year === evalYear) {
-                                    return juristictionArr.timeframe[yearRateArrLen];
+                                    if (naCondCheck) {
+                                        if ("content" in document.createElement("template")) {
+                                            noInvestText = document.getElementById("noInvestText").content.cloneNode(true);
+                                        }
+                                        savingsCell.appendChild(noInvestText);
+                                    } else {
+                                        savingsCell.textContent = cellContent;
+                                    }
+                                    return savingsCell;
+                                }, 
+                                getRateCalcRange = function (minVal, maxVal) {
+                                    if (parseInt(maxVal, 10) === 0) {
+                                        return currencyFormatter.format(maxVal);
+                                    } else if (parseInt(minVal, 10) === parseInt(maxVal, 10)) {
+                                        return $("#savingsResultsBody").data("savings-text") + currencyFormatter.format(maxVal);
+                                    }
+                                    return currencyFormatter.format(minVal) + $("#savingsResultsBody").data("savings-range-text") + currencyFormatter.format(maxVal);
+                                };
+
+                            if (isPriorYear === true && evalYear > 1) {
+                                savingsHeader.textContent = $("#savingsResultsBody").data("prior-savings-year-rows") + evalYear;
+                            } else {
+                                savingsHeader.textContent = evalYear;
+                            }
+                            savingsRow.appendChild(savingsHeader);
+                            savingsCell = document.createElement("td");
+                            savingsRow.appendChild(cellContentEval(savingsCell, currencyFormatter.format(amountCompound), isTotal === true));
+                            savingsCell = document.createElement("td");
+                            savingsRow.appendChild(cellContentEval(savingsCell, currencyFormatter.format(deductContribAmt), isPriorYear === true));
+                            savingsCell = document.createElement("td");
+                            savingsRow.appendChild(cellContentEval(savingsCell, currencyFormatter.format(investmentCompound), hasInvestment === false));
+                            savingsCell = document.createElement("td");
+                            savingsRow.appendChild(cellContentEval(savingsCell, getRateCalcRange(areaMinVal, areaMaxVal), isPriorYear === true));
+                            savingsCell = document.createElement("td");
+                            savingsRow.appendChild(cellContentEval(savingsCell, getRateCalcRange(fedMinVal, fedMaxVal), isPriorYear === true));
+                            document.getElementById("savingsResultsBody").appendChild(savingsRow);
+                        }, 
+                        getRefundAmount = function (income, investmentAmount, deductContribAmt, tax, abatement) {
+                            let rateLoop, lastRate, 
+                                maxlimit = 0, 
+                                currentIncome = income;
+
+                            if (Object.prototype.hasOwnProperty.call(tax, "rates") === true) {
+                                for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
+                                    if (tax.rates[rateLoop].threshold < currentIncome && tax.rates[rateLoop].threshold <= Math.max(0, currentIncome - deductContribAmt)) {
+                                        maxlimit = (deductContribAmt + investmentAmount) * tax.rates[rateLoop].rate * abatement;
+                                        break;
+                                    } else if (tax.rates[rateLoop].threshold < currentIncome - deductContribAmt) {
+                                        maxlimit = (tax.rates[rateLoop].threshold) * tax.rates[rateLoop].rate + (currentIncome - tax.rates[rateLoop].threshold) * lastRate * abatement;
+                                        break;
+                                    }
+                                    lastRate = tax.rates[rateLoop].rate;
+                                }
+                                return {
+                                    "min": (deductContribAmt + investmentAmount) * tax.rates[0].rate * abatement, 
+                                    "max": maxlimit
                                 }
                             }
-                        }
-                        return {};
-                    }, 
-                    getAbatement = function (juristictionArr, abatementId) {
-                        var abate;
-
-                        if (abatementId !== "undefined" && Object.prototype.hasOwnProperty.call(juristictionArr, "abatement") === true) {
-                            abate = juristictionArr.abatement.find(function findLoc(abateVal) {
-                                return Object.keys(abateVal)[0] === abatementId;
-                            }, abatementId);
-                            if (typeof abate === "object") {
-                                return abate[abatementId];
+                            return {};
+                        }, 
+                        getRatesArr = function (area, ratesArr, pagelang) {
+                            if (typeof incomeRates !== "undefined" && incomeRates.length > 0) {
+                                return ratesArr.find(function findLoc(rateLocs) {
+                                    return rateLocs[pagelang] === area;
+                                }, pagelang, area);
                             }
-                        }
-                        return 1;
-                    };
+                            return {};
+                        }, 
+                        areaRates = function (juristictionArr, rateYear, startYear) {
+                            let evalYear, yearRateArrLen;
 
-                juristictionArr = getRatesArr(area, incomeRates, pagelang);
-                provinceRates = areaRates(juristictionArr, currentYear, startYear);
-                juristictionArr = getRatesArr(federalName, incomeRates, pagelang);
-                federalRates = areaRates(juristictionArr, currentYear, startYear);
-                abatement = getAbatement(juristictionArr, abatementID);
+                                for (yearRateArrLen = juristictionArr.timeframe.length - 1; yearRateArrLen >= 0; yearRateArrLen = yearRateArrLen - 1) {
+                                    for (evalYear = rateYear; evalYear >= startYear; evalYear = evalYear - 1) {
+                                        if (juristictionArr.timeframe[yearRateArrLen].year === evalYear) {
+                                            return juristictionArr.timeframe[yearRateArrLen];
+                                        }
+                                    }
+                                }
+                            return {};
+                        }, 
+                        getAbatement = function (juristictionArr, abatementId) {
+                            var abate;
 
-                $("#savingsResultsBody").html("");
-                if (hasPriorSavings === true) {
-                    amountCompound = priorSavingAmount;
-                    investmentCompound = priorSavingsInvest;
-                    savingsRow = document.createElement("tr");
-                    createSavingsTableBody(savingsRow, priorSavingYears, amountCompound, investmentCompound, 0, 0, 0, 0, 0, hasInvestment, true, false);
-                }
-                if (amountCompound < maxContribution) {
-                    if (loopYears >= priorYearMax + 1) {
-                        loopYears = priorYearMax + 1;
-                        maxContributeYear = loopYears;
-                    }
-                    for (yearIncrement = priorSavingYears + 1; yearIncrement <= loopYears; yearIncrement = yearIncrement + 1) {
-                        if (amountCompound + savingsAmount < maxContribution) {
-                            deductContribAmt = savingsDirectAmount;
-                            amountCompound = amountCompound + savingsAmount;
-                        } else {
-                            deductContribAmt = (savingsDirectAmount / savingsAmount) * (maxContribution - amountCompound);
-                            if (amountCompound !== maxContribution) {
-                                maxContributeYear = yearIncrement;
+                            if (abatementId !== "undefined" && Object.prototype.hasOwnProperty.call(juristictionArr, "abatement") === true) {
+                                abate = juristictionArr.abatement.find(function findLoc(abateVal) {
+                                    return Object.keys(abateVal)[0] === abatementId;
+                                }, abatementId);
+                                if (typeof abate === "object") {
+                                    return abate[abatementId];
+                                }
                             }
-                            amountCompound = maxContribution;
-                        }
-                        deductCumulative = deductCumulative + deductContribAmt;
-                        investmentAmount = (investmentCompound + amountCompound) * investment;
-                        investmentCompound = investmentCompound + investmentAmount;
-                        fedSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, federalRates, abatement);
-                        areaSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, provinceRates, 1);
-                        fedMinCumulative = fedMinCumulative + fedSavingsAmt.min;
-                        fedMaxCumulative = fedMaxCumulative + fedSavingsAmt.max;
-                        areaMinCumulative = areaMinCumulative + areaSavingsAmt.min;
-                        areaMaxCumulative = areaMaxCumulative + areaSavingsAmt.max;
+                            return 1;
+                        };
+
+                    juristictionArr = getRatesArr(area, incomeRates, pagelang);
+                    provinceRates = areaRates(juristictionArr, currentYear, startYear);
+                    juristictionArr = getRatesArr(federalName, incomeRates, pagelang);
+                    federalRates = areaRates(juristictionArr, currentYear, startYear);
+                    abatement = getAbatement(juristictionArr, abatementID);
+
+                    $("#savingsResultsBody").html("");
+                    if (hasPriorSavings === true) {
+                        amountCompound = priorSavingAmount;
+                        investmentCompound = priorSavingsInvest;
                         savingsRow = document.createElement("tr");
-                        createSavingsTableBody(savingsRow, yearIncrement, amountCompound, investmentAmount, deductContribAmt, fedSavingsAmt.min, fedSavingsAmt.max, areaSavingsAmt.min, areaSavingsAmt.max, hasInvestment, false, false);
+                    createSavingsTableBody(savingsRow, priorSavingYears, amountCompound, investmentCompound, 0, 0, 0, 0, 0, hasInvestment, true, false);
                     }
-                    savingsRow = document.createElement("tr");
-                    savingsRow.setAttribute("class", "success text-right");
-                    createSavingsTableBody(savingsRow, $("#savingsResultsBody").data("total-header"), 0, investmentCompound, deductCumulative, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, hasInvestment, false, true);
-                    return {
-                        "addedAmount": amountCompound, 
-                        "investment": investmentCompound, 
-                        "deductContribute": deductCumulative, 
-                        "fedExempt": federalRates.exemption, 
-                        "areaExempt": provinceRates.exemption, 
-                        "fedAmountMin": fedMinCumulative, 
-                        "fedAmountMax": fedMaxCumulative, 
-                        "areaAmountMin": areaMinCumulative, 
-                        "areaAmountMax": areaMaxCumulative, 
-                        "maxContributeYear": maxContributeYear, 
-                        "yearssaved": loopYears
-                    };
-                }
-            }, 
-            updatePriorYearMax = function (maxYearId, currentYear, fhsaStartYear, priorYearMax, formId) {
-                let adjustedPriorYears;
+                    if (amountCompound < maxContribution) {
+                        if (loopYears >= priorYearMax + 1) {
+                            loopYears = priorYearMax + 1;
+                            maxContributeYear = loopYears;
+                        }
+                        for (yearIncrement = priorSavingYears + 1; yearIncrement <= loopYears; yearIncrement = yearIncrement + 1) {
+                            if (amountCompound + savingsAmount < maxContribution) {
+                                deductContribAmt = savingsDirectAmount;
+                                amountCompound = amountCompound + savingsAmount;
+                            } else {
+                                deductContribAmt = (savingsDirectAmount / savingsAmount) * (maxContribution - amountCompound);
+                                if (amountCompound !== maxContribution) {
+                                    maxContributeYear = yearIncrement;
+                                }
+                                amountCompound = maxContribution;
+                            }
+                            deductCumulative = deductCumulative + deductContribAmt;
+                            investmentAmount = (investmentCompound + amountCompound) * investment;
+                            investmentCompound = investmentCompound + investmentAmount;
+                            fedSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, federalRates, abatement);
+                            areaSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, provinceRates, 1);
+                            fedMinCumulative = fedMinCumulative + fedSavingsAmt.min;
+                            fedMaxCumulative = fedMaxCumulative + fedSavingsAmt.max;
+                            areaMinCumulative = areaMinCumulative + areaSavingsAmt.min;
+                            areaMaxCumulative = areaMaxCumulative + areaSavingsAmt.max;
+                            savingsRow = document.createElement("tr");
+                            createSavingsTableBody(savingsRow, yearIncrement, amountCompound, investmentAmount, deductContribAmt, fedSavingsAmt.min, fedSavingsAmt.max, areaSavingsAmt.min, areaSavingsAmt.max, hasInvestment, false, false);
+                        }
+                        savingsRow = document.createElement("tr");
+                        savingsRow.setAttribute("class", "success text-right");
+                        createSavingsTableBody(savingsRow, $("#savingsResultsBody").data("total-header"), 0, investmentCompound, deductCumulative, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, hasInvestment, false, true);
+                        return {
+                            "addedAmount": amountCompound, 
+                            "investment": investmentCompound, 
+                            "deductContribute": deductCumulative, 
+                            "fedExempt": federalRates.exemption, 
+                            "areaExempt": provinceRates.exemption, 
+                            "fedAmountMin": fedMinCumulative, 
+                            "fedAmountMax": fedMaxCumulative, 
+                            "areaAmountMin": areaMinCumulative, 
+                            "areaAmountMax": areaMaxCumulative, 
+                            "maxContributeYear": maxContributeYear, 
+                            "yearssaved": loopYears
+                        };
+                    }
+                }, 
+                    updatePriorYearMax = function (maxYearId, currentYear, fhsaStartYear, priorYearMax, formId) {
+                        let adjustedPriorYears;
 
-                if (currentYear - fhsaStartYear <= priorYearMax) {
-                    adjustedPriorYears = currentYear - fhsaStartYear;
-                } else {
-                    adjustedPriorYears = priorYearMax;
-                }
-                $(maxYearId).attr("max", adjustedPriorYears);
-                $(maxYearId).data("rule-rangelength", "[1," + adjustedPriorYears + "]");
-                $("[data-max-prior-years=true]", formId).html(adjustedPriorYears);
-                if (adjustedPriorYears < 2) {
-                    $("[data-prior-year-range=true]", formId).addClass("hidden");
-                }
-            }, 
+                        if (currentYear - fhsaStartYear <= priorYearMax) {
+                            adjustedPriorYears = currentYear - fhsaStartYear;
+                        } else {
+                            adjustedPriorYears = priorYearMax;
+                        }
+                        $(maxYearId).attr("max", adjustedPriorYears);
+                        $(maxYearId).data("rule-rangelength", "[1," + adjustedPriorYears + "]");
+                        $("[data-max-prior-years=true]", formId).html(adjustedPriorYears);
+                        if (adjustedPriorYears < 2) {
+                            $("[data-prior-year-range=true]", formId).addClass("hidden");
+                        }
+                    }, 
             updatePaymentResults = function (priorYearMax, maxContribution, paymentformId) {
                 let priorPaymentInvestment = priorPaymentBalance() - priorPaymentAmount(), 
-                    paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
+                paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
 
                 $("[data-output=holdings-total]", paymentformId).html(currencyFormatter.format(paymentTotals.addedAmount + paymentTotals.investment));
                 if (priorPaymentInvestment + paymentTotals.investment > 0) {
@@ -1946,7 +1946,7 @@
                 let fedTotal, areaTotal, 
                     prov = province(), 
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
-                    savingsTotals = generateSavingsTableData(prov.val(), $("#province").data("fed"), prov.data("id"), yearlyIncome(), savingYears(), savingsAmount(), savingsDirectAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
+                savingsTotals = generateSavingsTableData(prov.val(), $("#province").data("fed"), prov.data("id"), yearlyIncome(), savingYears(), savingsAmount(), savingsDirectAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
 
                 if (savingsTotals.yearssaved === 1) {
                     $("[data-savings-year-range=true]", savingsformId).addClass("hidden");
@@ -1991,29 +1991,29 @@
                 }
                 if (savingsTotals.addedAmount === maxContribution) {
                     $("#savingsThresholdData", savingsformId).removeClass("hidden");
-                } else {
+               } else {
                     $("#savingsThresholdData", savingsformId).addClass("hidden");
                 }
             };
 
 
-        currentYear = getCurrentYear(fhsaStartYear);
-        if (currentYear > fhsaStartYear + 1) {
-            $("[data-single-year-range=true]").addClass("hidden");
-        } else {
-            $("[data-single-year-range=true]").removeClass("hidden");
-        }
-        if (currentYear <= fhsaStartYear) {
-            currentYear = fhsaStartYear + 1;
-            $("[data-first-year-date=true]").html(fhsaStartYear);
-            $("[data-first-year=true]").removeClass("hidden");
-            $("[data-first-year=false]").addClass("hidden");
-            $("[data-prior-year=true]").html(fhsaStartYear);
-        } else {
-            $("[data-first-year=true]").addClass("hidden");
-            $("[data-first-year=false]").removeClass("hidden");
-            $("[data-prior-year=true]").html(currentYear - 1);
-        }
+                currentYear = getCurrentYear(fhsaStartYear);
+                if (currentYear > fhsaStartYear + 1) {
+                    $("[data-single-year-range=true]").addClass("hidden");
+                } else {
+                    $("[data-single-year-range=true]").removeClass("hidden");
+                }
+                if (currentYear <= fhsaStartYear) {
+                    currentYear = fhsaStartYear + 1;
+                    $("[data-first-year-date=true]").html(fhsaStartYear);
+                    $("[data-first-year=true]").removeClass("hidden");
+                    $("[data-first-year=false]").addClass("hidden");
+                    $("[data-prior-year=true]").html(fhsaStartYear);
+                } else {
+                    $("[data-first-year=true]").addClass("hidden");
+                    $("[data-first-year=false]").removeClass("hidden");
+                    $("[data-prior-year=true]").html(currentYear - 1);
+                }
         initForms(fhsaStartYear, currentYear, priorYearMax, yearlyMaxContribution, maxContribution, paymentformId, savingsformId);
 
 
