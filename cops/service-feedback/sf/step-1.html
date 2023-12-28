@@ -45,11 +45,8 @@
                 title: "Canada.ca",
                 href: "https://www.canada.ca/en.html"
               },{
-                title: "Canada Revenue Agency",
-                href: "https://www.canada.ca/en/revenue-agency.html"
-              },{
-                title: "Submit Service Feedback",
-                href: "https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/complaints-disputes/make-a-service-complaint.html"
+                title: "Taxes",
+                href: "https://www.canada.ca/en/services/taxes.html"
               },
               {
                 title: "Service feedback - RC193 online form",
@@ -69,7 +66,7 @@
 
 
 <div class="wb-frmvld">
-<form action="step-2.html" method="POST" id="validation-example">
+<form action="step-2.html" method="GET" id="validation-example">
 <rccr-error-aggregator _nghost-ng-c536871899=""><!----></rccr-error-aggregator>
 
 
@@ -105,11 +102,35 @@
 </div><!----><!---->
 
 
-<textarea required="required" id="f49d4ed4-e236-51cd-7806-3063a80db789" rows="10" cols="130" maxlength="10000" aria-describedby="f49d4ed4-e236-51cd-7806-3063a80db789_subtext" class="form-control">    </textarea>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<textarea required="required" id="textarea" rows="10" cols="130" maxlength="10000" aria-describedby="" class="form-control" autofocus> </textarea>
+  <div id="the-count">
+    <span id="current">0</span>
+    <span id="maximum">/ 10000</span>
+  </div>
+
 </div>
 
+<script type="text/javascript">
+$('#textarea').keyup(function() {
+    
+  var characterCount = $(this).val().length,
+      current = $('#current'),
+      maximum = $('#maximum'),
+      theCount = $('#the-count');
+    
+  current.text(characterCount);
+      
+});
+</script>   
 
-
+<style>
+   #the-count {
+   float: right;
+   padding: 0.1rem 0 0 0;
+   font-size: 1.5rem;
+}
+</style>
 
 <div class="form-group mrgn-tp-lg">
 <input type="button" name="fbsbmt20" id="fbsbmt20" value="Previous" class="btn btn-default btn-lg" onclick="history.back()">
