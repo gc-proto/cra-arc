@@ -1,55 +1,104 @@
-let setValue = function(valDisplayRange, rangeValue) {
-  document.getElementById(valDisplayRange).innerHTML = rangeValue;
-};
+  /**
+ * @title WET-BOEW Input range plugin
+ * @overview Plugin to display current value on an input of type range 
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+(function($, window, wb) {
+  "use strict";
+  /*
+   * Variable and function definitions.
+   * These are global to the plugin - meaning that they will be initialized once per page,
+   * not once per instance of plugin on the page. So, this is a good place to define
+   * variables that are common to all instances of the plugin on a page.
+   */
+  var componentName = "wb-input-range",
+      selector = "." + componentName,
+      initEvent = "wb-init" + selector,
+      $document = wb.doc,
+      defaults = {},
+      /**
+       * @method init
+       * @param {jQuery Event} event Event that triggered the function call
+       */
+      init = function(event) {
+          // Start initialization
+          // returns DOM object = proceed with init
+          // returns undefined = do not proceed with init (e.g., already initialized)
+          var elm = wb.init(event, componentName, selector),
+              $elm,
+              settings;
+            if (elm) {
+                $elm = $(elm);
+                // ... Do the plugin initialisation
+                // Get the plugin JSON configuration set on attribute data-wb-input-range
+                settings = $.extend(
+                    true,
+                    {},
+                    defaults,
+                    window[componentName],
+                    wb.getData($elm, componentName)
+                );
 
-document.addEventListener("DOMContentLoaded", function() { 
-  setValue("paymentYearsOutput", document.getElementById("paymentYears").value); 
-});
+                // Call my custom event
+                $elm.trigger("wb-input-range", settings);
+                // Identify that initialization has completed
+                wb.ready($elm, componentName);
+            }
+      }, 
+      doRangeFunc = function(funcName, inputParam) {
+          let funcArr, fnElem;
 
-document.addEventListener("DOMContentLoaded", function() { 
-  setValue("paymentAmountOutput", currencyFormatter.format(document.getElementById("paymentAmount").value)); 
-});
+          if ( funcName.includes( "." ) === true ) {
+            funcArr = funcName.split( "." );
+            fnElem = {};
+              for ( let i = 0; i <= funcArr.length - 1; i = i + 1 ) {
+                  if ( i === funcArr.length - 1 ) {
+                      return fnElem[ funcArr[ i ] ]( inputParam );
+                  } else if (i === 0) {
+                      fnElem = window[ funcArr[ i ] ];
+                  } else {
+                      fnElem = fnElem[ funcArr[ i ] ];
+                  }
+              }
+          } else {
+              return window[ funcName ]( inputParam );
+          }
+      }, 
+      setRangeValue = function( inputRange ) {
+          inputRange.idArr.forEach(function ( currentId ) {
+              let displayText,
+              elm = document.getElementById( currentId );
 
-document.addEventListener("DOMContentLoaded", function() { 
-  setValue("savingYearsOutput", document.getElementById("savingYears").value); 
-});
-
-document.addEventListener("DOMContentLoaded", function() { 
-  setValue("savingsDirectAmountOutput", currencyFormatter.format(document.getElementById("savingsDirectAmount").value)); 
-//  setValue("savingsDirectAmountOutput", intCurrencyFormat(document.getElementById("savingsDirectAmount").value)); 
-});
-
-document.addEventListener("DOMContentLoaded", function() { 
-  setValue("savingsAmountOutput", currencyFormatter.format(document.getElementById("savingsAmount").value));
-  if (parseInt(document.getElementById("savingsAmount").value, 10) <= parseInt(document.getElementById("savingsDirectAmount").value, 10)) {
-    document.getElementById("savingsDirectAmount").value = document.getElementById("savingsAmount").value;
-    setValue("savingsDirectAmountOutput", currencyFormatter.format(document.getElementById("savingsAmount").value)); 
-  }
-});
-  
-$("#paymentYears").on("change input", function() { 
-  setValue("paymentYearsOutput", this.value); 
-});
-
-$("#savingYears").on("change input", function() { 
-  setValue("savingYearsOutput", this.value); 
-});
-
-//currency formatted
-$("#paymentAmount").on("change input", function() { 
-  setValue("paymentAmountOutput", currencyFormatter.format(this.value)); 
-});
-
-//conditional functions
-$("#savingsAmount").on("change input", function() { 
-  if (parseInt(this.value, 10) <= parseInt(document.getElementById("savingsDirectAmount").value, 10)) {
-    setValue("savingsDirectAmountOutput", currencyFormatter.format(this.value)); 
-  }
-  setValue("savingsAmountOutput", currencyFormatter.format(this.value)); 
-});
-
-$("#savingsDirectAmount").on("change input", function() { 
-  if (parseInt(this.value, 10) <= parseInt(document.getElementById("savingsAmount").value, 10)) {
-    setValue("savingsDirectAmountOutput", currencyFormatter.format(this.value)); 
-  }
-});
+              if ( Object.prototype.hasOwnProperty.call(inputRange, "outputData") === true ) {
+                  displayText = doRangeFunc(inputRange.outputData.fn, inputRange.value);
+              } else {
+                  displayText = inputRange.value;
+              }
+              if (elm.tagName === "TEXTAREA" || elm.tagName === "INPUT") {
+                  elm.value = displayText;
+              } else {
+                  elm.innerHTML = displayText;
+              }
+          }, inputRange);
+      };
+  // Add your plugin event handler
+  $document.on("wb-input-range", selector, function(event, data) {
+      var elm = event.currentTarget,
+          $inputElm = $( elm ).find( "input[type=range]" ), 
+          outputData = wb.getData($( elm ).find( ".wb-input-range-display" ), "wb-input-range"), 
+          inputElm = $inputElm[ 0 ];
+          if ( outputData ) {
+              inputElm.outputData = outputData;
+          }
+          inputElm.idArr = [ ];
+          inputElm.idArr = data.target;
+          setRangeValue( inputElm );
+  });
+  $(".wb-input-range").on("change input", "input[type=range]", function( event, data ) {
+      setRangeValue( this );
+  });
+  // Bind the init event of the plugin
+  $document.on("timerpoke.wb " + initEvent, selector, init);
+  // Add the timer poke to initialize the plugin
+  wb.add(selector);
+})(jQuery, window, wb);
