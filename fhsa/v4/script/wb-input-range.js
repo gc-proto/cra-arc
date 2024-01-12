@@ -53,11 +53,11 @@
             fnElem = {};
               for ( let i = 0; i <= funcArr.length - 1; i = i + 1 ) {
                   if ( i === funcArr.length - 1 ) {
-                      if ( typeof fnElem[ funcArr[ i ] ] === "function" ) {
-                          return fnElem[ funcArr[ i ] ]( inputParam );
+                      if ( typeof window[ fnElem[ funcArr[ i ] ] ] === "function" ) {
+                          return window[ fnElem[ funcArr[ i ] ] ]( inputParam );
                       }
                   } else if (i === 0) {
-                      fnElem = window[ funcArr[ i ] ];
+                      fnElem = [ funcArr[ i ] ];
                   } else {
                       fnElem = fnElem[ funcArr[ i ] ];
                   }
