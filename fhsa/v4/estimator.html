@@ -897,7 +897,7 @@
                                     <label id="priorPaymentBalanceLabel" for="priorPaymentBalance" class="required"><span class="field-name">Your<span data-first-year="true" class="hidden"> current</span> FHSA balance<span data-first-year="false"> as of December 31, <span data-prior-year="true">2023</span></span></span> <span class="wb-inv">(dollars only, no cents) </span><strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorPaymentBalance" size="7" maxlength="7" id="priorPaymentBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                        <input type="number" name="priorPaymentBalance" size="7" maxlength="7" id="priorPaymentBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -906,7 +906,7 @@
                                     <p>Include all amounts you have contributed and transferred</p>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorPaymentAmountFHSA" size="7" maxlength="7" id="priorPaymentAmountFHSA" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" min="1" max="40000" data-rule-digits="true">
+                                        <input type="number" name="priorPaymentAmountFHSA" size="7" maxlength="7" id="priorPaymentAmountFHSA" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" min="1" max="40000" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -994,7 +994,7 @@
                                         <li>after <strong data-output="payment-years">0</strong> year<span data-payment-year-range="true">s</span><span id="paymentThresholdData">. By year <strong><span id="paymentThresholdYear" data-threshold-year="true">0</span></strong>, you will have reached your lifetime FHSA limit of <strong><span id="paymentMaxContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></li>
                                     </ul>
                                     <template id="holdtable">
-                                        <table id="holdingsresultstable" class="text-right table table-condensed table-bordered table-striped table-hover" data-prior-payment-year-rows="1 to " data-wb-charts="{&quot;reversettblparsing&quot;: true, &quot;legendinline&quot;: true, &quot;noencapsulation&quot;: true}" data-flot="{&quot;series&quot;: {&quot;area&quot;: {&quot;label&quot;: {&quot;show&quot;: true}}}, &quot;legend&quot;: {&quot;position&quot;: &quot;nw&quot;}, &quot;points&quot;: {&quot;show&quot;: true}}">
+                                        <table id="holdingsresultstable" class="text-right table table-condensed table-bordered table-striped table-hover" data-wb-charts="{&quot;reversettblparsing&quot;: true, &quot;legendinline&quot;: true, &quot;noencapsulation&quot;: false}" data-flot="{&quot;series&quot;: {&quot;area&quot;: {&quot;label&quot;: {&quot;show&quot;: true}}}, &quot;legend&quot;: {&quot;position&quot;: &quot;nw&quot;}, &quot;points&quot;: {&quot;show&quot;: true}}">
                                             <caption>Account holdings by type</caption>
                                             <thead>
                                                 <tr class="bg-primary">
@@ -1039,7 +1039,7 @@
 
                                 <legend class="mrgn-bttm-0 required gc-font-2019" tabindex="-1"><strong><span class="field-name">Did you open or participate in your FHSA in prior years?</span></strong> <strong class="required">(required)</strong></legend>
                                 <p id="hasPriorSavingsDescription"><span data-first-year="true" class="hidden">If you opened your FHSA in <span data-prior-year="true">2023</span> and would like to get estimated tax savings for that year, select "No". </span>Your FHSA participation includes contributing and transferring property into your FHSAs.</p>
-                                <ul class="list-unstyled list-spcd-2 gc-chckbxrdio chckbxrdio-grp">
+                                <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
                                     <li class="radio">
                                         <input type="radio" name="hasPriorSavingFHSA" id="priorsaving-fhsa-true" value="true" data-priorsaving-fhsa="true" data-rule-required="true" aria-describedby="hasPriorSavingsDescription">
                                         <label for="priorsaving-fhsa-true">Yes</label>
@@ -1072,7 +1072,7 @@
                                     <label id="priorSavingBalanceLabel" for="priorSavingBalance" class="required"><span class="field-name">Your<span data-first-year="true" class="hidden"> current</span> FHSA balance<span data-first-year="false"> as of December 31, <span data-prior-year="true">2023</span></span></span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorSavingBalance" size="7" maxlength="7" id="priorSavingBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                        <input type="number" name="priorSavingBalance" size="7" maxlength="7" id="priorSavingBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -1081,7 +1081,7 @@
                                     <p>Include all amounts you have contributed and transferred</p>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorSavingAmountFHSA" size="7" maxlength="7" id="priorSavingAmountFHSA" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" min="1" max="40000" data-rule-digits="true">
+                                        <input type="number" name="priorSavingAmountFHSA" size="7" maxlength="7" id="priorSavingAmountFHSA" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" min="1" max="40000" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -1125,9 +1125,9 @@
                                     <label for="approxYearlyIncome" class="required"><span class="field-name">Approximate yearly taxable income</span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <p>Do not reduce your <a href="#taxable-income-help" aria-controls="taxable-income-help" class="wb-lbx" role="button">taxable income<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a> by any FHSA contributions you plan to make</p>
                                 </div>
-                                <div class="input-group mrgn-lft-md col-lg-3 col-sm-4 col-xs-6">
+                                <div class="input-group mrgn-lft-md col-lg-3 col-sm-4 col-xs-7">
                                     <span class="input-group-addon">$</span>
-                                    <input type="text" name="approxYearlyIncome" size="7" maxlength="7" id="approxYearlyIncome" class="form-control input-lg text-right" required="required" inputmode="numeric" pattern="[0-9]*">
+                                    <input type="number" name="approxYearlyIncome" size="9" maxlength="9" id="approxYearlyIncome" class="form-control input-lg text-right" required="required" inputmode="numeric" pattern="[0-9]*">
                                     <span class="input-group-addon">.00</span>
                                 </div>
                             </div>
@@ -1215,7 +1215,7 @@
                             <fieldset id="hasSavingInvestment-question" class="mrgn-lft-md">
                                 <legend class="mrgn-bttm-sm required gc-font-2019" tabindex="-1"><strong><span class="field-name">Would you like to include the expected rate of investment growth for your FHSA?</span></strong> <strong class="required">(required)</strong></legend>
                                 <div class="clearfix"></div>
-                                <ul class="list-unstyled gc-chckbxrdio chckbxrdio-grp">
+                                <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
                                     <li class="radio">
                                         <input type="radio" name="hasSavingInvestment" id="hasSavingInvestment-true" value="true" data-hassavinginvestment="true" data-rule-required="true" required="required">
                                         <label for="hasSavingInvestment-true">Yes</label>
@@ -1256,7 +1256,7 @@
                                 <p data-zero-val="false" class="hidden">You must participate in your FHSA to get tax savings from your FHSA.</p>
                                 <p data-zero-val="true">You have only entered amounts you plan to both contribute and transfer. You must also include either amounts you plan to contribute or an annual rate of return to get tax savings from your FHSA.</p>
                                 <p data-show-prior="true">These results do not display tax savings for information you entered for prior years.</p>
-                                <table data-min-threshold="true" id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-prior-savings-year-rows="1 to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
+                                <table data-min-threshold="true" id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     <caption>Your potential FHSA tax savings</caption>
                                     <thead>
                                         <tr>
