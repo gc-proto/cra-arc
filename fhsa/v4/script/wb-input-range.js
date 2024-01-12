@@ -53,7 +53,9 @@
             fnElem = {};
               for ( let i = 0; i <= funcArr.length - 1; i = i + 1 ) {
                   if ( i === funcArr.length - 1 ) {
-                      return fnElem[ funcArr[ i ] ]( inputParam );
+                      if ( typeof fnElem[ funcArr[ i ] ] === "function" ) {
+                          return fnElem[ funcArr[ i ] ]( inputParam );
+                      }
                   } else if (i === 0) {
                       fnElem = window[ funcArr[ i ] ];
                   } else {
@@ -61,8 +63,11 @@
                   }
               }
           } else {
-              return window[ funcName ]( inputParam );
+              if ( typeof window[ funcName ] === "function" ) {
+                  return window[ funcName ]( inputParam );
+              }
           }
+          return inputParam;
       }, 
       setRangeValue = function( inputRange ) {
           inputRange.idArr.forEach(function ( currentId ) {
