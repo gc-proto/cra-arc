@@ -857,14 +857,14 @@
                 <form id="fhsa_downpay_form" name="fhsa_cal_form" action="#" method="get" autocomplete="off" class="panel panel-default">
                     <!-- Form 1 STEP 1-->
                     <fieldset id="priorPaymentCheck" class="panel-default p-0">
-                        <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">FHSA participation in <span data-first-year-date="true">prior years</span></span></legend>
+                        <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">FHSA participation in prior years</span></legend>
                         <div class="panel-body mrgn-lft-sm">
 
                             <fieldset id="priorPaymentCheck-question" class="mrgn-lft-md">
 
-                                <legend class="mrgn-bttm-0 required gc-font-2019" tabindex="-1"><strong><span class="field-name">Did you open or participate in your FHSA in <span data-first-year-date="true">prior years</span>?</span></strong> <strong class="required">(required)</strong></legend>
+                                <legend class="mrgn-bttm-0 required gc-font-2019" tabindex="-1"><strong><span class="field-name">Did you open or participate in your FHSA in prior years?</span></strong> <strong class="required">(required)</strong></legend>
                                 <p id="hasPriorPaymentDescription">Your FHSA participation includes contributing and transferring property into your FHSAs</p>
-                                <ul class="list-unstyled gc-chckbxrdio chckbxrdio-grp">
+                                <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
                                     <li class="radio">
                                         <input type="radio" name="hasPriorPaymentFHSA" id="priorpayment-fhsa-true" value="true" data-priorpayment-fhsa="true" data-rule-required="true" aria-describedby="hasPriorPaymentDescription">
                                         <label for="priorpayment-fhsa-true">Yes</label>
@@ -890,7 +890,7 @@
                                     <label id="priorPaymentYearsFHSALabel" for="priorPaymentYearsFHSA" class="required"><span class="field-name">Number of years your FHSA has been open</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span> max) <strong class="required">(required)</strong></label>
                                     <p data-single-year-range="true">If you opened your FHSA in 2023, enter "1" as the number of years</p>
                                     <div class="input-group col-xs-2 col-sm-1">
-                                        <input type="number" name="priorPaymentYearsFHSA" min="1" max="14" id="priorPaymentYearsFHSA" data-rule-minlength="1" data-rule-maxlength="2" class="form-control text-right" data-rule-rangelength="[1,14]">
+                                        <input type="number" name="priorPaymentYearsFHSA" min="1" max="14" id="priorPaymentYearsFHSA" data-rule-minlength="1" data-rule-maxlength="2" class="form-control text-right" imputmode="numeric" data-rule-rangelength="[1,14]">
                                     </div>
                                 </div>
                                 <div id="priorPaymentBalanceElm" class="form-group">
@@ -926,7 +926,7 @@
                                     <label for="paymentYears">Number of years you plan to participate in your FHSA</label>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="wb-input-range form-group">
+                                    <div class="wb-input-range form-group" data-wb-input-range="{&quot;target&quot;: [&quot;paymentYearsOutput&quot;]}">
                                         <datalist id="paymentYearsList" class="d-flex mrgn-tp-xl">
                                             <!--[if lte IE 9]><select><![endif]-->
                                             <option value="1" label="1"></option>
@@ -948,7 +948,7 @@
                                     <label for="paymentAmount"><span class="field-name">Amount you plan to contribute and transfer annually to your FHSA ($250 increments)</span></label>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="wb-input-range form-group mrgn-bttm-md">
+                                    <div class="wb-input-range form-group mrgn-bttm-md" data-wb-input-range="{&quot;target&quot;: [&quot;paymentAmountOutput&quot;]}">
                                         <datalist id="paymentAmountList" class="d-flex mrgn-tp-xl">
                                             <!--[if lte IE 9]><select><![endif]-->
                                             <option value="0" label="$0"></option>
@@ -963,7 +963,7 @@
                                             <!--[if lte IE 9]></select><![endif]-->
                                         </datalist>
                                         <input id="paymentAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="paymentAmountList" aria-describedby="range-instruction">
-                                        <output for="paymentAmount" class="wb-input-range-display" data-wb-input-range='{"func": "currencyFormatter.format"}' id="paymentAmountOutput"></output>
+                                        <output for="paymentAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}" id="paymentAmountOutput"></output>
                                     </div>
                                 </div>
                             </div>
@@ -993,18 +993,19 @@
                                         <li id="paymentGrowthResult">including <strong data-output="investment-growth-total">$0</strong> in investment growth</li>
                                         <li>after <strong data-output="payment-years">0</strong> year<span data-payment-year-range="true">s</span><span id="paymentThresholdData">. By year <strong><span id="paymentThresholdYear" data-threshold-year="true">0</span></strong>, you will have reached your lifetime FHSA limit of <strong><span id="paymentMaxContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></li>
                                     </ul>
-                                        <table id="holdingsresultstable" class="text-right table table-condensed table-bordered table-striped table-hover" data-wb-charts="{&quot;reversettblparsing&quot;: true, &quot;legendinline&quot;: true}" data-flot="{&quot;series&quot;: {&quot;area&quot;: {&quot;label&quot;: {&quot;show&quot;: true}}}}">
+                                    <template id="holdtable">
+                                        <table id="holdingsresultstable" class="text-right table table-condensed table-bordered table-striped table-hover" data-prior-payment-year-rows="1 to " data-wb-charts="{&quot;reversettblparsing&quot;: true, &quot;legendinline&quot;: true, &quot;noencapsulation&quot;: true}" data-flot="{&quot;series&quot;: {&quot;area&quot;: {&quot;label&quot;: {&quot;show&quot;: true}}}, &quot;legend&quot;: {&quot;position&quot;: &quot;nw&quot;}, &quot;points&quot;: {&quot;show&quot;: true}}">
                                             <caption>Account holdings by type</caption>
                                             <thead>
                                                 <tr class="bg-primary">
                                                     <th class="text-left">Years</th>
                                                     <th class="text-right" data-flot="{&quot;color&quot;:&quot;#2d7da6&quot;}">Amounts contributed or transferred</th>
-                                                    <th class="text-right" data-flot="{&quot;area&quot;:{&quot;show&quot;: false}}">Investment income</th>
+                                                    <th class="text-right" data-flot="{&quot;color&quot;:&quot;#ffffff&quot;, &quot;area&quot;:{&quot;show&quot;: false}}">Investment income</th>
                                                     <th class="text-right" data-flot="{&quot;color&quot;:&quot;#285228&quot;}">Total account holdings</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="holdingsResultsBody" data-prior-payment-year-rows="1 to "></tbody>
                                         </table>
+                                    </template>
                                     <p>These results may not fully capture your particular financial situation, which may affect their accuracy.</p>
                                 </div>
                             </div>
@@ -1038,7 +1039,7 @@
 
                                 <legend class="mrgn-bttm-0 required gc-font-2019" tabindex="-1"><strong><span class="field-name">Did you open or participate in your FHSA in prior years?</span></strong> <strong class="required">(required)</strong></legend>
                                 <p id="hasPriorSavingsDescription"><span data-first-year="true" class="hidden">If you opened your FHSA in <span data-prior-year="true">2023</span> and would like to get estimated tax savings for that year, select "No". </span>Your FHSA participation includes contributing and transferring property into your FHSAs.</p>
-                                <ul class="list-unstyled gc-chckbxrdio chckbxrdio-grp">
+                                <ul class="list-unstyled list-spcd-2 gc-chckbxrdio chckbxrdio-grp">
                                     <li class="radio">
                                         <input type="radio" name="hasPriorSavingFHSA" id="priorsaving-fhsa-true" value="true" data-priorsaving-fhsa="true" data-rule-required="true" aria-describedby="hasPriorSavingsDescription">
                                         <label for="priorsaving-fhsa-true">Yes</label>
@@ -1064,7 +1065,7 @@
                                     <label id="priorSavingYearsFHSALabel" for="priorSavingYearsFHSA" class="required"><span class="field-name">Number of years your FHSA has been open</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span> max) <strong class="required">(required)</strong></label>
                                     <p data-single-year-range="true">If you opened your FHSA in 2023, enter "1" as the number of years</p>
                                     <div class="input-group col-xs-2 col-sm-1">
-                                        <input type="number" name="priorSavingYearsFHSA" min="1" max="14" id="priorSavingYearsFHSA" class="form-control text-right" data-rule-minlength="1" data-rule-maxlength="2" data-rule-rangelength="[1,14]">
+                                        <input type="number" name="priorSavingYearsFHSA" min="1" max="14" id="priorSavingYearsFHSA" class="form-control text-right" input="numeric" data-rule-minlength="1" data-rule-maxlength="2" data-rule-rangelength="[1,14]">
                                     </div>
                                 </div>
                                 <div id="priorSavingBalanceElm" class="form-group">
@@ -1126,7 +1127,7 @@
                                 </div>
                                 <div class="input-group mrgn-lft-md col-lg-3 col-sm-4 col-xs-6">
                                     <span class="input-group-addon">$</span>
-                                    <input type="text" name="approxYearlyIncome" size="7" maxlength="7" id="approxYearlyIncome" class="form-control input-lg text-right" required="required" inputmode="decimal" pattern="[0-9]*">
+                                    <input type="text" name="approxYearlyIncome" size="7" maxlength="7" id="approxYearlyIncome" class="form-control input-lg text-right" required="required" inputmode="numeric" pattern="[0-9]*">
                                     <span class="input-group-addon">.00</span>
                                 </div>
                             </div>
@@ -1137,7 +1138,7 @@
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="col-md-12">
-                                    <div class="wb-input-range form-group">
+                                    <div class="wb-input-range form-group" data-wb-input-range="{&quot;target&quot;: [&quot;savingYearsOutput&quot;]}">
                                         <datalist id="savingYearsList" class="d-flex mrgn-tp-xl">
                                             <!--[if lte IE 9]><select><![endif]-->
                                             <option value="1" label="1"></option>
@@ -1161,7 +1162,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-md-12">
-                                        <div class="wb-input-range form-group">
+                                        <div class="wb-input-range form-group" data-wb-input-range="{&quot;target&quot;: [&quot;savingsAmountOutput&quot;]}">
                                             <datalist id="yearlySavingsAmountList" class="d-flex mrgn-tp-xl">
                                                 <!--[if lte IE 9]><select><![endif]-->
                                                 <option value="0" label="$0"></option>
@@ -1176,7 +1177,7 @@
                                                 <!--[if lte IE 9]></select><![endif]-->
                                             </datalist>
                                             <input id="savingsAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="yearlySavingsAmountList" aria-controls="savingsDirectAmount" aria-describedby="range-instruction">
-                                            <output for="savingsAmount" class="wb-input-range-display" data-wb-input-range='{"func": "currencyFormatter.format"}' id="savingsAmountOutput"></output>
+                                            <output for="savingsAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavings&quot;}" id="savingsAmountOutput"></output>
                                         </div>
                                     </div>
                                 </div>
@@ -1188,7 +1189,7 @@
                                         <p class="mrgn-bttm-0"><a href="#direct-contribute-help" aria-controls="direct-contribute-help" class="wb-lbx" role="button">What is the difference between transfers versus contributions in your FHSA?<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a></p>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="wb-input-range form-group">
+                                        <div class="wb-input-range form-group" data-wb-input-range="{&quot;target&quot;: [&quot;savingsDirectAmountOutput&quot;]}">
                                             <datalist id="savingsDirectAmountList" class="d-flex mrgn-tp-xl">
                                                 <!--[if lte IE 9]><select><![endif]-->
                                                 <option value="0" label="$0"></option>
@@ -1203,7 +1204,7 @@
                                                 <!--[if lte IE 9]></select><![endif]-->
                                             </datalist>
                                             <input id="savingsDirectAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="savingsDirectAmountList" aria-controls="savingsAmount" aria-describedby="direct-relation-info range-instruction">
-                                            <output for="savingsDirectAmount" class="wb-input-range-display" data-wb-input-range='{"func": "currencyFormatter.format"}' id="savingsDirectAmountOutput"></output>
+                                            <output for="savingsDirectAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavingsDirect&quot;}" id="savingsDirectAmountOutput"></output>
                                         </div>
                                     </div>
                                 </div>
@@ -1255,7 +1256,7 @@
                                 <p data-zero-val="false" class="hidden">You must participate in your FHSA to get tax savings from your FHSA.</p>
                                 <p data-zero-val="true">You have only entered amounts you plan to both contribute and transfer. You must also include either amounts you plan to contribute or an annual rate of return to get tax savings from your FHSA.</p>
                                 <p data-show-prior="true">These results do not display tax savings for information you entered for prior years.</p>
-                                <table data-min-threshold="true" id="savingsTable" class="table table-condensed table-bordered table-striped table-hover">
+                                <table data-min-threshold="true" id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-prior-savings-year-rows="1 to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     <caption>Your potential FHSA tax savings</caption>
                                     <thead>
                                         <tr>
@@ -1267,7 +1268,6 @@
                                             <th class="text-right">Potential federal tax savings</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="savingsResultsBody" class="text-right" data-prior-savings-year-rows="1 to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total"></tbody>
                                 </table>
                                 <p>These results may not fully capture your particular tax situation, which may affect their accuracy. These results include tax savings from deductible FHSA contributions as well as the investments that would have otherwise been included in income.<span data-min-threshold="true"> Investment income savings are based on taxing this income at your highest possible tax rate.</span></p>
                             </div>
@@ -1473,7 +1473,10 @@
     <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/wet-boew.min.js"></script>
     <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script>
     <script src="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.js"></script>
-    <script src="data/income_rates.js"></script>
+<!--    <script src="data/income_rates.js"></script>-->
+    <script type="module">
+        import {default as incomeRates} from "./data/income_rates.json" assert {"type": "json"};
+    </script>
     <script>
         "use strict";
 
