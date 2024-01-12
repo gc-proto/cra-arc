@@ -1474,10 +1474,7 @@
     <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script>
     <script src="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.js"></script>
 <!--    <script src="data/income_rates.js"></script>-->
-    <script type="module">
-        import {default as incomeRates} from "./data/income_rates.json" assert {"type": "json"};
-    </script>
-    <script defer="defer">
+    <script>
         "use strict";
 
         const maxContribution = 40000, 
@@ -2194,6 +2191,11 @@
                 event.preventDefault();
                 return false;
             }
+        });
+    </script>
+    <script>
+        $.getJSON("income_rates.json", function(data) {
+            incomeRates = data;
         });
     </script>
     <script src="script/wb-input-range.js"></script>
