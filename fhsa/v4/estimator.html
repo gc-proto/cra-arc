@@ -1729,9 +1729,9 @@
                                 holdingHeader = document.createElement("th");
 
                                 if (isPriorYear === true && evalYear > 1) {
-                                    holdingHeader.textContent = (currentYear - evalYear) + ("#holdingsresultstable").data("prior-payment-year-rows") + (currentYear - 1);
+                                    holdingHeader.textContent = "1" + ("#holdingsresultstable").data("prior-payment-year-rows") + evalYear;
                                 } else {
-                                    holdingHeader.textContent = currentYear + evalYear - 1;
+                                    holdingHeader.textContent = evalYear;
                                 }
                                 holdingRow.appendChild(holdingHeader);
                                 holdingCell = document.createElement("td");
@@ -1902,10 +1902,12 @@
                                 };
 
                             if (isPriorYear === true && evalYear > 1) {
-                                savingsHeader.textContent = (currentYear - evalYear) + $("#savingsTable").data("prior-savings-year-rows") + (currentYear - 1);
+                                savingsHeader.textContent = "1" + $("#savingsTable").data("prior-savings-year-rows") + evalYear;
+/*
                             } else if (!isNaN(parseFloat(evalYear)) && isFinite(evalYear)) {
-                                savingsHeader.textContent = currentYear + evalYear - 1;
+                                savingsHeader.textContent = evalYear;
                             } else {
+*/                               
                                 savingsHeader.textContent = evalYear;
                             }
                             savingsRow.appendChild(savingsHeader);
