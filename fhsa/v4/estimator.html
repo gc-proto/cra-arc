@@ -1902,8 +1902,10 @@
 
                             if (isPriorYear === true && evalYear > 1) {
                                 savingsHeader.textContent = (currentYear - evalYear) + $("#savingsTable").data("prior-savings-year-rows") + (currentYear - 1);
-                            } else {
+                            } else if (!isNaN(parseFloat(evalYear)) && isFinite(evalYear)) {
                                 savingsHeader.textContent = currentYear + evalYear - 1;
+                            } else {
+                                savingsHeader.textContent = evalYear;
                             }
                             savingsRow.appendChild(savingsHeader);
                             savingsCell = document.createElement("td");
