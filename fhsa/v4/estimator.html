@@ -1234,7 +1234,7 @@
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments?<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
-                                    <input type="text" name="savingInterest" id="savingInterest" class="form-control input-lg text-right" inputmode="decimal" pattern="^(\d{1,2}(\.\d{1,2})?|\.\d{1,2})$" min="0.01" max="99.99" maxlength="2">
+                                    <input type="text" name="savingInterest" id="savingInterest" class="form-control input-lg text-right" inputmode="decimal" pattern="^(\d{1,2}(\.\d{1,2})?|\.\d{1,2})$" min="0.01" max="99.99" maxlength="5">
                                     <span class="input-group-addon">%</span>
                                 </div>
                             </div>
@@ -1500,29 +1500,17 @@
             pagelang = document.documentElement.lang, 
             NumberParser = class NumberParser {
                 constructor(locale) {
-                    const parts = new Intl.NumberFormat(locale).formatToParts(12345.6), 
-                        numerals = [...new Intl.NumberFormat(locale, {useGrouping: false}).format(9876543210)].reverse(), 
-                        index = new Map(numerals.map(function(d, i) {
-                            [d, i];
-                        }));
-
-                    this._group = new RegExp("[" + parts.find(function(d) {
-                        d.type = "group";
-                    }).value + "]", "g");
-                    this._decimal = new RegExp("[" + parts.find(function(d) {
-                        d.type = "decimal";
-                    }).value + "]");
-                    this._numeral = new RegExp("[" + numerals.join("") + "]", "g");
-                    this._index = function(d) {
-                        index.get(d);
-                    }
+                    const parts = new Intl.NumberFormat(locale).formatToParts(12345.6);
+                    const numerals = [...new Intl.NumberFormat(locale, { useGrouping: false }).format(9876543210)].reverse();
+                    const index = new Map(numerals.map((d, i) => [d, i]));
+               
+                    this._group = new RegExp(`[${parts.find(d => d.type === "group").value}]`, "g");
+                    this._decimal = new RegExp(`[${parts.find(d => d.type === "decimal").value}]`);
+                    this._numeral = new RegExp(`[${numerals.join("")}]`, "g");
+                    this._index = d => index.get(d);
                 }
                 parse(string) {
-                    if (string === string.trim().replace(this._group, "").replace(this._decimal, ".").replace(this._numeral, this._index)) {
-                        return +string;
-                    } else {
-                        return NaN;
-                    }
+                    return (string = string.trim().replace(this._group, "").replace(this._decimal, ".").replace(this._numeral, this._index)) ? +string : NaN;
                 }
             },
             hasPriorPaymentFHSA = function () {
