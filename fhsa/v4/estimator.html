@@ -1507,10 +1507,10 @@
                         }));
 
                     this._group = new RegExp("[" + parts.find(function(d) {
-                        d.type === "group";
+                        d.type = "group";
                     }).value + "]", "g");
                     this._decimal = new RegExp("[" + parts.find(function(d) {
-                        d.type === "decimal";
+                        d.type = "decimal";
                     }).value + "]");
                     this._numeral = new RegExp("[" + numerals.join("") + "]", "g");
                     this._index = function(d) {
@@ -1518,7 +1518,7 @@
                     }
                 }
                 parse(string) {
-                    if (string = string.trim().replace(this._group, "").replace(this._decimal, ".").replace(this._numeral, this._index)) {
+                    if (string === string.trim().replace(this._group, "").replace(this._decimal, ".").replace(this._numeral, this._index)) {
                         return +string;
                     } else {
                         return NaN;
@@ -1651,8 +1651,8 @@
                     $("#priorSavingAmountFHSA").val($("#priorPaymentAmountFHSA").val());
                 }
             }, 
-            getCurrentYear = function (startYear) {
-                let tempYear, xmlHttp;
+            getCurrentYear = function () {
+                let xmlHttp;
 
                 function srvTime() {
                 try {
@@ -1827,7 +1827,7 @@
                 }
             }, 
             updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId) {
-                let  savingsTotals, fedTotal, areaTotal, 
+                let  savingsTotals, fedTotal, areaTotal, currentTbody, 
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
                     prov = province(), 
                     generateSavingsTableData = function (area, federalName, abatementID, income, savingYears, savingsAmount, savingsDirectAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, priorYearMax, maxContribution, startYear, currentYear, incomeRates, pagelang) {
@@ -1888,7 +1888,7 @@
                             return 1;
                         }, 
                         createSavingsTableBody = function (savingsRow, currentYear, evalYear, amountCompound, investmentCompound, deductContribAmt, fedMinVal, fedMaxVal, areaMinVal, areaMaxVal, hasInvestment, isPriorYear, isTotal) {
-                            let savingsBody, savingsCell, 
+                            let savingsCell, 
                                 savingsHeader = document.createElement("th"), 
                                 cellContentEval = function (savingsCell, cellContent, naCondCheck) {
                                     let noInvestText;
@@ -1915,7 +1915,7 @@
                             if (isPriorYear === true && evalYear > 1) {
                                 savingsHeader.textContent = (currentYear - evalYear) + $("#savingsTable").data("prior-savings-year-rows") + (currentYear - 1);
                             } else {
-                                savingsHeader.textContent = currentyear + evalYear - 1;
+                                savingsHeader.textContent = currentYear + evalYear - 1;
                             }
                             savingsRow.appendChild(savingsHeader);
                             savingsCell = document.createElement("td");
@@ -1968,7 +1968,7 @@
                         amountCompound = priorSavingAmount;
                         investmentCompound = priorSavingsInvest;
                         savingsRow = document.createElement("tr");
-                        savingsBody.appendChild(createSavingsTableBody(savingsRow, priorSavingYears, currrentYear, amountCompound, investmentCompound, 0, 0, 0, 0, 0, hasInvestment, true, false));
+                        savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, priorSavingYears, amountCompound, investmentCompound, 0, 0, 0, 0, 0, hasInvestment, true, false));
                     }
                     if (amountCompound < maxContribution) {
                         if (loopYears >= priorYearMax + 1) {
@@ -1995,23 +1995,23 @@
                             investmentAmount = (investmentCompound + amountCompound) * investment;
                             investmentCompound = investmentCompound + investmentAmount;
                             fedSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, federalRates, abatement);
-                            if ($.inArray(fedSavingsAmt.maxrates, fedrates) == -1) {
+                            if ($.inArray(fedSavingsAmt.maxrates, fedrates) === -1) {
                                 fedrates.push(fedSavingsAmt.maxrates); 
                             }
                             fedMinCumulative = fedMinCumulative + fedSavingsAmt.min;
                             fedMaxCumulative = fedMaxCumulative + fedSavingsAmt.max;
                             areaSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, provinceRates, 1);
-                            if ($.inArray(areaSavingsAmt.maxrates, arearates) == -1) {
+                            if ($.inArray(areaSavingsAmt.maxrates, arearates) === -1) {
                                 arearates.push(areaSavingsAmt.maxrates); 
                             }
                             areaMinCumulative = areaMinCumulative + areaSavingsAmt.min;
                             areaMaxCumulative = areaMaxCumulative + areaSavingsAmt.max;
                             savingsRow = document.createElement("tr");
-                            savingsBody.appendChild(createSavingsTableBody(savingsRow, yearIncrement, currrentYear, amountCompound, investmentAmount, deductContribAmt, fedSavingsAmt.min, fedSavingsAmt.max, areaSavingsAmt.min, areaSavingsAmt.max, hasInvestment, false, false));
+                            savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, yearIncrement, amountCompound, investmentAmount, deductContribAmt, fedSavingsAmt.min, fedSavingsAmt.max, areaSavingsAmt.min, areaSavingsAmt.max, hasInvestment, false, false));
                         }
                         savingsRow = document.createElement("tr");
                         savingsRow.setAttribute("class", "success text-right");
-                        savingsBody.appendChild(createSavingsTableBody(savingsRow, $("#savingsTable").data("total-header"), currrentYear, 0, investmentCompound, deductCumulative, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, hasInvestment, false, true));
+                        savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, $("#savingsTable").data("total-header"), 0, investmentCompound, deductCumulative, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, hasInvestment, false, true));
                         return {
                             "tableContent": savingsBody,
                             "addedAmount": amountCompound, 
@@ -2146,13 +2146,15 @@
 */
 
         $(paymentformId).on("change", "#priorPaymentYearsFHSA", function () {
-            if (hasSamePriorSavingsInfo() === true || priorSavingYears() === 0) {
+//            if (hasSamePriorSavingsInfo() === true || priorSavingYears() === 0) {
+            if (priorSavingYears() === 0) {
                 updatePriorSavingYears();
             }
         });
 
         $(paymentformId).on("change", "#priorPaymentBalance", function () {
-            if (hasSamePriorSavingsInfo() === true || priorSavingBalance() === 0) {
+//            if (hasSamePriorSavingsInfo() === true || priorSavingBalance() === 0) {
+            if (priorSavingBalance() === 0) {
                 updatePriorSavingBalance();
             }
             if (this.value === 0) {
@@ -2163,7 +2165,8 @@
         });
 
         $(paymentformId).on("change", "#priorPaymentAmountFHSA", function () {
-            if (hasSamePriorSavingsInfo() === true || priorSavingAmount() === 0) {
+//            if (hasSamePriorSavingsInfo() === true || priorSavingAmount() === 0) {
+            if (priorSavingAmount() === 0) {
                 updatePriorSavingAmount();
             }
         });
@@ -2221,13 +2224,15 @@
 */
 
         $(savingsformId).on("change", "#priorSavingYearsFHSA", function () {
-            if (hasSamePriorPaymentInfo() === true || priorPaymentYears() === 0) {
+//            if (hasSamePriorPaymentInfo() === true || priorPaymentYears() === 0) {
+            if (priorPaymentYears() === 0) {
                 updatePriorPaymentYears();
             }
         });
 
         $(savingsformId).on("change", "#priorSavingBalance", function () {
-            if (hasSamePriorPaymentInfo() === true || priorPaymentBalance() === 0) {
+//            if (hasSamePriorPaymentInfo() === true || priorPaymentBalance() === 0) {
+            if (priorPaymentBalance() === 0) {
                 updatePriorPaymentBalance();
             }
             if (this.value === 0) {
@@ -2238,7 +2243,8 @@
         });
 
         $(savingsformId).on("change", "#priorSavingAmountFHSA", function () {
-            if (hasSamePriorPaymentInfo() === true || priorPaymentAmount() === 0) {
+//            if (hasSamePriorPaymentInfo() === true || priorPaymentAmount() === 0) {
+            if (priorPaymentAmount() === 0) {
                 updatePriorPaymentAmount();
             }
         });
