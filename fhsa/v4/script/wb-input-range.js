@@ -53,12 +53,11 @@
             fnElem = {};
               for ( let i = 0; i <= funcArr.length - 1; i = i + 1 ) {
                   if ( i === funcArr.length - 1 ) {
-                      if ( typeof fnElem[ funcArr[ i ] ]  === "function" ) {
-                          return fnElem[ funcArr[ i ] ] ( inputParam );
-                      }
-                  } else if (i === 0) {
-                      fnElem = window [ funcArr[ i ] ];
-                  } else {
+                  if (i === 0) {
+                      fnElem = funcArr[ i ];
+                  } else if ( i === funcArr.length - 1 && typeof window [ fnElem ] === "function" && Object.prototype.hasOwnProperty.call( window [ fnElem ], funcArr [ i ] ) === true ) {
+                      return window [ fnElem ][ funcArr [ i ] ] ( inputParam );
+                  } else if ( Object.prototype.hasOwnProperty.call( window [ fnElem ], funcArr [ i ] ) === true ) {
                       fnElem = fnElem[ funcArr[ i ] ];
                   }
               }
