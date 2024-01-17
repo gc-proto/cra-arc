@@ -55,9 +55,9 @@
                   if ( i === funcArr.length - 1 ) {
                   if (i === 0) {
                       fnElem = funcArr[ i ];
-                  } else if ( i === funcArr.length - 1 && typeof window [ fnElem ] === "function" && Object.prototype.hasOwnProperty.call( window [ fnElem ], funcArr [ i ] ) === true ) {
+                  } else if ( i === funcArr.length - 1 && typeof window [ fnElem ] !== "undefined" && funcArr[ i ] in window[ fnElem ] && typeof window [ fnElem ][ funcArr [ i ] ] === "function" ) {
                       return window [ fnElem ][ funcArr [ i ] ] ( inputParam );
-                  } else if ( Object.prototype.hasOwnProperty.call( window [ fnElem ], funcArr [ i ] ) === true ) {
+                  } else if (typeof window [ fnElem ] !== "undefined" && funcArr[ i ] in window[ fnElem ] === true ) {
                       fnElem = fnElem[ funcArr[ i ] ];
                   }
               }
