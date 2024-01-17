@@ -902,7 +902,7 @@
                                     </div>
                                 </div>
                                 <div id="priorPaymentYearsFHSAElm" class="form-group">
-                                    <label id="priorPaymentAmountFHSALabel" for="priorPaymentAmountFHSA" class="required"><span class="field-name">Your total FHSA participation for <span data-first-year-date="true">prior years</span></span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
+                                    <label id="priorPaymentAmountFHSALabel" for="priorPaymentAmountFHSA" class="required"><span class="field-name">Your total FHSA participation for prior years</span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <p>Include all amounts you have contributed and transferred</p>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                         <span class="input-group-addon">$</span>
@@ -1058,7 +1058,7 @@
                                 <div class="mrgn-tp-md gc-chckbxrdio chckbxrdio-grp provisional">
                                     <div class="checkbox">
                                         <input id="priorSavingsSameInfo" name="priorSavingsSameInfo" type="checkbox" value="true" data-same-prior="true">
-                                        <label for="priorSavingsSameInfo"><span class="gc-font-2019">Use the "<span data-first-year-date="true">prior years</span>" information from the first tool</span></label>
+                                        <label for="priorSavingsSameInfo"><span class="gc-font-2019">Use the "prior years" information from the first tool</span></label>
                                     </div>
                                 </div>
 -->
@@ -1713,17 +1713,17 @@
                 updatePriorYearMax("#priorSavingYearsFHSA", currentYear, fhsaStartYear, priorYearMax, savingsformId);
                 $("#priorSavingAmountFHSA").attr("max", adjustedPriorContributeMax);
             }, 
-            updatePaymentResults = function (priorYearMax, currentYear, maxContribution, paymentformId) {
+            updatePaymentResults = function (priorYearMax, maxContribution, paymentformId) {
                 let paymentTotals, holdingsTableHeader, 
                     priorPaymentInvestment = priorPaymentBalance() - priorPaymentAmount(), 
-                    generateHoldingsTableData = function (holdingYears, paymentAmount, investment, hasPriorPay, priorPaymentYrs, priorPayAmount, priorPayInvest, priorYearMax, currentYear, maxContribution) {
+                    generateHoldingsTableData = function (holdingYears, paymentAmount, investment, hasPriorPay, priorPaymentYrs, priorPayAmount, priorPayInvest, priorYearMax, maxContribution) {
                         let yearIncrement, holdingRow, 
                             amountCompound = 0, 
                             investmentCompound = 0, 
                             holdingBody = document.createElement("tbody"), 
                             loopYears = priorPaymentYrs + holdingYears, 
                             maxContributeYear = loopYears, 
-                            createHoldingsTableRow = function (evalYear, currentYear, isPriorYear, amountCompound, investmentCompound) {
+                            createHoldingsTableRow = function (evalYear, isPriorYear, amountCompound, investmentCompound) {
                                 let holdingCell, 
                                 holdingRow = document.createElement("tr"), 
                                 holdingHeader = document.createElement("th");
@@ -1751,7 +1751,7 @@
                             if (hasPriorPay === true) {
                                 amountCompound = priorPayAmount;
                                 investmentCompound = priorPayInvest;
-                                holdingRow = createHoldingsTableRow(priorPaymentYrs, currentYear, true, amountCompound, investmentCompound);
+                                holdingRow = createHoldingsTableRow(priorPaymentYrs, true, amountCompound, investmentCompound);
                                 holdingBody.appendChild(holdingRow);
                             }
 
@@ -1770,7 +1770,7 @@
                                         amountCompound = maxContribution;
                                     }
                                     investmentCompound = investmentCompound + (investmentCompound + amountCompound) * investment;
-                                    holdingRow = createHoldingsTableRow(yearIncrement, currentYear, false, amountCompound, investmentCompound);
+                                    holdingRow = createHoldingsTableRow(yearIncrement, false, amountCompound, investmentCompound);
                                     holdingBody.appendChild(holdingRow);
                                 }
                                 return {
@@ -1783,7 +1783,7 @@
                             }
                     };
 
-                paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, currentYear, maxContribution);
+                paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
                 $("[data-output=holdings-total]", paymentformId).html(currencyFormatter.format(paymentTotals.addedAmount + paymentTotals.investment));
                 if (priorPaymentInvestment + paymentTotals.investment > 0) {
                     $("#paymentGrowthResult", paymentformId).removeClass("hidden");
@@ -1816,7 +1816,7 @@
                 }
             }, 
             updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId) {
-                let  savingsTotals, fedTotal, areaTotal, currentTbody, 
+                let savingsTotals, fedTotal, areaTotal, currentTbody, 
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
                     prov = province(), 
                     generateSavingsTableData = function (area, federalName, abatementID, income, savingYears, savingsAmount, savingsDirectAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, priorYearMax, maxContribution, startYear, currentYear, incomeRates, pagelang) {
@@ -1876,7 +1876,7 @@
                             }
                             return 1;
                         }, 
-                        createSavingsTableBody = function (savingsRow, currentYear, evalYear, amountCompound, investmentCompound, deductContribAmt, fedMinVal, fedMaxVal, areaMinVal, areaMaxVal, hasInvestment, isPriorYear, isTotal) {
+                        createSavingsTableBody = function (savingsRow, evalYear, amountCompound, investmentCompound, deductContribAmt, fedMinVal, fedMaxVal, areaMinVal, areaMaxVal, hasInvestment, isPriorYear, isTotal) {
                             let savingsCell, 
                                 savingsHeader = document.createElement("th"), 
                                 cellContentEval = function (savingsCell, cellContent, naCondCheck) {
@@ -1903,10 +1903,6 @@
 
                             if (isPriorYear === true && evalYear > 1) {
                                 savingsHeader.textContent = "1" + $("#savingsTable").data("prior-savings-year-rows") + evalYear;
-/*
-                            } else if (!isNaN(parseFloat(evalYear)) && isFinite(evalYear)) {
-                                savingsHeader.textContent = evalYear;
-*/
                             } else {
                                 savingsHeader.textContent = evalYear;
                             }
@@ -1961,7 +1957,7 @@
                         amountCompound = priorSavingAmount;
                         investmentCompound = priorSavingsInvest;
                         savingsRow = document.createElement("tr");
-                        savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, priorSavingYears, amountCompound, investmentCompound, 0, 0, 0, 0, 0, hasInvestment, true, false));
+                        savingsBody.appendChild(createSavingsTableBody(savingsRow, priorSavingYears, amountCompound, investmentCompound, 0, 0, 0, 0, 0, hasInvestment, true, false));
                     }
                     if (amountCompound < maxContribution) {
                         if (loopYears >= priorYearMax + 1) {
@@ -2000,11 +1996,11 @@
                             areaMinCumulative = areaMinCumulative + areaSavingsAmt.min;
                             areaMaxCumulative = areaMaxCumulative + areaSavingsAmt.max;
                             savingsRow = document.createElement("tr");
-                            savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, yearIncrement, amountCompound, investmentAmount, deductContribAmt, fedSavingsAmt.min, fedSavingsAmt.max, areaSavingsAmt.min, areaSavingsAmt.max, hasInvestment, false, false));
+                            savingsBody.appendChild(createSavingsTableBody(savingsRow, yearIncrement, amountCompound, investmentAmount, deductContribAmt, fedSavingsAmt.min, fedSavingsAmt.max, areaSavingsAmt.min, areaSavingsAmt.max, hasInvestment, false, false));
                         }
                         savingsRow = document.createElement("tr");
                         savingsRow.setAttribute("class", "success text-right");
-                        savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, $("#savingsTable").data("total-header"), 0, investmentCompound, deductCumulative, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, hasInvestment, false, true));
+                        savingsBody.appendChild(createSavingsTableBody(savingsRow, $("#savingsTable").data("total-header"), 0, investmentCompound, deductCumulative, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, hasInvestment, false, true));
                         return {
                             "tableContent": savingsBody,
                             "addedAmount": amountCompound, 
@@ -2179,7 +2175,7 @@
                 $("#paymentresultsbtn").removeClass("btn-primary");
                 $("#paymentresultsbtn").addClass("btn-default");
                 $("#paymentresultsbtn").html($("#paymentresultsbtn").data("btn-activated"));
-                updatePaymentResults(priorYearMax, currentYear, maxContribution, paymentformId);
+                updatePaymentResults(priorYearMax, maxContribution, paymentformId);
                 $("#holdingsResults").removeClass("hidden");
             }
 
