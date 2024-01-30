@@ -1907,36 +1907,46 @@
                             return savingsRow;
                         }, 
                         getRefundAmount = function (income, investmentAmount, deductContribAmt, tax, abatement) {
-                            let rateLoop, taxRates, lastRate, 
+                            let rateLoop, taxRates, lastRate, surtax, 
                                 maxlimit = 0, 
                                 currentIncome = income, 
-                                getSurtaxAdjust = function (taxArr, currentIncome) {
+                                getSurtaxAdjust = function (taxRates, taxArr, currentIncome) {
                                     let surtaxloop, 
+                                        adjustedThreshold = taxRates.threshold, 
                                         adjustedRate = 1;
 
                                     if (Object.prototype.hasOwnProperty.call(taxArr, "surtax") === true) {
                                         for (surtaxloop = 0; surtaxloop <= taxArr.surtax.length - 1; surtaxloop = surtaxloop + 1) {
                                             if (currentIncome >= taxArr.surtax[surtaxloop].threshold) {
                                                 adjustedRate = adjustedRate + taxArr.surtax[surtaxloop].rate;
+                                                if (taxRates.threshold > taxArr.surtax[surtaxloop].threshold && taxRates.threshold <= currentIncome) {
+                                                    adjustedThreshold = taxArr.surtax[surtaxloop].threshold; 
+                                                }
                                             }
                                         }
                                     }
-                                    return adjustedRate;
+                                    return {
+                                        "rate": adjustedRate, 
+                                        "threshold": adjustedThreshold
+                                    };
                                 };
 
                             if (Object.prototype.hasOwnProperty.call(tax, "rates") === true) {
                                 for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
                                     taxRates = tax.rates[rateLoop];
+                                    surtax = getSurtaxAdjust(taxRates, tax, currentIncome);
                                     if (taxRates.threshold <= currentIncome && taxRates.threshold <= Math.max(0, currentIncome - deductContribAmt)) {
-                                        maxlimit = (deductContribAmt + investmentAmount) * taxRates.rate * getSurtaxAdjust(tax, currentIncome) * abatement;
+                                        maxlimit = (deductContribAmt + investmentAmount) * taxRates.rate * surtax.rate * abatement;
                                         break;
                                     } else if (taxRates.threshold < currentIncome - deductContribAmt) {
-                                        maxlimit = (taxRates.threshold) * taxRates.rate * getSurtaxAdjust(tax, currentIncome) + (currentIncome - taxRates.threshold) * lastRate.rate * getSurtaxAdjust(tax, currentIncome) * abatement;
+                                        maxlimit = (taxRates.threshold) * taxRates.rate * surtax.rate + (currentIncome - taxRates.threshold) * lastRate.rate * abatement;
                                         taxRates = lastRate;
                                         break;
                                     }
-                                    lastRate = taxRates;
-                                }
+                                    lastRate = {
+                                        "rate": taxRates.rate * surtax.rate,
+                                        "threshold": taxRates.threshold
+                                    };
                                 return {
                                     "min": (deductContribAmt + investmentAmount) * tax.rates[0].rate * abatement, 
                                     "minrates": tax.rates[0],
