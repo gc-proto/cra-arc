@@ -1514,14 +1514,6 @@
             hasPriorPaymentFHSA = function () {
                 return $(":input[type=radio][name=hasPriorPaymentFHSA]:checked", paymentformId).data("priorpayment-fhsa") || false;
             }, 
-/*
-            hasSamePriorPaymentInfo = function () {
-                if (hasPriorPaymentFHSA() === true) {
-                    return $(":input[type=checkbox][name=priorPaymentSameInfo]:checked", paymentformId).data("same-prior") || false;
-                }
-                return false;
-            }, 
-*/
             priorPaymentYears = function () {
                 if (hasPriorPaymentFHSA() === true) {
                     return parseInt($("#priorPaymentYearsFHSA").val(), 10) || 0;
@@ -1554,14 +1546,6 @@
             hasPriorSavingsFHSA = function () {
                 return $(":input[type=radio][name=hasPriorSavingFHSA]:checked", savingsformId).data("priorsaving-fhsa") || false;
             }, 
-/*
-            hasSamePriorSavingsInfo = function () {
-                if (hasPriorSavingsFHSA() === true) {
-                    return $(":input[type=checkbox][name=priorSavingsSameInfo]:checked", savingsformId).data("same-prior") || false;
-                }
-                return false;
-            }, 
-*/
             priorSavingYears = function () {
                 if (hasPriorSavingsFHSA() === true) {
                     return parseInt($("#priorSavingYearsFHSA").val(), 10) || 0;
@@ -2139,25 +2123,13 @@
             }
         });
 
-/*
-        $(paymentformId).on("click vclick touchstart", "input[type=checkbox][name=priorPaymentSameInfo]", function () {
-            if (hasSamePriorPaymentInfo() === true) {
-                updatePriorPaymentYears();
-                updatePriorPaymentBalance();
-                updatePriorPaymentAmount();
-            }
-        });
-*/
-
         $(paymentformId).on("change", "#priorPaymentYearsFHSA", function () {
-//            if (hasSamePriorSavingsInfo() === true || priorSavingYears() === 0) {
             if (priorSavingYears() === 0) {
                 updatePriorSavingYears();
             }
         });
 
         $(paymentformId).on("change", "#priorPaymentBalance", function () {
-//            if (hasSamePriorSavingsInfo() === true || priorSavingBalance() === 0) {
             if (priorSavingBalance() === 0) {
                 updatePriorSavingBalance();
             }
@@ -2169,7 +2141,6 @@
         });
 
         $(paymentformId).on("change", "#priorPaymentAmountFHSA", function () {
-//            if (hasSamePriorSavingsInfo() === true || priorSavingAmount() === 0) {
             if (priorSavingAmount() === 0) {
                 updatePriorSavingAmount();
             }
@@ -2215,25 +2186,13 @@
             }
         });
 
-/*
-        $(savingsformId).on("click vclick touchstart", "input[type=checkbox][name=priorSavingsSameInfo]", function () {
-            if (hasSamePriorSavingsInfo() === true) {
-                updatePriorSavingYears();
-                updatePriorSavingBalance();
-                updatePriorSavingAmount();
-            }
-        });
-*/
-
         $(savingsformId).on("change", "#priorSavingYearsFHSA", function () {
-//            if (hasSamePriorPaymentInfo() === true || priorPaymentYears() === 0) {
             if (priorPaymentYears() === 0) {
                 updatePriorPaymentYears();
             }
         });
 
         $(savingsformId).on("change", "#priorSavingBalance", function () {
-//            if (hasSamePriorPaymentInfo() === true || priorPaymentBalance() === 0) {
             if (priorPaymentBalance() === 0) {
                 updatePriorPaymentBalance();
             }
@@ -2245,7 +2204,6 @@
         });
 
         $(savingsformId).on("change", "#priorSavingAmountFHSA", function () {
-//            if (hasSamePriorPaymentInfo() === true || priorPaymentAmount() === 0) {
             if (priorPaymentAmount() === 0) {
                 updatePriorPaymentAmount();
             }
