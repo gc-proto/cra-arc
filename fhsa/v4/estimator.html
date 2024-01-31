@@ -857,7 +857,7 @@
                     <!-- Form 1 STEP 1-->
                     <fieldset class="panel-default p-0">
                         <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">FHSA participation in prior years</span></legend>
-                        <div class="panel-body mrgn-lft-sm">
+                        <div class="panel-body mrgn-lft-md">
 
                             <fieldset class="mrgn-lft-md">
 
@@ -1033,7 +1033,7 @@
                     <!-- Form 2 STEP 1-->
                     <fieldset id="priorSavingsCheck" class="panel-default p-0">
                         <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">FHSA participation in prior years</span></legend>
-                        <div class="panel-body mrgn-lft-sm">
+                        <div class="panel-body mrgn-lft-md">
 
                             <fieldset id="priorSavingsCheck-question" class="mrgn-lft-md">
 
@@ -1801,7 +1801,7 @@
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
                     prov = province(), 
                     generateSavingsTableData = function (area, federalName, abatementID, income, savingYears, savingsAmount, savingsTransferAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, priorYearMax, maxContribution, startYear, currentYear, incomeRates, pagelang) {
-                    let juristictionArr, federalRates, abatement, provinceRates, yearIncrement, fedSavingsAmt, areaSavingsAmt, savingsRow, 
+                    let juristictionArr, federalRates, abatement, provinceRates, yearIncrement, saveAmountsObj, savingsRow, 
                         fedrates = [], 
                         arearates = [], 
                         amountCompound = 0, 
@@ -1906,68 +1906,93 @@
                             savingsRow.appendChild(cellContentEval(savingsCell, getRateCalcRange(fedMinVal, fedMaxVal), isPriorYear === true));
                             return savingsRow;
                         }, 
-                        getRefundAmount = function (income, investmentAmount, deductContribAmt, tax, abatement) {
-                            let rateLoop, taxRates, lastRate, surtax, 
-                                maxlimit = 0, 
-                                currentIncome = income, 
-                                getSurtaxAdjust = function (taxRates, taxArr, currentIncome) {
-                                    let surtaxloop, 
-                                        adjustedThreshold = taxRates.threshold, 
-                                        adjustedRate = 1;
+                        calcLocAmounts = function (income, investmentAmount, deductContribAmt, federalRates, fedrates, provinceRates, arearates, abatement) {
+                            let fedSavingsAmt, areaSavingsAmt, 
+                            getRefundAmount = function (income, investmentAmount, deductContribAmt, tax, abatement) {
+                                let rateLoop, taxRates, lastRate, surtax, 
+                                    maxlimit = 0, 
+                                    currentIncome = income, 
+                                    getSurtaxAdjust = function (taxRates, taxArr, currentIncome) {
+                                        let surtaxloop, 
+                                            adjustedThreshold = taxRates.threshold, 
+                                            adjustedRate = 1;
 
-                                    if (Object.prototype.hasOwnProperty.call(taxArr, "surtax") === true) {
-                                        for (surtaxloop = 0; surtaxloop <= taxArr.surtax.length - 1; surtaxloop = surtaxloop + 1) {
-                                            if (currentIncome >= taxArr.surtax[surtaxloop].threshold) {
-                                                adjustedRate = adjustedRate + taxArr.surtax[surtaxloop].rate;
-                                                if (taxRates.threshold > taxArr.surtax[surtaxloop].threshold && taxRates.threshold <= currentIncome) {
-                                                    adjustedThreshold = taxArr.surtax[surtaxloop].threshold; 
+                                        if (Object.prototype.hasOwnProperty.call(taxArr, "surtax") === true) {
+                                            for (surtaxloop = 0; surtaxloop <= taxArr.surtax.length - 1; surtaxloop = surtaxloop + 1) {
+                                                if (currentIncome >= taxArr.surtax[surtaxloop].threshold) {
+                                                    adjustedRate = adjustedRate + taxArr.surtax[surtaxloop].rate;
+                                                    if (taxRates.threshold > taxArr.surtax[surtaxloop].threshold && taxRates.threshold <= currentIncome) {
+                                                        adjustedThreshold = taxArr.surtax[surtaxloop].threshold; 
+                                                    }
                                                 }
                                             }
                                         }
+                                        return {
+                                            "rate": adjustedRate, 
+                                            "threshold": adjustedThreshold
+                                        };
+                                    };
+
+                                if (Object.prototype.hasOwnProperty.call(tax, "rates") === true) {
+                                    for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
+                                        taxRates = tax.rates[rateLoop];
+                                        surtax = getSurtaxAdjust(taxRates, tax, currentIncome);
+                                        if (taxRates.threshold <= currentIncome && taxRates.threshold <= Math.max(0, currentIncome - deductContribAmt)) {
+                                            maxlimit = (deductContribAmt + investmentAmount) * taxRates.rate * surtax.rate * abatement;
+                                            break;
+                                        } else if (taxRates.threshold < currentIncome - deductContribAmt) {
+                                            maxlimit = (taxRates.threshold) * taxRates.rate * surtax.rate + (currentIncome - taxRates.threshold) * lastRate.rate * abatement;
+                                            taxRates = lastRate;
+                                            break;
+                                        }
+                                        lastRate = {
+                                            "rate": taxRates.rate * surtax.rate,
+                                            "threshold": taxRates.threshold
+                                        };
                                     }
                                     return {
-                                        "rate": adjustedRate, 
-                                        "threshold": adjustedThreshold
-                                    };
-                                };
-
-                            if (Object.prototype.hasOwnProperty.call(tax, "rates") === true) {
-                                for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
-                                    taxRates = tax.rates[rateLoop];
-                                    surtax = getSurtaxAdjust(taxRates, tax, currentIncome);
-                                    if (taxRates.threshold <= currentIncome && taxRates.threshold <= Math.max(0, currentIncome - deductContribAmt)) {
-                                        maxlimit = (deductContribAmt + investmentAmount) * taxRates.rate * surtax.rate * abatement;
-                                        break;
-                                    } else if (taxRates.threshold < currentIncome - deductContribAmt) {
-                                        maxlimit = (taxRates.threshold) * taxRates.rate * surtax.rate + (currentIncome - taxRates.threshold) * lastRate.rate * abatement;
-                                        taxRates = lastRate;
-                                        break;
+                                        "min": (deductContribAmt + investmentAmount) * tax.rates[0].rate * abatement, 
+                                        "minrates": tax.rates[0],
+                                        "max": maxlimit, 
+                                        "maxrates": taxRates
                                     }
-                                    lastRate = {
-                                        "rate": taxRates.rate * surtax.rate,
-                                        "threshold": taxRates.threshold
-                                    };
-                                return {
-                                    "min": (deductContribAmt + investmentAmount) * tax.rates[0].rate * abatement, 
-                                    "minrates": tax.rates[0],
-                                    "max": maxlimit, 
-                                    "maxrates": taxRates
                                 }
+                                return {
+                                    "min": 0, 
+                                    "minrates": 0, 
+                                    "max": 0, 
+                                    "maxrates": 0
+                                };
+                            };
+
+                            fedSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, federalRates, abatement);
+                            if ($.inArray(fedSavingsAmt.maxrates, fedrates) === -1) {
+                                fedrates.push(fedSavingsAmt.maxrates); 
+                            }
+                            areaSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, provinceRates, 1);
+                            if ($.inArray(areaSavingsAmt.maxrates, arearates) === -1) {
+                                arearates.push(areaSavingsAmt.maxrates); 
                             }
                             return {
-                                "min": 0, 
-                                "minrates": 0, 
-                                "max": 0, 
-                                "maxrates": 0
-                            };
+                                "fed": {
+                                    "rates": fedrates,
+                                    "min": fedSavingsAmt.min, 
+                                    "max": fedSavingsAmt.max
+                                },
+                                "area": {
+                                    "rates": arearates,
+                                    "min": areaSavingsAmt.min, 
+                                    "max": areaSavingsAmt.max
+                                }
+                            }
                         };
 
                     savingsBody.classList.add("text-right");
                     if (hasPriorSavings === true) {
+                        savingsRow = document.createElement("tr");
                         amountCompound = priorSavingAmount;
                         investmentCompound = priorSavingsInvest;
-                        savingsRow = document.createElement("tr");
-                        savingsBody.appendChild(createSavingsTableBody(savingsRow, priorSavingYears, amountCompound, investmentCompound, 0, 0, 0, 0, 0, hasInvestment, true, false));
+                        savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, priorSavingYears, amountCompound, investmentCompound, 0, 0, 0, 0, 0, hasInvestment, true, false));
                     }
                     if (amountCompound < maxContribution) {
                         if (loopYears >= priorYearMax + 1) {
@@ -1993,20 +2018,13 @@
                             deductCumulative = deductCumulative + deductContribAmt;
                             investmentAmount = (investmentCompound + amountCompound) * investment;
                             investmentCompound = investmentCompound + investmentAmount;
-                            fedSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, federalRates, abatement);
-                            if ($.inArray(fedSavingsAmt.maxrates, fedrates) === -1) {
-                                fedrates.push(fedSavingsAmt.maxrates); 
-                            }
-                            fedMinCumulative = fedMinCumulative + fedSavingsAmt.min;
-                            fedMaxCumulative = fedMaxCumulative + fedSavingsAmt.max;
-                            areaSavingsAmt = getRefundAmount(income, investmentAmount, deductContribAmt, provinceRates, 1);
-                            if ($.inArray(areaSavingsAmt.maxrates, arearates) === -1) {
-                                arearates.push(areaSavingsAmt.maxrates); 
-                            }
-                            areaMinCumulative = areaMinCumulative + areaSavingsAmt.min;
-                            areaMaxCumulative = areaMaxCumulative + areaSavingsAmt.max;
+                            saveAmountsObj = calcLocAmounts(income, investmentAmount, deductContribAmt, federalRates, fedrates, provinceRates, arearates, abatement)
+                            fedMinCumulative = fedMinCumulative + saveAmountsObj.fed.min;
+                            fedMaxCumulative = fedMaxCumulative + saveAmountsObj.fed.max;
+                            areaMinCumulative = areaMinCumulative + saveAmountsObj.area.min;
+                            areaMaxCumulative = areaMaxCumulative + saveAmountsObj.area.max;
                             savingsRow = document.createElement("tr");
-                            savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, yearIncrement, amountCompound, investmentAmount, deductContribAmt, fedSavingsAmt.min, fedSavingsAmt.max, areaSavingsAmt.min, areaSavingsAmt.max, hasInvestment, false, false));
+                            savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, yearIncrement, amountCompound, investmentAmount, deductContribAmt, saveAmountsObj.fed.min, saveAmountsObj.fed.max, saveAmountsObj.area.min, saveAmountsObj.area.max, hasInvestment, false, false));
                         }
                         savingsRow = document.createElement("tr");
                         savingsRow.setAttribute("class", "success text-right");
@@ -2019,12 +2037,12 @@
                             "fedExempt": federalRates.exemption, 
                             "fedAmountMin": fedMinCumulative, 
                             "fedAmountMax": fedMaxCumulative, 
-                            "fedRates": fedrates, 
+                            "fedRates": saveAmountsObj.fed.rates, 
                             "abatement": abatement,
                             "areaExempt": provinceRates.exemption, 
                             "areaAmountMin": areaMinCumulative, 
                             "areaAmountMax": areaMaxCumulative, 
-                            "areaRates": arearates, 
+                            "areaRates": saveAmountsObj.area.rates, 
                             "maxContributeYear": maxContributeYear, 
                             "yearssaved": loopYears
                         };
