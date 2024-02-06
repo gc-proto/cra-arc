@@ -699,9 +699,6 @@
           outline: 5px auto;
           outline-offset: -2px;
       }
-/*      [class*=cnjnctn-type-]>[class*=cnjnctn-col]:not(:first-child):before {
-          width: 31px;
-      } */
     </style>
     <style>
         .wb-input-range>datalist {
@@ -923,7 +920,7 @@
                                             <caption>Account holdings by type</caption>
                                             <thead>
                                                 <tr class="bg-primary">
-                                                    <th class="text-left">Years</th>
+                                                    <th class="text-left">Year</th>
                                                     <th class="text-right" data-flot="{&quot;color&quot;:&quot;#2d7da6&quot;}">Amounts contributed or transferred</th>
                                                     <th class="text-right" data-flot="{&quot;color&quot;:&quot;#ffffff&quot;, &quot;area&quot;:{&quot;show&quot;: false}}">Investment income</th>
                                                     <th class="text-right" data-flot="{&quot;color&quot;:&quot;#285228&quot;}">Total account holdings</th>
@@ -1024,7 +1021,6 @@
                                     <div class="form-group">
                                         <label for="priorYearSavingAmount" class="required"><span class="field-name">Total amount you contributed and transferred to your FHSA in <span data-prior-year="true">2023</span></span> <span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                         <p id="priorYearSavingAmount-description">The total amount must be less than or equal to the total FHSA participation you entered</p>
-<!--                                        <p id="priorYearSavingAmount-description">Include all amounts you have contributed and transferred</p>-->
                                         <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                             <span class="input-group-addon">$</span>
                                             <input type="text" name="priorYearSavingAmount" id="priorYearSavingAmount" aria-describedby="priorYearSavingAmount-description" size="7" maxlength="5" min="1" max="40000" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
@@ -1034,7 +1030,6 @@
                                     <div class="form-group">
                                         <label for="priorYearSavingTransfer" class="required"><span class="field-name">How much of the above amount was transferred from your RRSP to your FHSA in <span data-prior-year="true">2023</span></span> <span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                         <p id="priorYearSavingTransfer-description">The transfer amount must be less than or equal to the total amount you entered</p>
-<!--                                        <p id="priorYearSavingTransfer-description">If you did not transfer any RRSP amounts enter "0"</p>-->
                                         <div class="input-group col-lg-3 col-sm-4 col-xs-7">
                                             <span class="input-group-addon">$</span>
                                             <input type="text" name="priorYearSavingTransfer" id="priorYearSavingTransfer" aria-describedby="priorYearSavingTransfer-description" size="7" maxlength="5" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true" min="0" max="40000">
@@ -1275,7 +1270,7 @@
                                     <caption>Your potential FHSA tax savings</caption>
                                     <thead>
                                         <tr>
-                                            <th class="text-right">Years</th>
+                                            <th class="text-right">Year</th>
                                             <th class="col-sm-2 text-right">Total FHSA participation (cumulative)</th>
                                             <th class="col-sm-2 text-right">Deductible FHSA contributions</th>
                                             <th class="col-sm-1 text-right">Investment income</th>
@@ -1496,7 +1491,7 @@
     <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script>
     <script src="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.js"></script>
 <!--
-    <script src="income_rates.js"></script>
+    <script src="data/income_rates.js"></script>
 -->
     <script>
         "use strict";
@@ -2469,7 +2464,7 @@
             let $form = $(this).parents("form:first");
             $form.find(".wb-steps-active, legend.prev-wb-step").removeClass("wb-steps-active prev-wb-step");
             $form.find("legend + div.panel-body, .buttons").addClass("hidden");
-            $form.find("legend.wb-steps-active").parents().nextAll().each(function (index) {});
+            $form.find("legend.wb-steps-active").parents().nextAll().each(function () {});
             $(this).addClass("wb-steps-active").removeClass("prev-wb-step");
             $(this).parent().parent().find("legend + div.panel-body.hidden, .buttons").removeClass("hidden");
         });
