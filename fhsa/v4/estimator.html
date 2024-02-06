@@ -699,9 +699,9 @@
           outline: 5px auto;
           outline-offset: -2px;
       }
-      [class*=cnjnctn-type-]>[class*=cnjnctn-col]:not(:first-child):before {
+/*      [class*=cnjnctn-type-]>[class*=cnjnctn-col]:not(:first-child):before {
           width: 31px;
-      }
+      } */
     </style>
     <style>
         .wb-input-range>datalist {
@@ -850,7 +850,7 @@
                                     <label for="paymentYears"><span class="field-name">Number of years you plan to participate in your FHSA</span></label>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="wb-input-range form-group" data-wb-input-range="{&quot;target&quot;: [&quot;paymentYearsOutput&quot;]}">
+                                    <div class="wb-input-range form-group">
                                         <datalist id="paymentYearsList" class="d-flex mrgn-tp-xl">
                                             <!--[if lte IE 9]><select><![endif]-->
                                             <option value="1" label="1"></option>
@@ -861,8 +861,8 @@
                                             <option value="15" label="15"></option>
                                             <!--[if lte IE 9]></select><![endif]-->
                                         </datalist>
-                                        <input id="paymentYears" class="form-range" type="range" min="1" max="15" value="1" step="1" list="paymentYearsList" aria-describedby="range-instruction">
-                                        <output for="paymentYears" class="wb-input-range-display" id="paymentYearsOutput"></output>
+                                        <input id="paymentYears" class="form-range" type="range" min="1" max="15" value="1" step="1" list="paymentYearsList" aria-describedby="range-instruction" data-wb-input-range="{&quot;target&quot;: [&quot;paymentYearsOutput&quot;]}">
+                                        <output id="paymentYearsOutput" for="paymentYears" class="wb-input-range-display"></output>
                                     </div>
                                 </div>
                             </div>
@@ -872,7 +872,7 @@
                                     <label for="paymentAmount"><span class="field-name">Amount you plan to contribute and transfer annually to your FHSA ($250 increments)</span></label>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="wb-input-range form-group mrgn-bttm-md" data-wb-input-range="{&quot;target&quot;: [&quot;paymentAmountOutput&quot;]}">
+                                    <div class="wb-input-range form-group mrgn-bttm-md">
                                         <datalist id="paymentAmountList" class="d-flex mrgn-tp-xl">
                                             <!--[if lte IE 9]><select><![endif]-->
                                             <option value="0" label="$0"></option>
@@ -886,8 +886,8 @@
                                             <option value="8000" label="$8,000"></option>
                                             <!--[if lte IE 9]></select><![endif]-->
                                         </datalist>
-                                        <input id="paymentAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="paymentAmountList" aria-describedby="range-instruction">
-                                        <output for="paymentAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}" id="paymentAmountOutput"></output>
+                                        <input id="paymentAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="paymentAmountList" aria-describedby="range-instruction" data-wb-input-range="{&quot;target&quot;: [&quot;paymentAmountOutput&quot;]}">
+                                        <output id="paymentAmountOutput" for="paymentAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}"></output>
                                     </div>
                                 </div>
                             </div>
@@ -1141,7 +1141,7 @@
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="col-md-12">
-                                    <div class="wb-input-range form-group" data-wb-input-range="{&quot;target&quot;: [&quot;savingYearsOutput&quot;]}">
+                                    <div class="wb-input-range form-group">
                                         <datalist id="savingYearsList" class="d-flex mrgn-tp-xl">
                                             <!--[if lte IE 9]><select><![endif]-->
                                             <option value="1" label="1"></option>
@@ -1152,8 +1152,8 @@
                                             <option value="15" label="15"></option>
                                             <!--[if lte IE 9]></select><![endif]-->
                                         </datalist>
-                                        <input id="savingYears" class="form-range" type="range" min="1" max="15" value="1" step="1" list="savingYearsList" aria-describedby="range-instruction">
-                                        <output for="savingYears" class="wb-input-range-display" id="savingYearsOutput"></output>
+                                        <input id="savingYears" class="form-range" type="range" min="1" max="15" value="1" step="1" list="savingYearsList" aria-describedby="range-instruction" data-wb-input-range="{&quot;target&quot;: [&quot;savingYearsOutput&quot;]}">
+                                        <output id="savingYearsOutput" for="savingYears" class="wb-input-range-display"></output>
                                     </div>
                                 </div>
                             </div>
@@ -1165,7 +1165,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-md-12">
-                                        <div class="wb-input-range form-group" data-wb-input-range="{&quot;target&quot;: [&quot;savingsAmountOutput&quot;]}">
+                                        <div class="wb-input-range form-group">
                                             <datalist id="yearlySavingsAmountList" class="d-flex mrgn-tp-xl">
                                                 <!--[if lte IE 9]><select><![endif]-->
                                                 <option value="0" label="$0"></option>
@@ -1179,8 +1179,8 @@
                                                 <option value="8000" label="$8,000"></option>
                                                 <!--[if lte IE 9]></select><![endif]-->
                                             </datalist>
-                                            <input id="savingsAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="yearlySavingsAmountList" aria-controls="savingsTransferAmount" aria-describedby="range-instruction">
-                                            <output for="savingsAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavings&quot;}" id="savingsAmountOutput"></output>
+                                            <input id="savingsAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="yearlySavingsAmountList" aria-controls="savingsTransferAmount" aria-describedby="range-instruction" data-wb-input-range="{&quot;target&quot;: [&quot;savingsAmountOutput&quot;]}">
+                                            <output id="savingsAmountOutput" for="savingsAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavings&quot;}"></output>
                                         </div>
                                     </div>
                                 </div>
@@ -1192,7 +1192,7 @@
                                         <p class="mrgn-bttm-0"><a href="#transfer-contribute-help" aria-controls="transfer-contribute-help" class="wb-lbx" role="button">What are transfers from RRSP's and contributions to your FHSA?<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a></p>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="wb-input-range form-group" data-wb-input-range="{&quot;target&quot;: [&quot;savingsTransferAmountOutput&quot;]}">
+                                        <div class="wb-input-range form-group">
                                             <datalist id="savingsTransferAmountList" class="d-flex mrgn-tp-xl">
                                                 <!--[if lte IE 9]><select><![endif]-->
                                                 <option value="0" label="$0"></option>
@@ -1206,8 +1206,8 @@
                                                 <option value="8000" label="$8,000"></option>
                                                 <!--[if lte IE 9]></select><![endif]-->
                                             </datalist>
-                                            <input id="savingsTransferAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="savingsTransferAmountList" aria-controls="savingsAmount" aria-describedby="transfer-relation-info range-instruction">
-                                            <output for="savingsTransferAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavingsTransfer&quot;}" id="savingsTransferAmountOutput"></output>
+                                            <input id="savingsTransferAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="savingsTransferAmountList" aria-controls="savingsAmount" aria-describedby="transfer-relation-info range-instruction" data-wb-input-range="{&quot;target&quot;: [&quot;savingsTransferAmountOutput&quot;]}">
+                                            <output id="savingsTransferAmountOutput" for="savingsTransferAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavingsTransfer&quot;}"></output>
                                         </div>
                                     </div>
                                 </div>
