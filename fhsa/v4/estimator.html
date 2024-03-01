@@ -1253,7 +1253,7 @@
                                 <h3>Potential tax savings</h3>
                                 <p class="small" data-min-threshold="true">Based on the information you entered, your potential tax-free first home savings account (FHSA) tax savings could be approximately:</p>
                                 <p class="hidden" data-min-threshold="false">Based on the information you entered, your yearly taxable income is below the basic personal amount, which means you don't have to pay income tax. Therefore, you would not have any tax savings from your FHSA for these years. However, your unused FHSA contributions can be carried forward and may result in tax savings if your income increases in the future. To get an estimate of potential tax savings, you can enter a higher estimate of your future annual income into the tool.</p>
-                                    <ul id="savingsResultList" class="list-unstyled cnjnctn-type-and cnjnctn-xs">
+                                    <ul id="savingsResultList" class="list-unstyled cnjnctn-type-and cnjnctn-xs"  data-min-threshold="true">
                                         <li id="currentYearSummary" class="cnjnctn-col-40">
                                             <h4 class="mrgn-tp-sm text-muted">in <span data-prior-year="true">2023</span></h4>
                                             <ul class="mrgn-lft-md list-unstyled">
@@ -1270,10 +1270,12 @@
                                         </li>
                                     </ul>
                                 <div class="clearfix"></div>
+                               <div data-min-threshold="true">
                                 <p id="savingsThresholdData">By year <strong><span id="savingsThresholdYear" data-threshold-year="true">0</span></strong>, you will have reached your lifetime FHSA limit of <strong><span id="savingsContributeTotal" data-max-contribution="true">$40,000</span></strong>.</p>
-                                <p data-zero-val="false" class="hidden">You must participate in your FHSA to get tax savings from your FHSA.</p>
+                               </div>
+                                  <p data-zero-val="false" class="hidden">You must participate in your FHSA to get tax savings from your FHSA.</p>
                                 <p data-zero-val="true">You have only entered amounts you plan to both contribute and transfer. You must also include either amounts you plan to contribute or an annual rate of return to get tax savings from your FHSA.</p>
-                                <p data-show-prior="true">These results do not display tax savings for information you entered for prior years.</p>
+                                <p data-show-prior="true" class="hidden">These results do not display tax savings for information you entered for prior years.</p>
                                 <table data-min-threshold="true" id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     <caption>Your potential FHSA tax savings</caption>
                                     <thead>
@@ -1310,14 +1312,6 @@
                 </header>
                 <div class="modal-body">
                     <p>This is the investment income you expect to earn on the amounts you contribute or transfer to your FHSA. For example, if your expected annual rate of return on investments was 5%, you would earn $50 of investment income on $1,000 contributed or transferred to your FHSA.</p>
-                </div>
-            </section>
-            <section id="taxable-income-help" class="mfp-hide modal-dialog modal-content overlay-def">
-                <header class="modal-header">
-                    <h2 class="modal-title">Taxable income</h2>
-                </header>
-                <div class="modal-body">
-                    <p>This is your total income minus all your eligible deductions like child care expenses, RRSP deductions and other employment expenses.</p>
                 </div>
             </section>
             <section id="priorYearSavingDeduction-help" class="mfp-hide modal-dialog modal-content overlay-def">
@@ -2253,6 +2247,11 @@
                             $("[data-savings-year-range=true]", savingsformId).removeClass("hidden");
                         }
                         if (hasPriorSavingsFHSA() === true && hasPriorTaxSavings() === false) {
+                            $("[data-show-prior=true]").removeClass("hidden");
+                        } else {
+                            $("[data-show-prior=true]").addClass("hidden");
+                        }
+                       if (document.getElementById('priorsaving-fhsa-false').checked || document.getElementById('priortaxsaving-false').checked) {
                             $("[data-show-prior=true]").removeClass("hidden");
                         } else {
                             $("[data-show-prior=true]").addClass("hidden");
