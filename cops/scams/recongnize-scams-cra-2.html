@@ -487,7 +487,76 @@
   </table>
 </div>
 
-
+<p class=""><span class="fas fa-sliders-h"></span> Filter options: </p>
+<form class="wb-tables-filter form-horizontal" data-bind-to="create-tbl">   
+	<ul class="list-inline"  data-wb-actionmng='[
+		{ "trggroup":"clearFilter", "action": "removeClass", "source": ".fltopts", "class": "btn-primary" },
+		{ "trggroup":"clearFilter", "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "" }]'>
+	<li><button type="button" class="fltopts btn btn-default" data-wb-doaction='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "red" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'>Red</button></li>
+	<li><button type="button" class="fltopts btn btn-default" data-wb-doaction='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "green" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'>Green</button></li>
+	<li><button type="button" class="fltopts btn btn-default" data-wb-doaction='[
+			{ "action": "run", "trggroup": "clearFilter" },
+			{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "orange" },
+			{ "action": "addClass", "class": "btn-primary" }
+		]'>Orange</button></li>	
+	<li><button type="button" class="fltopts btn btn-default" data-wb-doaction='[
+		{ "action": "run", "trggroup": "clearFilter" },
+		{ "action": "tblfilter", "source": "#create-tbl", "column": 1, "value": "white" },
+		{ "action": "addClass", "class": "btn-primary" }
+	]'>White</button></li>	
+	<li><button type="reset" class="btn btn-link" data-wb-doaction='{ "action": "run", "trggroup": "clearFilter" }'>Reset</button></li>
+	</ul>
+</form>
+<table class="table wb-tables table-striped table-hover" id="create-tbl" data-wb-tables='{"ordering":false,  "lengthMenu": [ [5, 10, -1], [5, 10, "All"] ], "paging": false }'>
+<thead>
+	<tr>
+		<th scope="col">Food</th>
+		<th scope="col">Colour</th>
+	</tr>
+</thead>
+<tbody>
+	<tr role="row">
+		<td>Apples</td>
+		<td>Red</td>
+	</tr>
+	<tr role="row">
+		<td>Apples</td>
+		<td>Green</td>
+	</tr>
+	<tr role="row">
+		<td>Carrots</td>
+		<td>Orange</td>
+	</tr>
+	<tr role="row">
+		<td>Cheese</td>
+		<td>White</td>
+	</tr>
+	<tr role="row">
+		<td>Cheese</td>
+		<td>Orange</td>
+	</tr>
+	<tr role="row">
+		<td>Lettuce</td>
+		<td>Green</td>
+	</tr>
+	<tr role="row">
+		<td>Oranges</td>
+		<td>Orange</td>
+	</tr>
+	<tr role="row">
+		<td>Tomatoes</td>
+		<td>Red</td>
+	</tr>
+</tbody>
+</table> 
 		
 <!--<details>
   <summary>Text message scams containing personal information</summary>
