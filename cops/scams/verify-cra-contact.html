@@ -122,7 +122,10 @@
 
 <h2 id="h2">Confirm a phone number is from the CRA</h2>
 	<p>Use this tool to verify the CRA phone number that was provided to you to call back. Never rely on the phone number displayed on your caller ID.</p>
-	<div class="col-xs-12 mrgn-bttm-lg row">
+	
+<!-- No alert -->
+<section class="toggle1">
+  <div class="col-xs-12 mrgn-bttm-lg row">
         <div class="brdr-lft mrgn-lft-md mrgn-lft-md mrgn-tp-sm">
         <div class="pstn-lft-xs pstn-tp-xs"><span class="fa-stack fa-fw mrgn-lft-sm text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x "></span><span class="fas fa-phone fa-stack-1x"></span></span></span></div>
         <h3 class="pull-left mrgn-tp-0 mrgn-lft-lg h3 text-info" id="file-tax">Verify a CRA phone number</h3>
@@ -130,27 +133,113 @@
         <div class="mrgn-lft-lg">
 
         <p>Enter the phone number you were given to call back.<br>
-	      (e.g. 555-555-5555)</p>
-	     
+        (e.g. 555-555-5555)</p>
+       
+
+       <form class="form-inline">
+        <div class="form-group">
+
+        <label for="phn1" class="required wb-inv"><span class="field-name">Telephone number</span></label>
+        <input class="form-control mrgn-bttm-md" id="phn1" name="phn1" type="telephone" size="15" maxlength="15" required="required" pattern="^[0-9()-\s]+$" data-rule-phoneUS="true" />
+
+        <button data-wb-doaction='[{ "action": "removeClass", "source": ".toggle2", "class": "hidden" },{ "action": "addClass", "source": ".toggle1", "class": "hidden" }]' class="btn btn-primary mrgn-lft-sm mrgn-bttm-md" type="button" id="verify1">Verify number</button>
+
+        </div>
+        </form>
+ 
+</section>
+
+<!-- Success -->
+<section class="toggle2 hidden">
+    <div class="col-xs-12 mrgn-bttm-lg row">
+        <div class="brdr-lft mrgn-lft-md mrgn-lft-md mrgn-tp-sm">
+        <div class="pstn-lft-xs pstn-tp-xs"><span class="fa-stack fa-fw mrgn-lft-sm text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x "></span><span class="fas fa-phone fa-stack-1x"></span></span></span></div>
+        <h3 class="pull-left mrgn-tp-0 mrgn-lft-lg h3 text-info" id="file-tax">Verify a CRA phone number</h3>
+        <div class="clearfix"></div>
+        <div class="mrgn-lft-lg">
+
+        <p>Enter the phone number you were given to call back.<br>
+        (e.g. 555-555-5555)</p>
        <form class="form-inline">
         <div class="form-group">
 
         <label for="phn1" class="required wb-inv"><span class="field-name">Telephone number</span></label>
         <input class="form-control mrgn-bttm-md" id="phn1" name="phn1" type="text" size="15" maxlength="15" required="required" pattern="^[0-9()-\s]+$" data-rule-phoneUS="true" />
 
-        <button data-wb-doaction='{ "action": "removeClass", "source": ".verify-1", "class": "hidden" }' class="btn btn-primary mrgn-lft-sm mrgn-bttm-md" type="button" id="verify1">Verify number</button>
+        <button data-wb-doaction='[{ "action": "removeClass", "source": ".toggle3", "class": "hidden" },{ "action": "addClass", "source": ".toggle2", "class": "hidden" }]' class="btn btn-primary mrgn-lft-sm mrgn-bttm-md" type="button" id="verify1">Verify number</button>
 
         </div>
         </form>
 
-<div class="alert alert-success verify-1 hidden">
+<div class="alert alert-success">
 <h3 class="h4">Identify protection services phone number</h3>
-<p>Below content is ajaxed from contact us page</p>
-
-<section data-ajax-after="https://test.canada.ca/cra-arc/cops/scams/contact.html #prs-ph-01"></section>
-	
+<p>This is a valid CRA phone number.</p>
+<p>1-833-995-2336</p>
+<section class="mrgn-tp-md" data-ajax-after="https://test.canada.ca/cra-arc/cops/scams/contact.html #prs-hrs-04"></section>
+  
 </div>    
+</section>
 
+<!-- Warning -->
+<section class="toggle3 hidden">
+    <div class="col-xs-12 mrgn-bttm-lg row">
+        <div class="brdr-lft mrgn-lft-md mrgn-lft-md mrgn-tp-sm">
+        <div class="pstn-lft-xs pstn-tp-xs"><span class="fa-stack fa-fw mrgn-lft-sm text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x "></span><span class="fas fa-phone fa-stack-1x"></span></span></span></div>
+        <h3 class="pull-left mrgn-tp-0 mrgn-lft-lg h3 text-info" id="file-tax">Verify a CRA phone number</h3>
+        <div class="clearfix"></div>
+        <div class="mrgn-lft-lg">
+
+        <p>Enter the phone number you were given to call back.<br>
+        (e.g. 555-555-5555)</p>
+       <form class="form-inline">
+        <div class="form-group">
+
+        <label for="phn1" class="required wb-inv"><span class="field-name">Telephone number</span></label>
+        <input class="form-control mrgn-bttm-md" id="phn1" name="phn1" type="text" size="15" maxlength="15" required="required" pattern="^[0-9()-\s]+$" data-rule-phoneUS="true" />
+
+        <button data-wb-doaction='[{ "action": "removeClass", "source": ".toggle4", "class": "hidden" },{ "action": "addClass", "source": ".toggle3", "class": "hidden" }]' class="btn btn-primary mrgn-lft-sm mrgn-bttm-md" type="button" id="verify1">Verify number</button>
+
+        </div>
+        </form>
+
+<div class="alert alert-warning">
+<h3 class="h4">Identify protection services phone number</h3>
+<p>This is not one of CRA's publicized phone numbers. This may be a CRA employee's direct internal phone number.</p>
+
+<p>To confirm if an employee has tried to contact you, call the CRA: <span class="nowrap"><strong>1-800-959-8281</strong></span>.</p>
+  
+</div>    
+</section>
+
+<!-- Warning -->
+<section class="toggle4 hidden">
+    <div class="col-xs-12 mrgn-bttm-lg row">
+        <div class="brdr-lft mrgn-lft-md mrgn-lft-md mrgn-tp-sm">
+        <div class="pstn-lft-xs pstn-tp-xs"><span class="fa-stack fa-fw mrgn-lft-sm text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x "></span><span class="fas fa-phone fa-stack-1x"></span></span></span></div>
+        <h3 class="pull-left mrgn-tp-0 mrgn-lft-lg h3 text-info" id="file-tax">Verify a CRA phone number</h3>
+        <div class="clearfix"></div>
+        <div class="mrgn-lft-lg">
+
+        <p>Enter the phone number you were given to call back.<br>
+        (e.g. 555-555-5555)</p>
+       <form class="form-inline">
+        <div class="form-group">
+
+        <label for="phn1" class="required wb-inv"><span class="field-name">Telephone number</span></label>
+        <input class="form-control mrgn-bttm-md" id="phn1" name="phn1" type="text" size="15" maxlength="15" required="required" pattern="^[0-9()-\s]+$" data-rule-phoneUS="true" />
+
+        <button data-wb-doaction='[{ "action": "removeClass", "source": ".toggle1", "class": "hidden" },{ "action": "addClass", "source": ".toggle4", "class": "hidden" }]' class="btn btn-primary mrgn-lft-sm mrgn-bttm-md" type="button" id="verify1">Verify number</button>
+
+        </div>
+        </form>
+
+<div class="alert alert-danger">
+<h3 class="h4">Identify protection services phone number</h3>
+<p>Please enter a valid phone number to verify.</p>
+
+  
+</div>    
+</section> 
 
 </div></div></div>
 
