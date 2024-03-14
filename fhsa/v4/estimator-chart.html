@@ -1835,16 +1835,25 @@
                                     holdingHeader.textContent = evalYear;
                                 }
                                 holdingHeader.classList.add("text-right");
+				switch (wb.lang)
+                                {
+                                    case "en": 
+                                    var yrName = "Year ";
+                                        break;
+                                    case "fr":
+                                        var yrName = "Année ";
+                                } 
+                                holdingHeader.setAttribute("data-chart-value", yrName + evalYear);    
                                 holdingRow.appendChild(holdingHeader);
                                 holdingCell = document.createElement("td");
-                                holdingCell.setAttribute("data-charts-value", amountCompound);
+                                holdingCell.setAttribute("data-chart-value", amountCompound);
                                 holdingCell.textContent = currencyFormatter.format(amountCompound);
                                 holdingRow.appendChild(holdingCell);
                                 holdingCell = document.createElement("td");
                                 holdingCell.textContent = currencyFormatter.format(investmentCompound);
                                 holdingRow.appendChild(holdingCell);
                                 holdingCell = document.createElement("td");
-                                holdingCell.setAttribute("data-charts-value", amountCompound + investmentCompound);
+                                holdingCell.setAttribute("data-chart-value", amountCompound + investmentCompound);
                                 holdingCell.textContent = currencyFormatter.format(amountCompound + investmentCompound);
                                 holdingRow.appendChild(holdingCell);
                                 return holdingRow;
