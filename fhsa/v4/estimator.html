@@ -700,9 +700,10 @@
       }
     </style>
     <style>
-        .wb-input-range>datalist {
-            justify-content: space-between;
-        }
+  datalist {
+    display: flex;
+    justify-content: space-between;
+}
 
         .wb-input-range>output.wb-input-range-display, div.wb-input-range-display {
             font-size: 20px;
@@ -720,6 +721,26 @@
         output.wb-input-range-display {
             padding-top: 0px;
         }
+input[type=range]::-webkit-slider-thumb {
+transform: scale(1.5);
+}
+input[type=range]::-moz-range-thumb {
+transform: scale(1.5);
+height: 50px;
+}
+.range-input-group input[type=number] {
+    border: 0;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+    background-color: inherit;
+}
+.range-input-group .input-group-addon {
+    background-color: unset;
+    border: 0;
+    border-radius: 0;
+    width: auto;
+}        
+	    
     </style>
 
 
@@ -841,52 +862,69 @@
                         <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">Planned FHSA participation</span></legend>
                         <div class="panel-body mrgn-lft-sm mrgn-bttm-lg">
 
-                            <div class="form-group pt-4">
-                                <div class="mrgn-lft-md">
-                                    <label for="paymentYears"><span class="field-name">Number of years you plan to participate in your FHSA</span></label>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="wb-input-range form-group">
-                                        <datalist id="paymentYearsList" class="d-flex mrgn-tp-xl">
-                                            <!--[if lte IE 9]><select><![endif]-->
-                                            <option value="1" label="1"></option>
-                                            <option value="3"></option>
-                                            <option value="6"></option>
-                                            <option value="9"></option>
-                                            <option value="12"></option>
-                                            <option value="15" label="15"></option>
-                                            <!--[if lte IE 9]></select><![endif]-->
-                                        </datalist>
-                                        <input id="paymentYears" class="form-range" type="range" min="1" max="15" value="1" step="1" list="paymentYearsList" aria-describedby="range-instruction" data-wb-input-range="{&quot;target&quot;: [&quot;paymentYearsOutput&quot;]}">
-                                        <output id="paymentYearsOutput" for="paymentYears" class="wb-input-range-display"></output>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
+        <label for="paymentYears" id="paymentYearsLabel"><span class="field-name">Number of years you plan to participate in your FHSA</span> <span class="wb-inv"> minimum: 1 year, maximum: 15 years</span></label>
+        <div class="range-input-group panel panel-default">
+          <div class="row panel-body">
+            <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
+              <div class="input-group pull-right mrgn-tp-sm">
+                  <input class="input-lg text-right" id="paymentYears" value="1" min="1" max="15" type="number" step="1">
+                   <span class="input-group-addon p-0"> years</span>
+                </div>
+              </div>
+              <div class="clearfix visible-xs"> </div>
+              <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
+              <div class="col-sm-9 col-md-10 brdr-lft">
+                <div class="slider-group">
+                  <input id="paymentYearsSld" class="form-range" type="range" min="1" max="15" value="1" step="1" list="paymentYearsSldList" aria-controls="paymentYearsSld" aria-label="paymentYearsLabel" tabindex="-1">
+                  <datalist id="paymentYearsSldList" class="d-flex"> 
+                    <!--[if lte IE 9]><select><![endif]-->
+                    <option value="1" label="1"></option>
+                    <option value="3"></option>
+                    <option value="6"></option>
+                    <option value="9"></option>
+                    <option value="12"></option>
+                    <option value="15" label="15"></option>
+                    <!--[if lte IE 9]></select><![endif]--> 
+                  </datalist>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
                             <div class="clearfix"></div>
-                            <div class="form-group">
-                                <div class="mrgn-lft-md mrgn-tp-lg">
-                                    <label for="paymentAmount"><span class="field-name">Amount you plan to contribute and transfer annually to your FHSA ($250 increments)</span></label>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="wb-input-range form-group mrgn-bttm-md">
-                                        <datalist id="paymentAmountList" class="d-flex mrgn-tp-xl">
-                                            <!--[if lte IE 9]><select><![endif]-->
-                                            <option value="0" label="$0"></option>
-                                            <option value="1000"></option>
-                                            <option value="2000"></option>
-                                            <option value="3000"></option>
-                                            <option value="4000"></option>
-                                            <option value="5000"></option>
-                                            <option value="6000"></option>
-                                            <option value="7000"></option>
-                                            <option value="8000" label="$8,000"></option>
-                                            <!--[if lte IE 9]></select><![endif]-->
-                                        </datalist>
-                                        <input id="paymentAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="paymentAmountList" aria-describedby="range-instruction" data-wb-input-range="{&quot;target&quot;: [&quot;paymentAmountOutput&quot;]}">
-                                        <output id="paymentAmountOutput" for="paymentAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}"></output>
-                                    </div>
-                                </div>
-                            </div>
+                           <div class="form-group">
+        <label for="paymentAmount" id="paymentAmountLabel"><span class="field-name">Amount you plan to contribute and transfer annually to your FHSA</span> ($250 increments) <span class="wb-inv"> Minimum: $0, maximum: $8000 (dollars only, no cents)</span></label>
+        <div class="range-input-group panel panel-default">
+          <div class="row panel-body">
+            <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
+              <div class="input-group pull-right mrgn-tp-sm"> <span class="input-group-addon p-0">$</span>
+                <input class="input-lg text-right" id="paymentAmount" value="0" min="0" max="8000" type="number" step="250">
+                <span class="input-group-addon p-0">.00</span> </div>
+            </div>
+            <div class="clearfix visible-xs"> </div>
+            <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
+            <div class="col-sm-9 col-md-10 brdr-lft">
+              <div class="slider-group">
+                <input id="paymentAmountSld" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="paymentAmountSldList" aria-controls="paymentAmountSld" aria-label="paymentAmountLabel" tabindex="-1">
+                <datalist id="paymentAmountSldList" class="d-flex"> 
+                  <!--[if lte IE 9]><select><![endif]-->
+                  <option value="0" label="$0"></option>
+                  <option value="1000"></option>
+                  <option value="2000"></option>
+                  <option value="3000"></option>
+                  <option value="4000"></option>
+                  <option value="5000"></option>
+                  <option value="6000"></option>
+                  <option value="7000"></option>
+                  <option value="8000" label="$8,000"></option>
+                  <!--[if lte IE 9]></select><![endif]--> 
+                </datalist>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>   
 
                             <div class="clearfix"></div>
 
@@ -1166,81 +1204,104 @@
                                         </div>
 
                             <div class="form-group">
-                                <div class="mrgn-lft-md">
-                                    <label for="savingYears"><span class="field-name">Number of years you plan to participate in your FHSA</span></label>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-md-12">
-                                    <div class="wb-input-range form-group">
-                                        <datalist id="savingYearsList" class="d-flex mrgn-tp-xl">
-                                            <!--[if lte IE 9]><select><![endif]-->
-                                            <option value="1" label="1"></option>
-                                            <option value="3"></option>
-                                            <option value="6"></option>
-                                            <option value="9"></option>
-                                            <option value="12"></option>
-                                            <option value="15" label="15"></option>
-                                            <!--[if lte IE 9]></select><![endif]-->
-                                        </datalist>
-                                        <input id="savingYears" class="form-range" type="range" min="1" max="15" value="1" step="1" list="savingYearsList" aria-describedby="range-instruction" data-wb-input-range="{&quot;target&quot;: [&quot;savingYearsOutput&quot;]}">
-                                        <output id="savingYearsOutput" for="savingYears" class="wb-input-range-display"></output>
-                                    </div>
-                                </div>
-                            </div>
+        <label for="savingYears" id="savingYearsLabel"><span class="field-name">Number of years you plan to participate in your FHSA</span> <span class="wb-inv"> minimum: 1 year, maximum: 15 years</span></label>
+        <div class="range-input-group panel panel-default">
+          <div class="row panel-body">
+            <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
+              <div class="input-group pull-right mrgn-tp-sm">
+                  <input class="input-lg text-right" id="savingYears" value="1" min="1" max="15" type="number" step="1">
+                   <span class="input-group-addon p-0"> years</span>
+                </div>
+              </div>
+              <div class="clearfix visible-xs"> </div>
+              <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
+              <div class="col-sm-9 col-md-10 brdr-lft">
+                <div class="slider-group">
+                  <input id="savingYearsSld" class="form-range" type="range" min="1" max="15" value="1" step="1" list="savingYearsSldList" aria-controls="savingYearsSld" aria-label="savingYearsLabel" tabindex="-1">
+                  <datalist id="savingYearsSldList" class="d-flex"> 
+                    <!--[if lte IE 9]><select><![endif]-->
+                    <option value="1" label="1"></option>
+                    <option value="3"></option>
+                    <option value="6"></option>
+                    <option value="9"></option>
+                    <option value="12"></option>
+                    <option value="15" label="15"></option>
+                    <!--[if lte IE 9]></select><![endif]--> 
+                  </datalist>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
                             <div class="clearfix"></div>
                             <div class="well mrgn-rght-md mrgn-tp-sm">
                                 <div class="form-group">
-                                    <div class="mrgn-lft-md">
-                                        <label for="savingsAmount"><span class="field-name">Amount you plan to contribute and transfer annually to your FHSA?</span> ($250 increments)</label>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="col-md-12">
-                                        <div class="wb-input-range form-group">
-                                            <datalist id="yearlySavingsAmountList" class="d-flex mrgn-tp-xl">
-                                                <!--[if lte IE 9]><select><![endif]-->
-                                                <option value="0" label="$0"></option>
-                                                <option value="1000"></option>
-                                                <option value="2000"></option>
-                                                <option value="3000"></option>
-                                                <option value="4000"></option>
-                                                <option value="5000"></option>
-                                                <option value="6000"></option>
-                                                <option value="7000"></option>
-                                                <option value="8000" label="$8,000"></option>
-                                                <!--[if lte IE 9]></select><![endif]-->
-                                            </datalist>
-                                            <input id="savingsAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="yearlySavingsAmountList" aria-controls="savingsTransferAmount" aria-describedby="range-instruction" data-wb-input-range="{&quot;target&quot;: [&quot;savingsAmountOutput&quot;]}">
-                                            <output id="savingsAmountOutput" for="savingsAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavings&quot;}"></output>
-                                        </div>
-                                    </div>
-                                </div>
+                    <label for="savingsAmount" id="savingsAmountLabel"><span class="field-name">Amount you plan to contribute and transfer annually to your FHSA</span> ($250 increments) <span class="wb-inv"> Minimum: $0, maximum: $8000 (dollars only, no cents)</span></label>
+                    <div class="range-input-group panel panel-default well">
+                      <div class="row">
+                        <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
+                          <div class="input-group pull-right mrgn-tp-sm"> <span class="input-group-addon p-0">$</span>
+                            <input class="input-lg text-right" id="savingsAmount" value="0" min="0" max="8000" type="number" step="250">
+                            <span class="input-group-addon p-0">.00</span> </div>
+                        </div>
+                        <div class="clearfix visible-xs"> </div>
+                        <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
+                        <div class="col-sm-9 col-md-10 brdr-lft">
+                          <div class="slider-group">
+                            <input id="savingsAmountSld" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="savingsAmountSldList" aria-controls="savingsAmountSld" aria-label="savingsAmountLabel" tabindex="-1">
+                            <datalist id="savingsAmountSldList" class="d-flex"> 
+                              <!--[if lte IE 9]><select><![endif]-->
+                              <option value="0" label="$0"></option>
+                              <option value="1000"></option>
+                              <option value="2000"></option>
+                              <option value="3000"></option>
+                              <option value="4000"></option>
+                              <option value="5000"></option>
+                              <option value="6000"></option>
+                              <option value="7000"></option>
+                              <option value="8000" label="$8,000"></option>
+                              <!--[if lte IE 9]></select><![endif]--> 
+                            </datalist>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                                 <div class="clearfix"></div>
-                                <div class="form-group mrgn-tp-lg">
-                                    <div class="mrgn-lft-md">
-                                        <label for="savingsTransferAmount"><span class="field-name">How much of the above will be transferred from an RRSP?</span> ($250 increments)</label>
-                                        <p id="transfer-relation-info">The transfer amount must be less than or equal to the total amount you entered</p>
-                                        <p class="mrgn-bttm-0"><a href="#transfer-contribute-help" aria-controls="transfer-contribute-help" class="wb-lbx" role="button">What is the difference between transfers versus contributions in your FHSA?<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a></p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="wb-input-range form-group">
-                                            <datalist id="savingsTransferAmountList" class="d-flex mrgn-tp-xl">
-                                                <!--[if lte IE 9]><select><![endif]-->
-                                                <option value="0" label="$0"></option>
-                                                <option value="1000"></option>
-                                                <option value="2000"></option>
-                                                <option value="3000"></option>
-                                                <option value="4000"></option>
-                                                <option value="5000"></option>
-                                                <option value="6000"></option>
-                                                <option value="7000"></option>
-                                                <option value="8000" label="$8,000"></option>
-                                                <!--[if lte IE 9]></select><![endif]-->
-                                            </datalist>
-                                            <input id="savingsTransferAmount" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="savingsTransferAmountList" aria-controls="savingsAmount" aria-describedby="transfer-relation-info range-instruction" data-wb-input-range="{&quot;target&quot;: [&quot;savingsTransferAmountOutput&quot;]}">
-                                            <output id="savingsTransferAmountOutput" for="savingsTransferAmount" class="wb-input-range-display" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavingsTransfer&quot;}"></output>
-                                        </div>
-                                    </div>
-                                </div>
+                               <div class="form-group">
+                    <label for="savingsTransferAmount" id="savingsTransferAmountLabel"><span class="field-name">How much of the above will be transferred from an RRSP?</span> ($250 increments) <span class="wb-inv"> minimum: $0, maximum: $8000 (dollars only, no cents)</span></label>
+                    <p id="savingsTransferAmountInfo">The transfer amount must be less than or equal to the total amount you entered above</p>
+                    <p><a href="#transfer-contribute-help" aria-controls="transfer-contribute-help" class="wb-lbx" role="button">What is the difference between transfers versus contributions in your FHSA?<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a></p>
+                    <div class="range-input-group panel panel-default well">
+                      <div class="row">
+                        <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
+                          <div class="input-group pull-right mrgn-tp-sm"> <span class="input-group-addon p-0">$</span>
+                            <input class="input-lg text-right" id="savingsTransferAmount" value="0" min="0" max="8000" type="number" step="250" aria-describedby="savingsTransferAmountInfo">
+                            <span class="input-group-addon p-0">.00</span> </div>
+                        </div>
+                        <div class="clearfix visible-xs"> </div>
+                        <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
+                        <div class="col-sm-9 col-md-10 brdr-lft">
+                          <div class="slider-group">
+                            <input id="savingsTransferAmountSld" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="savingsTransferAmountSldList" aria-controls="savingsTransferAmountSld" aria-label="savingsTransferAmountLabel" tabindex="-1">
+                            <datalist id="savingsTransferAmountSldList" class="d-flex"> 
+                              <!--[if lte IE 9]><select><![endif]-->
+                              <option value="0" label="$0"></option>
+                              <option value="1000"></option>
+                              <option value="2000"></option>
+                              <option value="3000"></option>
+                              <option value="4000"></option>
+                              <option value="5000"></option>
+                              <option value="6000"></option>
+                              <option value="7000"></option>
+                              <option value="8000" label="$8,000"></option>
+                              <!--[if lte IE 9]></select><![endif]--> 
+                            </datalist>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                                 <div class="clearfix"></div>
                             </div>
 
@@ -1923,7 +1984,7 @@
 /*
                     $("#holdingsresultstable").addClass("wb-charts wb-charts-area");*/
                     $("#holdingsresultstable").trigger("wb-init[data-chart]");
-
+  		$( ".chart-inited" ).wrap( "<div class='table-responsive'></div>" );
                 }
             }, 
             updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId) {
@@ -2500,7 +2561,25 @@
             }
         });
     </script>
-    <script src="script/wb-input-range.js"></script>
+<script>
+//Code that binds the slider with the number input
+ $(".range-input-group").each(function(e) {
+   let inputNumber = jQuery("input[type=number]", this);
+   let inputRange =  jQuery("input[type=range]", this);  
+	$(inputRange).on("change input", function() {
+		$(inputNumber).val($(this).val())
+	})
+      $(inputNumber).on("change input", function(){
+	      if ($(this).val()==='' || isNaN($(this).val())){
+		      $(inputRange).val(0);
+	      } else {
+		      $(inputRange).val($(this).val());
+	      }
+      });
+ });
+    </script>
+	
+    
     <script>
         $(document).on("click", ".steps-wrapper div.buttons > :button", function () {
             let $form = $(this).parents("form:first");
@@ -2522,5 +2601,42 @@
             $(this).parent().parent().find("legend + div.panel-body.hidden, .buttons").removeClass("hidden");
         });
     </script>
+<script>
+	//Script that prevents second slider and input in well from exceeding first slider and input value
+         // First set
+        const rangeInput1 = document.getElementById('savingsAmountSld');
+        const numberInput1 = document.getElementById('savingsAmount');
+	numberInput1.value = rangeInput1.value;
+	
+	rangeInput1.addEventListener('input', function() {
+		numberInput1.value = this.value;
+            // Update Set 2 only if Set 1 value decreases
+		if (parseInt(this.value) < parseInt(rangeInput2.value)) {rangeInput2.value = this.value;numberInput2.value =this.value;}
+	});
+	numberInput1.addEventListener('change', function() {
+		rangeInput1.value = this.value;
+            // Update Set 2 only if Set 1 value decreases
+		if (parseInt(this.value) < parseInt(rangeInput2.value)) {rangeInput2.value = this.value;numberInput2.value = this.value;}
+	});
+        // Second set
+        const rangeInput2 = document.getElementById('savingsTransferAmountSld');
+        const numberInput2 = document.getElementById('savingsTransferAmount');
+	numberInput2.value = rangeInput2.value;
+        
+	rangeInput2.addEventListener('input', function() {
+            // Ensure Set 2 value doesn't exceed Set 1 value
+		if (parseInt(this.value) > parseInt(rangeInput1.value)) {
+			this.value = rangeInput1.value;
+		}
+		numberInput2.value = this.value;
+	});
+	numberInput2.addEventListener('change', function() {
+            // Ensure Set 2 value doesn't exceed Set 1 value
+		if (parseInt(this.value) > parseInt(rangeInput1.value)) {
+			this.value = rangeInput1.value;
+		}
+		rangeInput2.value = this.value;
+	});
+    </script> 	
 </body>
 </html>
