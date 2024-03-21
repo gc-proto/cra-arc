@@ -734,6 +734,7 @@ height: 50px;
     box-shadow: unset;
     background-color: inherit;
     width: 95px;
+font-size: 20px;
 }
 .range-input-group .input-group-addon {
     background-color: unset;
@@ -741,7 +742,9 @@ height: 50px;
     border-radius: 0;
     width: auto;
 }        
-	    
+.range-input-group.panel-default {
+	border-color:#e1dada;
+}
     </style>
 
 
@@ -864,20 +867,20 @@ height: 50px;
                         <div class="panel-body mrgn-lft-sm mrgn-bttm-lg">
 
                         <div class="form-group">
-        <label for="paymentYears" id="paymentYearsLabel"><span class="field-name">Number of years you plan to participate in your FHSA</span> <span class="wb-inv"> minimum: 1 year, maximum: 15 years</span></label>
+        <label for="paymentYears" id="paymentYearsLabel" class="mrgn-tp-lg"><span class="field-name">Number of years you plan to participate in your FHSA</span> <span class="wb-inv"> minimum: 1 year, maximum: 15 years</span></label>
         <div class="range-input-group panel panel-default">
           <div class="row panel-body">
             <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
               <div class="input-group pull-right mrgn-tp-sm">
                   <input class="input-lg text-right" id="paymentYears" value="1" min="1" max="15" type="number" step="1">
-                   <span class="input-group-addon p-0"> years</span>
+                   <span class="input-group-addon p-0"> year(s)</span>
                 </div>
               </div>
               <div class="clearfix visible-xs"> </div>
               <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
               <div class="col-sm-9 col-md-10 brdr-lft">
                 <div class="slider-group">
-                  <input id="paymentYearsSld" class="form-range" type="range" min="1" max="15" value="1" step="1" list="paymentYearsSldList" aria-controls="paymentYearsSld" aria-label="paymentYearsLabel" tabindex="-1">
+                  <input id="paymentYearsSld" class="form-range mrgn-tp-md" type="range" min="1" max="15" value="1" step="1" list="paymentYearsSldList" aria-controls="paymentYearsSld" aria-label="paymentYearsLabel" tabindex="-1">
                   <datalist id="paymentYearsSldList" class="d-flex"> 
                     <!--[if lte IE 9]><select><![endif]-->
                     <option value="1" label="1"></option>
@@ -895,7 +898,7 @@ height: 50px;
         </div>  
                             <div class="clearfix"></div>
                            <div class="form-group">
-        <label for="paymentAmount" id="paymentAmountLabel"><span class="field-name">Amount you plan to contribute and transfer annually to your FHSA</span> ($250 increments) <span class="wb-inv"> Minimum: $0, maximum: $8000 (dollars only, no cents)</span></label>
+        <label for="paymentAmount" id="paymentAmountLabel" class="mrgn-tp-lg"><span class="field-name">Amount you plan to contribute and transfer annually to your FHSA</span> ($250 increments) <span class="wb-inv"> Minimum: $0, maximum: $8000 (dollars only, no cents)</span></label>
         <div class="range-input-group panel panel-default">
           <div class="row panel-body">
             <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
@@ -907,7 +910,7 @@ height: 50px;
             <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
             <div class="col-sm-9 col-md-10 brdr-lft">
               <div class="slider-group">
-                <input id="paymentAmountSld" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="paymentAmountSldList" aria-controls="paymentAmountSld" aria-label="paymentAmountLabel" tabindex="-1">
+                <input id="paymentAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="paymentAmountSldList" aria-controls="paymentAmountSld" aria-label="paymentAmountLabel" tabindex="-1">
                 <datalist id="paymentAmountSldList" class="d-flex"> 
                   <!--[if lte IE 9]><select><![endif]-->
                   <option value="0" label="$0"></option>
@@ -929,7 +932,7 @@ height: 50px;
 
                             <div class="clearfix"></div>
 
-                            <div class="form-group mrgn-tp-sm">
+                            <div class="form-group mrgn-tp-lg">
                                 <div class="mrgn-lft-md">
                                     <label for="paymentInterest" class="required"><span class="field-name">Expected annual rate of return from your investments</span> (up to 2 decimal points) <strong class="required">(required)</strong></label>
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments?<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a></p>
@@ -1106,9 +1109,10 @@ height: 50px;
                                     </div>
                                     <div class="form-group">
                                         <label for="priorYearSavingInvest"><span class="field-name">FHSA investment income from <span data-prior-year="true">2023</span></span></label>
+					  <p id="priorYearSavingInvest-description">For negative amounts enter 0 or leave blank</p>  
                                         <div class="input-group col-lg-3 col-sm-4 col-xs-10">
                                             <span class="input-group-addon">$</span>
-                                            <input type="text" name="priorYearSavingInvest" id="priorYearSavingInvest" size="7" maxlength="7" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                            <input type="text" name="priorYearSavingInvest" id="priorYearSavingInvest" aria-describedby="priorYearSavingInvest-description" size="7" maxlength="7" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                             <span class="input-group-addon">.00</span>
                                         </div>
                                     </div>
@@ -1165,7 +1169,7 @@ height: 50px;
                         <div class="panel-body mrgn-lft-md mrgn-bttm-lg">
 
                             <div class="form-group pt-4">
-                                <div class="mrgn-lft-md">
+                                <div class="mrgn-lft-md mrgn-tp-lg">
                                     <label for="province" class="required"><span class="field-name">Province or Territory of residence</span> <strong class="required">(required)</strong></label>
                                 </div>
                                 <select name="province" id="province" class="form-control input-lg mrgn-lft-md" required="required" data-fed="Federal">
@@ -1207,20 +1211,20 @@ height: 50px;
                                         </div>
 
                             <div class="form-group">
-        <label for="savingYears" id="savingYearsLabel"><span class="field-name">Number of years you plan to participate in your FHSA</span> <span class="wb-inv"> minimum: 1 year, maximum: 15 years</span></label>
+        <label for="savingYears" id="savingYearsLabel" class="mrgn-tp-lg"><span class="field-name">Number of years you plan to participate in your FHSA</span> <span class="wb-inv"> minimum: 1 year, maximum: 15 years</span></label>
         <div class="range-input-group panel panel-default">
           <div class="row panel-body">
             <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
               <div class="input-group pull-right mrgn-tp-sm">
                   <input class="input-lg text-right" id="savingYears" value="1" min="1" max="15" type="number" step="1">
-                   <span class="input-group-addon p-0"> years</span>
+                   <span class="input-group-addon p-0"> year(s)</span>
                 </div>
               </div>
               <div class="clearfix visible-xs"> </div>
               <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
               <div class="col-sm-9 col-md-10 brdr-lft">
                 <div class="slider-group">
-                  <input id="savingYearsSld" class="form-range" type="range" min="1" max="15" value="1" step="1" list="savingYearsSldList" aria-controls="savingYearsSld" aria-label="savingYearsLabel" tabindex="-1">
+                  <input id="savingYearsSld" class="form-range mrgn-tp-md" type="range" min="1" max="15" value="1" step="1" list="savingYearsSldList" aria-controls="savingYearsSld" aria-label="savingYearsLabel" tabindex="-1">
                   <datalist id="savingYearsSldList" class="d-flex"> 
                     <!--[if lte IE 9]><select><![endif]-->
                     <option value="1" label="1"></option>
@@ -1251,7 +1255,7 @@ height: 50px;
                         <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                         <div class="col-sm-9 col-md-10 brdr-lft">
                           <div class="slider-group">
-                            <input id="savingsAmountSld" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="savingsAmountSldList" aria-controls="savingsAmountSld" aria-label="savingsAmountLabel" tabindex="-1">
+                            <input id="savingsAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="savingsAmountSldList" aria-controls="savingsAmountSld" aria-label="savingsAmountLabel" tabindex="-1">
                             <datalist id="savingsAmountSldList" class="d-flex"> 
                               <!--[if lte IE 9]><select><![endif]-->
                               <option value="0" label="$0"></option>
@@ -1272,7 +1276,7 @@ height: 50px;
                   </div>
                                 <div class="clearfix"></div>
                                <div class="form-group">
-                    <label for="savingsTransferAmount" id="savingsTransferAmountLabel"><span class="field-name">How much of the above will be transferred from an RRSP?</span> ($250 increments) <span class="wb-inv"> minimum: $0, maximum: $8000 (dollars only, no cents)</span></label>
+                    <label for="savingsTransferAmount" id="savingsTransferAmountLabel" class="mrgn-tp-lg"><span class="field-name">How much of the above will be transferred from an RRSP?</span> ($250 increments) <span class="wb-inv"> minimum: $0, maximum: $8000 (dollars only, no cents)</span></label>
                     <p id="savingsTransferAmountInfo">The transfer amount must be less than or equal to the total amount you entered above</p>
                     <p><a href="#transfer-contribute-help" aria-controls="transfer-contribute-help" class="wb-lbx" role="button">What is the difference between transfers versus contributions in your FHSA?<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a></p>
                     <div class="range-input-group panel panel-default well">
@@ -1286,7 +1290,7 @@ height: 50px;
                         <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                         <div class="col-sm-9 col-md-10 brdr-lft">
                           <div class="slider-group">
-                            <input id="savingsTransferAmountSld" class="form-range" type="range" min="0" max="8000" value="0" step="250" list="savingsTransferAmountSldList" aria-controls="savingsTransferAmountSld" aria-label="savingsTransferAmountLabel" tabindex="-1">
+                            <input id="savingsTransferAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="savingsTransferAmountSldList" aria-controls="savingsTransferAmountSld" aria-label="savingsTransferAmountLabel" tabindex="-1">
                             <datalist id="savingsTransferAmountSldList" class="d-flex"> 
                               <!--[if lte IE 9]><select><![endif]-->
                               <option value="0" label="$0"></option>
