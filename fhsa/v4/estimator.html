@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/méli-mélo/2024-09-kejimkujik.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
     <style>
+
       /* CSS Document */
       h1#wb-cont {
           border-bottom: none;
@@ -728,7 +729,7 @@
             transform: scale(1.5);
             height: 50px;
         }
-        .range-input-group input[type=number] {
+        .wb-input-range input[type=number] {
             border: 0;
             -webkit-box-shadow: unset;
             box-shadow: unset;
@@ -736,13 +737,13 @@
             width: 95px;
             font-size: 20px;
         }
-        .range-input-group .input-group-addon {
+        .wb-input-range .input-group-addon {
             background-color: unset;
             border: 0;
             border-radius: 0;
             width: auto;
         }
-        .range-input-group.panel-default {
+        .wb-input-range.panel-default {
             border-color:#e1dada;
         }
     </style>
@@ -868,7 +869,7 @@
 
                         <div class="form-group mrgn-lft-md">
                             <label for="paymentYears" id="paymentYearsLabel" class="mrgn-tp-lg"><span class="field-name">Number of years you plan to participate in your FHSA</span> <span class="wb-inv"> minimum: 1 year, maximum: 15 years</span></label>
-                            <div class="range-input-group panel panel-default">
+                            <div class="wb-input-range panel panel-default">
                                 <div class="row panel-body">
                                     <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
                                         <div class="input-group pull-right mrgn-tp-sm">
@@ -880,7 +881,7 @@
                                     <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                                     <div class="col-sm-9 col-md-10 brdr-lft">
                                         <div class="slider-group">
-                                            <input id="paymentYearsSld" class="form-range mrgn-tp-md" type="range" min="1" max="15" value="1" step="1" list="paymentYearsSldList" aria-controls="paymentYearsSld" aria-label="paymentYearsLabel" tabindex="-1">
+                                            <input id="paymentYearsSld" class="form-range mrgn-tp-md" type="range" min="1" max="15" value="1" step="1" list="paymentYearsSldList" aria-controls="paymentYearsSld" aria-label="paymentYearsLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;paymentYears&quot;]}">
                                             <datalist id="paymentYearsSldList" class="d-flex">
                                                 <!--[if lte IE 9]><select><![endif]-->
                                                 <option value="1" label="1"></option>
@@ -899,7 +900,7 @@
                         <div class="clearfix"></div>
                         <div class="form-group mrgn-lft-md">
                             <label for="paymentAmount" id="paymentAmountLabel" class="mrgn-tp-lg"><span class="field-name">Amount you plan to contribute and transfer annually to your FHSA</span> ($250 increments) <span class="wb-inv"> Minimum: $0, maximum: $8000 (dollars only, no cents)</span></label>
-                            <div class="range-input-group panel panel-default">
+                            <div class="wb-input-range panel panel-default">
                                 <div class="row panel-body">
                                     <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
                                         <div class="input-group pull-right mrgn-tp-sm">
@@ -912,7 +913,7 @@
                                     <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                                     <div class="col-sm-9 col-md-10 brdr-lft">
                                         <div class="slider-group">
-                                            <input id="paymentAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="paymentAmountSldList" aria-controls="paymentAmountSld" aria-label="paymentAmountLabel" tabindex="-1">
+                                            <input id="paymentAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="paymentAmountSldList" aria-controls="paymentAmountSld" aria-label="paymentAmountLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;paymentAmount&quot;]}">
                                             <datalist id="paymentAmountSldList" class="d-flex">
                                                 <!--[if lte IE 9]><select><![endif]-->
                                                 <option value="0" label="$0"></option>
@@ -959,7 +960,7 @@
                                 </ul>
                                 <div id="holdingsResultsTableContainer"></div>
                                     <template id="holdtable">
-                                        <table id="holdingsresultstable" class="text-right table-condensed full-width table-bordered table-striped table-hover" data-yearname="year" data-prior-payment-year-rows=" to " data-chart="line" data-chart-options="{&quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5}}, &quot;plugins&quot;: {&quot;tooltip&quot;: {&quot;titleFont&quot;: {&quot;size&quot;: 12}, &quot;bodyFont&quot;: {&quot;size&quot;: 15}}, &quot;legend&quot;: {&quot;position&quot;: &quot;bottom&quot;}}}">
+                                        <table id="holdingsresultstable" class="text-right table-condensed full-width table-bordered table-striped table-hover" data-year-name="Year" data-prior-payment-year-rows=" to " data-chart="line" data-chart-options="{&quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5}}, &quot;plugins&quot;: {&quot;tooltip&quot;: {&quot;titleFont&quot;: {&quot;size&quot;: 12}, &quot;bodyFont&quot;: {&quot;size&quot;: 15}}, &quot;legend&quot;: {&quot;position&quot;: &quot;bottom&quot;}}}">
                                             <caption>Account holdings by type (line chart)</caption>
                                             <thead>
                                                 <tr class="bg-primary">
@@ -1185,7 +1186,7 @@
                             </div>
                             <div class="form-group mrgn-lft-md">
                                 <label for="savingYears" id="savingYearsLabel" class="mrgn-tp-lg"><span class="field-name">Number of years you plan to participate in your FHSA</span> <span class="wb-inv"> minimum: 1 year, maximum: 15 years</span></label>
-                                <div class="range-input-group panel panel-default">
+                                <div class="wb-input-range panel panel-default">
                                     <div class="row panel-body">
                                         <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
                                             <div class="input-group pull-right mrgn-tp-sm">
@@ -1197,7 +1198,7 @@
                                        <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                                        <div class="col-sm-9 col-md-10 brdr-lft">
                                            <div class="slider-group">
-                                               <input id="savingYearsSld" class="form-range mrgn-tp-md" type="range" min="1" max="15" value="1" step="1" list="savingYearsSldList" aria-controls="savingYearsSld" aria-label="savingYearsLabel" tabindex="-1">
+                                               <input id="savingYearsSld" class="form-range mrgn-tp-md" type="range" min="1" max="15" value="1" step="1" list="savingYearsSldList" aria-controls="savingYearsSld" aria-label="savingYearsLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;savingYears&quot;]}">
                                                <datalist id="savingYearsSldList" class="d-flex">
                                                    <!--[if lte IE 9]><select><![endif]-->
                                                    <option value="1" label="1"></option>
@@ -1217,11 +1218,11 @@
                            <div class="well mrgn-rght-md mrgn-tp-sm">
                                 <div class="form-group">
                                     <label for="savingsAmount" id="savingsAmountLabel"><span class="field-name">Amount you plan to contribute and transfer annually to your FHSA</span> ($250 increments) <span class="wb-inv"> Minimum: $0, maximum: $8000 (dollars only, no cents)</span></label>
-                                    <div class="range-input-group panel panel-default well">
+                                    <div class="wb-input-range panel panel-default well">
                                         <div class="row">
                                             <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
                                                 <div class="input-group pull-right mrgn-tp-sm"> <span class="input-group-addon p-0">$</span>
-                                                    <input class="input-lg text-right" id="savingsAmount" value="0" min="0" max="8000" type="number" step="250">
+                                                    <input class="input-lg text-right" id="savingsAmount" value="0" min="0" max="8000" type="number" step="250" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavings&quot;}">
                                                     <span class="input-group-addon p-0">.00</span>
                                                 </div>
                                             </div>
@@ -1229,7 +1230,7 @@
                                             <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                                             <div class="col-sm-9 col-md-10 brdr-lft">
                                                 <div class="slider-group">
-                                                    <input id="savingsAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="savingsAmountSldList" aria-controls="savingsAmountSld" aria-label="savingsAmountLabel" tabindex="-1">
+                                                    <input id="savingsAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="savingsAmountSldList" aria-controls="savingsAmountSld" aria-label="savingsAmountLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;savingsAmount&quot;]}">
                                                     <datalist id="savingsAmountSldList" class="d-flex">
                                                         <!--[if lte IE 9]><select><![endif]-->
                                                         <option value="0" label="$0"></option>
@@ -1253,11 +1254,11 @@
                                     <label for="savingsTransferAmount" id="savingsTransferAmountLabel" class="mrgn-tp-lg"><span class="field-name">How much of the above will be transferred from an RRSP?</span> ($250 increments) <span class="wb-inv"> minimum: $0, maximum: $8000 (dollars only, no cents)</span></label>
                                     <p id="savingsTransferAmountInfo">The transfer amount must be less than or equal to the total amount you entered above</p>
                                     <p><a href="#transfer-contribute-help" aria-controls="transfer-contribute-help" class="wb-lbx" role="button">What is the difference between transfers versus contributions in your FHSA?<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a></p>
-                                    <div class="range-input-group panel panel-default well">
+                                    <div class="wb-input-range panel panel-default well">
                                         <div class="row">
                                             <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
                                                 <div class="input-group pull-right mrgn-tp-sm"> <span class="input-group-addon p-0">$</span>
-                                                    <input class="input-lg text-right" id="savingsTransferAmount" value="0" min="0" max="8000" type="number" step="250" aria-describedby="savingsTransferAmountInfo">
+                                                    <input class="input-lg text-right" id="savingsTransferAmount" value="0" min="0" max="8000" type="number" step="250" aria-describedby="savingsTransferAmountInfo" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavingsTransfer&quot;}">
                                                     <span class="input-group-addon p-0">.00</span>
                                                 </div>
                                             </div>
@@ -1265,7 +1266,7 @@
                                                 <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                                                 <div class="col-sm-9 col-md-10 brdr-lft">
                                                 <div class="slider-group">
-                                                    <input id="savingsTransferAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="savingsTransferAmountSldList" aria-controls="savingsTransferAmountSld" aria-label="savingsTransferAmountLabel" tabindex="-1">
+                                                    <input id="savingsTransferAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="savingsTransferAmountSldList" aria-controls="savingsTransferAmountSld" aria-label="savingsTransferAmountLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;savingsTransferAmount&quot;]}">
                                                     <datalist id="savingsTransferAmountSldList" class="d-flex">
                                                         <!--[if lte IE 9]><select><![endif]-->
                                                         <option value="0" label="$0"></option>
@@ -1874,12 +1875,12 @@
                                 holdingHeader = document.createElement("th");
 
                                 if (isPriorYear === true && evalYear > 1) {
-                                    holdingHeader.textContent = "1" + ("#holdingsresultstable").data("prior-payment-year-rows") + evalYear;
+                                    holdingHeader.textContent = "1" + $("#holdingsresultstable").data("prior-payment-year-rows") + evalYear;
                                 } else {
                                     holdingHeader.textContent = evalYear;
                                 }
                                 holdingHeader.classList.add("text-right");
-                                holdingHeader.setAttribute("data-chart-value", ("#holdingsresultstable").data("yearname") + " " + evalYear);
+                                holdingHeader.setAttribute("data-chart-value", $("#holdingsresultstable").data("year-name") + " " + evalYear);
                                 holdingRow.appendChild(holdingHeader);
                                 holdingCell = document.createElement("td");
                                 holdingCell.setAttribute("data-chart-value", amountCompound);
@@ -2357,18 +2358,19 @@
             changeSavings = function (savingsVal) {
                 if (parseInt(savingsVal, 10) < parseInt(document.getElementById("savingsTransferAmount").value, 10)) {
                     document.getElementById("savingsTransferAmount").value = savingsVal;
-                    document.getElementById("savingsTransferAmountOutput").innerHTML = currencyFormatter.format(savingsVal);
+                    document.getElementById("savingsTransferAmountSld").value = savingsVal;
                 }
-                return currencyFormatter.format(savingsVal);
+                return savingsVal;
             }, 
             changeSavingsTransfer = function (savingsTransferVal) {
                 let savingsAmt = document.getElementById("savingsAmount").value;
 
                 if (parseInt(savingsTransferVal, 10) > parseInt(savingsAmt, 10)) {
                     document.getElementById("savingsTransferAmount").value = savingsAmt;
-                    return currencyFormatter.format(savingsAmt);
+                    document.getElementById("savingsTransferAmountSld").value = savingsAmt;
+                    return savingsAmt;
                 }
-                return currencyFormatter.format(savingsTransferVal);
+                return savingsTransferVal;
             };
 
         currentYear = getCurrentYear(fhsaStartYear);
@@ -2537,23 +2539,6 @@
             }
         });
     </script>
-<script>
-//Code that binds the slider with the number input
- $(".range-input-group").each(function(e) {
-   let inputNumber = jQuery("input[type=number]", this);
-   let inputRange = jQuery("input[type=range]", this);
-	$(inputRange).on("change input", function() {
-		$(inputNumber).val($(this).val())
-	})
-      $(inputNumber).on("change input", function(){
-	      if ($(this).val()==='' || isNaN($(this).val())){
-		      $(inputRange).val(0);
-	      } else {
-		      $(inputRange).val($(this).val());
-	      }
-      });
- });
-    </script>
     <script>
         $(document).on("click", ".steps-wrapper div.buttons > :button", function () {
             let $form = $(this).parents("form:first");
@@ -2575,6 +2560,23 @@
             $(this).parent().parent().find("legend + div.panel-body.hidden, .buttons").removeClass("hidden");
         });
     </script>
+<script>
+//Code that binds the slider with the number input
+ $(".range-input-group").each(function(e) {
+   let inputNumber = jQuery("input[type=number]", this);
+   let inputRange = jQuery("input[type=range]", this);
+	$(inputRange).on("change input", function() {
+		$(inputNumber).val($(this).val())
+	})
+      $(inputNumber).on("change input", function(){
+	      if ($(this).val()==='' || isNaN($(this).val())){
+		      $(inputRange).val(0);
+	      } else {
+		      $(inputRange).val($(this).val());
+	      }
+      });
+ });
+    </script>    
 <script>
 	//Script that prevents second slider and input in well from exceeding first slider and input value
          // First set
