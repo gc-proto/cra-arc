@@ -959,8 +959,8 @@
                                     <li>after <strong data-output="payment-years">0</strong> year<span data-payment-year-range="true">s</span><span id="paymentThresholdData">. By year <strong><span id="paymentThresholdYear" data-threshold-year="true">0</span></strong>, you will have reached your lifetime FHSA limit of <strong><span id="paymentMaxContributeTotal" data-max-contribution="true">$40,000</span></strong>.</span></li>
                                 </ul>
                                 <div id="holdingsResultsTableContainer"></div>
-                                    <template id="holdtable">
-                                        <table id="holdingsresultstable" class="text-right table-condensed full-width table-bordered table-striped table-hover" data-year-name="Year" data-prior-payment-year-rows=" to " data-chart="line" data-chart-options="{&quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5}}, &quot;plugins&quot;: {&quot;tooltip&quot;: {&quot;titleFont&quot;: {&quot;size&quot;: 12}, &quot;bodyFont&quot;: {&quot;size&quot;: 15}}, &quot;legend&quot;: {&quot;position&quot;: &quot;bottom&quot;}}}">
+                                    <template id="holdtable" data-year-name="Year" data-prior-payment-year-rows=" to ">
+                                        <table id="holdingsresultstable" class="text-right table-condensed full-width table-bordered table-striped table-hover" data-chart="line" data-chart-options="{&quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5}}, &quot;plugins&quot;: {&quot;tooltip&quot;: {&quot;titleFont&quot;: {&quot;size&quot;: 12}, &quot;bodyFont&quot;: {&quot;size&quot;: 15}}, &quot;legend&quot;: {&quot;position&quot;: &quot;bottom&quot;}}}">
                                             <caption>Account holdings by type (line chart)</caption>
                                             <thead>
                                                 <tr class="bg-primary">
@@ -1875,12 +1875,12 @@
                                 holdingHeader = document.createElement("th");
 
                                 if (isPriorYear === true && evalYear > 1) {
-                                    holdingHeader.textContent = "1" + $("#holdingsresultstable").data("prior-payment-year-rows") + evalYear;
+                                    holdingHeader.textContent = "1" + $("#holdtable").data("prior-payment-year-rows") + evalYear;
                                 } else {
                                     holdingHeader.textContent = evalYear;
                                 }
                                 holdingHeader.classList.add("text-right");
-                                holdingHeader.setAttribute("data-chart-value", $("#holdingsresultstable").data("year-name") + " " + evalYear);
+                                holdingHeader.setAttribute("data-chart-value", $("#holdtable").data("year-name") + " " + evalYear);
                                 holdingRow.appendChild(holdingHeader);
                                 holdingCell = document.createElement("td");
                                 holdingCell.setAttribute("data-chart-value", amountCompound);
