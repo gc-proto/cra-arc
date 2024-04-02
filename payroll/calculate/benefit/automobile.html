@@ -515,6 +515,7 @@
 <li><h3 id="step6">Determine if your employee is eligible for the reduced standby charge</h3>
 <p id="reduce">Using the information from the <a href="#log" aria-controls="centred-popup" class="wb-lbx" role="button">records&nbsp;<span class="far fa-question-circle"></span></a> you received from your employee, you need to determine if you can use the reduced standby charge calculation. </p>
 
+<div id="ajax-reduced-calc">
 <p>Your employee is eligible for the reduced <a href="#what-standby" aria-controls="centred-popup" class="wb-lbx" role="button">standby charge&nbsp;<span class="far fa-question-circle"></span></a> if <strong>all</strong> of the following conditions apply:</p>
 
 <details><summary><strong>Condition 1</strong>: You required your employee to use the automobile in connection with or in the course of an office or employment</summary>
@@ -628,7 +629,7 @@
 </ul>
 
 </details>
-
+</div>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 			 <li class="cnjnctn-col"><p><span class="fas fa-ban text-danger fa-lg"></span> If your employee <strong>does not</strong> meet all of the conditions, your employee is <strong>not</strong> eligible for the reduced standby charge calculation.</p>
 <p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#step7">Step 7 - Determine if your employee is eligible for the simplified standby charge calculation</a>.</p>
@@ -924,8 +925,8 @@ estimated by the number of pay periods in the year. </p>
 </ul>
 <hr>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-	 <li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If your employee is <strong>not</strong> eligible for the reduced standby charge, continue to: <a href="#step9-g1">Step G - Total value of the standby charge benefit</a></p></li>
-         <li class="cnjnctn-col">  <p><span class="fas fa-arrow-down text-success fa-lg"></span> If your employee is <strong>eligible</strong> for the <strong>reduced</strong> standby charge calculation, continue to: <a href="#step9-d1">Step D - Limit on the number of personal kilometres driven multiplied by Result B</a></p></li>
+	 <li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If your employee is <strong>not</strong> eligible for the reduced standby charge (step 6), continue to: <a href="#step9-g1">Step G - Total value of the standby charge benefit</a></p></li>
+         <li class="cnjnctn-col">  <p><span class="fas fa-arrow-down text-success fa-lg"></span> If your employee is <strong>eligible</strong> for the <strong>reduced</strong> standby charge calculation (<a href="#reduced-calc" aria-controls="centred-popup" class="wb-lbx" role="button">all conditions in step 6 have been met&nbsp;<span class="far fa-question-circle"></span></a>), continue to: <a href="#step9-d1">Step D - Limit on the number of personal kilometres driven multiplied by Result B</a></p></li>
                            </ul>
 <h4 id="step9-d1">Step D - Limit on the number of personal kilometres driven multiplied by Result B</h4>   
 <ul class="fa-ul lst-spcd mrgn-tp-md mrgn-bttm-lg mrgn-lft-lg">   
@@ -2221,6 +2222,11 @@ $0.24
 <section id="simp-calc" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">Conditions: Simplified standby charge calculation</h2>
 	</header>	<div class="modal-body">		
 	<div data-ajax-replace="#ajax-simp-calc"></div>
+	</div></section>
+
+<section id="reduced-calc" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">Conditions: Reduced standby charge calculation</h2>
+	</header>	<div class="modal-body">		
+	<div data-ajax-replace="#ajax-reduced-calc"></div>
 	</div></section>
  		 
 	<section id="personal2" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">What is considered business (employment-related) and personal driving</h2>
