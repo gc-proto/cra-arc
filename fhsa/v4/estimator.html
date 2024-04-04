@@ -702,7 +702,7 @@
     </style>
     <style>
         .wb-input-range datalist {
-             display: flex;
+            display: flex;
             justify-content: space-between;
         }
 
@@ -1348,7 +1348,7 @@
                                 <p data-zero-val="true">You have only entered amounts you plan to both contribute and transfer. You must also include either amounts you plan to contribute or an annual rate of return to get tax savings from your FHSA.</p>
                                 <p data-show-prior="true" class="hidden">These results do not display tax savings for information you entered for prior years.</p>
                                 <div id="savingsTableContainer"></div>
-				<template id="savingTableTemplate" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
+                                <template id="savingTableTemplate" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     <table id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true">
                                         <caption>Your potential FHSA tax savings</caption>
                                         <thead>
@@ -1587,7 +1587,7 @@
             priorYearMax = 14, 
             fhsaStartYear = 2023;
 
-        let currentYear, priorContributeMax, 
+        let currentYear, priorContributeMax, holdingsTbl, savingsTbl, 
             paymentformId = "#fhsa_downpay_form", 
             savingsformId = "#fhsa_taxsavings_form", 
             pagelang = document.documentElement.lang, 
@@ -1853,8 +1853,18 @@
                 $("#priorYearSavingAmount").attr("max", priorContributeMax);
                 $("#priorYearSavingTransfer").attr("max", priorContributeMax);
             }, 
+            generateTableChart = function(tableObj, tableContainerId, tableTemplateId, tableId, createChart) {
+                let tableHeader;
+
+                if ("content" in document.createElement("template")) {
+                    document.getElementById(tableContainerId).textContent = "";
+                    tableHeader = document.getElementById(tableTemplateId).content.cloneNode(true);
+                    document.getElementById(tableContainerId).appendChild(tableHeader);
+                    document.getElementById(tableId).appendChild(tableObj);
+                }
+            },      
             updatePaymentResults = function (priorYearMax, maxContribution, paymentformId) {
-                let paymentTotals, holdingsTableHeader, 
+                let paymentTotals, 
                     priorPaymentInvestment = priorPaymentBalance() - priorPaymentAmount(), 
                     generateHoldingsTableData = function (holdingYears, paymentAmount, investment, hasPriorPay, priorPaymentYrs, priorPayAmount, priorPayInvest, priorYearMax, maxContribution) {
                         let yearIncrement, holdingRow, 
@@ -1926,6 +1936,8 @@
                     };
 
                 paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
+                holdingsTbl = paymentTotals.tableContent;
+                generateTableChart(holdingsTbl, "holdingsResultsTableContainer", "holdingTableTemplate", "holdingsresultstable");
                 if ("content" in document.createElement("template")) {
                     document.getElementById("holdingsResultsTableContainer").textContent = "";
                     holdingsTableHeader = document.getElementById("holdingTableTemplate").content.cloneNode(true);
@@ -1954,9 +1966,9 @@
                 }
 /*
                 $("#holdingsresultstable").addClass("wb-charts wb-charts-area");
+                $("#holdingsresultstable").trigger("wb-init.wb-charts");
 */
                 $("#holdingsresultstable").trigger("wb-init[data-chart]");
-//                $(".chart-inited").wrap("<div class=\"table-responsive\"></div>");
             }, 
             updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId) {
                 let savingsTotals, summaryTotal, savingsTableHeader, 
@@ -2250,6 +2262,8 @@
 
                 savingsTotals = generateSavingsTableData(prov.val(), $("#province").data("fed"), prov.data("id"), yearlyTotalIncome(), yearlyTotalDeductions(), savingYears(), savingsAmount(), savingsTransferAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, hasPriorTaxSavings(), priorYearSavingAmount(), priorYearSavingTransfer(), 
                     priorYearSavingInvest(), hasPriorYearSavingDiffIncome(), priorYearSavingIncome(), priorYearSavingDeduction(), priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
+                    savingsTbl = savingsTotals.tableContent;
+                    generateTableChart(savingsTbl, "savingsTableContainer", "savingTableTemplate", "savingsTable");
                 if ("content" in document.createElement("template")) {
                     document.getElementById("savingsTableContainer").textContent = "";
                     savingsTableHeader = document.getElementById("savingTableTemplate").content.cloneNode(true);
@@ -2329,8 +2343,10 @@
                     $("#savingsThresholdData", savingsformId).addClass("hidden");
                 }
 /*
+                $("#savingsTable").addClass("wb-charts wb-charts-area");
+                $("#savingsTable").trigger("wb-init.wb-charts");
+
                 $("#savingsTable").trigger("wb-init[data-chart]");
-                $(".chart-inited").wrap("<div class=\"table-responsive\"></div>");
 */
             };
 
