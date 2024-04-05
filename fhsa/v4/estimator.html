@@ -1939,12 +1939,6 @@
 
                 paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
                 generateTableChart(holdingsTbl, "holdingsResultsTableContainer", "holdingTableTemplate", "holdingsresultstable");
-                if ("content" in document.createElement("template")) {
-                    document.getElementById("holdingsResultsTableContainer").textContent = "";
-                    holdingsTableHeader = document.getElementById("holdingTableTemplate").content.cloneNode(true);
-                    document.getElementById("holdingsResultsTableContainer").appendChild(holdingsTableHeader);
-                    document.getElementById("holdingsresultstable").appendChild(paymentTotals.tableContent);
-                }
                 $("[data-output=holdings-total]", paymentformId).html(currencyFormatter.format(paymentTotals.addedAmount + paymentTotals.investment));
                 if (priorPaymentInvestment + paymentTotals.investment > 0) {
                     $("#paymentGrowthResult", paymentformId).removeClass("hidden");
@@ -2261,12 +2255,6 @@
                 savingsTotals = generateSavingsTableData(prov.val(), $("#province").data("fed"), prov.data("id"), yearlyTotalIncome(), yearlyTotalDeductions(), savingYears(), savingsAmount(), savingsTransferAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, hasPriorTaxSavings(), priorYearSavingAmount(), priorYearSavingTransfer(), 
                     priorYearSavingInvest(), hasPriorYearSavingDiffIncome(), priorYearSavingIncome(), priorYearSavingDeduction(), priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
                     generateTableChart(savingsTbl, "savingsTableContainer", "savingTableTemplate", "savingsTable");
-                if ("content" in document.createElement("template")) {
-                    document.getElementById("savingsTableContainer").textContent = "";
-                    savingsTableHeader = document.getElementById("savingTableTemplate").content.cloneNode(true);
-                    document.getElementById("savingsTableContainer").appendChild(savingsTableHeader);
-                    document.getElementById("savingsTable").appendChild(savingsTotals.tableContent);
-                }
                 if (Math.max(yearlyTotalIncome() - yearlyTotalDeductions(), 0) <= savingsTotals.areaExempt && Math.max(yearlyTotalIncome() - yearlyTotalDeductions(), 0) <= savingsTotals.fedExempt) {
                     $("[data-min-threshold=false]").removeClass("hidden");
                     $("[data-min-threshold=true]").addClass("hidden");
