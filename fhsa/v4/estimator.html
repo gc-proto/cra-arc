@@ -706,7 +706,7 @@
             justify-content: space-between;
         }
 
-        .wb-input-range>output.wb-input-range-display, div.wb-input-range-display {
+        .wb-input-range output.wb-input-range-display, div.wb-input-range-display {
             font-size: 20px;
             min-width: 2em;
             text-align: center;
@@ -1349,7 +1349,7 @@
                                 <p data-show-prior="true" class="hidden">These results do not display tax savings for information you entered for prior years.</p>
                                 <div id="savingsTableContainer"></div>
                                 <template id="savingTableTemplate" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
-                                    <table id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true">
+                                    <table id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true" data-chart="" data-chart-options="">
                                         <caption>Your potential FHSA tax savings</caption>
                                         <thead>
                                             <tr>
@@ -1794,6 +1794,7 @@
             }, 
             getPriorContributeMax = function (fhsaStartYear, currentYear, priorYearMax, yearlyMaxContribution, maxContribution) {
                 let adjustedYear = currentYear;
+
                 if (currentYear <= fhsaStartYear) {
                     adjustedYear = fhsaStartYear + 1;
                 }
@@ -1862,7 +1863,7 @@
                     document.getElementById(tableContainerId).appendChild(tableHeader);
                     document.getElementById(tableId).appendChild(tableObj);
                 }
-            },      
+            }, 
             updatePaymentResults = function (priorYearMax, maxContribution, paymentformId) {
                 let paymentTotals, 
                     priorPaymentInvestment = priorPaymentBalance() - priorPaymentAmount(), 
@@ -1924,6 +1925,7 @@
                                     investmentCompound = investmentCompound + (investmentCompound + amountCompound) * investment;
                                     holdingRow = createHoldingsTableRow(yearIncrement, false, amountCompound, investmentCompound);
                                     holdingBody.appendChild(holdingRow);
+                                    holdingsTbl = holdingBody;
                                 }
                                 return {
                                     "tableContent": holdingBody, 
@@ -1936,7 +1938,6 @@
                     };
 
                 paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
-                holdingsTbl = paymentTotals.tableContent;
                 generateTableChart(holdingsTbl, "holdingsResultsTableContainer", "holdingTableTemplate", "holdingsresultstable");
                 if ("content" in document.createElement("template")) {
                     document.getElementById("holdingsResultsTableContainer").textContent = "";
@@ -1964,10 +1965,6 @@
                 } else {
                     $("#paymentThresholdData", paymentformId).addClass("hidden");
                 }
-/*
-                $("#holdingsresultstable").addClass("wb-charts wb-charts-area");
-                $("#holdingsresultstable").trigger("wb-init.wb-charts");
-*/
                 $("#holdingsresultstable").trigger("wb-init[data-chart]");
             }, 
             updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId) {
@@ -2239,6 +2236,7 @@
                         savingsRow = document.createElement("tr");
                         savingsRow.setAttribute("class", "success text-right");
                         savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, $("#savingTableTemplate").data("total-header"), 0, investmentCompound, deductCumulative, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, hasInvestment, false, false, true));
+                        savingsTbl = savingsBody;
                         return {
                             "tableContent": savingsBody,
                             "addedAmount": amountCompound, 
@@ -2262,7 +2260,6 @@
 
                 savingsTotals = generateSavingsTableData(prov.val(), $("#province").data("fed"), prov.data("id"), yearlyTotalIncome(), yearlyTotalDeductions(), savingYears(), savingsAmount(), savingsTransferAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, hasPriorTaxSavings(), priorYearSavingAmount(), priorYearSavingTransfer(), 
                     priorYearSavingInvest(), hasPriorYearSavingDiffIncome(), priorYearSavingIncome(), priorYearSavingDeduction(), priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
-                    savingsTbl = savingsTotals.tableContent;
                     generateTableChart(savingsTbl, "savingsTableContainer", "savingTableTemplate", "savingsTable");
                 if ("content" in document.createElement("template")) {
                     document.getElementById("savingsTableContainer").textContent = "";
@@ -2343,9 +2340,6 @@
                     $("#savingsThresholdData", savingsformId).addClass("hidden");
                 }
 /*
-                $("#savingsTable").addClass("wb-charts wb-charts-area");
-                $("#savingsTable").trigger("wb-init.wb-charts");
-
                 $("#savingsTable").trigger("wb-init[data-chart]");
 */
             };
@@ -2542,6 +2536,7 @@
             }
         });
     </script>
+    <script src="script/wb-input-range.js"></script>
     <script>
         $(document).on("click", ".steps-wrapper div.buttons > :button", function () {
             let $form = $(this).parents("form:first");
@@ -2558,63 +2553,10 @@
             let $form = $(this).parents("form:first");
             $form.find(".wb-steps-active, legend.prev-wb-step").removeClass("wb-steps-active prev-wb-step");
             $form.find("legend + div.panel-body, .buttons").addClass("hidden");
-            $form.find("legend.wb-steps-active").parents().nextAll().each(function () {});
+//            $form.find("legend.wb-steps-active").parents().nextAll().each(function () {});
             $(this).addClass("wb-steps-active").removeClass("prev-wb-step");
             $(this).parent().parent().find("legend + div.panel-body.hidden, .buttons").removeClass("hidden");
         });
-    </script>
-<script>
-//Code that binds the slider with the number input
- $(".wb-input-range").each(function(e) {
-   let inputNumber = jQuery("input[type=number]", this);
-   let inputRange = jQuery("input[type=range]", this);
-	$(inputRange).on("change input", function() {
-		$(inputNumber).val($(this).val())
-	})
-      $(inputNumber).on("change input", function(){
-	      if ($(this).val()==='' || isNaN($(this).val())){
-		      $(inputRange).val(0);
-	      } else {
-		      $(inputRange).val($(this).val());
-	      }
-      });
- });
-    </script>    
-<script>
-	//Script that prevents second slider and input in well from exceeding first slider and input value
-         // First set
-        const rangeInput1 = document.getElementById('savingsAmountSld');
-        const numberInput1 = document.getElementById('savingsAmount');
-	numberInput1.value = rangeInput1.value;
-	
-	rangeInput1.addEventListener('input', function() {
-		numberInput1.value = this.value;
-            // Update Set 2 only if Set 1 value decreases
-		if (parseInt(this.value) < parseInt(rangeInput2.value)) {rangeInput2.value = this.value;numberInput2.value =this.value;}
-	});
-	numberInput1.addEventListener('change', function() {
-		rangeInput1.value = this.value;
-            // Update Set 2 only if Set 1 value decreases
-		if (parseInt(this.value) < parseInt(rangeInput2.value)) {rangeInput2.value = this.value;numberInput2.value = this.value;}
-	});
-        // Second set
-        const rangeInput2 = document.getElementById('savingsTransferAmountSld');
-        const numberInput2 = document.getElementById('savingsTransferAmount');
-	numberInput2.value = rangeInput2.value;
-	rangeInput2.addEventListener('input', function() {
-            // Ensure Set 2 value doesn't exceed Set 1 value
-		if (parseInt(this.value) > parseInt(rangeInput1.value)) {
-			this.value = rangeInput1.value;
-		}
-		numberInput2.value = this.value;
-	});
-	numberInput2.addEventListener('change', function() {
-            // Ensure Set 2 value doesn't exceed Set 1 value
-		if (parseInt(this.value) > parseInt(rangeInput1.value)) {
-			this.value = rangeInput1.value;
-		}
-		rangeInput2.value = this.value;
-	});
     </script>
 </body>
 </html>
