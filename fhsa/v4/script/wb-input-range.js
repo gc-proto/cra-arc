@@ -100,8 +100,7 @@
         targetArr = wb.getData( inputElm, "wb-input-range" );
         if ( typeof targetArr !== "undefined" && Object.prototype.hasOwnProperty.call( targetArr, "target" ) === true ) {
             targetArr.target.forEach( function ( currentId ) {
-                let adjustedInputVal,
-                    elm = document.getElementById( currentId );
+                let elm = document.getElementById( currentId );
 
                 if ( elm.tagName === "TEXTAREA" || elm.tagName === "INPUT" ) {
                     if ( !elm.hasAttribute( "id" ) ) {
@@ -109,7 +108,14 @@
                     }
                     elm.rangeId = inputElm.id;
                     $( elm ).on( "change input", function() {
-                        adjustedInputVal = parseInt( $( this ).val(), 10 ) || parseInt( this.min, 10 );
+                        let adjustedInputVal, outputData;
+
+                        outputData = wb.getData( elm, "wb-input-range" );
+                        if ( typeof outputData !== "undefined" && Object.prototype.hasOwnProperty.call( outputData, "fn" ) === true ) {
+                            adjustedInputVal = doRangeFunc( outputData.fn, parseInt( $( this ).val(), 10 ) );
+                        } else {
+                            adjustedInputVal = parseInt( $( this ).val(), 10 ) || parseInt( this.min, 10 );
+                        }
                         switch (true) {
                             case (adjustedInputVal < parseInt( this.min, 10 )):
                                 $( inputElm ).val( parseInt( this.min, 10 ) );
