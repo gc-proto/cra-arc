@@ -140,7 +140,7 @@
         <label for="input1" class="required wb-inv"><span class="field-name">Telephone number</span></label>
         <input class="form-control mrgn-bttm-md" id="input1" size="15" maxlength="15" required="required" pattern="\d{1,}" onkeyup="this.value = this.value.replace(/[^0-9]/g, '')" />
         <!--input class="form-control mrgn-bttm-md" id="input1" size="15" maxlength="15"  type="tel" autocomplete="tel" required="required" data-rule-phoneUS="true" /-->
-        <button class="btn btn-primary mrgn-lft-sm mrgn-bttm-md" type="button" id="button1">Verify number</button>
+        <button class="btn btn-primary mrgn-lft-sm mrgn-bttm-md" type="button" id="button1" disabled="disabled">Verify number</button>
 
         </div>
         </form>
@@ -214,7 +214,6 @@
 <h3 class="h4"> &nbsp; </h3>
 <p>Please enter a valid phone number to verify.</p>
 </div> -->
-
 
 
 <script type="text/javascript">
@@ -532,5 +531,12 @@ button1.addEventListener("click", function()
          }));
       </script> 
 <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
+<script>
+$(document).ready(function() {
+  $('#input1').on('input', function() {
+    $('#button1').attr('disabled',$(this).val().length < 9? true : false);
+  });
+});
+</script>
 </body>
 </html>
