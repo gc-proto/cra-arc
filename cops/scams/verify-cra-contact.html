@@ -133,19 +133,20 @@
         <p>Enter the phone number you were given to call back.<!--br>
         (e.g. 555-555-5555)--></p>
        
-
-       <form class="form-inline">
+<div class="wb-frmvld">
+       <form class="form-inline" action="#" method="get" id="validation-example">
         <div class="form-group">
 
-        <label for="phn1" class="required wb-inv"><span class="field-name">Telephone number</span></label>
+        <label for="input1" class="required wb-inv"><span class="field-name">Telephone number</span></label>
         <input class="form-control mrgn-bttm-md" id="input1" size="15" maxlength="15" required="required" pattern="\d{1,}" onkeyup="this.value = this.value.replace(/[^0-9]/g, '')" />
-
+        <!--input class="form-control mrgn-bttm-md" id="input1" size="15" maxlength="15"  type="tel" autocomplete="tel" required="required" data-rule-phoneUS="true" /-->
         <button class="btn btn-primary mrgn-lft-sm mrgn-bttm-md" type="button" id="button1">Verify number</button>
 
         </div>
         </form>
+</div>
  
-<!-- success --> 
+<!-- success 1 --> 
 <div class="alert alert-success mrgn-tp-md" id="phn1" style="display:none;">
 <h3 class="h4">Identify protection services phone number</h3>
 <p>This is a valid CRA phone number.</p>
@@ -162,8 +163,42 @@
 </dl>
 </div>  
 
+<!-- success 2 --> 
+<div class="alert alert-success mrgn-tp-md" id="phn2" style="display:none;">
+<h3 class="h4">Identify protection services phone number</h3>
+<p>This is a valid CRA phone number.</p>
+<p>1-800-959-8281</p>
+<dl id="prs-hrs-04" class="dl-horizontal text-left">
+<dt class="nowrap brdr-0" title="Monday to Friday">Mon to Fri</dt>
+<dd class="nowrap brdr-0">6:30&nbsp;am to 7&nbsp;pm ET </dd>
+<dt class="nowrap" title="Saturday">Sat</dt>
+<dd>Closed </dd>
+<dt class="nowrap" title="Sunday">Sun</dt>
+<dd class="nowrap">Closed</dd>
+<dt class="nowrap"><a href="/en/revenue-agency/services/tax/public-holidays.html">Public holidays</a></dt>
+<dd class="nowrap">Closed</dd>
+</dl>
+</div>  
+
+<!-- success 3 --> 
+<div class="alert alert-success mrgn-tp-md" id="phn3" style="display:none;">
+<h3 class="h4">Identify protection services phone number</h3>
+<p>This is a valid CRA phone number.</p>
+<p>1-800-387-1193</p>
+<dl id="prs-hrs-04" class="dl-horizontal text-left">
+<dt class="nowrap brdr-0" title="Monday to Friday">Mon to Fri</dt>
+<dd class="nowrap brdr-0">6:30&nbsp;am to 7&nbsp;pm ET </dd>
+<dt class="nowrap" title="Saturday">Sat</dt>
+<dd>Closed </dd>
+<dt class="nowrap" title="Sunday">Sun</dt>
+<dd class="nowrap">Closed</dd>
+<dt class="nowrap"><a href="/en/revenue-agency/services/tax/public-holidays.html">Public holidays</a></dt>
+<dd class="nowrap">Closed</dd>
+</dl>
+</div>  
+
 <!-- warning --> 
-<div class="alert alert-warning mrgn-tp-md" id="phn2" style="display:none;">
+<div class="alert alert-warning mrgn-tp-md" id="phnx" style="display:none;">
 <h3 class="h4">Contact the CRA</h3>
 <p>This is not one of CRA's publicized phone numbers. This may be a CRA employee's direct internal phone number.</p>
 
@@ -174,17 +209,18 @@
   </ul>
 </div>
 
-<!-- danger -->  
+<!-- danger  
 <div class="alert alert-danger mrgn-tp-md" id="phn3" style="display:none;">
 <h3 class="h4"> &nbsp; </h3>
 <p>Please enter a valid phone number to verify.</p>
-</div>
+</div> -->
+
 
 
 <script type="text/javascript">
 let phn1 = new Array("18339952336");
-let phn2 = new Array("2222222222");
-let phn3 = new Array("3333333333");
+let phn2 = new Array("18009598281");
+let phn3 = new Array("18003871193");
 let button1 = document.getElementById("button1");
 let input = document.getElementById("input1");
 
@@ -193,15 +229,15 @@ button1.addEventListener("click", function()
     if (phn1.includes(input.value)) {
         $("#phn1").show();
         $("#phn2").hide();
-        $("#phn3").hide();
+        $("#phnx").hide();
     } else if (phn2.includes(input.value)) {
         $("#phn1").hide();
         $("#phn2").show();
-        $("#phn3").hide();
+        $("#phnx").hide();
     } else {
         $("#phn1").hide();
         $("#phn2").hide();
-        $("#phn3").show();
+        $("#phnx").show();
     }
 });
 </script>
