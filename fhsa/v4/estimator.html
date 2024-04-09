@@ -746,6 +746,9 @@
         .wb-input-range.panel-default {
             border-color:#e1dada;
         }
+        .wb-chart-container { 
+            min-height: 19vh;
+        }
     </style>
 
 
@@ -960,7 +963,7 @@
                                 </ul>
                                 <div id="holdingsResultsTableContainer"></div>
                                     <template id="holdingTableTemplate" data-year-name="Year" data-prior-payment-year-rows=" to ">
-                                        <table id="holdingsresultstable" class="text-right table-condensed full-width table-bordered table-striped table-hover" data-chart="line" data-chart-options="{&quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5}}, &quot;plugins&quot;: {&quot;tooltip&quot;: {&quot;titleFont&quot;: {&quot;size&quot;: 12}, &quot;bodyFont&quot;: {&quot;size&quot;: 15}}, &quot;legend&quot;: {&quot;position&quot;: &quot;bottom&quot;}}}">
+                                        <table id="holdingsresultstable" class="text-right table-condensed full-width table-bordered table-striped table-hover" data-chart="line" data-chart-options="{&quot;maintainAspectRatio&quot;: false, &quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5}}, &quot;plugins&quot;: {&quot;tooltip&quot;: {&quot;titleFont&quot;: {&quot;size&quot;: 12}, &quot;bodyFont&quot;: {&quot;size&quot;: 15}}, &quot;legend&quot;: {&quot;position&quot;: &quot;bottom&quot;}}}">
                                             <caption>Account holdings by type (line chart)</caption>
                                             <thead>
                                                 <tr class="bg-primary">
@@ -1349,7 +1352,7 @@
                                 <p data-show-prior="true" class="hidden">These results do not display tax savings for information you entered for prior years.</p>
                                 <div id="savingsTableContainer"></div>
                                 <template id="savingTableTemplate" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
-                                    <table id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true" data-chart="" data-chart-options="">
+                                    <table id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true" data-chart="" data-chart-options="}&quot;maintainAspectRatio&quot;: false}">
                                         <caption>Your potential FHSA tax savings</caption>
                                         <thead>
                                             <tr>
@@ -1960,6 +1963,7 @@
                     $("#paymentThresholdData", paymentformId).addClass("hidden");
                 }
                 $("#holdingsresultstable").trigger("wb-init[data-chart]");
+                $("#holdingsResultsTableContainer").find("canvas").closest("div").addClass("wb-chart-container");
             }, 
             updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId) {
                 let savingsTotals, summaryTotal, savingsTableHeader, 
@@ -2329,6 +2333,7 @@
                 }
 /*
                 $("#savingsTable").trigger("wb-init[data-chart]");
+                $("#savingsTableContainer").find("canvas").closest("div").addClass("wb-chart-container");
 */
             };
 
