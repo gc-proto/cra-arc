@@ -56,66 +56,6 @@
              <p class="lead mrgn-tp-md mrgn-bttm-0 text-muted" aria-hidden="true">Scams and fraud - CRA</p>
 		<h1 class="gc-thickline mrgn-tp-0" id="wb-cont">Verify it's the CRA calling<span class="wb-inv"> – Scams and fraud - CRA</span></h1>
   
-<h2 class="h3 mrgn-tp-md">On this page</h2>
-    <ul>
-        <li><a href="#h1">How to confirm it's the CRA calling</a></li>
-	<li><a href="#h2">Confirm a phone number is from the CRA</a></li>
-        <li><a href="#h3">Still unsure if the CRA contacted you</a></li>
-        
-    </ul>
-
-<h2 id="h1">How to confirm it's the CRA calling </h2>
-	<p>Always be cautious when you receive a phone call from an unknown caller. When the CRA calls you, the employee will identify themselves by giving you their:</p> 
-<ul>
-<li>Name</li>
-<li>Phone number to call back</li>
-</ul>
-
-<p>Never call the phone number that was given to you unless you have verified it yourself with the CRA.  </p> 
-
-
-<h3 class="h3">Steps to take before verifying a CRA callback number</h3>
-	
-<ol class="lst-stps ld-zr">
-  <li>
-    <h4>Do not share your information</h4>
-    <p>Since you do not know if it's really the CRA calling you, do not provide any personal information to the caller.</p>
-  </li>
-  <li>
-    <h4>Get the caller's information</h4>
-    <p>Ask for the caller's:</p>
-	  
-<ul>
-<li>Name</li>
-<li>Office name or location</li>
-<li>Phone number to call back</li>
-</ul>
-  </li>
-	<li>
-    <h4>Tell the caller you will verify their information</h4>
-    <p>Let the caller know you will verify their information before calling them back.</p>
-  </li>
-<li>
-    <h4>End the call</h4>
-    <p>You can confirm it's really a CRA number by using the verify phone number tool. </p>
-  </li>
-</ol>
-<!--<ol class="lst-stps">
-<ol class="lst-spcd">		
-<li>Do not provide any personal information to the caller</li>
-<li>Make note of their:
-<ul>
-<li>Name</li>
-<li>Office location</li>
-<li>Call back phone number  </li>
-</ul></li>
-
-<li>Let them know you will verify their information</li>
-<li>End the call</li>
-
-
-</ol>-->
-
 <h2 id="h2">Confirm a phone number is from the CRA</h2>
 	<!--<p>Use this tool to verify the CRA phone number that was provided to you to call back.</p>
 	<p>Never rely on the phone number displayed on your caller ID.</p>-->
@@ -133,21 +73,22 @@
         <p>Enter the phone number you were given to call back.<!--br>
         (e.g. 555-555-5555)--></p>
        
-<div class="wb-frmvld">
-       <form class="form-inline" action="#" method="get" id="validation-example">
+<div class="wb-frmvld" action="" method="post">
+       <form class="form-inline" onsubmit="return false">
         <div class="form-group">
 
         <label for="input1" class="required wb-inv"><span class="field-name">Telephone number</span></label>
-        <input class="form-control mrgn-bttm-md" id="input1" size="15" maxlength="15" required="required" pattern="\d{1,}" onkeyup="this.value = this.value.replace(/[^0-9]/g, '')" />
-        <!--input class="form-control mrgn-bttm-md" id="input1" size="15" maxlength="15"  type="tel" autocomplete="tel" required="required" data-rule-phoneUS="true" /-->
-        <button class="btn btn-primary mrgn-lft-sm mrgn-bttm-md" type="button" id="button1" disabled="disabled">Verify number</button>
+        <input class="form-control mrgn-bttm-md" id="input1" size="15" maxlength="15"  type="tel" autocomplete="tel" required="required" data-rule-phoneUS="true" />
+        <button class="btn btn-primary mrgn-lft-sm mrgn-bttm-md" type="submit" id="button1">Verify number</button>
 
         </div>
         </form>
 </div>
+
+<!-- Telephone numbers for personal taxes, benefits and trusts -->
  
 <!-- success 1 --> 
-<div class="alert alert-success mrgn-tp-md" id="phn1" style="display:none;">
+<div class="alert alert-success mrgn-tp-md hidden" id="phn1">
 <h3 class="h4">Identify protection services phone number</h3>
 <p>This is a valid CRA phone number.</p>
 <p>1-833-995-2336</p>
@@ -164,7 +105,7 @@
 </div>  
 
 <!-- success 2 --> 
-<div class="alert alert-success mrgn-tp-md" id="phn2" style="display:none;">
+<div class="alert alert-success mrgn-tp-md hidden" id="phn2">
 <h3 class="h4">Identify protection services phone number</h3>
 <p>This is a valid CRA phone number.</p>
 <p>1-800-959-8281</p>
@@ -181,7 +122,7 @@
 </div>  
 
 <!-- success 3 --> 
-<div class="alert alert-success mrgn-tp-md" id="phn3" style="display:none;">
+<div class="alert alert-success mrgn-tp-md hidden" id="phn3">
 <h3 class="h4">Identify protection services phone number</h3>
 <p>This is a valid CRA phone number.</p>
 <p>1-800-387-1193</p>
@@ -198,7 +139,7 @@
 </div>  
 
 <!-- warning --> 
-<div class="alert alert-warning mrgn-tp-md" id="phnx" style="display:none;">
+<div class="alert alert-warning mrgn-tp-md hidden" id="phnx">
 <h3 class="h4">Contact the CRA</h3>
 <p>This is not one of CRA's publicized phone numbers. This may be a CRA employee's direct internal phone number.</p>
 
@@ -217,29 +158,27 @@
 
 
 <script type="text/javascript">
-let phn1 = new Array("18339952336");
-let phn2 = new Array("18009598281");
-let phn3 = new Array("18003871193");
+let phn1 = new Array("18339952336" ,"1-833-995-2336");
+let phn2 = new Array("18009598281" ,"1-800-959-8281");
+let phn3 = new Array("18003871193" ,"1-800-387-1193");
 let button1 = document.getElementById("button1");
 let input = document.getElementById("input1");
 
-button1.addEventListener("click", function()
-{
+document.addEventListener("submit", function() {
     if (phn1.includes(input.value)) {
-        $("#phn1").show();
-        $("#phn2").hide();
-        $("#phnx").hide();
+        $("#phn1").removeClass("hidden");
+        $("#phn2, #phnx").addClass("hidden");
     } else if (phn2.includes(input.value)) {
-        $("#phn1").hide();
-        $("#phn2").show();
-        $("#phnx").hide();
+        $("#phn1, #phnx").addClass("hidden");
+        $("#phn2").removeClass("hidden");
     } else {
-        $("#phn1").hide();
-        $("#phn2").hide();
-        $("#phnx").show();
+        $("#phn1, #phn2").addClass("hidden");
+        $("#phnx").removeClass("hidden");
     }
 });
+
 </script>
+
 
 </div></div></div>
 
@@ -531,12 +470,6 @@ button1.addEventListener("click", function()
          }));
       </script> 
 <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
-<script>
-$(document).ready(function() {
-  $('#input1').on('input', function() {
-    $('#button1').attr('disabled',$(this).val().length < 9? true : false);
-  });
-});
-</script>
+
 </body>
 </html>
