@@ -305,12 +305,12 @@
 		"noForm": true,
 		"isoptional": true,
 		"base": { "live": true },
-		"default": { "action": "addClass", "source":"#EI-R1, #EI-R2, #EI-R3, #EI-R4, #EI-R5, #EI-R6, #EI-R7, #ER-R1a, #ER-R1b, #ER-R2, #ER-R3, #ER-R4, #ER-R5, #SE1-R1, #SE1-R2, #SE1-R3, #SE1-R4, #SE1-R5, #SE2-R1a, #SE2-R1b, #SE2-R2, #SE2-R3, #SE2-R4, #SE2-R5, #Condition1", "class": "hidden" }
+		"default": { "action": "addClass", "source":"#EI-R1, #EI-R2, #EI-R3, #EI-R4, #EI-R5, #EI-R6, #EI-R7, #ER-R1a, #ER-R1b, #ER-R1c, #ER-R2, #ER-R3, #ER-R4, #ER-R5, #SE1-R1, #SE1-R2, #SE1-R3, #SE1-R4, #SE1-R5, #SE2-R1a, #SE2-R1b, #SE2-R2, #SE2-R3, #SE2-R4, #SE2-R5, #Condition1", "class": "hidden" }
 	}'>
 
 		<div class="wb-fieldflow-header mrgn-lft-lg">
            <p class="h3 mrgn-tp-md text-info "><big>Determine if a stock option agreement was made</big></p>
-			<p class="wb-fieldflow-label mrgn-tp-md">Q1. Was a stock option agreement made?</p>
+			<p class="wb-fieldflow-label mrgn-tp-md">Was a stock option agreement made?</p>
 			    
              
 		</div>
@@ -324,8 +324,8 @@
 	<div id="question-2a1" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
 	<div class="wb-fieldflow-header">
 			
-       <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that a </span><br><big>Stock agreement was made</big></p>
-			<p class="wb-fieldflow-label">Q2 What is your employee situation?</p>
+       <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that: </span><br><big>Stock agreement was made</big></p>
+			<p class="wb-fieldflow-label">What is your employee situation?</p>
 				
 		</div>
 		<ul>
@@ -341,14 +341,29 @@
 	<div id="question-2a1b" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
 	<div class="wb-fieldflow-header">
 			
-       <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that a </span><br><big>Your employee dies holding unexercised options</big></p>
+       <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that: </span><br><big>Your employee dies holding unexercised options</big></p>
 			<p class="wb-fieldflow-label">Does the security stock option plan expires on an employee's death?</p>
 				
 		</div>
 		<ul>
         	<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-R1a", "class":"hidden", "live": true}'>Yes</li>	
-		<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-R1b", "class":"hidden", "live": true}'>No</li>
+		<li data-wb-fieldflow='{"action": "append", "source": "#question-2a1c"}'>No</li>
 									
+      		</ul>
+	</div>
+
+ <!-- Question 2a1c-->
+	<div id="question-2a1c" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
+		<div class="wb-fieldflow-header">
+    <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that:</span><br><big>The security option agreement does not expire upon death</big></p>
+				<p class="wb-fieldflow-label">Is the employee eligible to claim the option benefit deduction under 110(1)(d)?</p>
+		<details><summary>Deduction under section 110(1)(d)</summary>
+ <div data-ajax-replace="ajax/security-deductions.txt #ajax-deductions5"></div>
+</details>		
+		</div>
+		<ul>
+        		<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-R1b", "class":"hidden", "live": true}'>Yes</li>	
+			<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-R1c", "class":"hidden", "live": true}'>No</li>	
       		</ul>
 	</div>
 
@@ -358,7 +373,7 @@
 		
        <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that XXX </span><br><big>XXXX</big> (for example, XXX</p>
 			
-			<p class="wb-fieldflow-label">Q3 What is the event?</p>
+			<p class="wb-fieldflow-label">What is the event?</p>
 				
 		</div>
 		<ul>
@@ -450,7 +465,7 @@
 </section>
 
 <section class="alert alert-info hidden gc-font-2019" id="ER-R1b">
-	<h3><small>Your result</small><br> The security option agreement does not expire upon death</h3>
+	<h3><small>Your result</small><br> Your employee is eligible for the deduction under section 110(1)(d)</h3>
 <hr>
 <ol class="lst-stps ld-zr stps-strpd">
  <li><h3>Determine if the benefit is taxable</h3>
@@ -458,27 +473,44 @@
 </li>
 
 <li><h3>Determine when the benefit is taxable</h3>
-<p id="when8"></p>
 <div data-ajax-replace="ajax/security-taxable.txt #ajax-when5"></div>
 </li>
 
-<li><h3>Determine if your employee is eligible for any option benefit deductions</h3>
-<div data-ajax-replace="ajax/security-deductions.txt #ajax-deductions0"></div>
+<li><h3>Calculate the value of the benefit</h3>
+<div data-ajax-replace="ajax/security-calc.txt #ajax-calc5"></div>
+<br>
+<div data-ajax-replace="ajax/security-calc.txt #ajax-calc0"></div>
+<div data-ajax-replace="ajax/security-calc.txt #ajax-calc-help"></div>
+</li>
 
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><details><summary>Deduction under section 110(1)(d)</summary>
-<p id="deduction8a"></p>
- <div data-ajax-replace="ajax/security-deductions.txt #ajax-deductions5"></div>
-</details></li>
-<li class="cnjnctn-col"><div data-ajax-replace="ajax/security-deductions.txt #ajax-deductions0b"></div>
-<details><summary><strong>Non-CCPC</strong> - If eligible for a deduction, determine if your employee is subject to the $200,000 vesting limit</summary>
-<p id="deduction8b"></p>
- <div data-ajax-replace="ajax/security-deductions.txt #ajax-deductions4"></div>
-</details></li></ul>
+<li><h3>Withhold payroll deductions and remit GST/HST</h3>
+<p id="with8"></p>
+<div data-ajax-replace="ajax/security-withhold.txt #ajax-withhold3c"></div>
+<div data-ajax-replace="ajax/security-withhold.txt #ajax-withhold3"></div>
+</li>
+
+<li><h3>Report the benefit on a slip</h3>
+<p id="report8"></p>
+<div data-ajax-replace="ajax/security-report.txt #ajax-report3d"></div>
+<div data-ajax-replace="ajax/security-report.txt #ajax-report3"></div>
+<div data-ajax-replace="ajax/security-report.txt #ajax-report-help"></div>
+</li>
+</ol>
+</section>
+
+<section class="alert alert-info hidden gc-font-2019" id="ER-R1c">
+	<h3><small>Your result</small><br> Your employee is not eligible for any deduction</h3>
+<hr>
+<ol class="lst-stps ld-zr stps-strpd">
+ <li><h3>Determine if the benefit is taxable</h3>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable5c"></div>
+</li>
+
+<li><h3>Determine when the benefit is taxable</h3>
+<div data-ajax-replace="ajax/security-taxable.txt #ajax-when5"></div>
 </li>
 
 <li><h3>Calculate the value of the benefit</h3>
-<p id="calc8"></p>
 <div data-ajax-replace="ajax/security-calc.txt #ajax-calc5"></div>
 <br>
 <div data-ajax-replace="ajax/security-calc.txt #ajax-calc0"></div>
