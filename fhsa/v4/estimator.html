@@ -1857,7 +1857,7 @@
                 $("#priorYearSavingAmount").attr("max", priorContributeMax);
                 $("#priorYearSavingTransfer").attr("max", priorContributeMax);
             }, 
-            generateTableChart = function(tableObj, tableContainerId, tableTemplateId, tableId, createChart) {
+            generateTable = function(tableObj, tableContainerId, tableTemplateId, tableId) {
                 let tableHeader;
 
                 if ("content" in document.createElement("template")) {
@@ -1941,7 +1941,7 @@
                     };
 
                 paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
-                generateTableChart(holdingsTbl, "holdingsResultsTableContainer", "holdingTableTemplate", "holdingsresultstable");
+                generateTable(holdingsTbl, "holdingsResultsTableContainer", "holdingTableTemplate", "holdingsresultstable");
                 $("[data-output=holdings-total]", paymentformId).html(currencyFormatter.format(paymentTotals.addedAmount + paymentTotals.investment));
                 if (priorPaymentInvestment + paymentTotals.investment > 0) {
                     $("#paymentGrowthResult", paymentformId).removeClass("hidden");
@@ -1966,10 +1966,11 @@
                 $("#holdingsResultsTableContainer").find("canvas").closest("div").addClass("wb-chart-container");
             }, 
             updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId) {
-                let savingsTotals, summaryTotal, savingsTableHeader, 
+                let savingsTotals, summaryTotal, 
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
                     prov = province(), 
-                    generateSavingsTableData = function (area, federalName, abatementID, income, deductions, savingYears, savingsAmount, savingsTransferAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, hasPriorYrSaving, priorYrSavingAmt, priorYrSavingTransfer, priorYrSavingInvest, hasPriorYearSavingDiffIncome, priorYearSavingIncome, priorYearSavingDeduction, priorYearMax, maxContribution, startYear, currentYear, incomeRates, pagelang) {
+                    generateSavingsTableData = function (area, federalName, abatementID, income, deductions, savingYears, savingsAmount, savingsTransferAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, hasPriorYrSaving, priorYrSavingAmt, priorYrSavingTransfer, priorYrSavingInvest, hasPriorYearSavingDiffIncome, priorYearSavingIncome, priorYearSavingDeduction, priorYearMax, maxContribution, startYear, currentYear, incomeRates, 
+                    pagelang) {
                     let juristictionArr, federalRates, abatement, provinceRates, yearIncrement, priorYear, priorIncome, saveAmountsObj, savingsRow, adjustedIncome, 
                         priorYearSavingData = {}, 
                         fedrates = [], 
@@ -2258,7 +2259,7 @@
 
                 savingsTotals = generateSavingsTableData(prov.val(), $("#province").data("fed"), prov.data("id"), yearlyTotalIncome(), yearlyTotalDeductions(), savingYears(), savingsAmount(), savingsTransferAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, hasPriorTaxSavings(), priorYearSavingAmount(), priorYearSavingTransfer(), 
                     priorYearSavingInvest(), hasPriorYearSavingDiffIncome(), priorYearSavingIncome(), priorYearSavingDeduction(), priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
-                    generateTableChart(savingsTbl, "savingsTableContainer", "savingTableTemplate", "savingsTable");
+                    generateTable(savingsTbl, "savingsTableContainer", "savingTableTemplate", "savingsTable");
                 if (Math.max(yearlyTotalIncome() - yearlyTotalDeductions(), 0) <= savingsTotals.areaExempt && Math.max(yearlyTotalIncome() - yearlyTotalDeductions(), 0) <= savingsTotals.fedExempt) {
                     $("[data-min-threshold=false]").removeClass("hidden");
                     $("[data-min-threshold=true]").addClass("hidden");
