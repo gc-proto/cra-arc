@@ -442,7 +442,7 @@
         		<li data-wb-fieldflow='{"action": "append", "source": "#question-3a"}'>Your employee exercised their rights</li>
 			<li data-wb-fieldflow='{"action": "append", "source": "#question-3b"}'>Your employee exchanged shares for new shares</li>
 			<li data-wb-fieldflow='{"action": "append", "source": "#question-3c"}'>Your employee exchanged their rights for new rights</li>
-			<li data-wb-fieldflow='{"action": "append", "source": "#question-3d"}'>Your employee disposed of their rights</li>
+			<li data-wb-fieldflow='{"action": "append", "source": "#question-3d"}'>Your employee disposed of their rights under the security option agreement</li>
 			<li data-wb-fieldflow='{"action": "append", "source": "#question-3e"}'>Your employee transfered their rights to a non-arm's length person</li>
 			
       		</ul>
@@ -487,17 +487,19 @@
       		</ul>
 	</div>
 
- <!-- Question 3d - Your employee disposed of their rights-->
+ <!-- Question 3d - Your employee disposed of their rights under the security option agreement-->
 	<div id="question-3d" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
 		<div class="wb-fieldflow-header">
-		   <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that: </span><br><big>Your employee disposed of their rights</big></p>
-				<p class="wb-fieldflow-label">Question?</p>
+		   <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that: </span><br><big>Your employee disposed of their rights under the security option agreement</big></p>
+				<p class="wb-fieldflow-label">What is the situation?</p>
 				
 		</div>
 		<ul>
-        		<li data-wb-fieldflow='{"action": "append", "source": "#question-2d"}'>Yes</li>
-			<li data-wb-fieldflow='{"action": "removeClass", "source":"#EI-R4", "class":"hidden", "live": true}'>No</li>
-      		</ul>
+        		<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-D1", "class":"hidden", "live": true}'>The employer elects to cash out the rights</li>	
+			
+			<li data-wb-fieldflow='{"action": "append", "source": "#question-2d2"}'>The employee elects to cash out the rights</li>
+			<li data-wb-fieldflow='{"action": "append", "source": "#question-2d3"}'>The employee does not have the option to receive shares or cash</li>
+			</ul>
 	</div>
 
  <!-- Question 3e - Your employee transfered their rights to a non-arm's length person-->
@@ -599,6 +601,39 @@
 </li>
 <li><h3>Report the benefit on a slip</h3>
 <div data-ajax-replace="ajax/security-report.txt #ajax-report4"></div>
+<div data-ajax-replace="ajax/security-report.txt #ajax-report-help"></div>
+</li>
+</ol>
+</section>
+
+ <!--   Your employee disposes of their rights under the security option agreement -->
+<section class="alert alert-info hidden gc-font-2019" id="ER-D1">
+	<h3><small>Your result</small><br> Your employee disposes of their rights under the security option agreement and the employer elects to cash out the rights</h3>
+<hr>
+ <ol class="lst-stps ld-zr stps-strpd">
+ <li><h3>Determine if the benefit is taxable</h3>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable2a"></div>
+</li>
+<li><h3>Determine when the benefit is taxable</h3>
+<div data-ajax-replace="ajax/security-taxable.txt #ajax-when2a"></div>
+</li>
+<li><h3>Determine if your employee is eligible for any option benefit deductions</h3>
+<p><span class="fas fa-ban text-danger fa-lg"> </span> Your employee is <strong>not</strong> eligible for any option benefit deductions for taxable benefit under sections 5(1) or 6(1)(a).</p>
+</li>
+<li><h3>Calculate the total value of the benefit</h3>
+<div data-ajax-replace="ajax/security-calc.txt #ajax-calc2a"></div>
+<div data-ajax-replace="ajax/security-calc.txt #ajax-calc0"></div>
+<div data-ajax-replace="ajax/security-calc.txt #ajax-calc-help"></div>
+</li>
+	
+<li><h3>Withhold payroll deductions and remit GST/HST</h3>
+<div data-ajax-replace="ajax/security-withhold.txt #ajax-withhold2a"></div>
+<div data-ajax-replace="ajax/security-withhold.txt #ajax-withhold4a"></div>
+</li>
+
+<li><h3>Report the benefit on a slip</h3>
+<div data-ajax-replace="ajax/security-report.txt #ajax-report2a"></div>
+<div data-ajax-replace="ajax/security-report.txt #ajax-report4a"></div>
 <div data-ajax-replace="ajax/security-report.txt #ajax-report-help"></div>
 </li>
 </ol>
