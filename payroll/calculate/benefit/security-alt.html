@@ -305,7 +305,7 @@
 		"noForm": true,
 		"isoptional": true,
 		"base": { "live": true },
-		"default": { "action": "addClass", "source":"#EI-R1, #EI-R2, #EI-R3, #EI-R4, #EI-R5, #EI-R6, #EI-R7, #ER-R1a, #ER-R1b, #ER-R1c, #ER-R1d, #ER-R2a, #ER-R2, #ER-R3, #ER-R4, #ER-R5, #SE1-R1, #SE1-R2, #SE1-R3, #SE1-R4, #SE1-R5, #SE2-R1a, #SE2-R1b, #SE2-R2, #SE2-R3, #SE2-R4, #SE2-R5, #Condition1", "class": "hidden" }
+		"default": { "action": "addClass", "source":"#EI-R1, #EI-R2, #EI-R3, #EI-R4, #EI-R5, #EI-R6, #EI-R7, #ER-R1a, #ER-R1b, #ER-R1c, #ER-R1d, #ER-R2a, #ER-R2b, #ER-R2c, #ER-R2d, #ER-R2, #ER-R3, #ER-R4, #ER-R5, #SE1-R1, #SE1-R2, #SE1-R3, #SE1-R4, #SE1-R5, #SE2-R1a, #SE2-R1b, #SE2-R2, #SE2-R3, #SE2-R4, #SE2-R5, #Condition1", "class": "hidden" }
 	}'>
 
 		<div class="wb-fieldflow-header mrgn-lft-lg">
@@ -390,12 +390,41 @@
 			
        <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that: </span><br><big>Your employee is no longer able to exercise their rights</big></p>
 			<p class="wb-fieldflow-label">Does all of the following apply?</p>
-	 <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7a"></div>			
-		</div>
+	 <div class="mrgn-lft-lg" data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7a"></div>			</div>
 		<ul>
         	<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-R2a", "class":"hidden", "live": true}'>Yes</li>	
 		<li data-wb-fieldflow='{"action": "append", "source": "#question-2a2b"}'>No</li>
 									
+      		</ul>
+	</div>
+
+ <!--  Your employee is no longer able to exercise their rights - Question 2a2b-->
+	<div id="question-2a2b" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
+		<div class="wb-fieldflow-header">
+    <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that:</span><br><big>The benefit does not meet all conditions</big></p>
+				<p class="wb-fieldflow-label">Is your employee eligible to claim the option benefit deduction under 110(1)(d)?</p>
+		<details><summary>How to determine if your employee is eligible to claim the option benefit deduction under section 110(1)(d)</summary>
+ <div data-ajax-replace="ajax/security-deductions.txt #ajax-deductions5"></div>
+</details>		
+		</div>
+		<ul>
+        		<li data-wb-fieldflow='{"action": "append", "source": "#question-2a2c"}'>Yes</li>
+			<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-R2b", "class":"hidden", "live": true}'>No</li>	
+      		</ul>
+	</div>
+
+ <!--  Your employee is no longer able to exercise their rights - Question 2a2c-->
+	<div id="question-2a2c" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
+		<div class="wb-fieldflow-header">
+    <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that:</span><br><big>Your employee is eligible to claim the option benefit deduction under 110(1)(d)</big></p>
+				<p class="wb-fieldflow-label">Is your employee subject to the $200,000 vesting limit?</p>
+		<details><summary>How to determine if your employee is subject to the $200,000 vesting limit</summary>
+ <div data-ajax-replace="ajax/security-deductions.txt #ajax-deductions4"></div>
+</details>	
+		</div>
+		<ul>
+        		<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-R2c", "class":"hidden", "live": true}'>Yes</li>	
+			<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-R2d", "class":"hidden", "live": true}'>No</li>	
       		</ul>
 	</div>
 
@@ -591,10 +620,41 @@
 
  <!--   Your employee is no longer able to exercise their rights -->
 <section class="alert alert-info hidden gc-font-2019" id="ER-R2a">
-	<h3><small>Your result</small><br> All conditions met: Your employee is no longer able to exercise their rights</h3>
+	<h3><small>Your result</small><br> The benefit meets all conditions</h3>
 <hr>
  <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7r1"></div>
  <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7b"></div>
+<br>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7r3"></div>
+</section>
+
+ <!--   Your employee is no longer able to exercise their rights -->
+<section class="alert alert-info hidden gc-font-2019" id="ER-R2b">
+	<h3><small>Your result</small><br> Your employee is not eligible for any deduction</h3>
+<hr>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7r1"></div>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7b"></div>
+<br>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7r3"></div>
+</section>
+
+ <!--   Your employee is no longer able to exercise their rights -->
+<section class="alert alert-info hidden gc-font-2019" id="ER-R2c">
+	<h3><small>Your result</small><br>  Your employee is not subject to the $200,000 vesting limit</h3>
+<hr>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7r1"></div>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7b"></div>
+<br>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7r3"></div>
+</section>
+
+ <!--   Your employee is no longer able to exercise their rights -->
+<section class="alert alert-info hidden gc-font-2019" id="ER-R2d">
+	<h3><small>Your result</small><br>  Your employee is subject to the $200,000 vesting limit</h3>
+<hr>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7r1"></div>
+ <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7b"></div>
+<br>
  <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable7r3"></div>
 </section>
 
