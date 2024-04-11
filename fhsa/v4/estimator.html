@@ -2164,12 +2164,12 @@
                         };
 
                     savingsBody.classList.add("text-right");
+                    adjustedIncome = Math.max(income - deductions, 0);
                     if (hasPriorSavings === true) {
                         savingsRow = document.createElement("tr");
                         if (hasPriorYrSaving === true) {
                             deductContribAmt = priorYrSavingAmt - priorYrSavingTransfer;
                             priorYear = currentYear;
-                            adjustedIncome = Math.max(income - deductions, 0);
                             priorIncome = adjustedIncome;
                             if (hasPriorYearSavingDiffIncome === true) {
                                 priorIncome = Math.max(priorYearSavingIncome - priorYearSavingDeduction, 0);
