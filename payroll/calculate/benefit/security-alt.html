@@ -305,7 +305,7 @@
 		"noForm": true,
 		"isoptional": true,
 		"base": { "live": true },
-		"default": { "action": "addClass", "source":"#EI-R1, #EI-R2, #EI-R3, #EI-R4, #EI-R5, #EI-R6, #EI-R7, #ER-R1a, #ER-R1b, #ER-R1c, #ER-R1d, #ER-R2a, #ER-R2b, #ER-R2c, #ER-R2d, #ER-T1, #ER-T2, #ER-T3, #ER-T4, #ER-T5, #ER-T6, #ER-D1, #ER-D2, #ER-D3, #ER-D4, #ER-D5, #ER-D6, #ER-D7, #ER-EX1, #ER-EX2, #ER-EX3, #ER-EX4, #ER-EX5, #ER-EX6, #ER-EX7, #ER-R3, #ER-R4, #ER-R5, #Condition1", "class": "hidden" }
+		"default": { "action": "addClass", "source":"#EI-R1, #EI-R2, #EI-R3, #EI-R4, #EI-R5, #EI-R6, #EI-R7, #ER-R1a, #ER-R1b, #ER-R1c, #ER-R1d, #ER-R2a, #ER-R2b, #ER-R2c, #ER-R2d, #ER-T1, #ER-T2, #ER-T3, #ER-T4, #ER-T5, #ER-T6, #ER-D1, #ER-D2, #ER-D3, #ER-D4, #ER-D5, #ER-D6, #ER-D7, #ER-EX1a, #ER-EX1b, #ER-EX2, #ER-EX3, #ER-EX4, #ER-EX5, #ER-EX6, #ER-EX7, #ER-R3, #ER-R4, #ER-R5, #Condition1", "class": "hidden" }
 	}'>
 
 		<div class="wb-fieldflow-header mrgn-lft-lg">
@@ -483,9 +483,39 @@
 								
 		</div>
 		<ul>
-        <li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-EX1", "class":"hidden", "live": true}'>Yes</li>
+        <li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-EX1b", "class":"hidden", "live": true}'>Yes</li>
         		<li data-wb-fieldflow='{"action": "append", "source": "#question-3c1"}'>No</li>
 			
+      		</ul>
+	</div>
+
+ <!-- Your employee exchanged their rights under the security option agreement for new security options rights - Question 3c1-->
+	<div id="question-3c1" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
+		<div class="wb-fieldflow-header">
+    <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that:</span><br><big>Your employee exchanged their rights under the security option agreement for new security options rights</big></p>
+				<p class="wb-fieldflow-label">Is your employee eligible to claim the option benefit deduction under 110(1)(d)?</p>
+		<details class="mrgn-lft-lg"><summary>How to determine if your employee is eligible to claim the option benefit deduction under section 110(1)(d)</summary>
+ <div data-ajax-replace="ajax/security-deductions.txt #ajax-deductions3"></div>
+</details>		
+		</div>
+		<ul>
+        		<li data-wb-fieldflow='{"action": "append", "source": "#question-3c2"}'>Yes</li>
+			<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-EX5", "class":"hidden", "live": true}'>No</li>	
+      		</ul>
+	</div>
+
+ <!--  Your employee exchanged their rights under the security option agreement for new security options rights - Question 3c2-->
+	<div id="question-3d2b" class="hidden wb-fieldflow-sub mrgn-lft-lg" data-wb-fieldflow='{"renderas":"radio", "isoptional": true, "gcChckbxrdio":true}'>
+		<div class="wb-fieldflow-header">
+    <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that:</span><br><big>Your employee is eligible to claim the option benefit deduction under 110(1)(d)</big></p>
+				<p class="wb-fieldflow-label">Is your employee subject to the $200,000 vesting limit?</p>
+		<details class="mrgn-lft-lg"><summary>How to determine if your employee is subject to the $200,000 vesting limit</summary>
+ <div data-ajax-replace="ajax/security-deductions.txt #ajax-deductions4"></div>
+</details>	
+		</div>
+		<ul>
+        		<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-EX6", "class":"hidden", "live": true}'>Yes</li>	
+			<li data-wb-fieldflow='{"action": "removeClass", "source":"#ER-EX7", "class":"hidden", "live": true}'>No</li>	
       		</ul>
 	</div>
 
@@ -670,8 +700,8 @@
 </section>
 
  
- <!--   Your employee exchanged their shares or rights  -->
-<section class="alert alert-info hidden gc-font-2019" id="ER-EX1">
+ <!--   Your employee exchanged shares acquired from a CCPC under the security option agreement for new shares -->
+<section class="alert alert-info hidden gc-font-2019" id="ER-EX1a">
 <h3><small>Your result</small><br> The benefit meets all conditions</h3>
 <hr>
 <div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable2d2"></div>
@@ -695,6 +725,21 @@
  <!--  Your employee exchanged shares acquired from a CCPC under the security option agreement for new shares -->
 <section class="alert alert-info hidden gc-font-2019" id="ER-EX4">
 <h3><small>Your result</small><br>  Your employee is not subject to the $200,000 vesting limit</h3>
+<hr>
+
+</section>
+
+ <!--   Your employee exchanged their rights under the security option agreement for new security options rights  -->
+<section class="alert alert-info hidden gc-font-2019" id="ER-EX1b">
+<h3><small>Your result</small><br> The benefit meets all conditions</h3>
+<hr>
+<div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable2d2"></div>
+<div data-ajax-replace="ajax/security-taxable.txt #ajax-taxable2d3"></div>	
+</section>
+
+ <!--   Your employee exchanged shares acquired from a CCPC under the security option agreement for new shares -->
+<section class="alert alert-info hidden gc-font-2019" id="ER-EX2">
+<h3><small>Your result</small><br> Your employee is not eligible for any deduction</h3>
 <hr>
 
 </section>
