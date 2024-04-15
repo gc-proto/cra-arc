@@ -367,7 +367,7 @@
 		"noForm": true,
 		"isoptional": true,
 		"base": { "live": true },
-		"default": { "action": "addClass", "source":"#EI-R1, #EI-R2, #EI-R3, #EI-R4, #EI-R5, #EI-R6, #EI-R7, #ER-R1a, #ER-R1b, #ER-R1c, #ER-R1d, #ER-R2a, #ER-R2b, #ER-R2c, #ER-R2d, #ER-AQ1, #ER-AQ2, #ER-AQ3, #ER-AQ4, #ER-AQ5, #ER-AQ6, #ER-AQ7, #ER-T1, #ER-T2, #ER-T3, #ER-T4, #ER-T5, #ER-T6, #ER-D1, #ER-D2, #ER-D3, #ER-D4, #ER-D5, #ER-D6, #ER-D7, #ER-EX1a, #ER-EX1b, #ER-EX2, #ER-EX3, #ER-EX4, #ER-EX5, #ER-EX6, #ER-EX7, #ER-R3, #ER-R4, #ER-R5, #Condition1", "class": "hidden" }
+		"default": { "action": "addClass", "source":"#EI-R1, #EI-R2, #EI-R3, #EI-R4, #EI-R5, #EI-R6, #EI-R7, #ER-R1a, #ER-R1b, #ER-R1c, #ER-R1d, #ER-R2a, #ER-R2b, #ER-R2c, #ER-R2d, #ER-AQ1, #ER-AQ2, #ER-AQ3, #ER-AQ4, #ER-AQ5, #ER-AQ6, #ER-AQ7, #ER-T1, #ER-T2, #ER-T3, #ER-T4, #ER-T5, #ER-T6, #ER-D1, #ER-D2, #ER-D3, #ER-D4, #ER-D5, #ER-D6, #ER-D7, #ER-EX1a, #ER-EX1b, #ER-EX2, #ER-EX3, #ER-EX4, #ER-EX5, #ER-EX6, #ER-EX7, #ER-R3, #ER-R4, #ER-R5, #Condition1", #Condition2", #Condition3", #Condition4", "class": "hidden" }
 	}'>
 
 		<div class="wb-fieldflow-header mrgn-lft-lg">
@@ -378,8 +378,8 @@
 		</div>
 		<ul class="mrgn-lft-lg">
 			<li data-wb-fieldflow='{"action": "append", "source": "#question-1a1"}'>Your current or past employee</li>
-			<li data-wb-fieldflow='{"action": "removeClass", "source":"#Condition1", "class":"hidden", "live": true}'>Your employee and they are also a shareholder</li>
-			<li data-wb-fieldflow='{"action": "removeClass", "source":"#Condition1", "class":"hidden", "live": true}'>Self-employed worker</li>
+			<li data-wb-fieldflow='{"action": "removeClass", "source":"#Condition2", "class":"hidden", "live": true}'>Your employee and they are also a shareholder</li>
+			<li data-wb-fieldflow='{"action": "removeClass", "source":"#Condition3", "class":"hidden", "live": true}'>Self-employed worker</li>
 			</ul>
 	</div>
 
@@ -857,6 +857,18 @@
 <div data-ajax-replace="ajax/security-report.txt #ajax-report-help"></div>
 </li>
 </ol>
+</section>
+
+<section class="alert alert-info hidden gc-font-2019" id="Condition2">
+	<h3><small>Your result</small><br> Your employee and they are also a shareholder</h3>
+<hr>
+ <div data-ajax-replace="#ajax-shareholder"></div>
+</section>
+
+<section class="alert alert-info hidden gc-font-2019" id="Condition3">
+	<h3><small>Your result</small><br> Self-employed worker</h3>
+<hr>
+ <div data-ajax-replace="#ajax-self"></div>
 </section>
 
  <!--   Your employee exercised their rights and acquired the shares -->
@@ -1834,6 +1846,7 @@
 
 <details><summary>Your employee is also a shareholder</summary>
 <h4 class="mrgn-tp-md text-muted h4">Not by virtue of employment</h4>
+<div id="ajax-shareholder">
 <p>If the stock option agreement is between a qualifying person and your employee is also a shareholder, the benefit is <strong>not </strong>considered received by virtue of employment under subsection 7(5) if <strong>all</strong> of the following apply:</p>
 <ul class="list-unstyled cnjnctn-type-and">
 <li class="cnjnctn-col">Benefit is a distribution of profits</li>
@@ -1870,6 +1883,7 @@
 <li>Was the benefit given to entertain clients or potential clients?</li>
 <li>Did the corporation give the benefit to pay off a debt owed to the taxpayer?</li></ul>
 </details>
+</div>
 
 <h4 class="mrgn-tp-md text-muted h4">By virtue of employment</h4>
 <p>If the stock option agreement <strong> does not</strong> meet <strong>all</strong> conditions above, the benefit is considered received by <strong>virtue of employment</strong>.</p>
@@ -1877,6 +1891,7 @@
 
 <details><summary>Self-employed person</summary>
 <h4 class="mrgn-tp-md text-muted h4">Not by virtue of employment</h4>
+<div id="ajax-self">
 <p>If the stock option agreement is between a qualifying person and a self-employed person, this is <strong> not</strong> considered received by virtue of employment under subsection 7(5).</p>
 
 <details><summary>Example - Not considered received by virtue of employment</summary>
@@ -1890,6 +1905,7 @@
 <p>The person was not an employee of the junior public mining corporation. </p>
 <p>This is <strong>not</strong> taxable as an employee benefit because it is <strong>not</strong> considered to be received by virtue of employment. </p>
 </details>
+</div>
 <h4 class="mrgn-tp-md text-muted h4">By virtue of employment</h4>
 <p>If the stock option agreement <strong> does not</strong> meet <strong>all</strong> conditions above, the benefit is considered received by <strong>virtue of employment</strong>.</p>
 
