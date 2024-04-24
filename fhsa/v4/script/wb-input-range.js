@@ -1,6 +1,6 @@
 /**
  * @title WET-BOEW Input range plugin
- * @overview Plugin to display current value on an input of type range 
+ * @overview Plugin to display current value on an input of type range
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 ( function ( $, window, wb ) {
@@ -27,6 +27,7 @@
           var elm = wb.init( event, componentName, selector ),
               $elm,
               settings;
+
             if ( elm ) {
                 $elm = $( elm );
                 // ... Do the plugin initialisation
@@ -38,7 +39,7 @@
                     window[componentName],
                     wb.getData( $elm, componentName )
                 );
-  
+
                 // Call my custom event
                 $elm.trigger( "wb-input-range", settings );
                 // Identify that initialization has completed
@@ -47,7 +48,7 @@
         }, 
         doRangeFunc = function( funcName, inputParam ) {
             let funcArr, fnElem;
-    
+
             if ( funcName.includes( "." ) === true ) {
               funcArr = funcName.split( "." );
               fnElem = {};
@@ -65,15 +66,39 @@
               }
               return inputParam;
           }, 
+          updateDispPos = function ( inputRangeElm, displayElm ) {
+              let displayElmWidth, partialDisplayElmWidth, dispPos,
+                  inputRangeElmWidth = inputRangeElm.getBoundingClientRect().width,
+                  getOutputPos = function ( inputRangeElm, partialDisplayElmWidth ) {
+                      let ratio, 
+                          thumbWidth = 10;
+
+                      ratio = ( inputRangeElm.valueAsNumber - Number( inputRangeElm.min ) ) / ( Number( inputRangeElm.max ) - Number( inputRangeElm.min ) );
+                      return ( ratio * (( inputRangeElm.getBoundingClientRect().width - ( thumbWidth / 2 ) ) - ( thumbWidth / 2 )) ) + ( thumbWidth / 2 ) - partialDisplayElmWidth;
+                  };
+
+              displayElmWidth = displayElm.getBoundingClientRect().width;
+              partialDisplayElmWidth = displayElmWidth / 2;
+              dispPos = getOutputPos( inputRangeElm, partialDisplayElmWidth );
+
+              if ( dispPos < 0 && dispPos + displayElmWidth > inputRangeElmWidth ) {
+                  dispPos = ( inputRangeElmWidth / 2 ) - partialDisplayElmWidth;
+              } else if ( dispPos < 0 ) {
+                  dispPos = 0;
+              } else if ( dispPos + displayElmWidth > inputRangeElmWidth ) {
+                  dispPos = inputRangeElmWidth - displayElmWidth;
+              }
+            displayElm.style.setProperty( "--HRngDispPos", dispPos + "px" );
+          },
           setRangeValue = function( inputRange ) {
             let outputData, 
                 targetArr = wb.getData( inputRange, "wb-input-range" );
-    
+
             if ( typeof targetArr !== "undefined" && Object.prototype.hasOwnProperty.call( targetArr, "target" ) === true ) {
-                targetArr.target.forEach(function ( currentId ) {
+                targetArr.target.forEach( function ( currentId ) {
                     let displayText,
                     elm = document.getElementById( currentId );
-    
+
                     outputData = wb.getData( elm, "wb-input-range" );
                     if ( typeof outputData !== "undefined" && Object.prototype.hasOwnProperty.call( outputData, "fn" ) === true ) {
                         displayText = doRangeFunc( outputData.fn, inputRange.value );
@@ -84,8 +109,12 @@
                         elm.value = displayText;
                     } else {
                         elm.innerHTML = displayText;
+                        updateDispPos( inputRange, elm );
+                        window.onresize = function () {
+                            updateDispPos( inputRange, elm );
+                        }
                     }
-                }, inputRange);
+                }, inputRange );
             }
         };
     // Add your plugin event handler
@@ -116,11 +145,11 @@
                         } else {
                             adjustedInputVal = parseInt( $( this ).val(), 10 ) || parseInt( this.min, 10 );
                         }
-                        switch (true) {
-                            case (adjustedInputVal < parseInt( this.min, 10 )):
+                        switch ( true ) {
+                            case ( adjustedInputVal < parseInt( this.min, 10 ) ):
                                 $( inputElm ).val( parseInt( this.min, 10 ) );
                                 break;
-                            case (adjustedInputVal > parseInt( this.max, 10 )):
+                            case ( adjustedInputVal > parseInt( this.max, 10 ) ):
                                 $( inputElm ).val( parseInt( this.max, 10 ) );
                                 break;
                             default:
@@ -128,7 +157,7 @@
                         }
                     });
                 }
-            }, inputElm);
+            }, inputElm );
         }
         setRangeValue( inputElm );
     });
