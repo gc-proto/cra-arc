@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="no-js" lang="en" dir="ltr">
        <head>
@@ -308,10 +307,46 @@
 <!-- danger --> 
 <div class="alert alert-danger mrgn-tp-md hidden phnlrt" id="phnxx">
 <h3 class="h4"> &nbsp; </h3>
-<p>You need to enter at least 10 digits for the phone number.</p>
+<p>You need to enter an 11 digit phone number.</p>
 </div> 
 
+</div></div></div>
 
+<div class="clearfix"></div>
+
+
+<div class="clearfix"></div>
+    <div id="def-preFooter"></div>
+    
+    <!-- Write closure template --> 
+    <script type="text/javascript">
+            var defPreFooter = document.getElementById("def-preFooter");
+            defPreFooter.outerHTML = wet.builder.preFooter({
+            dateModified: "2021-01-30",
+            showPostContent: true,
+            showFeedback: true,
+            showShare: true
+            });
+         </script> 
+  </div>
+           </main>
+<div id="def-footer"> </div>
+<!-- Write closure template --> 
+<script type="text/javascript">
+         var defFooter = document.getElementById("def-footer");
+         defFooter.outerHTML = wet.builder.footer({
+         showFooter: true,
+         showFeatures: true
+         });
+      </script> 
+<!-- Write closure template --> 
+<script type="text/javascript">
+         document.write(wet.builder.refFooter({
+         }));
+      </script> 
+<script src="/js/alpha-banner.js"></script>
+
+<!-- Begin verify tool script -->
 <script type="text/javascript">
 let phn1 = new Array("18339952336", "1-833-995-2336");
 let phn1x = new Array("8339952336", "833-995-2336");
@@ -430,44 +465,9 @@ button1.addEventListener("click", function() {
    }
 });
 </script>
+<!-- End verify tool script -->
 
-
-</div></div></div>
-
-<div class="clearfix"></div>
-
-
-<div class="clearfix"></div>
-    <div id="def-preFooter"></div>
-    
-    <!-- Write closure template --> 
-    <script type="text/javascript">
-            var defPreFooter = document.getElementById("def-preFooter");
-            defPreFooter.outerHTML = wet.builder.preFooter({
-            dateModified: "2021-01-30",
-            showPostContent: true,
-            showFeedback: true,
-            showShare: true
-            });
-         </script> 
-  </div>
-           </main>
-<div id="def-footer"> </div>
-<!-- Write closure template --> 
-<script type="text/javascript">
-         var defFooter = document.getElementById("def-footer");
-         defFooter.outerHTML = wet.builder.footer({
-         showFooter: true,
-         showFeatures: true
-         });
-      </script> 
-<!-- Write closure template --> 
-<script type="text/javascript">
-         document.write(wet.builder.refFooter({
-         }));
-      </script> 
-<script src="/js/alpha-banner.js"></script>
-
+<!-- Begin input masking script -->
 <script>
 $("input[name='input1']").on("keyup", function(){
     $("input[name='number']").val(destroyMask(this.value));
@@ -476,7 +476,7 @@ $("input[name='input1']").on("keyup", function(){
 
 function createMask(string){
   console.log(string)
-  return string.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/,"$1-$2-$3-$4");
+  return string.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/,"1-$2-$3-$4");
 }
 
 function destroyMask(string){
@@ -484,5 +484,7 @@ function destroyMask(string){
   return string.replace(/\D/g,'').substring(0, 11);
 }
 </script>
+<!-- End input masking script -->
+
 </body>
 </html>
