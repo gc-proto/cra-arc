@@ -26,6 +26,24 @@
             document.write(wet.builder.refTop({
             }));
          </script>
+ <script type="text/javascript">
+const table = new DataTable('#table', {
+    paging: false,
+    scrollY: '200px'
+});
+ 
+document.querySelectorAll('a.toggle-vis').forEach((el) => {
+    el.addEventListener('click', function (e) {
+        e.preventDefault();
+ 
+        let columnIdx = e.target.getAttribute('data-column');
+        let column = table.column(columnIdx);
+ 
+        // Toggle the visibility
+        column.visible(!column.visible());
+    });
+}); </script>
+
       </head>
       <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
          <div id="def-top">
@@ -98,7 +116,11 @@
    
   <small>Overview: <a href="what.html">What is a taxable benefit</a></small>
               <div class="row mrgn-tp-lg">
-	       <div class="col-xs-12"><table id="table" class="wb-tables table table-condensed table-bordered table-striped table-hover" data-wb-tables='{"columnDefs": [ { "visible": false, "targets": [ 5 ] } ], "paging": false, "oLanguage": {
+	       <div class="col-xs-12">
+<div>
+        Toggle column: <a class="toggle-vis" data-column="0">Type of benefits</a> - <a class="toggle-vis" data-column="1">CPP</a> - <a class="toggle-vis" data-column="2">EI</a> - <a class="toggle-vis" data-column="3">IT</a> - <a class="toggle-vis" data-column="4">Code</a> </div>
+ 
+<table id="table" class="wb-tables table table-condensed table-bordered table-striped table-hover display" data-wb-tables='{"columnDefs": [ { "visible": false, "targets": [ 5 ] } ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by keyword"
                      } }'>
                      <thead>
@@ -509,6 +531,15 @@
                         </tr>
                      
                      </tbody>
+ <tfoot>
+            <tr>
+                <th>Type of benefits</th>
+                <th>CPP</th>
+                <th>EI</th>
+                <th>IT</th>
+                <th>Code</th>
+              </tr>
+        </tfoot>
                   </table>
 	      </div></div>
 
