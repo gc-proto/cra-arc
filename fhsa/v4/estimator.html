@@ -729,6 +729,17 @@
             transform: scale(1.5);
             height: 50px;
         }
+        input[type="range"]:hover, input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]::-moz-range-thumb {
+	        cursor: grab;
+        }
+
+        input[type="range"]:active, input[type="range"]:active::-webkit-slider-thumb, input[type="range"]:active::-moz-range-thumb {
+            cursor: grabbing;
+        }
+
+        input[type="range"]:disabled, input[type="range"]:disabled::-webkit-slider-thumb, input[type="range"]:disabled::-moz-range-thumb {
+	        cursor: not-allowed;
+        }
         .wb-input-range input[type=number] {
             border: 0;
             -webkit-box-shadow: unset;
@@ -1147,21 +1158,21 @@
                                 <div class="mrgn-lft-md mrgn-tp-lg">
                                     <label for="province" class="required"><span class="field-name">Province or Territory of residence</span> <strong class="required">(required)</strong></label>
                                 </div>
-                                <select name="province" id="province" class="form-control input-lg mrgn-lft-md" required="required" data-fed="Federal">
+                                <select name="province" id="province" class="form-control input-lg mrgn-lft-md" required="required" data-fed="FED">
                                     <option value="">Select residence location</option>
-                                    <option value="Alberta">Alberta</option>
-                                    <option value="British Columbia">British Columbia</option>
-                                    <option value="Manitoba">Manitoba</option>
-                                    <option value="New Brunswick">New Brunswick</option>
-                                    <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-                                    <option value="Northwest Territories">Northwest Territories</option>
-                                    <option value="Nova Scotia">Nova Scotia</option>
-                                    <option value="Nunavut">Nunavut</option>
-                                    <option value="Ontario">Ontario</option>
-                                    <option value="Prince Edward Island">Prince Edward Island</option>
-                                    <option value="Quebec" data-id="QC">Quebec</option>
-                                    <option value="Saskatchewan">Saskatchewan</option>
-                                    <option value="Yukon">Yukon</option>
+                                    <option value="AB">Alberta</option>
+                                    <option value="BC">British Columbia</option>
+                                    <option value="MB">Manitoba</option>
+                                    <option value="NB">New Brunswick</option>
+                                    <option value="NL">Newfoundland and Labrador</option>
+                                    <option value="NT">Northwest Territories</option>
+                                    <option value="NS">Nova Scotia</option>
+                                    <option value="NU">Nunavut</option>
+                                    <option value="ON">Ontario</option>
+                                    <option value="PE">Prince Edward Island</option>
+                                    <option value="QC" data-has-abatement="true">Quebec</option>
+                                    <option value="SK">Saskatchewan</option>
+                                    <option value="YT">Yukon</option>
                                 </select>
                             </div>
 
@@ -1352,7 +1363,7 @@
                                 <p data-show-prior="true" class="hidden">These results do not display tax savings for information you entered for prior years.</p>
                                 <div id="savingsTableContainer"></div>
                                 <template id="savingTableTemplate" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
-                                    <table id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true" data-chart="bar" data-chart-options="{&quot;maintainAspectRatio&quot;: false}">
+                                    <table id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true" data-chart="line" data-chart-options="{&quot;maintainAspectRatio&quot;: false, &quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5, &quot;pointStyle&quot;: &quot;rectRot&quot;, &quot;backgroundColor&quot;: &quot;#000000&quot;}}, &quot;scales&quot;: {&quot;x&quot;: {&quot;stacked&quot;: true}, &quot;y&quot;: {&quot;stacked&quot;: true}}}">
                                         <caption>Your potential FHSA tax savings</caption>
                                         <thead>
                                             <tr>
@@ -1673,7 +1684,7 @@
             }, 
             priorYearSavingAmount = function () {
                 if (hasPriorTaxSavings() === true) {
-                    return parseInt($("#priorYearSavingAmount").val(), 10) || 0;
+                    return Math.max(parseInt($("#priorYearSavingAmount").val(), 10), 0) || 0;
                 }
                 return 0;
             }, 
@@ -1966,12 +1977,11 @@
                 $("#holdingsresultstable").trigger("wb-init[data-chart]");
                 $("#holdingsResultsTableContainer").find("canvas").closest("div").addClass("wb-chart-container");
             }, 
-            updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId) {
+            updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, savingsformId) {
                 let savingsTotals, summaryTotal, 
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
                     prov = province(), 
-                    generateSavingsTableData = function (area, federalName, abatementID, income, deductions, savingYears, savingsAmount, savingsTransferAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, hasPriorYrSaving, priorYrSavingAmt, priorYrSavingTransfer, priorYrSavingInvest, hasPriorYearSavingDiffIncome, priorYearSavingIncome, priorYearSavingDeduction, priorYearMax, maxContribution, startYear, currentYear, incomeRates, 
-                    pagelang) {
+                    generateSavingsTableData = function (area, federalName, hasAbatement, income, deductions, savingYears, savingsAmount, savingsTransferAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, hasPriorYrSaving, priorYrSavingAmt, priorYrSavingTransfer, priorYrSavingInvest, hasPriorYearSavingDiffIncome, priorYearSavingIncome, priorYearSavingDeduction, priorYearMax, maxContribution, startYear, currentYear, incomeRates) {
                     let juristictionArr, federalRates, abatement, provinceRates, yearIncrement, priorYear, priorIncome, saveAmountsObj, savingsRow, adjustedIncome, 
                         priorYearSavingData = {}, 
                         fedrates = [], 
@@ -1989,13 +1999,13 @@
                         loopYears = priorSavingYears + savingYears, 
                         maxContributeYear = loopYears, 
                         hasInvestment = hasInvestGrowth === true || priorSavingsInvest > 0, 
-                        getRatesArr = function (area, ratesArr, pagelang) {
+                        getRatesArr = function (area, ratesArr) {
                             let areaRateArr;
 
                             if (typeof incomeRates !== "undefined" && incomeRates.length > 0) {
                                 areaRateArr = ratesArr.find(function findLoc(rateLocs) {
-                                    return rateLocs[pagelang] === area;
-                                }, pagelang, area);
+                                    return rateLocs.id === area;
+                                }, area);
                                 if (typeof areaRateArr !== "undefined") {
                                     return areaRateArr;
                                 }
@@ -2016,21 +2026,21 @@
                             }
                             return {};
                         }, 
-                        getAbatement = function (juristictionArr, abatementId, rateYear, startYear) {
+                        getAbatement = function (juristictionArr, hasAbatement, area, rateYear, startYear) {
                             let yearRateArrLen, evalYear, abate;
 
-                            if (abatementId !== "undefined" && Object.prototype.hasOwnProperty.call(juristictionArr, "regionaladjust") === true) {
+                            if (hasAbatement !== "undefined" && Object.prototype.hasOwnProperty.call(juristictionArr, "regionaladjust") === true) {
                                 for (yearRateArrLen = juristictionArr.regionaladjust.length - 1; yearRateArrLen >= 0; yearRateArrLen = yearRateArrLen - 1) {
                                     for (evalYear = rateYear; evalYear >= startYear; evalYear = evalYear - 1) {
                                         if (juristictionArr.regionaladjust[yearRateArrLen].year === evalYear && Object.prototype.hasOwnProperty.call(juristictionArr.regionaladjust[yearRateArrLen], "abatement")) {
                                             abate = juristictionArr.regionaladjust[yearRateArrLen].abatement.find(function findLoc(abateVal) {
-                                                return Object.keys(abateVal)[0] === abatementId;
-                                            }, abatementId);
+                                                return Object.keys(abateVal)[0] === area;
+                                            }, area);
                                         }
                                     }
                                 }
                                 if (typeof abate === "object") {
-                                    return abate[abatementId];
+                                    return abate[area];
                                 }
                             }
                             return 1;
@@ -2175,10 +2185,10 @@
                                 priorIncome = Math.max(priorYearSavingIncome - priorYearSavingDeduction, 0);
                                 priorYear = currentYear - 1;
                             }
-                            juristictionArr = getRatesArr(federalName, incomeRates, pagelang);
+                            juristictionArr = getRatesArr(federalName, incomeRates);
                             federalRates = areaRates(juristictionArr, priorYear, startYear);
-                            abatement = getAbatement(juristictionArr, abatementID, priorYear, startYear);
-                            juristictionArr = getRatesArr(area, incomeRates, pagelang);
+                            abatement = getAbatement(juristictionArr, hasAbatement, area, priorYear, startYear);
+                            juristictionArr = getRatesArr(area, incomeRates);
                             provinceRates = areaRates(juristictionArr, priorYear, startYear);
                             priorYearSavingData = calcLocAmounts(priorIncome, investmentAmount, deductContribAmt, federalRates, fedrates, provinceRates, arearates, abatement);
                             fedMinCumulative = priorYearSavingData.fed.min;
@@ -2206,10 +2216,10 @@
                             loopYears = priorYearMax + 1;
                             maxContributeYear = loopYears;
                         }
-                        juristictionArr = getRatesArr(federalName, incomeRates, pagelang);
+                        juristictionArr = getRatesArr(federalName, incomeRates);
                         federalRates = areaRates(juristictionArr, currentYear, startYear);
-                        abatement = getAbatement(juristictionArr, abatementID, currentYear, startYear);
-                        juristictionArr = getRatesArr(area, incomeRates, pagelang);
+                        abatement = getAbatement(juristictionArr, hasAbatement, area, currentYear, startYear);
+                        juristictionArr = getRatesArr(area, incomeRates);
                         provinceRates = areaRates(juristictionArr, currentYear, startYear);
                         for (yearIncrement = priorSavingYears + 1; yearIncrement <= loopYears; yearIncrement = yearIncrement + 1) {
                             if (amountCompound + savingsAmount < maxContribution) {
@@ -2258,8 +2268,8 @@
                     }
                 };
 
-                savingsTotals = generateSavingsTableData(prov.val(), $("#province").data("fed"), prov.data("id"), yearlyTotalIncome(), yearlyTotalDeductions(), savingYears(), savingsAmount(), savingsTransferAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, hasPriorTaxSavings(), priorYearSavingAmount(), priorYearSavingTransfer(), 
-                    priorYearSavingInvest(), hasPriorYearSavingDiffIncome(), priorYearSavingIncome(), priorYearSavingDeduction(), priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates, pagelang);
+                savingsTotals = generateSavingsTableData(prov.val(), $("#province").data("fed"), prov.data("has-abatement"), yearlyTotalIncome(), yearlyTotalDeductions(), savingYears(), savingsAmount(), savingsTransferAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, hasPriorTaxSavings(), priorYearSavingAmount(), priorYearSavingTransfer(), 
+                    priorYearSavingInvest(), hasPriorYearSavingDiffIncome(), priorYearSavingIncome(), priorYearSavingDeduction(), priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates);
                     generateTable(savingsTbl, "savingsTableContainer", "savingTableTemplate", "savingsTable");
                 if (Math.max(yearlyTotalIncome() - yearlyTotalDeductions(), 0) <= savingsTotals.areaExempt && Math.max(yearlyTotalIncome() - yearlyTotalDeductions(), 0) <= savingsTotals.fedExempt) {
                     $("[data-min-threshold=false]").removeClass("hidden");
@@ -2305,7 +2315,7 @@
                             summaryTotal = "<strong>" + currencyFormatter.format(savingsTotals.fedAmountMin) + "</strong>" + $("#savingTableTemplate").data("savings-range-text") + "<strong>" + currencyFormatter.format(savingsTotals.fedAmountMax) + "</strong>";
                         }
                         $("[data-output=fed-tax]", savingsformId).html(summaryTotal);
-                        $("[data-area-name=provincial-territorial]", savingsformId).html(prov.val());
+                        $("[data-area-name=provincial-territorial]", savingsformId).html(prov.text());
                         if (parseInt(savingsTotals.areaAmountMin, 10) === parseInt(savingsTotals.areaAmountMax, 10)) {
                             summaryTotal = $("#savingTableTemplate").data("savings-text") + "<strong>" + currencyFormatter.format(savingsTotals.areaAmountMax) + "</strong>";
                         } else {
@@ -2526,7 +2536,7 @@
                 $("#savingsresultsbtn").removeClass("btn-primary");
                 $("#savingsresultsbtn").addClass("btn-default");
                 $("#savingsresultsbtn").html($("#savingsresultsbtn").data("btn-activated"));
-                updateSavingResults(incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, pagelang, savingsformId);
+                updateSavingResults(incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, savingsformId);
                 $("#savingsResults").removeClass("hidden");
             }
         });
