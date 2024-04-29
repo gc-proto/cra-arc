@@ -1696,7 +1696,7 @@
             }, 
             priorYearSavingInvest = function () {
                 if (hasPriorTaxSavings() === true) {
-                    return parseInt($("#priorYearSavingInvest").val(), 10) || 0;
+                    return Math.max(parseInt($("#priorYearSavingInvest").val(), 10), 0) || 0;
                 }
                 return 0;
             }, 
