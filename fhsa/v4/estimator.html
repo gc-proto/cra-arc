@@ -1904,13 +1904,13 @@
                                 holdingRow.appendChild(holdingHeader);
                                 holdingCell = document.createElement("td");
                                 holdingCell.setAttribute("data-chart-value", amountCompound);
-                                holdingCell.textContent = currencyFormatter.format(amountCompound);
+                                holdingCell.textContent = currencyFormatter.format(amountCompound.toFixed(2));
                                 holdingRow.appendChild(holdingCell);
                                 holdingCell = document.createElement("td");
                                 holdingCell.textContent = currencyFormatter.format(investmentCompound);
                                 holdingRow.appendChild(holdingCell);
                                 holdingCell = document.createElement("td");
-                                holdingCell.setAttribute("data-chart-value", amountCompound + investmentCompound);
+                                holdingCell.setAttribute("data-chart-value", Number(amountCompound + investmentCompound).toFixed(2));
                                 holdingCell.textContent = currencyFormatter.format(amountCompound + investmentCompound);
                                 holdingRow.appendChild(holdingCell);
                                 return holdingRow;
