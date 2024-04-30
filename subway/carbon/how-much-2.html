@@ -772,7 +772,10 @@ else  {
    var locationText =  $( "#location option:selected" ).text();
 $("#ajax-table").attr("data-ajax-replace", "qualify-for-the-supplement.html#ajax-" + $(this).val() + ">").trigger( "wb-update.wb-data-ajax");
 $(".ruralProvTerr").text(locationText);    
-    
+    //Reset rural radio group
+$('input[name=ruralRadio]').prop('checked', function() {
+        return this.defaultChecked;
+    });	 
   }      
 }); 
     
