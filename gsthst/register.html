@@ -103,7 +103,8 @@
 	<fieldset name="quest" id="question1" class="mrgn-bttm-md">
 		<legend class="h5 gc-font-2019 required">Do you supply taxable goods or services? <strong class="required">(required)</strong></legend>
 		<p>Meaning of the terms: <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">Taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> and <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">Zero-rated supplies (taxable at the rate of 0%)&nbsp;<span class="far fa-question-circle"></span></a></p>
-		<div class="radio" onchange="
+	
+   <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="
 			
 			//For reset hide/show
 			//Each question has name attribute 'quest' and id 'question'+number, loops through all questions and hides them accordingly
@@ -134,12 +135,19 @@
 				document.getElementById('R1').classList.remove('hidden');
 			}
 		">
-			<label><input type="radio" name="q1" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q1" value="1">No</label>	
-		</div>
+		 <li class="radio">
+                                        <input type="radio" name="q1" id="q1-true" value="0" data-q1="true" data-rule-required="true">
+                                        <label for="q1-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q1" id="q1-false" value="1" data-q1="false" data-rule-required="true">
+                                        <label for="q1-false">No</label>
+                                    </li>
+			  </ul>
+		
 	</fieldset>
-	
+ 
+                                                          	
 	
 	<!--QUESTION 2-->
 <fieldset name="quest" id="question2" class="mrgn-bttm-md hidden">	
