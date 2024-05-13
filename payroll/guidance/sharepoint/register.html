@@ -49,30 +49,37 @@
 
  <h3 id="gc-document-nav">Find out if you have to register for a GST/HST account</h3>
  
-<div class="alert alert-warning">
-	<p>Use this tool <strong>only</strong> if your business began operating within the last 8 <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a> (including the current one). The results are only provided as a guideline to help you understand when you may need to register.</p>
-</div>
- <p>Use this ITT to: </p>
+ <p>Use this tool to <strong>estimate</strong> if: </p>
 <ol>
-<li>Find out if you have to register and when to register</li>
+<li>You have to register and when to register</li>
 <li>When to start charging the GST/HST</li>
 	 </ol>
+<div class="alert alert-warning">
+	<p>You can use this tool <strong>only</strong> if your business began operating within the last 8 <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a> (including the current one).</p>
+</div>
+<p>The accuracy of your results depends on the accuracy of the information you enter. Later dates calculations made by the CRA may be different. The results from this tool are <strong>not</strong> binding on the CRA.</p>
+
+<details><summary>Read the privacy and legal statement</summary><div class="well brdr-rds-0"> <span class="fa-stack text-muted fa-lg  mrgn-lft-sm pull-right"><i class="far fa-circle fa-stack-2x"></i><i class="fas fa-balance-scale-right fa-stack-1x"></i></span>
+  <p>This tool gives you personalized results based on your answers to a series of questions. The tool uses plain language to explain the most common tax situations.  <strong>It is provided as a guideline only and does not replace the law.</strong></p>
+<p><strong>This tool does not collect or store the information you enter.</strong></p>
+    </div></details>
 
 <hr>
  
 <div class="wb-frmvld gc-font-2019">
-  <h4 class="mrgn-tp-sm">Answer a few questions to find out if you have to register</h4>
+  <h3 class="mrgn-tp-sm">Answer a few questions to find out if you have to register</h3>
           <p class="text-muted small">Make a selection and <strong> scroll down</strong> for further questions or results</p>	  
 
     
     <form id="myForm">
 	<!--QUESTION 1-->
-<div class="form-group mrgn-lft-md">
+<div class="form-group mrgn-lft-md gc-font-2019">
 	
 	<fieldset name="quest" id="question1" class="mrgn-bttm-md">
-		<legend class="h5 required">Do you supply taxable goods or services? <strong class="required">(required)</strong></legend>
+		<legend class="h5 gc-font-2019 required">Do you supply taxable goods or services? <strong class="required">(required)</strong></legend>
 		<p>Meaning of the terms: <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">Taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> and <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">Zero-rated supplies (taxable at the rate of 0%)&nbsp;<span class="far fa-question-circle"></span></a></p>
-		<div class="radio" onchange="
+	
+   <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="
 			
 			//For reset hide/show
 			//Each question has name attribute 'quest' and id 'question'+number, loops through all questions and hides them accordingly
@@ -103,12 +110,19 @@
 				document.getElementById('R1').classList.remove('hidden');
 			}
 		">
-			<label><input type="radio" name="q1" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q1" value="1">No</label>	
-		</div>
+		 <li class="radio">
+                                        <input type="radio" name="q1" id="q1-true" value="0" data-q1="true" data-rule-required="true">
+                                        <label for="q1-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q1" id="q1-false" value="1" data-q1="false" data-rule-required="true">
+                                        <label for="q1-false">No</label>
+                                    </li>
+			  </ul>
+		
 	</fieldset>
-	
+ 
+                                                          	
 	
 	<!--QUESTION 2-->
 <fieldset name="quest" id="question2" class="mrgn-bttm-md hidden">	
@@ -205,15 +219,14 @@
 	
 	
 	<!--QUESTION 4 -->
-	<fieldset name="quest" id="question4" class="mrgn-bttm-md hidden">
-<h2 class="mrgn-tp-sm">You are a sole proprietor, a partnership or a corporation</h2>
-		<legend class="h5 required mrgn-lft-md">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
-		<p class="mrgn-lft-md">Even if you consider yourself to be self-employed, you might be an employee.</p>
-		<p class="mrgn-lft-md">Learn more: <a href="https://test.canada.ca/cra-arc/payroll/emp-status/index.html" target="_blank">Employee, self-employed worker or incorporated employee</a></p>
+<fieldset name="quest" id="question4" class="mrgn-bttm-md hidden">
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You are a sole proprietor, a partnership or a corporation</p>
 
-		
-		<div class="radio mrgn-lft-md" onchange="
-			var q = getElementsByName('quest') ;
+		<legend class="h5 gc-font-2019 required">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
+		<p>Even if you consider yourself to be self-employed, you might be an employee.</p>
+			
+ <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="	
+		var q = getElementsByName('quest') ;
 			for (i=5; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
 			
@@ -230,20 +243,26 @@
 			
 			else 
 				document.getElementById('R2').classList.remove('hidden');
-		">
-			<label><input type="radio" name="q4" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q4" value="1">No</label>
-		</div>
+		"> <li class="radio">
+                                        <input type="radio" name="q4" id="q4-true" value="0" data-q4="true" data-rule-required="true">
+                                        <label for="q4-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q4" id="q4-false" value="1" data-q4="false" data-rule-required="true">
+                                        <label for="q4-false">No</label>
+                                    </li>
+			  </ul>
+		
 	</fieldset>
 	
 	<!--QUESTION 5-->
-	<fieldset name="quest" id="question5" class="mrgn-bttm-md hidden">
-<h2 class="mrgn-tp-sm">You are a public service body (other than a charity or public institution)</h2>
-<p class="mrgn-lft-sm">Meaning of the term: <a href="#ajax-service" aria-controls="ajax-service" class="overlay-lnk" role="button">public service body&nbsp;<span class="far fa-question-circle"></span></a></p>
-		<legend class="h5 required mrgn-lft-md">Are you a branch or division of the public service body? <strong class="required">(required)</strong></legend>
-		
-		<div class="radio mrgn-lft-md" onchange="
+
+<fieldset name="quest" id="question5" class="mrgn-bttm-md hidden">
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You are a public service body (other than a charity or public institution)</p>
+		<legend class="h5 gc-font-2019 required">Are you a branch or division of the public service body? <strong class="required">(required)</strong></legend>
+		<p>Meaning of the term: <a href="#ajax-service" aria-controls="ajax-service" class="overlay-lnk" role="button">public service body&nbsp;<span class="far fa-question-circle"></span></a></p>
+	
+ <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="	
 			var q = getElementsByName('quest') ;
 			for (i=6; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -262,21 +281,28 @@
 				document.getElementById('showFields').click() ;
 			}
 		">
-			<label><input type="radio" name="q5" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q5" value="1">No</label>
-		</div>
+
+		 <li class="radio">
+                                        <input type="radio" name="q5" id="q5-true" value="0" data-q5="true" data-rule-required="true">
+                                        <label for="q5-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q5" id="q5-false" value="1" data-q5="false" data-rule-required="true">
+                                        <label for="q5-false">No</label>
+                                    </li>
+			  </ul>
+		
 	</fieldset>
 	
 	<!--QUESTION 12-->
-	<fieldset name="quest" id="question12" class="mrgn-lft-md mrgn-bttm-md hidden">
+	<fieldset name="quest" id="question12" class="mrgn-bttm-md hidden">
 
-<h2 class="mrgn-tp-sm">You want to create scenarios to understand the conditions to register</h2>
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You want to create scenarios to understand the conditions to register</p>
 <div class="alert alert-warning mrgn-tp-md">
 	<p>Use this tool to <strong>create scenarios</strong> based on your <strong>estimated amounts</strong>. The results are only provided as a guideline to help you understand when you may need to register.</p>
 </div>
-<legend class="h5 required mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters <strong class="required">(required)</strong></legend>	<br>
-<p class="mrgn-lft-lg"><a href="#ajax-include1" aria-controls="ajax-include1" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
+<legend class="h5 required gc-font-2019 mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters <strong class="required">(required)</strong></legend>	<br>
+<p><a href="#ajax-include1" aria-controls="ajax-include1" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
 		
 	
 			<div class="row mrgn-bttm-sm">
@@ -285,7 +311,7 @@
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_New" id="quarter1_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter1_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					
 					</div>
 				</div>
@@ -296,7 +322,7 @@
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_New" id="quarter2_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter2_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					
 					</div>
 				</div>
@@ -307,7 +333,7 @@
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_New" id="quarter3_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter3_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					
 					</div>
 				</div>
@@ -318,13 +344,13 @@
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_New" id="quarter4_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter4_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					
 					</div>
 				</div>
 			</div>
 
-		<button class="btn btn-primary required" type="button" onclick="
+		<button class="btn btn-primary btn-lg required" type="button" onclick="
 			document.getElementById('calc').click() ;
 			document.getElementById('reached').click();
 			var tempMaxDate = new Date(document.getElementById('maxDate').value);
@@ -346,12 +372,13 @@
 	
 
 	<!--QUESTION 6-->
-	<fieldset name="quest" id="question6" class="mrgn-bttm-md mrgn-lft-md hidden">
-<h2 class="mrgn-tp-sm">You are a charity or public institution</h2>
-<p class="mrgn-lft-sm">Meaning of the terms: <a href="#ajax-charity" aria-controls="ajax-charity" class="overlay-lnk" role="button">charity&nbsp;<span class="far fa-question-circle"></span></a> and <a href="#ajax-public" aria-controls="ajax-public" class="overlay-lnk" role="button">public institution&nbsp;<span class="far fa-question-circle"></span></a></p>
-		<legend class="h5 required mrgn-lft-md">Are you a branch or division of the charity or public institution? <strong class="required">(required)</strong></legend>
+	<fieldset name="quest" id="question6" class="mrgn-bttm-md hidden">
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You are a charity or public institution</p>
+<legend class="h5 gc-font-2019 required">Are you a branch or division of the charity or public institution? <strong class="required">(required)</strong></legend>
+<p>Meaning of the terms: <a href="#ajax-charity" aria-controls="ajax-charity" class="overlay-lnk" role="button">charity&nbsp;<span class="far fa-question-circle"></span></a> and <a href="#ajax-public" aria-controls="ajax-public" class="overlay-lnk" role="button">public institution&nbsp;<span class="far fa-question-circle"></span></a></p>
 		
-			<div class="radio mrgn-lft-md" onchange="
+		
+		<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="	
 			var q = getElementsByName('quest') ;
 			for (i=7; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -384,17 +411,23 @@
 			}
 			
 		">
-			<label><input type="radio" name="q6" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q6" value="1">No</label>
-		</div>
+		 <li class="radio">
+                                        <input type="radio" name="q6" id="q6-true" value="0" data-q6="true" data-rule-required="true">
+                                        <label for="q6-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q6" id="q6-false" value="1" data-q6="false" data-rule-required="true">
+                                        <label for="q6-false">No</label>
+                                    </li>
+			  </ul>
+			
 	</fieldset>
 	
 	<!--QUESTION 7-->
-	<fieldset name="quest" id="question7" class="mrgn-bttm-md mrgn-lft-md hidden">
-		<legend class="h5 required mrgn-lft-md">Is this your first fiscal year of operation? <strong class="required">(required)</strong></legend>
-<p class="mrgn-lft-md">Meaning of the term: <a href="#ajax-fiscal" aria-controls="ajax-fiscal" class="overlay-lnk" role="button">fiscal year&nbsp;<span class="far fa-question-circle"></span></a></p>
-		<div class="radio mrgn-lft-md" onchange="				
+	<fieldset name="quest" id="question7" class="mrgn-bttm-md hidden">
+		<legend class="h5 required gc-font-2019">Is this your first fiscal year of operation? <strong class="required">(required)</strong></legend>
+<p>Meaning of the term: <a href="#ajax-fiscal" aria-controls="ajax-fiscal" class="overlay-lnk" role="button">fiscal year&nbsp;<span class="far fa-question-circle"></span></a></p>
+		<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="					
 			var q = getElementsByName('quest') ;
 			for (i=8; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -414,16 +447,23 @@
 				document.getElementById('question8').classList.remove('hidden');
 			}
 		">
-			<label><input type="radio" name="q7" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q7" value="1">No</label>
-		</div>
+			 <li class="radio">
+                                        <input type="radio" name="q7" id="q7-true" value="0" data-q7="true" data-rule-required="true">
+                                        <label for="q7-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q7" id="q7-false" value="1" data-q7="false" data-rule-required="true">
+                                        <label for="q7-false">No</label>
+                                    </li>
+			  </ul>
 	</fieldset>
 	
 	<!--QUESTION 8-->
-	<fieldset name="quest" id="question8" class="mrgn-bttm-md mrgn-lft-md hidden">
-		<legend class="h5 required mrgn-lft-md">Is this your second fiscal year of operation? <strong class="required">(required)</strong></legend>
-		<div class="radio mrgn-lft-md" onchange="
+<fieldset name="quest" id="question8" class="mrgn-bttm-md hidden">
+		<legend class="h5 required gc-font-2019">Is this your second fiscal year of operation? <strong class="required">(required)</strong></legend>
+<p>Meaning of the term: <a href="#ajax-fiscal" aria-controls="ajax-fiscal" class="overlay-lnk" role="button">fiscal year&nbsp;<span class="far fa-question-circle"></span></a></p>
+		<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="	
+
 			var q = getElementsByName('quest') ;
 			for (i=9; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -450,19 +490,24 @@
 				document.getElementById('question10').classList.remove('hidden');
 			}
 		">
-			<label><input type="radio" name="q8" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q8" value="1">No</label>
-		</div>
+			 <li class="radio">
+                                        <input type="radio" name="q8" id="q8-true" value="0" data-q8="true" data-rule-required="true">
+                                        <label for="q8-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q8" id="q8-false" value="1" data-q8="false" data-rule-required="true">
+                                        <label for="q8-false">No</label>
+                                    </li>
+			  </ul>
 	</fieldset>
 	
 	<!--QUESTION 9-->
-	<fieldset name="quest" id="question9" class="mrgn-bttm-md mrgn-lft-md hidden">
-<h2 class="mrgn-tp-sm">You are on your second fiscal year of operation</h2>
+	<fieldset name="quest" id="question9" class="mrgn-bttm-md hidden">
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You are on your second fiscal year of operation</p>
 <p></p>
 
-		<legend class="h5 required mrgn-lft-md">Enter your gross revenue from your first fiscal year of operation <strong class="required">(required)</strong></legend>
-	<p class="mrgn-lft-lg"><a href="#ajax-include2" aria-controls="ajax-include2" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
+		<legend class="h5 gc-font-2019 required">Enter your gross revenue from your first fiscal year of operation <strong class="required">(required)</strong></legend>
+	<p><a href="#ajax-include2" aria-controls="ajax-include2" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
 		
 		
 		<div class="row mrgn-bttm-md mrgn-lft-md">
@@ -471,7 +516,7 @@
 			<div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
-					<input class="form-control input-sm" name="q9" id="q9" value="" required onfocus="this.select()" onchange="
+					<input class="form-control input-lg text-right" name="q9" id="q9" value="" required onfocus="this.select()" onchange="
 							var results = getElementsByName('results');
 							for (i=1; i<=results.length; i++)
 								document.getElementById('R'+i).classList.add('hidden');
@@ -497,7 +542,7 @@
 			</div>
 		</div>
 		<br>
-			<button class="btn btn-primary mrgn-bttm-lg required" type="button" onclick="				
+			<button class="btn btn-primary btn-lg mrgn-bttm-lg required" type="button" onclick="				
 
 						var val = document.getElementById('q9') ;
 						if (val.value > 250000) {
@@ -516,12 +561,11 @@
 	</fieldset>
 	
 	<!--QUESTION 10-->
-	<fieldset name="quest" id="question10" class="mrgn-bttm-md mrgn-lft-md hidden">
-<h2 class="mrgn-tp-sm">You are on your third fiscal year of operation or later</h2>
+	<fieldset name="quest" id="question10" class="mrgn-bttm-md hidden">
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You are on your third fiscal year of operation</p>
 <p></p>
-		
-		<legend class="h5 required mrgn-lft-md">Enter your gross revenue for each of your two previous fiscal years <strong class="required">(required)</strong></legend>
-		<p class="mrgn-lft-lg"><a href="#ajax-include2" aria-controls="ajax-include2" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
+		<legend class="h5 gc-font-2019 required">Enter your gross revenue for each of your two previous fiscal years <strong class="required">(required)</strong></legend>
+		<p><a href="#ajax-include2" aria-controls="ajax-include2" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
 
 		
 		<div class="row mrgn-bttm-md mrgn-lft-md">
@@ -530,7 +574,7 @@
 			<div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
 		    	<div class="input-group">
 			    	<span class="input-group-addon">$</span>
-			    	<input class="form-control input-sm mrgn-bttm-sm" name="q10" id="fpfy" required onfocus="this.select()" onchange="
+			    	<input class="form-control input-lg text-right mrgn-bttm-sm" name="q10" id="fpfy" required onfocus="this.select()" onchange="
 						var results = getElementsByName('results');
 						for (i=1; i<=results.length; i++)
 							document.getElementById('R'+i).classList.add('hidden');
@@ -561,7 +605,7 @@
 			<div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
 		    	<div class="input-group">
 		    		<span class="input-group-addon">$</span>
-		    		<input class="form-control input-sm mrgn-bttm-sm" id="spfy" name="q10" required onfocus="this.select()" onchange="
+		    		<input class="form-control input-lg text-right mrgn-bttm-sm" id="spfy" name="q10" required onfocus="this.select()" onchange="
 						var results = getElementsByName('results');
 						for (i=1; i<=results.length; i++)
 							document.getElementById('R'+i).classList.add('hidden');
@@ -587,7 +631,7 @@
 			</div>
 		</div>
 		<br>
-		<button class="btn btn-primary mrgn-bttm-lg required" type="button" onclick="
+		<button class="btn btn-primary btn-lg mrgn-bttm-lg required" type="button" onclick="
 			document.getElementById('error_second').classList.add('hidden');	
 						var q10 = document.getElementsByName('q10') ;
 						var values = [] ;
@@ -617,19 +661,12 @@
 	</fieldset>
 	
 	<!--QUESTION 11-->
-	<fieldset name="quest" id="question11" class="mrgn-bttm-md mrgn-lft-md hidden">
-<h2 class="mrgn-tp-sm">You are a taxi operator or a commercial ride-sharing driver</h2>
-<p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
-	
-		<legend class="h5 required">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
-		
-		<p>You are usually self-employed if you are in one of the following situations:</p>
-		<ul>
-			<li>You own your taxicab/motor vehicle</li>
-			<li>You lease a taxicab/motor vehicle from an owner for a flat fee, either on a daily, weekly, or monthly basis</li>
-			<li>You lease a taxicab/motor vehicle from an owner for a percentage of fares</li>
-		</ul>
-		<div class="radio" onchange="
+	<fieldset name="quest" id="question11" class="mrgn-bttm-md hidden">
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You are a taxi operator or a commercial ride-sharing driver</p>
+<legend class="h5 gc-font-2019 required">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
+<p><a href="#ajax-taxi" aria-controls="ajax-taxi" class="overlay-lnk" role="button">What is considered a self-employed taxi operator or a commercial ride-sharing driver&nbsp;<span class="far fa-question-circle"></span></a></p>
+
+		<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="
 			var results = getElementsByName('results');
 			for (i=1; i<=results.length; i++)
 				document.getElementById('R'+i).classList.add('hidden');
@@ -639,22 +676,27 @@
 				document.getElementById('R5').classList.remove('hidden');
 			else
 				document.getElementById('R2').classList.remove('hidden');
-		">		
-			<label><input type="radio" name="q11" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q11" value="1">No</label>
-		</div>
+		">	
+		 <li class="radio">
+                                        <input type="radio" name="q11" id="q11-true" value="0" data-q11="true" data-rule-required="true">
+                                        <label for="q11-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q11" id="q11-false" value="1" data-q11="false" data-rule-required="true">
+                                        <label for="q11-false">No</label>
+                                    </li>
+			  </ul>
+		
 	</fieldset>
 
 	<!--QUESTION 14-->
-	<fieldset name="quest" id="question14" class="mrgn-bttm-md mrgn-lft-md hidden">
+	<fieldset name="quest" id="question14" class="mrgn-bttm-md hidden">
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You want to know if you need to register and what is your registration date</p>
 
-<h2 class="mrgn-tp-sm">You want to know if you need to register and what is your registration date</h2>
-
-		<legend class="h5 required"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span> Enter your actual revenue from your taxable sales, leases and other supplies for these 8 recent quarters <strong class="required">(required)</strong></legend>
+		<legend class="h5 gc-font-2019 required"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span> Enter your actual revenue from your taxable sales, leases and other supplies for these 8 recent quarters <strong class="required">(required)</strong></legend>
 <label class="wb-inv">Enter your the revenue from your taxable sales, leases and other supplies for recent 8 quarters. Navigate forward through the following fields by using Tab or backward using Shift + Tab.</label>		
 
-		<p class="mrgn-lft-lg"><a href="#ajax-include1" aria-controls="ajax-include1" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
+		<p><a href="#ajax-include1" aria-controls="ajax-include1" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
 
 		<div class="checkbox-inline mrgn-lft-xl" onchange="
 			document.getElementById('error_Old').classList.add('hidden') ;
@@ -681,7 +723,7 @@
 		    	<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-		    			<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter1_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+		    			<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter1_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
 							document.getElementById('question14.2').classList.add('hidden')
 							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
@@ -693,7 +735,7 @@
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter2_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter2_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
 							document.getElementById('question14.2').classList.add('hidden')
 							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
@@ -705,7 +747,7 @@
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter3_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter3_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
 							document.getElementById('question14.2').classList.add('hidden')
 							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
@@ -717,7 +759,7 @@
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter4_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter4_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
 							document.getElementById('question14.2').classList.add('hidden')
 							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
@@ -729,7 +771,7 @@
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter5_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter5_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
 							document.getElementById('question14.2').classList.add('hidden')
 							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
@@ -741,7 +783,7 @@
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter6_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter6_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
 							document.getElementById('question14.2').classList.add('hidden')
 							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
@@ -753,7 +795,7 @@
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter7_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter7_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
 							document.getElementById('question14.2').classList.add('hidden')
 							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
@@ -765,14 +807,14 @@
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter8_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter8_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
 							document.getElementById('question14.2').classList.add('hidden')
 							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
 			</div>
 		</div>
 		
-		<button class="btn btn-primary required" type="button" onclick="
+		<button class="btn btn-primary btn-lg required" type="button" onclick="
 			document.getElementById('calc').click() ;
 			document.getElementById('reached').click();
 			var tempMaxDate = new Date(document.getElementById('maxDate').value);
@@ -784,7 +826,7 @@
 
 		<div id="question14.2" class="hidden ">
 <hr>
-			<legend class="h5 required mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters <strong class="required">(required)</strong></legend>
+			<legend class="h5 gc-font-2019 required mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters <strong class="required">(required)</strong></legend>
 
 		
 			<div class="row mrgn-bttm-sm">
@@ -793,7 +835,7 @@
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter9_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter9_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					</div>
 				</div>
 			</div>
@@ -803,7 +845,7 @@
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter10_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter10_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					</div>
 				</div>
 			</div>
@@ -813,7 +855,7 @@
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter11_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter11_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					</div>
 				</div>
 			</div>
@@ -823,12 +865,12 @@
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter12_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_Old" id="quarter12_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					</div>
 				</div>
 			</div>
 
-			<button class="btn btn-primary required" type="button" onclick="
+			<button class="btn btn-primary btn-lg required" type="button" onclick="
 				document.getElementById('calc').click() ;
 				document.getElementById('reached').click();
 				var tempMaxDate = new Date(document.getElementById('maxDate').value);
@@ -846,14 +888,14 @@
 	
 	</fieldset>
 	
-	<fieldset name="quest" id="question13" class="mrgn-bttm-md mrgn-lft-md hidden">
+	<fieldset name="quest" id="question13" class="mrgn-bttm-md hidden">
 		<label for="datePick" id="q13_text" class="h5 required"><span class="wb-inv" id="screenreader_error"></span> Enter a date for the taxable supply that <span id="made">made</span> you exceed $<span id="q13_text_amountString"></span> in the following quarter: <span id="q13_text_quarter"></span> <strong class="required">(required)</strong></label>
 		<input class="form-control input-md" id="datePick" type="date" required onfocus="this.select()" onblur="
 			document.getElementById('validDate').click();
 		">
 		<br>
 
-		<button class="btn btn-primary required" type="button" id="dateResultButton" onclick="
+		<button class="btn btn-primary btn-lg required" type="button" id="dateResultButton" onclick="
 			if (this.classList.contains('goodToGo')) {
 				document.getElementById('showResults').click() ;
 			}
@@ -1297,14 +1339,14 @@
 		
 		if (n<m){
 			document.getElementById('tense151').innerHTML = 'must';
-			document.getElementById('tense152').innerHTML = 'Must';
+			document.getElementById('tense152').innerHTML = 'must';
 		}else{
 			if (n<l){
 				document.getElementById('tense151').innerHTML = 'must';
-				document.getElementById('tense152').innerHTML = 'Must';
+				document.getElementById('tense152').innerHTML = 'must';
 			}else{
 				document.getElementById('tense151').innerHTML = 'must';
-				document.getElementById('tense152').innerHTML = 'Must';
+				document.getElementById('tense152').innerHTML = 'must';
 			}
 		}
 		document.getElementById('R9').classList.remove('hidden');
@@ -1312,6 +1354,8 @@
 		document.getElementById('chargeDate01').innerHTML = datePicked30 ;
 		document.getElementById('chargeDate011').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 		document.getElementById('chargeDate0111').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+		document.getElementById('chargeDate01111').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+		document.getElementById('chargeDate011111').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 		document.getElementById('chargeAmount').innerHTML = amountString ;
 		document.getElementById('chargeAmount2').innerHTML = amountString ;
 		document.getElementById('chargeAmount3').innerHTML = amountString ;
@@ -1354,6 +1398,8 @@
 			document.getElementById('warning_amount').innerHTML = amountString ;
 			document.getElementById('warning_amount2').innerHTML = amountString ;
 			document.getElementById('chargeDate1111').innerHTML = midDate ;		
+			document.getElementById('chargeDate11111').innerHTML = midDate ;	
+			document.getElementById('chargeDate111111').innerHTML = midDate ;	
 		}
 
 		//single quarter capped the amount immediately following the added quarters
@@ -1365,19 +1411,19 @@
 				if (capPeriod >= 8 || numOfQuarters == 4){
 					document.getElementById('estimate').innerHTML = '' ;
 					document.getElementById('have0').innerHTML = '' ;
-					document.getElementById('have1').innerHTML = 'Must' ;
+					document.getElementById('have1').innerHTML = 'must' ;
 				}else{
 					document.getElementById('estimate').innerHTML = '' ;
 					if(n>m){
 						document.getElementById('have0').innerHTML = '' ;
 						if (n<l){
-							document.getElementById('have1').innerHTML = 'Must' ;
+							document.getElementById('have1').innerHTML = 'must' ;
 						}else{
-							document.getElementById('have1').innerHTML = 'Must' ;
+							document.getElementById('have1').innerHTML = 'must' ;
 						}
 					}else{
 						document.getElementById('have0').innerHTML = '' ;
-						document.getElementById('have1').innerHTML = 'Must' ;
+						document.getElementById('have1').innerHTML = 'must' ;
 					}
 				}
 				
@@ -1393,25 +1439,27 @@
 				document.getElementById('warning_amount').innerHTML = amountString ;
 				document.getElementById('warning_amount2').innerHTML = amountString ;
 				document.getElementById('chargeDate1111').innerHTML = midDate ;
+				document.getElementById('chargeDate11111').innerHTML = midDate ;
+				document.getElementById('chargeDate111111').innerHTML = midDate ;
 
 			}
 			else {
 				if (capPeriod >= 8 || numOfQuarters == 4){
 					document.getElementById('estimate').innerHTML = '' ;
 					document.getElementById('have0').innerHTML = '' ;
-					document.getElementById('have1').innerHTML = 'Must' ;
+					document.getElementById('have1').innerHTML = 'must' ;
 				}else{
 					document.getElementById('estimate').innerHTML = '' ;
 					if(n>m){
 						document.getElementById('have0').innerHTML = '' ;
 						if (n<l){
-							document.getElementById('have1').innerHTML = 'Must' ;
+							document.getElementById('have1').innerHTML = 'must' ;
 						}else{
-							document.getElementById('have1').innerHTML = 'Must' ;
+							document.getElementById('have1').innerHTML = 'must' ;
 						}
 					}else{
 						document.getElementById('have0').innerHTML = '' ;
-						document.getElementById('have1').innerHTML = 'Must' ;
+						document.getElementById('have1').innerHTML = 'must' ;
 					}
 				}
 				document.getElementById('R8').classList.remove('hidden');	
@@ -1424,6 +1472,8 @@
 				document.getElementById('warning_amount').innerHTML = amountString ;
 				document.getElementById('warning_amount2').innerHTML = amountString ;
 				document.getElementById('chargeDate1111').innerHTML = midDate ;
+				document.getElementById('chargeDate11111').innerHTML = midDate ;
+				document.getElementById('chargeDate111111').innerHTML = midDate ;
 
 			}
 
@@ -1498,36 +1548,19 @@
 
 <!--RESULTS-->
 
-
-
-<section class="alert alert-info hidden mrgn-lft-lg" id="R1" name="results">
-	<h3><small>Your result </small><br> You do not supply goods or services that are taxable</h3>
-         
- <div>
-     <table class="table table-condensed mrgn-lft-lg" id="over5">
-        <caption class="wb-inv">
-       
-        </caption>
-        <thead>
-<tr>
-	<th scope="col">
-Description </th>
-	
-	<th scope="col">
-Conditions </th>
-	 </tr> </thead>
-<tbody>
-<tr><td><strong>Register</strong> </td>
-<td><p>You <strong>cannot</strong> register for a GST/HST account number because you <strong>do not</strong> supply goods or services that are taxable </p>
-</td>
-</tr>
-<tr><td><strong>Charge</strong> </td>
-<td>You do <strong>not</strong> charge GST/HST</td>
-</tr>
-<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
-<td>You do <strong>not</strong> claim input tax credits for the GST/HST you pay on your purchase </td>
-</tr> </tbody> </table></div>
-<p class="mrgn-tp-md mrgn-lft-lg">Learn more if you are a listed financial institution: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/notice265/gst-hst-registration-listed-financial-institutions-including-selected-listed-financial-institutions.html" target="_blank">GST/HST Notice 265</a></p>
+<section class="alert alert-info hidden" id="R1" name="results">
+	<h3><small>Your result </small><br> Based on the information you entered: You cannot register for a GST/HST account</h3>
+<hr>
+<h4 class="mrgn-lft-sm text-info"><span class="fa-stack"><span class="fas fa-id-card fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>Registering</h4>
+ <p>You <strong>cannot</strong> register for a GST/HST account number because you <strong>do not</strong> supply goods or services that are taxable.</p>
+<br> 
+<h4 class="mrgn-lft-sm text-info"><span class="fa-stack"><span class="fas fa-hand-holding-usd fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>Charging</h4>   
+ <p> You do <strong>not</strong> charge GST/HST.</p>
+<br>
+<h4 class="mrgn-lft-sm text-info"><span class="fa-stack"><span class="fas fa-funnel-dollar fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>Claiming input tax credits</h4> 
+<p>You <strong>cannot</strong> claim input tax credits for the GST/HST you pay on your purchase. </p>
+<br>
+<p>Learn more if you are a listed financial institution: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/notice265/gst-hst-registration-listed-financial-institutions-including-selected-listed-financial-institutions.html">GST/HST Notice 265</a></p>
 
 <details class="mrgn-lft-lg"><summary><span class="fas fa-balance-scale text-info"></span> Excise Tax Act</summary>
 <div class="row text-muted small">
@@ -1539,24 +1572,31 @@ Conditions </th>
 </div>
 </div>
 </details>
-
 </section>
 
-<section class="alert alert-warning hidden mrgn-lft-lg" id="R2" name="results">
-	<h3><small>Your result </small><br> You are not sure if you are an employee or self-employed</h3>
-	<p>You need to consider multiple factors to determine if you are an employee or self-employed. </p>
-	<p>Learn more: <a href="https://test.canada.ca/cra-arc/payroll/emp-status/index.html" target="_blank">Employee, self-employed worker or incorporated employee</a></p>
-<p>If you are not sure if you are an employee or self-employed, you can ask for a CPP/EI ruling.</p>
-<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained/canada-pension-plan-employment-insurance-explained-11.html" target="_blank">How to get a CPP/EI ruling</a></p>
-<p class="mrgn-tp-lg"><span class="fas fa-check text-success fa-lg"></span> <strong>You can continue to use this tool</strong>.</p>	
+<section class="alert alert-warning hidden" id="R2" name="results">
+	<h3><small>Your result </small><br> Based on the information you entered: You need to confirm if you are an employee or self-employed</h3>
+<hr>
+	
+	<p>You need to consider multiple factors to determine if you are an employee or self-employed.</p>
+	
+<p>Learn more: <a href="https://test.canada.ca/cra-arc/payroll/emp-status/index.html">Determine the relationship with the employer or the payer</a></p>
+<br>
+<p>Depending on your employment status: </p>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><span class="fas fa-ban text-danger fa-lg"></span> <strong>Do not</strong> use this tool if you are an <strong>employee</strong>.</li>
+<li class="cnjnctn-col"><span class="fas fa-check fa-lg text-success"></span> You can use this tool if you are <strong>not</strong> an employee.</li>
+</ul>
 </section>
 
-<section class="alert alert-info hidden mrgn-lft-lg" id="R3" name="results">
-	<h3><small>Your result </small><br> You are a branch or division </h3>
-	<p><span class="fas fa-times text-danger"></span> You <strong>cannot</strong> register separately for a GST/HST account because you are a branch or a division.</p>
+<section class="alert alert-info hidden" id="R3" name="results">
+	<h3><small>Your result </small><br> Based on the information you entered: You cannot register for a GST/HST account separately </h3>
+<hr>
+<h4 class="mrgn-lft-sm text-info"><span class="fa-stack"><span class="fas fa-id-card fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>Registering</h4>
+ <p>You <strong>cannot</strong> register for a GST/HST account number separately because you are a branch or a division.</p>
 <p>A public service body (PSB) may apply for its branches or divisions to be designated as small supplier.</p>
 
-<p class="mrgn-lft-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/gst31.html" target="_blank">GST31 Application by a Public Service Body to Have Branches or Divisions Treated As Eligible Small Supplier Divisions</a></p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/gst31.html">GST31 Application by a Public Service Body to Have Branches or Divisions Treated As Eligible Small Supplier Divisions</a></p>
 <details class="mrgn-lft-lg"><summary><span class="fas fa-balance-scale text-info"></span> Excise Tax Act</summary>
 <div class="row text-muted small">
 <div class="col-xs-12">
@@ -1568,43 +1608,28 @@ Conditions </th>
 </details>
 </section>
 
-<section class="alert alert-info hidden mrgn-lft-lg" id="R4" name="results">
-	<h3><small>Your result </small><br> R4 Charity or public institution not yet operating or on the first year of operation </h3>
- <div>
-     <table class="table table-condensed mrgn-lft-lg" id="over5">
-        <caption class="wb-inv">
-       
-        </caption>
-        <thead>
-<tr>
-	<th scope="col">
-Description </th>
-	
-	<th scope="col">
-Conditions </th>
-	 </tr> </thead>
-<tbody>
-<tr><td><strong>Register</strong> </td>
-<td><p>You are a small supplier.</p>
-<p>You <strong>do not</strong> have to register for a GST/HST account number because your business is a charity or public institution and one of the following apply: </p>
+<section class="alert alert-info hidden" id="R4" name="results">
+	<h3><small>Your result </small><br>Based on the information you entered: You do not have to register for a GST/HST account number </h3>
+<hr>
+<h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
+<p>You are a small supplier. You <strong>do not</strong> have to register for a GST/HST account number because your business is a charity or public institution and one of the following apply: </p>
 <ul class="list-unstyled cnjnctn-type-or">
 <li class="cnjnctn-col">You are <strong>not</strong> yet operating</li>
 <li class="cnjnctn-col">You are in your <strong>first fiscal year</strong> of operation</li>
 <li class="cnjnctn-col">You are in your <strong>second fiscal year</strong> of operation and your gross revenue from your first fiscal year is <strong>$250,000 or less</strong></li>
 <li class="cnjnctn-col">You are in your <strong>third fiscal year</strong> of operation and your gross revenue from either or both of your <strong>previous 2 fiscal years</strong> is <strong>$250,000 or less</strong></li>
 </ul>
-<h5>Register voluntarily</h5>
+<h5>Voluntary registration</h5>
 <p>You may choose to register voluntarily if you are a small supplier.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html" target="_blank">Register voluntarily for a GST/HST account</a></p>
-</td>
-</tr>
-<tr><td><strong>Charge</strong> </td>
-<td>You do <strong>not</strong> charge GST/HST</td>
-</tr>
-<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
-<td>You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses. </td>
-</tr> </tbody> </table></div>
-<p class="mrgn-tp-md mrgn-lft-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4082/gst-hst-information-charities.html" target="_blank"> GST/HST Information for Charities</a></p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html">Register voluntarily for a GST/HST account</a></p>
+<br> 
+<h4 class="mrgn-lft-sm text-info"><span class="fa-stack"><span class="fas fa-hand-holding-usd fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>Charging</h4>   
+ <p> You do <strong>not</strong> charge GST/HST.</p>
+<br>
+<h4><span class="fas fa-funnel-dollar fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Claiming input tax credits</h4> 
+<p>You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses.</p>
+
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4082/gst-hst-information-charities.html" target="_blank"> GST/HST Information for Charities</a></p>
 <details class="mrgn-lft-lg"><summary><span class="fas fa-balance-scale text-info"></span> Excise Tax Act</summary>
 <div class="row text-muted small">
 <div class="col-xs-12">
@@ -1618,49 +1643,28 @@ Conditions </th>
 </div>
 </div>
 </details>
-
 </section>
 
-<section class="alert alert-info hidden mrgn-lft-lg" id="R5" name="results">
-	<h3><small>Your result </small><br> You are a taxi operator or a commercial ride-sharing driver</h3>
- <div class="table-responsive  mrgn-lft-lg">
-     <table class="table table-condensed" id="over2">
-        <caption class="wb-inv">
-       
-        </caption>
-        <thead>
-<tr>
-	<th scope="col">
-Description </th>
-	
-	<th scope="col">
-Conditions </th>
-	 </tr> </thead>
-<tbody>
-<tr><td><strong>Register</strong> </td>
-<td><p>You have to register for a GST/HST account as of the date your business began as a taxi operator or a commercial ride-sharing driver.</p>
-</td>
-</tr>
-<tr><td><strong>Charge</strong> </td>
-<td>You have to charge the GST/HST as of the date your business began.
-</td>
-</tr>
-<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
-<td>You may be eligible for to claim input tax credits for the GST/HST you pay on your purchase and expenses.
- </td>
-</tr> 
-<tr><td><strong>File</strong></td>
-<td>You must file GST/HST returns.
- </td>
-</tr>
-<tr><td><strong>Remit</strong></td>
-<td>You must remit (pay) the net GST/HST payable.
- </td>
-</tr>
+<section class="alert alert-info hidden" id="R5" name="results">
+	<h3><small>Your result </small><br> Based on the information you entered: You have to register for a GST/HST account number</h3>
+<hr>
+<h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
+<p>You have to register for a GST/HST account as of the date your business began as a taxi operator or a commercial ride-sharing driver.</p>
+<br> 
+<h4><span class="fas fa-hand-holding-usd fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Charging</h4>  
+ <p>You have to charge the GST/HST as of the date your business began.</p>
+<br>
+<h4><span class="fas fa-funnel-dollar fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Claiming input tax credits</h4> 
+<p>You may be eligible for to claim input tax credits for the GST/HST you pay on your purchase and expenses.
+ </p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing </h4>
+<p>You must file GST/HST returns.</p>
+<br>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying)</h4>
+<p>You must remit (pay) the net GST/HST payable.</p>
 
-</tbody> </table></div>
-
-<p class="mrgn-tp-md mrgn-lft-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/taxi-ride-sharing-drivers.html" target="_blank"> GST/HST information for taxi operators and commercial ride-sharing drivers</a></p>
+<p class="mrgn-tp-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/taxi-ride-sharing-drivers.html" target="_blank"> GST/HST information for taxi operators and commercial ride-sharing drivers</a></p>
 
 <details class="mrgn-lft-lg"><summary><span class="fas fa-balance-scale text-info"></span> Excise Tax Act</summary>
 <div class="row text-muted small">
@@ -1679,54 +1683,34 @@ Conditions </th>
 </details>
 </section>
 
-<section class="alert alert-info hidden mrgn-lft-lg" id="R6" name="results">
-	<h3><small>Your result </small><br> Your only commercial activity is the sale of real property<small>, other than in the course of a business</small>  </h3>
-<div>
-     <table class="table table-condensed mrgn-lft-lg" id="over5">
-        <caption class="wb-inv">
-       
-        </caption>
-        <thead>
-<tr>
-	<th scope="col">
-Description </th>
-	
-	<th scope="col">
-Conditions </th>
-	 </tr> </thead>
-<tbody>
-<tr><td><strong>Register</strong> </td>
-<td><p>You are a small supplier.</p>
-<p>You <strong>do not</strong> have to register for a GST/HST account number because your only commercial activity is the sale of real property, other than in the course of a business. </p> 
-<h5>Register voluntarily</h5>
-<p>You may choose to register voluntarily if you are a small supplier.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html" target="_blank">Register voluntarily for a GST/HST account</a></p>
-</td>
-</tr>
-<tr><td><strong>Charge</strong> </td>
-<td>You may still have to charge the tax on your sale of <a href="#ajax-property" aria-controls="ajax-property" class="overlay-lnk" role="button">real property&nbsp;<span class="far fa-question-circle"></span></a> on that <a href="#ajax-commercial" aria-controls="ajax-commercial" class="overlay-lnk" role="button">commercial activity&nbsp;<span class="far fa-question-circle"></span></a> if the purchaser is purchaser is <strong>not</strong> registered for the GST/HST.</td>
-</tr>
-
-<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
-<td>You may be eligible for to claim input tax credits for the GST/HST you pay on your sale.
- </td>
-</tr> 
-<tr><td><strong>File</strong></td>
-<td>You must file GST/HST returns if you charged GST/HST on the sale.
- </td>
-</tr>
-<tr><td><strong>Remit</strong></td>
-<td>You must remit (pay) the net GST/HST payable if you charged GST/HST on the sale.
- </td>
-</tr>
- </tbody> </table></div>
+<section class="alert alert-info hidden" id="R6" name="results">
+	<h3><small>Your result </small><br> Based on the information you entered: You do not have to register for a GST/HST account number</h3>
+<hr>
+<h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
+<p>You are a small supplier. You <strong>do not</strong> have to register for a GST/HST account number because your only commercial activity is the sale of real property, other than in the course of a business.</p> 
 <details class="mrgn-lft-lg"><summary>Example</summary>
 <p>A doctor's practice consists of making exempt supplies of health care services. The doctor decides on a one-time basis to buy land which includes a commercial building as the doctor has heard that there will be an increase in demand for this type of property in the next six months. The doctor sells the land and building for a profit after holding it for seven months.</p>
 <p>These transactions would be viewed as an adventure in the nature of trade rather than carrying on a business. The doctor's sale of the property is taxable and he must include GST/HST. </p>
 <p>The doctor is <strong>not </strong>required to register for a GST/HST account for the purpose of reporting the GST/HST collectible on this sale, however he may decide to register voluntarily to claim ITCs.</p>
 <h4>Reference</h4>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/19-4-1.html" target="_blank">19-4-1 Commercial Real Property - Sales and Rentals</a></p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/19-4-1.html">19-4-1 Commercial Real Property - Sales and Rentals</a></p>
 </details>
+<h5>Voluntary registration</h5>
+<p>You may choose to register voluntarily if you are a small supplier.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html">Register voluntarily for a GST/HST account</a></p>
+<br> 
+<h4><span class="fas fa-hand-holding-usd fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Charging</h4>   
+ <p>You may still have to charge the tax on your sale of <a href="#ajax-property" aria-controls="ajax-property" class="overlay-lnk" role="button">real property&nbsp;<span class="far fa-question-circle"></span></a> on that <a href="#ajax-commercial" aria-controls="ajax-commercial" class="overlay-lnk" role="button">commercial activity&nbsp;<span class="far fa-question-circle"></span></a> if the purchaser is purchaser is <strong>not</strong> registered for the GST/HST.</p>
+<br>
+<h4><span class="fas fa-funnel-dollar fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Claiming input tax credits</h4> 
+<p>You may be eligible for to claim input tax credits for the GST/HST you pay on your sale.</p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing </h4>
+<p>You must file GST/HST returns if you charged GST/HST on the sale.</p>
+<br>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying)</h4>
+<p>You must remit (pay) the net GST/HST payable if you charged GST/HST on the sale.</p>
+
 <details class="mrgn-lft-lg"><summary><span class="fas fa-balance-scale text-info"></span> Excise Tax Act</summary>
 <div class="row text-muted small">
 <div class="col-xs-12">
@@ -1745,38 +1729,21 @@ Conditions </th>
 
 </section>
 
-<section class="alert alert-info hidden mrgn-lft-lg" id="R7" name="results">
-	<h3><small>Your result </small><br> R7 <strong>$30,000</strong> threshold not exceeded</h3>
-  <div class="table-responsive  mrgn-lft-lg">
-     <table class="table table-condensed" id="over2">
-        <caption class="wb-inv">
-       
-        </caption>
-        <thead>
-<tr>
-	<th scope="col">
-Description </th>
-	
-	<th scope="col">
-Conditions </th>
-	 </tr> </thead>
-<tbody>
-<tr><td><strong>Register</strong> </td>
-<td><p>You are a small supplier.</p>
-<p>You <strong>do not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed <strong>$30,000</strong> over 4 consecutive calendar quarters.</p> 
+<section class="alert alert-info hidden" id="R7" name="results">
+	<h3><small>Your result </small><br>Based on the information you entered: You do not have to register for a GST/HST account number</h3>
+<hr>
+<h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
+<p>You are a small supplier. You <strong>do not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed <strong>$30,000</strong> over 4 consecutive calendar quarters.</p> 
 <p> You must continue to monitor your sales to determine when you exceed the <strong>$30,000</strong> threshold.</p> 	
-<h5>Register voluntarily</h5>
+<h5>Voluntary registration</h5>
 <p>You may choose to register voluntarily if you are a small supplier.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html" target="_blank">Register voluntarily for a GST/HST account</a></p>
-</td>
-</tr>
-<tr><td><strong>Charge</strong> </td>
-<td>You do <strong>not</strong> charge GST/HST</td>
-</tr>
-<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
-<td>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses </td>
-</tr> </tbody> </table></div>
-
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html">Register voluntarily for a GST/HST account</a></p>
+<br> 
+<h4 class="mrgn-lft-sm text-info"><span class="fa-stack"><span class="fas fa-hand-holding-usd fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>Charging</h4>   
+ <p> You do <strong>not</strong> charge GST/HST.</p>
+<br>
+<h4><span class="fas fa-funnel-dollar fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Claiming input tax credits</h4> 
+<p>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses.</p>
 <details class="mrgn-lft-lg"><summary><span class="fas fa-balance-scale text-info"></span> Excise Tax Act</summary>
 <div class="row text-muted small">
 <div class="col-xs-12">
@@ -1789,53 +1756,34 @@ Conditions </th>
 </div>
 </div>
 </details>
-
 </section>
 
-<section class="alert alert-info hidden mrgn-lft-lg" id="R8" name="results">
-	<h3><small>Your result </small><br> R8 <strong>$<span id="warning_amount">30,000</span></strong> threshold exceeded over 4 consecutive calendar quarters</h3>
-
-  <div class="table-responsive  mrgn-lft-lg">
-     <table class="table table-condensed" id="over1">
-        <caption class="wb-inv">
-       
-        </caption>
-        <thead>
-<tr>
-	<th scope="col">
-Description </th>
-	<th scope="col">
-Based on information entered </th>
-	<th scope="col">
-Conditions </th>
-	 </tr> </thead>
-<tbody>
-<tr><td><strong>Date&nbsp;of&nbsp;registration</strong> </td>
-<td>The effective date of registration is <strong>no later than</strong> <label id="chargeDate1"></label> </td>
-<td><p>The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
-<p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2">30,000</span></strong> threshold </p></td>
-</tr>
-<tr><td><strong>Register</strong> </td>
-<td><span id="have1"></span> register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate11"></label></td>
-<td>You must register for a GST/HST account number <strong><span id="plus29"></span><label id="plus291"></label></strong> from your effective date of registration </td>
-</tr>
-<tr><td><strong>Charge </strong></td>
-<td>Must charge GST/HST <span id="differenceAB"></span> <strong>no later than</strong> <label id="chargeDate111"></label></td>
-<td>You must charge GST/HST on the taxable supplies starting on your effective date of registration </td>
-</tr>
-<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
-<td>Eligible to claim ITCs for purchases that relate to taxable supplies made after <label id="chargeDate1111"></label></td>
-<td>You are eligible to claim ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies you made after your registration date </td>
-</tr> 
-<tr><td><strong>File</strong></td>
-<td>Must file GST/HST returns for purchases that relate to taxable supplies made after <label id="chargeDate1111"></label></td>
-<td>You file GST/HST returns for purchases that relate to taxable supplies starting on your effective date of registration </td>
-</tr>
-<tr><td><strong>Remit</strong></td>
-<td>Must remit (pay) the net GST/HST payable for purchases that relate to taxable supplies made after <label id="chargeDate1111"></label> </td>
-<td>You remit (pay) the net GST/HST payable for purchases that relate to taxable supplies starting on your effective date of registration  </td>
-</tr>
-</tbody> </table></div>
+<section class="alert alert-info hidden" id="R8" name="results">
+	<h3><small>Your result </small><br>Based on the information you entered: You have to register because the <strong>$<span id="warning_amount">30,000</span></strong> threshold exceeded over 4 consecutive calendar quarters</h3>
+<hr>
+ <h4><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registration date</h4>
+<p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2">30,000</span></strong> threshold. The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
+<p>Based on the information you entered, the effective date of registration is <strong>no later than</strong> <label id="chargeDate1"></label>. </p>
+<br> 
+<h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
+<p>You must register for a GST/HST account number <strong><span id="plus29"></span><label id="plus291"></label></strong> from your effective date of registration. </p>
+<p>Based on the information you entered, you <span id="have1"></span> register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate11"></label>.</p>
+<br> 
+<h4><span class="fas fa-hand-holding-usd fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Charging</h4>   
+<p>You must charge GST/HST on the taxable supplies starting on your effective date of registration. </p>
+<p>Based on the information you entered, you must charge GST/HST <span id="differenceAB"></span> <strong>no later than</strong> <label id="chargeDate111"></label>.</p>
+<br>
+<h4><span class="fas fa-funnel-dollar fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Claiming input tax credits</h4> 
+<p>You are eligible to claim ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies you made after your registration date.</p>
+<p>Based on the information you entered, you are eligible to claim ITCs for purchases that relate to taxable supplies made after <label id="chargeDate1111"></label>.</p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing </h4>
+<p>You must file GST/HST returns for purchases that relate to taxable supplies starting on your effective date of registration .</p>
+<p>Based on the information you entered, you must file GST/HST returns for purchases that relate to taxable supplies made after <label id="chargeDate11111"></label>.</p>
+<br>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying)</h4>
+<p>You must remit (pay) the net GST/HST payable for purchases that relate to taxable supplies starting on your effective date of registration.</p>
+<p>Based on the information you entered, you must remit (pay) the net GST/HST payable for purchases that relate to taxable supplies made after <label id="chargeDate111111"></label>.</p>
 
 <details class="mrgn-lft-lg"><summary><span class="fas fa-balance-scale text-info"></span> Excise Tax Act</summary>
 <div class="row text-muted small">
@@ -1860,50 +1808,32 @@ Conditions </th>
 </p>
 </section>
 
-<section class="alert alert-info hidden mrgn-lft-lg" id="R9" name="results">
-	<h3><small>Your result </small><br> R9 <strong>$<span id="chargeAmount"></span></strong> threshold exceeded in a single calendar quarter</h3>
-  <div class="table-responsive mrgn-lft-lg">
-     <table class="table table-condensed" id="over1">
-        <caption class="wb-inv">
-       
-        </caption>
-        <thead>
-<tr>
-	<th scope="col">
-Description </th>
-	<th scope="col">
-Based on information entered </th>
-	<th scope="col">
-Conditions </th>
-	 </tr> </thead>
-<tbody>
-<tr><td><strong>Date&nbsp;of&nbsp;registration</strong> </td>
-<td>The effective date of registration is <label id="chargeDate0"></label>. </td>
-<td><p>You are <strong>no longer</strong> a small supplier and the effective date of registration is <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount2"></span></strong> threshold </p></td>
-</tr>
-<tr><td><strong>Register</strong></td>
-<td><span id="tense152"></span> register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate01"></label></td>
-<td>You must register for a GST/HST account number <strong><span id="plus29"></span><label id="plus291"></label></strong> 
- <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount3"></span></strong> threshold. </td>
-</tr>
-<tr><td><strong>Charge </strong></td>
-<td>Must charge GST/HST <span id="differenceAB"></span> starting <label id="chargeDate011"></label>, including on the sale that made you exceed the threshold</td>
-<td>You <span id="tense151"></span> charge GST/HST on the sale that made you exceed the <label>$</label><label id="chargeAmount4"></label> threshold</td>
-</tr>
-<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
-<td>Eligible to claim ITCs for purchases that relate to taxable supplies made after <label id="chargeDate0111"></label></td>
-<td>You are eligible to claim ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies you made after your registration date </td>
-</tr> 
-<tr><td><strong>File</strong></td>
-<td>Must file GST/HST returns for purchases that relate to taxable supplies made after <label id="chargeDate0111"></label></td>
-<td>You file GST/HST returns for purchases that relate to taxable supplies starting on your effective date of registration </td>
-</tr>
-<tr><td><strong>Remit</strong></td>
-<td>Must remit (pay) the net GST/HST payable for purchases that relate to taxable supplies made after <label id="chargeDate0111"></label> </td>
-<td>You remit (pay) the net GST/HST payable for purchases that relate to taxable supplies starting on your effective date of registration  </td>
-</tr>
-
-</tbody> </table></div>
+<section class="alert alert-info hidden" id="R9" name="results">
+	<h3><small>Your result </small><br>Based on the information you entered: You have to register because the <strong>$<span id="chargeAmount"></span></strong> threshold exceeded in a single calendar quarter</h3>
+<hr>
+ <h4><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registration date</h4>
+<p>You are <strong>no longer</strong> a small supplier. The effective date of registration is <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount2"></span></strong> threshold.</p>
+<p>Based on the information you entered, the effective date of registration is <label id="chargeDate0"></label>. </p>
+<br> 
+<h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
+<p>You must register for a GST/HST account number <strong><span id="plus29"></span><label id="plus291"></label></strong> <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount3"></span></strong> threshold.</p>
+<p>Based on the information you entered, you <span id="tense152"></span> register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate01"></label>.</p>
+<br>
+<h4><span class="fas fa-hand-holding-usd fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Charging</h4>   
+<p>You <span id="tense151"></span> charge GST/HST on the sale that made you exceed the <label>$</label><label id="chargeAmount4"></label> threshold. </p>
+<p>Based on the information you entered, you must charge GST/HST <span id="differenceAB"></span> starting <label id="chargeDate011"></label>, including on the sale that made you exceed the threshold.</p>
+<br>
+<h4><span class="fas fa-funnel-dollar fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Claiming input tax credits</h4> 
+<p>You are eligible to claim ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies you made after your registration date.</p>
+<p>Based on the information you entered, you are eligible to claim ITCs for purchases that relate to taxable supplies made after <label id="chargeDate0111"></label>.</p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing </h4>
+<p>You must file GST/HST returns for purchases that relate to taxable supplies starting on your effective date of registration .</p>
+<p>Based on the information you entered, you must file GST/HST returns for purchases that relate to taxable supplies made after <label id="chargeDate01111"></label>.</p>
+<br>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying)</h4>
+<p>You must remit (pay) the net GST/HST payable for purchases that relate to taxable supplies starting on your effective date of registration.</p>
+<p>Based on the information you entered, you must remit (pay) the net GST/HST payable for purchases that relate to taxable supplies made after <label id="chargeDate011111"></label>.</p>
 
 <details class="mrgn-lft-lg"><summary><span class="fas fa-balance-scale text-info"></span> Excise Tax Act</summary>
 <div class="row text-muted small">
@@ -1924,38 +1854,21 @@ Conditions </th>
 
 </section>
 
-<section class="alert alert-info hidden mrgn-lft-lg" id="R10" name="results">
-	<h3><small>Your result </small><br> R10 <strong>$50,000</strong> threshold not exceeded </h3>
- <div>
-     <table class="table table-condensed mrgn-lft-lg" id="over5">
-        <caption class="wb-inv">
-       
-        </caption>
-        <thead>
-<tr>
-	<th scope="col">
-Description </th>
-	
-	<th scope="col">
-Conditions </th>
-	 </tr> </thead>
-<tbody>
-<tr><td><strong>Register</strong> </td>
-<td><p>You are a small supplier.</p>
-<p>You <strong>do not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed <strong>$50,000</strong> over 4 consecutive calendar quarters.</p> 
+<section class="alert alert-info hidden" id="R10" name="results">
+	<h3><small>Your result </small><br>Based on the information you entered: You do not have to register for a GST/HST account number</h3>
+<hr>
+<h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
+<p>You are a small supplier. You <strong>do not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed <strong>$50,000</strong> over 4 consecutive calendar quarters.</p> 
 <p> You must continue to monitor your sales to determine when you exceed the <strong>$50,000</strong> threshold.</p> 	
-<h5>Register voluntarily</h5>
+<h5>Voluntary registration</h5>
 <p>You may choose to register voluntarily if you are a small supplier.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html" target="_blank">Register voluntarily for a GST/HST account</a></p>
-</td>
-</tr>
-<tr><td><strong>Charge</strong> </td>
-<td>You do <strong>not</strong> charge GST/HST</td>
-</tr>
-<tr><td><strong>Input&nbsp;tax&nbsp;credits</strong></td>
-<td>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses </td>
-</tr> </tbody> </table></div>
-
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html">Register voluntarily for a GST/HST account</a></p>
+<br> 
+<h4 class="mrgn-lft-sm text-info"><span class="fa-stack"><span class="fas fa-hand-holding-usd fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>Charging</h4>   
+ <p> You do <strong>not</strong> charge GST/HST.</p>
+<br>
+<h4><span class="fas fa-funnel-dollar fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Claiming input tax credits</h4> 
+<p>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses.</p>
 <details class="mrgn-lft-lg"><summary><span class="fas fa-balance-scale text-info"></span> Excise Tax Act</summary>
 <div class="row text-muted small">
 <div class="col-xs-12">
@@ -1968,19 +1881,19 @@ Conditions </th>
 </div>
 </div>
 </details>
-
 </section>
 
 <section class="hidden  mrgn-lft-lg" id="R11" name="results">
-	<h4 class="mrgn-lft-xl">R11 What if you exceed the threshold in a single calendar quarter</h4>
-<p class="mrgn-lft-xl">If you exceed <strong>$<span id="warning_amount3">30,000</span></strong> in a <strong>single calendar quarter</strong>, you have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed <strong>$<span id="warning_amount4">30,000</span></strong>.</p>
+<h4><span class="fas fa-exclamation-triangle fa-lg text-warning"></span>&nbsp;&nbsp;What if you exceed the threshold in a single calendar quarter</h4> 
+<p>If you exceed <strong>$<span id="warning_amount3">30,000</span></strong> in a <strong>single calendar quarter</strong>, you have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed <strong>$<span id="warning_amount4">30,000</span></strong>.</p>
 	
 </section>
 
-<section class="alert alert-warning hidden mrgn-lft-lg" id="R12" name="results">
-	<h3><small>Your result </small><br> R12 You are a non-resident business</h3>
+<section class="alert alert-warning hidden" id="R12" name="results">
+	<h3><small>Your result </small><br>  Based on the information you entered: You cannot use this tool</h3>
+<hr>
 	<p>This tool does <strong>not</strong> provide results if you are a non-resident business. </p>
-<p class="mrgn-tp-md">Learn more to find out if you need to register if you are a non-resident business: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027-doing-business-canada-gst-hst-information-non-residents/doing-business-canada-gst-hst-information-non-residents.html" target="_blank">Guide RC4027, Doing Business in Canada</a></p>
+<p class="mrgn-tp-md">Learn more to find out if you need to register if you are a non-resident business: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027-doing-business-canada-gst-hst-information-non-residents/doing-business-canada-gst-hst-information-non-residents.html">Guide RC4027, Doing Business in Canada</a></p>
 </section>
 
 
@@ -1989,7 +1902,7 @@ Conditions </th>
 		<h2 class="modal-title">Meaning of the term taxable supplies</h2>
 	</header>
 	<div class="modal-body">
-		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#taxablesupply" target="_blank"></div>
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#taxablesupply"></div>
 	
 		<p>Examples of taxable supplies are:</p>
 		<ul>
@@ -2013,7 +1926,7 @@ Conditions </th>
 		<h2 class="modal-title">Meaning of the term zero-rated supplies (taxable at the rate of 0%)</h2>
 	</header>
 	<div class="modal-body">
-		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#zero" target="_blank"></div>
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#zero"></div>
 		<p>Examples of zero-rated supplies are:</p>
 		<ul>
 			<li>Basic groceries such as milk, bread, and vegetables</li>
@@ -2067,7 +1980,7 @@ Conditions </th>
 		<h2 class="modal-title">Meaning of the term charity</h2>
 	</header>
 	<div class="modal-body">
-		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#charity" target="_blank"></div>
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#charity"></div>
 	</div>
 </section>	
 
@@ -2076,7 +1989,7 @@ Conditions </th>
 		<h2 class="modal-title">Meaning of the term public institution</h2>
 	</header>
 	<div class="modal-body">
-		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#public" target="_blank"></div>
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#public"></div>
 	</div>
 </section>	
 
@@ -2085,7 +1998,7 @@ Conditions </th>
 		<h2 class="modal-title">Meaning of the term public service body</h2>
 	</header>
 	<div class="modal-body">
-		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#service" target="_blank"></div>
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#service"></div>
 	</div>
 </section>	
 
@@ -2094,7 +2007,7 @@ Conditions </th>
 		<h2 class="modal-title">Meaning of the term calendar quarter</h2>
 	</header>
 	<div class="modal-body">
-		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#quarter" target="_blank"></div>
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#quarter"></div>
 	</div>
 </section>	
 
@@ -2103,7 +2016,7 @@ Conditions </th>
 		<h2 class="modal-title">Meaning of the term fiscal year</h2>
 	</header>
 	<div class="modal-body">
-		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#fiscal" target="_blank"></div>
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#fiscal"></div>
 	</div>
 </section>	
 
@@ -2112,7 +2025,7 @@ Conditions </th>
 		<h2 class="modal-title">Meaning of the term commercial activity</h2>
 	</header>
 	<div class="modal-body">
-		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#commercial" target="_blank"></div>
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#commercial"></div>
 	</div>
 </section>	
 
@@ -2121,13 +2034,13 @@ Conditions </th>
 		<h2 class="modal-title">Meaning of the term real property</h2>
 	</header>
 	<div class="modal-body">
-		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#real" target="_blank"></div>
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#real"></div>
 	</div>
 </section>	
 
 <section id="ajax-include1" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
 	<header class="modal-header">
-		<h2 class="modal-title">What to include and not include</h2>
+		<h2 class="modal-title">15000 include</h2>
 	</header>
 	<div class="modal-body">
 		<p>Include the total of all revenues from worldwide taxable supplies from all your businesses and those of your associates.</p>
@@ -2157,6 +2070,24 @@ Conditions </th>
 			<p>You also have to include the gross revenue of your organization as a whole (the legal entity).</p>
 			<p><strong>Do not</strong> include capital loss from the disposition of property for income tax purposes.</p></div>
 </section>
+
+<section id="ajax-taxi" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
+	<header class="modal-header">
+		<h2 class="modal-title">What is considered a self-employed taxi operator or a commercial ride-sharing driver</h2>
+	</header>
+	<div class="modal-body">
+		<p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
+	
+		
+		
+		<p>You are usually self-employed if you are in one of the following situations:</p>
+		<ul>
+			<li>You own your taxicab/motor vehicle</li>
+			<li>You lease a taxicab/motor vehicle from an owner for a flat fee, either on a daily, weekly, or monthly basis</li>
+			<li>You lease a taxicab/motor vehicle from an owner for a percentage of fares</li>
+		</ul>
+	</div>
+</section>	
 
 <div id="ajax-branch" class=" hidden gc-font-2019">
 
