@@ -480,7 +480,7 @@
 	<!--QUESTION 8-->
 	<fieldset name="quest" id="question8" class="mrgn-bttm-md mrgn-lft-md hidden">
 		<legend class="h5 gc-font-2019 required mrgn-lft-md">Is this your second fiscal year of operation? <strong class="required">(required)</strong></legend>
-		<div class="radio mrgn-lft-md" onchange="
+		<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="	
 			var q = getElementsByName('quest') ;
 			for (i=9; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -507,10 +507,15 @@
 				document.getElementById('question10').classList.remove('hidden');
 			}
 		">
-			<label><input type="radio" name="q8" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q8" value="1">No</label>
-		</div>
+			 <li class="radio">
+                                        <input type="radio" name="q8" id="q8-true" value="0" data-q8="true" data-rule-required="true">
+                                        <label for="q8-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q8" id="q8-false" value="1" data-q8="false" data-rule-required="true">
+                                        <label for="q8-false">No</label>
+                                    </li>
+			  </ul>
 	</fieldset>
 	
 	<!--QUESTION 9-->
@@ -686,7 +691,7 @@
 			<li>You lease a taxicab/motor vehicle from an owner for a flat fee, either on a daily, weekly, or monthly basis</li>
 			<li>You lease a taxicab/motor vehicle from an owner for a percentage of fares</li>
 		</ul>
-		<div class="radio" onchange="
+		<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="
 			var results = getElementsByName('results');
 			for (i=1; i<=results.length; i++)
 				document.getElementById('R'+i).classList.add('hidden');
@@ -696,11 +701,17 @@
 				document.getElementById('R5').classList.remove('hidden');
 			else
 				document.getElementById('R2').classList.remove('hidden');
-		">		
-			<label><input type="radio" name="q11" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q11" value="1">No</label>
-		</div>
+		">	
+		 <li class="radio">
+                                        <input type="radio" name="q11" id="q11-true" value="0" data-q11="true" data-rule-required="true">
+                                        <label for="q11-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q11" id="q11-false" value="1" data-q11="false" data-rule-required="true">
+                                        <label for="q11-false">No</label>
+                                    </li>
+			  </ul>
+		
 	</fieldset>
 
 	<!--QUESTION 14-->
