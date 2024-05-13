@@ -244,15 +244,14 @@
 	
 	
 	<!--QUESTION 4 -->
-	<fieldset name="quest" id="question4" class="mrgn-bttm-md hidden">
+<fieldset name="quest" id="question4" class="mrgn-bttm-md hidden">
 <h2 class="mrgn-tp-sm">You are a sole proprietor, a partnership or a corporation</h2>
 		<legend class="h5 gc-font-2019 required mrgn-lft-md">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
 		<p class="mrgn-lft-md">Even if you consider yourself to be self-employed, you might be an employee.</p>
 		<p class="mrgn-lft-md">Learn more: <a href="https://test.canada.ca/cra-arc/payroll/guidance/index.html">Employment status: Employee or self-employed, including conditions for employees operating a personal services business (PSB)</a></p>
-
-		
-		<div class="radio mrgn-lft-md" onchange="
-			var q = getElementsByName('quest') ;
+	
+ <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="	
+		var q = getElementsByName('quest') ;
 			for (i=5; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
 			
@@ -269,18 +268,24 @@
 			
 			else 
 				document.getElementById('R2').classList.remove('hidden');
-		">
-			<label><input type="radio" name="q4" value="0">Yes</label>
-			<br>
-			<label><input type="radio" name="q4" value="1">No</label>
-		</div>
+		"> <li class="radio">
+                                        <input type="radio" name="q4" id="q4-true" value="0" data-q4="true" data-rule-required="true">
+                                        <label for="q4-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q4" id="q4-false" value="1" data-q4="false" data-rule-required="true">
+                                        <label for="q4-false">No</label>
+                                    </li>
+			  </ul>
+		
 	</fieldset>
 	
 	<!--QUESTION 5-->
-	<fieldset name="quest" id="question5" class="mrgn-bttm-md hidden">
+
+<fieldset name="quest" id="question5" class="mrgn-bttm-md hidden">
 <h2 class="mrgn-tp-sm">You are a public service body (other than a charity or public institution)</h2>
-<p class="mrgn-lft-sm">Meaning of the term: <a href="#ajax-service" aria-controls="ajax-service" class="overlay-lnk" role="button">public service body&nbsp;<span class="far fa-question-circle"></span></a></p>
 		<legend class="h5 gc-font-2019 required mrgn-lft-md">Are you a branch or division of the public service body? <strong class="required">(required)</strong></legend>
+		<p class="mrgn-lft-sm">Meaning of the term: <a href="#ajax-service" aria-controls="ajax-service" class="overlay-lnk" role="button">public service body&nbsp;<span class="far fa-question-circle"></span></a></p>
 	
  <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp" onchange="	
 			var q = getElementsByName('quest') ;
