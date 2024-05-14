@@ -223,19 +223,23 @@
 			" />
 
 	<div class="mrgn-tp-md mrgn-bttm-md hidden" id="datePickI">
-		<p class="small"><span class="far fa-calendar-alt fa-2x text-info"></span>&nbsp;&nbsp; The dates will show based on your local date format settings. For example, the date you have chosen is <strong id="datePickIt1"></strong>.</p>
+		<p><span class="far fa-calendar-alt fa-2x text-info"></span>&nbsp;&nbsp; The dates will show based on your local date format settings. For example, the date you have chosen is <strong id="datePickIt1"></strong>.</p>
 	</div>
 
 	</div>
 
 </fieldset>
 
-<fieldset class="mrgn-bttm-md hidden" id="step2">
-	<legend class="h5 required">Have you become a GST/HST registrant during the current fiscal year: <strong id="i_T_S2"></strong> to <strong id="i2_T_S2"></strong>? <strong class="required">(required)</strong></legend>
-	<div class="radio">
-	<label for="Q2Y"><input type="radio" name="Q2" id="Q2Y" required="required" onclick="
-		
+<fieldset name="quest" id="question2" class="mrgn-bttm-md">
 
+<legend class="h5 gc-font-2019 required">Have you become a GST/HST registrant during the current fiscal year: <strong id="i_T_S2"></strong> to <strong id="i2_T_S2"></strong>? <strong class="required">(required)</strong></legend>
+<p>What are </p>
+	
+	<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
+
+ <li class="radio">
+ <input type="radio" name="Q2" id="Q2-true" value="0" data-Q2="true" data-rule-required="true">
+<label for="Q2-true" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
 		data.map.value = 'Q2Y';
@@ -251,11 +255,10 @@
 		document.getElementById('setCurrent').click();
 		document.getElementById('datePick2').classList.remove('hidden')
 		" />Yes</label>
-	</div>
-	<div class="radio">
-	<label for="Q2N"><input type="radio" name="Q2" id="Q2N" onclick="
-		
-
+	</li>
+	<li class="radio">
+ <input type="radio" name="Q2" id="Q2-false" value="1" data-Q2="false" data-rule-required="true">
+<label for="Q2-false" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
 		data.map.value = 'Q2N';
@@ -268,7 +271,7 @@
 		document.getElementById('setLast').click();
 		document.getElementById('2_S2').classList.remove('hidden')
 		" />No</label>
-	</div>
+	</li></ul>
 </fieldset>
 <fieldset class="mrgn-bttm-md hidden" id="2_S2">
 	<legend class="h5 required">Did you become a GST/HST registrant during the last fiscal year: <strong id="i_T_2_S2"></strong> to <strong id="i2_T_2_S2"></strong>? <strong class="required">(required)</strong></legend>
