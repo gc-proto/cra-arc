@@ -49,26 +49,40 @@
          <main role="main" property="mainContentOfPage" class="container">
 
  <h3 id="gc-document-nav">Find out if you have to remit (pay) GST/HST by instalments</h3>
-<p>Use this interactive tax tool (ITT) if you are an <strong>annual</strong> filer to: </p>
+ <p id="tab1">Use this tool if you are an <strong>annual</strong> filer and you want to <strong>estimate</strong> if: </p>
 <ol>
-<li>Find out if you have to remit (pay) GST/HST by instalments</li>
+<li>You have to remit (pay) GST/HST by instalments</li>
 <li>Calculate your instalment payments</li>
 		 </ol>
+
+<p>The accuracy of your results depends on the accuracy of the information you enter. Later dates calculations or amounts made by the CRA may be different. The results from this tool are <strong>not</strong> binding on the CRA.</p>
+
+<details><summary>Read the privacy and legal statement</summary><div class="well brdr-rds-0"> <span class="fa-stack text-muted fa-lg  mrgn-lft-sm pull-right"><i class="far fa-circle fa-stack-2x"></i><i class="fas fa-balance-scale-right fa-stack-1x"></i></span>
+  <p>This tool gives you personalized results based on your answers to a series of questions. The tool uses plain language to explain the most common tax situations.  <strong>It is provided as a guideline only and does not replace the law.</strong></p>
+<p><strong>This tool does not collect or store the information you enter.</strong></p>
+    </div></details>
+
 <hr>
 <div class="wb-frmvld gc-font-2019">
   
 <!-- STEP -->
-  <h4 class="mrgn-tp-sm">Answer a few questions to find out if you have to pay (remit)</h4>
+  <h3 class="mrgn-tp-sm">Answer a few questions to find out if you have to pay (remit)</h3>
           <p class="text-muted small">Make a selection and <strong> scroll down</strong> for further questions or results</p>	  
 
 <form>
 
 <div class="form-group mrgn-tp-md gc-font-2019" id="step1">
-	<fieldset class="mrgn-bttm-md">
 
-	<legend class="h5 required">Are you an annual filer? <strong class="required">(required)</strong></legend>
-	<div class="radio"> 
-	<label for="Q1Y"><input type="radio" name="Q1" id="Q1Y" required="required" onclick="
+<fieldset name="quest" id="step1" class="mrgn-bttm-md">
+
+<legend class="h5 gc-font-2019 required">Are you an annual filer? <strong class="required">(required)</strong></legend>
+<p>What are the <a class="wb-lbx wb-init wb-lbx-inited" href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html#monthly" id="wb-auto-4">monthly</a> or <a class="wb-lbx wb-init wb-lbx-inited" href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html#quarterly" id="wb-auto-5">quarterly</a> filing deadlines</p>
+	
+	<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
+
+ <li class="radio">
+    <input type="radio" name="Q1" id="Q1Y" value="0" data-Q1="true" data-rule-required="true">
+<label for="Q1Y" onclick="
 	
 
 		document.getElementById('Exit_S4').click();
@@ -97,11 +111,10 @@
 		document.getElementById('pAmount5').style.textAlign = 'right';
 		document.getElementById('pAmount5').style.width = '156.1px'
 		" />Yes</label>
-	</div>
-	<div class="radio"> 
-	<label for="Q1N"><input type="radio" name="Q1" id="Q1N" onclick="
-	
-
+	</li>
+	<li class="radio"> 
+ <input type="radio" name="Q1" id="Q1N" value="1" data-Q1="false" data-rule-required="true">
+<label for="Q1N" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
 		document.getElementById('Exit_S2').click();
@@ -111,20 +124,22 @@
 		document.getElementById('E1_S2').classList.add('hidden');
 		document.getElementById('E2_S2').classList.add('hidden');
 		document.getElementById('N_S1').classList.remove('hidden')
-		" />No</label>
-	</div>
+		" />No (monthly or quarterly filer)</label>
+	</li></ul>
 	</fieldset>
 
-<div class="alert alert-danger hidden" id="N_S1">
-	<h3><small>Your result</small> <br> You are a monthly or a quarterly filer</h3>
-	<p>The tool is <strong>not</strong> for you if you are a monthly or a quarterly filer. </p>
-<p>Your GST/HST payments are due at the same time as your GST/HST returns. </p>
+<div class="alert alert-warning hidden" id="N_S1">
+	<h3><small>Your result</small> <br> Based on the information you entered: You cannot use this tool</h3>
+<hr>
+	<p>The tool is <strong>not</strong> for you if you are a monthly or a quarterly filer. Your GST/HST payments are due at the same time as your GST/HST returns. </p>
+<br>
+<p>Learn more about the GST/HST payment and filing deadlines: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html">When to remit (pay) the GST/HST</a></p>
 </div>
 
 <fieldset class="mrgn-bttm-md hidden" id="datePick">
-
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You are an annual filer</p>
 	<div class="form-group">
-		<label class="h5 required mrgn-tp-md" for="yearEnd">What is the last day of your current fiscal year? <strong class="required">(required)</strong></label>
+		<label class="h5 gc-font-2019 required mrgn-tp-md" for="yearEnd">What is the last day of your current fiscal year? <strong class="required">(required)</strong></label>
 
 		<div class="alert alert-danger hidden" id="E1_S2">
 			<p>Enter a valid date. If no datepicker is provided, enter manually the date in this format: <strong>YYYY-MM-DD</strong>.</p>
@@ -133,7 +148,7 @@
 			<p>Your fiscal year-end date must be between <strong id="E2T1_S2"></strong> and <strong id="E2T2_S2"></strong>.</p>
 		</div>
 
-		<input class="form-control" type="date" id="yearEnd" name="yearEnd" required="required" onchange="
+		<input class="form-control input-lg text-right" type="date" id="yearEnd" name="yearEnd" required="required" onchange="
 		
 
 			document.getElementById('Exit_S4').click();
@@ -169,19 +184,22 @@
 			" />
 
 	<div class="mrgn-tp-md mrgn-bttm-md hidden" id="datePickI">
-		<p class="small"><span class="far fa-calendar-alt fa-2x text-info"></span>&nbsp;&nbsp; The dates will show based on your local date format settings. For example, the date you have chosen is <strong id="datePickIt1"></strong>.</p>
+		<p><span class="far fa-calendar-alt fa-2x text-info"></span>&nbsp;&nbsp; The dates will show based on your local date format settings. For example, the date you have chosen is <strong id="datePickIt1"></strong>.</p>
 	</div>
 
 	</div>
 
 </fieldset>
 
-<fieldset class="mrgn-bttm-md hidden" id="step2">
-	<legend class="h5 required">Have you become a GST/HST registrant during the current fiscal year: <strong id="i_T_S2"></strong> to <strong id="i2_T_S2"></strong>? <strong class="required">(required)</strong></legend>
-	<div class="radio">
-	<label for="Q2Y"><input type="radio" name="Q2" id="Q2Y" required="required" onclick="
-		
+<fieldset name="quest" id="step2" class="hidden mrgn-bttm-md">
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You need to confirm if you became a GST/HST registrant during the current fiscal year</p>
+<legend class="h5 gc-font-2019 required">Have you become a GST/HST registrant during the current fiscal year: <strong id="i_T_S2"></strong> to <strong id="i2_T_S2"></strong>? <strong class="required">(required)</strong></legend>
+<p>GST/HST registrants <strong>do not</strong> have to make GST/HST instalment payments in the current fiscal year.</p>	
+	<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
 
+ <li class="radio">
+ <input type="radio" name="Q2" id="Q2Y" value="0" data-Q2="true" data-rule-required="true">
+<label for="Q2Y" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
 		data.map.value = 'Q2Y';
@@ -197,11 +215,10 @@
 		document.getElementById('setCurrent').click();
 		document.getElementById('datePick2').classList.remove('hidden')
 		" />Yes</label>
-	</div>
-	<div class="radio">
-	<label for="Q2N"><input type="radio" name="Q2" id="Q2N" onclick="
-		
-
+	</li>
+	<li class="radio">
+ <input type="radio" name="Q2" id="Q2N" value="1" data-Q2="false" data-rule-required="true">
+<label for="Q2N" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
 		data.map.value = 'Q2N';
@@ -214,14 +231,17 @@
 		document.getElementById('setLast').click();
 		document.getElementById('2_S2').classList.remove('hidden')
 		" />No</label>
-	</div>
+	</li></ul>
 </fieldset>
-<fieldset class="mrgn-bttm-md hidden" id="2_S2">
-	<legend class="h5 required">Did you become a GST/HST registrant during the last fiscal year: <strong id="i_T_2_S2"></strong> to <strong id="i2_T_2_S2"></strong>? <strong class="required">(required)</strong></legend>
-	<div class="radio">
-	<label for="Q2.2Y"><input type="radio" name="Q2.2" id="Q2.2Y" required="required" onclick="
-		
 
+<fieldset class="mrgn-bttm-md hidden" id="2_S2">
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You did not become a GST/HST registrant during the current fiscal year</p>
+<legend class="h5 gc-font-2019 required">Did you become a GST/HST registrant during the last fiscal year: <strong id="i_T_2_S2"></strong> to <strong id="i2_T_2_S2"></strong>? <strong class="required">(required)</strong></legend>
+<p>Depending on the situation, GST/HST registrants may not have to make GST/HST instalment payments.</p>
+<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
+ <li class="radio">
+ <input type="radio" name="Q2.2" id="Q2.2Y" value="0" data-Q2.2="true" data-rule-required="true">
+<label for="Q2.2Y" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
 		data.map.value = 'Q2.2Y';
@@ -232,11 +252,10 @@
 
 		document.getElementById('datePick2').classList.remove('hidden')
 		" />Yes</label>
-	</div>
-	<div class="radio">
-	<label for="Q2.2N"><input type="radio" name="Q2.2" id="Q2.2N" onclick="
-		
-
+	</li>
+	<li class="radio">
+<input type="radio" name="Q2.2" id="Q2.2N" value="1" data-Q2.2="false" data-rule-required="true">
+<label for="Q2.2N" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('Exit_S3').click();
 		data.map.value = 'Q2.2N';
@@ -249,19 +268,20 @@
 
 		document.getElementById('B_S2').click()
 		" />No</label>
-	</div>
+	</li></ul>
 </fieldset>
 
 <div class="mrgn-bttm-md hidden" id="Y_S2">
-				
-<p class="small"><span class="fas fa-user-slash fa-lg text-info"></span>&nbsp;&nbsp; You do <strong>not</strong> have to make GST/HST instalment payments. However, you can use this tool to find out if you will have to pay instalments for the next fiscal year.</p>
-
+<p class="h3 mrgn-tp-md mrgn-lft-0 text-info ">Based on the information you entered: You became a GST/HST registrant during the current fiscal year</p>				
+<p><span class="fa-stack"><span class="fas fa-user fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>&nbsp;&nbsp; You do <strong>not</strong> have to make GST/HST instalment payments. </p>
+<p>However, you can use this tool to find out if you will have to pay instalments for the next fiscal year.</p>
 </div>
 
 <fieldset class="mrgn-bttm-md hidden" id="datePick2">
+
 	<div class="form-group">
 
-		<label class="h5 required mrgn-tp-md" for="registration">What is your date of GST/HST registration? <strong class="required">(required)</strong></label>
+		<label class="h5 gc-font-2019 required mrgn-tp-md" for="registration">What is your date of GST/HST registration? <strong class="required">(required)</strong></label>
 
 		<div class="alert alert-danger hidden" id="E1.2_S2">
 			<p>Enter a valid date. If no datepicker is provided, enter manually the date in this format: <strong>YYYY-MM-DD</strong>.</p>
@@ -270,7 +290,7 @@
 			<p>You answered that you have become a GST/HST registrant during the <strong id="E3T_S2">current</strong> fiscal year. Your registration date must be between <strong id="E3T1_S2"></strong> and <strong id="E3T2_S2"></strong>.</p>
 		</div>
 
-		<input class="form-control" type="date" id="registration" name="registration" required="required" onchange="
+		<input class="form-control input-lg" type="date" id="registration" name="registration" required="required" onchange="
 			
 
 			document.getElementById('Exit_S4').click();
@@ -303,7 +323,7 @@
 
 <fieldset class="mrgn-bttm-md hidden" id="step3">
 	<div class="form-group">
-		<label class="h5 required mrgn-tp-md" for="curAmount">
+		<label class="h5 gc-font-2019 required mrgn-tp-md" for="curAmount">
 			<strong id="T_S3"></strong><strong id="i_T_S3"></strong> to <strong id="i2_T_S3"></strong>? <strong class="required">(required)</strong>
 		</label>
 
@@ -314,7 +334,7 @@
 
 		<div class="input-group col-xs-2">
 		<span class="input-group-addon">$</span>
-		<input class="form-control" id="curAmount" required="required" onblur="
+		<input class="form-control input-lg text-right" id="curAmount" required="required" onblur="
 			
 
 			document.getElementById('Exit_S4').click();
@@ -423,13 +443,14 @@
 		</div>
 	</div>
 </fieldset>
-<fieldset class="mrgn-bttm-md hidden" id="2_S3">
-	<legend class="h5 required" id="T2_S3"><strong>Do you estimate your net GST/HST amount for the <strong id="i4_T2_S3">next</strong> fiscal year, <strong id="i_T2_S3"></strong> to <strong id="i2_T2_S3"></strong>, to be <strong id="i7_T2_S3">lower</strong> than <strong id="i6_T2_S3">your</strong> net amount <strong id="i3_T2_S3"></strong> for the <strong id="i5_T2_S3">current</strong> fiscal year?</strong> <strong class="required">(required)</strong></legend>
-	<p class="small" id="calcS3"></p>
-	<div class="radio">
-	<label for="Q3Y"><input type="radio" name="Q3" id="Q3Y" required="required" onclick="
-		
 
+<fieldset class="mrgn-bttm-md hidden" id="2_S3">
+<legend class="h5 gc-font-2019 required" id="T2_S3"><strong>Do you estimate your net GST/HST amount for the <strong id="i4_T2_S3">next</strong> fiscal year, <strong id="i_T2_S3"></strong> to <strong id="i2_T2_S3"></strong>, to be <strong id="i7_T2_S3">lower</strong> than <strong id="i6_T2_S3">your</strong> net amount <strong id="i3_T2_S3"></strong> for the <strong id="i5_T2_S3">current</strong> fiscal year?</strong><strong class="required">(required)</strong></legend>
+<p id="calcS3">Depending on the situation, GST/HST registrants may not have to make GST/HST instalment payments.</p>
+<ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
+ <li class="radio">
+ <input type="radio" name="Q3" id="Q3Y" value="0" data-Q3Y="true" data-rule-required="true">
+<label for="Q3Y" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('E2_S3').classList.add('hidden');
 		document.getElementById('E3_S3').classList.add('hidden');
@@ -440,11 +461,10 @@
 		if (data.map.value == 'Q2Y') document.getElementById('i_T3_S3').innerText = 'next';
 		else document.getElementById('i_T3_S3').innerText = 'current'
 		" />Yes</label>
-	</div>
-	<div class="radio">
-	<label for="Q3N"><input type="radio" name="Q3" id="Q3N" required="required" onclick="
-		
-
+	</li>
+	<li class="radio">
+ <input type="radio" name="Q3" id="Q3N" value="1" data-Q3N="false" data-rule-required="true">
+<label for="Q3N" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('3_S3').classList.add('hidden');
 		document.getElementById('nextAmount').value = '';
@@ -472,11 +492,13 @@
 			}
 		document.getElementById('B_S3').click()
 		" />No</label>
-	</div>
+	</li></ul>
 </fieldset>	
+
 <fieldset class="mrgn-bttm-md hidden" id="3_S3">
+
 	<div class="form-group">
-		<label class="h5 required mrgn-tp-md" for="nextAmount" id="T3_S3">What is your estimated net GST/HST amount for the <strong id="i_T3_S3">next</strong> fiscal year? <strong class="required">(required)</strong></label>
+		<label class="h5 gc-font-2019 required mrgn-tp-md" for="nextAmount" id="T3_S3">What is your estimated net GST/HST amount for the <strong id="i_T3_S3">next</strong> fiscal year? <strong class="required">(required)</strong></label>
 
 		<div class="alert alert-danger hidden" id="E2_S3">
 			<p>Only digits are permitted for this field. Enter a positive value with no currency symbol. Maximum 8 digit(s) before the decimal point.</p>
@@ -490,7 +512,7 @@
 
 		<div class="input-group col-xs-2">
 		<span class="input-group-addon">$</span>
-		<input class="form-control" id="nextAmount" required="required" onblur="
+		<input class="form-control input-lg text-right" id="nextAmount" required="required" onblur="
 			
 
 			document.getElementById('Exit_S4').click();
@@ -839,124 +861,188 @@
 
 
 <div class="alert alert-info hidden" id="Result1">
-	<h3><small>Your result</small> <br> Result 1 You became a GST/HST registrant during the current fiscal year</h3>
-
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments during your <strong>first</strong> year that you have become a GST/HST registrant</li>
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments for your <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year to be <strong>less than $3,000</strong> (<small id="calcR1"></small>)</li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                </ul>		
+<h3><small>Your result </small><br> Based on the information you entered: You do not have to make GST/HST instalment payments in the current or next fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements</h4>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5>Current fiscal year</h5>
+<p> <span class="fas fa-ban fa-lg text-danger"></span> You do <strong>not</strong> have to make GST/HST instalment payments during your <strong>first</strong> year that you have become a GST/HST registrant. </p>
+</li>
+<li class="cnjnctn-col"><h5>Next fiscal year</h5>
+<p><span class="fas fa-ban fa-lg text-danger"></span> You do <strong>not</strong> have to make GST/HST instalment payments for your <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year to be <strong>less than $3,000</strong> (<small id="calcR1"></small>).</p>
+</li>
+                </ul>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
+                		
 </div>
 	
 <div class="alert alert-info hidden" id="Result2">
-	<h3><small>Your result</small> <br> Result 2 You became a GST/HST registrant during the current fiscal year</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments during your <strong>first</strong> year that you have become a GST/HST registrant</li>
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments for the <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>next</strong> fiscal year will be <strong id="i_R2"></strong> and this amount is <strong>less than $3,000</strong></li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                </ul>	
+<h3><small>Your result </small><br> Based on the information you entered: You do not have to make GST/HST instalment payments in the current or next fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements</h4>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5>Current fiscal year</h5>
+<p> <span class="fas fa-ban fa-lg text-danger"></span> You do <strong>not</strong> have to make GST/HST instalment payments during your <strong>first</strong> year that you have become a GST/HST registrant. </p>
+</li>
+<li class="cnjnctn-col"><h5>Next fiscal year</h5>
+<p> <span class="fas fa-ban fa-lg text-danger"></span> You do <strong>not</strong> have to make GST/HST instalment payments for the <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>next</strong> fiscal year will be <strong id="i_R2"></strong> and this amount is <strong>less than $3,000</strong>.</p>
+</li>
+                </ul>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 
 <div class="alert alert-info hidden" id="Result4">
-	<h3><small>Your result</small>  <br> Result 4 You became a GST/HST registrant during the current fiscal year</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments during your <strong>first</strong> year that you have become a GST/HST registrant</li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to make GST/HST instalment payments for the <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>next</strong> fiscal year to be <strong>$3,000 or more</strong> (<small id="calcR4"></small>) </li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                </ul>	
-
+	<h3><small>Your result</small>  <br> Based on the information you entered: You have to make GST/HST instalment payments in the next fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements</h4>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5>Current fiscal year</h5>
+<p> <span class="fas fa-ban fa-lg text-danger"></span> You do <strong>not</strong> have to make GST/HST instalment payments during your <strong>first</strong> year that you have become a GST/HST registrant. </p>
+</li>
+<li class="cnjnctn-col"><h5>Next fiscal year</h5>
+<p> <span class="fas fa-check fa-lg text-success"></span> You have to make GST/HST instalment payments for the <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>next</strong> fiscal year to be <strong>$3,000 or more</strong> (<small id="calcR4"></small>). </p>
+</li>
+                </ul>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 
 <div class="alert alert-info hidden" id="Result5">
-	<h3><small>Your result</small><br>Result 5 You became a GST/HST registrant during the current fiscal year</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments during your <strong>first</strong> year that you have become a GST/HST registrant</li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to make GST/HST instalment payments for the <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>next</strong> fiscal year will be <strong id="i_R5"></strong> and this amount is <strong>more than $3,000</strong></li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                </ul>	
-
+	<h3><small>Your result</small><br> Based on the information you entered: You have to make GST/HST instalment payments in the next fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements</h4>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5>Current fiscal year</h5>
+<p> <span class="fas fa-ban fa-lg text-danger"></span> You do <strong>not</strong> have to make GST/HST instalment payments during your <strong>first</strong> year that you have become a GST/HST registrant. </p>
+</li>
+<li class="cnjnctn-col"><h5>Next fiscal year</h5>
+<p> <span class="fas fa-check fa-lg text-success"></span> You have to make GST/HST instalment payments for the <strong>next</strong> fiscal year because you estimate your net GST/HST amount for the <strong>next</strong> fiscal year will be <strong id="i_R5"></strong> and this amount is <strong>more than $3,000</strong>.</p>
+</li>
+                </ul>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 
 <div class="alert alert-info hidden" id="Result6">
-	<h3><small>Your result</small><br> Result 6 You became a GST/HST registrant during the last fiscal year</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments for your <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year to be <strong>less than $3,000</strong> (<small id="calcR6"></small>)</li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                </ul>		
+	<h3><small>Your result</small><br> Based on the information you entered: You do not have to make GST/HST instalment payments in the current fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements</h4>
+<p> <span class="fas fa-ban fa-lg text-danger"></span> You do <strong>not</strong> have to make GST/HST instalment payments for your <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year to be <strong>less than $3,000</strong> (<small id="calcR6"></small>). </p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 	
 <div class="alert alert-info hidden" id="Result7">
-	<h3><small>Your result</small><br> Result 7 You became a GST/HST registrant during the last fiscal year</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i_R7"></strong> and this amount is <strong>less than $3,000</strong></li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                </ul>
+	<h3><small>Your result</small><br> Based on the information you entered: You do not have to make GST/HST instalment payments in the current fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements - Current fiscal year</h4>
+<p> <span class="fas fa-ban fa-lg text-danger"></span> You do <strong>not</strong> have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i_R7"></strong> and this amount is <strong>less than $3,000</strong>. </p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 	
 <div class="alert alert-info hidden" id="Result8">
-	<h3><small>Your result</small><br> Result 8 You became a GST/HST registrant during the last fiscal year</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments for your <strong>current</strong> fiscal year because your net GST/HST amount for the <strong>current</strong> fiscal year is <strong>less than $3,000</strong> </li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You may have to make GST/HST instalment payments for the <strong>next</strong> fiscal year based on your estimate that your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong>more than $3,000</strong> (<strong id="i_R8"></strong>)</li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to review the estimate of your net GST/HST amount at the <strong>end of your fiscal year</strong> to calculate your actual instalment base for the <strong>next</strong> fiscal year</li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
+	<h3><small>Your result</small><br> Based on the information you entered: You may have to make GST/HST instalment payments in the next fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements</h4>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5>Current fiscal year</h5>
+<p> <span class="fas fa-ban fa-lg text-danger"></span> You do <strong>not</strong> have to make GST/HST instalment payments for your <strong>current</strong> fiscal year because your net GST/HST amount for the <strong>current</strong> fiscal year is <strong>less than $3,000</strong>. </p>
+</li>
+<li class="cnjnctn-col"><h5>Next fiscal year</h5>
+<p> <span class="fas fa-check fa-lg text-success"></span> You may have to make GST/HST instalment payments for the <strong>next</strong> fiscal year based on your estimate that your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong>more than $3,000</strong> (<strong id="i_R8"></strong>).</p>
+<p>You have to review the estimate of your net GST/HST amount at the <strong>end of your fiscal year</strong> to calculate your actual instalment base for the <strong>next</strong> fiscal year.</p>
+</li>
+                </ul>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 	
 <div class="alert alert-info hidden" id="Result9">
-	<h3><small>Your result</small><br> Result 9 You became a GST/HST registrant during the last fiscal year</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>last</strong> fiscal year to be <strong>$3,000 or more</strong> (<small id="calcR9"></small>) </li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>	
-                               </ul>
+	<h3><small>Your result</small><br> Based on the information you entered: You have to make GST/HST instalment payments in the current fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements - Current fiscal year</h4>
+<p> <span class="fas fa-check fa-lg text-success"></span> You have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>last</strong> fiscal year to be <strong>$3,000 or more</strong> (<small id="calcR9"></small>). </p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 	
 <div class="alert alert-info hidden" id="Result10">
-	<h3><small>Your result</small> <br> Result 10 You became a GST/HST registrant during the last fiscal year</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i_R10"></strong> and this amount is <strong>more than $3,000</strong></li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                               </ul>
+	<h3><small>Your result</small> <br> Based on the information you entered: You have to make GST/HST instalment payments in the current fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements - Current fiscal year</h4>
+<p> <span class="fas fa-check fa-lg text-success"></span> You have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i_R10"></strong> and this amount is <strong>more than $3,000</strong>. </p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 	
 <div class="alert alert-info hidden" id="Result11">
-	<h3><small>Your result</small><br> Result 11 You are not a new GST/HST registrant</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong>less than $3,000</strong></li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                </ul>
+	<h3><small>Your result</small><br> Result 11 Based on the information you entered: You do not have to make GST/HST instalment payments in the current fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements - Current fiscal year</h4>
+<p> <span class="fas fa-ban fa-lg text-danger"></span>  You do <strong>not</strong> have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong>less than $3,000</strong>. </p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
+
 <div class="alert alert-info hidden" id="Result12">
-	<h3><small>Your result</small><br> Result 12 You are not a new GST/HST registrant</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i_R12"></strong> and this amount is <strong>less than $3,000</strong></li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                </ul>
+	<h3><small>Your result</small><br> Based on the information you entered: You do not have to make GST/HST instalment payments in the current fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements - Current fiscal year</h4>
+<p> <span class="fas fa-ban fa-lg text-danger"></span>  You do <strong>not</strong> have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i_R12"></strong> and this amount is <strong>less than $3,000</strong>. </p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 
 <div class="alert alert-info hidden" id="Result13">
-	<h3><small>Your result</small><br> Result 13 You are not a new GST/HST registrant</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-times text-danger fa-lg"></span> You do <strong>not</strong> have to make GST/HST instalment payments for your <strong>current</strong> fiscal year because your net GST/HST amount for the <strong>current</strong> fiscal year is <strong>less than $3,000</strong> </li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You may have to make GST/HST instalment payments for the <strong>next</strong> fiscal year based on your estimate that your net GST/HST amount for the <strong>current</strong> fiscal year will be will be <strong>more than $3,000</strong> (<strong id="i_R13"></strong>)</li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to review the estimate of your net GST/HST amount at the <strong>end of your fiscal year</strong> to calculate your actual instalment base for the <strong>next</strong> fiscal year</li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                               </ul>
+	<h3><small>Your result</small><br> Based on the information you entered: You may have to make GST/HST instalment payments in the next fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements</h4>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5>Current fiscal year</h5>
+<p> <span class="fas fa-ban fa-lg text-danger"></span> You do <strong>not</strong> have to make GST/HST instalment payments for your <strong>current</strong> fiscal year because your net GST/HST amount for the <strong>current</strong> fiscal year is <strong>less than $3,000</strong>. </p>
+</li>
+<li class="cnjnctn-col"><h5>Next fiscal year</h5>
+<p> <span class="fas fa-check fa-lg text-success"></span> You may have to make GST/HST instalment payments for the <strong>next</strong> fiscal year based on your estimate that your net GST/HST amount for the <strong>current</strong> fiscal year will be will be <strong>more than $3,000</strong> (<strong id="i_R13"></strong>).</p>
+<p>You have to review the estimate of your net GST/HST amount at the <strong>end of your fiscal year</strong> to calculate your actual instalment base for the <strong>next</strong> fiscal year.</p>
+</li>
+                </ul>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 
 <div class="alert alert-info hidden" id="Result14">
-	<h3><small>Your result</small><br> Result 14 You are not a new GST/HST registrant </h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i2_R14"></strong> and this amount is <strong>more than $3,000</strong></li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                               </ul>
+	<h3><small>Your result</small><br> Based on the information you entered: You have to make GST/HST instalment payments in the current fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements - Current fiscal year</h4>
+<p> <span class="fas fa-check fa-lg text-success"></span> You have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i2_R14"></strong> and this amount is <strong>more than $3,000</strong>. </p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 
 <div class="alert alert-info hidden" id="Result15">
-	<h3><small>Your result</small><br> Result 15 You are not a new GST/HST registrant</h3>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i_R15"></strong> and this amount is <strong>more than $3,000</strong></li>
-<li class="cnjnctn-col"><span class="fas fa-check text-success fa-lg"></span> You have to file your GST/HST return and remit (pay) any amount owing once a year</li>
-                               </ul>
+	<h3><small>Your result</small><br> Based on the information you entered: You have to make GST/HST instalment payments in the current fiscal year</h3>
+<hr>
+<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying) by instalements - Current fiscal year</h4>
+<p> <span class="fas fa-check fa-lg text-success"></span> You have to make GST/HST instalment payments for the <strong>current</strong> fiscal year because you estimate your net GST/HST amount for the <strong>current</strong> fiscal year will be <strong id="i_R15"></strong> and this amount is <strong>more than $3,000</strong>. </p>
+<br>
+<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing and remitting </h4>
+<p>You have to file your GST/HST return and remit (pay) any amount owing once a year.</p>
 </div>
 
 
@@ -975,7 +1061,7 @@ Payment due date and amounts</h4>
 			<div class="col-sm-3">
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
-					<input class="form-control input-sm" id="pAmount1" readonly/>
+					<input class="form-control input-lg text-right" id="pAmount1" readonly/>
 				</div>
 			</div>
 		</div>
@@ -984,7 +1070,7 @@ Payment due date and amounts</h4>
 			<div class="col-sm-3">
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
-					<input class="form-control input-sm" id="pAmount2" readonly/>
+					<input class="form-control input-lg text-right" id="pAmount2" readonly/>
 				</div>
 			</div>
 		</div>
@@ -993,7 +1079,7 @@ Payment due date and amounts</h4>
 			<div class="col-sm-3">
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
-					<input class="form-control input-sm" id="pAmount3" readonly/>
+					<input class="form-control input-lg text-right" id="pAmount3" readonly/>
 				</div>
 			</div>
 		</div>
@@ -1002,7 +1088,7 @@ Payment due date and amounts</h4>
 			<div class="col-sm-3">
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
-					<input class="form-control input-sm" id="pAmount4" readonly/>
+					<input class="form-control input-lg text-right" id="pAmount4" readonly/>
 				</div>
 			</div>
 		</div>
@@ -1011,7 +1097,7 @@ Payment due date and amounts</h4>
 			<div class="col-sm-3">
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
-					<input class="form-control input-sm" id="pAmount5" readonly/>
+					<input class="form-control input-lg text-right" id="pAmount5" readonly/>
 				</div>
 			</div>
 		</div>
@@ -1022,38 +1108,38 @@ Payment due date and amounts</h4>
 <!-- INFORMATION -->
 
 
-<div class="hidden  mrgn-lft-xl" id="I1A">
-<h4><span class="fas fa-exclamation-triangle fa-lg text-info"></span>&nbsp;&nbsp;  What happens if your estimation is wrong </h4>
-<p class="mrgn-lft-xl" >If your actual next fiscal year net GST/HST amount is <strong>$3,000 or more</strong>, you would be required to pay instalments. The CRA charges <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/file-a-gst-hst-return/gst-hst-penalties-interest.html#instalment" target="_blank">instalment interest</a> on instalment payments paid late or that you did not pay.</p>
+<div class="hidden mrgn-lft-xl" id="I1A">
+<h4><span class="fas fa-exclamation-triangle fa-lg text-info"></span>&nbsp; What happens if your estimation is wrong </h4>
+<p>If your actual next fiscal year net GST/HST amount is <strong>$3,000 or more</strong>, you would be required to pay instalments. The CRA charges <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/file-a-gst-hst-return/gst-hst-penalties-interest.html#instalment" target="_blank">instalment interest</a> on instalment payments paid late or that you did not pay.</p>
 
-<p class="mrgn-lft-xl" >For example, if your actual next fiscal year net GST/HST amount is <strong id="i_I1A"></strong> (<small id="calcI1A"></small>), the CRA charges instalment interest on the required instalment payments. </p>	
+<p>For example, if your actual next fiscal year net GST/HST amount is <strong id="i_I1A"></strong> (<small id="calcI1A"></small>), the CRA charges instalment interest on the required instalment payments. </p>	
 
-<p class="mrgn-lft-xl" >Learn more on the methods to pay: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/remit-pay-gst-hst-including-instalment-payments/pay-gst-hst-instalments.html">Pay the GST/HST by instalments</a></p>
+<p>Learn more on the methods to pay: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/remit-pay-gst-hst-including-instalment-payments/pay-gst-hst-instalments.html">Pay the GST/HST by instalments</a></p>
 </div>
 	
-<div class="hidden  mrgn-lft-xl" id="I2">
-<h4><span class="fas fa-exclamation-triangle fa-lg text-info"></span> &nbsp;&nbsp; What happens if your estimation is wrong </h4>	
-<p class="mrgn-lft-xl" >If you realize at any time during the fiscal year that you paid less than your required instalment payment or that you did not pay an instalment on time, you can reduce or eliminate your instalment interest by overpaying your next instalment payment or by paying it early.</p>
+<div class="hidden mrgn-lft-xl" id="I2">
+<h4><span class="fas fa-exclamation-triangle fa-lg text-info"></span> &nbsp; What happens if your estimation is wrong </h4>	
+<p>If you realize at any time during the fiscal year that you paid less than your required instalment payment or that you did not pay an instalment on time, you can reduce or eliminate your instalment interest by overpaying your next instalment payment or by paying it early.</p>
 
-<p class="mrgn-lft-xl" >Learn more on the methods to pay: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/remit-pay-gst-hst-including-instalment-payments/pay-gst-hst-instalments.html">Pay the GST/HST by instalments</a></p>
+<p>Learn more on the methods to pay: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/remit-pay-gst-hst-including-instalment-payments/pay-gst-hst-instalments.html">Pay the GST/HST by instalments</a></p>
 </div>
 
-<div class="hidden  mrgn-lft-xl" id="I3">
-<h4><span class="fas fa-exclamation-triangle fa-lg text-info"></span>&nbsp;&nbsp;  What happens if your estimation is wrong </h4>		
-<p class="mrgn-lft-xl" >If your actual current fiscal year net GST/HST amount is more than <strong id="i_I3"></strong>, you are required to pay instalments based on that last fiscal year amount, up to a maximum of <strong id="i2_I3"></strong>. The CRA charges <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/file-a-gst-hst-return/gst-hst-penalties-interest.html#instalment" >instalment interest</a> on the required instalment payments.</p>
+<div class="hidden mrgn-lft-xl" id="I3">
+<h4><span class="fas fa-exclamation-triangle fa-lg text-info"></span>&nbsp; What happens if your estimation is wrong </h4>		
+<p>If your actual current fiscal year net GST/HST amount is more than <strong id="i_I3"></strong>, you are required to pay instalments based on that last fiscal year amount, up to a maximum of <strong id="i2_I3"></strong>. The CRA charges <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/file-a-gst-hst-return/gst-hst-penalties-interest.html#instalment" >instalment interest</a> on the required instalment payments.</p>
 		
-<p class="mrgn-lft-xl" >If you realize at any time during the fiscal year that you paid less than your required instalment payment or that you did not pay an instalment on time, you can reduce or eliminate your instalment interest by overpaying your next instalment payment or by paying it early.</p>
+<p>If you realize at any time during the fiscal year that you paid less than your required instalment payment or that you did not pay an instalment on time, you can reduce or eliminate your instalment interest by overpaying your next instalment payment or by paying it early.</p>
 
-<p class="mrgn-lft-xl" >Learn more on the methods to pay: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/remit-pay-gst-hst-including-instalment-payments/pay-gst-hst-instalments.html">Pay the GST/HST by instalments</a></p>
+<p>Learn more on the methods to pay: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/remit-pay-gst-hst-including-instalment-payments/pay-gst-hst-instalments.html">Pay the GST/HST by instalments</a></p>
 </div>
 
-<div class="hidden  mrgn-lft-xl" id="IC">
-<h4><span class="fas fa-exclamation-triangle fa-lg text-info"></span>&nbsp;&nbsp;  What happens if your estimation is wrong </h4>		
-<p class="mrgn-lft-xl" >If your actual current fiscal year net GST/HST amount is <strong>$3,000 or more</strong>, you are required to pay instalments based on that actual amount, up to a maximum of <strong id="i_IC"></strong>. The CRA charges <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/file-a-gst-hst-return/gst-hst-penalties-interest.html#instalment" >instalment interest</a> on the required instalement payments.</p>
+<div class="hidden mrgn-lft-xl" id="IC">
+<h4><span class="fas fa-exclamation-triangle fa-lg text-info"></span>&nbsp; What happens if your estimation is wrong </h4>		
+<p>If your actual current fiscal year net GST/HST amount is <strong>$3,000 or more</strong>, you are required to pay instalments based on that actual amount, up to a maximum of <strong id="i_IC"></strong>. The CRA charges <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/file-a-gst-hst-return/gst-hst-penalties-interest.html#instalment" >instalment interest</a> on the required instalement payments.</p>
 		
-<p class="mrgn-lft-xl" >If you realize at any time during the fiscal year that you paid less than your required instalment payment or that you did not pay an instalment on time, you can reduce or eliminate your instalment interest by overpaying your next instalment payment or by paying it early.</p>
+<p>If you realize at any time during the fiscal year that you paid less than your required instalment payment or that you did not pay an instalment on time, you can reduce or eliminate your instalment interest by overpaying your next instalment payment or by paying it early.</p>
 	
-<p class="mrgn-lft-xl" >Learn more on the methods to pay: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/remit-pay-gst-hst-including-instalment-payments/pay-gst-hst-instalments.html">Pay the GST/HST by instalments</a></p>
+<p>Learn more on the methods to pay: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/remit-pay-gst-hst-including-instalment-payments/pay-gst-hst-instalments.html">Pay the GST/HST by instalments</a></p>
 </div>
 
 
@@ -1084,6 +1170,7 @@ Payment due date and amounts</h4>
 
 
 <script type="text/javascript">_satellite.pageBottom();</script>
+
 
 
 
