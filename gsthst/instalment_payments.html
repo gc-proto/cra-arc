@@ -480,13 +480,13 @@
 		</div>
 	</div>
 </fieldset>
-<fieldset class="mrgn-bttm-md hidden" id="2_S3">
-	<legend class="h5 gc-font-2019 required" id="T2_S3"><strong>Do you estimate your net GST/HST amount for the <strong id="i4_T2_S3">next</strong> fiscal year, <strong id="i_T2_S3"></strong> to <strong id="i2_T2_S3"></strong>, to be <strong id="i7_T2_S3">lower</strong> than <strong id="i6_T2_S3">your</strong> net amount <strong id="i3_T2_S3"></strong> for the <strong id="i5_T2_S3">current</strong> fiscal year?</strong> <strong class="required">(required)</strong></legend>
-	<p class="small" id="calcS3"></p>
-	<div class="radio">
-	<label for="Q3Y"><input type="radio" name="Q3" id="Q3Y" required="required" onclick="
-		
 
+<fieldset class="mrgn-bttm-md hidden" id="2_S3">
+<legend class="h5 gc-font-2019 required" id="T2_S3"><strong>Do you estimate your net GST/HST amount for the <strong id="i4_T2_S3">next</strong> fiscal year, <strong id="i_T2_S3"></strong> to <strong id="i2_T2_S3"></strong>, to be <strong id="i7_T2_S3">lower</strong> than <strong id="i6_T2_S3">your</strong> net amount <strong id="i3_T2_S3"></strong> for the <strong id="i5_T2_S3">current</strong> fiscal year?</strong> <strong class="required">(required)</strong></legend>
+<p id="calcS3">&nbsp;_</p>
+ <li class="radio">
+ <input type="radio" name="Q3" id="Q3Y" value="0" data-Q3Y="true" data-rule-required="true">
+<label for="Q3Y" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('E2_S3').classList.add('hidden');
 		document.getElementById('E3_S3').classList.add('hidden');
@@ -497,11 +497,10 @@
 		if (data.map.value == 'Q2Y') document.getElementById('i_T3_S3').innerText = 'next';
 		else document.getElementById('i_T3_S3').innerText = 'current'
 		" />Yes</label>
-	</div>
-	<div class="radio">
-	<label for="Q3N"><input type="radio" name="Q3" id="Q3N" required="required" onclick="
-		
-
+	</li>
+	<li class="radio">
+ <input type="radio" name="Q3" id="Q3N" value="1" data-Q3N="false" data-rule-required="true">
+<label for="Q3N" onclick="
 		document.getElementById('Exit_S4').click();
 		document.getElementById('3_S3').classList.add('hidden');
 		document.getElementById('nextAmount').value = '';
@@ -529,8 +528,9 @@
 			}
 		document.getElementById('B_S3').click()
 		" />No</label>
-	</div>
+	</li></ul>
 </fieldset>	
+
 <fieldset class="mrgn-bttm-md hidden" id="3_S3">
 	<div class="form-group">
 		<label class="h5 gc-font-2019 required mrgn-tp-md" for="nextAmount" id="T3_S3">What is your estimated net GST/HST amount for the <strong id="i_T3_S3">next</strong> fiscal year? <strong class="required">(required)</strong></label>
