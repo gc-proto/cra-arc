@@ -256,7 +256,7 @@
 					if(minDate.getTime() <= x.getTime() && x.getTime() <= maxDate.getTime()) {
 						document.getElementById('pg1').value = 7.5;
 
-						document.getElementById('Q3It1').innerText = x.toLocaleDateString();
+						document.getElementById('Q3It1').innerText = x.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
 
 						var y = x.getFullYear(), m = ''+(x.getMonth()+1), d = ''+x.getDate();
 						if(m.length < 2) m = '0'+m;
@@ -335,7 +335,7 @@
 				" />
 
 				<div class="alert alert-warning mrgn-bttm-md hidden" id="Q3I">
-					<p>For this tool, the dates will be presented based on your local date format settings. For example, the date you choose is <strong id="Q3It1"></strong>.</p>
+					<p><span class="far fa-calendar-alt fa-2x text-info"></span>&nbsp;&nbsp;The dates will show based on your local date format settings. For example, the date you have chosen is <strong id="Q3It1"></strong>.</p>
 				</div>
 		</div>
 	</fieldset>
