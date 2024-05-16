@@ -311,10 +311,10 @@
 						
 						var fiscalYearStart = new Date(document.getElementById('fiscalYearStart').value.substring(0, 4), eval(document.getElementById('fiscalYearStart').value.substring(5, 7) + '- 1'), document.getElementById('fiscalYearStart').value.substring(8, 10));
 
-						document.getElementById('Q4t1').innerText = fiscalYearStart.toLocaleDateString();
+						document.getElementById('Q4t1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						document.getElementById('Q5D').min = data.fiscalYearStart.value;
 						
-						document.getElementById('Q4t2').innerText = today.toLocaleDateString();
+						document.getElementById('Q4t2').innerText = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						document.getElementById('Q5D').max = data.currentDate.value;
 
 						document.getElementById('Q3I').classList.remove('hidden');
@@ -327,8 +327,8 @@
 						var min = new Date(document.getElementById('Q3D').min.substring(0, 4), eval(document.getElementById('Q3D').min.substring(5, 7) + '- 1'), document.getElementById('Q3D').min.substring(8, 10));
 						var max = new Date(document.getElementById('Q3D').max.substring(0, 4), eval(document.getElementById('Q3D').max.substring(5, 7) + '- 1'), document.getElementById('Q3D').max.substring(8, 10));
 
-						document.getElementById('Q3E2t1').innerText = min.toLocaleDateString();
-						document.getElementById('Q3E2t2').innerText = max.toLocaleDateString();
+						document.getElementById('Q3E2t1').innerText = min.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+						document.getElementById('Q3E2t2').innerText = max.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						}
 					}
 				
@@ -410,8 +410,8 @@
 						var min = new Date(document.getElementById('Q5D').min.substring(0, 4), eval(document.getElementById('Q5D').min.substring(5, 7) + '- 1'), document.getElementById('Q5D').min.substring(8, 10));
 						var max = new Date(document.getElementById('Q5D').max.substring(0, 4), eval(document.getElementById('Q5D').max.substring(5, 7) + '- 1'), document.getElementById('Q5D').max.substring(8, 10));
 
-						document.getElementById('Q5E2t1').innerText = min.toLocaleDateString();
-						document.getElementById('Q5E2t2').innerText = max.toLocaleDateString();
+						document.getElementById('Q5E2t1').innerText = min.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+						document.getElementById('Q5E2t2').innerText = max.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						}
 					}
 				
@@ -713,12 +713,12 @@
 					document.getElementById('Q10').classList.remove('hidden');
 					if (document.getElementById('Q4Y').checked){
 						var registration = new Date(document.getElementById('registration').value.substring(0, 4), eval(document.getElementById('registration').value.substring(5, 7) + '- 1'), document.getElementById('registration').value.substring(8, 10));
-						document.getElementById('Q10t1').innerText = registration.toLocaleDateString();
+						document.getElementById('Q10t1').innerText = registration.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						document.getElementById('Q10t2').classList.add('hidden');
 						}
 					else{
 						var fiscalYearStart = new Date(document.getElementById('fiscalYearStart').value.substring(0, 4), eval(document.getElementById('fiscalYearStart').value.substring(5, 7) + '- 1'), document.getElementById('fiscalYearStart').value.substring(8, 10));
-						document.getElementById('Q10t1').innerText = fiscalYearStart.toLocaleDateString();
+						document.getElementById('Q10t1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						document.getElementById('Q10t2').classList.remove('hidden');
 						}
 					}
@@ -1159,8 +1159,8 @@
 						fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()-1);
 						fiscalYearEnd.setFullYear(fiscalYearEnd.getFullYear()-1);
 
-						document.getElementById('Q16at1').innerText = fiscalYearStart.toLocaleDateString();
-						document.getElementById('Q16bt1').innerText = fiscalYearStart.toLocaleDateString();
+						document.getElementById('Q16at1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+						document.getElementById('Q16bt1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 						fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()-1);
 						if (fiscalYearStart.getFullYear() < 2017){
@@ -1169,12 +1169,12 @@
 						else{
 							document.getElementById('I_Q22at1').classList.add('hidden');
 							}
-						document.getElementById('Q22at1').innerText = fiscalYearStart.toLocaleDateString();
-						document.getElementById('Q22bt1').innerText = fiscalYearStart.toLocaleDateString();
+						document.getElementById('Q22at1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+						document.getElementById('Q22bt1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()+1);
 						fiscalYearEnd.setFullYear(fiscalYearEnd.getFullYear()-1);
-						document.getElementById('Q22at2').innerText = fiscalYearEnd.toLocaleDateString();
-						document.getElementById('Q22bt2').innerText = fiscalYearEnd.toLocaleDateString();
+						document.getElementById('Q22at2').innerText = fiscalYearEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+						document.getElementById('Q22bt2').innerText = fiscalYearEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						fiscalYearEnd.setFullYear(fiscalYearEnd.getFullYear()+1);
 
 						fiscalYearEnd.setFullYear(fiscalYearEnd.getFullYear()+1);
@@ -1183,8 +1183,8 @@
 					else{
 						document.getElementById('I_Q15_2').classList.add('hidden');
 
-						document.getElementById('Q16at1').innerText = fiscalYearStart.toLocaleDateString();
-						document.getElementById('Q16bt1').innerText = fiscalYearStart.toLocaleDateString();
+						document.getElementById('Q16at1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+						document.getElementById('Q16bt1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 						fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()-1);
 						if (fiscalYearStart.getFullYear() < 2017){
@@ -1193,30 +1193,30 @@
 						else{
 							document.getElementById('I_Q22at1').classList.add('hidden');
 							}
-						document.getElementById('Q22at1').innerText = fiscalYearStart.toLocaleDateString();
-						document.getElementById('Q22bt1').innerText = fiscalYearStart.toLocaleDateString();
+						document.getElementById('Q22at1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+						document.getElementById('Q22bt1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()+1);
 						fiscalYearEnd.setFullYear(fiscalYearEnd.getFullYear()-1);
-						document.getElementById('Q22at2').innerText = fiscalYearEnd.toLocaleDateString();
-						document.getElementById('Q22bt2').innerText = fiscalYearEnd.toLocaleDateString();
+						document.getElementById('Q22at2').innerText = fiscalYearEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+						document.getElementById('Q22bt2').innerText = fiscalYearEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						fiscalYearEnd.setFullYear(fiscalYearEnd.getFullYear()+1);
 						}
 					
 					if (document.getElementById('Q4Y').checked){
 						var registration = new Date(document.getElementById('registration').value.substring(0, 4), eval(document.getElementById('registration').value.substring(5, 7) + '- 1'), document.getElementById('registration').value.substring(8, 10));
-						document.getElementById('Q17abt4').innerText = registration.toLocaleDateString();
+						document.getElementById('Q17abt4').innerText = registration.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 						}
 
-					document.getElementById('Q17cdt4').innerText = fiscalYearStart.toLocaleDateString();
+					document.getElementById('Q17cdt4').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 					fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()-1);
-					document.getElementById('Q17eft4').innerText = fiscalYearStart.toLocaleDateString();
-					document.getElementById('Q17eft5').innerText = fiscalYearStart.toLocaleDateString();
+					document.getElementById('Q17eft4').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+					document.getElementById('Q17eft5').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 					fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()+1);
 					
-					document.getElementById('Q18at2').innerText = fiscalYearStart.toLocaleDateString();
+					document.getElementById('Q18at2').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 					fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()-1);
-					document.getElementById('Q18bt2').innerText = fiscalYearStart.toLocaleDateString();
+					document.getElementById('Q18bt2').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 					fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()+1);
 
 					if (data.filing.value == 'm'){
@@ -1233,7 +1233,7 @@
 							}
 						fiscalYearStart.setMonth(fiscalYearStart.getMonth()-1);
 						count = count - 1;
-						document.getElementById('Q18at3').innerText = fiscalYearStart.toLocaleDateString();
+						document.getElementById('Q18at3').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 						while(count > 0){
 							fiscalYearStart.setMonth(fiscalYearStart.getMonth()-1);
@@ -1256,7 +1256,7 @@
 						fiscalYearStart.setMonth(fiscalYearStart.getMonth()-1);
 						count = count - 1;
 
-						document.getElementById('Q18bt3').innerText = fiscalYearStart.toLocaleDateString();
+						document.getElementById('Q18bt3').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 						while(count > 0){
 							fiscalYearStart.setMonth(fiscalYearStart.getMonth()-1);
@@ -1283,7 +1283,7 @@
 						fiscalYearStart.setMonth(fiscalYearStart.getMonth()-3);
 						count = count - 1;
 
-						document.getElementById('Q18at3').innerText = fiscalYearStart.toLocaleDateString();
+						document.getElementById('Q18at3').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 						while(count > 0){
 							fiscalYearStart.setMonth(fiscalYearStart.getMonth()-3);
@@ -1306,7 +1306,7 @@
 						fiscalYearStart.setMonth(fiscalYearStart.getMonth()-3);
 						count = count - 1;
 
-						document.getElementById('Q18bt3').innerText = fiscalYearStart.toLocaleDateString();
+						document.getElementById('Q18bt3').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 						while(count > 0){
 							fiscalYearStart.setMonth(fiscalYearStart.getMonth()-3);
@@ -1319,15 +1319,15 @@
 						fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()+1);
 						}
 
-					document.getElementById('Q19t2').innerText = startChosenFile.toLocaleDateString();
-					document.getElementById('Q19t3').innerText = endChosenFile.toLocaleDateString();
+					document.getElementById('Q19t2').innerText = startChosenFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+					document.getElementById('Q19t3').innerText = endChosenFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-					document.getElementById('Q20t3').innerText = startChosenFile.toLocaleDateString();
-					document.getElementById('Q20t4').innerText = endChosenFile.toLocaleDateString();
+					document.getElementById('Q20t3').innerText = startChosenFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+					document.getElementById('Q20t4').innerText = endChosenFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 					startChosenFile.setFullYear(startChosenFile.getFullYear()-1);
 					startChosenFile.setDate(startChosenFile.getDate()-1);
-					document.getElementById('Q21t1').innerText = startChosenFile.toLocaleDateString();
+					document.getElementById('Q21t1').innerText = startChosenFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 					startChosenFile.setDate(startChosenFile.getDate()+1);
 					startChosenFile.setFullYear(startChosenFile.getFullYear()+1);
 
@@ -1361,13 +1361,13 @@
 					else{
 						document.getElementById('I_Q23at1').classList.add('hidden');
 						}
-					document.getElementById('Q23at1').innerText = choseQuarter.toLocaleDateString();
-					document.getElementById('Q23bt1').innerText = choseQuarter.toLocaleDateString();
+					document.getElementById('Q23at1').innerText = choseQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+					document.getElementById('Q23bt1').innerText = choseQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 					choseQuarter.setMonth(choseQuarter.getMonth()+15);
 					choseQuarter.setMonth(choseQuarter.getMonth()-3);
 					choseQuarter.setDate(choseQuarter.getDate()-1);
-					document.getElementById('Q23at2').innerText = choseQuarter.toLocaleDateString();
-					document.getElementById('Q23bt2').innerText = choseQuarter.toLocaleDateString();
+					document.getElementById('Q23at2').innerText = choseQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+					document.getElementById('Q23bt2').innerText = choseQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 					choseQuarter.setDate(choseQuarter.getDate()+1);
 					choseQuarter.setMonth(choseQuarter.getMonth()+3);
 					
@@ -1378,12 +1378,12 @@
 					else{
 						document.getElementById('I_Q23ct1').classList.add('hidden');
 						}
-					document.getElementById('Q23ct1').innerText = choseQuarter.toLocaleDateString();
-					document.getElementById('Q23dt1').innerText = choseQuarter.toLocaleDateString();
+					document.getElementById('Q23ct1').innerText = choseQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+					document.getElementById('Q23dt1').innerText = choseQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 					choseQuarter.setFullYear(choseQuarter.getFullYear()+1);
 					choseQuarter.setDate(choseQuarter.getDate()-1);
-					document.getElementById('Q23ct2').innerText = choseQuarter.toLocaleDateString();
-					document.getElementById('Q23dt2').innerText = choseQuarter.toLocaleDateString();
+					document.getElementById('Q23ct2').innerText = choseQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+					document.getElementById('Q23dt2').innerText = choseQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 					choseQuarter.setDate(choseQuarter.getDate()+1);
 
 					if (document.getElementById('Q4Y').checked && data.option.value == '1'){
@@ -4000,15 +4000,15 @@ can claim the amount on this line. For filing information, see the <a href="http
 				var startPrevFile = new Date(document.getElementById('startPrevFile').value.substring(0, 4), eval(document.getElementById('startPrevFile').value.substring(5, 7) + '- 1'), document.getElementById('startPrevFile').value.substring(8, 10));
 				var endPrevFile = new Date(document.getElementById('endPrevFile').value.substring(0, 4), eval(document.getElementById('endPrevFile').value.substring(5, 7) + '- 1'), document.getElementById('endPrevFile').value.substring(8, 10));
 
-				document.getElementById('Q15FiscalYearStart').value = fiscalYearStart.toLocaleDateString();
-				document.getElementById('Q15FiscalYearEnd').value = fiscalYearEnd.toLocaleDateString();
-				document.getElementById('Q15CurrentReportStart').value = startCurrentFile.toLocaleDateString();
-				document.getElementById('Q15CurrentReportEnd').value = endCurrentFile.toLocaleDateString();
+				document.getElementById('Q15FiscalYearStart').value = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+				document.getElementById('Q15FiscalYearEnd').value = fiscalYearEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+				document.getElementById('Q15CurrentReportStart').value = startCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+				document.getElementById('Q15CurrentReportEnd').value = endCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 				document.getElementById('Q15Establishment').value = data.province.value;
 
-				document.getElementById('Q15Current').innerText = startCurrentFile.toLocaleDateString()+' to '+endCurrentFile.toLocaleDateString();
-				document.getElementById('Q15Previous').innerText = startPrevFile.toLocaleDateString()+' to '+endPrevFile.toLocaleDateString();
+				document.getElementById('Q15Current').innerText = startCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })+' to '+endCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+				document.getElementById('Q15Previous').innerText = startPrevFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })+' to '+endPrevFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 				if (document.getElementById('option').value == 1){
 					document.getElementById('I_Q15').classList.remove('hidden');
@@ -4056,12 +4056,12 @@ can claim the amount on this line. For filing information, see the <a href="http
 
 				startCurrentFile.setFullYear(startCurrentFile.getFullYear()-1);
 				startCurrentFile.setDate(startCurrentFile.getDate()-1);
-				document.getElementById('Q9t1').innerText = startCurrentFile.toLocaleDateString();
+				document.getElementById('Q9t1').innerText = startCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 				startCurrentFile.setDate(startCurrentFile.getDate()+1);
 				startCurrentFile.setFullYear(startCurrentFile.getFullYear()+1);
 
 				currentQuarter.setMonth(currentQuarter.getMonth()-15);
-				document.getElementById('Q12at1').innerText = currentQuarter.toLocaleDateString();
+				document.getElementById('Q12at1').innerText = currentQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 				if (currentQuarter.getFullYear() < 2017){
 					document.getElementById('I_Q12a_5').classList.remove('hidden');
@@ -4074,12 +4074,12 @@ can claim the amount on this line. For filing information, see the <a href="http
 
 				currentQuarter.setMonth(currentQuarter.getMonth()-3);
 				currentQuarter.setDate(currentQuarter.getDate()-1);
-				document.getElementById('Q12at2').innerText = currentQuarter.toLocaleDateString();
+				document.getElementById('Q12at2').innerText = currentQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 				currentQuarter.setDate(currentQuarter.getDate()+1);
 				currentQuarter.setMonth(currentQuarter.getMonth()+3);
 
 				currentQuarter.setFullYear(currentQuarter.getFullYear()-1);
-				document.getElementById('Q12bt1').innerText = currentQuarter.toLocaleDateString();
+				document.getElementById('Q12bt1').innerText = currentQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 				if (currentQuarter.getFullYear() < 2017){
 					document.getElementById('I_Q12b_5').classList.remove('hidden');
 					}
@@ -4089,19 +4089,19 @@ can claim the amount on this line. For filing information, see the <a href="http
 				currentQuarter.setFullYear(currentQuarter.getFullYear()+1);
 				
 				currentQuarter.setDate(currentQuarter.getDate()-1);
-				document.getElementById('Q12bt2').innerText = currentQuarter.toLocaleDateString();
+				document.getElementById('Q12bt2').innerText = currentQuarter.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 				currentQuarter.setDate(currentQuarter.getDate()+1);
 
 				startCurrentFile.setFullYear(startCurrentFile.getFullYear()-1);
 				startCurrentFile.setDate(startCurrentFile.getDate()-1);
-				document.getElementById('Q14t1').innerText = startCurrentFile.toLocaleDateString();
+				document.getElementById('Q14t1').innerText = startCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 				startCurrentFile.setDate(startCurrentFile.getDate()+1);
 				startCurrentFile.setFullYear(startCurrentFile.getFullYear()+1);
 
 				var fiscalYearStart = new Date(document.getElementById('fiscalYearStart').value.substring(0, 4), eval(document.getElementById('fiscalYearStart').value.substring(5, 7) + '- 1'), document.getElementById('fiscalYearStart').value.substring(8, 10));
 
 				fiscalYearStart.setFullYear(fiscalYearStart.getFullYear()-1);
-				document.getElementById('Q12ct1').innerText = fiscalYearStart.toLocaleDateString();
+				document.getElementById('Q12ct1').innerText = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 				if (fiscalYearStart.getFullYear() < 2017){
 					document.getElementById('I_Q12c_5').classList.remove('hidden');
 					}
@@ -4113,7 +4113,7 @@ can claim the amount on this line. For filing information, see the <a href="http
 				var fiscalYearEnd = new Date(document.getElementById('fiscalYearEnd').value.substring(0, 4), eval(document.getElementById('fiscalYearEnd').value.substring(5, 7) + '- 1'), document.getElementById('fiscalYearEnd').value.substring(8, 10));
 							
 				fiscalYearEnd.setFullYear(fiscalYearEnd.getFullYear()-1);
-				document.getElementById('Q12ct2').innerText = fiscalYearEnd.toLocaleDateString();
+				document.getElementById('Q12ct2').innerText = fiscalYearEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 				fiscalYearEnd.setFullYear(fiscalYearEnd.getFullYear()+1);
 				}
 			
@@ -4196,15 +4196,15 @@ can claim the amount on this line. For filing information, see the <a href="http
 			var startPrevFile = new Date(document.getElementById('startPrevFile').value.substring(0, 4), eval(document.getElementById('startPrevFile').value.substring(5, 7) + '- 1'), document.getElementById('startPrevFile').value.substring(8, 10));
 			var endPrevFile = new Date(document.getElementById('endPrevFile').value.substring(0, 4), eval(document.getElementById('endPrevFile').value.substring(5, 7) + '- 1'), document.getElementById('endPrevFile').value.substring(8, 10));
 
-			document.getElementById('Q15FiscalYearStart').value = fiscalYearStart.toLocaleDateString();
-			document.getElementById('Q15FiscalYearEnd').value = fiscalYearEnd.toLocaleDateString();
-			document.getElementById('Q15CurrentReportStart').value = startCurrentFile.toLocaleDateString();
-			document.getElementById('Q15CurrentReportEnd').value = endCurrentFile.toLocaleDateString();
+			document.getElementById('Q15FiscalYearStart').value = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+			document.getElementById('Q15FiscalYearEnd').value = fiscalYearEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+			document.getElementById('Q15CurrentReportStart').value = startCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+			document.getElementById('Q15CurrentReportEnd').value = endCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 			document.getElementById('Q15Establishment').value = data.province.value
 
-			document.getElementById('Q15Current').innerText = startCurrentFile.toLocaleDateString()+' to '+endCurrentFile.toLocaleDateString();
-			document.getElementById('Q15Previous').innerText = startPrevFile.toLocaleDateString()+' to '+endPrevFile.toLocaleDateString();
+			document.getElementById('Q15Current').innerText = startCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })+' to '+endCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+			document.getElementById('Q15Previous').innerText = startPrevFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })+' to '+endPrevFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 			if (document.getElementById('option').value == 1){
 				document.getElementById('I_Q15').classList.remove('hidden');
@@ -4680,7 +4680,7 @@ can claim the amount on this line. For filing information, see the <a href="http
 
 			if (document.getElementById('Q4Y').checked){
 				var registration = new Date(document.getElementById('registration').value.substring(0, 4), eval(document.getElementById('registration').value.substring(5, 7) + '- 1'), document.getElementById('registration').value.substring(8, 10));
-				document.getElementById('sumRegistration').value = registration.toLocaleDateString();
+				document.getElementById('sumRegistration').value = registration.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 				document.getElementById('sumRegistration').style.textAlign = 'right';
 				document.getElementById('sumRegistrationDiv').classList.remove('hidden');
 				}
@@ -4693,13 +4693,13 @@ can claim the amount on this line. For filing information, see the <a href="http
 			var startCurrentFile = new Date(document.getElementById('startCurrentFile').value.substring(0, 4), eval(document.getElementById('startCurrentFile').value.substring(5, 7) + '- 1'), document.getElementById('startCurrentFile').value.substring(8, 10));
 			var endCurrentFile = new Date(document.getElementById('endCurrentFile').value.substring(0, 4), eval(document.getElementById('endCurrentFile').value.substring(5, 7) + '- 1'), document.getElementById('endCurrentFile').value.substring(8, 10));
 
-			document.getElementById('sumYearStart').value = fiscalYearStart.toLocaleDateString();
+			document.getElementById('sumYearStart').value = fiscalYearStart.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 			document.getElementById('sumYearStart').style.textAlign = 'right';
-			document.getElementById('sumYearEnd').value = fiscalYearEnd.toLocaleDateString();
+			document.getElementById('sumYearEnd').value = fiscalYearEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 			document.getElementById('sumYearEnd').style.textAlign = 'right';
-			document.getElementById('sumReportStart').value = startCurrentFile.toLocaleDateString();
+			document.getElementById('sumReportStart').value = startCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 			document.getElementById('sumReportStart').style.textAlign = 'right';
-			document.getElementById('sumReportEnd').value = endCurrentFile.toLocaleDateString();
+			document.getElementById('sumReportEnd').value = endCurrentFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 			document.getElementById('sumReportEnd').style.textAlign = 'right';
 
 			document.getElementById('sumLocation').value = data.province.value;
@@ -4788,7 +4788,7 @@ can claim the amount on this line. For filing information, see the <a href="http
 			document.getElementById('sumQ15t').innerText = document.getElementById('sumQ15t').innerText.slice(0,-11);
 			var startChosenFile = new Date(document.getElementById('startChosenFile').value.substring(0, 4), eval(document.getElementById('startChosenFile').value.substring(5, 7) + '- 1'), document.getElementById('startChosenFile').value.substring(8, 10));
 			var endChosenFile = new Date(document.getElementById('endChosenFile').value.substring(0, 4), eval(document.getElementById('endChosenFile').value.substring(5, 7) + '- 1'), document.getElementById('endChosenFile').value.substring(8, 10));
-			document.getElementById('sumQ15').value = startChosenFile.toLocaleDateString()+' to '+endChosenFile.toLocaleDateString();
+			document.getElementById('sumQ15').value = startChosenFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })+' to '+endChosenFile.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 			document.getElementById('sumQ15').style.textAlign = 'right';
 			document.getElementById('sumQ15').style.width = '293px';
 
