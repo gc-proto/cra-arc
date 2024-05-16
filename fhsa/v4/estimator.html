@@ -701,34 +701,10 @@
       }
     </style>
     <style>
-        .wb-input-range datalist {
-            display: flex;
-            justify-content: space-between;
+        .wb-chart-container { 
+            min-height: 35vh;
         }
 
-        .wb-input-range output.wb-input-range-display, div.wb-input-range-display {
-            font-size: 20px;
-            min-width: 2em;
-            text-align: center;
-            position: absolute;
-            left: 50%;
-            padding-left: 6px;
-            padding-right: 6px;
-            transform: translate(-50%, -2.7em);
-            border-radius: 6px;
-            background: #e3e3e3;
-        }
-
-        output.wb-input-range-display {
-            padding-top: 0px;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            transform: scale(1.5);
-        }
-        input[type=range]::-moz-range-thumb {
-            transform: scale(1.5);
-            height: 50px;
-        }
         input[type="range"]:hover, input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]::-moz-range-thumb {
 	        cursor: grab;
         }
@@ -740,7 +716,8 @@
         input[type="range"]:disabled, input[type="range"]:disabled::-webkit-slider-thumb, input[type="range"]:disabled::-moz-range-thumb {
 	        cursor: not-allowed;
         }
-        .wb-input-range input[type=number] {
+
+        .wb-input-range input[type="number"] {
             border: 0;
             -webkit-box-shadow: unset;
             box-shadow: unset;
@@ -748,18 +725,48 @@
             width: 95px;
             font-size: 20px;
         }
+
         .wb-input-range .input-group-addon {
             background-color: unset;
             border: 0;
             border-radius: 0;
             width: auto;
         }
+
+        .wb-input-range datalist {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .wb-input-range output.wb-input-range-display, .wb-input-range div.wb-input-range-display {
+            font-size: 20px;
+            min-width: 2em;
+            text-align: center;
+            position: absolute;
+            padding-left: 6px;
+            padding-right: 6px;
+            border-radius: 6px;
+            background: #e3e3e3;
+            left: 50%;
+            transform: translate(-50%, -2.7em);
+        }
+
+        output.wb-input-range-display {
+            padding-top: 0px;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            transform: scale(1.5);
+            height: 50px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            transform: scale(1.5);
+        }
+
         .wb-input-range.panel-default {
             border-color:#e1dada;
         }
-        .wb-chart-container { 
-            min-height: 35vh;
-        }
+
     </style>
 
 
@@ -803,7 +810,7 @@
     <div class="mwsgeneric-base-html parbase section">
 
     <div class="container">
-        <h1 property="name" id="wb-cont" class="gc-thickline">Tax-Free First Home Savings Account Estimators</h1>
+        <h1 id="wb-cont" property="name" class="gc-thickline">Tax-Free First Home Savings Account Estimators</h1>
         <p>You can use these estimators to help you understand how a tax-free first home savings account (FHSA) can help you save for your first home. The first tool estimates how much you can save for your down payment, and the second tool shows your potential tax savings.</p>
         <p><a href="index.html">Learn about the FHSA</a> before using these tools.</p>
         <p>These tools provide <strong>estimates</strong> based on the information you entered. They are intended for illustrative and general information purposes. They may not fully capture your particular tax situation, which may affect the accuracy of the results. The results generated are examples only.</p>
@@ -834,11 +841,11 @@
                                 <div class="clearfix"></div>
                                 <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
                                     <li class="radio">
-                                        <input type="radio" name="hasPriorPaymentFHSA" id="priorpayment-fhsa-true" value="true" data-priorpayment-fhsa="true" data-rule-required="true">
+                                        <input id="priorpayment-fhsa-true" name="hasPriorPaymentFHSA" type="radio" value="true" data-priorpayment-fhsa="true" data-rule-required="true">
                                         <label for="priorpayment-fhsa-true">Yes &mdash; include prior year information</label>
                                     </li>
                                     <li class="radio">
-                                        <input type="radio" name="hasPriorPaymentFHSA" id="priorpayment-fhsa-false" value="false" data-priorpayment-fhsa="false" data-rule-required="true">
+                                        <input id="priorpayment-fhsa-false" name="hasPriorPaymentFHSA" type="radio" value="false" data-priorpayment-fhsa="false" data-rule-required="true">
                                         <label for="priorpayment-fhsa-false">No &mdash; continue to planned participation</label>
                                     </li>
                                 </ul>
@@ -850,14 +857,14 @@
                                     <label for="priorPaymentYearsFHSA" class="required"><span class="field-name">Number of years your FHSA has been open</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span> max) <strong class="required">(required)</strong></label>
                                     <p data-single-year-range="true">If you opened your FHSA in 2023, enter "1" as the number of years</p>
                                     <div class="input-group col-xs-2 col-sm-1">
-                                        <input type="text" name="priorPaymentYearsFHSA" min="1" max="14" id="priorPaymentYearsFHSA" data-rule-minlength="1" data-rule-maxlength="2" class="form-control text-right" data-rule-rangelength="[1,14]" maxlength="2" inputmode="numeric" data-rule-digits="true">
+                                        <input id="priorPaymentYearsFHSA" name="priorPaymentYearsFHSA" type="text" class="form-control text-right" min="1" max="14" data-rule-minlength="1" data-rule-maxlength="2" data-rule-rangelength="[1,14]" maxlength="2" inputmode="numeric" data-rule-digits="true">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="priorPaymentBalance" class="required"><span class="field-name">Your<span data-first-year="true" class="hidden"> current</span> FHSA balance<span data-first-year="false"> as of December 31, <span data-prior-year="true">2023</span></span></span> <span class="wb-inv">(dollars only, no cents) </span><strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-10">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorPaymentBalance" size="7" maxlength="7" id="priorPaymentBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                        <input id="priorPaymentBalance" name="priorPaymentBalance" type="text" size="7" maxlength="7" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -866,7 +873,7 @@
                                     <p>Include all amounts you have contributed and transferred</p>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-10">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorPaymentAmountFHSA" size="7" maxlength="5" id="priorPaymentAmountFHSA" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" min="1" max="40000" data-rule-digits="true">
+                                        <input id="priorPaymentAmountFHSA" name="priorPaymentAmountFHSA" type="text" size="7" maxlength="5" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" min="1" max="40000" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -887,7 +894,7 @@
                                 <div class="row panel-body">
                                     <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
                                         <div class="input-group pull-right mrgn-tp-sm">
-                                            <input class="input-lg text-right" id="paymentYears" value="1" min="1" max="15" type="number" step="1">
+                                            <input id="paymentYears" name="paymentYears" type="number" class="input-lg text-right" value="1" min="1" max="15" step="1">
                                             <span class="input-group-addon p-0"> year(s)</span>
                                         </div>
                                     </div>
@@ -895,7 +902,7 @@
                                     <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                                     <div class="col-sm-9 col-md-10 brdr-lft">
                                         <div class="slider-group">
-                                            <input id="paymentYearsSld" class="form-range mrgn-tp-md" type="range" min="1" max="15" value="1" step="1" list="paymentYearsSldList" aria-controls="paymentYearsSld" aria-label="paymentYearsLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;paymentYears&quot;]}">
+                                            <input id="paymentYearsSld" name="paymentYears" type="range" class="form-range mrgn-tp-md" min="1" max="15" value="1" step="1" list="paymentYearsSldList" aria-controls="paymentYearsSld" aria-label="paymentYearsLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;paymentYears&quot;]}">
                                             <datalist id="paymentYearsSldList" class="d-flex">
                                                 <!--[if lte IE 9]><select><![endif]-->
                                                 <option value="1" label="1"></option>
@@ -919,7 +926,7 @@
                                     <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
                                         <div class="input-group pull-right mrgn-tp-sm">
                                             <span class="input-group-addon p-0">$</span>
-                                            <input class="input-lg text-right" id="paymentAmount" value="0" min="0" max="8000" type="number" step="250">
+                                            <input id="paymentAmount" name="paymentAmount" type="number" class="input-lg text-right" value="0" min="0" max="8000" step="250">
                                             <span class="input-group-addon p-0">.00</span>
                                         </div>
                                     </div>
@@ -927,7 +934,7 @@
                                     <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                                     <div class="col-sm-9 col-md-10 brdr-lft">
                                         <div class="slider-group">
-                                            <input id="paymentAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="paymentAmountSldList" aria-controls="paymentAmountSld" aria-label="paymentAmountLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;paymentAmount&quot;]}">
+                                            <input id="paymentAmountSld" name="paymentAmount" type="range" class="form-range mrgn-tp-md" min="0" max="8000" value="0" step="250" list="paymentAmountSldList" aria-controls="paymentAmountSld" aria-label="paymentAmountLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;paymentAmount&quot;]}">
                                             <datalist id="paymentAmountSldList" class="d-flex">
                                                 <!--[if lte IE 9]><select><![endif]-->
                                                 <option value="0" label="$0"></option>
@@ -955,7 +962,7 @@
                                 <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments?<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a></p>
                             </div>
                             <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
-                                <input type="text" name="paymentInterest" id="paymentInterest" class="form-control input-lg text-right" inputmode="decimal" pattern="^(\d{1,2}(\.\d{1,2})?|\.\d{1,2})$" min="0.01" max="99.99" required="required" maxlength="5">
+                                <input id="paymentInterest" name="paymentInterest" type="text" class="form-control input-lg text-right" inputmode="decimal" pattern="^(\d{1,2}(\.\d{1,2})?|\.\d{1,2})$" min="0.01" max="99.99" required="required" maxlength="5">
                                 <span class="input-group-addon">%</span>
                             </div>
                         </div>
@@ -1021,11 +1028,11 @@
                                 <div class="clearfix"></div>
                                 <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
                                     <li class="radio">
-                                        <input type="radio" name="hasPriorSavingFHSA" id="priorsaving-fhsa-true" value="true" data-priorsaving-fhsa="true" data-rule-required="true">
+                                        <input id="priorsaving-fhsa-true" name="hasPriorSavingFHSA" type="radio" value="true" data-priorsaving-fhsa="true" data-rule-required="true">
                                         <label for="priorsaving-fhsa-true">Yes &mdash; include prior year information</label>
                                     </li>
                                     <li class="radio">
-                                        <input type="radio" name="hasPriorSavingFHSA" id="priorsaving-fhsa-false" value="false" data-priorsaving-fhsa="false" data-rule-required="true">
+                                        <input id="priorsaving-fhsa-false" name="hasPriorSavingFHSA" type="radio" value="false" data-priorsaving-fhsa="false" data-rule-required="true">
                                         <label for="priorsaving-fhsa-false">No &mdash; continue to planned participation</label>
                                     </li>
                                 </ul>
@@ -1037,14 +1044,14 @@
                                     <label for="priorSavingYearsFHSA" class="required"><span class="field-name">Number of years your FHSA has been open</span> (<span data-prior-year-range="true">1 to </span><span data-max-prior-years="true">14</span> year<span data-prior-year-range="true">s</span> max) <strong class="required">(required)</strong></label>
                                     <p data-single-year-range="true">If you opened your FHSA in 2023, enter "1" as the number of years</p>
                                     <div class="input-group col-xs-2 col-sm-1">
-                                        <input type="text" name="priorSavingYearsFHSA" min="1" max="14" id="priorSavingYearsFHSA" class="form-control text-right" data-rule-minlength="1" data-rule-maxlength="2" data-rule-rangelength="[1,14]" maxlength="2" inputmode="numeric" data-rule-digits="true">
+                                        <input id="priorSavingYearsFHSA" name="priorSavingYearsFHSA" type="text" class="form-control text-right" min="1" max="14" data-rule-minlength="1" data-rule-maxlength="2" data-rule-rangelength="[1,14]" maxlength="2" inputmode="numeric" data-rule-digits="true">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="priorSavingBalance" class="required"><span class="field-name">Your<span data-first-year="true" class="hidden"> current</span> FHSA balance<span data-first-year="false"> as of December 31, <span data-prior-year="true">2023</span></span></span><span class="wb-inv"> (dollars only, no cents)</span> <strong class="required">(required)</strong></label>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-10">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorSavingBalance" size="7" maxlength="7" id="priorSavingBalance" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                        <input id="priorSavingBalance" name="priorSavingBalance" type="text" class="form-control input-lg text-right" size="7" maxlength="7" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -1053,7 +1060,7 @@
                                     <p>Include all amounts you have contributed and transferred</p>
                                     <div class="input-group col-lg-3 col-sm-4 col-xs-10">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="priorSavingAmountFHSA" size="7" maxlength="5" id="priorSavingAmountFHSA" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" min="1" max="40000" data-rule-digits="true">
+                                        <input id="priorSavingAmountFHSA" name="priorSavingAmountFHSA" type="text" class="form-control input-lg text-right" size="7" maxlength="5" inputmode="numeric" pattern="[0-9]*" min="1" max="40000" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -1064,11 +1071,11 @@
                                     <div class="clearfix"></div>
                                     <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
                                         <li class="radio">
-                                            <input type="radio" name="hasPriorTaxSaving" id="priortaxsaving-true" value="true" data-priortaxsaving="true" data-rule-required="true">
+                                            <input id="priortaxsaving-true" name="hasPriorTaxSaving" type="radio" value="true" data-priortaxsaving="true" data-rule-required="true">
                                             <label for="priortaxsaving-true">Yes &mdash; estimate <span data-prior-year="true">2023</span> tax savings</label>
                                         </li>
                                         <li class="radio">
-                                            <input type="radio" name="hasPriorTaxSaving" id="priortaxsaving-false" value="false" data-priortaxsaving="false" data-rule-required="true">
+                                            <input id="priortaxsaving-false" name="hasPriorTaxSaving" type="radio" value="false" data-priortaxsaving="false" data-rule-required="true">
                                             <label for="priortaxsaving-false">No &mdash; continue to planned participation</label>
                                         </li>
                                     </ul>
@@ -1081,7 +1088,7 @@
                                         <p id="priorYearSavingAmount-description">The total amount must be less than or equal to the total FHSA participation you entered</p>
                                         <div class="input-group col-lg-3 col-sm-4 col-xs-10">
                                             <span class="input-group-addon">$</span>
-                                            <input type="text" name="priorYearSavingAmount" id="priorYearSavingAmount" aria-describedby="priorYearSavingAmount-description" size="7" maxlength="5" min="1" max="40000" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                            <input id="priorYearSavingAmount" name="priorYearSavingAmount" type="text" class="form-control input-lg text-right" aria-describedby="priorYearSavingAmount-description" size="7" maxlength="5" min="1" max="40000" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                             <span class="input-group-addon">.00</span>
                                         </div>
                                     </div>
@@ -1090,7 +1097,7 @@
                                         <p id="priorYearSavingTransfer-description">The transfer amount must be less than or equal to the total amount you entered</p>
                                         <div class="input-group col-lg-3 col-sm-4 col-xs-10">
                                             <span class="input-group-addon">$</span>
-                                            <input type="text" name="priorYearSavingTransfer" id="priorYearSavingTransfer" aria-describedby="priorYearSavingTransfer-description" size="7" maxlength="5" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true" min="0" max="40000">
+                                            <input id="priorYearSavingTransfer" name="priorYearSavingTransfer" type="text" class="form-control input-lg text-right" aria-describedby="priorYearSavingTransfer-description" size="7" maxlength="5" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true" min="0" max="40000">
                                             <span class="input-group-addon">.00</span>
                                         </div>
                                     </div>
@@ -1099,7 +1106,7 @@
                                         <p id="priorYearSavingInvest-description">For negative amounts enter 0 or leave blank</p>
                                         <div class="input-group col-lg-3 col-sm-4 col-xs-10">
                                             <span class="input-group-addon">$</span>
-                                            <input type="text" name="priorYearSavingInvest" id="priorYearSavingInvest" aria-describedby="priorYearSavingInvest-description" size="7" maxlength="7" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                            <input id="priorYearSavingInvest" name="priorYearSavingInvest" type="text" class="form-control input-lg text-right" aria-describedby="priorYearSavingInvest-description" size="7" maxlength="7" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                             <span class="input-group-addon">.00</span>
                                         </div>
                                     </div>
@@ -1125,7 +1132,7 @@
                                             <p id="priorYearSavingIncome-description">Normally entered on line 15000 of your income tax and benefit return</p>
                                             <div class="input-group col-lg-3 col-md-4 col-sm-5 col-xs-9">
                                                 <span class="input-group-addon">$</span>
-                                                <input type="text" name="priorYearSavingIncome" id="priorYearSavingIncome" aria-describedby="priorYearSavingIncome-description" size="9" maxlength="12" min="0" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                                <input id="priorYearSavingIncome" name="priorYearSavingIncome" type="text" class="form-control input-lg text-right" aria-describedby="priorYearSavingIncome-description" size="9" maxlength="12" min="0" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                                 <span class="input-group-addon">.00</span>
                                             </div>
                                         </div>
@@ -1134,7 +1141,7 @@
                                             <p id="priorYearSavingDeduction-description">Include an estimate of your <a href="#priorYearSavingDeduction-help" class="wb-lbx" role="button">eligible deductions<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a> but do not include your FHSA contributions</p>
                                             <div class="input-group col-lg-3 col-md-4 col-sm-5 col-xs-9">
                                                 <span class="input-group-addon">$</span>
-                                                <input type="text" name="priorYearSavingDeduction" id="priorYearSavingDeduction" size="9" maxlength="12" min="0" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                                <input id="priorYearSavingDeduction" name="priorYearSavingDeduction" type="text" class="form-control input-lg text-right" size="9" maxlength="12" min="0" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                                 <span class="input-group-addon">.00</span>
                                             </div>
                                         </div>
@@ -1158,7 +1165,7 @@
                                 <div class="mrgn-lft-md mrgn-tp-lg">
                                     <label for="province" class="required"><span class="field-name">Province or Territory of residence</span> <strong class="required">(required)</strong></label>
                                 </div>
-                                <select name="province" id="province" class="form-control input-lg mrgn-lft-md" required="required" data-fed="FED">
+                                <select id="province" name="province" class="form-control input-lg mrgn-lft-md" required="required" data-fed="FED">
                                     <option value="">Select residence location</option>
                                     <option value="AB">Alberta</option>
                                     <option value="BC">British Columbia</option>
@@ -1182,7 +1189,7 @@
                                 </div>
                                 <div class="input-group mrgn-lft-md col-lg-3 col-sm-4 col-xs-8">
                                     <span class="input-group-addon">$</span>
-                                    <input type="text" name="approxYearlyIncome" size="9" maxlength="12" id="approxYearlyIncome" class="form-control input-lg text-right" required="required" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                    <input id="approxYearlyIncome" name="approxYearlyIncome" class="form-control input-lg text-right" type="text" size="9" maxlength="12" required="required" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                     <span class="input-group-addon">.00</span>
                                 </div>
                             </div>
@@ -1193,7 +1200,7 @@
                                     <p id="approxYearlyDeductions-description">Include an estimate of your <a href="#priorYearSavingDeduction-help" class="wb-lbx" role="button">eligible deductions<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a> but do not include your FHSA contributions</p>
                                     <div class="input-group col-lg-3 col-md-4 col-sm-5 col-xs-8">
                                         <span class="input-group-addon">$</span>
-                                        <input type="text" name="approxYearlyDeductions" id="approxYearlyDeductions" size="9" maxlength="12" min="0" class="form-control input-lg text-right" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
+                                        <input id="approxYearlyDeductions" name="approxYearlyDeductions" type="text" class="form-control input-lg text-right" size="9" maxlength="12" min="0" inputmode="numeric" pattern="[0-9]*" data-rule-digits="true">
                                         <span class="input-group-addon">.00</span>
                                     </div>
                                 </div>
@@ -1204,7 +1211,7 @@
                                     <div class="row panel-body">
                                         <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
                                             <div class="input-group pull-right mrgn-tp-sm">
-                                                <input class="input-lg text-right" id="savingYears" value="1" min="1" max="15" type="number" step="1">
+                                                <input id="savingYears" name="savingYears" type="number" class="input-lg text-right" value="1" min="1" max="15" step="1">
                                                 <span class="input-group-addon p-0"> year(s)</span>
                                             </div>
                                         </div>
@@ -1212,7 +1219,7 @@
                                        <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                                        <div class="col-sm-9 col-md-10 brdr-lft">
                                            <div class="slider-group">
-                                               <input id="savingYearsSld" class="form-range mrgn-tp-md" type="range" min="1" max="15" value="1" step="1" list="savingYearsSldList" aria-controls="savingYearsSld" aria-label="savingYearsLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;savingYears&quot;]}">
+                                               <input id="savingYearsSld" name="savingYears" type="range" class="form-range mrgn-tp-md" min="1" max="15" value="1" step="1" list="savingYearsSldList" aria-controls="savingYearsSld" aria-label="savingYearsLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;savingYears&quot;]}">
                                                <datalist id="savingYearsSldList" class="d-flex">
                                                    <!--[if lte IE 9]><select><![endif]-->
                                                    <option value="1" label="1"></option>
@@ -1235,8 +1242,9 @@
                                     <div class="wb-input-range panel panel-default well">
                                         <div class="row">
                                             <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
-                                                <div class="input-group pull-right mrgn-tp-sm"> <span class="input-group-addon p-0">$</span>
-                                                    <input class="input-lg text-right" id="savingsAmount" value="0" min="0" max="8000" type="number" step="250" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavings&quot;}">
+                                                <div class="input-group pull-right mrgn-tp-sm"> 
+												    <span class="input-group-addon p-0">$</span>
+                                                    <input id="savingsAmount" name="savingsAmount" type="number" class="input-lg text-right" value="0" min="0" max="8000" step="250" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavings&quot;}">
                                                     <span class="input-group-addon p-0">.00</span>
                                                 </div>
                                             </div>
@@ -1244,7 +1252,7 @@
                                             <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                                             <div class="col-sm-9 col-md-10 brdr-lft">
                                                 <div class="slider-group">
-                                                    <input id="savingsAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="savingsAmountSldList" aria-controls="savingsAmountSld" aria-label="savingsAmountLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;savingsAmount&quot;]}">
+                                                    <input id="savingsAmountSld" name="savingsAmount" type="range" class="form-range mrgn-tp-md" min="0" max="8000" value="0" step="250" list="savingsAmountSldList" aria-controls="savingsAmountSld" aria-label="savingsAmountLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;savingsAmount&quot;]}">
                                                     <datalist id="savingsAmountSldList" class="d-flex">
                                                         <!--[if lte IE 9]><select><![endif]-->
                                                         <option value="0" label="$0"></option>
@@ -1271,8 +1279,9 @@
                                     <div class="wb-input-range panel panel-default well">
                                         <div class="row">
                                             <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0 col-md-2">
-                                                <div class="input-group pull-right mrgn-tp-sm"> <span class="input-group-addon p-0">$</span>
-                                                    <input class="input-lg text-right" id="savingsTransferAmount" value="0" min="0" max="8000" type="number" step="250" aria-describedby="savingsTransferAmountInfo" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavingsTransfer&quot;}">
+                                                <div class="input-group pull-right mrgn-tp-sm"> 
+												    <span class="input-group-addon p-0">$</span>
+                                                    <input id="savingsTransferAmount" name="savingsTransferAmount" type="number" class="input-lg text-right" value="0" min="0" max="8000" step="250" aria-describedby="savingsTransferAmountInfo" data-wb-input-range="{&quot;fn&quot;: &quot;changeSavingsTransfer&quot;}">
                                                     <span class="input-group-addon p-0">.00</span>
                                                 </div>
                                             </div>
@@ -1280,7 +1289,7 @@
                                                 <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
                                                 <div class="col-sm-9 col-md-10 brdr-lft">
                                                 <div class="slider-group">
-                                                    <input id="savingsTransferAmountSld" class="form-range mrgn-tp-md" type="range" min="0" max="8000" value="0" step="250" list="savingsTransferAmountSldList" aria-controls="savingsTransferAmountSld" aria-label="savingsTransferAmountLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;savingsTransferAmount&quot;]}">
+                                                    <input id="savingsTransferAmountSld" name="savingsTransferAmount" type="range" class="form-range mrgn-tp-md" min="0" max="8000" value="0" step="250" list="savingsTransferAmountSldList" aria-controls="savingsTransferAmountSld" aria-label="savingsTransferAmountLabel" tabindex="-1" data-wb-input-range="{&quot;target&quot;: [&quot;savingsTransferAmount&quot;]}">
                                                     <datalist id="savingsTransferAmountSldList" class="d-flex">
                                                         <!--[if lte IE 9]><select><![endif]-->
                                                         <option value="0" label="$0"></option>
@@ -1325,7 +1334,7 @@
                                     <p><a href="#return-rate-help" aria-controls="return-rate-help" class="wb-lbx" role="button">What is an annual rate of return from your investments?<span class="glyphicon glyphicon-question-sign mrgn-lft-sm"></span></a></p>
                                 </div>
                                 <div class="input-group mrgn-lft-md col-xs-5 col-sm-2">
-                                    <input type="text" name="savingInterest" id="savingInterest" class="form-control input-lg text-right" inputmode="decimal" pattern="^(\d{1,2}(\.\d{1,2})?|\.\d{1,2})$" min="0.01" max="99.99" maxlength="5">
+                                    <input id="savingInterest" name="savingInterest" type="text" class="form-control input-lg text-right" inputmode="decimal" pattern="^(\d{1,2}(\.\d{1,2})?|\.\d{1,2})$" min="0.01" max="99.99" maxlength="5">
                                     <span class="input-group-addon">%</span>
                                 </div>
                             </div>
@@ -1361,7 +1370,20 @@
                                 <p data-zero-val="false" class="hidden">You must participate in your FHSA to get tax savings from your FHSA.</p>
                                 <p data-zero-val="true">You have only entered amounts you plan to both contribute and transfer. You must also include either amounts you plan to contribute or an annual rate of return to get tax savings from your FHSA.</p>
                                 <p data-show-prior="true" class="hidden">These results do not display tax savings for information you entered for prior years.</p>
+                                <div id="potentialSavingTableContainer"></div>
                                 <div id="savingsTableContainer"></div>
+                                <template id="potentialSavingTableTemplate" data-year-name="Year" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
+                                    <table id="potentialSavingTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true" data-chart="line" data-chart-options="{&quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5, &quot;pointStyle&quot;: &quot;rectRot&quot;, &quot;backgroundColor&quot;: &quot;#000000&quot;}}, &quot;scales&quot;: {&quot;x&quot;: {&quot;stacked&quot;: true}, &quot;y&quot;: {&quot;stacked&quot;: false, &quot;title&quot;: {&quot;display&quot;: true, &quot;text&quot;: &quot;Potential combined tax savings (cumulative)&quot;}}}}">
+                                        <caption>Potential combined federal and <span data-area-name="provincial-territorial">Provincial and territorial</span> tax savings<span class="wb-inv"> (line chart)</span></caption>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-right">Year</th>
+                                                <th class="text-right" data-chart-set-options="{&quot;backgroundColor&quot;: &quot;rgba(88, 166, 220, 0.6)&quot;, &quot;borderColor&quot;: &quot;rgba(47, 125, 179, 1.0)&quot;, &quot;fill&quot;: false}">Minimum amount</th>
+                                                <th class="text-right" data-chart-set-options="{&quot;backgroundColor&quot;: &quot;rgba(88, 166, 220, 0.6)&quot;, &quot;borderColor&quot;: &quot;rgba(47, 125, 179, 1.0)&quot;, &quot;fill&quot;: &quot;-1&quot;}">Maximum amount</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </template>
                                 <template id="savingTableTemplate" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     <table id="savingsTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true">
                                         <caption>Your potential FHSA tax savings</caption>
@@ -1435,8 +1457,8 @@
                                         <h2 class="mrgn-tp-sm h5">Did you find what you were looking for?</h2>
                                     </div>
                                     <div class="col-xs-8 col-sm-5 text-right">
-                                        <button type="submit" name="helpful" value="Yes" class="btn btn-primary" data-gc-analytics-wtph>Yes</button>
-                                        <button type="button" class="btn btn-primary mrgn-lft-sm nojs-hide" data-wb-doaction="[{&quot;action&quot;:&quot;removeClass&quot;,&quot;source&quot;:&quot;.gc-pg-hlpfl-no&quot;,&quot;class&quot;:&quot;nojs-show&quot;}, {&quot;action&quot;:&quot;addClass&quot;,&quot;source&quot;:&quot;.gc-pg-hlpfl-btn&quot;,&quot;class&quot;:&quot;hide&quot;}]" data-gc-analytics-wtph-no>No</button>
+                                        <button type="submit" name="helpful" value="Yes" class="btn btn-primary" data-gc-analytics-wtph="">Yes</button>
+                                        <button type="button" class="btn btn-primary mrgn-lft-sm nojs-hide" data-wb-doaction="[{&quot;action&quot;:&quot;removeClass&quot;,&quot;source&quot;:&quot;.gc-pg-hlpfl-no&quot;,&quot;class&quot;:&quot;nojs-show&quot;}, {&quot;action&quot;:&quot;addClass&quot;,&quot;source&quot;:&quot;.gc-pg-hlpfl-btn&quot;,&quot;class&quot;:&quot;hide&quot;}]" data-gc-analytics-wtph-no="">No</button>
                                     </div>
                                 </div>
                             </div>
@@ -1472,7 +1494,7 @@
                                 <label for="problem6" class="mrgn-bttm-0">Please provide more details</label>
                                 <p class="small"><strong>You will not receive a reply. Telephone numbers and email addresses will be removed.</strong><br><span class="small">Maximum 300 characters</span></p>
                                 <textarea id="problem6" name="details" class="full-width" maxlength="300"></textarea>
-                                <button type="submit" name="helpful" value="No" class="btn btn-primary mrgn-tp-md mrgn-bttm-sm" data-gc-analytics-wtph-submit>Submit</button>
+                                <button type="submit" name="helpful" value="No" class="btn btn-primary mrgn-tp-md mrgn-bttm-sm" data-gc-analytics-wtph-submit="">Submit</button>
                             </div>
                             <input type="hidden" name="problem" value="">
                         </form>
@@ -1597,15 +1619,18 @@
     <script>
         "use strict";
 
+        // Constants for maximum contributions, start year and maximum number of years
         const maxContribution = 40000, 
             yearlyMaxContribution = 8000, 
             priorYearMax = 14, 
             fhsaStartYear = 2023;
 
-        let currentYear, priorContributeMax, holdingsTbl, savingsTbl, 
+        // Variables for current year, forms, and language settings
+        let currentYear, priorContributeMax, holdingsTbl, savingsTbl, potentSavingsTbl, 
             paymentformId = "#fhsa_downpay_form", 
             savingsformId = "#fhsa_taxsavings_form", 
             pagelang = document.documentElement.lang, 
+            // Class for parsing numbers based on locale
             NumberParser = class NumberParser {
                 constructor(locale) {
                     const parts = new Intl.NumberFormat(locale).formatToParts(12345.6);
@@ -1621,7 +1646,7 @@
                     return (string = string.trim().replace(this._group, "").replace(this._decimal, ".").replace(this._numeral, this._index)) ? +string : NaN;
                 }
             },
-//          Get field values from down payment form
+            // Functions to get field values from the down payment form
             hasPriorPaymentFHSA = function () {
                 return $(":input[type=radio][name=hasPriorPaymentFHSA]:checked", paymentformId).data("priorpayment-fhsa") || false;
             }, 
@@ -1654,7 +1679,7 @@
 
                 return parseFloat(payInterest, 10) / 100 || 0;
             }, 
-//          Get field values from potential tax savings form
+            // Functions to get field values from the potential tax savings form
             hasPriorSavingsFHSA = function () {
                 return $(":input[type=radio][name=hasPriorSavingFHSA]:checked", savingsformId).data("priorsaving-fhsa") || false;
             }, 
@@ -1807,6 +1832,7 @@
                 }
                 return srvTime();
             }, 
+            // Calculate the maximum prior contribution
             getPriorContributeMax = function (fhsaStartYear, currentYear, priorYearMax, yearlyMaxContribution, maxContribution) {
                 let adjustedYear = currentYear;
 
@@ -1819,6 +1845,7 @@
                     return maxContribution;
                 }
             }, 
+            // Determine the maximum contribution based on a comparison value
             getContributeMax = function (compareVal) {
                 if (parseInt(compareVal, 10) > priorContributeMax) {
                     return priorContributeMax;
@@ -1827,6 +1854,7 @@
                 }
                 return 1;
             }, 
+            // Initialize forms fields based on current and start years
             initForms = function (fhsaStartYear, currentYear, priorYearMax, priorContributeMax, paymentformId, savingsformId) {
                 let updatePriorYearMax = function (maxYearId, currentYear, fhsaStartYear, priorYearMax, formId) {
                         let adjustedPriorYears;
@@ -1844,6 +1872,7 @@
                         }
                     };
 
+                // Update inital page elements
                 if (currentYear > fhsaStartYear + 1) {
                     $("[data-single-year-range=true]").addClass("hidden");
                 } else {
@@ -1869,6 +1898,7 @@
                 $("#priorYearSavingAmount").attr("max", priorContributeMax);
                 $("#priorYearSavingTransfer").attr("max", priorContributeMax);
             }, 
+            // Generate and append a table to a specified element            
             generateTable = function(tableObj, tableContainerId, tableTemplateId, tableId) {
                 let tableHeader;
 
@@ -1879,9 +1909,11 @@
                     document.getElementById(tableId).appendChild(tableObj);
                 }
             }, 
+            // Generate the holdings table and update the payment results 
             updatePaymentResults = function (priorYearMax, maxContribution, paymentformId) {
                 let paymentTotals, 
                     priorPaymentInvestment = priorPaymentBalance() - priorPaymentAmount(), 
+                    // Generate data for the holdings table
                     generateHoldingsTableData = function (holdingYears, paymentAmount, investment, hasPriorPay, priorPaymentYrs, priorPayAmount, priorPayInvest, priorYearMax, maxContribution) {
                         let yearIncrement, holdingRow, 
                             amountCompound = 0, 
@@ -1889,11 +1921,13 @@
                             holdingBody = document.createElement("tbody"), 
                             loopYears = priorPaymentYrs + holdingYears, 
                             maxContributeYear = loopYears, 
+                            // Generate a row for the holdings table
                             createHoldingsTableRow = function (evalYear, isPriorYear, amountCompound, investmentCompound) {
                                 let holdingCell, 
                                 holdingRow = document.createElement("tr"), 
                                 holdingHeader = document.createElement("th");
 
+                                // Set the header content based on whether it's a prior year or not
                                 if (isPriorYear === true && evalYear > 1) {
                                     holdingHeader.textContent = "1" + $("#holdingTableTemplate").data("prior-payment-year-rows") + evalYear;
                                 } else {
@@ -1916,6 +1950,7 @@
                                 return holdingRow;
                             };
 
+                            // Handle prior payments if applicable
                             if (hasPriorPay === true) {
                                 amountCompound = priorPayAmount;
                                 investmentCompound = priorPayInvest;
@@ -1928,6 +1963,7 @@
                                     loopYears = priorYearMax + 1;
                                     maxContributeYear = loopYears;
                                 }
+                                // Loop through the years and update amounts and investments
                                 for (yearIncrement = priorPaymentYrs + 1; yearIncrement <= loopYears; yearIncrement = yearIncrement + 1) {
                                     if (amountCompound + paymentAmount < maxContribution) {
                                         amountCompound = amountCompound + paymentAmount;
@@ -1952,6 +1988,7 @@
                             }
                     };
 
+                // Generate the holdings table data and update the payment form with results
                 paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
                 generateTable(holdingsTbl, "holdingsResultsTableContainer", "holdingTableTemplate", "holdingsresultstable");
                 $("[data-output=holdings-total]", paymentformId).html(currencyFormatter.format(paymentTotals.addedAmount + paymentTotals.investment));
@@ -1977,12 +2014,14 @@
                 $("#holdingsresultstable").trigger("wb-init[data-chart]");
                 $("#holdingsResultsTableContainer").find("canvas").closest("div").addClass("wb-chart-container");
             }, 
+            // Generate the savings table and potential savings chart table and update the savings results 
             updateSavingResults = function (incomeRates, currentYear, fhsaStartYear, priorYearMax, maxContribution, savingsformId) {
                 let savingsTotals, summaryTotal, 
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
                     prov = province(), 
+                    // Generate data for the savings table and potential savings chart table
                     generateSavingsTableData = function (area, federalName, hasAbatement, income, deductions, savingYears, savingsAmount, savingsTransferAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, hasPriorYrSaving, priorYrSavingAmt, priorYrSavingTransfer, priorYrSavingInvest, hasPriorYearSavingDiffIncome, priorYearSavingIncome, priorYearSavingDeduction, priorYearMax, maxContribution, startYear, currentYear, incomeRates) {
-                    let juristictionArr, federalRates, abatement, provinceRates, yearIncrement, priorYear, priorIncome, saveAmountsObj, savingsRow, adjustedIncome, 
+                    let juristictionArr, federalRates, abatement, provinceRates, yearIncrement, priorYear, priorIncome, saveAmountsObj, tableRowObj, savingsRow, potentSaveRow, adjustedIncome, 
                         priorYearSavingData = {}, 
                         fedrates = [], 
                         arearates = [], 
@@ -1996,9 +2035,11 @@
                         areaMinCumulative = 0, 
                         areaMaxCumulative = 0, 
                         savingsBody = document.createElement("tbody"), 
+                        potentSavingsBody = document.createElement("tbody"), 
                         loopYears = priorSavingYears + savingYears, 
                         maxContributeYear = loopYears, 
                         hasInvestment = hasInvestGrowth === true || priorSavingsInvest > 0, 
+                        // Get provincial and territorial rates from JSON array
                         getRatesArr = function (area, ratesArr) {
                             let areaRateArr;
 
@@ -2012,6 +2053,7 @@
                             }
                             return {};
                         }, 
+                        // Return provincial and territorial rate based on year
                         areaRates = function (juristictionArr, rateYear, startYear) {
                             let yearRateArrLen, evalYear;
 
@@ -2026,6 +2068,7 @@
                             }
                             return {};
                         }, 
+                        // Get abatement value if there is one for the selected province or territory
                         getAbatement = function (juristictionArr, hasAbatement, area, rateYear, startYear) {
                             let yearRateArrLen, evalYear, abate;
 
@@ -2045,9 +2088,11 @@
                             }
                             return 1;
                         }, 
-                        createSavingsTableBody = function (savingsRow, currentYear, evalYear, amountCompound, investmentCompound, deductContribAmt, fedMinVal, fedMaxVal, areaMinVal, areaMaxVal, hasInvestment, isPriorYear, showPriorYr, isTotal) {
-                            let savingsCell, 
+                        // Generate a row for the savings table and potential savings chart table
+                        createSavingsTableBody = function (savingsRow, potentSaveRow, currentYear, evalYear, amountCompound, investmentCompound, deductContribAmt, fedMinVal, fedMaxVal, areaMinVal, areaMaxVal, minTaxCumulative, maxTaxCumulative, hasInvestment, isPriorYear, showPriorYr, isTotal) {
+                            let savingsCell, potentSaveHeader, potentSaveCell,  
                                 savingsHeader = document.createElement("th"), 
+                                // Evalute table cell value and populate with value or replacement value (N/A)
                                 cellContentEval = function (savingsCell, cellContent, naCondCheck) {
                                     let noInvestText;
 
@@ -2061,6 +2106,7 @@
                                     }
                                     return savingsCell;
                                 }, 
+                                //Evaluates a range and displays "up to B" or "A to B"
                                 getRateCalcRange = function (minVal, maxVal) {
                                     if (parseInt(maxVal, 10) === 0) {
                                         return currencyFormatter.format(maxVal);
@@ -2070,6 +2116,7 @@
                                     return currencyFormatter.format(minVal) + $("#savingTableTemplate").data("savings-range-text") + currencyFormatter.format(maxVal);
                                 };
 
+                            // Set the header content based on whether it's a prior year or not
                             if (showPriorYr === true) {
                                 savingsHeader.textContent = "[" + currentYear + "]" + String.fromCharCode(160) + evalYear;
                                 savingsHeader.classList.add("nowrap");
@@ -2078,6 +2125,7 @@
                             } else {
                                 savingsHeader.textContent = evalYear;
                             }
+                            // Populate row data for the savings table
                             savingsHeader.classList.add("text-right");
                             savingsRow.appendChild(savingsHeader);
                             savingsCell = document.createElement("td");
@@ -2090,14 +2138,37 @@
                             savingsRow.appendChild(cellContentEval(savingsCell, getRateCalcRange(areaMinVal, areaMaxVal), isPriorYear === true));
                             savingsCell = document.createElement("td");
                             savingsRow.appendChild(cellContentEval(savingsCell, getRateCalcRange(fedMinVal, fedMaxVal), isPriorYear === true));
-                            return savingsRow;
+                            // Populate row data for the potential savings chart table
+                            if (isTotal === false && isPriorYear === false) {
+                                potentSaveHeader = document.createElement("th"), 
+                                potentSaveHeader.classList.add("text-right");
+                                potentSaveHeader.textContent = evalYear;
+                                potentSaveHeader.setAttribute("data-chart-value", $("#potentialSavingTableTemplate").data("year-name") + " " + evalYear);
+                                potentSaveRow.appendChild(potentSaveHeader);
+                                potentSaveCell = document.createElement("td");
+                                potentSaveCell.setAttribute("data-chart-value", parseInt(minTaxCumulative, 10));
+                                potentSaveRow.appendChild(cellContentEval(potentSaveCell, currencyFormatter.format(parseInt(minTaxCumulative, 10)), isPriorYear === true));
+                                potentSaveCell = document.createElement("td");
+                                potentSaveCell.setAttribute("data-chart-value", parseInt(maxTaxCumulative, 10));
+                                potentSaveRow.appendChild(cellContentEval(potentSaveCell, currencyFormatter.format(parseInt(maxTaxCumulative, 10)), isPriorYear === true));
+                                return {
+                                    "savingsRow": savingsRow, 
+                                    "potentSaveRow": potentSaveRow
+                                };
+                            } else {
+                                return {
+                                    "savingsRow": savingsRow
+                                };
+                            }
                         }, 
+                        // Calculates numbers using provincial and territorial rates, surtax, and abatement amounts 
                         calcLocAmounts = function (income, investmentAmount, deductContribAmt, federalRates, fedrates, provinceRates, arearates, abatement) {
                             let fedSavingsAmt, areaSavingsAmt, 
                             getRefundAmount = function (income, investmentAmount, deductContribAmt, tax, abatement) {
                                 let rateLoop, taxRates, lastRate, surtax, 
                                     maxlimit = 0, 
                                     currentIncome = income, 
+                                    // Calculates numbers using surtax 
                                     getSurtaxAdjust = function (taxRates, taxArr, currentIncome) {
                                         let surtaxloop, 
                                             adjustedThreshold = taxRates.threshold, 
@@ -2118,7 +2189,7 @@
                                             "threshold": adjustedThreshold
                                         };
                                     };
-
+                                // Loop through surtaxes and adjust rates and thresholds accordingly
                                 if (Object.prototype.hasOwnProperty.call(tax, "rates") === true) {
                                     for (rateLoop = tax.rates.length - 1; rateLoop >= 0; rateLoop = rateLoop - 1) {
                                         taxRates = tax.rates[rateLoop];
@@ -2174,6 +2245,7 @@
                         };
 
                     savingsBody.classList.add("text-right");
+                    potentSavingsBody.classList.add("text-right");
                     adjustedIncome = Math.max(income - deductions, 0);
                     if (hasPriorSavings === true) {
                         savingsRow = document.createElement("tr");
@@ -2198,17 +2270,22 @@
                             if (priorSavingYears > 1) {
                                 amountCompound = Math.max(priorSavingAmount - priorYrSavingAmt, 0);
                                 investmentCompound = priorSavingsInvest - priorYrSavingInvest;
-                                savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, priorSavingYears - 1, amountCompound, investmentCompound, 0, 0, 0, 0, 0, hasInvestment, true, false, false));
+                                tableRowObj = createSavingsTableBody(savingsRow, potentSaveRow, currentYear, priorSavingYears - 1, amountCompound, investmentCompound, 0, 0, 0, 0, 0, 0, 0, hasInvestment, true, false, false);
+                                savingsBody.appendChild(tableRowObj.savingsRow);
                                 savingsRow = document.createElement("tr");
                             }
                             amountCompound = amountCompound + priorYrSavingAmt;
                             investmentCompound = investmentCompound + priorYrSavingInvest;
                             deductCumulative = deductContribAmt;
-                            savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear - 1, priorSavingYears, amountCompound, investmentCompound, deductContribAmt, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, hasInvestment, false, hasPriorYrSaving, false));
+                            potentSaveRow = document.createElement("tr");
+                            tableRowObj = createSavingsTableBody(savingsRow, potentSaveRow, currentYear - 1, priorSavingYears, amountCompound, investmentCompound, deductContribAmt, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, fedMinCumulative + areaMinCumulative, fedMaxCumulative + areaMaxCumulative, hasInvestment, false, hasPriorYrSaving, false);
+                            savingsBody.appendChild(tableRowObj.savingsRow);
+                            potentSavingsBody.appendChild(tableRowObj.potentSaveRow);
                         } else {
                             amountCompound = priorSavingAmount;
                             investmentCompound = priorSavingsInvest;
-                            savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, priorSavingYears, amountCompound, investmentCompound, 0, 0, 0, 0, 0, hasInvestment, true, false, false));
+                            tableRowObj = createSavingsTableBody(savingsRow, potentSaveRow, currentYear, priorSavingYears, amountCompound, investmentCompound, 0, 0, 0, 0, 0, 0, 0, hasInvestment, true, false, false);
+                            savingsBody.appendChild(tableRowObj.savingsRow);
                         }
                     }
                     if (amountCompound < maxContribution) {
@@ -2241,14 +2318,20 @@
                             areaMinCumulative = areaMinCumulative + saveAmountsObj.area.min;
                             areaMaxCumulative = areaMaxCumulative + saveAmountsObj.area.max;
                             savingsRow = document.createElement("tr");
-                            savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, yearIncrement, amountCompound, investmentAmount, deductContribAmt, saveAmountsObj.fed.min, saveAmountsObj.fed.max, saveAmountsObj.area.min, saveAmountsObj.area.max, hasInvestment, false, false, false));
+                            potentSaveRow = document.createElement("tr");
+                            tableRowObj = createSavingsTableBody(savingsRow, potentSaveRow, currentYear, yearIncrement, amountCompound, investmentAmount, deductContribAmt, saveAmountsObj.fed.min, saveAmountsObj.fed.max, saveAmountsObj.area.min, saveAmountsObj.area.max, fedMinCumulative + areaMinCumulative, fedMaxCumulative + areaMaxCumulative, hasInvestment, false, false, false);
+                            savingsBody.appendChild(tableRowObj.savingsRow);
+                            potentSavingsBody.appendChild(tableRowObj.potentSaveRow);
                         }
                         savingsRow = document.createElement("tr");
                         savingsRow.setAttribute("class", "success text-right");
-                        savingsBody.appendChild(createSavingsTableBody(savingsRow, currentYear, $("#savingTableTemplate").data("total-header"), 0, investmentCompound, deductCumulative, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, hasInvestment, false, false, true));
+                        tableRowObj = createSavingsTableBody(savingsRow, null, currentYear, $("#savingTableTemplate").data("total-header"), 0, investmentCompound, deductCumulative, fedMinCumulative, fedMaxCumulative, areaMinCumulative, areaMaxCumulative, fedMinCumulative + areaMinCumulative, fedMaxCumulative + areaMaxCumulative, hasInvestment, false, false, true);
+                        savingsBody.appendChild(tableRowObj.savingsRow);
+                        potentSavingsTbl = potentSavingsBody;
                         savingsTbl = savingsBody;
                         return {
                             "tableContent": savingsBody,
+                            "chartTableContent": potentSavingsBody, 
                             "addedAmount": amountCompound, 
                             "investment": investmentCompound, 
                             "deductContribute": deductCumulative, 
@@ -2343,10 +2426,9 @@
                 } else {
                     $("#savingsThresholdData", savingsformId).addClass("hidden");
                 }
-/*
-                $("#savingsTable").trigger("wb-init[data-chart]");
-                $("#savingsTableContainer").find("canvas").closest("div").addClass("wb-chart-container");
-*/
+                generateTable(potentSavingsTbl, "potentialSavingTableContainer", "potentialSavingTableTemplate", "potentialSavingTable");
+                $("#potentialSavingTable").trigger("wb-init[data-chart]");
+                $("#potentialSavingTableContainer").find("canvas").closest("div").addClass("wb-chart-container");
             };
 
             var currencyFormatter = new Intl.NumberFormat(pagelang + "-CA", {
