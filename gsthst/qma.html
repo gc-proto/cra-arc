@@ -27,7 +27,733 @@
             }));
          </script>
       </head>
-   
+       <style>
+
+      /* CSS Document */
+      h1#wb-cont {
+          border-bottom: none;
+      }
+
+      /* Remove text decoration for abbr tags (equations) */
+      abbr.brdr-0 {
+          text-decoration: none !important;
+      }
+
+      section.gc-nav h1 {
+          font-size: 1.3em;
+          color: #555;
+          border-bottom: none;
+      }
+
+      /*page structure desktop (new) */
+      @media all and (min-width:992px) {
+          section.gc-nav nav {
+              position: relative;
+              width: 33.33%;
+              left: 66.66%;
+              float: left;
+              padding-left: 15px;
+              margin-bottom: 30px;
+          }
+
+          section.gc-nav h1 {
+              width: 66.66%;
+              padding-right: 15px;
+              margin-top: 20px;
+              margin-bottom: -5px;
+              font-weight: 200;
+          }
+
+          section.gc-nav-section {
+              position: relative;
+              width: 66.66%;
+              float: left;
+              padding-right: 15px;
+          }
+
+          section.gc-nav~section.gc-nav-section {
+              right: 33.33%;
+          }
+
+          section.gc-nav~section.gc-nav-section h1 {
+              margin-top: 0px
+          }
+
+          section.gc-nav-section+.pagedetails {
+              clear: both;
+          }
+      }
+
+      #gc-navseq-header {
+          font-size: 1.2em;
+          margin-top: 0px;
+      }
+
+      .gc-navseq {
+          padding-left: 0.9em;
+      }
+
+      .gc-navseq .small, .gc-navseq small {
+          line-height: 0em;
+      }
+
+      .gc-navseq * {
+          font-weight: inherit !important;
+          line-height: inherit !important
+      }
+
+      .gc-navseq>li, ul.gc-navseq-fa>li {
+          padding-bottom: 20px;
+          padding-right: 20px;
+          list-style: none;
+          padding-left: 1.2em;
+          border-left: 5px solid #26374a;
+          position: relative;
+      }
+
+      ul.gc-navseq-fa>li .fa-li {
+          left: 0em;
+          position: relative;
+      }
+
+      ul.gc-navseq-fa {
+          margin-left: 0.9em
+      }
+
+      li .gc-navseq {
+          margin-top: 16px;
+      }
+
+      .gc-navseq>li>:first-child::before, ul.gc-navseq-fa li span.fa-li {
+          border-radius: 50%;
+          border: 3px solid #26374a;
+          background-color: #fff;
+          float: left;
+          text-decoration: none;
+          box-sizing: content-box;
+          line-height: 1.3em;
+          text-align: center;
+          padding: 3px;
+          font-size: 1.0em;
+          /* transition: width 0.2s, height 0.2s, margin-top 0.2s, font-size 0.2s, margin-left 0.2s, line-height 0.2s; */
+      }
+
+      ul.gc-navseq-fa li span.fa-li {
+          height: 1.3em;
+          width: 1.3em;
+          margin-left: -2.3em;
+      }
+
+      ul.gc-navseq>li>:first-child::before {
+          height: 0.8em;
+          width: 0.8em;
+          margin-left: -2.05em;
+          content: "";
+      }
+
+      @-moz-document url-prefix() {
+          ul.gc-navseq>li>:first-child::before {
+              margin-left: -2.0em;
+          }
+      }
+
+      .gc-navseq li a::before {
+          text-decoration: underline;
+      }
+
+      ul.gc-navseq.noline>li {
+          border-left: 5px solid transparent
+      }
+
+      .gc-navseq>li:last-child, .gc-navseq>li.completed:last-child, ul.gc-navseq-fa li:last-child {
+          border-left: 5px solid transparent;
+          padding-bottom: 0;
+      }
+
+      ul.gc-navseq.noline>li>:first-child::before {
+          margin-top: 0.2em
+      }
+
+      /*active*/
+      .gc-navseq li.active>:first-child::before, .gc-navseq-fa li.active span.fa-li {
+          background-color: #26374a;
+          color: #fff;
+      }
+
+      /*sub-steps*/
+      .gc-navseq li ul {
+          margin-top: 16px !important;
+      }
+
+      /*Hover animation */
+      ul.gc-navseq>li>a[href]:hover::before {
+          width: 0.83em;
+          height: 0.83em;
+          margin-top: -0.1em;
+          font-size: 1.2em;
+          margin-left: -1.775em;
+          line-height: 1.55;
+      }
+
+      ul.gc-navseq.noline>li>a[href]:hover::before {
+          margin-top: 0.15em;
+      }
+
+      .gc-navseq-fa>li>a[href]:hover span.fa-li {
+          width: 1.55em;
+          height: 1.55em;
+          margin-top: -0.05em;
+          margin-left: -2.45em;
+      }
+
+      .gc-navseq-fa>li>a[href]:hover span.fa-li::before {
+          margin-top: -0.1em;
+      }
+
+      /*Vertical steps in mobile */
+      @media screen and (max-width:991px) {
+          section.gc-nav {
+              margin-top: 30px;
+              border-right: 5px solid #26374a;
+              border-top: 5px solid #26374a;
+              border-radius: 0 6px 6px 0;
+          }
+
+          section.gc-nav nav>.gc-navseq {
+              padding-top: 15px;
+              margin-top: -18px;
+              clear: both;
+          }
+
+          section.gc-nav nav>.gc-navseq>li:last-child {
+              border-bottom: 5px solid #26374a;
+              border-left: 5px solid #26374a;
+              border-bottom-left-radius: 6px;
+              padding-bottom: 24px;
+          }
+
+          section.gc-nav h1 {
+              margin-bottom: -18px;
+              margin-right: 20px;
+              background-color: white;
+              padding: 20px 10px 10px 20px;
+              display: block;
+              margin-left: -20px;
+              margin-top: -40px;
+              float: left;
+          }
+      }
+
+      /*nav buttons */
+      .gc-navseq-nav-btn:hover, .gc-navseq-nav-btn:focus, .gc-navseq-nav-btn:visited {
+          display: inline-block;
+          color: #fff;
+          text-decoration: none;
+          padding: 5px;
+      }
+
+      .gc-navseq-nav-btn {
+          background-color: #26374a;
+      }
+
+      .gc-navseq-nav-btn:hover {
+          background-color: #444;
+      }
+
+      .gc-navseq-nav-btn:not(:focus) {
+          clip: rect(1px, 1px, 1px, 1px);
+          height: 1px;
+          margin: 0;
+          overflow: hidden;
+          position: absolute;
+          width: 1px;
+      }
+
+      @media all and (min-width:992px) {
+          #gc-navseq-nav {
+              display: flex;
+          }
+      }
+
+      /*Navigation template in mobile */
+      @media all and (max-width:991px) {
+          .gc-nav nav {
+              padding-top: 40px;
+          }
+      }
+
+      #gc-navseq-nav {
+          margin-bottom: 0;
+          list-style: none;
+          padding-left: 0;
+      }
+
+      .gc-navseq-nav-btn:focus {
+          position: relative;
+      }
+
+      /* new topic style */
+      h1 {
+          border-bottom: none;
+      }
+
+      h1#wb-cont::after {
+          content: "";
+          /* This is necessary for the pseudo element to work. */
+          display: block;
+          /* This will put the pseudo element on its own line. */
+          width: 70px;
+          /* Change this to whatever width you want to have before hover. */
+          padding-bottom: 8px;
+          /* This creates some space between the element and the border. */
+          border-bottom: .18em solid #af3c43;
+          /* This creates the border. Replace black with whatever color you want. */
+      }
+
+      /* Styled ordered list design */
+      ol.lst-stps, .lst-stps {
+          counter-reset: item;
+      }
+
+      ol.lst-stps, .lst-stps {
+          margin: 15px 0 15px 0px;
+          padding-left: 0;
+          position: relative;
+      }
+      ol.lst-stps>li, .lst-stps>.lst-item {
+          counter-increment: item;
+      }
+      ol.lst-stps>li, .lst-stps .lst-item {
+          list-style: none;
+          margin-top: 30px;
+          position: relative;
+          padding-left: 60px;
+          padding-right: 15px;
+          min-height: 2.2em;
+      }
+      ol.lst-stps fieldset {
+          padding-top: 0;
+      }
+      ol.lst-stps li>*:last-child, .lst-stps .lst-item>*:last-child {
+          margin-bottom: 0px;
+      }
+      ol.lst-stps>li:before, .lst-stps .lst-item:before {
+          content: counter(item);
+      }
+      ol.lst-stps li>ol, .lst-stps .lst-item>.sub-lst-stps {
+          counter-reset: subitem;
+      }
+
+      ol.lst-stps li>ol {
+          margin-left: -35px;
+      }
+
+      .lst-stps .lst-item {
+          position: relative;
+          padding-left: 60px;
+          margin-top: 30px;
+      }
+      ol.lst-stps li:before, .lst-stps .lst-item:before {
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          border: 3px solid #26374a;
+          background-color: #fff;
+          float: left;
+          position: absolute;
+          box-sizing: content-box;
+          line-height: 2.2;
+          text-align: center;
+          font-weight: 600;
+          height: 2.2em;
+          width: 2.2em;
+          left: 0px;
+          margin-top: -8px;
+      }
+
+      ol.lst-stps>li>ol>li:before, .lst-stps>.lst-item>.sub-lst-stps>.lst-item:before {
+          counter-increment: subitem;
+          content: counter(item) ""counter(subitem, lower-alpha) "";
+      }
+      .sub-lst-stps>.lst-item:last-child {
+          margin-bottom: 0px
+      }
+
+      .lst-stps-striped>li ol, .lst-stps-striped>.lst-item>.sub-lst-stps {
+          margin-top: 15px;
+      }
+      .lst-stps.lst-stps-striped li, .lst-stps.lst-stps-striped .lst-item {
+          padding-top: 23px;
+          padding-bottom: 23px;
+          margin-top: 0px;
+      }
+      .lst-stps-striped>li:nth-child(odd), .lst-stps-striped>li:nth-child(even)>ol>li:nth-child(odd), .lst-stps-striped>li:nth-child(odd)>ol>li:nth-child(even), .lst-stps-striped>.lst-item:nth-child(odd), .lst-stps-striped>.lst-item:nth-child(even)>.sub-lst-stps>.lst-item:nth-child(odd), .lst-stps-striped>.lst-item:nth-child(odd)>.sub-lst-stps>.lst-item:nth-child(even) {
+          background-color: #f5f5f5;
+      }
+      .lst-stps-striped>li:nth-child(odd)>ol>li:nth-child(odd), .lst-stps-striped>.lst-item:nth-child(odd)>.sub-lst-stps>.lst-item:nth-child(odd) {
+          background-color: #fff !important;
+      }
+      .lst-stps-striped>li:nth-child(even)>ol>li:nth-child(even):last-child, .lst-stps-striped>li:nth-child(odd)>ol>li:nth-child(even):last-child, .lst-stps-striped>.lst-item:nth-child(even)>.sub-lst-stps>.lst-item:nth-child(even):last-child, .lst-stps-striped>.lst-item:nth-child(odd)>.sub-lst-stps>.lst-item:nth-child(even):last-child {
+          padding-bottom: 0px;
+      }
+      ol.lst-stps li>:first-child, .lst-stps .lst-item>:first-child {
+          margin-top: auto;
+      }
+      ol.lst-stps.lst-stps-striped li, .lst-stps.lst-stps-striped .lst-item {
+          padding-left: 75px;
+      }
+      .lst-stps-striped li:before, .lst-stps-striped .lst-item:before {
+          margin-left: 15px;
+      }
+
+      /* ol.lst-stps li ul, ol.lst-stps li ul li, ol.lst-stps.lst-stps-striped li ul, ol.lst-stps.lst-stps-striped li ul li { padding-left: 0px; } */
+      @media all and (max-width: 767px) {
+          ol.lst-stps li:before, .lst-stps .lst-item:before {
+              font-size: 0.8em;
+              line-height: 2;
+              height: 2em;
+              width: 2em;
+              margin-top: -3px;
+              font-weight: 600;
+          }
+          ol.lst-stps>li, .lst-stps>.lst-item {
+              padding-left: 45px
+          }
+          .lst-stps.lst-stps-striped li, .lst-stps.lst-stps-striped .lst-item {
+              padding-top: 19px;
+              padding-bottom: 19px;
+              margin-top: 0px;
+          }
+      }
+      .lst-lwr-alph {
+          list-style-position: outside;
+      }
+      .callout {
+          padding: 19px;
+          margin-bottom: 20px;
+          border: 1px solid #e3e3e3;
+          box-shadow: 0px 0px 10px #ddd;
+      }
+
+      /*Checkbox/Fieldflow radio input sizing,positioning*/
+      .checkbox-lg>li.checkbox {
+          margin-top: 0px;
+      }
+
+      .checkbox-lg>li {
+          margin-left: -40px;
+          padding-left: 40px;
+          padding-top: 5px;
+          padding-bottom: 10px;
+          margin-bottom: 5px;
+          padding-right: 15px;
+      }
+
+      .checkbox-zebra>li:nth-child(2n+1) {
+          background-color: #f5f5f5;
+          padding-top: 10px;
+          padding-bottom: 15px;
+      }
+
+      .checkbox-lg>li.checkbox input[type=checkbox], .fieldflow-lg .radio input[type=radio] {
+          margin-top: 12px;
+          transform: scale(2);
+      }
+
+      .checkbox-lg label, .fieldflow-lg, .fieldflow-lg label, .fieldflow-lg div, .fieldflow-lg select, .std-blt {
+          font-size: 20px;
+          line-height: 1.65em;
+      }
+
+      .std-blt {
+          list-style-type: disc;
+      }
+
+      .std-blt li label {
+          display: block;
+          padding-left: 0px;
+      }
+
+      .fieldflow-lg .radio label {
+          margin-left: 40px;
+      }
+
+      .fieldflow-lg .radio input[type=radio] {
+          margin-left: -40px;
+      }
+
+      .fieldflow-lg fieldset legend {
+          font-size: 22px;
+          margin-top: 0px;
+      }
+
+      /*Hide arrows in Chrome/FF for number input*/
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          appearance: none;
+          margin: 0;
+      }
+
+      /* Firefox */
+      input[type=number] {
+          -webkit-appearance: textfield;
+          appearance: textfield;
+      }
+
+      output.wb-calc {
+          display: inline;
+      }
+
+      /*Validation invisible text appearance */
+      .wb-frmvld #errors-default .wb-inv, .wb-frmvld .has-error .wb-inv {
+          clip: inherit;
+          height: inherit;
+          margin: inherit;
+          overflow: inherit;
+          position: inherit;
+          width: inherit;
+      }
+
+      .wb-frmvld .has-error .wb-inv {
+          color: #333;
+      }
+
+      :not(#wb-srch) main form:not(#gc-pg-hlpfl-frm), main .checkbox, main .checkbox-inline, main .radio, main .radio-inline, main form:not(#gc-pg-hlpfl-frm) :not(.btn-call-to-action).btn, main form :not(.btn-primary).btn {
+          font-size: 20px !important;
+          line-height: 1.65em !important;
+      }
+
+      /*Lower opacity for placeholders */
+      ::-webkit-input-placeholder {
+          /* Edge */
+          opacity: 0.5;
+      }
+
+      :-ms-input-placeholder {
+          /* Internet Explorer 10-11 */
+          opacity: 0.5;
+      }
+
+      input::placeholder {
+          opacity: 0.5;
+      }
+
+      /*placholder disappears on focus */
+      input:focus::-webkit-input-placeholder {
+          opacity: 0;
+      }
+
+      input:focus::placeholder {
+          opacity: 0;
+      }
+
+      /*CSS eqht experimental */
+      .wb-eqht-css {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: stretch;
+          height: 100%;
+      }
+
+      .wb-eqht-css .wb-eqht-grid {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+      }
+
+      .wb-eqht-css .hght-inhrt-css {
+          display: flex;
+          flex-direction: column;
+          flex: 1 1 auto;
+      }
+
+      .wb-eqht-css .hght-inhrt-css .eqht-trgt-css {
+          flex: 1 1 auto;
+      }
+    </style>
+    <style>
+      .provisional.wb-steps .wb-tggle-fildst>legend:before {
+          background-color: #fff;
+          padding: 4px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          border: 3px solid #6f6f6f;
+          height: 1.2em;
+          width: 1.2em;
+          box-sizing: content-box;
+          margin-right: 10px;
+          display: inline-block;
+          text-align: center;
+          line-height: 1.2;
+          content: counter(fieldset_counter) !important;
+      }
+
+      .panel-default>.panel-heading.wb-steps-active {
+          background-color: #fff;
+      }
+
+      .provisional.wb-steps .wb-tggle-fildst>legend.wb-steps-active:before {
+          background-color: #1c578a;
+          border-color: #1c578a;
+          color: #fff;
+      }
+
+      .provisional.wb-steps .wb-tggle-fildst>legend:not(.wb-steps-active) {
+          font-size: 18px;
+      }
+
+      .provisional.wb-steps .wb-tggle-fildst>legend.wb-steps-active {
+          font-weight: bold;
+      }
+
+      fieldset+.buttons {
+          margin-left: 15px;
+      }
+
+      .wb-steps-active .panel-title {
+          font-size: 1.3em;
+      }
+
+      fieldset fieldset {
+          min-width: 1px;
+      }
+
+      .ds-example {
+          margin-top: 15px;
+          border: 1px solid #e3e3e3;
+          box-shadow: 0px 0px 8px #e3e3e3;
+      }
+
+      .ds-example>.wb-tabs>.tabpanels {
+          background: #f9f9f9;
+      }
+
+      .ds-example>.wb-tabs>.tabpanels legend {
+          font-size: 80%;
+          font-weight: 700;
+          margin: 0 0 5px;
+      }
+
+      .ds-example>.wb-tabs>.tabpanels fieldset {
+          padding-top: 0;
+      }
+
+      .ds-example>.wb-tabs>.tabpanels>details>summary {
+          background: #fff;
+          border-radius: 0;
+      }
+
+      .ds-example>.wb-tabs [role=tablist]>li:focus, .ds-example>.wb-tabs [role=tablist]>li:hover {
+          background: #ddd;
+      }
+
+      .ds-example>.wb-tabs {
+          margin-bottom: 0;
+      }
+
+      .ds-example>.wb-tabs>.tabpanels>details {
+          margin-bottom: 0;
+      }
+
+      .ds-example .panel-body {
+          box-shadow: none;
+      }
+
+      @media screen and (max-width: 991px) {
+          .ds-example>.wb-tabs .tgl-panel {
+              margin-top: 15px;
+          }
+      }
+
+      @media screen and (min-width: 992px) {
+          .ds-example>.wb-tabs>.tabpanels>details {
+              border: none;
+              padding: 15px;
+          }
+
+          .ds-example>.wb-tabs [role=tablist]>li {
+              border: none;
+              background: none;
+          }
+
+          .ds-example>.wb-tabs [role=tablist]>li.active a {
+              border-width: 0 0 4px;
+          }
+
+          .ds-example>.wb-tabs>.tabpanels>details {
+              padding: 30px;
+          }
+
+          .ds-example>.wb-tabs>.tabpanels>details {
+              background: #f9f9f9;
+              padding: 30px;
+              margin-bottom: 0;
+          }
+      }
+
+      .prev-wb-step .btn-lgnd {
+          margin: 1px;
+          text-decoration-line: underline;
+      }
+
+      .prev-wb-step:focus, .prev-wb-step:hover {
+          color: #0535d2;
+      }
+
+      .prev-wb-step:focus {
+          outline: 5px auto;
+          outline-offset: -2px;
+      }
+    </style>
+    <style>
+        datalist {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .wb-input-range>output.wb-input-range-display, div.wb-input-range-display {
+            font-size: 20px;
+            min-width: 2em;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            padding-left: 6px;
+            padding-right: 6px;
+            transform: translate(-50%, -2.7em);
+            border-radius: 6px;
+            background: #e3e3e3;
+        }
+
+        output.wb-input-range-display {
+            padding-top: 0px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            transform: scale(1.5);
+        }
+        input[type=range]::-moz-range-thumb {
+            transform: scale(1.5);
+            height: 50px;
+        }
+        .range-input-group input[type=number] {
+            border: 0;
+            -webkit-box-shadow: unset;
+            box-shadow: unset;
+            background-color: inherit;
+            width: 95px;
+            font-size: 20px;
+        }
+        .range-input-group .input-group-addon {
+            background-color: unset;
+            border: 0;
+            border-radius: 0;
+            width: auto;
+        }
+        .range-input-group.panel-default {
+            border-color:#e1dada;
+        }
+    </style>
          <div id="def-top">
          </div>
          <!-- Write closure template -->
@@ -112,7 +838,7 @@
 
 <p class="h4" align="right"><strong>Progress:</strong> <progress id="pg1" class="text-success" value="0" max=100></progress></p>
 
-<h3 class="mrgn-lft-0 text-info">Enter your business information</h3>
+<h2 class="mrgn-lft-0 text-info">Before you begin: Enter your business information</h2>
 
 	<fieldset class="mrgn-bttm-md" id="Q1">
 
@@ -231,7 +957,7 @@
 		</div>
 
 		<div class="alert alert-warning hidden" id="I_Q2b">
-			<p>This tool can estimate net tax for a business with a permanent establishment in one province only. You can continue using this tool to test your eligibility.</p>
+			<p>This tool can estimate net tax for a business with a permanent establishment in one province only. You can continue using this tool to test your eligibility. See <a href="http://www.cra-arc.gc.ca/E/pub/gp/rc4058/" target="_blank">Guide RC4058, Quick Method of Accounting for GST/HST</a>, for more details.</p>
 		</div>
 
 	</fieldset>
@@ -672,7 +1398,7 @@
 <div class="form-group mrgn-lft-md gc-font-2019 mrgn-tp-md">
 
 <p align="right"><strong>Progress:</strong> <progress id="pg2" value="17.5" max=100></progress></p>
-<h2 class="mrgn-lft-0 text-info">Step 1 - Find out if you can use the quick method of accounting</h2>
+<h2 class="mrgn-lft-0 text-info">Step 1: Find out if you can use the quick method of accounting</h2>
 
 <h3 class="mrgn-lft-0 text-info">Find out if you are eligible</h3>
 	
@@ -1054,7 +1780,7 @@
 <div class="form-group mrgn-lft-md gc-font-2019 mrgn-tp-md">
 
 <p align="right"><strong>Progress:</strong> <progress id="pg3" value="30" max=100></progress></p>
-<h2 class="mrgn-lft-0 text-info">Step 2 - Find out what your net tax would be using the quick method</h2>
+<h2 class="mrgn-lft-0 text-info">Step 2: Find out what your net tax would be using the quick method</h2>
 
 <h3 class="mrgn-lft-0 text-info">Estimate your net tax using the quick method</h3>
 
@@ -1067,8 +1793,7 @@
 		</form>
 		<div>
 			<label class="required mrgn-tp-md" for="Q15S" id="Q15t">Which reporting period do you want to use? <strong class="required">(required)</strong></label>
-			<p>This tool can estimate your net tax using the quick method for either your current reporting period or your last reporting period. These reporting period options are based on your earlier answers. </p>
-<p>Learn more if the period you want to use does not show: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business/calculate-net-tax.html" target="_blank">Calculate the net tax - Methods for calculating your net tax</a>.</p>
+			<p>This tool can estimate your net tax using the quick method for either your current reporting period or your last reporting period. These reporting period options are based on your earlier answers. If the period you want to use does not show, see <a href="http://www.cra-arc.gc.ca/E/pub/gp/rc4058/" target="_blank">Guide RC4058, Quick Method of Accounting for GST/HST</a>.</p>
 			<div class="alert alert-danger hidden" id="I_Q15">
 				<p>A quick method election has to be made by the <strong>due date</strong> before you can start using the quick method.</p>
 			</div>
@@ -2421,7 +3146,7 @@ Definition of <a href="#qualifying-publications" aria-controls="qualifying-publi
 <div class="form-group mrgn-lft-md gc-font-2019 mrgn-tp-md">
 
 <p align="right"><strong>Progress:</strong> <progress id="pg4" value="57.5" max=100></progress></p>
-<h2 class="mrgn-lft-0 text-info">Step 2 - Find out what your net tax would be using the quick method</h2>
+<h2 class="mrgn-lft-0 text-info">Step 2: Find out what your net tax would be using the quick method</h2>
 
 <h3 class="mrgn-lft-0 text-info">Enter your revenue for the reporting period</h3>
 
@@ -2497,7 +3222,7 @@ for the reporting period</th><th id="table0-3">Remittance rate (%) (tax.sup.)</t
 <div class="form-group mrgn-lft-md gc-font-2019 mrgn-tp-md">
 
 <p align="right"><strong>Progress:</strong> <progress id="pg5" value="80" max=100></progress></p>
-<h2 class="mrgn-lft-0 text-info">Step 2 - Find out what your net tax would be using the quick method</h2>
+<h2 class="mrgn-lft-0 text-info">Step 2: Find out what your net tax would be using the quick method</h2>
 
 <h3 class="mrgn-lft-0 text-info">Enter any adjustments or revenue from amounts not eligible</h3>
 
@@ -2869,7 +3594,7 @@ for the reporting period</th><th id="table0-3">Remittance rate (%) (tax.sup.)</t
 <div class="form-group mrgn-lft-md gc-font-2019 mrgn-tp-md">
 
 <p align="right"><strong>Progress:</strong> <progress id="pg6" value="100" max=100></progress></p>
-<h2 class="mrgn-lft-0 text-info">Step 3 – View a sample of the information to include on your GST/HST return</h2>
+<h2 class="mrgn-lft-0 text-info">Step 3: View a sample of the information to include on your GST/HST return</h2>
 
 <div>
 
@@ -3955,7 +4680,7 @@ can claim the amount on this line. For filing information, see the <a href="http
 
 <div class="alert alert-success hidden" id="R5-2">
 	<h2>Result</h2>
-	<p>You are eligible to start using the quick method of accounting. If you decide to use this method, you <strong>must advise us</strong> through <a href="https://www.canada.ca/en/revenue-agency/services/e-services/e-services-businesses/business-account.html" target="_blank">My Business Account</a> or by sending the completed <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/gst74.html" target="_blank">Form GST74, Election and Revocation of an Election to Use the Quick Method of Accounting</a>, by the due date. This tool can <strong>estimate</strong> net tax for a business with a permanent establishment in one province only.</p> 
+	<p>You are eligible to start using the quick method of accounting. If you decide to use this method, you <strong>must advise us</strong> through <a href="https://www.canada.ca/en/revenue-agency/services/e-services/e-services-businesses/business-account.html" target="_blank">My Business Account</a> or by sending the completed <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/gst74.html" target="_blank">Form GST74, Election and Revocation of an Election to Use the Quick Method of Accounting</a>, by the due date. This tool can <strong>estimate</strong> net tax for a business with a permanent establishment in one province only. See <a href="http://www.cra-arc.gc.ca/E/pub/gp/rc4058/" target="_blank">Guide RC4058, Quick Method of Accounting for GST/HST</a> for more details.</p>
 </div>
 
 <div class="alert alert-success hidden" id="R5-3">
@@ -3967,7 +4692,7 @@ can claim the amount on this line. For filing information, see the <a href="http
 <div class="alert alert-success hidden" id="R5-4">
 	<h2>Result</h2>
 	<p>You are eligible to continue using the quick method of accounting.</p>
-	<p>This tool can estimate net tax for a business with a permanent establishment in one province only.</p>
+	<p>This tool can estimate net tax for a business with a permanent establishment in one province only. See <a href="http://www.cra-arc.gc.ca/E/pub/gp/rc4058/" target="_blank">Guide RC4058, Quick Method of Accounting for GST/HST</a> for more details.</p>
 </div>
 
 <section class="alert alert-warning hidden" id="R6" name="results">
@@ -6915,7 +7640,29 @@ can claim the amount on this line. For filing information, see the <a href="http
 <script type="text/javascript" src="/apps/canada/components/content/mwspagination/clientlibs.js"></script>
 
 
-
+ <script>
+  //Script that opens and closes the panels
+        
+        $(document).on("click", ".steps-wrapper div.buttons > :button", function () {
+            let $form = $(this).parents("form:first");
+            $form.find("legend.wb-steps-active").parents().prevAll().find("legend.panel-heading").addClass("prev-wb-step");
+            $form.find("legend.wb-steps-active").parents().nextAll().find("legend.panel-heading").removeClass("prev-wb-step");
+            $form.find("legend.wb-steps-active").removeClass("prev-wb-step").attr("tabindex", "0");
+            $form.find("legend:not(.wb-steps-active)").attr("tabindex", "-1");
+            //wrap with button
+            $form.find("legend.wb-steps-active").parents().prevAll().find("legend.panel-heading").wrapInner("<button class=\"btn-link p-0 btn-lgnd\" type=\"button\"></button>");
+            $form.find("fieldset legend.wb-steps-active").nextAll().addBack().find(".btn-lgnd").contents().unwrap();
+            $form.find(".btn-lgnd .btn-lgnd").contents().unwrap();
+        });
+        $(document).on("click", ".prev-wb-step", function () {
+            let $form = $(this).parents("form:first");
+            $form.find(".wb-steps-active, legend.prev-wb-step").removeClass("wb-steps-active prev-wb-step");
+            $form.find("legend + div.panel-body, .buttons").addClass("hidden");
+            $form.find("legend.wb-steps-active").parents().nextAll().each(function () {});
+            $(this).addClass("wb-steps-active").removeClass("prev-wb-step");
+            $(this).parent().parent().find("legend + div.panel-body.hidden, .buttons").removeClass("hidden");
+        });
+    </script>
 
 
     
