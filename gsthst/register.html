@@ -127,16 +127,16 @@
 			for (i=1; i<=results.length; i++)
 				document.getElementById('R'+i).classList.add('hidden');
 
-			document.getElementById('q2a').value = 5 ;
+			document.getElementById('q2').value = 5 ;
 			
 			var q1 = document.getElementsByName('q1') ;			
 
 			//If yes
 			if (q1[0].checked) {
-				document.getElementById('question2a').classList.remove('hidden');	
-				var q2a = document.getElementsByName('q2a');
-				for (i=0; i<q2a.length; i++)
-					q2a[i].checked = false ;		
+				document.getElementById('question2').classList.remove('hidden');	
+				var q2 = document.getElementsByName('q2');
+				for (i=0; i<q2.length; i++)
+					q2[i].checked = false ;		
 			}
 			
 			//No
@@ -154,45 +154,6 @@
                                     </li>
 			  </ul>
 		
-	</fieldset>
-
-<!--QUESTION 2a-->
-<fieldset name="quest" id="question2a" class="mrgn-bttm-md hidden">	
-		<label class="h5 required" for="q2a">Which option best describes your special situation? <strong class="required">(required)</strong></label>
-<p>Meaning of the term: <a href="#direct-selling" aria-controls="direct-selling" class="overlay-lnk" role="button">Direct selling industry with a joint election&nbsp;<span class="far fa-question-circle"></span></a></p>
-
-		<select class="form-control required" id="q2a" onchange="
-			var q = getElementsByName('quest') ;
-			for (i=3; i<=q.length; i++)
-				document.getElementById('question'+i).classList.add('hidden');
-			
-			var results = getElementsByName('results');
-			for (i=1; i<=results.length; i++)
-				document.getElementById('R'+i).classList.add('hidden');			
-			
-			document.getElementById('q2').value = 5;
-			
-			var q2a = document.getElementById('q2a').value;
-			if (q2a == 1) {
-				document.getElementById('R13').classList.remove('hidden');
-			}
-			else if (q2a == 2) {
-				document.getElementById('R6').classList.remove('hidden');
-			}
-			else if (q2a == 3) {
-				document.getElementById('R12').classList.remove('hidden');	
-			
-			}else if (q2a == 5) {
-				document.getElementById('question2').classList.remove('hidden');	
-			}
-		">
-			<option value="4" selected>Make your selection...</option>
-			<option value="1">You supply products for a direct seller or a network seller </option>
-			<option value="2">Your only commercial activity is the sale of real property, other than in the course of a business</option>
-			<option value="3">You are a non-resident business</option>
-			<option value="5">Your business is not in the above special situations</option>
-			
-		</select>
 	</fieldset>
  
                                                           	
@@ -224,10 +185,23 @@
 				document.getElementById('age').value = 'Old'
 				document.getElementById('numOfQuarters').value = 8 ;
 			}
+			else if (q2 == 2) {
+				document.getElementById('R6').classList.remove('hidden');
+			}
+			else if (q2 == 3) {
+				document.getElementById('R12').classList.remove('hidden');
+			}
+			else if (q2 == 4) {
+				document.getElementById('R13').classList.remove('hidden');	
+			}
 		">
 			<option value="5" selected>Make your selection...</option>
 			<option value="1">Your business is already operating - You want to know if you need to register and what is your registration date </option>
 			<option value="0">Your business is not yet operating - You want to create scenarios to understand the conditions to register</option>
+			<option value="4">You supply products for a direct seller or a network seller </option>
+			<option value="2">Your only commercial activity is the sale of real property, other than in the course of a business</option>
+			<option value="3">You are a non-resident business</option>
+			
 			
 		</select>
 	</fieldset>
