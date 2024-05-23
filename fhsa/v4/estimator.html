@@ -1393,7 +1393,7 @@
                                                 <th class="col-sm-2 text-right">Total FHSA participation (cumulative)</th>
                                                 <th class="col-sm-2 text-right">Deductible FHSA contributions</th>
                                                 <th class="col-sm-1 text-right">Investment income</th>
-                                                <th class="text-right">Potential <span data-area-name="provincial-territorial">Provincial and territorial</span> tax savings</th>
+                                                <th class="text-right">Potential <span data-area-name="provincial-territorial">provincial and territorial</span> tax savings</th>
                                                 <th class="text-right">Potential federal tax savings</th>
                                             </tr>
                                         </thead>
@@ -2398,7 +2398,6 @@
                             summaryTotal = "<strong>" + currencyFormatter.format(savingsTotals.fedAmountMin) + "</strong>" + $("#savingTableTemplate").data("savings-range-text") + "<strong>" + currencyFormatter.format(savingsTotals.fedAmountMax) + "</strong>";
                         }
                         $("[data-output=fed-tax]", savingsformId).html(summaryTotal);
-                        $("[data-area-name=provincial-territorial]", savingsformId).html(prov.text());
                         if (parseInt(savingsTotals.areaAmountMin, 10) === parseInt(savingsTotals.areaAmountMax, 10)) {
                             summaryTotal = $("#savingTableTemplate").data("savings-text") + "<strong>" + currencyFormatter.format(savingsTotals.areaAmountMax) + "</strong>";
                         } else {
@@ -2427,6 +2426,7 @@
                     $("#savingsThresholdData", savingsformId).addClass("hidden");
                 }
                 generateTable(potentSavingsTbl, "potentialSavingTableContainer", "potentialSavingTableTemplate", "potentialSavingTable");
+                $("[data-area-name=provincial-territorial]", savingsformId).html(prov.text());
                 $("#potentialSavingTable").trigger("wb-init[data-chart]");
 /*
                 $("#potentialSavingTableContainer").find("canvas").closest("div").addClass("wb-chart-container");
