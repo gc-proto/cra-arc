@@ -83,7 +83,7 @@
                     /* if tooltip is larger then slider track then center over slider track */
                     tooltipPos = ( inputRangeElmWidth / 2 ) - ( displayElmWidth / 2 );
                     groupElm.style.setProperty( "--tooltipArrow", "none" );
-                } else if ( tooltipPos < 0 ) {
+                } else if ( tooltipPos <= 0 || inputRangeElmWidth === 0 ) {
                     tooltipPos = -sideOffset;
                     groupElm.style.setProperty( "--tooltipArrow", "none" );
                 } else if ( tooltipPos + displayElmWidth > inputRangeElmWidth ) {
