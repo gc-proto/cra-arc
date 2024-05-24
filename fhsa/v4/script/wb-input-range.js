@@ -13,6 +13,7 @@
      */
     var componentName = "wb-input-range",
         selector = "." + componentName,
+        tooltipName = componentName + "-tooltip", 
         initEvent = "wb-init" + selector,
         $document = wb.doc,
         defaults = {},
@@ -46,12 +47,12 @@
                 wb.ready( $elm, componentName );
             }
         }, 
-        doRangeFunc = function( funcName, inputParam ) {
+        getFuncValue = function( funcName, inputParam ) {
             let funcArr, fnElem;
 
             if ( funcName.includes( "." ) === true ) {
-              funcArr = funcName.split( "." );
-              fnElem = {};
+                funcArr = funcName.split( "." );
+                fnElem = {};
                 for ( let i = 0; i <= funcArr.length - 1; i = i + 1 ) {
                     if ( i === 0 ) {
                         fnElem = funcArr[ i ];
@@ -61,106 +62,133 @@
                         fnElem = fnElem[ funcArr[ i ] ];
                     }
                 }
-              } else if ( typeof window[ funcName ] === "function" ) {
-                  return window[ funcName ]( inputParam );
-              }
-              return inputParam;
-          }, 
-          updateDispPos = function ( inputRangeElm, displayElm ) {
-              let displayElmWidth, partialDisplayElmWidth, dispPos,
-                  inputRangeElmWidth = inputRangeElm.getBoundingClientRect().width,
-                  getOutputPos = function ( inputRangeElm, partialDisplayElmWidth ) {
-                      let ratio, 
-                          thumbWidth = 10;
+            } else if ( typeof window[ funcName ] === "function" ) {
+                return window[ funcName ]( inputParam );
+            }
+            return inputParam;
+        }, 
+        updateTooltipPos = function ( inputRangeElm, displayElm, groupElm ) {
+            let tooltipPos, 
+                thumbWidth = 14, 
+                sideOffset = 4, 
+                inputRangeElmWidth = inputRangeElm.getBoundingClientRect().width, 
+                displayElmWidth = displayElm.getBoundingClientRect().width;
 
-                      ratio = ( inputRangeElm.valueAsNumber - Number( inputRangeElm.min ) ) / ( Number( inputRangeElm.max ) - Number( inputRangeElm.min ) );
-                      return ( ratio * (( inputRangeElm.getBoundingClientRect().width - ( thumbWidth / 2 ) ) - ( thumbWidth / 2 )) ) + ( thumbWidth / 2 ) - partialDisplayElmWidth;
-                  };
+                if ( displayElm.classList.contains( tooltipName ) ) {
+                    tooltipPos = ( ( ( inputRangeElm.valueAsNumber - Number( inputRangeElm.min ) ) / ( Number( inputRangeElm.max ) - Number( inputRangeElm.min ) ) ) * (( inputRangeElm.getBoundingClientRect().width - ( thumbWidth / 2 ) ) - ( thumbWidth / 2 )) );
 
-              displayElmWidth = displayElm.getBoundingClientRect().width;
-              partialDisplayElmWidth = displayElmWidth / 2;
-              dispPos = getOutputPos( inputRangeElm, partialDisplayElmWidth );
+                groupElm.style.setProperty( "--tooltipArrow", "solid" );
+                tooltipPos = tooltipPos + ( thumbWidth / 2 ) - ( displayElmWidth / 2 );
+                if ( tooltipPos < 0 && tooltipPos + displayElmWidth > inputRangeElmWidth ) {
+                    /* if tooltip is larger then slider track then center over slider track */
+                    tooltipPos = ( inputRangeElmWidth / 2 ) - ( displayElmWidth / 2 );
+                    groupElm.style.setProperty( "--tooltipArrow", "none" );
+                } else if ( tooltipPos < 0 ) {
+                    tooltipPos = -sideOffset;
+                    groupElm.style.setProperty( "--tooltipArrow", "none" );
+                } else if ( tooltipPos + displayElmWidth > inputRangeElmWidth ) {
+                    tooltipPos = inputRangeElmWidth - displayElmWidth + sideOffset;
+                    groupElm.style.setProperty( "--tooltipArrow", "none" );
+                }
+                displayElm.style.setProperty( "--HTooltipPos", tooltipPos + "px" );
+            }
+        }, 
+        updateValElm = function ( displayElm, inputRange, groupElm ) {
+            let displayText, outputData;
 
-              if ( dispPos < 0 && dispPos + displayElmWidth > inputRangeElmWidth ) {
-                  dispPos = ( inputRangeElmWidth / 2 ) - partialDisplayElmWidth;
-              } else if ( dispPos < 0 ) {
-                  dispPos = 0;
-              } else if ( dispPos + displayElmWidth > inputRangeElmWidth ) {
-                  dispPos = inputRangeElmWidth - displayElmWidth;
-              }
-            displayElm.style.setProperty( "--HRngDispPos", dispPos + "px" );
-          },
-          setRangeValue = function( inputRange ) {
-            let outputData, 
+            if ( displayElm !== null ) {
+                outputData = wb.getData( displayElm, "wb-input-range" );
+                if ( typeof outputData !== "undefined" && Object.prototype.hasOwnProperty.call( outputData, "fn" ) === true ) {
+                    displayText = getFuncValue( outputData.fn, inputRange.value );
+                } else {
+                    displayText = inputRange.value;
+                }
+                if ( displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA" ) {
+                    displayElm.value = displayText;
+                } else {
+                    displayElm.innerHTML = displayText;
+                    updateTooltipPos( inputRange, displayElm, groupElm );
+                    window.onresize = function () {
+                        updateTooltipPos( inputRange, displayElm, groupElm );
+                    }
+                }
+            }
+        }, 
+        setRangeValue = function( inputRange ) {
+            let groupElm = document.getElementById( inputRange.parentId ), 
                 targetArr = wb.getData( inputRange, "wb-input-range" );
 
             if ( typeof targetArr !== "undefined" && Object.prototype.hasOwnProperty.call( targetArr, "target" ) === true ) {
-                targetArr.target.forEach( function ( currentId ) {
-                    let displayText,
-                    elm = document.getElementById( currentId );
+                targetArr.target.forEach( function( currentId ) {
+                    updateValElm( document.getElementById( currentId ), inputRange, groupElm ); 
+                }, inputRange, groupElm );
+            }
+        }, 
+        updateRangeFromField = function( elm, temp ) {
+            let adjustedInputVal, outputData,
+                rangeElm = document.getElementById( elm.rangeId );
 
-                    outputData = wb.getData( elm, "wb-input-range" );
-                    if ( typeof outputData !== "undefined" && Object.prototype.hasOwnProperty.call( outputData, "fn" ) === true ) {
-                        displayText = doRangeFunc( outputData.fn, inputRange.value );
-                    } else {
-                         displayText = inputRange.value;
-                    }
-                    if ( elm.tagName === "TEXTAREA" || elm.tagName === "INPUT" ) {
-                        elm.value = displayText;
-                    } else {
-                        elm.innerHTML = displayText;
-                        updateDispPos( inputRange, elm );
-                        window.onresize = function () {
-                            updateDispPos( inputRange, elm );
-                        }
-                    }
-                }, inputRange );
+            outputData = wb.getData( elm, "wb-input-range" );
+            if ( typeof outputData !== "undefined" && Object.prototype.hasOwnProperty.call( outputData, "fn" ) === true ) {
+                adjustedInputVal = getFuncValue( outputData.fn, parseInt( $( elm ).val(), 10 ) );
+            } else {
+                adjustedInputVal = parseInt( $( elm ).val(), 10 ) || parseInt( elm.min, 10 );
+            }
+            switch ( true ) {
+                case ( adjustedInputVal < parseInt( elm.min, 10 ) ):
+                    $( rangeElm ).val( parseInt( elm.min, 10 ) );
+                    break;
+                case ( adjustedInputVal > parseInt( elm.max, 10 ) ):
+                    $( rangeElm ).val( parseInt( elm.max, 10 ) );
+                    break;
+                default:
+                    $( rangeElm ).val( Math.round( adjustedInputVal / parseInt( elm.step, 10 ) ) * parseInt( elm.step, 10 ) );
             }
         };
+
     // Add your plugin event handler
     $document.on( "wb-input-range", selector, function( event, data ) {
         var targetArr, 
-            elm = event.currentTarget,
-            $inputElm = $( elm ).find( "input[type=range]" ), 
-            inputElm = $inputElm[ 0 ];
+            groupElm = event.currentTarget, 
+            $rangeElm = $( groupElm ).find( "input[type=range]" ), 
+            rangeElm = $rangeElm[ 0 ];
 
-        inputElm.params = [ ];
-        inputElm.params = data.target;
-        targetArr = wb.getData( inputElm, "wb-input-range" );
-        if ( typeof targetArr !== "undefined" && Object.prototype.hasOwnProperty.call( targetArr, "target" ) === true ) {
-            targetArr.target.forEach( function ( currentId ) {
-                let elm = document.getElementById( currentId );
-
-                if ( elm.tagName === "TEXTAREA" || elm.tagName === "INPUT" ) {
-                    if ( !elm.hasAttribute( "id" ) ) {
-                        inputElm.id = wb.getId();
-                    }
-                    elm.rangeId = inputElm.id;
-                    $( elm ).on( "change input", function() {
-                        let adjustedInputVal, outputData;
-
-                        outputData = wb.getData( elm, "wb-input-range" );
-                        if ( typeof outputData !== "undefined" && Object.prototype.hasOwnProperty.call( outputData, "fn" ) === true ) {
-                            adjustedInputVal = doRangeFunc( outputData.fn, parseInt( $( this ).val(), 10 ) );
-                        } else {
-                            adjustedInputVal = parseInt( $( this ).val(), 10 ) || parseInt( this.min, 10 );
-                        }
-                        switch ( true ) {
-                            case ( adjustedInputVal < parseInt( this.min, 10 ) ):
-                                $( inputElm ).val( parseInt( this.min, 10 ) );
-                                break;
-                            case ( adjustedInputVal > parseInt( this.max, 10 ) ):
-                                $( inputElm ).val( parseInt( this.max, 10 ) );
-                                break;
-                            default:
-                                $( inputElm ).val( Math.round( adjustedInputVal / parseInt( this.step, 10 ) ) * parseInt( this.step, 10 ) );
-                        }
-                    });
-                }
-            }, inputElm );
+        rangeElm.params = [ ];
+        rangeElm.params = data.target;
+        if ( !groupElm.hasAttribute( "id" ) ) {
+            groupElm.id = wb.getId();
         }
-        setRangeValue( inputElm );
+        rangeElm.parentId = groupElm.id;
+        setRangeValue( rangeElm );
+        targetArr = wb.getData( rangeElm, "wb-input-range" );
+        if ( typeof targetArr !== "undefined" && Object.prototype.hasOwnProperty.call( targetArr, "target" ) === true ) {
+            targetArr.target.forEach( function ( currentId, index ) {
+                let displayElm = document.getElementById( currentId );
+
+                if ( displayElm !== null && ( displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA" )) {
+                    if ( !displayElm.hasAttribute( "id" ) ) {
+                        rangeElm.id = wb.getId();
+                    }
+                    displayElm.rangeId = rangeElm.id;
+
+                    $( displayElm ).on( "change input", function() {
+                        let newTargetArr = targetArr.target.slice();
+
+                        updateRangeFromField( this );
+                        for ( let i = 0; i <= newTargetArr.length - 1; i = i + 1 ) {
+                            if ( document.getElementById( newTargetArr[i] ).tagName !== "INPUT" && document.getElementById( newTargetArr[i] ).tagName !== "TEXTAREA" ) {
+//                                updateTooltipPos( rangeElm, document.getElementById( newTargetArr[i] ), document.getElementById( rangeElm.parentId ) );
+                                updateValElm( document.getElementById( newTargetArr[i] ), rangeElm, document.getElementById( rangeElm.parentId ) );                   
+                            }
+                        }
+            
+                    });
+
+                }
+            }, rangeElm, targetArr );
+        }
     });
+
     $( ".wb-input-range" ).on( "change input", "input[type=range]", function() {
         setRangeValue( this );
     });
