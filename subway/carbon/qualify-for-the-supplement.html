@@ -90,6 +90,7 @@
 <link rel="stylesheet" href="https://canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
 <link href="https://canada.ca/etc/designs/canada/wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon"/>
 <noscript><link rel="stylesheet" href="https://canada.ca/etc/designs/canada/wet-boew/css/noscript.min.css"/></noscript>
+<link rel="stylesheet" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/méli-mélo/2024-09-kejimkujik.css" />	
 
 
 
@@ -278,24 +279,25 @@
     
 
     
-        <div class="alert alert-info"><p>Residents of New Brunswick will begin to receive their rural supplement starting in <span class="nowrap">April 2024.</span> The payment will include a retroactive rural supplement amount for the <span class="nowrap">July 2023</span> to <span class="nowrap">January 2024</span> period as well.</p>
-</div>
-<p>The Canada Carbon Rebate (CCR) includes a <span class="nowrap">20%</span> supplement for residents of small and rural communities. The supplement applies only to residents of Alberta, Saskatchewan, Manitoba, Ontario, Newfoundland and Labrador, New Brunswick and Nova Scotia whose primary residence is <strong>outside</strong> a <a href="https://www12.statcan.gc.ca/census-recensement/2016/ref/dict/geo009-eng.cfm">Census Metropolitan Area</a> (CMA), and they expect to continue to reside outside the same CMA on <span class="nowrap">April 1, 2024</span>.</p>
-<h2>Increase the rural supplement amount</h2>
-	<p>Starting in April 2024 for the 2023 base year, the rural supplement will be increased to <span class="nowrap">20%</span> of the base amount. Note that this increase is pending Royal Assent.</p>
-
+    
+<p>The Canada Carbon Rebate (CCR) includes a <span class="nowrap">20%</span> supplement for residents of small and rural communities. The supplement applies only to residents of Alberta, Saskatchewan, Manitoba, Ontario, Newfoundland and Labrador, New Brunswick and Nova Scotia whose primary residence is <strong>outside</strong> a Census Metropolitan Area (CMA), and they expect to continue to reside outside the same CMA on <span class="nowrap">April 1, 2024</span>.</p>
+<p>Information about what defines and composes a CMA: <a href="https://www12.statcan.gc.ca/census-recensement/2016/ref/dict/geo009-eng.cfm">Census Metropolitan Area definition</a>.</p>
+	<h2>Increase the rural supplement amount</h2>
+	<div id="increase-ajax">
+	<p>Starting in April 2024 for the 2023 base year, the rural supplement will be increased to 20% of the base amount.</p>
+		<p>This increase is <strong>pending</strong> Royal Assent and will be implemented once it is received.</p>
+	</div>
 <h2>Determine if you qualify for the rural supplement</h2>	
 <p>Follow the steps below to find out if you qualify:</p>
 <ol>
-<li>In the tables below, find the CMA closest to your primary residence.</li>
-<li>Use the corresponding list of municipalities and map to find your primary residence. You can zoom in to the map to view street address details.</li>
-<li>If your primary residence is located:<ul>
-<li>outside all listed municipalities or outside the shaded area of a map, you are considered to be residing outside a CMA and you <strong>do</strong> qualify for the supplement. Tick the box on page 2 of your income tax and benefit return.</li>
-<li>within a listed municipality or within the shaded area, you are considered to live within a CMA and you do <strong>not</strong> qualify for the supplement. Do not tick the box on page 2.</li>
-</ul>
+    <li>Using the <a href="#provinces">provincial tables below</a>, find the CMA closest to your primary residence</li>
+<li>Use the corresponding list of municipalities and map to find your primary residence
+  <ul>
+    <li>You can zoom in to the map to view street address details</li>
+  </ul>
 </li>
 </ol>
-
+   
 
     
 
@@ -309,7 +311,7 @@
 
 
         
-  <h3>Provinces</h3>      
+  <h3 id="provinces">Provinces</h3>      
  <details><summary>Alberta</summary>       
     <table class="table table-bordered table-condensed table-striped provisional gc-table" id="ajax-ab">
   <caption class="wb-inv">
@@ -575,6 +577,21 @@
   </div>
 </div>
 </details>
+ <div id="rural-determination-ajax">
+    <p><strong>Based on where you live:</strong></p>
+                <ul class="cnjnctn-type-or cnjnctn-sm">
+                  <li class="cnjnctn-col">
+                    <p class="h5 text-muted"><span class="text-success fas fa-check mrgn-rght-sm"></span>You do qualify for the supplement, if:</p>
+                    <p>Your primary residence is located outside all listed municipalities or outside the shaded area of a map, you are considered to be residing outside a CMA and you do qualify for the supplement. </p>
+                  </li>
+                  <li class="cnjnctn-col">
+                    <p class="h5 text-muted"><span class="text-danger fas fa-times mrgn-rght-sm"></span>You do not qualify for the supplement, if:</p>
+                    <p>Your primary residence is located within a listed municipality or within the shaded area, you are considered to live within a CMA</p>
+                  </li>
+                </ul>
+    
+    </div>
+	    
             <section class="pagedetails">
     <h2 class="wb-inv">Page details</h2>
     <div class="row">
