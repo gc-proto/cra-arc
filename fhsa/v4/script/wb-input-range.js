@@ -174,7 +174,7 @@
                         updateRangeFromField( this );
                         for ( let i = 0; i <= newTargetArr.length - 1; i = i + 1 ) {
                             if ( document.getElementById( newTargetArr[i] ).tagName !== "INPUT" && document.getElementById( newTargetArr[i] ).tagName !== "TEXTAREA" ) {
-                                updateValElm( rangeElm, document.getElementById( newTargetArr[i] ), document.getElementById( rangeElm.parentId ) );                   
+                                updateValElm( rangeElm, document.getElementById( newTargetArr[i] ), document.getElementById( rangeElm.parentId ) );
                             }
                         }
                     } );
