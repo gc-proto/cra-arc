@@ -372,7 +372,100 @@ button1.addEventListener("click", function() {
         $("#phn79").removeClass("hidden");
     } else if (phn80.includes(input.value)) {
         $(".phnlrt").addClass("hidden");
-        $("#phn80").removeClass("hidden");                                                                                                                        
+        $("#phn80").removeClass("hidden");
+    } else if (phn1fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn1fr").removeClass("hidden");
+    } else if (phn2fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn2fr").removeClass("hidden");
+    } else if (phn3fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn3fr").removeClass("hidden");
+    } else if (phn4fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn4fr").removeClass("hidden");
+    } else if (phn5fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn5fr").removeClass("hidden");
+    } else if (phn6fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn6fr").removeClass("hidden");
+    } else if (phn7fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn7fr").removeClass("hidden");
+    } else if (phn8fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn8fr").removeClass("hidden");
+    } else if (phn9fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn9fr").removeClass("hidden");
+    } else if (phn10fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn10fr").removeClass("hidden");
+    } else if (phn11fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn11fr").removeClass("hidden");
+    } else if (phn12fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn12fr").removeClass("hidden");
+    } else if (phn13fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn13fr").removeClass("hidden");
+    } else if (phn14fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn14fr").removeClass("hidden");
+    } else if (phn15fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn15fr").removeClass("hidden");
+    } else if (phn16fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn16fr").removeClass("hidden");
+    } else if (phn17fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn17fr").removeClass("hidden");
+    } else if (phn18fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn18fr").removeClass("hidden");
+    } else if (phn19fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn19fr").removeClass("hidden");
+    } else if (phn20fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn20fr").removeClass("hidden");
+    } else if (phn21fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn21fr").removeClass("hidden");
+    } else if (phn22fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn22fr").removeClass("hidden");
+    } else if (phn23fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn23fr").removeClass("hidden");
+    } else if (phn24fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn24fr").removeClass("hidden");
+    } else if (phn25fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn25fr").removeClass("hidden");
+    } else if (phn26fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn26fr").removeClass("hidden");
+    } else if (phn27fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn27fr").removeClass("hidden");
+    } else if (phn28fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn28fr").removeClass("hidden");
+    } else if (phn29fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn29fr").removeClass("hidden");
+    } else if (phn30fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn30fr").removeClass("hidden");
+    } else if (phn31fr.includes(input.value)) {
+        $(".phnlrt").addClass("hidden");
+        $("#phn31fr").removeClass("hidden");                                                                                                                   
     } else {
         $(".phnlrt").addClass("hidden");
         $("#phnx").removeClass("hidden");
