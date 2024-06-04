@@ -120,7 +120,7 @@
 
             if ( typeof targetArr !== "undefined" && Object.prototype.hasOwnProperty.call( targetArr, "target" ) === true ) {
                 targetArr.target.forEach( function( currentId ) {
-                    updateValElm( inputRange, document.getElementById( currentId ), groupElm ); 
+                    updateValElm( inputRange, document.getElementById( currentId ), groupElm );
                 }, inputRange, groupElm );
             }
         }, 
@@ -201,4 +201,4 @@
     $document.on( "timerpoke.wb " + initEvent, selector, init );
     // Add the timer poke to initialize the plugin
     wb.add( selector );
-})( jQuery, window, wb );
+} )( jQuery, window, wb );
