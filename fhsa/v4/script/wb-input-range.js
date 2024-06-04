@@ -68,19 +68,19 @@
             return inputParam;
         }, 
         updateTooltipPos = function ( inputRangeElm, displayElm, groupElm ) {
+            const thumbWidth = 14; 
+            const sideOffset = 4;
             let tooltipPos, 
-                thumbWidth = 14, 
-                sideOffset = 4, 
                 inputRangeElmWidth = inputRangeElm.getBoundingClientRect().width, 
                 displayElmWidth = displayElm.getBoundingClientRect().width;
 
                 if ( displayElm.classList.contains( tooltipName ) ) {
-                    tooltipPos = ( ( ( inputRangeElm.valueAsNumber - Number( inputRangeElm.min ) ) / ( Number( inputRangeElm.max ) - Number( inputRangeElm.min ) ) ) * (( inputRangeElm.getBoundingClientRect().width - ( thumbWidth / 2 ) ) - ( thumbWidth / 2 )) );
+                    tooltipPos = ( ( ( inputRangeElm.valueAsNumber - Number( inputRangeElm.min ) ) / ( Number( inputRangeElm.max ) - Number( inputRangeElm.min ) ) ) * ( ( inputRangeElm.getBoundingClientRect().width - ( thumbWidth / 2 ) ) - ( thumbWidth / 2 ) ) );
 
                 groupElm.style.setProperty( "--tooltipArrow", "solid" );
                 tooltipPos = tooltipPos + ( thumbWidth / 2 ) - ( displayElmWidth / 2 );
                 if ( tooltipPos < 0 && tooltipPos + displayElmWidth > inputRangeElmWidth ) {
-                    /* if tooltip is larger then slider track then center over slider track */
+                    // if tooltip is larger then slider track then center over slider track
                     tooltipPos = ( inputRangeElmWidth / 2 ) - ( displayElmWidth / 2 );
                     groupElm.style.setProperty( "--tooltipArrow", "none" );
                 } else if ( tooltipPos <= 0 || inputRangeElmWidth === 0 ) {
@@ -93,24 +93,24 @@
                 displayElm.style.setProperty( "--HTooltipPos", tooltipPos + "px" );
             }
         }, 
-        updateValElm = function ( displayElm, inputRange, groupElm ) {
+        updateValElm = function ( inputRangeElm, displayElm, groupElm ) {
             let displayText, outputData;
 
             if ( displayElm !== null ) {
                 outputData = wb.getData( displayElm, "wb-input-range" );
                 if ( typeof outputData !== "undefined" && Object.prototype.hasOwnProperty.call( outputData, "fn" ) === true ) {
-                    displayText = getFuncValue( outputData.fn, inputRange.value );
+                    displayText = getFuncValue( outputData.fn, inputRangeElm.value );
                 } else {
-                    displayText = inputRange.value;
+                    displayText = inputRangeElm.value;
                 }
                 if ( displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA" ) {
                     displayElm.value = displayText;
                 } else {
                     displayElm.innerHTML = displayText;
-                    updateTooltipPos( inputRange, displayElm, groupElm );
+                    updateTooltipPos( inputRangeElm, displayElm, groupElm );
                     window.onresize = function () {
-                        updateTooltipPos( inputRange, displayElm, groupElm );
-                    }
+                        updateTooltipPos( inputRangeElm, displayElm, groupElm );
+                    };
                 }
             }
         }, 
@@ -120,11 +120,11 @@
 
             if ( typeof targetArr !== "undefined" && Object.prototype.hasOwnProperty.call( targetArr, "target" ) === true ) {
                 targetArr.target.forEach( function( currentId ) {
-                    updateValElm( document.getElementById( currentId ), inputRange, groupElm ); 
+                    updateValElm( inputRange, document.getElementById( currentId ), groupElm ); 
                 }, inputRange, groupElm );
             }
         }, 
-        updateRangeFromField = function( elm, temp ) {
+        updateRangeFromField = function( elm ) {
             let adjustedInputVal, outputData,
                 rangeElm = document.getElementById( elm.rangeId );
 
@@ -134,15 +134,12 @@
             } else {
                 adjustedInputVal = parseInt( $( elm ).val(), 10 ) || parseInt( elm.min, 10 );
             }
-            switch ( true ) {
-                case ( adjustedInputVal < parseInt( elm.min, 10 ) ):
-                    $( rangeElm ).val( parseInt( elm.min, 10 ) );
-                    break;
-                case ( adjustedInputVal > parseInt( elm.max, 10 ) ):
-                    $( rangeElm ).val( parseInt( elm.max, 10 ) );
-                    break;
-                default:
-                    $( rangeElm ).val( Math.round( adjustedInputVal / parseInt( elm.step, 10 ) ) * parseInt( elm.step, 10 ) );
+            if ( adjustedInputVal < parseInt( elm.min, 10 ) ) {
+                $( rangeElm ).val( parseInt( elm.min, 10 ) );
+            } else if ( adjustedInputVal > parseInt( elm.max, 10 ) ) {
+                $( rangeElm ).val( parseInt( elm.max, 10 ) );
+            } else {
+                $( rangeElm ).val( Math.round( adjustedInputVal / parseInt( elm.step, 10 ) ) * parseInt( elm.step, 10 ) );
             }
         };
 
@@ -162,10 +159,10 @@
         setRangeValue( rangeElm );
         targetArr = wb.getData( rangeElm, "wb-input-range" );
         if ( typeof targetArr !== "undefined" && Object.prototype.hasOwnProperty.call( targetArr, "target" ) === true ) {
-            targetArr.target.forEach( function ( currentId, index ) {
+            targetArr.target.forEach( function ( currentId ) {
                 let displayElm = document.getElementById( currentId );
 
-                if ( displayElm !== null && ( displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA" )) {
+                if ( displayElm !== null && ( displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA" ) ) {
                     if ( !displayElm.hasAttribute( "id" ) ) {
                         rangeElm.id = wb.getId();
                     }
@@ -177,21 +174,29 @@
                         updateRangeFromField( this );
                         for ( let i = 0; i <= newTargetArr.length - 1; i = i + 1 ) {
                             if ( document.getElementById( newTargetArr[i] ).tagName !== "INPUT" && document.getElementById( newTargetArr[i] ).tagName !== "TEXTAREA" ) {
-//                                updateTooltipPos( rangeElm, document.getElementById( newTargetArr[i] ), document.getElementById( rangeElm.parentId ) );
-                                updateValElm( document.getElementById( newTargetArr[i] ), rangeElm, document.getElementById( rangeElm.parentId ) );                   
+                                updateValElm( rangeElm, document.getElementById( newTargetArr[i] ), document.getElementById( rangeElm.parentId ) );                   
                             }
                         }
-            
-                    });
-
+                    } );
                 }
             }, rangeElm, targetArr );
         }
-    });
+    } );
 
     $( ".wb-input-range" ).on( "change input", "input[type=range]", function() {
         setRangeValue( this );
-    });
+    } );
+    
+    // disable mouse wheel scroll of slider which only occurs in some browsers
+    $( ".wb-input-range" ).on( "wheel", "input[type=range]", function( event ) {
+        window.scrollTo( window.scrollX, window.scrollY + event.originalEvent.deltaY );
+        event.preventDefault();
+        event.stopPropagation();
+    } );
+
+    $document.on( "update" + selector, function( event ) {
+        setRangeValue( event.target );
+    } );
     // Bind the init event of the plugin
     $document.on( "timerpoke.wb " + initEvent, selector, init );
     // Add the timer poke to initialize the plugin
