@@ -393,7 +393,6 @@
 <div data-ajax-replace="/cra-arc/payroll/calculate/benefit/housing-utilities.html#ajax-taxable"></div>
 </div>
 <hr>
-
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col"><span class="fas fa-arrow-down text-success fa-lg"></span> If the benefit  or allowance is <strong>not</strong> for housing benefits, continue to: <a href="#step6">Step 6 - Calculate the value of the benefit</a>.</li>
 <li class="cnjnctn-col"><span class="fas fa-arrow-down text-success fa-lg"></span> If the benefit is for <strong>housing</strong> benefits, continue to: <a href="#step5">Step 5 - Determine if your employee is eligible for a reduction to the housing benefit</a>.</li>
@@ -402,7 +401,6 @@
 
 <li><h3 id="step5">Determine if your employee is eligible for a reduction to the housing benefit</h3>	
 <div data-ajax-replace="/cra-arc/payroll/calculate/benefit/housing-utilities.html#ajax-eligible"></div>
-<hr>
 <hr>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col"><p><span class="fas fa-check fa-lg text-success"></span> If the benefit or allowance is <strong>excluded</strong> from your employee’s income, you <strong>must</strong> report the excluded benefit or allowance on a slip.</p>
@@ -416,23 +414,32 @@
 </li> 
 
 <li><h3 id="step5">Calculate the value of the benefit or allowance</h3>
-<p>The value of the benefit is equal to the fair market value (FMV) of:</p>
+<p><strong>If the benefit or allowance is taxable</strong>, the value of the benefit or allowance is equal to:</p>
 
-<h4>Housing benefit</h4>
+<h4>Calculate the housing benefit</h4>
 <ul class="fa-ul lst-spcd mrgn-bttm-md mrgn-lft-lg">
                                     <li><span class="fa-stack text-success">
                                        <span class="far fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                       </span><span class="mrgn-tp-0 text-muted h5">Total value of the housing, board or lodging benefit</span> 
+                                       </span><span class="mrgn-tp-0 text-muted h5"><a href="#fmv" aria-controls="centred-popup" class="wb-lbx" role="button">FMV&nbsp;<span class="far fa-question-circle"></span></a> of the housing that is taxable (do not include GST/HST)</span> 
                                     </li>
-<li >
+		
+			<li>
                                        <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
                                        <span class="far fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                       </span>  <span class="mrgn-tp-0 text-muted h5">Amount eligible for the clergy reduction amount (step 5)</span>
+                                       </span>  <span class="mrgn-tp-0 text-muted h5">Value eligible for the reduction amount in respect of suitability of size (step 5a)</span>
                                        <div class="mrgn-tp-md"></div>
                                     </li>
-	<li class="brdr-bttm">
+			<li>
+                                       <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                       <span class="far fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                       </span>  <span class="mrgn-tp-0 text-muted h5">Value eligible for the reduction amount in respect of loss of privacy and quiet enjoyment (step 5b)</span>
+                                       <div class="mrgn-tp-md"></div>
+                                    </li>
+
+ 				<li class="brdr-bttm">
                                        <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
                                        <span class="far fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x"></span>
@@ -440,41 +447,41 @@
                                        <div class="mrgn-tp-md"></div>
                                     </li>
 
-	 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
-                                       <span class="fas fa-circle fa-stack-2x"></span>
-                                       <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                       </span> <span class="mrgn-tp-0 text-muted h5">Value of the benefit for housing to be included on the T4 slip using code 30 and in box 14</span></span> 
-                                    </li>
- </ul>
-			
- <h4>Utilities benefit</h4>				
-	<ul class="fa-ul lst-spcd mrgn-bttm-md mrgn-lft-lg">
-                                    <li><span class="fa-stack text-success">
-                                       <span class="far fa-circle fa-stack-2x"></span>
-                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                       </span><span class="mrgn-tp-0 text-muted h5">Total value of the utilities benefit</span> 
-                                    </li>
-
-	<li class="brdr-bttm">
-                                       <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
-                                       <span class="far fa-circle fa-stack-2x"></span>
-                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                       </span>  <span class="mrgn-tp-0 text-muted h5">Any amounts your employee reimbursed you</span>
-                                       <div class="mrgn-tp-md"></div>
-                                    </li>
                      	 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
                                        <span class="fas fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                       </span> <span class="mrgn-tp-0 text-muted h5">Value of the benefit for utilities to be included on the T4 slip using code 40 and in box 14</span></span> 
+                                       </span> <span class="mrgn-tp-0 text-muted h5">This is the total value of the housing benefit to be included on the T4 slip in code 30 and in box 14</span></span> 
                                     </li>
-		
                   </ul>
 
-<p>The deduction <strong>cannot </strong>be more than the amount of the employee's income for the year from the qualifying office or employment.</p>
+<h4>Calculate the utilities benefit</h4>
+
+<ul class="fa-ul lst-spcd mrgn-bttm-md mrgn-lft-lg">
+                                    <li><span class="fa-stack text-success">
+                                       <span class="far fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                       </span><span class="mrgn-tp-0 text-muted h5">Amount for the utilities that is taxable </span> 
+                                    </li>
+		
+			<li class="brdr-bttm">
+                                       <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                       <span class="far fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                       </span>  <span class="mrgn-tp-0 text-muted h5">Any amounts your employee reimbursed you</span>
+                                       <div class="mrgn-tp-md"></div>
+                                    </li>
+
+                     	 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                       <span class="fas fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
+                                       </span> <span class="mrgn-tp-0 text-muted h5">This is the total value of the utilities to be included on the T4 slip in code 30 (if eligible to claim the clergy residence deduction) or code 40 (if not eligible) and in box 14</span></span> 
+                                    </li>
+                  </ul>
+
 <p>The amounts must be included in the pay period they were received or enjoyed. </p>
 
 <details><summary>Example 1 - Calculations</summary>
-<p>A congregation paid its minister an annual salary of $35,000 and provided a rent free residence valued at $18,000 annually. In addition, the congregation paid for eligible utilities valued at $1,500 annually. The minister will be claiming the clergy residence deduction and has given his employer a letter to that affect.</p>
+<p>A congregation paid its minister an annual salary of $35,000 and provided a rent-free residence valued at $18,000 annually. In addition, the congregation paid for eligible utilities valued at $1,500 annually. The minister will be claiming the clergy residence deduction and has given his employer a letter to that affect.</p>
 
 		<ul class="fa-ul lst-spcd mrgn-bttm-md mrgn-lft-lg">
 			     <li><span class="fa-stack text-success">
@@ -494,19 +501,6 @@
                                        <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
                                        </span> <span class="mrgn-tp-0 text-muted h5">$19,500 is the value of the benefit to be included on the T4 slip using box 14</span></span> 
                                     </li>
-		<li class="brdr-bttm">
-                                 <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
-                                 <span class="far fa-circle fa-stack-2x"></span>
-                                 <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                 </span>  <span class="mrgn-tp-0 text-muted h5">$35,000 is the annual salary paid to the minister</span>
-                                 <div class="mrgn-tp-md"></div>
-                              </li>
-		 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
-                                       <span class="fas fa-circle fa-stack-2x"></span>
-                                       <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                       </span> <span class="mrgn-tp-0 text-muted h5">$54,500 is the total amount to be included on the T4 slip using box 14</span></span> 
-                                    </li>
-                                  			
 		
                   </ul>
 
@@ -549,50 +543,60 @@
                                     </li>
  </ul>
 </details>
-
-
 </li> 
 
 <li><h3 id="step6">Get the required documents before you apply the clergy residence reduction</h3>
 <p><strong>If your employee meets the conditions in step 4</strong>, your employee <strong>must</strong> provide you with documents <strong>before</strong> you can apply the reduction.</p>
 <h4>Situations</h4>
-<details><summary>Situation: You are providing <strong>free or low-rent housing</strong> (benefits)</summary>
-<p>If you are providing <strong>free or low-rent housing</strong> (benefits), your employee <strong>must</strong> provide <strong>one</strong> of the following:</p>
+<details><summary>Situation: You are providing <strong>free or low-rent housing or utilities</strong></summary>
+<p>If you are providing <strong>free or low-rent housing or utilities</strong> to your employee, <strong>do not</strong> include the housing or utilities that is equal to the clergy residence deduction in your employee's income in <strong>one</strong> of the following situation:</p>
 <ul class="list-unstyled cnjnctn-type-or">
-<li class="cnjnctn-col">A completed <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t1223.html">Form T1223 Clergy Residence Deduction</a>, <strong>do not</strong> send the form to CRA. </li>
-<li class="cnjnctn-col">A letter indicating their member's intention to claim the deduction, <strong>including</strong> the amount of the deduction that will be claimed. </li>
+<li class="cnjnctn-col">Your employee completes parts A and C of <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t1223.html">Form T1223</a> Clergy Residence Deduction, and requests that you complete part B.</li>
+<li class="cnjnctn-col">Your employee tells you in writing that they intend to claim the deduction, including the amount of the deduction that will be claimed. </li>
 </ul>
-<p class="mrgn-tp-md"><span class="fas fa-check fa-lg text-success"> </span> You can reduce the income by the amount indicated on line 11 of the Form or the amount indicated on the letter. </p> 
+<p class="mrgn-tp-md"><span class="fas fa-check fa-lg text-success"> </span> You can reduce the income used to calculate the CPP contributions and income tax by the amount indicated on line 11 of the Form or the amount indicated on the letter. </p> 
 </details>
-<details><summary>Situation: Your <strong>employee owns or rents their residence</strong> (allowance)</summary>
-<p>If your <strong>employee owns or rents their residence</strong> (allowance), your employee <strong>must</strong> do <strong>all</strong> of the following:</p>
+<details><summary>Situation: Your <strong>employee owns or rents their residence</strong></summary>
+<p>If your <strong>employee owns or rents their residence</strong> and they pays for utilities or you provide an allowance, <strong>do not</strong> include the housing or utilities that is equal to the clergy residence deduction in your employee's income in <strong>one</strong> of the following situation:</p>
 <ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col">Complete <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t1223.html">Form T1223 Clergy Residence Deduction</a></li>
-<li class="cnjnctn-col">Complete <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t1213.html">Form T1213, Request to Reduce Tax Deductions at Source</a> </li>
-<li class="cnjnctn-col">Send <strong>Forms T1213 and T1223</strong> to the CRA at the address provided on Form T1213</li>
-<li class="cnjnctn-col">Provide you with the CRA Letter of Authority. </li>
+<li class="cnjnctn-col">Your employee completes parts A and C of <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t1223.html">Form T1223</a> Clergy Residence Deduction, and requests that you complete part B.</li>
+<li class="cnjnctn-col">Your employee completes <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t1213.html">Form T1213</a> Request to Reduce Tax Deductions at Source</li>
+<li class="cnjnctn-col">Your employee sends <strong>Forms T1213 and T1223</strong> to the CRA at the address provided on Form T1213</li>
+<li class="cnjnctn-col">Your employee provides you with the CRA letter of authority they received. </li>
 </ul>
-<p class="mrgn-tp-md"><span class="fas fa-check fa-lg text-success"> </span> You can <strong>only</strong> reduce the income by the amount indicated in the letter. </p>
+<p class="mrgn-tp-md"><span class="fas fa-check fa-lg text-success"> </span> You can <strong>only</strong> reduce the income used to calculate the CPP contributions and income tax by the amount indicated on the letter of authority. </p>
 <details><summary>Examples </summary>
-<h4>Example 1: Income tax</h4>
-<p>When the clergy member lives in their own house or rents a property and claims a clergy residence deduction based on the fair market value of the house or the rent paid, respectively, they will need to file a T1213, or written letter, with the local tax service office. </p>
-<p>When the request is approved<strong>, </strong>the employer will reduce the employee's taxable income by the amount of the clergy residence deduction and withhold income tax at source on the difference.</p>
+<h4>Example 1</h4>
+<p>In 2024, a congregation paid its minister an annual salary of $35,000 and provided a rent-free residence valued at $18,000 annually. In addition, the congregation paid for utilities valued at $1,500 annually. The minister completed and provided their employer with Form 1223, will be claiming the clergy residence deduction, and has advised their employer in writing. </p>
+As the minister is claiming the clergy residence deduction, the employer will not include the amount of the rent-free housing benefit in the employee’s taxable income when calculating their income tax deductions. The amount for both benefits must be included in box 14 of the T4 slip and reported separately under code 30. </p>
+<p>The employer will also not include the non-cash housing benefit or utilities benefit in the employee’s pensionable earnings (box 26 of the T4 slip) and will not withhold CPP contributions on account of the benefit. They will withhold CPP contributions from the employee’s regular salary.  </p>
+<p>As the housing benefit was received alongside cash earnings, the housing benefit will be subject to EI. However, as the utilities benefit is non-cash, it is not included in the employee’s insurable earnings (box 24 of the T4 slip). The employer will continue to withhold EI from the employee’s regular salary.  </p>
+<p>The employee’s T4 slip will be prepared as follows: </p>
+<p>Box 14 (Employment Income) $54,500 = $35,000 Salary + $18,000 Housing Benefit + $1,500 Utilities Benefit </p>
+<p>Box 24 (EI Insurable Earnings) $53,000 = $35,000 Salary + $18,000 Housing Benefit  </p>
+<p>Box 26 (CPP/QPP Pensionable Earnings) $35,000 = $35,000 Salary </p> 
+<p>Code 30 – Board and Lodging including eligible utilities = $19,500 = $18,000 Housing Benefit + $1,500 Utilities Benefit </p>
 
-<h4>Example 2: Income tax</h4>
-<p>When the clergy member lives in employer-provided accommodations and claims the clergy residence deduction, the deduction will generally be offset by the income inclusion relating to the taxable benefit of employer-provided accommodations. </p>
-<p>In this scenario, there is no change in income for withholding tax purposes, and a T1213 or written request, is not required to be filed. </p>
-<p>When determining the amount of income subject to withholding tax, the employer should include the taxable benefit relating to employer provided accommodations in the employee's income. </p>
-<p>The employee's taxable income should then be reduced by the clergy residence deduction which the employee will be claiming.</p>
+<h4>Example 2</h4>
+<p>In 2024, a congregation paid its minister an annual salary of $35,000 and provided a housing allowance of $18,000 annually, paid monthly. The minister completed and provided their employer with Form 1223, completed Form T1213 and sent the two forms to the CRA. They received a letter of authority, authorizing them to reduce their taxable income by $17,000.  </p>
+<p>As the minister is claiming the clergy residence deduction, the employer will include the amount of the housing allowance in the employee’s taxable income and then reduce the taxable income by the amount authorized by the letter of authority when calculating their income tax deductions. The amount of the allowance must be included in box 14 of the T4 slip and reported separately under code 30. </p>
+<p>The employer will also include the amount of the housing allowance and then reduce the employee’s pensionable earnings by the amount authorized in the letter of authority when calculating their CPP contributions. They will withhold CPP contributions from the employee’s regular salary.  </p>
+<p>As the housing allowance is received in cash, it will be subject to EI. The employer will continue to withhold EI from the employee’s regular salary.  </p>
+<p>The employee’s T4 slip will be prepared as follows: </p>
+<p>Box 14 (Employment Income) $53,000 = $35,000 Salary + $18,000 Housing Allowance </p>
+<p>Box 24 (EI Insurable Earnings) $53,000 = $35,000 Salary + $18,000 Housing Allowance  </p>
+<p>Box 26 (CPP/QPP Pensionable Earnings) $36,000 = ($35,000 Salary + $18,000 Housing Allowance) - $17,000 Authorized Reduction </p>
+<p>Code 30 – Board and Lodging $18,000 = $18,000 Housing Allowance </p>
 
-<h4>Example 3: CPP</h4>
-<p>When calculating the amount of CPP to withhold, the employer should reduce the employee's earnings by the amount of the clergy residence deduction and withhold CPP contributions on the net amount. </p>
-<p>In this situation, the employees must inform their employer, in writing, of their intent to claim the clergy residence deduction (this may include Form T1223). </p>
-<p>If the employee also wants a reduction of income tax at source, as noted above, they must request a waiver by completing and filing Form T1213 with their local tax service office.</p>
-
-<h4>Example 4: CPP</h4>
-<p>When calculating pensionable earnings, the clergy residence deduction will generally be offset by the income inclusion relating to the taxable benefit of employer provided accommodations. </p>
-<p>As the deduction and income inclusion generally net out, there are no changes required to the clergy member's income for the purpose of withholding CPP at source. </p>
-<p>In this situation, the employees must inform their employer, in writing, of their intent to claim the clergy residence deduction (this may include Form T1223). However, they need not file a T1213.</p>
+<h4>Example 3</h4>
+<p>In 2024, a congregation paid its minister an annual salary of $35,000 and did not provide any housing or utilities benefits or allowances. The minister completed and provided their employer with Form 1223, completed Form T1213 and sent the two forms to the CRA. They received a letter of authority, authorizing them to reduce their taxable income by $10,000.  </p>
+<p>As the minister is claiming the clergy residence deduction and has provided their employer with a letter of authority, the employer will reduce the employee’s taxable income by the amount authorized by the letter of authority when calculating their income tax deductions. The employee’s full salary must be included in box 14 of the T4 slip. </p>
+<p>The employer will also reduce the employee’s pensionable earnings by the amount authorized in the letter of authority when calculating their CPP contributions.  </p>
+<p>The employer will continue to withhold EI from all of the employee’s regular salary.  </p>
+<p>The employee’s T4 slip will be prepared as follows: </p>
+<p>Box 14 (Employment Income) $35,000 = $35,000 Salary </p> 
+<p>Box 24 (EI Insurable Earnings) $35,000 = $35,000 Salary   </p>
+<p>Box 26 (CPP/QPP Pensionable Earnings) $25,000 = $35,000 Salary - $10,000 Authorized Reduction </p>
 </details>
 </details>
 <hr>
