@@ -1496,7 +1496,7 @@
                                 <div id="potentialSavingTableContainer"></div>
                                 <div id="savingsTableContainer"></div>
                                 <template id="potentialSavingTableTemplate" data-year-name="Year" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
-                                    <table id="potentialSavingTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true" data-chart="line" data-chart-options="{&quot;maintainAspectRatio&quot;: false, &quot;plugins&quot;: {&quot;legend&quot;: {&quot;display&quot;: false}, &quot;tooltip&quot;: {&quot;titleFont&quot;: {&quot;size&quot;: 12}, &quot;bodyFont&quot;: {&quot;size&quot;: 15}}}, &quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5, &quot;pointStyle&quot;: &quot;rectRot&quot;, &quot;backgroundColor&quot;: &quot;#000000&quot;}}, &quot;scales&quot;: {&quot;x&quot;: {&quot;stacked&quot;: true}, &quot;y&quot;: {&quot;stacked&quot;: false, &quot;title&quot;: {&quot;display&quot;: true, &quot;text&quot;: &quot;Potential combined tax savings (cumulative)&quot;, &quot;font&quot;: {&quot;weight&quot;: &quot;bold&quot;, &quot;size&quot;: &quot;15&quot;}}}}}">
+                                    <table id="potentialSavingTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true" data-chart="line" data-chart-options="{&quot;maintainAspectRatio&quot;: true, &quot;plugins&quot;: {&quot;legend&quot;: {&quot;display&quot;: false}, &quot;tooltip&quot;: {&quot;titleFont&quot;: {&quot;size&quot;: 12}, &quot;bodyFont&quot;: {&quot;size&quot;: 15}}}, &quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5, &quot;pointStyle&quot;: &quot;rectRot&quot;, &quot;backgroundColor&quot;: &quot;#000000&quot;}}, &quot;scales&quot;: {&quot;x&quot;: {&quot;stacked&quot;: true}, &quot;y&quot;: {&quot;stacked&quot;: false, &quot;title&quot;: {&quot;display&quot;: true, &quot;text&quot;: &quot;Potential combined tax savings (cumulative)&quot;, &quot;font&quot;: {&quot;weight&quot;: &quot;bold&quot;, &quot;size&quot;: &quot;15&quot;}}}}}">
                                         <caption>Potential combined federal and <span data-area-name="provincial-territorial">provincial and territorial</span> tax savings<span class="wb-inv"> (line chart)</span></caption>
                                         <thead>
                                             <tr>
@@ -2142,6 +2142,7 @@
                 let savingsTotals, summaryTotal, 
                     priorSavingsInvestment = priorSavingBalance() - priorSavingAmount(), 
                     prov = province(), 
+                    noResults = false, 
                     // Generate data for the savings table and potential savings chart table
                     generateSavingsTableData = function (area, federalName, hasAbatement, income, deductions, savingYears, savingsAmount, savingsTransferAmount, hasInvestGrowth, investment, hasPriorSavings, priorSavingYears, priorSavingAmount, priorSavingsInvest, hasPriorYrSaving, priorYrSavingAmt, priorYrSavingTransfer, priorYrSavingInvest, hasPriorYearSavingDiffIncome, priorYearSavingIncome, priorYearSavingDeduction, priorYearMax, maxContribution, startYear, currentYear, incomeRates) {
                     let juristictionArr, federalRates, abatement, provinceRates, yearIncrement, priorYear, priorIncome, saveAmountsObj, tableRowObj, savingsRow, potentSaveRow, adjustedIncome, 
@@ -2477,11 +2478,15 @@
 
                 savingsTotals = generateSavingsTableData(prov.val(), $("#province").data("fed"), prov.data("has-abatement"), yearlyTotalIncome(), yearlyTotalDeductions(), savingYears(), savingsAmount(), savingsTransferAmount(), hasSavingInvestGrowth(), savingInterest(), hasPriorSavingsFHSA(), priorSavingYears(), priorSavingAmount(), priorSavingsInvestment, hasPriorTaxSavings(), priorYearSavingAmount(), priorYearSavingTransfer(), 
                     priorYearSavingInvest(), hasPriorYearSavingDiffIncome(), priorYearSavingIncome(), priorYearSavingDeduction(), priorYearMax, maxContribution, fhsaStartYear, currentYear, incomeRates);
-                    generateTable(savingsTbl, "savingsTableContainer", "savingTableTemplate", "savingsTable");
+
+                generateTable(savingsTbl, "savingsTableContainer", "savingTableTemplate", "savingsTable");
+                generateTable(potentSavingsTbl, "potentialSavingTableContainer", "potentialSavingTableTemplate", "potentialSavingTable");
+                $("[data-area-name=provincial-territorial]", savingsformId).html(prov.text());
                 if (Math.max(yearlyTotalIncome() - yearlyTotalDeductions(), 0) <= savingsTotals.areaExempt && Math.max(yearlyTotalIncome() - yearlyTotalDeductions(), 0) <= savingsTotals.fedExempt) {
                     $("[data-min-threshold=false]").removeClass("hidden");
                     $("[data-min-threshold=true]").addClass("hidden");
                     $("[data-zero-val]").addClass("hidden");
+                    noResults = true;
                 } else {
                     $("[data-min-threshold=false]").addClass("hidden");
                     if ((savingsTotals.deductContribute === 0 && savingsTotals.investment === 0) || (savingsTotals.fedAmountMax === 0 && savingsTotals.areaAmountMax === 0)) {
@@ -2493,6 +2498,7 @@
                             $("[data-zero-val=false]").addClass("hidden");
                             $("[data-zero-val=true]").removeClass("hidden");
                         }
+                        noResults = true;
                     } else {
                         $("[data-zero-val]").addClass("hidden");
                         if (hasPriorTaxSavings() === true) {
@@ -2549,9 +2555,9 @@
                 } else {
                     $("#savingsThresholdData", savingsformId).addClass("hidden");
                 }
-                generateTable(potentSavingsTbl, "potentialSavingTableContainer", "potentialSavingTableTemplate", "potentialSavingTable");
-                $("[data-area-name=provincial-territorial]", savingsformId).html(prov.text());
-                $("#potentialSavingTable").trigger("wb-init[data-chart]");
+                if (noResults === false) {
+                    $("#potentialSavingTable").trigger("wb-init[data-chart]");
+                }
 /*
                 $("#potentialSavingTableContainer").find("canvas").closest("div").addClass("wb-chart-container");
 */
