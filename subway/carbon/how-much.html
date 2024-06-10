@@ -271,542 +271,572 @@
 		</ul>
 	  </nav>
 	  <h1 property="name" id="wb-cont" class="gc-thickline">How much you can get</h1>
-	  <div class="row">
-		<div class="col-md-12">
-                  
-            <p>The rebate amount you receive depends on your family situation and the province you reside in.</p>
-            <h2>Income level is not a factor for eligibility</h2>    
-          <p>The amount made in the household is not one of the eligibilty requirements for the rebate.  Also, the rebate is not subject to a reduction based on income. </p>
-         
-<h2>Estimate your current year payments</h2>
-<div class="wb-tabs mrgn-bttm-lg">
-  <div class="tabpanels">
-    <details id="details-panel1" class="pb-4">
-      <summary><span class="fas fa-calculator fa-lg mrgn-rght-sm"></span>Estimator</summary>
-      <p class="mrgn-tp-md">A <a href="#details-panel2">full text version</a> is available if needed.</p>
-      <details class="mrgn-tp-lg">
-        <summary>Read the privacy statement for the estimator tool</summary>
-        <p>The CRA is not collecting or retaining any of the information you enter in this tool. These amounts are only used to help you estimate the Canada Carbon Rebate payment amount you may be eligible for.</p>
-      </details>
-	  	        <hr class="brdr-bttm mrgn-tp-lg mrgn-bttm-md">
-    
-      <p class="lead text-info mrgn-bttm-0">Answer a few questions to estimate your payment</p>
- 
-    <div class="wb-frmvld">
-      <form id="ccr_form" action="#" method="get" autocomplete="off">
-        <fieldset class="gc-font-2019" id="locationFs">
-          <legend class="mrgn-bttm-sm">Place of residence </legend>
-          <p id="locationFs-desc">The rebate amount you receive depends on the province you reside in.</p>
-          <div class="form-group">
-            <label for="location"><span class="fieldname">Which province or territory do you live in?</span></label>
-            <select id="location" name="wb-fieldflowwb-auto-1wb-auto-44" class="form-control" required="required">
-              <option label="Choose your location"></option>
-              <option value="ab">Alberta</option>
-              <option value="inval">British Columbia</option>
-              <option value="mb">Manitoba</option>
-              <option value="nb">New Brunswick</option>
-              <option value="nl">Newfoundland and Labrador</option>
-              <option value="inval">Northwest Territories</option>
-              <option value="ns">Nova Scotia</option>
-              <option value="inval">Nunavut</option>
-              <option value="on">Ontario</option>
-              <option value="pe">Prince Edward Island</option>
-              <option value="inval">Quebec</option>
-              <option value="sk">Saskatchewan</option>
-              <option value="inval">Yukon</option>
-            </select>
+	<p>The CCR amount you receive depends on your family situation and the province where you reside. </p>
+  <h2>Income level dooes not affect entitlement</h2>
+  <p>Your family income is not a factor in  determining eligibility for the CCR. Also, the rebate is not subject to a  reduction based on income.</p>
+<h2>Estimate your payments</h2>
+  <p>Use this tool to estimate your quarterly amounts for the CCR for April 2024 to January 2025.</p>
+  <details class="mrgn-tp-sm">
+    <summary>Read the privacy statement for the estimator</summary>
+    <p>The CRA is not collecting or retaining any of the information you enter in this tool. These amounts are only used to help you estimate the Canada Carbon Rebate payment amount you may be eligible for.</p>
+  </details>
+  <div class="row mrgn-tp-lg">
+    <div class="col-xs-12">
+      <div class="panel panel-default mrgn-tp-lg brdr-rds-0">
+        <header class="panel-heading">
+          <h3 class="panel-title mrgn-tp-md mrgn-bttm-md">Carbon rebate estimator</h3>
+        </header>
+        <div class="fa-stack fa-fw text-muted center-block pstn-tp-xs pstn-lft-xs fa-lg full-width"><span class="fas fa-circle fa-inverse fa-stack-2x"></span> <span class="far fa-circle fa-stack-2x"></span> <span class="fas fa-calculator fa-stack-1x"></span> </div>
+        <div class="panel-body">
+          <div class="wb-frmvld">
+            <form id="ccr_form" action="#" method="get" autocomplete="off">
+              <fieldset class="gc-font-2019" id="locationFs">
+                <legend class="wb-inv">Residence</legend>
+                <div class="form-group">
+                  <label for="location"><span class="fieldname">Which province or territory do you currently live in?</span></label>
+                  <select id="location" name="location" class="form-control" required="required">
+                    <option label="Choose your location"></option>
+                    <option value="ab">Alberta</option>
+                    <option value="inval">British Columbia</option>
+                    <option value="mb">Manitoba</option>
+                    <option value="nb">New Brunswick</option>
+                    <option value="nl">Newfoundland and Labrador</option>
+                    <option value="inval">Northwest Territories</option>
+                    <option value="ns">Nova Scotia</option>
+                    <option value="inval">Nunavut</option>
+                    <option value="on">Ontario</option>
+                    <option value="pe">Prince Edward Island</option>
+                    <option value="inval">Quebec</option>
+                    <option value="sk">Saskatchewan</option>
+                    <option value="inval">Yukon</option>
+                  </select>
+                </div>
+              </fieldset>
+              <section role="alert">
+                <div class="valid-location hidden">
+                  <p class="wb-inv">The Canada Carbon Rebate is available in this province, proceed to the next step</p>
+                </div>
+              </section>
+              <fieldset id="ruralFs" class="valid-location hidden">
+                <legend id="ruralFS-legend">Rural supplement</legend>
+                <div class="gc-font-2019">
+                  <p id="ruralFs-desc">An additional supplement of 20% is included for eligible residents of small and rural communities in <span class="provTerr"></span>.</p>
+                  <p>If you're unsure: <a href="#rural_supplement_lbx" class="wb-lbx" role="button">Review the rural eligibility for residents <span class="nowrap">of <span class="provTerr"></span><sup class="far fa-question-circle mrgn-lft-sm"></sup></span></a></p>
+                  <fieldset class="gc-chckbxrdio form-inline mrgn-tp-md" aria-describedby="ruralFs-desc">
+                    <legend>Do you qualify for the rural supplement?</legend>
+                    <div class="radio label-inline">
+                      <input type="radio" name="ruralRadio" id="ruralYes" value="yes">
+                      <label for="ruralYes">Yes</label>
+                    </div>
+                    <div class="radio label-inline">
+                      <input type="radio" name="ruralRadio" id="ruralNo" checked="checked" value="no">
+                      <label for="ruralNo">No</label>
+                    </div>
+                  </fieldset>
+                </div>
+              </fieldset>
+              <fieldset class="valid-location hidden mrgn-tp-lg" id="spouseFs">
+                <legend id="spouseFs-legend">Marital status</legend>
+                <div class="gc-font-2019">
+                  <div id="spouseFs-desc">
+                    <p>An additional amount is included for a spouse (married) or common-law partner. Only one spouse or common-law partner will receive the payment for the family.</p>
+                  </div>
+                  <fieldset class="gc-chckbxrdio form-inline mrgn-tp-md" aria-describedby=" spouseFs-desc">
+                    <legend>Do you have a spouse or common-law partner?</legend>
+                    <div class="radio label-inline">
+                      <input id="spouseYes" type="radio" name="spouseRadio" value="yes">
+                      <label for="spouseYes">Yes</label>
+                    </div>
+                    <div class="radio label-inline">
+                      <input id="spouseNo" type="radio" name="spouseRadio" checked="checked" value="no">
+                      <label for="spouseNo">No</label>
+                    </div>
+                  </fieldset>
+                </div>
+              </fieldset>
+              <fieldset class="valid-location hidden mrgn-tp-lg"  id="childFs">
+                <legend id="childFs-legend">Number of children</legend>
+                <div class="gc-font-2019">
+                  <p id="childFs-desc">The CCR provides an amount for every eligible child.</p>
+                  <p>If you're unsure: <a href="#children-help" aria-controls="children-help" class="wb-lbx" role="button">Review who is considered an <span class="nowrap">eligible child<sup class="far fa-question-circle mrgn-lft-sm"></sup></span></a></p>
+                  <div class="mrgn-tp-md">
+                    <label for="children">How many eligible children do you have?</label>
+                    <select class="form-control" id="children" aria-describedby="childFs-desc">
+                      <option value="0">None</option>
+                      <option value="1">1 child</option>
+                      <option value="2">2 children</option>
+                      <option value="3">3 children</option>
+                      <option value="4">4 children</option>
+                      <option value="5">5 children</option>
+                      <option value="6">6 children</option>
+                      <option value="7">7 children</option>
+                      <option value="8">8 children</option>
+                      <option value="9">9 children</option>
+                      <option value="10">10 children</option>
+                      <option value="11">11 children</option>
+                      <option value="12">12 children</option>
+                      <option value="13">13 children</option>
+                      <option value="14">14 children</option>
+                      <option value="15">15 children</option>
+                      <option value="16">16 children</option>
+                      <option value="17">17 children</option>
+                      <option value="18">18 children</option>
+                      <option value="19">19 children</option>
+                      <option value="20">20 children</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+              <button type="button" class="valid-location hidden btn btn-call-to-action mrgn-tp-xl mrgn-bttm-lg" id="ccrResultsBtn">Check your rebate amount</button>
+            </form>
           </div>
-        </fieldset>
-        <section role="alert">
-          <div class="valid-location hidden">
-            <p class="wb-inv">The Canada Carbon Rebate is available in this province or territory, proceed to the next step</p>
-          </div>
-        </section>
-   
-        <fieldset id="ruralFs" class="valid-location hidden">
-          <legend id="ruralFS-legend">Rural supplement</legend>
-          <div class="gc-font-2019">
-            <p id="ruralFs-desc">The rebate includes an additional 20% supplement for eligible residents of small and rural communities (subject to Royal assent).</p>
-           
-              <p>In order to answer:</p>  
-            <ol class="lst-spcd"><li>If you are unsure if you qualify, you can <a href="#rural_supplement_lbx" class="wb-lbx" role="button">look up rural eligibility for residents of <span class="nowrap"><span class="ruralProvTerr"></span><sup class="far fa-question-circle mrgn-lft-sm"></sup></span></a>
-            </li>
-                <li>Proceed to the question below</li>
-              </ol>
-            
-        
-          <fieldset class="gc-chckbxrdio form-inline mrgn-tp-md" aria-describedby="ruralFs-legend ruralFs-desc">
-            <legend>Do you qualify for the rural supplement?</legend>
-            <div class="radio label-inline">
-              <input type="radio" name="ruralRadio" id="ruralYes" value="yes">
-              <label for="ruralYes">Yes</label>
+          <section>
+            <div aria-live="polite">
+              <h2 id="ccrTitle" aria-live="polite" class="mrgn-tp-md brdr-tp hidden"><small>Results for </small><br>
+                  Payments from the Canada Carbon <span class="nowrap">Rebate (CCR)</span></h2>
             </div>
-            <div class="radio label-inline">
-              <input type="radio" name="ruralRadio" id="ruralNo" checked="checked" value="no">
-              <label for="ruralNo">No</label>
-            </div>
-          </fieldset>
-             
-            </div>
-        </fieldset>
-        <fieldset class="valid-location hidden mrgn-tp-lg" id="spouseFs">
-          <legend id="spouseFs-legend">Household partner relationship</legend>
-          <div class="gc-font-2019">
-            <p id="spouseFs-desc">The rebate includes an additional amount for domestic partners in the same household.</p>
-              <p>Only one partner in the household will receive the rebate.</p> 
-        
-          <fieldset class="gc-chckbxrdio form-inline mrgn-tp-md" aria-describedby="spouseFs-legend spouseFs-desc">
-            <legend>Do you have a spouse or common-law partner?</legend>
-            <div class="radio label-inline">
-              <input id="spouseYes" type="radio" name="spouseRadio" value="yes">
-              <label for="spouseYes">Yes</label>
-            </div>
-            <div class="radio label-inline">
-              <input id="spouseNo" type="radio" name="spouseRadio" checked="checked" value="no">
-              <label for="spouseNo">No</label>
-            </div>
-          </fieldset>
-            </div>
-        </fieldset>
-        <fieldset class="valid-location hidden mrgn-tp-lg"  id="childFs">
-          <legend id="childFs-legend">Children in household</legend>
-          <div class="gc-font-2019">
-            <p id="childFs-desc">The rebate provides an amount for every eligible child in the same household.</p>
-             <p>In order to answer:</p>    
-            <ol class="lst-spcd"><li>Determine <a href="#children-help" aria-controls="children-help" class="wb-lbx" role="button">who is considered an eligible child<sup class="far fa-question-circle mrgn-lft-sm"></sup></a></li>
-            <li>Proceed to the question below</li>
-              </ol>
-         
-          <div class="mrgn-tp-md">
-            <label for="children">How many eligible children are in your household?</label>
-            <select class="form-control" id="children" aria-describedby="childFs-legend childFs-desc">
-              <option value="0">None</option>
-              <option value="1">1 child</option>
-              <option value="2">2 children</option>
-              <option value="3">3 children</option>
-              <option value="4">4 children</option>
-              <option value="5">5 children</option>
-              <option value="6">6 children</option>
-              <option value="7">7 children</option>
-              <option value="8">8 children</option>
-              <option value="9">9 children</option>
-              <option value="10">10 children</option>
-              <option value="11">11 children</option>
-              <option value="12">12 children</option>
-              <option value="13">13 children</option>
-              <option value="14">14 children</option>
-              <option value="15">15 children</option>
-              <option value="16">16 children</option>
-              <option value="17">17 children</option>
-              <option value="18">18 children</option>
-              <option value="19">19 children</option>
-              <option value="20">20 children</option>
-            </select>
-          </div>
-                
-            </div>
-        </fieldset>
-        <button type="button" class="valid-location hidden btn btn-call-to-action mrgn-tp-xl mrgn-bttm-lg" id="ccrResultsBtn">Check your rebate amount</button>
-      </form>
-    </div>
-
-  <section>
-    <div aria-live="polite">
-      <h2 id="ccrTitle" aria-live="polite" class="hidden" tabindex="0">Results for payments from the rebate</h2>
-    </div>
-    <div id="ccrResults" class="hidden">
-      <section>
-        <p>Your estimated <strong>quarterly</strong> payment between April 2024 and January 2025 (based on the <strong class="base-year"></strong> base year) will be: <strong id="quarter-amount"></strong></p>
-        
-        <p>Review the table below on how much you will receive from the rebate approximately four times over the next year.</p>
-        <table class="table table-bordered" id="ccrTbl">
-          <caption>
-          Canada Carbon Rebate household quarterly amount for <span id="provTerr"></span> <span id="rural-note" class="hidden">(rural supplement of <span id="suppTxt"></span> applied)</span>
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Recipient</th>
-              <th scope="col">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr id="tblBaseAmt">
-              <td>Base amount</td>
-              <td class="text-right output-val" id="demo"></td>
-            </tr>
-            <tr id="tblSpouseAmt" class="hidden">
-              <td>Spouse or common-law amount</td>
-              <td class="text-right output-val"></td>
-            </tr>
-            <tr id="tblFirstChildAmt" class="hidden">
-              <td>First eligible child</td>
-              <td class="text-right output-val"></td>
-            </tr>
-            <tr id="tblAddedChildAmt" class="hidden">
-              <td>Each additional child total amount (<span id="addedChildNum" class="childCal"></span> <strong>&times;</strong> <span id="addedChildSum" class="childCal"></span>)</td>
-              <td class="text-right output-val"></td>
-            </tr>
-            <tr id="tblChildAmt" class="hidden">
-              <td>Children total amount (<span id="childNum" class="childCal"></span> <strong>&times;</strong> <span id="childSum" class="childCal"></span>)</td>
-              <td class="text-right output-val"></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr class="info" id="tblTotalAmt">
-              <th scope="row">Total quarterly household payment between April 2024 and January 2025 <br>(based on the <span class="base-year"></span> base year)</th>
-              <td class="text-right output-val"></td>
-            </tr>
-          </tfoot>
-        </table>
-    <p>If your household situation does not change for 2024, your estimated <strong>total</strong> payment (based on the <strong class="base-year"></strong> base year) would be: <strong id="total-amount"></strong></p>      
-          
-          
-      </section>
-    </div>
-  </section>
-  <section role="alert">
-    <div class="alert alert-info hidden" id="alert-invalid">
-      <h2 class="h3" tabindex="0">Not available</h2>
-      <p>The Canada Carbon Rebate is <strong>not available</strong> in your province or territory.</p>
-        <p>Check with your province's or territory's web site to learn about their carbon pricing and rebate policies.</p>
-    </div>
-  </section>
-  <section id="rural_supplement_lbx" class="mfp-hide modal-dialog modal-content overlay-def">
-              <header class="modal-header">
-                <h2 class="modal-title">Rural supplement for <span class="ruralProvTerr"></span></h2>
-              </header>
-              <div class="modal-body gc-font-2019">
-                <h3 class="mrgn-tp-sm">Find your primary residence</h3>
-                <p>In the table below:</p>
-                <div data-ajax-replace="qualify-for-the-supplement.html#qualify-steps-ajax"></div>
-                <table data-ajax-replace="" id="ajax-table" class="table table-bordered table-condensed table-striped provisional gc-table">
-                  <tr>
-                    <td><a href="qualify-for-the-supplement.html">Rural supplement qualification</a></td>
-                  </tr>
+            <div id="ccrResults" class="mrgn-tp-lg hidden">
+              <div class="d-sm-flex">
+                  <div class="mrgn-rght-sm"><strong id="quarter-amount"></strong></div> <div><p>is your estimated <strong>quarterly</strong> payment between April 2024 and January 2025 (based on the <span class="base-year"></span> base year).</p></div>
+                </div>
+              <details class="mrgn-tp-md mrgn-bttm-md">
+                <summary>Quarterly payment breakdown</summary>
+                <p>the table below breaks down how much you will receive from the carbon rebate approximately four times over the next year.</p>
+                <table class="gc-table provisional table table-bordered" id="ccrTbl">
+                  <caption class="text-left small">
+                  Canada Carbon Rebate household quarterly amount for <span class="provTerr"></span> <br>
+                  <span class="rural-note hidden">(Rural supplement of 20% applied)</span>
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Recipient</th>
+                      <th scope="col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr id="tblBaseAmt">
+                      <td><p class="text-left">Base amount</p></td>
+                      <td class="text-right output-val" id="demo"></td>
+                    </tr>
+                    <tr id="tblSpouseAmt" class="hidden">
+                      <td><p class="text-left">Spouse or common-law amount</p></td>
+                      <td class="text-right output-val"></td>
+                    </tr>
+                    <tr id="tblFirstChildAmt" class="hidden">
+                      <td><p class="text-left">First eligible child</p></td>
+                      <td class="text-right output-val"></td>
+                    </tr>
+                    <tr id="tblAddedChildAmt" class="hidden">
+                      <td><p class="text-left">Each additional child total amount <span class="nowrap">(<span id="addedChildNum" class="childCal"></span> <strong>&times;</strong> <span id="addedChildSum" class="childCal"></span>)</span></p></td>
+                      <td class="text-right output-val"></td>
+                    </tr>
+                    <tr id="tblChildAmt" class="hidden">
+                      <td><p class="text-left">Children total amount <span class="nowrap">(<span id="childNum" class="childCal"></span> <span class="h4">&times;</span> <span id="childSum" class="childCal"></span>)</span></p></td>
+                      <td class="text-right output-val"></td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr class="info" id="tblTotalAmt">
+                      <th scope="row"><p class="text-left">Quarterly household payment</p></th>
+                      <td class="text-right output-val"></td>
+                    </tr>
+                  </tfoot>
                 </table>
-                <div data-ajax-replace="qualify-for-the-supplement.html#rural-determination-ajax"><a href="qualify-for-the-supplement.html">find out if you qualify for the supplement for residents of small and rural communities</a></div>
-                
-              </div>
-              </section>        
- 
-    </details>
-    <details id="details-panel2" class="pb-4">
-      <summary><span class="fas fa-align-left fa-lg mrgn-rght-sm"></span>Full text</summary>
-      <p>Select your province of residence to determine the <strong>quarterly payment</strong> between April 2024 and January 2025 (based on the 2023 base year).</p>
-      <details>
-        <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-ab.png" class="mrgn-rght-md" alt="">Alberta</summary>
-       			<p>The base amount for Alberta is:</p>
-		<ul>
-			<li>$225 for an individual</li>
-			<li>$112.50 for a spouse or common-law partner</li>
-			<li>$56.25 per eligible child under the age of 19</li>
-			<li>$112.50 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
-		<ul>
-			<li>$45 for an individual</li>
-			<li>$22.50 for a spouse or common-law partner</li>
-			<li>$11.25 per eligible child under the age of 19</li>
-			<li>$22.50 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
-		<p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-alberta.html">Calculation sheet for residents of Alberta</a>.</p>
-      </details>
-	  <details>
-		<summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-bc.png" class="mrgn-rght-md" alt="">British Columbia</summary>
-		<p>The rebate is <strong>not</strong> available in your province or territory. Check with the British Columbia government web site to learn about their carbon pricing and rebate policies.</p> 
-		</details>
-      <details>
-        <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-mb.png" class="mrgn-rght-md" alt="">Manitoba</summary>
-		<p>The base amount for Manitoba is:</p>
-		<ul>
-			<li>$150 for an individual</li>
-			<li>$75 for a spouse or common-law partner</li>
-			<li>$37.50 per eligible child under the age of 19</li>
-			<li>$75 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
-		<ul>
-			<li>$30 for an individual</li>
-			<li>$15 for a spouse or common-law partner</li>
-			<li>$7.50 per eligible child under the age of 19</li>
-			<li>$15 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
-		<p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-manitoba.html">Calculation sheet for residents of Manitoba</a>.</p>
-      </details>
-      <details>
-        <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-nb.png" class="mrgn-rght-md" alt="">New Brunswick</summary>
-		<p>The base amount for New Brunswick is:</p>
-		<ul>
-			<li>$95 for an individual</li>
-			<li>$47.50 for a spouse or common-law partner</li>
-			<li>$23.75 per eligible child under the age of 19</li>
-			<li>$47.50 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
-		<ul>
-			<li>$19 for an individual</li>
-			<li>$9.50 for a spouse or common-law partner</li>
-			<li>$4.75 per eligible child under the age of 19</li>
-			<li>$9.50 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
-		<p>The rural supplement for New Brunswick in April 2024 will include a retroactive amount for the 2022 base year (July and October 2023 and January and April 2024). The supplement in July 2024 will return to normal.</p>
-		<p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-new-brunswick.html">Calculation sheet for residents of <span class="nowrap">New Brunswick</span></a>.</p>
-      </details>
-      <details>
-        <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-nl.png" class="mrgn-rght-md" alt="">Newfoundland and Labrador</summary>
-		<p>The base amount for Newfoundland and Labrador is:</p>
-		<ul>
-			<li>$149 for an individual</li>
-			<li>$74.50 for a spouse or common-law partner</li>
-			<li>$37.25 per eligible child under the age of 19</li>
-			<li>$74.50 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
-		<ul>
-			<li>$29.80 for an individual</li>
-			<li>$14.90 for a spouse or common-law partner</li>
-			<li>$7.45 per eligible child under the age of 19</li>
-			<li>$14.90 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
-		<p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-nfld.html">Calculation sheet for residents of Newfoundland and Labrador</a>.</p>
-      </details>
-	  <details>
-<summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-nt.png" class="mrgn-rght-md" alt="">Northwest Territories</summary>
-<p>The rebate is <strong>not</strong> available in your province or territory. Check with the Northwest Territories government web site to learn about their carbon pricing and rebate policies.</p>
-</details>
-      <details>
-        <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-ns.png" class="mrgn-rght-md" alt="">Nova Scotia</summary>
-		<p>The base amount for Nova Scotia is:</p>
-		<ul>
-			<li>$103 for an individual</li>
-			<li>$51.50 for a spouse or common-law partner</li>
-			<li>$25.75 per eligible child under the age of 19</li>
-			<li>$51.50 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
-		<ul>
-			<li>$20.60 for an individual</li>
-			<li>$10.30 for a spouse or common-law partner</li>
-			<li>$5.15 per eligible child under the age of 19</li>
-			<li>$10.30 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
-		<p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-nova-scotia.html">Calculation sheet for residents of Nova Scotia</a>.</p>
-	</details>
-	<details>
-<summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-nu.png" class="mrgn-rght-md" alt="">Nunavut</summary>
-<p>The rebate is <strong>not</strong> available in your province or territory. Check with the Nunavut government web site to learn about their carbon pricing and rebate policies.</p>
-</details>
-      <details>
-        <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-on.png" class="mrgn-rght-md" alt="">Ontario</summary>
-		<p>The base amount for Ontario is:</p>
-		<ul>
-			<li>$140 for an individual</li>
-			<li>$70 for a spouse or common-law partner</li>
-			<li>$35 per eligible child under the age of 19</li>
-			<li>$70 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
-		<ul>
-			<li>$28 for an individual</li>
-			<li>$14 for a spouse or common-law partner</li>
-			<li>$7 per eligible child under the age of 19</li>
-			<li>$14 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
-		<p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-ontario.html">Calculation sheet for residents of Ontario</a>.</p>
-	 </details>
-      <details>
-        <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-pe.png" class="mrgn-rght-md" alt="">Prince Edward Island</summary>
-		<p>The base amount for Prince Edward Island is:</p>
-		<ul>
-			<li>$110 for an individual</li>
-			<li>$55 for a spouse or common-law partner</li>
-			<li>$27.50 per eligible child under the age of 19</li>
-			<li>$55 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The rural supplement is included in the above base amounts, as all residents are eligible.</p>
-		<p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-prince-edward-island.html">Calculation sheet for residents of Prince Edward Island</a>.</p>
-		 </details>
-		 <details>
-<summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-qc.png" class="mrgn-rght-md" alt="">Quebec</summary>
-<p>The rebate is <strong>not</strong> available in your province or territory. Check with the Quebec government web site to learn about their carbon pricing and rebate policies.</p>
-</details>
-      <details>
-        <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-sk.png" class="mrgn-rght-md" alt="">Saskatchewan</summary>
-		<p>The base amount for Saskatchewan is:</p>
-		<ul>
-			<li>$188 for an individual</li>
-			<li>$94 for a spouse or common-law partner</li>
-			<li>$47 per eligible child under the age of 19</li>
-			<li>$94 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
-		<ul>
-			<li>$37.60 for an individual</li>
-			<li>$18.80 for a spouse or common-law partner</li>
-			<li>$9.40 per eligible child under the age of 19</li>
-			<li>$18.80 for the first eligible child in a single-parent family</li>
-		</ul>
-		<p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
-		<p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-saskatchewan.html">Calculation sheet for residents of Saskatchewan</a>.</p>
-	</details>
-	<details>
-<summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-yt.png" class="mrgn-rght-md" alt="">Yukon</summary>
-<p>The rebate is <strong>not</strong> available in your province or territory. Check with the Yukon government web site to learn about their carbon pricing and rebate policies.</p>
-</details>
-    </details>
+              </details>
+                 <div class="d-sm-flex mrgn-tp-lg">
+                     <div class="mrgn-rght-sm"><strong id="total-amount"></strong></div> <div><p>is your estimated <strong>total</strong> payment (4 quarterly payments) from April 2024 to January 2025.</p>
+                     </div>
+                </div>
+            </div>
+          </section>
+          <section role="alert">
+            <div class="alert alert-info hidden" id="alert-invalid">
+              <h2 class="h3" tabindex="0">Not available</h2>
+              <p>The Canada Carbon Rebate is <strong>not available</strong> in your province or territory.</p>
+              <p>Check with your province's or territory's web site to learn about their carbon pricing and rebate policies.</p>
+            </div>
+          </section>
+          <section id="rural_supplement_lbx" class="mfp-hide modal-dialog modal-content overlay-def">
+            <header class="modal-header">
+              <h2 class="modal-title">Rural supplement eligibility for residents of <span class="provTerr"></span></h2>
+            </header>
+            <div class="modal-body gc-font-2019">
+              <p>A rural supplement is provided for those who reside outside of a Census Metropolitan Area (CMA).</p>
+              <h3 class="mrgn-tp-sm">Find your residence</h3>
+              <div data-ajax-replace="qualify-for-the-supplement.html#qualify-steps-ajax"></div>
+              <table data-ajax-replace="" id="ajax-table" class="table table-bordered table-condensed table-striped provisional gc-table">
+                <tr>
+                  <td><a href="qualify-for-the-supplement.html">Rural supplement qualification</a></td>
+                </tr>
+              </table>
+              <div data-ajax-replace="qualify-for-the-supplement.html#rural-determination-ajax"><a href="qualify-for-the-supplement.html">find out if you qualify for the supplement for residents of small and rural communities</a></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
-            <h2>Previous year amounts</h2>
-            <p>These amounts are for the Climate action incentive payment (now known as the Canada Carbon Rebate).</p>
-      <details>
-        <summary>Amounts for the 2022 base year (paid in 2023 and beginning of 2024)</summary>
-    <p>(click on the province of residence to access the calculation sheet):</p>
-<p class="mrgn-bttm-0">The Alberta program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$772 ($193 quarterly) for an individual</li>
-<li>$386 ($96.50 quarterly) for a spouse or common-law partner</li>
-<li>$193 ($48.25 quarterly) per child under 19</li>
-<li>$386 ($96.50 quarterly) for the first child in a single-parent family</li>
-</ul>
-<p class="mrgn-bttm-0">The Manitoba program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$528 ($132 quarterly) for an individual</li>
-<li>$264 ($66 quarterly) for a spouse or common-law partner</li>
-<li>$132 ($33 quarterly) per child under 19</li>
-<li>$264 ($66 quarterly) for the first child in a single-parent family</li>
-</ul>
-<p class="mrgn-bttm-0">The New Brunswick program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$92 for an individual</li>
-<li>$46 for a spouse or common-law partner</li>
-<li>$23 per child under 19</li>
-<li>$46 for the first child in a single-parent family</li>
-</ul>
-<p class="mrgn-bttm-0">The Newfoundland and Labrador program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$164 for an individual</li>
-<li>$82 for a spouse or common-law partner</li>
-<li>$41 per child under 19</li>
-<li>$82 for the first child in a single-parent family</li>
-</ul>
-<p class="mrgn-bttm-0">The Nova Scotia program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$124 for an individual</li>
-<li>$62 for a spouse or common-law partner</li>
-<li>$31 per child under 19</li>
-<li>$62 for the first child in a single-parent family</li>
-</ul>
-<p class="mrgn-bttm-0">The Ontario program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$122 for an individual</li>
-<li>$61 for a spouse or common-law partner</li>
-<li>$30.50 per child under 19</li>
-<li>$61 for the first child in a single-parent family</li>
-</ul>
-<p class="mrgn-bttm-0">The Prince Edward Island program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$120 for an individual</li>
-<li>$60 for a spouse or common-law partner</li>
-<li>$30 per child under 19</li>
-<li>$60 for the first child in a single-parent family</li>
-</ul>
-<p>The rural supplement is included in the above base amounts, as all residents are eligible.</p>
-<p class="mrgn-bttm-0">The Saskatchewan program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$170 for an individual</li>
-<li>$85 for a spouse or common-law partner</li>
-<li>$42.50 per child under 19</li>
-<li>$85 for the first child in a single-parent family</li>
-</ul>
-
-        <p>The rebate includes a rural supplement of <span class="nowrap">10%</span> of the base amount for residents of small and rural communities.</p>
-
-
-
-    </details>
-
-
-
-
-    
-
+  <h2>Quarterly amounts and calculations for current and previous years</h2>
+  <p>The base year is the year of the tax return from which information is taken to calculate the CCR amount for the payment period.</p>
+  <h3>Current year amounts</h3>
+  <p>The most current base year's amounts are used in the estimator above.</p>
+  <details>
+    <summary>Amounts for the 2023 base year</summary>
+    <p>The payments are made from April 2024 to January 2025.</p>
+    <p>Select your province or territory of residence.</p>
     <details>
-        <summary>Amounts for the 2021 base year (paid in 2022 and beginnning of 2023)</summary>
-   
-
-
-
-    <p>(click on the province of residence to access the calculation sheet):</p>
-<p class="mrgn-bttm-0">The Alberta program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$134.75 for an individual</li>
-<li>$67.50 for a spouse or common-law partner</li>
-<li>$33.75 per child under 19 years old</li>
-<li>$67.50 for the first child in a single-parent family</li>
-</ul>
-<p class="mrgn-bttm-0">The Manitoba program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$104 for an individual</li>
-<li>$52 for a spouse or common-law partner</li>
-<li>$26 per child under 19 years old</li>
-<li>$52 for the first child in a single-parent family</li>
-</ul>
-<p class="mrgn-bttm-0">The Ontario program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$93.25 for an individual</li>
-<li>$46.50 for a spouse or common-law partner</li>
-<li>$23.25 per child under 19 years old</li>
-<li>$46.50 for the first child in a single-parent family</li>
-</ul>
-<p class="mrgn-bttm-0">The Saskatchewan program provides a quarterly base amount of:</p>
-<ul class="list-unstyled">
-<li>$137.50 for an individual</li>
-<li>$68.75 for a spouse or common-law partner</li>
-<li>$34.50 per child under 19 years old</li>
-<li>$68.75 for the first child in a single-parent family</li>
-</ul>
-
-        <p>The rebate includes a rural supplement of 10% of the base amount for residents of small and rural communities.</p>
-
-
-
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-ab.png" class="mrgn-rght-md" alt="">Alberta</summary>
+      <p>The base amount for Alberta is:</p>
+      <ul>
+        <li>$225 for an individual</li>
+        <li>$112.50 for a spouse or common-law partner</li>
+        <li>$56.25 per eligible child under the age of 19</li>
+        <li>$112.50 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
+      <ul>
+        <li>$45 for an individual</li>
+        <li>$22.50 for a spouse or common-law partner</li>
+        <li>$11.25 per eligible child under the age of 19</li>
+        <li>$22.50 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
+      <p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-alberta.html">2023 base year calculation sheet for residents of Alberta</a>.</p>
     </details>
-            
-<h2>Offsets from the rebate to pay a debt</h2>        
-		<p>If you have a tax debt with the CRA, this rebate will be applied to amounts owing for income tax balances or amounts owing to other federal or provincial government programs.</p>
-		<p>The CRA does not charge or give interest on any overpayments or underpayments from this rebate.</p>
-		</div>
-	  </div>
-	  		<section id="children-help" class="mfp-hide modal-dialog modal-content overlay-def">
-			<header class="modal-header">
-				<h2 class="modal-title">Who are eligible children?</h2>
-			</header>
-			<div class="modal-body" data-ajax-replace="who.html#eligible-ajax">
-			<p><a href="who.html#children">If you have children</a></p>				
-			</div>
-		</section>
-	  <div class="row">
-		<div class="col-md-12">
-		  <nav role="navigation" class="mrgn-bttm-lg mrgn-tp-lg">
-			<h3 class="wb-inv">Section navigation</h3>
-			<ul class="pager">
-			  <li class="next"><a href="/en/revenue-agency/services/child-family-benefits/cai-payment/when-expect-payments.html" rel="next"><span class="wb-inv">Next: </span>When to expect your payments</a></li>
-			</ul>
-		  </nav>
-		</div>
-	  </div>
-	  
-
-
-</div>
-
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-bc.png" class="mrgn-rght-md" alt="">British Columbia</summary>
+      <p>This carbon rebate is <strong>not</strong> available in your province or territory. Check with the British Columbia government web site to learn about their carbon pricing and rebate policies.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-mb.png" class="mrgn-rght-md" alt="">Manitoba</summary>
+      <p>The base amount for Manitoba is:</p>
+      <ul>
+        <li>$150 for an individual</li>
+        <li>$75 for a spouse or common-law partner</li>
+        <li>$37.50 per eligible child under the age of 19</li>
+        <li>$75 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
+      <ul>
+        <li>$30 for an individual</li>
+        <li>$15 for a spouse or common-law partner</li>
+        <li>$7.50 per eligible child under the age of 19</li>
+        <li>$15 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
+      <p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-manitoba.html">2023 base year calculation sheet for residents of Manitoba</a>.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-nb.png" class="mrgn-rght-md" alt="">New Brunswick</summary>
+      <p>The base amount for New Brunswick is:</p>
+      <ul>
+        <li>$95 for an individual</li>
+        <li>$47.50 for a spouse or common-law partner</li>
+        <li>$23.75 per eligible child under the age of 19</li>
+        <li>$47.50 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
+      <ul>
+        <li>$19 for an individual</li>
+        <li>$9.50 for a spouse or common-law partner</li>
+        <li>$4.75 per eligible child under the age of 19</li>
+        <li>$9.50 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
+      <p>The rural supplement for New Brunswick in April 2024 will include a retroactive amount for the 2022 base year (July and October 2023 and January and April 2024). The supplement in July 2024 will return to normal.</p>
+      <p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-new-brunswick.html">2023 base year calculation sheet for residents of <span class="nowrap">New Brunswick</span></a>.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-nl.png" class="mrgn-rght-md" alt="">Newfoundland and Labrador</summary>
+      <p>The base amount for Newfoundland and Labrador is:</p>
+      <ul>
+        <li>$149 for an individual</li>
+        <li>$74.50 for a spouse or common-law partner</li>
+        <li>$37.25 per eligible child under the age of 19</li>
+        <li>$74.50 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
+      <ul>
+        <li>$29.80 for an individual</li>
+        <li>$14.90 for a spouse or common-law partner</li>
+        <li>$7.45 per eligible child under the age of 19</li>
+        <li>$14.90 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
+      <p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-nfld.html">2023 base year calculation sheet for residents of Newfoundland and Labrador</a>.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-nt.png" class="mrgn-rght-md" alt="">Northwest Territories</summary>
+      <p>This carbon rebate is <strong>not</strong> available in your province or territory. Check with the Northwest Territories government web site to learn about their carbon pricing and rebate policies.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-ns.png" class="mrgn-rght-md" alt="">Nova Scotia</summary>
+      <p>The base amount for Nova Scotia is:</p>
+      <ul>
+        <li>$103 for an individual</li>
+        <li>$51.50 for a spouse or common-law partner</li>
+        <li>$25.75 per eligible child under the age of 19</li>
+        <li>$51.50 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
+      <ul>
+        <li>$20.60 for an individual</li>
+        <li>$10.30 for a spouse or common-law partner</li>
+        <li>$5.15 per eligible child under the age of 19</li>
+        <li>$10.30 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
+      <p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-nova-scotia.html">2023 base year calculation sheet for residents of Nova Scotia</a>.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-nu.png" class="mrgn-rght-md" alt="">Nunavut</summary>
+      <p>This carbon rebate is <strong>not</strong> available in your province or territory. Check with the Nunavut government web site to learn about their carbon pricing and rebate policies.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-on.png" class="mrgn-rght-md" alt="">Ontario</summary>
+      <p>The base amount for Ontario is:</p>
+      <ul>
+        <li>$140 for an individual</li>
+        <li>$70 for a spouse or common-law partner</li>
+        <li>$35 per eligible child under the age of 19</li>
+        <li>$70 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
+      <ul>
+        <li>$28 for an individual</li>
+        <li>$14 for a spouse or common-law partner</li>
+        <li>$7 per eligible child under the age of 19</li>
+        <li>$14 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
+      <p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-ontario.html">2023 base year calculation sheet for residents of Ontario</a>.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-pe.png" class="mrgn-rght-md" alt="">Prince Edward Island</summary>
+      <p>The base amount for Prince Edward Island is:</p>
+      <ul>
+        <li>$110 for an individual</li>
+        <li>$55 for a spouse or common-law partner</li>
+        <li>$27.50 per eligible child under the age of 19</li>
+        <li>$55 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The rural supplement is included in the above base amounts, as all residents are eligible.</p>
+      <p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-prince-edward-island.html">2023 base year calculation sheet for residents of Prince Edward Island</a>.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-qc.png" class="mrgn-rght-md" alt="">Quebec</summary>
+      <p>This carbon rebate is <strong>not</strong> available in your province or territory. Check with the Quebec government web site to learn about their carbon pricing and rebate policies.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-sk.png" class="mrgn-rght-md" alt="">Saskatchewan</summary>
+      <p>The base amount for Saskatchewan is:</p>
+      <ul>
+        <li>$188 for an individual</li>
+        <li>$94 for a spouse or common-law partner</li>
+        <li>$47 per eligible child under the age of 19</li>
+        <li>$94 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The <a href="qualify-for-the-supplement.html">rural supplement</a> is:</p>
+      <ul>
+        <li>$37.60 for an individual</li>
+        <li>$18.80 for a spouse or common-law partner</li>
+        <li>$9.40 per eligible child under the age of 19</li>
+        <li>$18.80 for the first eligible child in a single-parent family</li>
+      </ul>
+      <p>The rural supplement is 20% of the base amount. Note that this increase is pending Royal Assent and will be implemented once it is received.</p>
+      <p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2023-saskatchewan.html">2023 base year calculation sheet for residents of Saskatchewan</a>.</p>
+    </details>
+    <details>
+      <summary><img src="https://canada.ca/content/dam/cra-arc/serv-info/tax/individuals/flag-yt.png" class="mrgn-rght-md" alt="">Yukon</summary>
+      <p>This carbon rebate is <strong>not</strong> available in your province or territory. Check with the Yukon government web site to learn about their carbon pricing and rebate policies.</p>
+    </details>
+  </details>
+  <h3>Previous year amounts</h3>
+  <p class="mrgn-tp-md">These amounts are for the program formally known as the Climate Action Incentive.</p>
+  <details>
+    <summary>Amounts for the 2022 base year</summary>
+    <p>The payments were made from April 2023 to January 2023.</p>
+      <p>Select your province or territory of residence.</p>
+    <details>
+      <summary>Alberta</summary>
+      <p class="mrgn-bttm-0">The Alberta program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$772 ($193 quarterly) for an individual</li>
+        <li>$386 ($96.50 quarterly) for a spouse or common-law partner</li>
+        <li>$193 ($48.25 quarterly) per child under 19</li>
+        <li>$386 ($96.50 quarterly) for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2022-alberta.html">2022 base year calculation sheet for residents of Alberta</a>.</p>
+    </details>
+    <details>
+      <summary>Manitoba</summary>
+      <p class="mrgn-bttm-0">The Manitoba program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$528 ($132 quarterly) for an individual</li>
+        <li>$264 ($66 quarterly) for a spouse or common-law partner</li>
+        <li>$132 ($33 quarterly) per child under 19</li>
+        <li>$264 ($66 quarterly) for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate/climate-action-incentive-payment-calculation-sheet-2022-manitoba.html">2022 base year calculation sheet for residents of Manitoba</a>.</p>
+    </details>
+    <details>
+      <summary>New Brunswick</summary>
+      <p class="mrgn-bttm-0">The New Brunswick program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$92 for an individual</li>
+        <li>$46 for a spouse or common-law partner</li>
+        <li>$23 per child under 19</li>
+        <li>$46 for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate/climate-action-incentive-payment-calculation-sheet-2022-new-brunswick.html">2022 base year calculation sheet for residents of New Brunswick</a>.</p>
+    </details>
+    <details>
+      <summary>Newfoundland and Labrador</summary>
+      <p class="mrgn-bttm-0">The Newfoundland and Labrador program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$164 for an individual</li>
+        <li>$82 for a spouse or common-law partner</li>
+        <li>$41 per child under 19</li>
+        <li>$82 for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate/climate-action-incentive-payment-calculation-sheet-2022-nfld.html">2022 base year calculation sheet for residents of Newfoundland and Labrador</a>.</p>
+    </details>
+    <details>
+      <summary>Nova Scotia</summary>
+      <p class="mrgn-bttm-0">The Nova Scotia program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$124 for an individual</li>
+        <li>$62 for a spouse or common-law partner</li>
+        <li>$31 per child under 19</li>
+        <li>$62 for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate/climate-action-incentive-payment-calculation-sheet-2022-nova-scotia.html">2022 base year calculation sheet for residents of Nova Scotia</a>.</p>
+    </details>
+    <details>
+      <summary>Ontario</summary>
+      <p class="mrgn-bttm-0">The Ontario program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$122 for an individual</li>
+        <li>$61 for a spouse or common-law partner</li>
+        <li>$30.50 per child under 19</li>
+        <li>$61 for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate/climate-action-incentive-payment-calculation-sheet-2022-ontario.html">2022 base year calculation sheet for residents of Ontario</a>.</p>
+    </details>
+    <details>
+      <summary>Prince Edward Island</summary>
+      <p class="mrgn-bttm-0">The Prince Edward Island program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$120 for an individual</li>
+        <li>$60 for a spouse or common-law partner</li>
+        <li>$30 per child under 19</li>
+        <li>$60 for the first child in a single-parent family</li>
+      </ul>
+      <p>The rural supplement is included in the above base amounts, as all residents are eligible.</p>
+      <p>For more information, go to the <a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate/climate-action-incentive-payment-calculation-sheet-2022-prince-edward-island.html">2022 base year calculation sheet for residents of Prince Edward Island</a>.</p>
+    </details>
+    <details>
+      <summary>Saskatchewan</summary>
+      <p class="mrgn-bttm-0">The Saskatchewan program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$170 for an individual</li>
+        <li>$85 for a spouse or common-law partner</li>
+        <li>$42.50 per child under 19</li>
+        <li>$85 for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate/climate-action-incentive-payment-calculation-sheet-2022-saskatchewan.html">2022 base year calculation sheet for residents of Saskatchewan</a>.</p>
+    </details>
+    <p>The carbon rebate includes a rural supplement of <span class="nowrap">10%</span> of the base amount for residents of small and rural communities.</p>
+  </details>
+  <details>
+    <summary>Amounts for the 2021 base year</summary>
+    <p>The payments were made from April 2022 to January 2023.</p>
+      <p>Select your province or territory of residence.</p>
+    <details>
+      <summary>Alberta</summary>
+      <p class="mrgn-bttm-0">The Alberta program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$134.75 for an individual</li>
+        <li>$67.50 for a spouse or common-law partner</li>
+        <li>$33.75 per child under 19 years old</li>
+        <li>$67.50 for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="/en/revenue-agency/services/child-family-benefits/cai-payment/canada-carbon-rebate-calculation-sheet-2021-alberta.html">2021 base year calculation sheet for residents of Alberta</a>.</p>
+    </details>
+    <details>
+      <summary>Manitoba</summary>
+      <p class="mrgn-bttm-0">The Manitoba program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$104 for an individual</li>
+        <li>$52 for a spouse or common-law partner</li>
+        <li>$26 per child under 19 years old</li>
+        <li>$52 for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate/climate-action-incentive-payment-calculation-sheet-2021-manitoba.html">2021 base year calculation sheet for residents of Manitoba</a>.</p>
+    </details>
+    <details>
+      <summary>Ontario</summary>
+      <p class="mrgn-bttm-0">The Ontario program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$93.25 for an individual</li>
+        <li>$46.50 for a spouse or common-law partner</li>
+        <li>$23.25 per child under 19 years old</li>
+        <li>$46.50 for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate/climate-action-incentive-payment-calculation-sheet-2021-ontario.html">2021 base year calculation sheet for residents of Ontario</a>.</p>
+    </details>
+    <details>
+      <summary>Saskatchewan</summary>
+      <p class="mrgn-bttm-0">The Saskatchewan program provides a quarterly base amount of:</p>
+      <ul class="list-unstyled">
+        <li>$137.50 for an individual</li>
+        <li>$68.75 for a spouse or common-law partner</li>
+        <li>$34.50 per child under 19 years old</li>
+        <li>$68.75 for the first child in a single-parent family</li>
+      </ul>
+      <p>For more information, go to the <a href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate/climate-action-incentive-payment-calculation-sheet-2021-saskatchewan.html">2021 base year calculation sheet for residents of Saskatchewan</a>.</p>
+      <p>The carbon rebate includes a rural supplement of <span class="nowrap">10%</span> of the base amount for residents of small and rural communities.</p>
+    </details>
+    <p>The carbon rebate includes a rural supplement of 10% of the base amount for residents of small and rural communities.</p>
+  </details>
+  <h2>Changes in your amount</h2>
+  <p>The actual amount of the CCR you receive may be different for various reasons.</p>
+ <!-- <h3>Rural supplement increase has not gone into effect</h3>
+  <p>The 20% rural supplement (increase from 10%) has not received royal assent.</p>
+  <p>Once it has been fully adopted into law, the increase will be retroactively applied to previous amounts, and calculated into future amounts.</p>//-->
+  <h3>Household situation had changed</h3>
+  <p>Your quarterly amount can change if your household situation changes within the payment period of April 2024 to January 2025.</p>
+  <p>These changes can include:</p>
+  <ul>
+    <li>Move to a different province or territory</li>
+    <li>Change in your relationship status</li>
+    <li>Child reaching the age of 19 (they can  claim their own rebate)</li>
+    <li>New child in your care</li>
+    <li>Child custody agreement</li>
+    <li>Death of a recipient</li>
+  </ul>
+  <p>You should <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4215/climate-action-incentive-payment.html#toc9">Contact the CRA regarding changes to your situation</a> as soon as possible to make sure you are getting the  amount.</p>
+  <h3>Offsets from the CCR to pay a debt</h3>
+  <p>If you have an existing debt with the CRA, the rebate may be applied to amounts owing for income tax balances or amounts owing to other federal or provincial government programs.</p>
+  <p>The CRA does not charge or give interest on any rebate overpayments or underpayments.</p>
+  <section id="children-help" class="mfp-hide modal-dialog modal-content overlay-def">
+    <header class="modal-header">
+      <h2 class="modal-title">Who are eligible children?</h2>
+    </header>
+    <div class="modal-body" data-ajax-replace="who.html#eligible-ajax">
+      <p><a href="who.html#children">If you have children</a></p>
+    </div>
+  </section>
+  <div class="row">
+    <div class="col-md-12">
+      <nav role="navigation" class="mrgn-bttm-lg mrgn-tp-lg">
+        <h3 class="wb-inv">Section navigation</h3>
+        <ul class="pager">
+          <li class="next"><a href="/en/revenue-agency/services/child-family-benefits/cai-payment/when-expect-payments.html" rel="next"><span class="wb-inv">Next: </span>When to expect your payments</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
             <section class="pagedetails">
     <h2 class="wb-inv">Page details</h2>
@@ -988,211 +1018,150 @@
 <script src="https://canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script>
 <script>
 //Estimator
-    $( document ).on( "wb-ready.wb-tabs", ".wb-tabs", function( event ) { 
-    
-    
 //universal variables
       let  ccrFormId = "#ccr_form", ruralPercent = 0; 
-    
- //Form validation
-   
-    
  //Form values reset
 function formReset() {
-     $("#ccrTbl .output-val, .childCal").empty();
+    $("#ccrTbl .output-val, .childCal").empty();
     $("#tblSpouseAmt, #tblFirstChildAmt, #tblAddedChildAmt, #tblChildAmt").removeClass("hidden");
     $("#ccrResults, #ccrTitle").addClass("hidden"); 
-    
 };        
 $("input, select", ccrFormId).change(formReset);
     
-    
- //Provide alert for invalid location in selection
-    $('#location').change(function(){
-  if($(this).val() == 'inval'){
-    $('.valid-location').addClass("hidden");
-      $('#alert-invalid').removeClass("hidden");
-  }
-else  {
-    $('.valid-location').removeClass("hidden");
-     $('#alert-invalid').addClass("hidden");
-    
-//Get AJAX    
-   var locationText =  $( "#location option:selected" ).text();
-$("#ajax-table").attr("data-ajax-replace", "qualify-for-the-supplement.html#ajax-" + $(this).val()).trigger( "wb-update.wb-data-ajax");
-$(".ruralProvTerr").text(locationText);    
+//Provide alert for invalid location in selection
+$('#location').change(function(){
+    if($(this).val() == 'inval'){
+        $('.valid-location').addClass("hidden");
+        $('#alert-invalid').removeClass("hidden");
+    }
+    else{
+        $('.valid-location').removeClass("hidden");
+        $('#alert-invalid').addClass("hidden");
+//Get AJAX for rural supplement   
+        var locationText =  $( "#location option:selected" ).text();
+        $("#ajax-table").attr("data-ajax-replace", "qualify-for-the-supplement.html#ajax-" + $(this).val()).trigger( "wb-update.wb-data-ajax");
+        $(".provTerr").text(locationText);    
  //Reset rural radio group
-$('input[name=ruralRadio]').prop('checked', function() {
-        return this.defaultChecked;
-    });	
-   
-    
-    
-  }      
+        $('input[name=ruralRadio]').prop('checked', function() {
+            return this.defaultChecked;
+        });
+    }
 }); 
     
     
 //Currency function
     function formatCurrency (value, currencyCode, locale) {
-return Intl.NumberFormat(locale, {
-style: "currency",
-currency: currencyCode
-}).format(value);
-
-}
+        return Intl.NumberFormat(locale, {
+            style: "currency",
+            currency: currencyCode
+        }).format(value);
+    }
     
 //Form submit commands
-      $(ccrFormId).on("click vclick touchstart", "#ccrResultsBtn", function (event) { 
-      //Form validation
+    $(ccrFormId).on("click vclick touchstart", "#ccrResultsBtn", function (event) { 
+//Form validation
         event.preventDefault();
-      let isFormValid = true, 
-           parentElement = this.parentElement
-       if (jQuery.validator && jQuery.validator !== "undefined") {
+        let isFormValid = true, 
+            parentElement = this.parentElement
+        if (jQuery.validator && jQuery.validator !== "undefined") {
             isFormValid = $(ccrFormId).valid();
-       }
+        }
         if (isFormValid === true) {
             $("#ccrResults, #ccrTitle").removeClass("hidden");
-      
-            document.getElementById("ccrTitle").scrollIntoView();
+            document.getElementById("ccrTitle").scrollIntoView({ behavior: "smooth"});
+        }
+//Get json file
+        $.getJSON("data/rates.json", function(data) {
+            currYr = Object.keys(data)[0];
+            ccrRates = data[currYr];
+//Language switches
+            switch (wb.lang){
+                case "en": 
+                    var locationName = "name_e", currLang = "en-CA";
+                    break;
+                case "fr":
+                    var locationName = "name_f", currLang = "fr-CA";
             }
-  //Get json file
-          
- $.getJSON("data/rates.json", function(data) {
-
-     currYr = "2023";
-     ccrRates = data[currYr];
-// language switches
-    switch (wb.lang){
-        case "en": 
-            var locationName = "name_e", currLang = "en-CA";
-            break;
-        case "fr":
-            var locationName = "name_f", currLang = "fr-CA";
-    } 
-            
- var provId = $("#location option:selected").val()
+            var provId = $("#location option:selected").val()
  
- //Add location to table caption
-$("#provTerr").text(ccrRates[0][provId][0][locationName]);
-
- //Add year to results     
-$(".base-year").text(currYr);
-     
-//Add supliment amount text to results
- $("#suppTxt").text(ccrRates[0].ruraltext);    
- 
+//Add year to results
+            $(".base-year").text(currYr);
  //Rural supplement value
-     var ruralCheck = $("input[name='ruralRadio']:checked").val();
-     if (ruralCheck == "yes"){
-         $("#rural-note").removeClass("hidden");
-         var ruralPercent = ccrRates[0].ruralpercent;
-     }
-     if (ruralCheck == "no") {
-         $("#rural-note").addClass("hidden");
-         var ruralPercent = 1;
-     }    
- 
+            var ruralCheck = $("input[name='ruralRadio']:checked").val();
+            if (ruralCheck == "yes"){
+                $(".rural-note").removeClass("hidden");
+                var ruralPercent = ccrRates[0].ruralpercent;
+            }
+            if (ruralCheck == "no") {
+                $(".rural-note").addClass("hidden");
+                var ruralPercent = 1;
+            }    
+
 //Base level calculation
-     const baseAmt =  ccrRates[0][provId][0].base * ruralPercent;
-      $("#tblBaseAmt .output-val").text(formatCurrency(baseAmt, "CAD", currLang));
+            const baseAmt =  ccrRates[0][provId][0].base * ruralPercent;
+            $("#tblBaseAmt .output-val").text(formatCurrency(baseAmt, "CAD", currLang));
  
 //Spousal calculation
-var spouseCheck = $("input[name='spouseRadio']:checked").val();
-     if (spouseCheck == "yes"){
-             var spouseAmt = ccrRates[0][provId][0].spouse * ruralPercent; 
-                
+            var spouseCheck = $("input[name='spouseRadio']:checked").val();
+            if (spouseCheck == "yes"){
+                var spouseAmt = ccrRates[0][provId][0].spouse * ruralPercent;
                 $("#tblSpouseAmt").removeClass("hidden");
-                $("#tblFirstChildAmt, #tblAddedChildAmt").addClass("hidden"); 
+                $("#tblFirstChildAmt, #tblAddedChildAmt").addClass("hidden");
             }
             if (spouseCheck == "no") {
                 var spouseAmt = 0;
                 $("#tblSpouseAmt .output-val").empty(); $("#tblSpouseAmt").addClass("hidden");
-               }     
-     $("#tblSpouseAmt .output-val").text(formatCurrency(spouseAmt, "CAD", currLang));
+            }
+            $("#tblSpouseAmt .output-val").text(formatCurrency(spouseAmt, "CAD", currLang));
+
 //Children calculation
-    const childrenAmount  = $("#children").val();
-    
-    
-     
-          if (childrenAmount == 0) {
-              var firstChildAmt, addedChildAmt, allChildAmt;
-              firstChildAmt = addedChildAmt = allChildAmt = 0;
-              $("#tblFirstChildAmt, #tblAddedChildAmt, #tblChildAmt").addClass("hidden");
-              
-          }  
-          if (childrenAmount == 1 && spouseCheck == "no")
-              {
-                var firstChildAmt = ccrRates[0][provId][0].first_single * ruralPercent; 
-                  var addedChildAmt, allChildAmt;
-              addedChildAmt = allChildAmt = 0;
-              $("#tblFirstChildAmt .output-val").text(formatCurrency(firstChildAmt, "CAD", currLang));
-             $("#tblFirstChildAmt").removeClass("hidden");      
-                $("#tblSpouseAmt, #tblAddedChildAmt, #tblChildAmt").addClass("hidden");  
-                  
-                  
-              }
-           if (childrenAmount > 1 && spouseCheck == "no")
-              { 
-                  const addedChildAmtSum =  ccrRates[0][provId][0].child * ruralPercent;
-                  var firstChildAmt = ccrRates[0][provId][0].first_single * ruralPercent; 
-               var addedChildAmt =  ccrRates[0][provId][0].child * (childrenAmount - 1) * ruralPercent;   
-               var allChildAmt  = 0;
-               
+            const childrenAmount  = $("#children").val();
+            if (childrenAmount == 0) {
+                var firstChildAmt, addedChildAmt, allChildAmt;
+                firstChildAmt = addedChildAmt = allChildAmt = 0;
+                $("#tblFirstChildAmt, #tblAddedChildAmt, #tblChildAmt").addClass("hidden");
+            }
+            if (childrenAmount == 1 && spouseCheck == "no") {
+                var firstChildAmt = ccrRates[0][provId][0].first_single * ruralPercent;
+                var addedChildAmt, allChildAmt;
+                addedChildAmt = allChildAmt = 0;
+                $("#tblFirstChildAmt .output-val").text(formatCurrency(firstChildAmt, "CAD", currLang));
+                $("#tblFirstChildAmt").removeClass("hidden");
+                $("#tblSpouseAmt, #tblAddedChildAmt, #tblChildAmt").addClass("hidden");
+            }
+            if (childrenAmount > 1 && spouseCheck == "no") {
+                const addedChildAmtSum =  ccrRates[0][provId][0].child * ruralPercent;
+                var firstChildAmt = ccrRates[0][provId][0].first_single * ruralPercent;
+                var addedChildAmt =  ccrRates[0][provId][0].child * (childrenAmount - 1) * ruralPercent;
+                var allChildAmt  = 0;
                 $("#tblFirstChildAmt, #tblAddedChildAmt").removeClass("hidden");
-                 $("#tblSpouseAmt, #tblChildAmt").addClass("hidden");   
-              $("#tblFirstChildAmt .output-val").text(formatCurrency(firstChildAmt, "CAD", currLang));
-                  
-                  
-             $("#tblAddedChildAmt .output-val").text(formatCurrency(addedChildAmt, "CAD", currLang));      $("#addedChildNum").text(childrenAmount - 1);
-                  $("#addedChildSum").text(formatCurrency(addedChildAmtSum, "CAD", currLang));
-                
-                  
-                  
-              }   
-            if (childrenAmount >= 1 && spouseCheck == "yes")
-              {
-             var firstChildAmt, addedChildAmt;
-              firstChildAmt = addedChildAmt = 0;    
-                  
-              var childAmtSum =  ccrRates[0][provId][0].child * ruralPercent;
-            var allChildAmt =  ccrRates[0][provId][0].child * childrenAmount * ruralPercent;     
-              $("#tblChildAmt .output-val").text(formatCurrency(allChildAmt, "CAD", currLang));
-               $("#childNum").text(childrenAmount);
-                  $("#childSum").text(formatCurrency(childAmtSum, "CAD", currLang));
-                $("#tblFirstChildAmt, #tblAddedChildAmt").addClass("hidden");  
-                  
-                  
-              }       
-     
-     
-     
- //Total amount calculation
-  const quarterAmt = baseAmt + spouseAmt + firstChildAmt + addedChildAmt + allChildAmt;
-    const totalAmt = quarterAmt * 4;  
-     
-    $("#tblTotalAmt .output-val, #quarter-amount").text(formatCurrency(quarterAmt, "CAD", currLang));
-    $("#total-amount").text(formatCurrency(totalAmt, "CAD", currLang));  
- });
-          
-          
-          
-      
-      });
-    
+                $("#tblSpouseAmt, #tblChildAmt").addClass("hidden");   $("#tblFirstChildAmt .output-val").text(formatCurrency(firstChildAmt, "CAD", currLang));
+                $("#tblAddedChildAmt .output-val").text(formatCurrency(addedChildAmt, "CAD", currLang));
+                $("#addedChildNum").text(childrenAmount - 1);
+                $("#addedChildSum").text(formatCurrency(addedChildAmtSum, "CAD", currLang));
+            }
+            if (childrenAmount >= 1 && spouseCheck == "yes") {
+                var firstChildAmt, addedChildAmt;
+                firstChildAmt = addedChildAmt = 0;
+                var childAmtSum =  ccrRates[0][provId][0].child * ruralPercent;
+                var allChildAmt =  ccrRates[0][provId][0].child * childrenAmount * ruralPercent;
+                $("#tblChildAmt .output-val").text(formatCurrency(allChildAmt, "CAD", currLang));
+                $("#childNum").text(childrenAmount);
+                $("#childSum").text(formatCurrency(childAmtSum, "CAD", currLang));
+                $("#tblFirstChildAmt, #tblAddedChildAmt").addClass("hidden");
+            }       
+//Total amount calculation
+            const quarterAmt = baseAmt + spouseAmt + firstChildAmt + addedChildAmt + allChildAmt;
+            const totalAmt = quarterAmt * 4;
+            $("#tblTotalAmt .output-val, #quarter-amount").text(formatCurrency(quarterAmt, "CAD", currLang));
+            $("#total-amount").text(formatCurrency(totalAmt, "CAD", currLang));
+        });
     });
-
- //Add target blank to rural maps
-    $( ".wb-tabs" ).on( "wb-ready.wb-tabs", function( event ) {
+    
+//Add target blank to rural maps
     $('a[href*="rural_supplement_lbx"]').on("click", function() {
-        
-    $("a[href*='geoprod.statcan.gc.ca']").attr({"target": "_blank", "rel": "noreferrer noopener"});  
-        
+        $("a[href*='geoprod.statcan.gc.ca']").attr({"target": "_blank", "rel": "noreferrer noopener"});
     });
-    });
-    
-    
     </script>
-
-
 </body>
 </html>
