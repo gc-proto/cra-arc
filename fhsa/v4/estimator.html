@@ -2582,8 +2582,8 @@
                 let savingsAmt = document.getElementById("savingsAmountSld").value;
 
                 if (parseInt(savingsTransferVal, 10) > parseInt(savingsAmt, 10)) {
-                    document.getElementById("savingsTransferAmount").value = savingsAmt;
                     document.getElementById("savingsTransferAmountSld").value = savingsAmt;
+                    $("#savingsTransferAmountSld").trigger("update.wb-input-range", "#savingsTransferAmountSld");
                     return savingsAmt;
                 }
                 return savingsTransferVal;
