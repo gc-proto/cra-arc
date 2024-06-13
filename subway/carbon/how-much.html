@@ -296,7 +296,7 @@
                 <div class="form-group">
                   <label for="location"><span class="fieldname">Which province or territory do you currently live in?</span></label>
                   <select id="location" name="location" class="form-control" aria-describedby="locationFs-desc">
-                    <option label="Choose your location"></option>
+                    <option label="Choose your location" value="default"></option>
                     <option value="ab">Alberta</option>
                     <option value="inval">British Columbia</option>
                     <option value="mb">Manitoba</option>
@@ -1031,10 +1031,13 @@ $("input, select", ccrFormId).change(formReset);
     
 //Provide alert for invalid location in selection
 $('#location').change(function(){
-    if($(this).val() == 'inval' || $(this).val() === undefined){
+    if($(this).val() == 'inval'){
         $('.valid-location').addClass("hidden");
         $('#alert-invalid').removeClass("hidden");
     }
+ if($(this).val() == 'default'){
+        $('.valid-location, #alert-invalid').addClass("hidden");	 
+    }	    
     else{
         $('.valid-location').removeClass("hidden");
         $('#alert-invalid').addClass("hidden");
