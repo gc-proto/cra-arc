@@ -398,7 +398,7 @@
             </div>
             <div id="ccrResults" class="mrgn-tp-lg hidden">
               <div class="d-sm-flex">
-                  <div class="mrgn-rght-sm"><strong id="quarter-amount"></strong></div> <div><p>is your estimated <strong>quarterly</strong> payment between April 2024 and January 2025 (based on the <span class="base-year"></span> base year).</p></div>
+                  <div class="mrgn-rght-sm"><strong id="quarter-amount">$--</strong></div> <div><p>is your estimated <strong>quarterly</strong> payment between April 2024 and January 2025 (based on the <span class="base-year"></span> base year).</p></div>
                 </div>
               <details class="mrgn-tp-md mrgn-bttm-md">
                 <summary>Quarterly payment breakdown</summary>
@@ -421,31 +421,31 @@
                     </tr>
                     <tr id="tblSpouseAmt" class="hidden">
                       <td><p class="text-left">Spouse or common-law amount</p></td>
-                      <td class="text-right output-val"></td>
+                      <td class="text-right output-val">$--</td>
                     </tr>
                     <tr id="tblFirstChildAmt" class="hidden">
                       <td><p class="text-left">First eligible child</p></td>
-                      <td class="text-right output-val"></td>
+                      <td class="text-right output-val">$--</td>
                     </tr>
                     <tr id="tblAddedChildAmt" class="hidden">
                       <td><p class="text-left">Each additional child total amount <span class="nowrap">(<span id="addedChildNum" class="childCal"></span> <strong>&times;</strong> <span id="addedChildSum" class="childCal"></span>)</span></p></td>
-                      <td class="text-right output-val"></td>
+                      <td class="text-right output-val">$--</td>
                     </tr>
                     <tr id="tblChildAmt" class="hidden">
                       <td><p class="text-left">Children total amount <span class="nowrap">(<span id="childNum" class="childCal"></span> <span class="h4">&times;</span> <span id="childSum" class="childCal"></span>)</span></p></td>
-                      <td class="text-right output-val"></td>
+                      <td class="text-right output-val">$--</td>
                     </tr>
                   </tbody>
                   <tfoot>
                     <tr class="info" id="tblTotalAmt">
                       <th scope="row"><p class="text-left">Quarterly household payment</p></th>
-                      <td class="text-right output-val"></td>
+                      <td class="text-right output-val">$--</td>
                     </tr>
                   </tfoot>
                 </table>
               </details>
                  <div class="d-sm-flex mrgn-tp-lg">
-                     <div class="mrgn-rght-sm"><strong id="total-amount"></strong></div> <div><p>is your estimated <strong>total</strong> payment (4 quarterly payments) from April 2024 to January 2025.</p>
+                     <div class="mrgn-rght-sm"><strong id="total-amount">$--</strong></div> <div><p>is your estimated <strong>total</strong> payment (4 quarterly payments) from April 2024 to January 2025.</p>
                      </div>
                 </div>
             </div>
@@ -1031,7 +1031,7 @@ $("input, select", ccrFormId).change(formReset);
     
 //Provide alert for invalid location in selection
 $('#location').change(function(){
-    if($(this).val() == 'inval'){
+    if($(this).val() == 'inval' || $(this).val() === undefined){
         $('.valid-location').addClass("hidden");
         $('#alert-invalid').removeClass("hidden");
     }
