@@ -1092,8 +1092,9 @@ $('#location').change(function(){
         }
 //Get json file
         $.getJSON("data/rates.json", function(data) {
-            currYr = Object.keys(data)[0];
-            ccrRates = data[currYr];
+           //Base year to get key values and show text value
+		baseYr = Object.keys(data)[0];
+            ccrRates = data[baseYr];
 //Language switches
             switch (wb.lang){
                 case "en": 
@@ -1105,7 +1106,7 @@ $('#location').change(function(){
             var provId = $("#location option:selected").val()
  
 //Add year to results
-            $(".base-year").text(currYr);
+            $(".base-year").text(baseYr);
  //Rural supplement value
             var ruralCheck = $("input[name='ruralRadio']:checked").val();
             if (ruralCheck == "yes"){
