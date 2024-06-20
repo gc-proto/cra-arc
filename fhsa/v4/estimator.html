@@ -1477,14 +1477,14 @@
                                             <h4 class="mrgn-tp-sm text-muted">in <span data-prior-year="true">2023</span></h4>
                                             <ul class="mrgn-lft-md list-unstyled">
                                                 <li data-min-threshold="true"><span data-output="prior-fed-tax"><strong>$0</strong> to <strong>$0</strong></span> in federal tax</li>
-                                                <li data-min-threshold="true"><span data-output="prior-area-tax"><strong>$0</strong> to <strong>$0</strong></span> in <span data-area-name="provincial-territorial">provincial and territorial</span> tax</li>
+                                                <li data-min-threshold="true"><span data-output="prior-area-tax"><strong>$0</strong> to <strong>$0</strong></span> in <span data-area-prepos="true">provincial and territorial</span> tax</li>
                                             </ul>
                                         </li>
                                         <li id="AllYearSummary" class="cnjnctn-col-40">
                                             <h4 class="mrgn-tp-sm text-muted"><span data-min-threshold="true">after <span data-output="saving-years">0</span> year<span data-savings-year-range="true">s</span></span></h4>
                                             <ul class="mrgn-lft-md list-unstyled">
                                                 <li data-min-threshold="true"><span data-output="fed-tax"><strong>$0</strong> to <strong>$0</strong></span> in federal tax</li>
-                                                <li data-min-threshold="true"><span data-output="area-tax"><strong>$0</strong> to <strong>$0</strong></span> in <span data-area-name="provincial-territorial">provincial and territorial</span> tax</li>
+                                                <li data-min-threshold="true"><span data-output="area-tax"><strong>$0</strong> to <strong>$0</strong></span> in <span data-area-prepos="true">provincial and territorial</span> tax</li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -1499,7 +1499,7 @@
                                 <div id="savingsTableContainer"></div>
                                 <template id="potentialSavingTableTemplate" data-year-name="Year" data-prior-savings-year-rows=" to " data-savings-range-text=" to " data-savings-text="up to " data-total-header="Total">
                                     <table id="potentialSavingTable" class="table table-condensed table-bordered table-striped table-hover" data-min-threshold="true" data-chart="line" data-chart-options="{&quot;maintainAspectRatio&quot;: true, &quot;plugins&quot;: {&quot;legend&quot;: {&quot;display&quot;: false}, &quot;tooltip&quot;: {&quot;titleFont&quot;: {&quot;size&quot;: 12}, &quot;bodyFont&quot;: {&quot;size&quot;: 15}}}, &quot;elements&quot;: {&quot;point&quot;: {&quot;radius&quot;: 5, &quot;pointStyle&quot;: &quot;rectRot&quot;, &quot;backgroundColor&quot;: &quot;#000000&quot;}}, &quot;scales&quot;: {&quot;x&quot;: {&quot;stacked&quot;: true}, &quot;y&quot;: {&quot;stacked&quot;: false, &quot;title&quot;: {&quot;display&quot;: true, &quot;text&quot;: &quot;Potential combined tax savings (cumulative)&quot;, &quot;font&quot;: {&quot;weight&quot;: &quot;bold&quot;, &quot;size&quot;: &quot;15&quot;}}}}}">
-                                        <caption>Potential combined federal and <span data-area-name="provincial-territorial">provincial and territorial</span> tax savings<span class="wb-inv"> (line chart)</span></caption>
+                                        <caption>Potential combined federal and <span data-area-prepos="true">provincial and territorial</span> tax savings<span class="wb-inv"> (line chart)</span></caption>
                                         <thead>
                                             <tr>
                                                 <th class="text-right">Year</th>
@@ -1518,7 +1518,7 @@
                                                 <th class="col-sm-2 text-right">Total FHSA participation (cumulative)</th>
                                                 <th class="col-sm-2 text-right">Deductible FHSA contributions</th>
                                                 <th class="col-sm-1 text-right">Investment income</th>
-                                                <th class="text-right">Potential <span data-area-name="provincial-territorial">provincial and territorial</span> tax savings</th>
+                                                <th class="text-right">Potential <span data-area-prepos="false">provincial and territorial</span> tax savings</th>
                                                 <th class="text-right">Potential federal tax savings</th>
                                             </tr>
                                         </thead>
@@ -2483,7 +2483,12 @@
 
                 generateTable(savingsTbl, "savingsTableContainer", "savingTableTemplate", "savingsTable");
                 generateTable(potentSavingsTbl, "potentialSavingTableContainer", "potentialSavingTableTemplate", "potentialSavingTable");
-                $("[data-area-name=provincial-territorial]", savingsformId).html(prov.text());
+                if (prov.data("preposition") !== "undefined") {
+                    $("[data-area-prepos=false]", savingsformId).html(prov.text());
+                    $("[data-area-prepos=true]", savingsformId).html(prov.data("preposition") + " " + prov.text());
+                } else {
+                    $("[data-area-prepos]", savingsformId).html(prov.text());
+                }
                 if (Math.max(yearlyTotalIncome() - yearlyTotalDeductions(), 0) <= savingsTotals.areaExempt && Math.max(yearlyTotalIncome() - yearlyTotalDeductions(), 0) <= savingsTotals.fedExempt) {
                     $("[data-min-threshold=false]").removeClass("hidden");
                     $("[data-min-threshold=true]").addClass("hidden");
