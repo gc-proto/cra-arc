@@ -746,24 +746,6 @@
 
 		<p class="small mrgn-lft-xl"><a href="#ajax-include1" aria-controls="ajax-include1" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
 
-		<div class="checkbox-inline mrgn-lft-xl" onchange="
-			document.getElementById('error_Old').classList.add('hidden') ;
-			fields = document.getElementsByName('q12_Old') ;
-			if (document.getElementById('noRev').checked) {
-				for (i=0; i<8; i++)
-					fields[i].disabled = true ;		
-			}
-			else {
-				for (i=0; i<8; i++)
-					fields[i].disabled = false ;
-			}
-			document.getElementById('calc').click() ;
-			document.getElementById('hideResults').click() ;
-			
-			">
-   			<label for="noRev"><input type="checkbox" id="noRev">No revenue received until the current calendar quarter.</label>
-		</div>
-		<br>
 		<br>
 		<div class="row mrgn-bttm-sm">
 			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_Old" name="q12_date_Old" id="q12_date0_Old"></label>
@@ -861,7 +843,23 @@
 				</div>
 			</div>
 		</div>
-		
+		<div class="checkbox-inline mrgn-lft-xl" onchange="
+			document.getElementById('error_Old').classList.add('hidden') ;
+			fields = document.getElementsByName('q12_Old') ;
+			if (document.getElementById('noRev').checked) {
+				for (i=0; i<8; i++)
+					fields[i].disabled = true ;		
+			}
+			else {
+				for (i=0; i<8; i++)
+					fields[i].disabled = false ;
+			}
+			document.getElementById('calc').click() ;
+			document.getElementById('hideResults').click() ;
+			
+			">
+   			<label for="noRev"><input type="checkbox" id="noRev" class="gc-chckbxrdio">No revenue received until the current calendar quarter.</label>
+		</div>
 		<button class="btn btn-primary btn-lg required" type="button" onclick="
 			document.getElementById('calc').click() ;
 			document.getElementById('reached').click();
