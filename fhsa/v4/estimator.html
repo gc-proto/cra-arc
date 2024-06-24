@@ -2115,6 +2115,7 @@
 
                 // Generate the holdings table data and update the payment form with results
                 paymentTotals = generateHoldingsTableData(paymentYears(), paymentAmount(), paymentInterest(), hasPriorPaymentFHSA(), priorPaymentYears(), priorPaymentAmount(), priorPaymentInvestment, priorYearMax, maxContribution);
+
                 generateTable(holdingsTbl, "holdingsResultsTableContainer", "holdingTableTemplate", "holdingsresultstable");
                 $("[data-output=holdings-total]", paymentformId).html(currencyFormatter.format(paymentTotals.addedAmount + paymentTotals.investment));
                 if (priorPaymentInvestment + paymentTotals.investment > 0) {
@@ -2483,7 +2484,7 @@
 
                 generateTable(savingsTbl, "savingsTableContainer", "savingTableTemplate", "savingsTable");
                 generateTable(potentSavingsTbl, "potentialSavingTableContainer", "potentialSavingTableTemplate", "potentialSavingTable");
-                if (prov.data("preposition") !== "undefined") {
+                if (typeof prov.data("preposition") !== "undefined") {
                     $("[data-area-prepos=false]", savingsformId).html(prov.text());
                     $("[data-area-prepos=true]", savingsformId).html(prov.data("preposition") + prov.text());
                 } else {
