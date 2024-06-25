@@ -145,7 +145,7 @@
 
     // Add your plugin event handler
     $document.on( "wb-input-range", selector, function( event, data ) {
-        var targetArr, 
+        var targetArr, tooltipElm, parentElm, 
             groupElm = event.currentTarget, 
             $rangeElm = $( groupElm ).find( "input[type=range]" ), 
             rangeElm = $rangeElm[ 0 ];
@@ -178,8 +178,10 @@
                             }
                         }
                     } );
+                } else {
+                    updateValElm( rangeElm, displayElm, groupElm );
                 }
-            }, rangeElm, targetArr );
+            }, rangeElm, groupElm, targetArr );
         }
     } );
 
