@@ -133,7 +133,7 @@
             }
         }, 
         updateRangeFromField = function( elm ) {
-            let adjustedInputVal, outputData,
+            let adjustedInputVal, outputData, 
                 elmMin = attributeDefaultSet( elm.min, 0 ), 
                 elmMax = attributeDefaultSet( elm.max, 100 ), 
                 elmStep = attributeDefaultSet( elm.step, 1 ), 
@@ -143,7 +143,7 @@
             if ( typeof outputData !== "undefined" && Object.prototype.hasOwnProperty.call( outputData, "fn" ) === true ) {
                 adjustedInputVal = getFuncValue( outputData.fn, parseInt( $( elm ).val(), 10 ) );
             } else {
-                adjustedInputVal = parseInt( $( elm ).val(), 10 ) || parseInt( elm.min, 10 );
+                adjustedInputVal = parseInt( $( elm ).val(), 10 ) || parseInt( elmMin, 10 );
             }
             if ( adjustedInputVal < parseInt( elmMin, 10 ) ) {
                 $( rangeElm ).val( parseInt( elmMin, 10 ) );
@@ -174,7 +174,7 @@
                 let displayElm = document.getElementById( currentId );
 
                 if ( displayElm !== null && ( displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA" ) ) {
-                    if ( !displayElm.hasAttribute( "id" ) ) {
+                    if ( rangeElm.hasAttribute( "id" ) === false ) {
                         rangeElm.id = wb.getId();
                     }
                     displayElm.rangeId = rangeElm.id;
