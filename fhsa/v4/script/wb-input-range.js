@@ -83,16 +83,8 @@
                 inputRangeElmWidth = inputRangeElm.getBoundingClientRect().width, 
                 displayElmWidth = displayElm.getBoundingClientRect().width;
 
-                if ( displayElm.classList.contains( tooltipName ) ) {
-                    inputMin = inputRangeElm.min;
-                    if ( inputMin === "" ) {
-                        inputMin = 0;
-                    }
-                    inputMax = inputRangeElm.max;
-                    if ( inputMax === "" ) {
-                        inputMax = 100;
-                    }
-                    tooltipPos = ( ( ( inputRangeElm.valueAsNumber - Number( inputMin ) ) / ( Number( inputMax ) - Number( inputMin ) ) ) * ( ( inputRangeElm.getBoundingClientRect().width - ( thumbWidth / 2 ) ) - ( thumbWidth / 2 ) ) );
+            if ( displayElm.classList.contains( tooltipName ) ) {
+                tooltipPos = ( ( ( inputRangeElm.valueAsNumber - Number( inputMin ) ) / ( Number( inputMax ) - Number( inputMin ) ) ) * ( ( inputRangeElm.getBoundingClientRect().width - ( thumbWidth / 2 ) ) - ( thumbWidth / 2 ) ) );
 
                 groupElm.style.setProperty( "--tooltipArrow", "solid" );
                 tooltipPos = tooltipPos + ( thumbWidth / 2 ) - ( displayElmWidth / 2 );
@@ -219,6 +211,7 @@
     $document.on( "update" + selector, function( event ) {
         setRangeValue( event.target );
     } );
+
     // Bind the init event of the plugin
     $document.on( "timerpoke.wb " + initEvent, selector, init );
     // Add the timer poke to initialize the plugin
