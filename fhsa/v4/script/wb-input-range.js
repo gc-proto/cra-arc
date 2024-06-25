@@ -70,12 +70,20 @@
         updateTooltipPos = function ( inputRangeElm, displayElm, groupElm ) {
             const thumbWidth = 14; 
             const sideOffset = 4;
-            let tooltipPos, 
+            let tooltipPos, inputMin, inputMax, 
                 inputRangeElmWidth = inputRangeElm.getBoundingClientRect().width, 
                 displayElmWidth = displayElm.getBoundingClientRect().width;
 
                 if ( displayElm.classList.contains( tooltipName ) ) {
-                    tooltipPos = ( ( ( inputRangeElm.valueAsNumber - Number( inputRangeElm.min ) ) / ( Number( inputRangeElm.max ) - Number( inputRangeElm.min ) ) ) * ( ( inputRangeElm.getBoundingClientRect().width - ( thumbWidth / 2 ) ) - ( thumbWidth / 2 ) ) );
+                    inputMin = inputRangeElm.min;
+                    if ( inputMin === "" ) {
+                        inputMin = 0;
+                    }
+                    inputMax = inputRangeElm.max;
+                    if ( inputMax === "" ) {
+                        inputMax = 100;
+                    }
+                    tooltipPos = ( ( ( inputRangeElm.valueAsNumber - Number( inputMin ) ) / ( Number( inputMax ) - Number( inputMin ) ) ) * ( ( inputRangeElm.getBoundingClientRect().width - ( thumbWidth / 2 ) ) - ( thumbWidth / 2 ) ) );
 
                 groupElm.style.setProperty( "--tooltipArrow", "solid" );
                 tooltipPos = tooltipPos + ( thumbWidth / 2 ) - ( displayElmWidth / 2 );
@@ -188,7 +196,7 @@
     $( ".wb-input-range" ).on( "change input", "input[type=range]", function() {
         setRangeValue( this );
     } );
-    
+
     // disable mouse wheel scroll of slider which only occurs in some browsers
     $( ".wb-input-range" ).on( "wheel", "input[type=range]", function( event ) {
         window.scrollTo( window.scrollX, window.scrollY + event.originalEvent.deltaY );
