@@ -67,10 +67,19 @@
             }
             return inputParam;
         }, 
+        attributeDefaultSet = function(atr, defaultVal) {
+            elmMin = elm.min;
+            if ( atr === "" ) {
+                return defaultVal;
+            }
+            return atr;
+        }, 
         updateTooltipPos = function ( inputRangeElm, displayElm, groupElm ) {
             const thumbWidth = 14; 
             const sideOffset = 4;
-            let tooltipPos, inputMin, inputMax, 
+            let tooltipPos, 
+                inputMin = attributeDefaultSet( inputRangeElm.min, 0 ), 
+                inputMax = attributeDefaultSet( inputRangeElm.max, 100 ), 
                 inputRangeElmWidth = inputRangeElm.getBoundingClientRect().width, 
                 displayElmWidth = displayElm.getBoundingClientRect().width;
 
@@ -134,6 +143,9 @@
         }, 
         updateRangeFromField = function( elm ) {
             let adjustedInputVal, outputData,
+                elmMin = attributeDefaultSet( elm.min, 0 ), 
+                elmMax = attributeDefaultSet( elm.max, 100 ), 
+                elmStep = attributeDefaultSet( elm.step, 1 ), 
                 rangeElm = document.getElementById( elm.rangeId );
 
             outputData = wb.getData( elm, "wb-input-range" );
@@ -142,12 +154,12 @@
             } else {
                 adjustedInputVal = parseInt( $( elm ).val(), 10 ) || parseInt( elm.min, 10 );
             }
-            if ( adjustedInputVal < parseInt( elm.min, 10 ) ) {
-                $( rangeElm ).val( parseInt( elm.min, 10 ) );
-            } else if ( adjustedInputVal > parseInt( elm.max, 10 ) ) {
-                $( rangeElm ).val( parseInt( elm.max, 10 ) );
+            if ( adjustedInputVal < parseInt( elmMin, 10 ) ) {
+                $( rangeElm ).val( parseInt( elmMin, 10 ) );
+            } else if ( adjustedInputVal > parseInt( elmMax, 10 ) ) {
+                $( rangeElm ).val( parseInt( elmMax, 10 ) );
             } else {
-                $( rangeElm ).val( Math.round( adjustedInputVal / parseInt( elm.step, 10 ) ) * parseInt( elm.step, 10 ) );
+                $( rangeElm ).val( Math.round( adjustedInputVal / parseInt( elmStep, 10 ) ) * parseInt( elmStep, 10 ) );
             }
         };
 
