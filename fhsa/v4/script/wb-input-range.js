@@ -68,7 +68,6 @@
             return inputParam;
         }, 
         attributeDefaultSet = function(atr, defaultVal) {
-            elmMin = elm.min;
             if ( atr === "" ) {
                 return defaultVal;
             }
@@ -191,7 +190,7 @@
                         }
                     } );
                 } else {
-                    updateValElm( rangeElm, displayElm, groupElm );
+//                    updateValElm( rangeElm, displayElm, groupElm );
                 }
             }, rangeElm, groupElm, targetArr );
         }
