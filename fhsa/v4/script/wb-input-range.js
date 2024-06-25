@@ -190,7 +190,7 @@
                         }
                     } );
                 } else {
-//                    updateValElm( rangeElm, displayElm, groupElm );
+                    updateValElm( rangeElm, displayElm, groupElm );
                 }
             }, rangeElm, groupElm, targetArr );
         }
