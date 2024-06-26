@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 9]>
 <html class="no-js lt-ie9" lang="en" dir="ltr">
@@ -28,7 +27,7 @@
             }));
          </script>
       </head>
-      <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+   
          <div id="def-top">
          </div>
          <!-- Write closure template -->
@@ -58,31 +57,75 @@
               showPreContent: true
             });
          </script>
+
+<![endif]-->
+
+<noscript><link rel="stylesheet" href="/etc/designs/canada/wet-boew/css/noscript.min.css"/></noscript>
+<script>dataLayer = []; dataLayer1 = [];</script>
+
+
+<body vocab="http://schema.org/" typeof="WebPage">
+
+
+<noscript><iframe title="Google Tag Manager GCWeb" src="//www.googletagmanager.com/ns.html?id=GTM-TLGQ9K" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer1'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer1','GTM-TLGQ9K');</script>
+
+
          <main role="main" property="mainContentOfPage" class="container">
 
  <h1 id="gc-document-nav">Find out if you have to register for a GST/HST account</h1>
+ <div class="well brdr-rds-0"> <span class="fa-stack text-muted fa-lg  mrgn-lft-sm pull-right"><i class="far fa-circle fa-stack-2x"></i><i class="fas fa-balance-scale-right fa-stack-1x"></i></span>
+  <p>The interactive tax tool (ITT) gives you personalized results based on your answers to a series of questions. The tool uses plain language to explain the most common tax situations.  <strong>It is provided as a guideline only and does not replace the law.</strong></p>
+<p>The accuracy of your results depends on the accuracy of the information you enter. Later calculations made by the CRA may be different.</p>
+<p><strong>This tools does not collect or store the information you enter.</strong></p>
+    </div>
+<div class="alert alert-danger">
+	<p>You can <strong>only</strong> use the tool if your business started receiving revenue in less than 8 calendar quarters or if your business has not started receiving revenue yet. </p>
+</div>
+ <p>Use this ITT to: </p>
+<ol>
+<li>Find out if you have to register and when to register</li>
+<li>When to start charging the GST/HST</li>
+	 </ol>
 
-<form id="myForm">
+<hr>
+ 
+<div class="wb-frmvld gc-font-2019">
+  <h3 class="mrgn-tp-sm">Answer a few questions to find out if you have to register</h3>
+          <p class="text-muted small">Make a selection and <strong> scroll down</strong> for further questions or results</p>	  
+
+    
+    <form id="myForm">
 	<!--QUESTION 1-->
-<div class="form-group">
-	<!--Each question has name attribute 'quest' and id 'question'+number-->
+<div class="form-group mrgn-lft-md">
+	
 	<fieldset name="quest" id="question1" class="mrgn-bttm-md">
-		<legend class="h5 required">Do you supply (or plan to supply) goods or services that are taxable? <strong class="required">(required)</strong></legend>
-		<p><a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">Examples of taxable supplies</a> and <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">Examples of taxable supplies (at 0%)</a></p>
-		<div class="radio" onChange="
+		<legend class="h5 required">Do you supply taxable goods or services? <strong class="required">(required)</strong></legend>
+		<p><a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">Examples of taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> and <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">Examples of zero-rated supplies (taxable at 0%)&nbsp;<span class="far fa-question-circle"></span></a></p>
+		<div class="radio" onchange="
 			
 			//For reset hide/show
-			//Every question has this function, loops through all questions and results and hides them accordingly. 'currentQuestion's value is the only thing that changes 
-			//(goes up so it doesn't hide previously asked questions)
-			document.getElementById('currentQuestion').value = 1;
-			document.getElementById('hideResults').click() ;
+			//Each question has name attribute 'quest' and id 'question'+number, loops through all questions and hides them accordingly
+			//Every question has this loop, 'i' starting value is the only thing that changes (goes up so it doesn't hide previously asked questions)
+			var q = getElementsByName('quest') ;
+			for (i=2; i<=q.length; i++)
+				document.getElementById('question'+i).classList.add('hidden');
 			
+			//Similar to loop above but hides results and warnings instead of questions
+			var results = getElementsByName('results');
+			for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');
+
 			document.getElementById('q2').value = 5 ;
+			
 			var q1 = document.getElementsByName('q1') ;			
 
 			//If yes
 			if (q1[0].checked) {
 				document.getElementById('question2').classList.remove('hidden');	
+				var q2 = document.getElementsByName('q2');
+				for (i=0; i<q2.length; i++)
+					q2[i].checked = false ;		
 			}
 			
 			//No
@@ -90,9 +133,9 @@
 				document.getElementById('R1').classList.remove('hidden');
 			}
 		">
-			<label><input type="radio" name="q1" value="0" />Yes</label>
+			<label><input type="radio" name="q1" value="0">Yes</label>
 			<br>
-			<label><input type="radio" name="q1" value="1" />No</label>	
+			<label><input type="radio" name="q1" value="1">No</label>	
 		</div>
 	</fieldset>
 	
@@ -100,9 +143,14 @@
 	<!--QUESTION 2-->
 	<fieldset name="quest" id="question2" class="mrgn-bttm-md hidden">	
 		<label class="h5 required" for="q2">Which option best describes your situation? <strong class="required">(required)</strong></label>
-		<select class="form-control required" id="q2" onChange="
-			document.getElementById('currentQuestion').value = 2;
-			document.getElementById('hideResults').click() ;		
+		<select class="form-control required" id="q2" onchange="
+			var q = getElementsByName('quest') ;
+			for (i=3; i<=q.length; i++)
+				document.getElementById('question'+i).classList.add('hidden');
+			
+			var results = getElementsByName('results');
+			for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');			
 			
 			document.getElementById('q3').value = 5;
 			
@@ -110,12 +158,12 @@
 			if (q2 == 0) {
 				document.getElementById('question3').classList.remove('hidden');
 				document.getElementById('age').value = 'New'
-				document.getElementById('numOfQuarters').value = 8 ;
+				document.getElementById('numOfQuarters').value = 4 ;
 			}
 			else if (q2 == 1) {
 				document.getElementById('question3').classList.remove('hidden');
 				document.getElementById('age').value = 'Old'
-				document.getElementById('numOfQuarters').value = 12 ;
+				document.getElementById('numOfQuarters').value = 8 ;
 			}
 			else if (q2 == 2) {
 				document.getElementById('R6').classList.remove('hidden');
@@ -130,14 +178,19 @@
 			<option value="3">I am a non-resident</option>
 			<option value="2">My only commercial activity is the sale of real property, other than in the course of a business</option>
 		</select>
-	</fieldset >
+	</fieldset>
 	
 	<!--QUESTION 3 - DROPDOWN-->
-	<fieldset name="quest" id="question3" class="mrgn-bttm-md hidden" >
+	<fieldset name="quest" id="question3" class="mrgn-bttm-md hidden">
 		<label class="h5 required" for="q3">Which option best describes your business? <strong class="required">(required)</strong></label>
-		<select class="form-control required" id="q3" onChange="
-			document.getElementById('currentQuestion').value = 3;
-			document.getElementById('hideResults').click() ;
+		<select class="form-control required" id="q3" onchange="
+			var q = getElementsByName('quest') ;
+			for (i=4; i<=q.length; i++)
+				document.getElementById('question'+i).classList.add('hidden');
+			
+			var results = getElementsByName('results');
+			for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');
 			
 			var q3 = document.getElementById('q3').value ;
 			if (q3 == 0) {
@@ -170,31 +223,38 @@
 				for (i=0; i<q11.length; i++)
 					q11[i].checked = false ;
 			}	
-		" >
+		">
 			<option value="5" selected>Make your selection...</option> 
-			<option value="0">Sole proprietor, a partnership, or a corporation</option>
-			<option value="1">Public service body</option>
-			<option value="2">Charity or public institution</option>
-			<option value="3">Taxi operator or a commercial ride-sharing driver</option>
+			<option value="0" name="q3">Sole proprietor, a partnership or a corporation</option>
+			<option value="1" name="q3">Public service body (other than a charity or public institution)</option>
+			<option value="2" name="q3">Charity or public institution</option>
+			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
 		</select>
-	</fieldset >
+	</fieldset>
 	
 	
 	<!--QUESTION 4 -->
 	<fieldset name="quest" id="question4" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Do you know for sure whether you are self-employed or an employee? <strong class="required">(required)</strong></legend>
-		<p>Even if you consider yourself to be self-employed, you might be an employee. To determine whether you’re an employee or self-employed, ask yourself the following questions:</p>
+<h2 class="mrgn-tp-sm">You are sole proprietor, a partnership or a corporation</h2>
+		<legend class="h5 required mrgn-lft-md">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
+		<p class="mrgn-lft-md">Even if you consider yourself to be self-employed, you might be an employee. To determine whether you’re an employee or self-employed, ask yourself the following questions:</p>
 		<ul>
 			<li>In your everyday work, the decisions about what work is to be done are made by whom, how, and where?</li>
 			<li>Who provides the tools and equipment to do the work?</li>
 			<li>Are you able to subcontract work or hire assistants?</li>
 			<li>Who’s taking the financial risk and has the opportunity for reward?</li>
 		</ul>
-		<div class="radio" onChange="
-			document.getElementById('currentQuestion').value = 4;
-			document.getElementById('hideResults').click() ;
+		<div class="radio mrgn-lft-md" onchange="
+			var q = getElementsByName('quest') ;
+			for (i=5; i<=q.length; i++)
+				document.getElementById('question'+i).classList.add('hidden');
 			
-			var q4 = document.getElementsByName('q4');		
+			var q4 = document.getElementsByName('q4');
+			var results = getElementsByName('results');
+			
+			for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');
+			
 			if (q4[0].checked) {
 				document.getElementById('amount').value = 30000;
 				document.getElementById('showFields').click() ;				
@@ -203,19 +263,26 @@
 			else 
 				document.getElementById('R2').classList.remove('hidden');
 		">
-			<label><input type="radio" name="q4" value="0" />Yes</label>
+			<label><input type="radio" name="q4" value="0">Yes</label>
 			<br>
-			<label><input type="radio" name="q4" value="1" />No</label>
+			<label><input type="radio" name="q4" value="1">No</label>
 		</div>
-	</fieldset >
+	</fieldset>
 	
 	<!--QUESTION 5-->
 	<fieldset name="quest" id="question5" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Are you a branch or division of an incorporated municipality? <strong class="required">(required)</strong></legend>
-		<p>A public service body means a charity, non-profit organization, municipality, university, public college, school authority, or hospital authority. For the purpose of GST/HST registration, charities and public institutions have different rules. Choose the option that best describes your organization.</p>
-		<div class="radio" onChange="
-			document.getElementById('currentQuestion').value = 5;
-			document.getElementById('hideResults').click() ;
+<h2 class="mrgn-tp-sm">You are a public service body (other than a charity or public institution)</h2>
+	<p>A public service body means a charity, non-profit organization, municipality, university, public college, school authority, or hospital authority. For the purpose of GST/HST registration, charities and public institutions have different rules. Choose the option that best describes your organization.</p>
+		<legend class="h5 required mrgn-lft-md">Are you a branch or division of the public service body? <strong class="required">(required)</strong></legend>
+		
+		<div class="radio mrgn-lft-md" onchange="
+			var q = getElementsByName('quest') ;
+			for (i=6; i<=q.length; i++)
+				document.getElementById('question'+i).classList.add('hidden');
+			
+			var results = getElementsByName('results');
+			for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');
 			
 			var q5 = document.getElementsByName('q5');
 			
@@ -226,103 +293,112 @@
 				document.getElementById('amount').value = 50000;
 				document.getElementById('showFields').click() ;
 			}
-		" >
-			<label><input type="radio" name="q5" value="0" />Yes</label>
+		">
+			<label><input type="radio" name="q5" value="0">Yes</label>
 			<br>
-			<label><input type="radio" name="q5" value="1" />No</label>
+			<label><input type="radio" name="q5" value="1">No</label>
 		</div>
-	</fieldset >
+	</fieldset>
 	
 	<!--QUESTION 12-->
-	<fieldset name="quest" id="question12" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">How much revenue do you estimate from your taxable sales, leases and other supplies for the next four quarters? <strong class="required">(required)</strong></legend><br>	
-		<br>
-		<section class="alert alert-warning col-xs-12">
-			<h3>Important information</h3>
-			<p>Include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including zero-rated supplies) from all your businesses and those of your associates.</p>
-			<p>Do <strong>not</strong> include revenue from financial services, sales of capital property and goodwill from the sale of a business.</p>
+	<fieldset name="quest" id="question12" class="mrgn-lft-md mrgn-bttm-md hidden">
+		<legend class="h5 required">Q12 How much revenue do you estimate from your taxable sales, leases and other supplies for the next 4 quarters? <strong class="required">(required)</strong></legend><br>	
+		
+		<section>
+			
+			<p>You must include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including zero-rated supplies) from all your businesses and those of your associates.</p>
+			<p><strong>Do not</strong> include revenue from financial services, sales of capital property and goodwill from the sale of a business.</p>
+
+<div class="alert alert-warning">
+	<p>You can use the tool to <strong>create scenarios</strong> based on your <strong>estimated figures</strong>. The results are only provided as a guideline to help you understand when you may need to register.</p>
+</div>
+
+<h3 class="mrgn-lft-md"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span>
+Enter your estimated figures</h3>
 		</section>
 	
+	
 			<div class="row mrgn-bttm-sm">
-			    	<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Newxs" aria-hidden="true"></label>
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter1_New"><span class="wb-inv"></span><span name="q12_date_New" id="q12_date0_New"></span></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_New" name="q12_date_New" id="q12_date0_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_New" id="quarter1_New" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();" 
-						onChange="document.getElementById('currentQuestion').value = 12;
-							document.getElementById('hideResults').click();"/>					
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_New" id="quarter1_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
 					</div>
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-			    	<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Newxs" aria-hidden="true"></label>
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter2_New"><span class="wb-inv"></span><span name="q12_date_New" id="q12_date1_New"></span></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter2_New" name="q12_date_New" id="q12_date1_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_New" id="quarter2_New" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();" 
-						onChange="document.getElementById('currentQuestion').value = 12;
-							document.getElementById('hideResults').click();"/>					
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_New" id="quarter2_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
 					</div>
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-			    	<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Newxs" aria-hidden="true"></label>
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter3_New"><span class="wb-inv"></span><span name="q12_date_New" id="q12_date2_New"></span></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter3_New" name="q12_date_New" id="q12_date2_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_New" id="quarter3_New" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();" 
-						onChange="document.getElementById('currentQuestion').value = 12;
-							document.getElementById('hideResults').click();"/>					
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_New" id="quarter3_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
 					</div>
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-			    	<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Newxs" aria-hidden="true"></label>
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter4_New"><span class="wb-inv"></span><span name="q12_date_New" id="q12_date3_New"></span></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter4_New" name="q12_date_New" id="q12_date3_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_New" id="quarter4_New" required="required"						
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();" 
-						onChange="document.getElementById('currentQuestion').value = 12;
-							document.getElementById('hideResults').click();"/>					
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_New" id="quarter4_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
 					</div>
 				</div>
 			</div>
 
-		<button class="btn btn-primary required mrgn-tp-md" type="button" onClick="
-			document.getElementById('currentFieldset').value = 'question12';
-			document.getElementById('inputFieldsNextButton').click() ;
-			document.getElementById('doubleCheckNumbers').click() ;">Next
+		<button class="btn btn-primary required" type="button" onclick="
+			document.getElementById('calc').click() ;
+			document.getElementById('reached').click();
+			var tempMaxDate = new Date(document.getElementById('maxDate').value);
+			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
+			document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
+		">Next
 		</button>
 
-	</fieldset >
+		<br>
+		<br>
+		<div class="alert alert-danger hidden" id="error_New">
+			<p>Only digits are permitted for these fields. Enter a positive value with no currency symbol.</p>
+		</div>
+		
+
+	</fieldset>
 	
 	
 	
 
 	<!--QUESTION 6-->
-	<fieldset name="quest" id="question6" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Are you a branch or division of an incorporated municipality? <strong class="required">(required)</strong></legend>
-		<p>A charity means a registered charity or registered Canadian amateur athletic association for income tax purposes, but does not include a public institution.</p>
+	<fieldset name="quest" id="question6" class="mrgn-bttm-md mrgn-lft-md hidden">
+<h2 class="mrgn-tp-sm">You are a charity or public institution</h2>
+<p>A charity means a registered charity or registered Canadian amateur athletic association for income tax purposes, but does not include a public institution.</p>
 		<p>A public institution means a registered charity for income tax purposes that is also a school authority, a public college, a university, a hospital authority, or a local authority determined by the Minister of National Revenue to be a municipality.</p>
-			<div class="radio" onChange="
-			document.getElementById('currentQuestion').value = 6;
-			document.getElementById('hideResults').click() ;
+		<legend class="h5 required mrgn-lft-md">Are you a branch or division of the charity or public institution? <strong class="required">(required)</strong></legend>
+		
+			<div class="radio mrgn-lft-md" onchange="
+			var q = getElementsByName('quest') ;
+			for (i=7; i<=q.length; i++)
+				document.getElementById('question'+i).classList.add('hidden');
+				
+			var results = getElementsByName('results');
+			for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');
 				
 			var q6 = document.getElementsByName('q6');
 			var q2 = document.getElementById('q2').value;
@@ -347,19 +423,24 @@
 				}
 			}
 			
-		" >
-			<label><input type="radio" name="q6" value="0" />Yes</label>
+		">
+			<label><input type="radio" name="q6" value="0">Yes</label>
 			<br>
-			<label><input type="radio" name="q6" value="1" />No</label>
+			<label><input type="radio" name="q6" value="1">No</label>
 		</div>
-	</fieldset >
+	</fieldset>
 	
 	<!--QUESTION 7-->
-	<fieldset name="quest" id="question7" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Is this your first fiscal year of operation? <strong class="required">(required)</strong></legend>
-		<div class="radio" onChange="				
-			document.getElementById('currentQuestion').value = 7;
-			document.getElementById('hideResults').click() ;
+	<fieldset name="quest" id="question7" class="mrgn-bttm-md mrgn-lft-md hidden">
+		<legend class="h5 required mrgn-lft-md">Is this your first fiscal year of operation? <strong class="required">(required)</strong></legend>
+		<div class="radio mrgn-lft-md" onchange="				
+			var q = getElementsByName('quest') ;
+			for (i=8; i<=q.length; i++)
+				document.getElementById('question'+i).classList.add('hidden');
+			
+			var results = getElementsByName('results');
+			for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');
 			
 			var q7 = document.getElementsByName('q7');
 			if (q7[0].checked) {
@@ -372,185 +453,242 @@
 				document.getElementById('question8').classList.remove('hidden');
 			}
 		">
-			<label><input type="radio" name="q7" value="0" />Yes</label>
+			<label><input type="radio" name="q7" value="0">Yes</label>
 			<br>
-			<label><input type="radio" name="q7" value="1" />No</label>
+			<label><input type="radio" name="q7" value="1">No</label>
 		</div>
-	</fieldset >
+	</fieldset>
 	
 	<!--QUESTION 8-->
-	<fieldset name="quest" id="question8" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Is this your second fiscal year of operation? <strong class="required">(required)</strong></legend>
-		<div class="radio" onChange="
-			document.getElementById('currentQuestion').value = 8;
-			document.getElementById('hideResults').click() ;
+	<fieldset name="quest" id="question8" class="mrgn-bttm-md mrgn-lft-md hidden">
+		<legend class="h5 required mrgn-lft-md">Is this your second fiscal year of operation? <strong class="required">(required)</strong></legend>
+		<div class="radio mrgn-lft-md" onchange="
+			var q = getElementsByName('quest') ;
+			for (i=9; i<=q.length; i++)
+				document.getElementById('question'+i).classList.add('hidden');
+			
+			var results = getElementsByName('results');
+			for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');
+				
+			document.getElementById('error_first').classList.add('hidden');
+			document.getElementById('error_second').classList.add('hidden');
 				
 			var q8 = getElementsByName('q8') ;
 			if (q8[0].checked){
 				var q9 = document.getElementsByName('q9');
-				q9[0].value = '';
+				q9[0].value = (0).toFixed(2);
 				document.getElementById('question9').classList.remove('hidden');
 			}
 			else {
 				var q10 = document.getElementsByName('q10');
 				for (i=0; i<q10.length; i++) {
-					q10[i].value = '';
+					q10[i].value = (0).toFixed(2);
 				}
 				
 				document.getElementById('question10').classList.remove('hidden');
 			}
 		">
-			<label><input type="radio" name="q8" value="0" />Yes</label>
+			<label><input type="radio" name="q8" value="0">Yes</label>
 			<br>
-			<label><input type="radio" name="q8" value="1" />No</label>
+			<label><input type="radio" name="q8" value="1">No</label>
 		</div>
-	</fieldset >
+	</fieldset>
 	
 	<!--QUESTION 9-->
-	<fieldset name="quest" id="question9" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">What is your gross revenue from your first fiscal year of operation? <strong class="required">(required)</strong></legend>
-		<br>
-		<br>	
-		<section class="alert alert-warning col-xs-12">
-			<h3>Important information</h3>
-			<p>Include in your <strong>gross revenue</strong> amount:</p>
+	<fieldset name="quest" id="question9" class="mrgn-bttm-md mrgn-lft-md hidden">
+		<legend class="h5 required mrgn-lft-md">What is your gross revenue from your first fiscal year of operation? <strong class="required">(required)</strong></legend>
+			
+		<section>
+			
+			<p>You must include in your <strong>gross revenue</strong> amount:</p>
 			<ul>
-				<li>income from a business, or from an adventure or concern in the nature of trade</li>
-				<li>gifts and donations</li>
-				<li>grants, subsidies, forgivable loans and other assistance</li>
-				<li>property and investment income</li>
-				<li>any amount that is a capital gain from the disposition of property for income tax purposes</li>
-				<li>other revenue of any kind whatever during the year, including revenue from both taxable and exempt supplies</li>
+				<li>Income from a business, or from an adventure or concern in the nature of trade</li>
+				<li>Gifts and donations</li>
+				<li>Grants, subsidies, forgivable loans and other assistance</li>
+				<li>Property and investment income</li>
+				<li>Any amount that is a capital gain from the disposition of property for income tax purposes</li>
+				<li>Other revenue of any kind whatever during the year, including revenue from both taxable and exempt supplies</li>
 			</ul>
 			<p>You also have to include the gross revenue of your organization as a whole (the legal entity).</p>
-			<p>Do <strong>not</strong> include capital loss from the disposition of property for income tax purposes.</p>
+			<p><strong>Do not</strong> include capital loss from the disposition of property for income tax purposes.</p>
+<hr>
 		</section>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" aria-hidden="true">First fiscal year</label>
-			<label class="col-sm-12 mrgn-tp-sm text-left hidden-xs" for="q9"><span class="wb-inv"></span>First fiscal year</label>
+			<label class="col-sm-12 mrgn-tp-sm text-left hidden-xs" for="q9">First fiscal year</label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" for="q9">First fiscal year</label>
 			<div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
-					<input class="form-control input-sm" name="q9" id="q9" value="" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onChange="
-							document.getElementById('currentQuestion').value = 9;
-							document.getElementById('hideResults').click() ;"
-						onfocusout="document.getElementById('validNumber').click();"/>
+					<input class="form-control input-sm" name="q9" id="q9" value="" required onfocus="this.select()" onchange="
+							var results = getElementsByName('results');
+							for (i=1; i<=results.length; i++)
+								document.getElementById('R'+i).classList.add('hidden');
+							
+							document.getElementById('question13').classList.add('hidden');
+							document.getElementById('question14').classList.add('hidden');" onblur="
+							var val = document.getElementById('q9') ;					
+							if (val.value != 0) {
+								if (val.value < 0 || isNaN(val.value)) {
+									val.value = (0).toFixed(2) ;
+									document.getElementById('error_first').classList.remove('hidden');
+								}	
+								else {
+									document.getElementById('error_first').classList.add('hidden');
+									val.value = parseFloat(val.value).toFixed(2) ;
+								}
+							}
+							else {
+								document.getElementById('error_first').classList.add('hidden');
+							}
+						">
 				</div>
 			</div>
 		</div>
-			<button class="btn btn-primary mrgn-tp-md required" type="button" onClick="				
+		<br>
+			<button class="btn btn-primary mrgn-bttm-lg required" type="button" onclick="				
 
 						var val = document.getElementById('q9') ;
-						document.getElementById('currentFieldset').value = 'question9' ;
 						if (val.value > 250000) {
 							document.getElementById('amount').value = 50000 ;
 							document.getElementById('showFields').click() ;
 						}
-						else if ((val.value != '') && !isNaN(val.value) && !(val.value < 0)) {
+						else if (document.getElementById('q9').value != 0) {
 							document.getElementById('R4').classList.remove('hidden');
 						}
-						document.getElementById('doubleCheckNumbers').click() ;
 			">Next
 			</button>
 
-	</fieldset >
+		<div class="alert alert-danger hidden" id="error_first">
+			<p>Only digits are permitted for these fields. Enter a positive value with no currency symbol.</p>
+		</div>
+	</fieldset>
 	
 	<!--QUESTION 10-->
-	<fieldset name="quest" id="question10" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">What is your gross revenue for each of your two previous fiscal years? <strong class="required">(required)</strong></legend>
-		<br>
-		<br>
-		<section class="alert alert-warning col-xs-12">
-			<h3>Important information</h3>
-			<p>Include in your <strong>gross revenue</strong> amount:</p>
+	<fieldset name="quest" id="question10" class="mrgn-bttm-md mrgn-lft-md hidden">
+		<legend class="h5 required mrgn-lft-md">What is your gross revenue for each of your two previous fiscal years? <strong class="required">(required)</strong></legend>
+		
+		<section>
+			
+			<p>You must include in your <strong>gross revenue</strong> amount:</p>
 			<ul>
-				<li>income from a business, or from an adventure or concern in the nature of trade</li>
-				<li>gifts and donations</li>
-				<li>grants, subsidies, forgivable loans and other assistance</li>
-				<li>property and investment income</li>
-				<li>any amount that is a capital gain from the disposition of property for income tax purposes</li>
-				<li>other revenue of any kind whatever during the year, including revenue from both taxable and exempt supplies</li>
+				<li>Income from a business, or from an adventure or concern in the nature of trade</li>
+				<li>Gifts and donations</li>
+				<li>Grants, subsidies, forgivable loans and other assistance</li>
+				<li>Property and investment income</li>
+				<li>Any amount that is a capital gain from the disposition of property for income tax purposes</li>
+				<li>Other revenue of any kind whatever during the year, including revenue from both taxable and exempt supplies</li>
 			</ul>
 			<p>You also have to include the gross revenue of your organization as a whole (the legal entity).</p>
-			<p>Do <strong>not</strong> include capital loss from the disposition of property for income tax purposes.</p>
+			<p><strong>Do not</strong> include capital loss from the disposition of property for income tax purposes.</p>
+<hr>
 		</section>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" aria-hidden="true">First previous fiscal year</label>
-			<label class="col-sm-12 mrgn-tp-sm text-left hidden-xs" for="fpfy"><span class="wb-inv"></span>First previous fiscal year</label>
+			<label class="col-sm-12 mrgn-tp-sm text-left hidden-xs" for="fpfy">First previous fiscal year</label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" for="fpfy">First previous fiscal year</label>
 			<div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
 		    	<div class="input-group">
 			    	<span class="input-group-addon">$</span>
-			    	<input class="form-control input-sm mrgn-bttm-sm" name="q10" id="fpfy" required="required"
-					onFocus="this.select();
-						document.getElementById('activeElem').value = document.activeElement.id;"
-					onChange="
-						document.getElementById('currentQuestion').value = 10;
-						document.getElementById('hideResults').click() ;" 
-					onfocusout="document.getElementById('validNumber').click();"/>
+			    	<input class="form-control input-sm mrgn-bttm-sm" name="q10" id="fpfy" required onfocus="this.select()" onchange="
+						var results = getElementsByName('results');
+						for (i=1; i<=results.length; i++)
+							document.getElementById('R'+i).classList.add('hidden');
+							
+						document.getElementById('question13').classList.add('hidden');
+						document.getElementById('question14').classList.add('hidden');" onblur="
+						var val0 = document.getElementsByName('q10')[0] ;					
+						if (val0.value != 0) {
+							if (val0.value < 0 || isNaN(val0.value)) {
+								val0.value = (0).toFixed(2) ;
+								document.getElementById('error_second').classList.remove('hidden');
+							}	
+							else {
+								document.getElementById('error_second').classList.add('hidden');
+								val0.value = parseFloat(val0.value).toFixed(2) ;
+							}
+						}
+						else {
+							document.getElementById('error_second').classList.add('hidden');
+						}
+					">
 				</div>
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" aria-hidden="true">Second previous fiscal year</label>
-			<label class="col-sm-12 mrgn-tp-sm text-left hidden-xs" for="spfy"><span class="wb-inv"></span>Second previous fiscal year</label>
+			<label class="col-sm-12 mrgn-tp-sm text-left hidden-xs" for="spfy">Second previous fiscal year</label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" for="spfy">Second previous fiscal year</label>
 			<div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
 		    	<div class="input-group">
 		    		<span class="input-group-addon">$</span>
-		    		<input class="form-control input-sm mrgn-bttm-sm" name="q10" id="spfy" required="required"
-					onFocus="this.select();
-						document.getElementById('activeElem').value = document.activeElement.id;"
-					onChange="
-						document.getElementById('currentQuestion').value = 10;
-						document.getElementById('hideResults').click() ;"
-					onfocusout="document.getElementById('validNumber').click();"/>
+		    		<input class="form-control input-sm mrgn-bttm-sm" id="spfy" name="q10" required onfocus="this.select()" onchange="
+						var results = getElementsByName('results');
+						for (i=1; i<=results.length; i++)
+							document.getElementById('R'+i).classList.add('hidden');
+							
+						document.getElementById('question13').classList.add('hidden');
+						document.getElementById('question14').classList.add('hidden');" onblur="
+						var val1 = document.getElementsByName('q10')[1] ;
+						if (val1.value != 0) {
+							if (val1.value < 0 || isNaN(val1.value)) {
+								val1.value = (0).toFixed(2) ;
+								document.getElementById('error_second').classList.remove('hidden');
+							}	
+							else {
+								document.getElementById('error_second').classList.add('hidden');
+								val1.value = parseFloat(val1.value).toFixed(2) ;
+							}
+						}
+						else {
+							document.getElementById('error_second').classList.add('hidden');
+						}
+					">
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-primary mrgn-tp-md required" type="button" onClick="	
+		<br>
+		<button class="btn btn-primary mrgn-bttm-lg required" type="button" onclick="
+			document.getElementById('error_second').classList.add('hidden');	
 						var q10 = document.getElementsByName('q10') ;
 						var values = [] ;
 						var empty = [false, false] ;
-						document.getElementById('currentFieldset').value = 'question10' ;
 						
 						for (i=0; i<q10.length; i++) {
-							//if (q10[i].value != '')
-							if ((q10[i].value != '') && !isNaN(q10[i].value) && !(q10[i].value < 0)){
+							if (q10[i].value != 0)
 								values[i] = parseFloat(q10[i].value, 10) ;
-							}
 							else {
 								values[i] = 0 ;
 								empty[i] = true ;
 							}
 						}
 			
-						if (values[0] > 250000 && values[1] > 250000){
+						if (values[0] > 250000 &amp;&amp; values[1] > 250000){
 							document.getElementById('amount').value = 50000 ;
 							document.getElementById('showFields').click() ;
 						}
-						else if (empty[0] == false || empty[1] == false){
+						else if (empty[0] == false || empty[1] == false)
 							document.getElementById('R4').classList.remove('hidden');
-						}
-						document.getElementById('doubleCheckNumbers').click() ;
-
 		">Next
 		</button>
 
-	</fieldset >
+		<div class="alert alert-danger hidden" id="error_second">
+			<p>Only digits are permitted for these fields. Enter a positive value with no currency symbol.</p>
+		</div>
+	</fieldset>
 	
 	<!--QUESTION 11-->
-	<fieldset name="quest" id="question11" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">Do you know for sure whether you are self-employed or an employee? <strong class="required">(required)</strong></legend>
-		<p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
+	<fieldset name="quest" id="question11" class="mrgn-bttm-md mrgn-lft-md hidden">
+<h2 class="mrgn-tp-sm">You are a taxi operator or a commercial ride-sharing driver</h2>
+<p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
+	
+		<legend class="h5 required">Do you know for sure whether you are an employee or self-employed? <strong class="required">(required)</strong></legend>
+		
 		<p>You are usually self-employed if you are in one of the following situations:</p>
 		<ul>
 			<li>You own your taxicab/motor vehicle</li>
 			<li>You lease a taxicab/motor vehicle from an owner for a flat fee, either on a daily, weekly, or monthly basis</li>
 			<li>You lease a taxicab/motor vehicle from an owner for a percentage of fares</li>
 		</ul>
-		<div class="radio" onChange="
+		<div class="radio" onchange="
 			var results = getElementsByName('results');
 			for (i=1; i<=results.length; i++)
 				document.getElementById('R'+i).classList.add('hidden');
@@ -561,36 +699,40 @@
 			else
 				document.getElementById('R2').classList.remove('hidden');
 		">		
-			<label><input type="radio" name="q11" value="0" />Yes</label>
+			<label><input type="radio" name="q11" value="0">Yes</label>
 			<br>
-			<label><input type="radio" name="q11" value="1" />No</label>
+			<label><input type="radio" name="q11" value="1">No</label>
 		</div>
-	</fieldset >
+	</fieldset>
 
-	<!--QUESTION 13-->
-	<fieldset name="quest" id="question13" class="mrgn-bttm-md hidden">
-		<legend class="h5 required">How much was the revenue from your taxable sales, leases and other supplies for these recent quarters? <strong class="required">(required)</strong></legend>
-		<div id="question13.1">
-		<section class="alert alert-warning col-xs-12">
-			<h3>Important information</h3>
-			<p>Include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including zero-rated supplies) from all your businesses and those of your associates.</p>
-			<p>Do <strong>not</strong> include revenue from financial services, sales of capital property and goodwill from the sale of a business.</p>
+	<!--QUESTION 14-->
+	<fieldset name="quest" id="question14" class="mrgn-bttm-md mrgn-lft-md hidden">
+		<legend class="h5 required">Q14 How much was the revenue from your taxable sales, leases and other supplies for these recent quarters? <strong class="required">(required)</strong></legend>
+		
+		<section>
+			<p>You must include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including zero-rated supplies) from all your businesses and those of your associates.</p>
+			<p><strong>Do not</strong> include revenue from financial services, sales of capital property and goodwill from the sale of a business.</p>
+			<label class="wb-inv">Enter the revenue from your taxable sales, leases and other supplies for recent quarters. Navigate forward through the following fields by using Tab or backward using Shift + Tab.</label>
+
+<div class="alert alert-danger">
+	<p>You can <strong>only</strong> use the tool if your business started receiving revenue in less than 8 calendar quarters or if your business has not started receiving revenue yet. </p>
+</div>
+<h3 class="mrgn-lft-md"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span>
+Enter your actual amounts</h3>			
 		</section>
-		<div class="checkbox-inline" onChange="
+		<div class="checkbox-inline mrgn-lft-xl" onchange="
+			document.getElementById('error_Old').classList.add('hidden') ;
 			fields = document.getElementsByName('q12_Old') ;
 			if (document.getElementById('noRev').checked) {
 				for (i=0; i<8; i++)
-					fields[i].disabled = true ;
-				document.getElementById('nextButton8').setAttribute('disabled', 'disabled') ;		
+					fields[i].disabled = true ;		
 			}
 			else {
 				for (i=0; i<8; i++)
 					fields[i].disabled = false ;
-				document.getElementById('nextButton8').removeAttribute('disabled') ;
 			}
 			document.getElementById('calc').click() ;
 			document.getElementById('hideResults').click() ;
-			
 			
 			">
    			<label for="noRev"><input type="checkbox" id="noRev">No revenue received until the current calendar quarter.</label>
@@ -598,255 +740,207 @@
 		<br>
 		<br>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter1_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date0_Old"></span></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_Old" name="q12_date_Old" id="q12_date0_Old"></label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 		    	<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-		    			<input class="form-control input-sm" name="q12_Old" id="quarter1_Old" required="required" 
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();"	
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();
-							document.getElementById('question13.2').classList.add('hidden');
-							document.getElementById('numOfQuarters').value = 8 ;"/>
+		    			<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter1_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+							document.getElementById('question14.2').classList.add('hidden')
+							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-		    	<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter2_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date1_Old"></span></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter2_Old" name="q12_date_Old" id="q12_date1_Old"></label>
+		    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter2_Old" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();"	
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();
-							document.getElementById('question13.2').classList.add('hidden');
-							document.getElementById('numOfQuarters').value = 8 ;"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter2_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+							document.getElementById('question14.2').classList.add('hidden')
+							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter3_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date2_Old"></span></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter3_Old" name="q12_date_Old" id="q12_date2_Old"></label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter3_Old" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();"	
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();
-							document.getElementById('question13.2').classList.add('hidden');
-							document.getElementById('numOfQuarters').value = 8 ;"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter3_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+							document.getElementById('question14.2').classList.add('hidden')
+							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter4_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date3_Old"></span></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter4_Old" name="q12_date_Old" id="q12_date3_Old"></label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter4_Old" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();"	
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();
-							document.getElementById('question13.2').classList.add('hidden');
-							document.getElementById('numOfQuarters').value = 8 ;"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter4_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+							document.getElementById('question14.2').classList.add('hidden')
+							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
 			</div>
 		</div>	
 		<div class="row mrgn-bttm-sm">
-			<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter5_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date4_Old"></span></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter5_Old" name="q12_date_Old" id="q12_date4_Old"></label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter5_Old" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();"	
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();
-							document.getElementById('question13.2').classList.add('hidden');
-							document.getElementById('numOfQuarters').value = 8 ;"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter5_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+							document.getElementById('question14.2').classList.add('hidden')
+							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter6_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date5_Old"></span></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter6_Old" name="q12_date_Old" id="q12_date5_Old"></label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter6_Old" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();"	
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();
-							document.getElementById('question13.2').classList.add('hidden');
-							document.getElementById('numOfQuarters').value = 8 ;"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter6_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+							document.getElementById('question14.2').classList.add('hidden')
+							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter7_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date6_Old"></span></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter7_Old" name="q12_date_Old" id="q12_date6_Old"></label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter7_Old" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();"	
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();
-							document.getElementById('question13.2').classList.add('hidden');
-							document.getElementById('numOfQuarters').value = 8 ;"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter7_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+							document.getElementById('question14.2').classList.add('hidden')
+							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-			<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter8_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date7_Old"></span></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter8_Old" name="q12_date_Old" id="q12_date7_Old"></label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter8_Old" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();"	
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();
-							document.getElementById('question13.2').classList.add('hidden');
-							document.getElementById('numOfQuarters').value = 8 ;"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter8_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();
+							document.getElementById('question14.2').classList.add('hidden')
+							document.getElementById('numOfQuarters').value = 8 ;">
 				</div>
 			</div>
 		</div>
 		
-		<button id="nextButton8" class="btn btn-primary required mrgn-tp-md" type="button" onClick="
-			document.getElementById('currentFieldset').value = 'question13.1';
-			document.getElementById('inputFieldsNextButton').click() ;
-			document.getElementById('doubleCheckNumbers').click() ;">Next
+		<button class="btn btn-primary required" type="button" onclick="
+			document.getElementById('calc').click() ;
+			document.getElementById('reached').click();
+			var tempMaxDate = new Date(document.getElementById('maxDate').value);
+			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
+			document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
+		">Next
 		</button>
-		</div>
+		<br>
 
-		<div id="question13.2" class="hidden ">
-			<legend class="h5 required">How much revenue do you estimate from your taxable sales, leases and other supplies for the next four quarters? <strong class="required">(required)</strong></legend>
+		<div id="question14.2" class="hidden ">
+<hr>
+			<legend class="h5 required">Q14.2 How much revenue do you estimate from your taxable sales, leases and other supplies for the next 4 quarters? <strong class="required">(required)</strong></legend>
+
+<br><br><br>
+<div class="alert alert-warning mrgn-tp-lg">
+	<p>You can use the tool to <strong>create scenarios</strong> based on your <strong>estimated figures</strong>. The results are only provided as a guideline to help you understand when you may need to register.</p>
+</div>
+
+<h3 class="mrgn-lft-md"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span>
+Enter your estimated figures</h3>
 		
 			<div class="row mrgn-bttm-sm">
-				<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter9_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date8_Old"></span></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter9_Old" name="q12_date_Old" id="q12_date8_Old"></label>
+				<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter9_Old" required="required" 						
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();" 
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter9_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					</div>
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-				<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter10_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date9_Old"></span></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter10_Old" name="q12_date_Old" id="q12_date9_Old"></label>
+				<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter10_Old" required="required"						
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();" 
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter10_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					</div>
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-				<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter11_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date10_Old"></span></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter11_Old" name="q12_date_Old" id="q12_date10_Old"></label>
+				<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter11_Old" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();" 
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter11_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					</div>
 				</div>
 			</div>
 			<div class="row mrgn-bttm-sm">
-				<label class="col-xs-12 mrgn-tp-md text-center visible-xs" name="q12_date_Oldxs" aria-hidden="true"></label>
-				<label class="col-md-4 col-sm-6 mrgn-tp-sm text-right hidden-xs" for="quarter12_Old"><span class="wb-inv"></span><span name="q12_date_Old" id="q12_date11_Old"></span></label>
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter12_Old" name="q12_date_Old" id="q12_date11_Old"></label>
+				<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 				<div class="col-lg-3 col-sm-4 col-xs-12">
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-sm" name="q12_Old" id="quarter12_Old" required="required"
-						onFocus="this.select();
-							document.getElementById('activeElem').value = document.activeElement.id;"
-						onfocusout="document.getElementById('validNumber').click();" 
-						onChange="document.getElementById('currentQuestion').value = 13;
-							document.getElementById('hideResults').click();"/>
+			    		<input class="form-control input-sm mrgn-bttm-sm" name="q12_Old" id="quarter12_Old" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
 					</div>
 				</div>
 			</div>
 
-			<button class="btn btn-primary required mrgn-tp-md" type="button" onClick="
-				document.getElementById('currentFieldset').value = 'question13.2';
-				document.getElementById('inputFieldsNextButton').click() ;
-				document.getElementById('doubleCheckNumbers').click() ;">Next
+			<button class="btn btn-primary required" type="button" onclick="
+				document.getElementById('calc').click() ;
+				document.getElementById('reached').click();
+				var tempMaxDate = new Date(document.getElementById('maxDate').value);
+				var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
+				document.getElementById('datePick').value = maxDate.toLocaleDateString() ;
+			">Next
 			</button>
 		
 		</div>
-	
-	</fieldset >
-	
-
-	<!--QUESTION 14-->
-	<fieldset name="quest" id="question14" class="mrgn-bttm-md hidden">
-		<label for="datePick" id="q14_text" class="h5 required"><span class="wb-inv" id="screenreader_error"></span> What is the date of the taxable supply that <span id="made">made</span> 
-			you exceed $<span id="q14_text_amountString"></span> in the following quarter: <span id="q14_text_quarter"></span>? <strong class="required">(required)</strong>
-		</label>
-		<p>Use the following format: YYYY-MM-DD.</p>
-		<div id="dateFieldDiv">
-		<input class="form-control input-md" id="datePick" type="date" required="required" onFocus="this.select()" 
-			onBlur="document.getElementById('validDate').click();"
-			onChange="	
-				var results = getElementsByName('results');
-				for (i=1; i<=results.length; i++){
-					document.getElementById('R'+i).classList.add('hidden');
-				}"/>
+			
+		<br>
+		<div class="alert alert-danger hidden" id="error_Old">
+			<p>Only digits are permitted for these fields. Enter a positive value with no currency symbol.</p>
 		</div>
-		<button class="btn btn-primary required mrgn-bttm-md mrgn-tp-md" type="button" id="dateResultButton" onClick="
+	
+	</fieldset>
+	
+	<fieldset name="quest" id="question13" class="mrgn-bttm-md mrgn-lft-md hidden">
+		<label for="datePick" id="q13_text" class="h5 required"><span class="wb-inv" id="screenreader_error"></span> What is the date of the taxable supply that <span id="made">made</span> you exceed $<span id="q13_text_amountString"></span> in the following quarter: <span id="q13_text_quarter"></span>? <strong class="required">(required)</strong></label>
+		<input class="form-control input-md" id="datePick" type="date" required onfocus="this.select()" onblur="
+			document.getElementById('validDate').click();
+		">
+		<br>
+
+		<button class="btn btn-primary required" type="button" id="dateResultButton" onclick="
 			if (this.classList.contains('goodToGo')) {
 				document.getElementById('showResults').click() ;
 			}
 			else {
-				document.getElementById('screenreader_error').innerHTML = 'Error. Enter a valid date (YYYY-MM-DD) within the appropriate quarter.';
+				document.getElementById('screenreader_error').innerHTML = 'Error. Enter a valid date within the appropriate quarter.';
 				document.getElementById('datePick').focus() ;
 			}
-		">Result
+		">Next
 		</button>
-
+		<br>
+		<br>
 		<div class="alert alert-danger hidden" id="error_date">
-			<p>Enter a valid date (YYYY-MM-DD) within the appropriate quarter.</p>
+			<p>Enter a valid date within the appropriate quarter.</p>
 		</div>
 
-	</fieldset >
+	</fieldset>
 </div>	
 </form>
 
@@ -854,102 +948,46 @@
 
 <!--Hidden buttons (functions)-->
 
-<!--Checks to see if valid inputs for question 12/13-->
-<button id="validNumber" class="hidden" type="button" onClick="
-	
-	var activeElm = document.getElementById(document.getElementById('activeElem').value) ;
-	activeElm.parentElement.parentElement.parentElement.getElementsByTagName('span')[0].innerHTML = '' ;
+<!--Checks to see if valid inputs for question 12/14-->
 
+<input id="validNumber" type="button" class="hidden" onclick="
+	
+	// Hides the error message
+	var age = document.getElementById('age').value ;
+	var fields = document.getElementsByName('q12_'+age);
+	document.getElementById('error_'+age).classList.add('hidden');
+	
 	//checks to see if valid number
-	if (activeElm.value != '') {
-		if (activeElm.value < 0 || isNaN(activeElm.value)) {	
-			activeElm.value = '' ;
-			activeElm.parentElement.parentElement.parentElement.getElementsByTagName('span')[0].innerHTML = 'Error. Only enter numbers in these fields. Enter a positive value with no currency symbol for the following field : ';
-			document.getElementById('error_number').classList.remove('hidden');
-			activeElm.focus();
+	for (i=0; i<fields.length; i++) {
+		if (fields[i].value != 0) {
+			if (fields[i].value < 0 || isNaN(fields[i].value)) {
+				document.getElementById('error_'+age).classList.remove('hidden');	
+				fields[i].value = (0).toFixed(2) ;
+			}
+			
+			else
+				fields[i].value = parseFloat(fields[i].value).toFixed(2);
 		}
 		else {
-			document.getElementById('error_number').classList.add('hidden');
-			activeElm.value = parseFloat(activeElm.value).toFixed(2);
+			fields[i].value = (0).toFixed(2)
 		}
 	}
-	else { 
-		document.getElementById('error_number').classList.add('hidden'); 
-	}
-">validNumber</button>
+	
+">
 
 
-<!--Hides results and questions that have not been asked yet-->
-<button id="hideResults" class="hidden" type="button" onClick="
-	var q = document.getElementsByName('quest') ;
-	var currentQuestion = parseInt(document.getElementById('currentQuestion').value, 10) ;
-	for (i=(currentQuestion + 1); i<=q.length; i++) {
-		document.getElementById('question'+i).classList.add('hidden');
-	}
-	var results = document.getElementsByName('results');
-	for (i=1; i<=results.length; i++) {
+<!-- Hides results -->
+<input id="hideResults" type="button" class="hidden" onclick="
+	var results = getElementsByName('results');
+	for (i=1; i<=results.length; i++)
 		document.getElementById('R'+i).classList.add('hidden');
-	}
-	document.getElementById('error_number').classList.add('hidden');
-
-	var currentFieldset = document.getElementById('currentFieldset').value;
-	var fields = document.getElementById(currentFieldset).getElementsByTagName('input');
-	var j;
-	if (currentFieldset == 'question13.1') {j = 1;} else {j = 0;}
-
-	if (currentQuestion != 9 && currentQuestion != 10 && currentQuestion != 12 && currentQuestion != 13) {
-		for (i = j; i<fields.length; i++) {
-			fields[i].parentElement.parentElement.parentElement.getElementsByTagName('span')[0].innerHTML = '';
-		}
-	}
-">hideResults</button>
+	document.getElementById('question13').classList.add('hidden');
+">
 
 
-<!-- Validates the number inputs when clicking on the button, rather than immediately, but only if the 'onfocusout' event is not supported by the browser. -->
-<button id="doubleCheckNumbers" class="hidden" type="button" onClick="
-	var currentFieldset = document.getElementById('currentFieldset').value;
-	var fields = document.getElementById(currentFieldset).getElementsByTagName('input');
-	//The variable below is needed because the checkbox is also an input in one of the fieldsets.
-	var j;
-	if (currentFieldset == 'question13.1') {j = 1;} else {j = 0;}
 
-	for (i = j; i<fields.length; i++) {
-		fields[i].parentElement.parentElement.parentElement.getElementsByTagName('span')[0].innerHTML = '';
-	}
-	for (i = j; i<fields.length; i++) {
-		if (fields[i].value != '') {
-			if (!isNaN(fields[i].value) && fields[i].value >= 0) {
-				fields[i].value = parseFloat(fields[i].value).toFixed(2);
-			}
-		}
-	}
-
-	for (i = j; i<fields.length; i++) {
-		if (fields[i].value < 0 || isNaN(fields[i].value)) {
-			fields[i].parentElement.parentElement.parentElement.getElementsByTagName('span')[0].innerHTML = 'Error. You made a mistake in some of the fields starting with this one. Review your answers. ';
-			fields[i].focus();
-			document.getElementById('hideResults').click();
-			document.getElementById('error_number').classList.remove('hidden');
-			if (currentFieldset == 'question13.1') {document.getElementById('question13.2').classList.add('hidden');}
-			return;
-		}
-	}
-">doubleCheckNumbers</button>
-
-
-<!-- Next button after quarter input fields -->
-<button id="inputFieldsNextButton" class="hidden" type="button" onClick="
-	document.getElementById('calc').click() ;
-	document.getElementById('reached').click();
-	//Sets a default value in the date input field, to force the calendar to open on a valid date, rather than today's date, which is often invalid.
-	//The code strips the date of all characters that are not either a number or a '-'. Some browsers added 'invisible characters' that made the date invalid.
-	//var calendarOpeningDate = new Date(document.getElementById('maxDate').value).toLocaleDateString().replace(/[^0-9\-]/g,'');
-	//document.getElementById('datePick').value = calendarOpeningDate;
-">inputFieldsNextButton</button>
-
-
-<!--Assigns proper quarters in order for input fields of question 12/13-->
-<button id="showFields" class="hidden" type="button" onClick="
+<!--Assigns proper quarters in order for input fields of question 12/14-->
+<input class="hidden" id="showFields" type="button" onclick="
 	
 	var q4 = document.getElementsByName('q4');
 	var q2 = document.getElementById('q2').value;
@@ -960,26 +998,25 @@
 	for (i=1; i<=results.length; i++)
 		document.getElementById('R'+i).classList.add('hidden');
 		
-		document.getElementById('question13.2').classList.add('hidden') ;
+		document.getElementById('question14.2').classList.add('hidden') ;
 		document.getElementById('noRev').checked = false ;
-		document.getElementById('nextButton8').removeAttribute('disabled')
 		
 		//How many quarters depending if new business or not
 
 		if (q2 == 0) {
 			document.getElementById('question12').classList.remove('hidden');
-			document.getElementById('numOfQuarters').value = 8 ;
+			document.getElementById('numOfQuarters').value = 4 ;
 		}
 		else {
-			document.getElementById('question13').classList.remove('hidden');
-			document.getElementById('numOfQuarters').value = 12 ;
+			document.getElementById('question14').classList.remove('hidden');
+			document.getElementById('numOfQuarters').value = 8 ;
 		}
 		
 		//Enables all input fields
 
 		var q12 = document.getElementsByName('q12_'+age);
 		for (i=0; i<q12.length; i++) {
-			q12[i].value = '' ;
+			q12[i].value = (0).toFixed(2) ;
 			q12[i].disabled = false ;
 		}
 			
@@ -1000,8 +1037,7 @@
 		
 		var months = [0, 3, 6, 9] ;
 		
-		var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		var shortMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+		var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 					
 		var period = [];
 		var year = [];
@@ -1010,7 +1046,7 @@
 			if (q2 == 0)
 				year[i]=currentYear;
 			else
-				year[i]=currentYear-3
+				year[i]=currentYear-2
 		}
 					
 		for (i=0; i<dates.length; i++) {
@@ -1022,29 +1058,27 @@
 		
 		for (i=0; i<dates.length; i++) {
 
-			var tmp1 = new Date(year[i], months[period[i]], 1);
-			var tmp2 = new Date(year[i], months[period[i]]+3, 0);
+			var tmp1 = new Date(year[i], months[period[i]], 1)
+			var tmp2 = new Date(year[i], months[period[i]]+3, 0)
 
-			dates[i].innerHTML = monthNames[tmp1.getMonth()] + '&nbsp1, ' + tmp1.getFullYear() + ' to ' + monthNames[tmp2.getMonth()] +'&nbsp'+ tmp2.getDate() + ', ' + tmp2.getFullYear();         
+			dates[i].innerHTML = monthNames[tmp1.getMonth()] + '&amp;nbsp1, ' + tmp1.getFullYear() + ' to ' + monthNames[tmp2.getMonth()] +'&nbsp;'+ tmp2.getDate() + ', ' + tmp2.getFullYear();         
 			document.getElementById('q'+i+'_monthStart_'+age).value = new Date(year[i], months[period[i]], 1) ;
 			document.getElementById('q'+i+'_monthEnd_'+age).value = new Date(year[i], months[period[i]]+3, 0) ;
 			document.getElementById('q'+i+'_year_'+age).value = year[i] ;
 
 		}
 		
-		// Copies the dates in a second label (but in abbreviated form) visible only on 'xs' zoom for responsiveness.
+		// Copies the dates in a second label visible only on 'xs' zoom for responsiveness.
 		var datesxs = document.getElementsByName('q12_date_'+age+'xs');
 		for (i=0; i<datesxs.length; i++) {
-			var tmp1 = new Date(year[i], months[period[i]], 1);
-			var tmp2 = new Date(year[i], months[period[i]]+3, 0);
-
-			datesxs[i].innerHTML = shortMonthNames[tmp1.getMonth()] + '&nbsp1, ' + tmp1.getFullYear() + ' to ' + shortMonthNames[tmp2.getMonth()] +'&nbsp'+ tmp2.getDate() + ', ' + tmp2.getFullYear();  
+			datesxs[i].innerHTML = dates[i].innerHTML ;
 		}
-">showFields</button>
+		
+">
 
 
 <!--Checks to see if amount has been reached-->
-<button id="calc" class="hidden" type="button" onClick="
+<input class="hidden" id="calc" type="button" value="Calc" onclick="
 	
 	var age = document.getElementById('age').value;
 	var test = document.getElementById('test'); 
@@ -1056,7 +1090,7 @@
 	var calcReturn = document.getElementById('calcReturn'); 
 	
 	var capPeriod = document.getElementById('capPeriod');
-	var date = document.getElementById('question14');
+	var date = document.getElementById('question13');
 	var minDate = document.getElementById('minDate');
 	var maxDate = document.getElementById('maxDate');
 	var minDateS ;
@@ -1082,7 +1116,7 @@
 	}
 
 	for (i=dis; i<numOfQuarters; i++) {
-		if (fields[i].value != '') 
+		if (fields[i].value != 0) 
 			fieldsInt[i] = parseInt(fields[i].value, 10);
 		else {
 			fieldsInt[i] = 0 ;
@@ -1101,14 +1135,14 @@
  				temp += fieldsInt[(j+i)] ;
 
 				//if amount has been reached by addition of quarters 
-  				if (temp > amount && fieldsInt[j+i] <= amount) {
+  				if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
   					capPeriod.value = j+i ;
   					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
   					
-					if (i+j < 8 && age == 'Old') {
-						document.getElementById('question13.2').classList.add('hidden') ;
+					if (i+j < 8 &amp;&amp; age == 'Old') {
+						document.getElementById('question14.2').classList.add('hidden') ;
 						for (i=8; i<12; i++)
-							fields[i].value = '' ;
+							fields[i].value = (0).toFixed(2) ;
 						document.getElementById('numOfQuarters').value = 8 ;
 					}
   					
@@ -1119,61 +1153,40 @@
   				}
 
 				//if amount has been reached by a single quarter
-  				else if (temp > amount && fieldsInt[j+i] > amount) {
+  				else if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
   					
   					calcReturn.value = 0 ;
   					capPeriod.value = j+i ;
 					
-  					document.getElementById('q14_text_amountString').innerHTML = amountString
-					document.getElementById('q14_text_quarter').innerHTML = document.getElementById('q12_date'+capPeriod.value+'_'+age).innerHTML ;
+  					document.getElementById('q13_text_amountString').innerHTML = amountString
+					document.getElementById('q13_text_quarter').innerHTML = document.getElementById('q12_date'+capPeriod.value+'_'+age).innerHTML ;
    					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
    					maxDate.value = document.getElementById('q'+capPeriod.value+'_monthEnd_'+age).value ;
    					
 					minDateS = new Date(minDate.value) ;
 					maxDateS = new Date(maxDate.value) ;
 
-					//document.getElementById('datePick').min = minDateS.getUTCFullYear()+'-'+months[minDateS.getUTCMonth()]+'-01' ;
-					//document.getElementById('calMinDate').value = minDateS.getUTCFullYear()+'-'+months[minDateS.getUTCMonth()]+'-01' ;
-					//document.getElementById('datePick').min = document.getElementById('calMinDate').value ;
+					document.getElementById('datePick').min = minDateS.getUTCFullYear()+'-'+months[minDateS.getUTCMonth()]+'-01' ;
 
 					if (minDateS > Date.now())
 						document.getElementById('made').innerHTML = 'will make' ;
 					else
 						document.getElementById('made').innerHTML = 'made' ;
-/*
+
 					if (maxDateS.getUTCMonth() == 11)
    						document.getElementById('datePick').max = (maxDateS.getUTCFullYear()+1)+'-'+months[0]+'-00' ;
 					else
-						document.getElementById('datePick').max = maxDateS.getUTCFullYear()+'-'+months[maxDateS.getUTCMonth()+1]+'-00' ;
-*/
-/*
-					if (maxDateS.getUTCMonth() == 11) {
-   						document.getElementById('calMaxDate').value = (maxDateS.getUTCFullYear()+1)+'-'+months[0]+'-00' ;
-						document.getElementById('datePick').max = document.getElementById('calMaxDate').value ;
-					}
-					else {
-						document.getElementById('calMaxDate').value = maxDateS.getUTCFullYear()+'-'+months[maxDateS.getUTCMonth()+1]+'-00' ;
-						document.getElementById('datePick').max = document.getElementById('calMaxDate').value ;
-					}
-*/
-	 				
-					document.getElementById('hideResults').click() ;
+						document.getElementById('datePick').max = maxDateS.getUTCFullYear()+'-'+months[maxDateS.getUTCMonth()+1]+'-00' ;	
+   					
 					date.classList.remove('hidden');
-					document.getElementById('createCalendar').click() ;
-
-
-
-
-
 					document.getElementById('screenreader_error').innerHTML = '';
-					document.getElementById('datePick-picker-toggle').setAttribute('title', 'Click this button to pick a date using the calendar.') ;
-					document.getElementById('datePick-picker-toggle').getElementsByTagName('span')[1].innerHTML = 'Click this button to pick a date using the calendar.' ;
+					document.getElementById('datePick-picker-toggle').setAttribute('title', 'Click this button to pick a date using the calendar') ;
+					document.getElementById('datePick-picker-toggle').getElementsByTagName('span')[1].innerHTML = 'Click this button to pick a date using the calendar' ;
 
-
-					if (i+j < 8 && age == 'Old') {
-						document.getElementById('question13.2').classList.add('hidden') ;
+					if (i+j < 8 &amp;&amp; age == 'Old') {
+						document.getElementById('question14.2').classList.add('hidden') ;
 						for (i=8; i<12; i++)
-							fields[i].value = '' ;
+							fields[i].value = (0).toFixed(2) ;
 						document.getElementById('numOfQuarters').value = 8 ;
 					}
 
@@ -1185,7 +1198,7 @@
 	
 	//if amount has not been reached
 
-	if (document.getElementById('q3').value == 2 && (counter < numOfQuarters || document.getElementById('noRev').checked)) {
+	if (document.getElementById('q3').value == 2 &amp;&amp; (counter < numOfQuarters || document.getElementById('noRev').checked)) {
 		calcReturn.value = 2;
 		document.getElementById('showResults').click() ;
 		
@@ -1197,7 +1210,7 @@
 			calcReturn.value = 2;
 			document.getElementById('showResults').click() ;
 		}
-		else if (counter == 8 && numOfQuarters == 8 && fields[0].disabled) {
+		else if (counter == 8 &amp;&amp; numOfQuarters == 8 &amp;&amp; fields[0].disabled) {
 			calcReturn.value = 2;
 			document.getElementById('showResults').click() ;
 		}
@@ -1206,11 +1219,15 @@
 
 	calcReturn.value = 2;
 	
-">calc</button>
+  	
+  		
+ 		
+">
 
 
 <!--checks if added quarters capped amount before a single quarter did (happens when calcReturn == 1)-->
-<button id="reached" type="button" onClick="
+
+<input class="hidden" id="reached" type="button" onclick="
 	
 	document.getElementById('error_date').classList.add('hidden');
 	document.getElementById('datePick').value = '' ;
@@ -1223,7 +1240,7 @@
 	var calcReturn = document.getElementById('calcReturn');
 	var test = document.getElementById('test'); 
 	var capPeriod = document.getElementById('capPeriod');
-	var date = document.getElementById('question14');
+	var date = document.getElementById('question13');
 	var minDate = document.getElementById('minDate');
 	var maxDate = document.getElementById('maxDate');
 	var minDateS ;
@@ -1236,7 +1253,7 @@
 	var fieldsInt = [] ;
 	
 	for (i=0; i<numOfQuarters; i++) {
-		if (fields[i].value != '') 
+		if (fields[i].value != 0) 
 			fieldsInt[i] = parseInt(fields[i].value, 10);
 		else
 			fieldsInt[i] = 0 ;
@@ -1255,18 +1272,18 @@
 	//if there is a single quarter greater than the amount
 	if (temp!= null) {
 		//if amount was reached with addition of quarters
-		if (calcReturn.value == 1 && fields[temp-1].value != null ) {
+		if (calcReturn.value == 1 &amp;&amp; fields[temp-1].value != null ) {
 			for (i = 0; i<(numOfQuarters-3); i++) {
 				tot = 0 ;
 				for (j=0; j<4; j++) {
 					tot += fieldsInt[j+i];
 					//if amount was reached before the single quarter capped it (the single quarter is immediately following the added quarters)
-					if (tot > amount && (j+i) == temp-1) {
+					if (tot > amount &amp;&amp; (j+i) == temp-1) {
 						
 						//Applies necessary changes to the result
 
-						document.getElementById('q14_text_amountString').innerHTML = amountString
-						document.getElementById('q14_text_quarter').innerHTML = document.getElementById('q12_date'+(parseInt(capPeriod.value, 10)+1)+'_'+age).innerHTML ;
+						document.getElementById('q13_text_amountString').innerHTML = amountString
+						document.getElementById('q13_text_quarter').innerHTML = document.getElementById('q12_date'+(parseInt(capPeriod.value, 10)+1)+'_'+age).innerHTML ;
 						
 						minDate.value = document.getElementById('q'+(parseInt(capPeriod.value, 10)+1)+'_monthStart_'+age).value ;
 	   					maxDate.value = document.getElementById('q'+(parseInt(capPeriod.value, 10)+1)+'_monthEnd_'+age).value ;
@@ -1274,182 +1291,39 @@
 						minDateS = new Date(minDate.value) ;
 						maxDateS = new Date(maxDate.value) ;
 
-	   					//document.getElementById('datePick').min = minDateS.getUTCFullYear()+'-'+months[minDateS.getUTCMonth()]+'-01' ;
-						document.getElementById('calMinDate').value = minDateS.getUTCFullYear()+'-'+months[minDateS.getUTCMonth()]+'-01' ;
-						document.getElementById('datePick').min = document.getElementById('calMinDate').value ;
-
-
+	   					document.getElementById('datePick').min = minDateS.getUTCFullYear()+'-'+months[minDateS.getUTCMonth()]+'-01' ;
 
 						if (minDateS > Date.now())
 							document.getElementById('made').innerHTML = 'will make' ;
 						else
 							document.getElementById('made').innerHTML = 'made' ;
-/*
+
    						if (maxDateS.getUTCMonth() == 11)
    							document.getElementById('datePick').max = (maxDateS.getUTCFullYear()+1)+'-'+months[0]+'-00' ;
 						else
 							document.getElementById('datePick').max = maxDateS.getUTCFullYear()+'-'+months[maxDateS.getUTCMonth()+1]+'-00' ;
-*/
-
-						if (maxDateS.getUTCMonth() == 11) {
-   							document.getElementById('calMaxDate').value = (maxDateS.getUTCFullYear()+1)+'-'+months[0]+'-00' ;
-							document.getElementById('datePick').max = document.getElementById('calMaxDate').value ;
-						}
-						else {
-							document.getElementById('calMaxDate').value = maxDateS.getUTCFullYear()+'-'+months[maxDateS.getUTCMonth()+1]+'-00' ;
-							document.getElementById('datePick').max = document.getElementById('calMaxDate').value ;
-						}
-
-						document.getElementById('hideResults').click() ;
+	
 						date.classList.remove('hidden');
-
-
-
-
-
-
-
-/*
-
-						if (document.body.contains(document.getElementById('dateFieldDiv'))) {
-							var child = document.getElementById('dateFieldDiv');
-							child.parentNode.removeChild(child);
-						}
-
-						var dateDiv = document.createElement('div');
-						dateDiv.setAttribute('id', 'dateFieldDiv');
-						dateDiv.setAttribute('class', 'form-group');
-
-						var q14content = document.getElementById('question14');
-						q14content.insertBefore(dateDiv, q14content.childNodes[2]);
-						//document.getElementById('question14').insertBefore(dateDiv, document.getElementById('dateResultButton'));
-
-						//var calendarOpeningDate = new Date(document.getElementById('maxDate').value).toLocaleDateString().replace(/[^0-9\-]/g,'');
-						//var calendarOpeningDate = document.getElementById('maxDate').value ;
-
-						var dateInput = document.createElement('input');
-						dateInput.setAttribute('id', 'datePick');
-						dateInput.setAttribute('type', 'date');
-						dateInput.setAttribute('class', 'form-control input-md');
-						dateInput.setAttribute('required', 'required');
-						dateInput.setAttribute('onFocus', 'this.select()');
-						dateInput.setAttribute('onBlur', 'document.getElementById(\'validDate\').click();');
-						dateInput.setAttribute('onChange', 'document.getElementById(\'currentQuestion\').value = 14;document.getElementById(\'hideResults\').click();');
-
-
-						//dateInput.setAttribute('max', calendarMaxDate);
-						//document.getElementById('dateFieldDiv').appendChild(dateInput);
-						dateDiv.appendChild(dateInput);
-
-						$( 'input[type=date]' ).trigger( 'wb-init.wb-date' );
-
-*/
-/*
-						if (document.body.contains(document.getElementById('dateFieldDiv2'))) {
-							var child = document.getElementById('dateFieldDiv2');
-							child.parentNode.removeChild(child);
-						}
-
-						var dateDiv = document.createElement('div');
-						dateDiv.setAttribute('id', 'dateFieldDiv2');
-						dateDiv.setAttribute('class', 'form-group');
-
-						var q14content = document.getElementById('question14');
-						q14content.insertBefore(dateDiv, q14content.childNodes[2]);
-
-						var dateP = document.createElement('p');
-						dateP.setAttribute('id', 'dateFieldP');
-						dateP.innerHTML = 'yay' ;
-						dateDiv.appendChild(dateP);
-
-						var dateInput = document.createElement('input');
-						dateInput.setAttribute('id', 'datePick');
-						dateInput.setAttribute('type', 'date');
-						dateInput.setAttribute('class', 'form-control input-md');
-						dateInput.setAttribute('required', 'required');
-
-						dateInput.setAttribute('onFocus', 'this.select()');
-
-						dateInput.setAttribute('onBlur', 'document.getElementById(\'validDate\').click();');
-
-						//dateInput.setAttribute('onChange', 'document.getElementById(\'currentQuestion\').value = 14;');
-						//dateInput.setAttribute('onChange', 'document.getElementById(\'hideResults\').click();');
-
-						dateInput.setAttribute('onChange', 'document.getElementById(\'currentQuestion\').value = 14;document.getElementById(\'hideResults\').click();');
-
-						dateInput.setAttribute('max', '2018-05-08');
-
-						dateDiv.appendChild(dateInput);
-
-						$( 'input[type=date]' ).trigger( 'wb-init.wb-date' );
-
-*/
-
-
-
-
-
-
-
-
 						document.getElementById('screenreader_error').innerHTML = '';
-						document.getElementById('datePick-picker-toggle').setAttribute('title', 'Click this button to pick a date using the calendar.') ;
-						document.getElementById('datePick-picker-toggle').getElementsByTagName('span')[1].innerHTML = 'Click this button to pick a date using the calendar.' ;
+						document.getElementById('datePick-picker-toggle').setAttribute('title', 'Click this button to pick a date using the calendar') ;
+						document.getElementById('datePick-picker-toggle').getElementsByTagName('span')[1].innerHTML = 'Click this button to pick a date using the calendar' ;
 						return
 					}
 					
 					//amount was not reached before the single quarter capped it
-					else if (tot > amount && (i+j) != temp-1) {
-/*							
-						if (document.body.contains(document.getElementById('dateFieldDiv2'))) {
-							var child = document.getElementById('dateFieldDiv2');
-							child.parentNode.removeChild(child);
-						}
-
-						var dateDiv = document.createElement('div');
-						dateDiv.setAttribute('id', 'dateFieldDiv2');
-						dateDiv.setAttribute('class', 'form-group');
-
-						var q14content = document.getElementById('question14');
-						q14content.insertBefore(dateDiv, q14content.childNodes[2]);
-
-						var dateP = document.createElement('p');
-						dateP.setAttribute('id', 'dateFieldP');
-						dateP.innerHTML = 'yay' ;
-						dateDiv.appendChild(dateP);
-
-						var dateInput = document.createElement('input');
-						dateInput.setAttribute('id', 'datePick');
-						dateInput.setAttribute('type', 'date');
-						dateInput.setAttribute('class', 'form-control input-md');
-						dateInput.setAttribute('required', 'required');
-
-						dateInput.setAttribute('onFocus', 'this.select()');
-
-						dateInput.setAttribute('onBlur', 'document.getElementById(\'validDate\').click();');
-
-						//dateInput.setAttribute('onChange', 'document.getElementById(\'currentQuestion\').value = 14;');
-						//dateInput.setAttribute('onChange', 'document.getElementById(\'hideResults\').click();');
-
-						dateInput.setAttribute('onChange', 'document.getElementById(\'currentQuestion\').value = 14;document.getElementById(\'hideResults\').click();');
-
-						dateInput.setAttribute('max', '2018-05-08');
-
-						dateDiv.appendChild(dateInput);
-
-						$( 'input[type=date]' ).trigger( 'wb-init.wb-date' );
-*/										
-						return ;
+					else if (tot > amount &amp;&amp; (i+j) != temp-1) {
+						return 
 					}
 				}
 			}		
 		}
 	}
 
-">reached</button>
+">
 
 <!--Displays the correct results with proper dates after checking the conditions with other functions-->
-<button id="showResults" class="hidden" type="button" onClick="
+
+<input class="hidden" id="showResults" type="button" onclick="
 	var results = getElementsByName('results');
 	for (i=1; i<=results.length; i++)
 		document.getElementById('R'+i).classList.add('hidden');
@@ -1462,7 +1336,7 @@
 	var amountString = document.getElementById('amountString').value ;
 	var calcReturn = document.getElementById('calcReturn'); 
 	var capPeriod = parseInt(document.getElementById('capPeriod').value, 10);
-	var date = document.getElementById('question14');
+	var date = document.getElementById('question13');
 	
 	
 	var minDate = document.getElementById('minDate').value;
@@ -1551,7 +1425,7 @@
 			
 
 			// if datePicked is in the first month of the quarter that capped the amount (by itself)
-			if ((!isNaN(datePicked.getUTCMonth()))&&(datePicked.getUTCMonth() == (temp.getUTCMonth()+3)%12)) {
+			if ((!isNaN(datePicked.getUTCMonth()))&amp;&amp;(datePicked.getUTCMonth() == (temp.getUTCMonth()+3)%12)) {
 				if (capPeriod >= 8 || numOfQuarters == 4){
 					document.getElementById('estimate').innerHTML = 'estimated' ;
 					document.getElementById('have0').innerHTML = 'have' ;
@@ -1627,7 +1501,7 @@
 		else {
 			if (numOfQuarters == 8) {
 				document.getElementById('numOfQuarters').value = 12 ;
-				document.getElementById('question13.2').classList.remove('hidden') ;
+				document.getElementById('question14.2').classList.remove('hidden') ;
 			}
 			else {	
 				var temp ;
@@ -1639,15 +1513,22 @@
 			}
 		}
 	}	
-">showResults</button>
+
+">
 
 
-<!--Check to see if valid date input for question 13-->
-<button id="validDate" class="hidden" type="button" onClick="
-		
+<!--Check to see if valid date input for question 14-->
+
+<input id="validDate" type="button" class="hidden" onclick="
+	
+	var results = getElementsByName('results');
+	for (i=1; i<=results.length; i++)
+		document.getElementById('R'+i).classList.add('hidden');
+	
 	document.getElementById('error_date').classList.add('hidden');
 	document.getElementById('dateResultButton').classList.remove('goodToGo') ;
 	
+
 	var tempMinDate = new Date(document.getElementById('minDate').value);
 	var tempMaxDate = new Date(document.getElementById('maxDate').value);
 	var minDate = new Date(tempMinDate.getUTCFullYear(), tempMinDate.getUTCMonth(), tempMinDate.getUTCDate());
@@ -1669,192 +1550,169 @@
 			document.getElementById('dateResultButton').classList.add('goodToGo') ;
 			document.getElementById('screenreader_error').innerHTML = '';
 		}
-">validDate</button>
+
+	
+">
 
 
 
 <!--RESULTS-->
 
-<button id="createCalendar" type="button" onClick="
-						if (document.body.contains(document.getElementById('dateFieldDiv'))) {
-							var child = document.getElementById('dateFieldDiv');
-							child.parentNode.removeChild(child);
-						}
-
-						var dateDiv = document.createElement('div');
-						dateDiv.setAttribute('id', 'dateFieldDiv');
-						dateDiv.setAttribute('class', 'form-group');
-
-						var q14content = document.getElementById('question14');
-						q14content.insertBefore(dateDiv, q14content.childNodes[2]);
-
-						var dateInput = document.createElement('input');
-						dateInput.setAttribute('id', 'datePick');
-						dateInput.setAttribute('type', 'date');
-						dateInput.setAttribute('class', 'form-control input-md');
-						dateInput.setAttribute('required', 'required');
-
-						dateInput.setAttribute('onFocus', 'this.select()');
-
-						dateInput.setAttribute('onBlur', 'document.getElementById(\'validDate\').click();');
-
-						//dateInput.setAttribute('onChange', 'document.getElementById(\'currentQuestion\').value = 14;');
-						//dateInput.setAttribute('onChange', 'document.getElementById(\'hideResults\').click();');
-
-						dateInput.setAttribute('onChange', 'document.getElementById(\'currentQuestion\').value = 14;document.getElementById(\'hideResults\').click();');
-
-						//dateInput.setAttribute('max', '2018-05-08');
 
 
-						var minDateAttribute ;
-						var maxDateAttribute ;
-						var months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'] ;
-						var calMinDate = new Date(document.getElementById('minDate').value) ;
-						var calMaxDate = new Date(document.getElementById('maxDate').value) ;
-
-
-						minDateAttribute = calMinDate.getUTCFullYear()+'-'+months[calMinDate.getUTCMonth()]+'-01' ;
-
-						if (calMaxDate.getUTCMonth() == 11) {
-   							maxDateAttribute = (calMaxDate.getUTCFullYear()+1)+'-'+months[0]+'-00' ;
-						}
-						else {
-							maxDateAttribute = calMaxDate.getUTCFullYear()+'-'+months[calMaxDate.getUTCMonth()+1]+'-00' ;
-						}
-
-						dateInput.setAttribute('min', minDateAttribute);
-						dateInput.setAttribute('max', maxDateAttribute);
-
-
-						dateDiv.appendChild(dateInput);
-
-						$( 'input[type=date]' ).trigger( 'wb-init.wb-date' );
-
-">createCalendar</button>
-
-<section class="alert alert-danger hidden" id="R1" name="results">
-	<h3>Result</h3>
-	<p>You <strong>cannot</strong> register for a GST/HST account.</p>
-	<p>You do <strong>not</strong> charge GST/HST.</p>
-	<p>You do <strong>not</strong> claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchase. If you are a listed financial institution, see <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/notice265/gst-hst-registration-listed-financial-institutions-including-selected-listed-financial-institutions.html" target="_blank">GST/HST Notice 265</a>.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R1" name="results">
+	<h3><small>Your result </small><br> You do not supply goods or services that are taxable</h3>
+          <ul class="fa-ul mrgn-lft-xl mrgn-lft-xl">
+             <li><span class="fas fa-times text-danger fa-li "></span> You <strong>cannot</strong> register for a GST/HST account</li>
+ <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> charge GST/HST</li>
+<li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> claim input tax credits for the GST/HST you pay on your purchase.</li>
+                </ul>
+<p class="mrgn-tp-md">Learn more if you are a listed financial institution: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/notice265/gst-hst-registration-listed-financial-institutions-including-selected-listed-financial-institutions.html">GST/HST Notice 265</a></p>
 </section>
 
-<section class="alert alert-warning hidden" id="R2" name="results">
-	<h3>Warning</h3>
-	<p>To find out whether you are self-employed or an employee, you can send a letter or a completed <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/cpt1.html" target="_blank">Form CPT1, Request for a Ruling as to the Status of a Worker Under the Canada Pension Plan and/or the Employment Insurance Act</a> to your <a href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/tax-services-offices-tax-centres.html" target="_blank">tax services office</a>.</p>
+<section class="alert alert-warning hidden mrgn-lft-lg" id="R2" name="results">
+	<h3><small>Your result </small><br> You are not sure if you are an employee or self-employed</h3>
+	<p>You need to consider multiple factors to determine if you are an employee or self-employed. </p>
+<p>If you are not sure if you are an employee or self-employed, you can ask for a CPP/EI ruling.</p>
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained/canada-pension-plan-employment-insurance-explained-11.html">How to get a CPP/EI ruling</a></p>
 </section>
 
-<section class="alert alert-danger hidden" id="R3" name="results">
-	<h3>Result</h3>
-	<p>You <strong>cannot</strong> register separately for a GST/HST account. For more information, see <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4049/gst-hst-information-municipalities.html" target="_blank"> GST/HST information for municipalities</a>.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R3" name="results">
+	<h3><small>Your result </small><br> You are a branch or division </h3>
+	<p><span class="fas fa-times text-danger"></span> You <strong>cannot</strong> register separately for a GST/HST account because you are a branch or a division.</p>
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4049/gst-hst-information-municipalities.html" target="_blank"> GST/HST information for municipalities</a></p>
 </section>
 
-<section class="alert alert-info hidden" id="R4" name="results">
-	<h3>Result</h3>
-	<p>You do <strong>not</strong> have to register for a GST/HST account.</p>
-	<p>You do <strong>not</strong> charge GST/HST.</p>
-	<p>You have to make the same calculation at the end of every quarter.</p>
-	<p>You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses.</p>
-	<p>You may choose to register voluntarily.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R4" name="results">
+	<h3><small>Your result </small><br> You are a charity or public institution</h3>
+<ul class="fa-ul mrgn-lft-xl">
+             <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to register for a GST/HST account</li>
+ <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> charge GST/HST</li>
+                </ul>
+
+  <ul class="fa-ul  mrgn-lft-xl">
+	  <li><span class="fas fa-check text-success fa-li"></span> You may choose to register voluntarily</li>
+                  <li><span class="fas fa-check text-success fa-li"></span> You have to make the same calculation at the end of every quarter</li>
+ <li><span class="fas fa-check text-success fa-li"></span> You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses</li>
+                </ul>
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4082/gst-hst-information-charities.html" target="_blank"> GST/HST Information for Charities</a></p>
 </section>
 
-<section class="alert alert-info hidden" id="R5" name="results">
-	<h3>Result</h3>
-	<p>You have to charge the GST/HST.</p>
-	<p>You have to register for a GST/HST account.</p>
-	<p>You may be eligible for to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchase and expenses.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R5" name="results">
+	<h3><small>Your result </small><br> You are a taxi operator or a commercial ride-sharing driver</h3>
+  <ul class="fa-ul  mrgn-lft-xl">
+	  <li><span class="fas fa-check text-success fa-li"></span> You have to charge the GST/HST as of the date your business began</li>
+                  <li><span class="fas fa-check text-success fa-li"></span> You have to register for a GST/HST account as of the date your business began</li>
+ <li><span class="fas fa-check text-success fa-li"></span> You may be eligible for to claim input tax credits for the GST/HST you pay on your purchase and expenses</li>
+                </ul>
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/taxi-ride-sharing-drivers.html" target="_blank"> GST/HST information for taxi operators and commercial ride-sharing drivers</a></p>	
+
 </section>
 
-<section class="alert alert-info hidden" id="R6" name="results">
-	<h3>Result</h3>
-	<p>Although you do not have to register for the GST/HST, your sale of real property may still be taxable and you may have to charge and collect the tax for that <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#commercial" target="_blank">commercial activity</a>. For more information, see <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#real" target="_blank">Real property</a></p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R6" name="results">
+	<h3><small>Your result </small><br> Your only commercial activity is the sale of real property<small>, other than in the course of a business</small>  </h3>
+<ul class="fa-ul mrgn-lft-xl">
+<li><span class="fas fa-times text-danger fa-li"></span> You do <strong>not</strong> have to register for a GST/HST account</li>	
+ <li><span class="fas fa-check text-success fa-li"></span> You may choose to register voluntarily</li>
+ <li><span class="fas fa-check text-success fa-li"></span> You may still have to charge and collect the tax on your sale of real property on that <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#commercial" target="_blank">commercial activity</a></li>
+</ul>
+<p class="mrgn-tp-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#real">Real property</a></p>
 </section>
 
-<section class="alert alert-info hidden" id="R7" name="results">
-	<h3>Result</h3>
-	<p>You do <strong>not</strong> have to register for a GST/HST account because you did not exceed $30,000 over four consecutive calendar quarters.</p>
-	<p>You do <strong>not</strong> charge GST/HST.</p>
-	<p>You have to make the same calculation at the end of every quarter.</p>
-	<p>You may choose to register voluntarily.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R7" name="results">
+	<h3><small>Your result </small><br> You are a sole proprietor, a partnership, or a corporation - You do not exceed the threshold</h3>
+<ul class="fa-ul mrgn-lft-xl">
+	  <li><span class="fas fa-times text-danger fa-li "></span> You did <strong>not</strong> exceed $30,000 over 4 consecutive calendar quarters</li>
+             <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to register for a GST/HST account</li>
+ <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> charge GST/HST</li>
+ <li><span class="fas fa-check text-success fa-li"></span> You may choose to register voluntarily</li>
+                  <li><span class="fas fa-check text-success fa-li"></span> You have to make the same calculation at the end of every quarter</li>
+ <li><span class="fas fa-check text-success fa-li"></span>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses</li>
+                </ul>
+
 </section>
 
-<section class="alert alert-info hidden" id="R8" name="results">
-	<h3>Result</h3>
-	<p>Based on the amounts you <span id="estimate"></span>, you <span id="have0"></span> to charge the GST/HST on the first taxable supply starting <label id="chargeDate1" />, or starting the date of GST/HST registration, whichever is earlier.</p>
-	<p>You <span id="have1"></span><span id="plus29"></span><label id="plus291" /> to register for your GST/HST account number<span id="differenceAB"></span><label id="chargeDate11" />.</p>
-	<p>For example, if you made a taxable sale on <label id="chargeDateExStart" />, you have until <label id="chargeDateExEnd" /> to register for your GST/HST account number.</p>
-	<p>You may be eligible to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchases and expenses.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R8" name="results">
+	<h3><small>Your result </small><br> You exceed the threshold over 4 consecutive calendar quarters</h3>
+<ul class="fa-ul mrgn-lft-xl">
+	  <li><span class="fas fa-check text-success fa-li"></span> You <span id="have0"></span> to charge (based on the amounts you <span id="estimate"></span>) the GST/HST on the first taxable supply starting <label id="chargeDate1"></label>, or starting the date of GST/HST registration, whichever is earlier</li>
+             <li><span class="fas fa-check text-success fa-li"></span> You <span id="have1"></span><span id="plus29"></span><label id="plus291"></label> to register for your GST/HST account number<span id="differenceAB"></span><label id="chargeDate11"></label> (for example, if you made a taxable sale on <label id="chargeDateExStart"></label>, you have until <label id="chargeDateExEnd"></label> to register for your GST/HST account number)</li>
+        <li><span class="fas fa-check text-success fa-li"></span>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses</li>
+                </ul>
 </section>
 
-<section class="alert alert-info hidden" id="R9" name="results">
-	<h3>Result</h3>
-	<p>You <span id="tense151"></span> to charge the GST/HST starting on <label id="chargeDate0" /> for the taxable supply that made you exceed <label>$</label><label id="chargeAmount" />.</p>
-	<p>You <span id="tense152"></span> until <label id="chargeDate01" /> to register for your GST/HST account number.</p>
-	<p>You may be eligible to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchases and expenses.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R9" name="results">
+	<h3><small>Your result </small><br> You exceed the threshold in a single calendar quarter</h3>
+<ul class="fa-ul mrgn-lft-xl">
+	  <li><span class="fas fa-check text-success fa-li"></span> You <span id="tense151"></span> to charge the GST/HST starting on <label id="chargeDate0"></label> for the taxable supply that made you exceed <label>$</label><label id="chargeAmount"></label></li>
+             <li><span class="fas fa-check text-success fa-li"></span> You <span id="tense152"></span> until <label id="chargeDate01"></label> to register for your GST/HST account number </li>
+            <li><span class="fas fa-check text-success fa-li"></span>You may be eligible to claim input tax credits for the GST/HST you pay on your purchases and expenses</li>
+                </ul>
 </section>
 
-<section class="alert alert-info hidden" id="R10" name="results">
-	<h3>Result</h3>
-	<p>You do <strong>not</strong> have to register for a GST/HST account because you did not exceed $50,000 over four consecutive calendar quarters.</p>
-	<p>You do <strong>not</strong> charge GST/HST.</p>
-	<p>You have to make the same calculation at the end of every quarter.</p>
-	<p>You may be eligible for GST/HST rebates that allow certain public service bodies to recover a percentage of the GST/HST they pay on their purchases and expenses.</p>
-	<p>You may choose to register voluntarily.</p>
+<section class="alert alert-info hidden mrgn-lft-lg" id="R10" name="results">
+	<h3><small>Your result </small><br> You are a public service body - You do not exceed the threshold</h3>
+<ul class="fa-ul mrgn-lft-xl">
+	  <li><span class="fas fa-times text-danger fa-li "></span> You did <strong>not</strong> exceed $50,000 over 4 consecutive calendar quarters</li>
+             <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> have to register for a GST/HST account</li>
+ <li><span class="fas fa-times text-danger fa-li "></span> You do <strong>not</strong> charge GST/HST</li>
+ <li><span class="fas fa-check text-success fa-li"></span> You may choose to register voluntarily</li>
+                  <li><span class="fas fa-check text-success fa-li"></span> You have to make the same calculation at the end of every quarter</li>
+	  <li><span class="fas fa-check text-success fa-li"></span> You may be eligible for GST/HST rebates that allow certain public service bodies to recover a percentage of the GST/HST they pay on their purchases and expenses</li>
+                </ul>
 </section>
 
-
-<section class="alert alert-warning hidden" id="R11" name="results">
-	<h3>Warning</h3>
-	<p>If you exceed $<span id="warning_amount">30,000</span> in one quarter, you have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed $<span id="warning_amount2">30,000</span>.</p>
+<section class="hidden  mrgn-lft-xl" id="R11" name="results">
+	<h4 class="mrgn-lft-xl">What if you exceed the threshold in a single calendar quarter</h4>
+<p class="mrgn-lft-xl">If you exceed <strong>$<span id="warning_amount">30,000</span></strong> in a <strong>single calendar quarter</strong>, you have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed <strong>$<span id="warning_amount2">30,000</span></strong>.</p>
+	
 </section>
 
-<section class="alert alert-info hidden" id="R12" name="results">
-	<h3>Result</h3>
-	<p>To find out if you need to register, see <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027-doing-business-canada-gst-hst-information-non-residents/doing-business-canada-gst-hst-information-non-residents.html" target="_blank">Guide RC4027, Doing Business in Canada – GST/HST Information for Non-Residents.</a></p>
+<section class="alert alert-warning hidden mrgn-lft-lg" id="R12" name="results">
+	<h3><small>Your result </small><br> You are a non-resident business</h3>
+	<p>The tool does <strong>not</strong> provide results if you are a non-resident business. </p>
+<p class="mrgn-tp-md">Learn more to find out if you need to register if you are a non-resident business: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027-doing-business-canada-gst-hst-information-non-residents/doing-business-canada-gst-hst-information-non-residents.html">Guide RC4027, Doing Business in Canada</a></p>
 </section>
 
-<section class="alert alert-danger hidden" id="error_number">
-	<p>Only enter numbers in these fields. Enter a positive value with no currency symbol.</p>
-</section>
 
 <section id="Ex-TaxableSupplies" class="wb-overlay modal-content overlay-def wb-panel-r">
 	<header class="modal-header">
 		<p class="modal-title">Examples of taxable supplies</p>
 	</header>
 	<div class="modal-body">
-		<p>Some examples of taxable supplies are:</p>
+		<p>Examples of taxable supplies are:</p>
 		<ul>
-			<li>sales of new housing</li>
-			<li>sales and rentals of commercial real property</li>
-			<li>sales and leases of automobiles</li>
-			<li>car repairs</li>
-			<li>soft drinks, candies, and potato chips</li>
-			<li>hotel accommodation</li>
-			<li>clothing and footwear</li>
-			<li>taxi and limousine transportation</li>
-			<li>legal and accounting services</li>
-			<li>franchises</li>
-			<li>barber and hairstylist services</li>
+			<li>Sales of new housing</li>
+			<li>Sales and rentals of commercial real property</li>
+			<li>Sales and leases of automobiles</li>
+			<li>Car repairs</li>
+			<li>Soft drinks, candies, and potato chips</li>
+			<li>Hotel and other short-term accommodation</li>
+			<li>Clothing and footwear</li>
+			<li>Taxi and limousine transportation</li>
+			<li>Legal and accounting services</li>
+			<li>Franchises</li>
+			<li>Barber and hairstylist services</li>
 		</ul>
 	</div>
 </section>
 
-<section id="Ex-TaxableSupplies0" class="wb-overlay modal-content overlay-def wb-panel-r" onClick="close.wb-overlay">
+<section id="Ex-TaxableSupplies0" class="wb-overlay modal-content overlay-def wb-panel-r">
 	<header class="modal-header">
-		<p class="modal-title">Examples of taxable supplies (at 0%)</p>
+		<p class="modal-title">Examples of zero-rated supplies (taxable at 0%)</p>
 	</header>
 	<div class="modal-body">
 		<p>Some examples of taxable supplies are:</p>
 		<ul>
-			<li>basic groceries such as milk, bread, and vegetables</li>
-			<li>agricultural products such as grain, raw wool, and died tobacco leaves</li>
-			<li>most farm livestock</li>
-			<li>most fishery products such as fish for human consumption</li>
-			<li>prescription drugs and drug-dispensing services</li>
-			<li>certain medical devices such as hearing aids and artificial teeth</li>
-			<li>feminine hygiene products (as of July 1, 2015)</li>
-			<li>exports (most goods and services for which you charge and collect the GST/HST in Canada, are zero-rated when exported)</li>
-			<li>legal and accounting services</li>
+			<li>Basic groceries such as milk, bread, and vegetables</li>
+			<li>Agricultural products such as grain, raw wool, and died tobacco leaves</li>
+			<li>Most farm livestock</li>
+			<li>Most fishery products such as fish for human consumption</li>
+			<li>Prescription drugs and drug-dispensing services</li>
+			<li>Certain medical devices such as hearing aids and artificial teeth</li>
+			<li>Feminine hygiene products (as of July 1, 2015)</li>
+			<li>Exports (most goods and services for which you charge and collect the GST/HST in Canada, are zero-rated when exported)</li>
+			<li>Legal and accounting services</li>
 		</ul>
 	</div>
 </section>
@@ -1862,44 +1720,64 @@
 
 <!--Hidden fields (data storage)-->
 
-<div id="data"  class="hidden">
-<label>Active Element</label><input id="activeElem" type="text"><br>
-<label>Current Fieldset</label><input id="currentFieldset" type="text"><br>
-<label>Current Question</label><input id="currentQuestion" type="text"><br>
+<div id="data" class="hidden">
 <label>Age</label><input id="age" type="text"><br>
 <label>Number of quarters</label><input id="numOfQuarters" type="number"><br>
 <label>Amount</label><input id="amount" type="number"><br>
 <label>AmountString</label><input id="amountString"><br>
 <label>Calc Return</label><input id="calcReturn" type="number"><br>
-<label>Min Date <input id="minDate"/></label><br>
-<label>Max Date <input id="maxDate"/></label><br>
-<label>Min Date String <input id="minDateS"/></label><br>
-<label>Max Date String <input id="maxDateS"/></label><br>
-<label>Calendar Min Date <input id="calMinDate"/></label><br>
-<label>Calendar Max Date <input id="calMaxDate"/></label><br>
+<label>Min Date <input id="minDate"></label><br>
+<label>Max Date <input id="maxDate"></label><br>
+<label>Min Date String <input id="minDateS"></label><br>
+<label>Max Date String <input id="maxDateS"></label><br>
 <label>Cap Period</label><input id="capPeriod" type="number"><br>
-<label>Quarter1 <input id="q0_monthStart_New"/><input id="q0_monthEnd_New"/><input id="q0_year_New"/></label><br>
-<label>Quarter2 <input id="q1_monthStart_New"/><input id="q1_monthEnd_New"/><input id="q1_year_New"/></label><br>
-<label>Quarter3 <input id="q2_monthStart_New"/><input id="q2_monthEnd_New"/><input id="q2_year_New"/></label><br>
-<label>Quarter4 <input id="q3_monthStart_New"/><input id="q3_monthEnd_New"/><input id="q3_year_New"/></label><br>
-<label>Test</label><input id="test" /><br>
-<label>Quarter1 <input id="q0_monthStart_Old"/><input id="q0_monthEnd_Old"/><input id="q0_year_Old"/></label><br>
-<label>Quarter2 <input id="q1_monthStart_Old"/><input id="q1_monthEnd_Old"/><input id="q1_year_Old"/></label><br>
-<label>Quarter3 <input id="q2_monthStart_Old"/><input id="q2_monthEnd_Old"/><input id="q2_year_Old"/></label><br>
-<label>Quarter4 <input id="q3_monthStart_Old"/><input id="q3_monthEnd_Old"/><input id="q3_year_Old"/></label><br>
-<label>Quarter5 <input id="q4_monthStart_Old"/><input id="q4_monthEnd_Old"/><input id="q4_year_Old"/></label><br>
-<label>Quarter6 <input id="q5_monthStart_Old"/><input id="q5_monthEnd_Old"/><input id="q5_year_Old"/></label><br>
-<label>Quarter7 <input id="q6_monthStart_Old"/><input id="q6_monthEnd_Old"/><input id="q6_year_Old"/></label><br>
-<label>Quarter8 <input id="q7_monthStart_Old"/><input id="q7_monthEnd_Old"/><input id="q7_year_Old"/></label><br>
-<label>Quarter9 <input id="q8_monthStart_Old"/><input id="q8_monthEnd_Old"/><input id="q8_year_Old"/></label><br>
-<label>Quarter10 <input id="q9_monthStart_Old"/><input id="q9_monthEnd_Old"/><input id="q9_year_Old"/></label><br>
-<label>Quarter11 <input id="q10_monthStart_Old"/><input id="q10_monthEnd_Old"/><input id="q10_year_Old"/></label><br>
-<label>Quarter12 <input id="q11_monthStart_Old"/><input id="q11_monthEnd_Old"/><input id="q11_year_Old"/></label><br>
+<label>Quarter1 <input id="q0_monthStart_New"><input id="q0_monthEnd_New"><input id="q0_year_New"></label><br>
+<label>Quarter2 <input id="q1_monthStart_New"><input id="q1_monthEnd_New"><input id="q1_year_New"></label><br>
+<label>Quarter3 <input id="q2_monthStart_New"><input id="q2_monthEnd_New"><input id="q2_year_New"></label><br>
+<label>Quarter4 <input id="q3_monthStart_New"><input id="q3_monthEnd_New"><input id="q3_year_New"></label><br>
+<label>Test</label><input id="test"><br>
+<label>Quarter1 <input id="q0_monthStart_Old"><input id="q0_monthEnd_Old"><input id="q0_year_Old"></label><br>
+<label>Quarter2 <input id="q1_monthStart_Old"><input id="q1_monthEnd_Old"><input id="q1_year_Old"></label><br>
+<label>Quarter3 <input id="q2_monthStart_Old"><input id="q2_monthEnd_Old"><input id="q2_year_Old"></label><br>
+<label>Quarter4 <input id="q3_monthStart_Old"><input id="q3_monthEnd_Old"><input id="q3_year_Old"></label><br>
+<label>Quarter5 <input id="q4_monthStart_Old"><input id="q4_monthEnd_Old"><input id="q4_year_Old"></label><br>
+<label>Quarter6 <input id="q5_monthStart_Old"><input id="q5_monthEnd_Old"><input id="q5_year_Old"></label><br>
+<label>Quarter7 <input id="q6_monthStart_Old"><input id="q6_monthEnd_Old"><input id="q6_year_Old"></label><br>
+<label>Quarter8 <input id="q7_monthStart_Old"><input id="q7_monthEnd_Old"><input id="q7_year_Old"></label><br>
+<label>Quarter9 <input id="q8_monthStart_Old"><input id="q8_monthEnd_Old"><input id="q8_year_Old"></label><br>
+<label>Quarter10 <input id="q9_monthStart_Old"><input id="q9_monthEnd_Old"><input id="q9_year_Old"></label><br>
+<label>Quarter11 <input id="q10_monthStart_Old"><input id="q10_monthEnd_Old"><input id="q10_year_Old"></label><br>
+<label>Quarter12 <input id="q11_monthStart_Old"><input id="q11_monthEnd_Old"><input id="q11_year_Old"></label><br>
+</div>
+
 </div>
 
 
 
-   <div id="def-preFooter"></div>
+   
+
+
+<script type="text/javascript">_satellite.pageBottom();</script>
+
+
+
+
+    
+<script type="text/javascript" src="/etc/clientlibs/granite/jquery.js"></script>
+<script type="text/javascript" src="/etc/clientlibs/granite/utils.js"></script>
+<script type="text/javascript" src="/etc/clientlibs/granite/jquery/granite.js"></script>
+<script type="text/javascript" src="/etc/clientlibs/foundation/jquery.js"></script>
+<script type="text/javascript" src="/etc/designs/canada/clientlib-all.js"></script>
+<script type="text/javascript" src="/apps/canada/components/content/mwspagination/clientlibs.js"></script>
+
+
+
+
+
+    
+<script type="text/javascript" src="/etc/designs/canada/clientlib-publish.js"></script>
+
+  <div id="def-preFooter"></div>
             <!-- Write closure template -->
            <script type="text/javascript">
                var defPreFooter = document.getElementById("def-preFooter");
@@ -1927,5 +1805,17 @@
             }));
          </script>
    <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
-   </body>
-   </html>
+
+
+<!--[if gte IE 9 | !IE ]><!-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/etc/designs/canada/wet-boew/js/wet-boew.min.js"></script>
+<!--<![endif]-->
+
+<!--[if lt IE 9]>
+<script src="/etc/designs/canada/wet-boew/js/ie8-wet-boew2.min.js"></script>
+<![endif]-->
+
+<script src="/etc/designs/canada/wet-boew/js/theme.min.js"></script>
+</body>
+</html>
