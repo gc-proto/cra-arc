@@ -9,7 +9,7 @@
       <head>
          <meta charset="utf-8">
          <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-         <title>Determine the tax status of supplies  - Canada.ca</title>
+         <title>Find out if you have to register for a GST/HST account  - Canada.ca</title>
          <meta content="width=device-width,initial-scale=1" name="viewport">
          <meta name="robots" content="noindex, follow">
         <!-- Meta data -->
@@ -47,14 +47,10 @@
                 title: "Taxes",
                 href: "https://www.canada.ca/en/services/taxes.html"
               },{
-                title: "GST/HST",
+                title: "GST/HST for businesses",
                 href: "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses.html"
               },{
-                title: "Charge and collect the tax",
-                href: "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html"
-              },{
-                title: "GST/HST rates and place-of-supply rules",
-                href: "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-place-supply.html"
+                         
               }            
               ],
               search: true,
@@ -64,23 +60,47 @@
          </script>
          <main role="main" property="mainContentOfPage" class="container">
 
- <h1 id="gc-document-nav">Determine the tax status of supplies</h1>
+ <h1 id="gc-document-nav">Find out if you have to register for a GST/HST account</h1>
 
-  <form id="myForm">
+<form id="myForm">
 	<!--QUESTION 1-->
-  <h1>Find out how the flow and acts applies when determining the effective date of GST/HST registration (including backdating) and the GST/HST filing obligations</h1>
-   <h2>Calling the taxpayer for missing information</h2>
- <p>You are reviewing a file and you determined that a call to the taxpayer to produce the missing information is required. You called the taxpayer. 
-</p>
- 
 <div class="form-group">
 	<!--Each question has name attribute 'quest' and id 'question'+number-->
-		
+	<fieldset name="quest" id="question1" class="mrgn-bttm-md">
+		<legend class="h5 required">Do you supply (or plan to supply) goods or services that are taxable? <strong class="required">(required)</strong></legend>
+		<p><a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">Examples of taxable supplies</a> and <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">Examples of taxable supplies (at 0%)</a></p>
+		<div class="radio" onChange="
+			
+			//For reset hide/show
+			//Every question has this function, loops through all questions and results and hides them accordingly. 'currentQuestion's value is the only thing that changes 
+			//(goes up so it doesn't hide previously asked questions)
+			document.getElementById('currentQuestion').value = 1;
+			document.getElementById('hideResults').click() ;
+			
+			document.getElementById('q2').value = 5 ;
+			var q1 = document.getElementsByName('q1') ;			
+
+			//If yes
+			if (q1[0].checked) {
+				document.getElementById('question2').classList.remove('hidden');	
+			}
+			
+			//No
+			else {
+				document.getElementById('R1').classList.remove('hidden');
+			}
+		">
+			<label><input type="radio" name="q1" value="0" />Yes</label>
+			<br>
+			<label><input type="radio" name="q1" value="1" />No</label>	
+		</div>
+	</fieldset>
+	
+	
 	<!--QUESTION 2-->
-	<fieldset name="quest" id="question2" class="mrgn-bttm-md">	
+	<fieldset name="quest" id="question2" class="mrgn-bttm-md hidden">	
 		<label class="h5 required" for="q2">Which option best describes your situation? <strong class="required">(required)</strong></label>
-      <p><a href="#regreq" aria-controls="regreq" class="overlay-lnk" role="button">Registration required 240(1)</a> and <a href="#inspection" aria-controls="inspection" class="overlay-lnk" role="button">Inspections 288(1)</a></p>
-		<select class="form-control required" id="q2" onchange="
+		<select class="form-control required" id="q2" onChange="
 			document.getElementById('currentQuestion').value = 2;
 			document.getElementById('hideResults').click() ;		
 			
@@ -90,12 +110,12 @@
 			if (q2 == 0) {
 				document.getElementById('question3').classList.remove('hidden');
 				document.getElementById('age').value = 'New'
-				document.getElementById('numOfQuarters').value = 4 ;
+				document.getElementById('numOfQuarters').value = 8 ;
 			}
 			else if (q2 == 1) {
 				document.getElementById('question3').classList.remove('hidden');
 				document.getElementById('age').value = 'Old'
-				document.getElementById('numOfQuarters').value = 8 ;
+				document.getElementById('numOfQuarters').value = 12 ;
 			}
 			else if (q2 == 2) {
 				document.getElementById('R6').classList.remove('hidden');
@@ -104,18 +124,18 @@
 				document.getElementById('R12').classList.remove('hidden');
 			}
 		">
-			<option value="5" selected="selected">Make your selection...</option>
-			<option value="1">Taxpayer was reached and produced the missing information</option>
-			<option value="0">Taxpayer was reached and refused to produce the missing information</option>
-			<option value="3">Taxpayer cannot be reached</option>
-			
+			<option value="5" selected>Make your selection...</option>
+			<option value="1">My business has already started receiving revenue</option>
+			<option value="0">My business hasn’t started receiving revenue yet</option>
+			<option value="3">I am a non-resident</option>
+			<option value="2">My only commercial activity is the sale of real property, other than in the course of a business</option>
 		</select>
 	</fieldset >
 	
 	<!--QUESTION 3 - DROPDOWN-->
 	<fieldset name="quest" id="question3" class="mrgn-bttm-md hidden" >
 		<label class="h5 required" for="q3">Which option best describes your business? <strong class="required">(required)</strong></label>
-		<select class="form-control required" id="q3" onchange="
+		<select class="form-control required" id="q3" onChange="
 			document.getElementById('currentQuestion').value = 3;
 			document.getElementById('hideResults').click() ;
 			
@@ -170,7 +190,7 @@
 			<li>Are you able to subcontract work or hire assistants?</li>
 			<li>Who’s taking the financial risk and has the opportunity for reward?</li>
 		</ul>
-		<div class="radio" onchange="
+		<div class="radio" onChange="
 			document.getElementById('currentQuestion').value = 4;
 			document.getElementById('hideResults').click() ;
 			
@@ -192,10 +212,8 @@
 	<!--QUESTION 5-->
 	<fieldset name="quest" id="question5" class="mrgn-bttm-md hidden">
 		<legend class="h5 required">Are you a branch or division of an incorporated municipality? <strong class="required">(required)</strong></legend>
-		<p>A public service body means a charity, non-profit organization, municipality, university, public college, school authority, or hospital authority. For the purpose of GST/HST registration, charities and public 
-
-institutions have different rules. Choose the option that best describes your organization.</p>
-		<div class="radio" onchange="
+		<p>A public service body means a charity, non-profit organization, municipality, university, public college, school authority, or hospital authority. For the purpose of GST/HST registration, charities and public institutions have different rules. Choose the option that best describes your organization.</p>
+		<div class="radio" onChange="
 			document.getElementById('currentQuestion').value = 5;
 			document.getElementById('hideResults').click() ;
 			
@@ -232,10 +250,10 @@ institutions have different rules. Choose the option that best describes your or
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_New" id="quarter1_New" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();" 
-						onchange="document.getElementById('currentQuestion').value = 12;
+						onChange="document.getElementById('currentQuestion').value = 12;
 							document.getElementById('hideResults').click();"/>					
 					</div>
 				</div>
@@ -247,10 +265,10 @@ institutions have different rules. Choose the option that best describes your or
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_New" id="quarter2_New" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();" 
-						onchange="document.getElementById('currentQuestion').value = 12;
+						onChange="document.getElementById('currentQuestion').value = 12;
 							document.getElementById('hideResults').click();"/>					
 					</div>
 				</div>
@@ -262,10 +280,10 @@ institutions have different rules. Choose the option that best describes your or
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_New" id="quarter3_New" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();" 
-						onchange="document.getElementById('currentQuestion').value = 12;
+						onChange="document.getElementById('currentQuestion').value = 12;
 							document.getElementById('hideResults').click();"/>					
 					</div>
 				</div>
@@ -277,16 +295,16 @@ institutions have different rules. Choose the option that best describes your or
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_New" id="quarter4_New" required="required"						
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();" 
-						onchange="document.getElementById('currentQuestion').value = 12;
+						onChange="document.getElementById('currentQuestion').value = 12;
 							document.getElementById('hideResults').click();"/>					
 					</div>
 				</div>
 			</div>
 
-		<button class="btn btn-primary required mrgn-tp-md" type="button" onclick="
+		<button class="btn btn-primary required mrgn-tp-md" type="button" onClick="
 			document.getElementById('currentFieldset').value = 'question12';
 			document.getElementById('inputFieldsNextButton').click() ;
 			document.getElementById('doubleCheckNumbers').click() ;">Next
@@ -301,10 +319,8 @@ institutions have different rules. Choose the option that best describes your or
 	<fieldset name="quest" id="question6" class="mrgn-bttm-md hidden">
 		<legend class="h5 required">Are you a branch or division of an incorporated municipality? <strong class="required">(required)</strong></legend>
 		<p>A charity means a registered charity or registered Canadian amateur athletic association for income tax purposes, but does not include a public institution.</p>
-		<p>A public institution means a registered charity for income tax purposes that is also a school authority, a public college, a university, a hospital authority, or a local authority determined by the Minister of National 
-
-Revenue to be a municipality.</p>
-			<div class="radio" onchange="
+		<p>A public institution means a registered charity for income tax purposes that is also a school authority, a public college, a university, a hospital authority, or a local authority determined by the Minister of National Revenue to be a municipality.</p>
+			<div class="radio" onChange="
 			document.getElementById('currentQuestion').value = 6;
 			document.getElementById('hideResults').click() ;
 				
@@ -341,7 +357,7 @@ Revenue to be a municipality.</p>
 	<!--QUESTION 7-->
 	<fieldset name="quest" id="question7" class="mrgn-bttm-md hidden">
 		<legend class="h5 required">Is this your first fiscal year of operation? <strong class="required">(required)</strong></legend>
-		<div class="radio" onchange="				
+		<div class="radio" onChange="				
 			document.getElementById('currentQuestion').value = 7;
 			document.getElementById('hideResults').click() ;
 			
@@ -365,7 +381,7 @@ Revenue to be a municipality.</p>
 	<!--QUESTION 8-->
 	<fieldset name="quest" id="question8" class="mrgn-bttm-md hidden">
 		<legend class="h5 required">Is this your second fiscal year of operation? <strong class="required">(required)</strong></legend>
-		<div class="radio" onchange="
+		<div class="radio" onChange="
 			document.getElementById('currentQuestion').value = 8;
 			document.getElementById('hideResults').click() ;
 				
@@ -416,16 +432,16 @@ Revenue to be a municipality.</p>
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
 					<input class="form-control input-sm" name="q9" id="q9" value="" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
-						onchange="
+						onChange="
 							document.getElementById('currentQuestion').value = 9;
 							document.getElementById('hideResults').click() ;"
 						onfocusout="document.getElementById('validNumber').click();"/>
 				</div>
 			</div>
 		</div>
-			<button class="btn btn-primary mrgn-tp-md required" type="button" onclick="				
+			<button class="btn btn-primary mrgn-tp-md required" type="button" onClick="				
 
 						var val = document.getElementById('q9') ;
 						document.getElementById('currentFieldset').value = 'question9' ;
@@ -468,9 +484,9 @@ Revenue to be a municipality.</p>
 		    	<div class="input-group">
 			    	<span class="input-group-addon">$</span>
 			    	<input class="form-control input-sm mrgn-bttm-sm" name="q10" id="fpfy" required="required"
-					onfocus="this.select();
+					onFocus="this.select();
 						document.getElementById('activeElem').value = document.activeElement.id;"
-					onchange="
+					onChange="
 						document.getElementById('currentQuestion').value = 10;
 						document.getElementById('hideResults').click() ;" 
 					onfocusout="document.getElementById('validNumber').click();"/>
@@ -484,16 +500,16 @@ Revenue to be a municipality.</p>
 		    	<div class="input-group">
 		    		<span class="input-group-addon">$</span>
 		    		<input class="form-control input-sm mrgn-bttm-sm" name="q10" id="spfy" required="required"
-					onfocus="this.select();
+					onFocus="this.select();
 						document.getElementById('activeElem').value = document.activeElement.id;"
-					onchange="
+					onChange="
 						document.getElementById('currentQuestion').value = 10;
 						document.getElementById('hideResults').click() ;"
 					onfocusout="document.getElementById('validNumber').click();"/>
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-primary mrgn-tp-md required" type="button" onclick="	
+		<button class="btn btn-primary mrgn-tp-md required" type="button" onClick="	
 						var q10 = document.getElementsByName('q10') ;
 						var values = [] ;
 						var empty = [false, false] ;
@@ -527,16 +543,14 @@ Revenue to be a municipality.</p>
 	<!--QUESTION 11-->
 	<fieldset name="quest" id="question11" class="mrgn-bttm-md hidden">
 		<legend class="h5 required">Do you know for sure whether you are self-employed or an employee? <strong class="required">(required)</strong></legend>
-		<p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing 
-
-services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
+		<p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
 		<p>You are usually self-employed if you are in one of the following situations:</p>
 		<ul>
 			<li>You own your taxicab/motor vehicle</li>
 			<li>You lease a taxicab/motor vehicle from an owner for a flat fee, either on a daily, weekly, or monthly basis</li>
 			<li>You lease a taxicab/motor vehicle from an owner for a percentage of fares</li>
 		</ul>
-		<div class="radio" onchange="
+		<div class="radio" onChange="
 			var results = getElementsByName('results');
 			for (i=1; i<=results.length; i++)
 				document.getElementById('R'+i).classList.add('hidden');
@@ -562,7 +576,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 			<p>Include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including zero-rated supplies) from all your businesses and those of your associates.</p>
 			<p>Do <strong>not</strong> include revenue from financial services, sales of capital property and goodwill from the sale of a business.</p>
 		</section>
-		<div class="checkbox-inline" onchange="
+		<div class="checkbox-inline" onChange="
 			fields = document.getElementsByName('q12_Old') ;
 			if (document.getElementById('noRev').checked) {
 				for (i=0; i<8; i++)
@@ -590,10 +604,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 		    			<input class="form-control input-sm" name="q12_Old" id="quarter1_Old" required="required" 
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();"	
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();
 							document.getElementById('question13.2').classList.add('hidden');
 							document.getElementById('numOfQuarters').value = 8 ;"/>
@@ -607,10 +621,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter2_Old" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();"	
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();
 							document.getElementById('question13.2').classList.add('hidden');
 							document.getElementById('numOfQuarters').value = 8 ;"/>
@@ -624,10 +638,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter3_Old" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();"	
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();
 							document.getElementById('question13.2').classList.add('hidden');
 							document.getElementById('numOfQuarters').value = 8 ;"/>
@@ -641,10 +655,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter4_Old" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();"	
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();
 							document.getElementById('question13.2').classList.add('hidden');
 							document.getElementById('numOfQuarters').value = 8 ;"/>
@@ -658,10 +672,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter5_Old" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();"	
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();
 							document.getElementById('question13.2').classList.add('hidden');
 							document.getElementById('numOfQuarters').value = 8 ;"/>
@@ -675,10 +689,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter6_Old" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();"	
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();
 							document.getElementById('question13.2').classList.add('hidden');
 							document.getElementById('numOfQuarters').value = 8 ;"/>
@@ -692,10 +706,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter7_Old" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();"	
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();
 							document.getElementById('question13.2').classList.add('hidden');
 							document.getElementById('numOfQuarters').value = 8 ;"/>
@@ -709,10 +723,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter8_Old" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();"	
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();
 							document.getElementById('question13.2').classList.add('hidden');
 							document.getElementById('numOfQuarters').value = 8 ;"/>
@@ -720,7 +734,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 			</div>
 		</div>
 		
-		<button id="nextButton8" class="btn btn-primary required mrgn-tp-md" type="button" onclick="
+		<button id="nextButton8" class="btn btn-primary required mrgn-tp-md" type="button" onClick="
 			document.getElementById('currentFieldset').value = 'question13.1';
 			document.getElementById('inputFieldsNextButton').click() ;
 			document.getElementById('doubleCheckNumbers').click() ;">Next
@@ -737,10 +751,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter9_Old" required="required" 						
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();" 
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();"/>
 					</div>
 				</div>
@@ -752,10 +766,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter10_Old" required="required"						
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();" 
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();"/>
 					</div>
 				</div>
@@ -767,10 +781,10 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter11_Old" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();" 
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();"/>
 					</div>
 				</div>
@@ -782,16 +796,16 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 			    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
 			    		<input class="form-control input-sm" name="q12_Old" id="quarter12_Old" required="required"
-						onfocus="this.select();
+						onFocus="this.select();
 							document.getElementById('activeElem').value = document.activeElement.id;"
 						onfocusout="document.getElementById('validNumber').click();" 
-						onchange="document.getElementById('currentQuestion').value = 13;
+						onChange="document.getElementById('currentQuestion').value = 13;
 							document.getElementById('hideResults').click();"/>
 					</div>
 				</div>
 			</div>
 
-			<button class="btn btn-primary required mrgn-tp-md" type="button" onclick="
+			<button class="btn btn-primary required mrgn-tp-md" type="button" onClick="
 				document.getElementById('currentFieldset').value = 'question13.2';
 				document.getElementById('inputFieldsNextButton').click() ;
 				document.getElementById('doubleCheckNumbers').click() ;">Next
@@ -809,15 +823,15 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 		</label>
 		<p>Use the following format: YYYY-MM-DD.</p>
 		<div id="dateFieldDiv">
-		<input class="form-control input-md" id="datePick" type="date" required="required" onfocus="this.select()" 
-			onblur="document.getElementById('validDate').click();"
-			onchange="	
+		<input class="form-control input-md" id="datePick" type="date" required="required" onFocus="this.select()" 
+			onBlur="document.getElementById('validDate').click();"
+			onChange="	
 				var results = getElementsByName('results');
 				for (i=1; i<=results.length; i++){
 					document.getElementById('R'+i).classList.add('hidden');
 				}"/>
 		</div>
-		<button class="btn btn-primary required mrgn-bttm-md mrgn-tp-md" type="button" id="dateResultButton" onclick="
+		<button class="btn btn-primary required mrgn-bttm-md mrgn-tp-md" type="button" id="dateResultButton" onClick="
 			if (this.classList.contains('goodToGo')) {
 				document.getElementById('showResults').click() ;
 			}
@@ -841,7 +855,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 <!--Hidden buttons (functions)-->
 
 <!--Checks to see if valid inputs for question 12/13-->
-<button id="validNumber" class="hidden" type="button" onclick="
+<button id="validNumber" class="hidden" type="button" onClick="
 	
 	var activeElm = document.getElementById(document.getElementById('activeElem').value) ;
 	activeElm.parentElement.parentElement.parentElement.getElementsByTagName('span')[0].innerHTML = '' ;
@@ -850,9 +864,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 	if (activeElm.value != '') {
 		if (activeElm.value < 0 || isNaN(activeElm.value)) {	
 			activeElm.value = '' ;
-			activeElm.parentElement.parentElement.parentElement.getElementsByTagName('span')[0].innerHTML = 'Error. Only enter numbers in these fields. Enter a positive value with no currency symbol for the following field : 
-
-';
+			activeElm.parentElement.parentElement.parentElement.getElementsByTagName('span')[0].innerHTML = 'Error. Only enter numbers in these fields. Enter a positive value with no currency symbol for the following field : ';
 			document.getElementById('error_number').classList.remove('hidden');
 			activeElm.focus();
 		}
@@ -868,7 +880,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 
 
 <!--Hides results and questions that have not been asked yet-->
-<button id="hideResults" class="hidden" type="button" onclick="
+<button id="hideResults" class="hidden" type="button" onClick="
 	var q = document.getElementsByName('quest') ;
 	var currentQuestion = parseInt(document.getElementById('currentQuestion').value, 10) ;
 	for (i=(currentQuestion + 1); i<=q.length; i++) {
@@ -894,7 +906,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 
 
 <!-- Validates the number inputs when clicking on the button, rather than immediately, but only if the 'onfocusout' event is not supported by the browser. -->
-<button id="doubleCheckNumbers" class="hidden" type="button" onclick="
+<button id="doubleCheckNumbers" class="hidden" type="button" onClick="
 	var currentFieldset = document.getElementById('currentFieldset').value;
 	var fields = document.getElementById(currentFieldset).getElementsByTagName('input');
 	//The variable below is needed because the checkbox is also an input in one of the fieldsets.
@@ -926,7 +938,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 
 
 <!-- Next button after quarter input fields -->
-<button id="inputFieldsNextButton" class="hidden" type="button" onclick="
+<button id="inputFieldsNextButton" class="hidden" type="button" onClick="
 	document.getElementById('calc').click() ;
 	document.getElementById('reached').click();
 	//Sets a default value in the date input field, to force the calendar to open on a valid date, rather than today's date, which is often invalid.
@@ -956,11 +968,11 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 
 		if (q2 == 0) {
 			document.getElementById('question12').classList.remove('hidden');
-			document.getElementById('numOfQuarters').value = 4 ;
+			document.getElementById('numOfQuarters').value = 8 ;
 		}
 		else {
 			document.getElementById('question13').classList.remove('hidden');
-			document.getElementById('numOfQuarters').value = 8 ;
+			document.getElementById('numOfQuarters').value = 12 ;
 		}
 		
 		//Enables all input fields
@@ -998,7 +1010,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 			if (q2 == 0)
 				year[i]=currentYear;
 			else
-				year[i]=currentYear-2
+				year[i]=currentYear-3
 		}
 					
 		for (i=0; i<dates.length; i++) {
@@ -1032,7 +1044,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 
 
 <!--Checks to see if amount has been reached-->
-<button id="calc" class="hidden" type="button" onclick="
+<button id="calc" class="hidden" type="button" onClick="
 	
 	var age = document.getElementById('age').value;
 	var test = document.getElementById('test'); 
@@ -1198,7 +1210,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 
 
 <!--checks if added quarters capped amount before a single quarter did (happens when calcReturn == 1)-->
-<button id="reached" class="hidden" type="button" onclick="
+<button id="reached" type="button" onClick="
 	
 	document.getElementById('error_date').classList.add('hidden');
 	document.getElementById('datePick').value = '' ;
@@ -1437,7 +1449,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 ">reached</button>
 
 <!--Displays the correct results with proper dates after checking the conditions with other functions-->
-<button id="showResults" class="hidden" type="button" onclick="
+<button id="showResults" class="hidden" type="button" onClick="
 	var results = getElementsByName('results');
 	for (i=1; i<=results.length; i++)
 		document.getElementById('R'+i).classList.add('hidden');
@@ -1631,7 +1643,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 
 
 <!--Check to see if valid date input for question 13-->
-<button id="validDate" class="hidden" type="button" onclick="
+<button id="validDate" class="hidden" type="button" onClick="
 		
 	document.getElementById('error_date').classList.add('hidden');
 	document.getElementById('dateResultButton').classList.remove('goodToGo') ;
@@ -1663,7 +1675,7 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 
 <!--RESULTS-->
 
-<button id="createCalendar" class="hidden" type="button" onclick="
+<button id="createCalendar" type="button" onClick="
 						if (document.body.contains(document.getElementById('dateFieldDiv'))) {
 							var child = document.getElementById('dateFieldDiv');
 							child.parentNode.removeChild(child);
@@ -1724,27 +1736,17 @@ services on or after July 1, 2017, is considered to be a taxi business for GST/H
 	<h3>Result</h3>
 	<p>You <strong>cannot</strong> register for a GST/HST account.</p>
 	<p>You do <strong>not</strong> charge GST/HST.</p>
-	<p>You do <strong>not</strong> claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you 
-
-pay on your purchase. If you are a listed financial institution, see <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/notice265/gst-hst-registration-listed-financial-institutions-including-
-
-selected-listed-financial-institutions.html" target="_blank">GST/HST Notice 265</a>.</p>
+	<p>You do <strong>not</strong> claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchase. If you are a listed financial institution, see <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/notice265/gst-hst-registration-listed-financial-institutions-including-selected-listed-financial-institutions.html" target="_blank">GST/HST Notice 265</a>.</p>
 </section>
 
 <section class="alert alert-warning hidden" id="R2" name="results">
 	<h3>Warning</h3>
-	<p>To find out whether you are self-employed or an employee, you can send a letter or a completed <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/cpt1.html" target="_blank">Form CPT1, Request 
-
-for a Ruling as to the Status of a Worker Under the Canada Pension Plan and/or the Employment Insurance Act</a> to your <a href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/tax-services-offices-tax-centres.html" 
-
-target="_blank">tax services office</a>.</p>
+	<p>To find out whether you are self-employed or an employee, you can send a letter or a completed <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/cpt1.html" target="_blank">Form CPT1, Request for a Ruling as to the Status of a Worker Under the Canada Pension Plan and/or the Employment Insurance Act</a> to your <a href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/tax-services-offices-tax-centres.html" target="_blank">tax services office</a>.</p>
 </section>
 
 <section class="alert alert-danger hidden" id="R3" name="results">
 	<h3>Result</h3>
-	<p>You <strong>cannot</strong> register separately for a GST/HST account. For more information, see <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4049/gst-hst-information-
-
-municipalities.html" target="_blank"> GST/HST information for municipalities</a>.</p>
+	<p>You <strong>cannot</strong> register separately for a GST/HST account. For more information, see <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4049/gst-hst-information-municipalities.html" target="_blank"> GST/HST information for municipalities</a>.</p>
 </section>
 
 <section class="alert alert-info hidden" id="R4" name="results">
@@ -1760,18 +1762,12 @@ municipalities.html" target="_blank"> GST/HST information for municipalities</a>
 	<h3>Result</h3>
 	<p>You have to charge the GST/HST.</p>
 	<p>You have to register for a GST/HST account.</p>
-	<p>You may be eligible for to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you 
-
-pay on your purchase and expenses.</p>
+	<p>You may be eligible for to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchase and expenses.</p>
 </section>
 
 <section class="alert alert-info hidden" id="R6" name="results">
 	<h3>Result</h3>
-	<p>Although you do not have to register for the GST/HST, your sale of real property may still be taxable and you may have to charge and collect the tax for that <a href="https://www.canada.ca/en/revenue-
-
-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#commercial" target="_blank">commercial activity</a>. For more information, see <a href="https://www.canada.ca/en/revenue-
-
-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#real" target="_blank">Real property</a></p>
+	<p>Although you do not have to register for the GST/HST, your sale of real property may still be taxable and you may have to charge and collect the tax for that <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#commercial" target="_blank">commercial activity</a>. For more information, see <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#real" target="_blank">Real property</a></p>
 </section>
 
 <section class="alert alert-info hidden" id="R7" name="results">
@@ -1784,23 +1780,17 @@ agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.htm
 
 <section class="alert alert-info hidden" id="R8" name="results">
 	<h3>Result</h3>
-	<p>Based on the amounts you <span id="estimate"></span>, you <span id="have0"></span> to charge the GST/HST on the first taxable supply starting <label id="chargeDate1" />, or starting the date of GST/HST registration, whichever 
-
-is earlier.</p>
+	<p>Based on the amounts you <span id="estimate"></span>, you <span id="have0"></span> to charge the GST/HST on the first taxable supply starting <label id="chargeDate1" />, or starting the date of GST/HST registration, whichever is earlier.</p>
 	<p>You <span id="have1"></span><span id="plus29"></span><label id="plus291" /> to register for your GST/HST account number<span id="differenceAB"></span><label id="chargeDate11" />.</p>
 	<p>For example, if you made a taxable sale on <label id="chargeDateExStart" />, you have until <label id="chargeDateExEnd" /> to register for your GST/HST account number.</p>
-	<p>You may be eligible to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay 
-
-on your purchases and expenses.</p>
+	<p>You may be eligible to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchases and expenses.</p>
 </section>
 
 <section class="alert alert-info hidden" id="R9" name="results">
 	<h3>Result</h3>
 	<p>You <span id="tense151"></span> to charge the GST/HST starting on <label id="chargeDate0" /> for the taxable supply that made you exceed <label>$</label><label id="chargeAmount" />.</p>
 	<p>You <span id="tense152"></span> until <label id="chargeDate01" /> to register for your GST/HST account number.</p>
-	<p>You may be eligible to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay 
-
-on your purchases and expenses.</p>
+	<p>You may be eligible to claim <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/input-tax-credits.html" target="_blank">input tax credits</a> for the GST/HST you pay on your purchases and expenses.</p>
 </section>
 
 <section class="alert alert-info hidden" id="R10" name="results">
@@ -1815,60 +1805,64 @@ on your purchases and expenses.</p>
 
 <section class="alert alert-warning hidden" id="R11" name="results">
 	<h3>Warning</h3>
-	<p>If you exceed $<span id="warning_amount">30,000</span> in one quarter, you have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed $<span 
-
-id="warning_amount2">30,000</span>.</p>
+	<p>If you exceed $<span id="warning_amount">30,000</span> in one quarter, you have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed $<span id="warning_amount2">30,000</span>.</p>
 </section>
 
 <section class="alert alert-info hidden" id="R12" name="results">
 	<h3>Result</h3>
-	<p>To find out if you need to register, see <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027-doing-business-canada-gst-hst-information-non-residents/doing-business-canada-gst-hst-
-
-information-non-residents.html" target="_blank">Guide RC4027, Doing Business in Canada – GST/HST Information for Non-Residents.</a></p>
+	<p>To find out if you need to register, see <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027-doing-business-canada-gst-hst-information-non-residents/doing-business-canada-gst-hst-information-non-residents.html" target="_blank">Guide RC4027, Doing Business in Canada – GST/HST Information for Non-Residents.</a></p>
 </section>
 
 <section class="alert alert-danger hidden" id="error_number">
 	<p>Only enter numbers in these fields. Enter a positive value with no currency symbol.</p>
 </section>
 
-<section id="regreq" class="wb-overlay modal-content overlay-def wb-panel-r">
+<section id="Ex-TaxableSupplies" class="wb-overlay modal-content overlay-def wb-panel-r">
 	<header class="modal-header">
-		<p class="modal-title">Registration required 240(1)</p>
+		<p class="modal-title">Examples of taxable supplies</p>
 	</header>
 	<div class="modal-body">
-		<p>Every person who makes a taxable supply in Canada in the course of a commercial activity engaged in by the person in Canada is required to be registered for the purposes of this Part, except where</p>
-
-<p>(a) the person is a small supplier;</p>
-
-
-<p>(b) the only commercial activity of the person is the making of supplies of real property by way of sale otherwise than in the course of a business; or</p>
-
-
-<p>(c) the person is a non-resident person who does not carry on any business in Canada.</p>
-
-
+		<p>Some examples of taxable supplies are:</p>
+		<ul>
+			<li>sales of new housing</li>
+			<li>sales and rentals of commercial real property</li>
+			<li>sales and leases of automobiles</li>
+			<li>car repairs</li>
+			<li>soft drinks, candies, and potato chips</li>
+			<li>hotel accommodation</li>
+			<li>clothing and footwear</li>
+			<li>taxi and limousine transportation</li>
+			<li>legal and accounting services</li>
+			<li>franchises</li>
+			<li>barber and hairstylist services</li>
+		</ul>
 	</div>
 </section>
 
-<section id="inspection" class="wb-overlay modal-content overlay-def wb-panel-r" onclick="close.wb-overlay">
+<section id="Ex-TaxableSupplies0" class="wb-overlay modal-content overlay-def wb-panel-r" onClick="close.wb-overlay">
 	<header class="modal-header">
-		<p class="modal-title">Inspections 288(1)</p>
+		<p class="modal-title">Examples of taxable supplies (at 0%)</p>
 	</header>
 	<div class="modal-body">
-		<p>An authorized person may, at all reasonable times, for any purpose related to the administration or enforcement of this Part, inspect, audit or examine the documents, property or processes of a person that may be relevant in determining the obligations of that or any other person under this Part or the amount of any rebate or refund to which that or any other person is entitled and, for those purposes, the authorized person may</p>
-
-<p>(a) subject to subsection (2), enter any premises or place where any business or commercial activity is carried on, any property is kept, anything is done in connection with any business or commercial activity or any documents are or should be kept; and</p>
-
-
-<p>(b) require the owner or manager of the property, business or commercial activity and any other person on the premises or in the place to give to the authorized person all reasonable assistance and to answer all proper questions relating to the administration or enforcement of this Part and, for that purpose, require the owner or manager to attend at the premises or place with the authorized person.</p>
-		
+		<p>Some examples of taxable supplies are:</p>
+		<ul>
+			<li>basic groceries such as milk, bread, and vegetables</li>
+			<li>agricultural products such as grain, raw wool, and died tobacco leaves</li>
+			<li>most farm livestock</li>
+			<li>most fishery products such as fish for human consumption</li>
+			<li>prescription drugs and drug-dispensing services</li>
+			<li>certain medical devices such as hearing aids and artificial teeth</li>
+			<li>feminine hygiene products (as of July 1, 2015)</li>
+			<li>exports (most goods and services for which you charge and collect the GST/HST in Canada, are zero-rated when exported)</li>
+			<li>legal and accounting services</li>
+		</ul>
 	</div>
 </section>
 
 
 <!--Hidden fields (data storage)-->
 
-<div id="data" class="hidden">
+<div id="data"  class="hidden">
 <label>Active Element</label><input id="activeElem" type="text"><br>
 <label>Current Fieldset</label><input id="currentFieldset" type="text"><br>
 <label>Current Question</label><input id="currentQuestion" type="text"><br>
@@ -1903,10 +1897,6 @@ information-non-residents.html" target="_blank">Guide RC4027, Doing Business in 
 <label>Quarter12 <input id="q11_monthStart_Old"/><input id="q11_monthEnd_Old"/><input id="q11_year_Old"/></label><br>
 </div>
 
-
-
-
-  
 
 
    <div id="def-preFooter"></div>
