@@ -845,7 +845,23 @@
 				</div>
 			</div>
 		</div>
-		
+		<div class="checkbox input-lg mrgn-lft-lg hidden" onchange="
+			document.getElementById('error_Old').classList.add('hidden') ;
+			fields = document.getElementsByName('q12_Old') ;
+			if (document.getElementById('noRev').checked) {
+				for (i=0; i<8; i++)
+					fields[i].disabled = true ;		
+			}
+			else {
+				for (i=0; i<8; i++)
+					fields[i].disabled = false ;
+			}
+			document.getElementById('calc').click() ;
+			document.getElementById('hideResults').click() ;
+			
+			">
+   			
+		</div>
 
 		<button class="btn btn-primary btn-lg required" type="button" onclick="
 			document.getElementById('calc').click() ;
@@ -1009,7 +1025,7 @@
 		document.getElementById('R'+i).classList.add('hidden');
 		
 		document.getElementById('question14.2').classList.add('hidden') ;
-		
+		document.getElementById('noRev').checked = false ;
 		
 		//How many quarters depending if new business or not
 
@@ -1208,7 +1224,7 @@
 	
 	//if amount has not been reached
 
-	if (document.getElementById('q3').value == 2 &amp;&amp; ) {
+	if (document.getElementById('q3').value == 2 &amp;&amp; (counter < numOfQuarters || document.getElementById('noRev').checked)) {
 		calcReturn.value = 2;
 		document.getElementById('showResults').click() ;
 		
@@ -1233,7 +1249,6 @@
   		
  		
 ">
-
 
 
 <!--checks if added quarters capped amount before a single quarter did (happens when calcReturn == 1)-->
