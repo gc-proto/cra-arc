@@ -358,9 +358,9 @@
               <fieldset id="ruralFs" class="valid-location hidden">
                 <legend id="ruralFS-legend">Rural supplement</legend>
                 <div class="gc-font-2019">
-                  <p id="ruralFs-desc">An additional supplement of 20% is included for eligible residents of small and rural communities in <span class="provTerr">--</span>.</p>
-                  <p>If you're unsure: <a href="#rural_supplement_lbx" class="wb-lbx" role="button">Review the rural eligibility for residents <span class="nowrap">of <span class="provTerr">--</span><sup class="far fa-question-circle mrgn-lft-sm"></sup></span></a></p>
-                  <fieldset class="gc-chckbxrdio form-inline mrgn-tp-md" aria-describedby="ruralFs-desc">
+                  <p id="ruralFs-desc"><span class="provTerr">--</span>: An additional supplement of 20% is included for eligible residents<span class="not-pe"> of small and rural communities</span>.</p>
+                  <p class="not-pe">If you're unsure: <a href="#rural_supplement_lbx" class="wb-lbx" role="button">Review the rural eligibility for residents <span class="nowrap">of <span class="provTerr">--</span><sup class="far fa-question-circle mrgn-lft-sm"></sup></span></a></p>
+                  <fieldset class="gc-chckbxrdio form-inline mrgn-tp-md not-pe" aria-describedby="ruralFs-desc">
                     <legend>Do you qualify for the rural supplement?</legend>
                     <div class="radio label-inline">
                       <input type="radio" name="ruralRadio" id="ruralYes" value="yes">
@@ -1058,8 +1058,15 @@ $('#location').change(function(){
         $('.valid-location, #alert-invalid').addClass("hidden");	 
     }	    
     else{
-        $('.valid-location').removeClass("hidden");
-        $('#alert-invalid').addClass("hidden");
+        if($(this).val() == 'pe') {
+            $('.valid-location').removeClass("hidden");
+            $('#alert-invalid, .not-pe').addClass("hidden");
+            $("#ruralNo").prop("checked", true);
+        }
+        else{
+            $('.valid-location, .not-pe').removeClass("hidden");
+            $('#alert-invalid').addClass("hidden");
+        }
 //Get AJAX for rural supplement   
         var locationText =  $( "#location option:selected" ).text();
         $("#ajax-table").attr("data-ajax-replace", "qualify-for-the-supplement.html#ajax-" + $(this).val()).trigger( "wb-update.wb-data-ajax");
