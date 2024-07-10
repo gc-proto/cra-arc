@@ -1060,13 +1060,13 @@ $('#location').change(function(){
     }	    
     else{
         if($(this).val() == 'pe') {
-            $('.valid-location, .yes-pe, .rural-note').removeClass("hidden");
+            $('.valid-location, .yes-pe).removeClass("hidden");
             $('#alert-invalid, .not-pe').addClass("hidden");
             $("#ruralNo").prop("checked", true);
         }
         else{
             $('.valid-location, .not-pe').removeClass("hidden");
-            $('#alert-invalid, .yes-pe, .rural-note').addClass("hidden");
+            $('#alert-invalid, .yes-pe).addClass("hidden");
         }
 //Get AJAX for rural supplement   
         var locationText =  $( "#location option:selected" ).text();
@@ -1120,11 +1120,12 @@ $('#location').change(function(){
             $(".base-year").text(baseYr);
  //Rural supplement value
             var ruralCheck = $("input[name='ruralRadio']:checked").val();
-            if (ruralCheck == "yes"){
+		
+            if (ruralCheck == "yes" || $('#location').val() == 'pe') {
                 $(".rural-note").removeClass("hidden");
                 var ruralPercent = ccrRates[0].ruralpercent;
             }
-            if (ruralCheck == "no") {
+            else if (ruralCheck == "no" || $('#location').val() !== 'pe') {
                 $(".rural-note").addClass("hidden");
                 var ruralPercent = 1;
             }    
