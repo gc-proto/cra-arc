@@ -5,6 +5,7 @@
        <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
        <title>Verify it's the CRA calling – Scams and fraud - CRA – Canada.ca </title>
        <meta content="width=device-width,initial-scale=1" name="viewport">
+	         <script type="text/javascript" src="https://www.canada.ca/public/0c0d0e0db0e5637a73786685a4729cdd129476e35554"  ></script><script src="//assets.adobedtm.com/be5dfd287373/abb618326704/launch-3eac5e076135.min.js"></script>
        <meta name=”robots” content=”noindex”>
        <!-- Meta data -->
        <!-- Meta data-->
@@ -234,8 +235,34 @@ switch (wb.lang){
         break;
     case "fr":
         dataAjax = "https://www.canada.ca/fr/agence-revenu/organisation/coordonnees.html#", mobileLang = "s’ouvre dans l’application téléphonique", noHours = "Les heures de bureau actuelles ne sont pas disponibles";
-    } 
-    
+    }; 
+// Function for Adobe Analytic calls
+    function errorResult() {
+		adobeDataLayer.push({
+			"event": "customTracking",
+			"link": {
+				"customCall": "[error tracker here]"
+			}
+		});
+	}
+
+	function validResult() {
+		adobeDataLayer.push({
+			"event": "customTracking",
+			"link": {
+				"customCall": "[valid tracke here]"
+			}
+		});
+	}
+
+	function invalidResult() {
+		adobeDataLayer.push({
+			"event": "customTracking",
+			"link": {
+				"customCall": "[invalid tracker here]"
+			}
+		});
+	}    
  // Function to find the entry and its key by phone_num 
     function findEntryByPhone(phoneNumber, jsonData) {
         for (let key in jsonData) {
@@ -268,16 +295,16 @@ $(function () {
             let result = findEntryByPhone(xMatch, jsonData); 
     if (typeof result === 'string') {
         console.log(result);
+	      invalidResult();
         $(".alert-result, #default-step").addClass("hidden");
         $(".valid-no").removeClass("hidden");
     } 
             else {
                 if (result.key == "automated" || result.key == "fax-machine") {
                     $("#result-yes-auto-fax").text(result.phoneNumber);
-                    
-                    //document.getElementById('result-yes-auto-fax').textContent = result.phoneNumber;
                     $(".alert-result, #default-step").addClass("hidden");
                     $(".valid-yes-auto-fax").removeClass("hidden");
+			validResult()
                 }
            
                 else {
@@ -287,7 +314,6 @@ $(function () {
                         $("#result-yes").text(result.phoneNumber);
                     } 
                     
-                    //document.getElementById('result-yes').textContent = result.phoneNumber;
                     if (result.entry.hours_ajax_id == '') {
                         $("#hours").text(noHours);
                     }
@@ -296,9 +322,10 @@ $(function () {
                     }
                     $(".alert-result, #default-step").addClass("hidden");
                     $(".valid-yes").removeClass("hidden");
+			validResult()
                 };
             } 
-        }) .catch(error => console.error('Error fetching the JSON file:', error))
+        }) .catch(error => console.error('Error fetching the JSON file:', error,  errorResult()))
     });
 });
 let input = document.getElementById("phoneNumber");  
