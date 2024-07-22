@@ -203,7 +203,38 @@ switch (wb.lang){
     case "fr":
         dataAjax = "https://www.canada.ca/fr/agence-revenu/organisation/coordonnees.html#", mobileLang = "s’ouvre dans l’application téléphonique", noHours = "Les heures de bureau actuelles ne sont pas disponibles";
     } 
-    
+// Function for Adobe Analytic calls
+    function errorResult() {
+		adobeDataLayer.push({
+			"event": "customTracking",
+			"link": {
+				"customCall": "[error tracker here]"
+			}
+		});
+
+	}
+
+	function validResult() {
+		adobeDataLayer.push({
+			"event": "customTracking",
+			"link": {
+				"customCall": "[valid tracke here]"
+			}
+		});
+
+	}
+
+	function invalidResult() {
+		adobeDataLayer.push({
+			"event": "customTracking",
+			"link": {
+				"customCall": "[invalid tracker here]"
+			}
+		});
+
+	}
+
+	
  // Function to find the entry and its key by phone_num 
     function findEntryByPhone(phoneNumber, jsonData) {
         for (let key in jsonData) {
@@ -232,9 +263,11 @@ $(function () {
         var match = xString.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/);
         var xMatch = match[1] + '-' + match[2] + '-' + match[3] + '-' + match[4];
     // Pull JSON file to parse
-        fetch('data/phone-verify.json') .then(response => response.json()) .then(jsonData => {
+     //   fetch('data/phone-verify.json') .then(furesponse => response.json()) 
+	    .then(jsonData => {
             let result = findEntryByPhone(xMatch, jsonData); 
     if (typeof result === 'string') {
+	  invalidResult();  
         console.log(result);
         $(".valid-result, #default-link").addClass("hidden");
         $("#valid-no").removeClass("hidden");
@@ -243,9 +276,10 @@ $(function () {
                 if (result.key == "automated" || result.key == "fax-machine") {
                     $("#result-yes-auto-fax").text(result.phoneNumber);
                     
-                    //document.getElementById('result-yes-auto-fax').textContent = result.phoneNumber;
+                 
                     $(".alert-results, #default-link").addClass("hidden");
                     $("#valid-yes-auto-fax").removeClass("hidden");
+			validResult()
                 }
            
                 else {
@@ -255,7 +289,7 @@ $(function () {
                         $("#result-yes").text(result.phoneNumber);
                     } 
                     
-                    //document.getElementById('result-yes').textContent = result.phoneNumber;
+                 
                     if (result.entry.hours_ajax_id == '') {
                         $("#hours").text(noHours);
                     }
@@ -264,9 +298,10 @@ $(function () {
                     }
                     $(".alert-results, #default-link").addClass("hidden");
                     $("#valid-yes").removeClass("hidden");
+			validResult()
                 };
             } 
-        }) .catch(error => console.error('Error fetching the JSON file:', error))
+        }) .catch(error => console.error('Error fetching the JSON file:', error);  errorResult())
     });
 });
 let input = document.getElementById("phoneNumber");  
