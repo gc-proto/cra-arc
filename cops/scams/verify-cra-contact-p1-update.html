@@ -123,42 +123,51 @@
                 <input type="tel" class="form-control mrgn-bttm-md" id="phoneNumber" name="phoneNumber" autocomplete="tel" required="required" data-rule-phoneUS="true" size="15" maxlength="14" data-msg="Enter a phone number using only numbers and dashes">
                 <button type="submit" class="btn btn-primary mrgn-lft-sm mrgn-bttm-md">Verify number</button>
               </div>
-         
+          </form>
+          </div>
           <section aria-live="polite">
             <div id="valid-yes" class="alert alert-success alert-result hidden">
               <h4>This is a valid CRA phone number</h4>
-              <p id="result-yes"></p>
-              <p class="mrgn-bttm-lg">Use this number to call and  verify that the caller is from the CRA, and the reason for calling is valid.</p>
-              <div data-ajax-replace='' id="hours" class="mrgn-tp-lg"></div>
+              <div id="result-yes" class="mrgn-bttm-lg"></div>
+              <p>Use this number to call and  verify that the caller is from the CRA, and the reason for calling is valid.</p>
+                <p class="hours-note mrgn-tp-lg">You can call during the hours of service:</p>    
+              <div data-ajax-replace=''  class="hours"></div>
             </div>
-            <div id="valid-yes-auto-fax" class="alert alert-info alert-result hidden">
-              <h4>This is a CRA automated phone or fax number</h4>
-              <p id="result-yes-auto-fax"></p>
-              <p>In order to confirm verification of the caller, you will need to contact a call center agent to verify:</p>
-              <ul>
-                <li><span class="nowrap"><strong>1-800-959-8281</strong></span> (individuals and trusts) </li>
-                <li><span class="nowrap"><strong>1-800-959-5525</strong></span> (businesses) </li>
-              </ul>
+            <div id="valid-yes-auto" class="alert alert-info alert-result hidden">
+              <h4>This is a valid CRA phone number</h4>
+              <div id="result-yes-auto" class="mrgn-bttm-lg"></div>
+              <p class="hours-memo mrgn-tp-lg">You can use this automated service from:</p>
+              <div data-ajax-replace=''  class="hours"></div>
+                <p>There are no live agents at this number. This number can only be used as a self-service option.</p>
             </div>
+            <div id="valid-yes-fax" class="alert alert-info alert-result hidden">
+              <h4>This is a valid phone number</h4>
+              <div id="result-yes-fax" class="mrgn-bttm-lg"></div>
+              <p>You can send a fax at any time.</p>
+              <p>There are no live agents at this number. This number can only be used to fax documents to the CRA.</p>
+            </div>  
             <div id="valid-no" class="alert alert-warning alert-result hidden">
               <h4 id="result-no">This number may not be valid - call CRA to check it</h4>
               <p>This is not one of CRA's publicized phone numbers. This may be a CRA employee's direct internal phone number.</p>
-              <p>To check if an employee has tried to contact you, call the CRA:</p>
+              <p>A call agent may be able to check if a CRA employee tried to contact you</p>
+              <p>You can call one these numbers during their hours of service:</p>
               <ul>
                 <li><span class="nowrap"><strong>1-800-959-8281</strong></span> (individuals and trusts) </li>
                 <li><span class="nowrap"><strong>1-800-959-5525</strong></span> (businesses) </li>
               </ul>
+                <div data-ajax-replace=''  class="hours mrgn-tp-md"></div>
+                
+                <p>Due to high call volumes, expect longer wait times to speak with an agent.</p>
             </div>
           </section>
-		     </form>
-          </div>
+		    
         </div>
       </div>
     </div>
   </div>
 	    
   <div id="default-link" class="mrgn-tp-lg">
-    <p>You can also use the <a href="https://www.canada.ca/en/revenue-agency/corporate/contact-information.html#assistance">Contact the CRA</a> list of telephone numbers to verify the number.</p>
+    <p>You can also verify a phone number by referring  to <a href="https://www.canada.ca/en/revenue-agency/corporate/contact-information.html#assistance">CRA' list of phone numbers</a>.</p>
   </div>
   <h2 id="h3">If you’re still unsure the CRA contacted you</h2>
   <p>There are times when the CRA will need to contact you. They may need to ask for additional or missing information, to discuss an amount you owe, or notify about an upcoming review.</p>
@@ -222,7 +231,7 @@ switch (wb.lang){
 		adobeDataLayer.push({
 			"event": "customTracking",
 			"link": {
-				"customCall": "[valid tracke here]"
+				"customCall": "[valid tracker here]"
 			}
 		});
 
@@ -274,17 +283,27 @@ $(function () {
         console.log(result);
         $(".valid-result, #default-link").addClass("hidden");
         $("#valid-no").removeClass("hidden");
+        $(".hours").attr("data-ajax-replace", dataAjax + "prs-hrs-01").trigger( "wb-update.wb-data-ajax");
+        
     } 
             else {
-                if (result.key == "automated" || result.key == "fax-machine") {
-                    $("#result-yes-auto-fax").text(result.phoneNumber);
+                const resultKeyStr = result.key;
+                if (resultKeyStr.startsWith('automated')) {
+                    $("#result-yes-auto").text(result.phoneNumber + " " + result.entry.name_e);
                     
                  
                     $(".alert-results, #default-link").addClass("hidden");
-                    $("#valid-yes-auto-fax").removeClass("hidden");
+                    $("#valid-yes-auto").removeClass("hidden");
 			validResult()
                 }
-           
+          else if (result.key == "fax-machine") {
+                    $("#result-yes-fax").text(result.phoneNumber + " " + result.entry.name_e);
+                    
+                 
+                    $(".alert-results, #default-link").addClass("hidden");
+                    $("#valid-yes-fax").removeClass("hidden");
+			validResult()
+                }
                 else {
                     if (window.matchMedia("(max-width: 767px)").matches) {
                         $("#result-yes").html('<a href="tel:' + xString + '" class="no-undrln">' + result.phoneNumber + '<span class="wb-inv"> (' + mobileLang + ')</span></a>');
@@ -293,17 +312,20 @@ $(function () {
                     } 
                     
                  
-                    if (result.entry.hours_ajax_id == '') {
-                        $("#hours").text(noHours);
-                    }
-                    else {
-                        $("#hours").attr("data-ajax-replace", dataAjax + result.entry.hours_ajax_id).trigger( "wb-update.wb-data-ajax");
-                    }
+                   
                     $(".alert-results, #default-link").addClass("hidden");
                     $("#valid-yes").removeClass("hidden");
 			validResult()
                 };
             } 
+           if (result.entry.hours_ajax_id == '') {
+                        $(".hours").text(noHours);
+               $(".hours-note").addClass("hidden");
+                    }
+                    else {
+                        $(".hours").attr("data-ajax-replace", dataAjax + result.entry.hours_ajax_id).trigger( "wb-update.wb-data-ajax");
+                        $(".hours-note").removeClass("hidden");
+                    }
         }) .catch(error => console.error('Error fetching the JSON file:', error,  errorResult()))
     });
 });
@@ -311,7 +333,7 @@ let input = document.getElementById("phoneNumber");
 input.addEventListener("input", function () {
     $(".alert-result").addClass("hidden"); 
     $("#default-link").removeClass("hidden"); 
-    $("#hours").text("");
+    $(".hours").text("");
 });
 window[ "wb-frmvld" ] = {"hdLvl": "h4"};	
     </script> 
