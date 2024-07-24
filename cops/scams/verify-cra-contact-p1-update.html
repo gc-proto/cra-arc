@@ -107,7 +107,9 @@
 	 <p>Never rely on the phone number displayed on your caller ID.</p>-->
   <p>Do not verify the phone number during the call or rely on the number displayed on your caller ID. </p>
   <p class="mrgn-bttm-lg">End the call and verify the callback number using the tool below.</p>
-  <div class="row">
+ <div class="wb-frmvld">
+            <form id="phoneForm" class="form-inline">
+	<div class="row">
     <div class="col-xs-12">
       <div class="brdr-lft mrgn-lft-md mrgn-tp-sm">
         <div class="pstn-lft-xs pstn-tp-xs"><span class="fa-stack fa-fw mrgn-lft-sm text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x "></span><span class="fas fa-phone fa-stack-1x"></span></span></span></div>
@@ -115,15 +117,12 @@
         <div class="clearfix"></div>
         <div class="mrgn-lft-lg">
           <p>Enter "1" and the 10 digit phone number you were given to call back.</p>
-          <div class="wb-frmvld">
-            <form id="phoneForm" class="form-inline">
               <div class="form-group mrgn-tp-sm">
-                <label for="phoneNumber" class="wb-inv"><span class="field-name">Enter phone number to confirm validity</span></label>
+                <label for="phoneNumber"><span class="field-name wb-inv">Enter phone number to confirm validity</span></label>
                 <input type="tel" class="form-control mrgn-bttm-md" id="phoneNumber" name="phoneNumber" autocomplete="tel" required="required" data-rule-phoneUS="true" size="15" maxlength="14">
                 <button type="submit" class="btn btn-primary mrgn-lft-sm mrgn-bttm-md">Verify number</button>
               </div>
-            </form>
-          </div>
+         
           <section aria-live="polite">
             <div id="valid-yes" class="alert alert-success alert-result hidden">
               <h4>This is a valid CRA phone number</h4>
@@ -154,6 +153,8 @@
       </div>
     </div>
   </div>
+	   </form>
+          </div>  
   <div id="default-link" class="mrgn-tp-lg">
     <p>You can also use the <a href="https://www.canada.ca/en/revenue-agency/corporate/contact-information.html#assistance">Contact the CRA</a> list of telephone numbers to verify the number.</p>
   </div>
