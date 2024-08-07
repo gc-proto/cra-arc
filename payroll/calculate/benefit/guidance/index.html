@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Stock Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Stock Calculator</h1>
+        <form id="stockForm">
+            <label for="shares">Number of Shares:</label>
+            <input type="number" id="shares" required>
+            
+            <label for="pricePerShare">Price per Share ($):</label>
+            <input type="number" id="pricePerShare" step="0.01" required>
+
+            <button type="submit">Calculate</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+  <style>
+
+      /* CSS Document */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    margin: 10px 0 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background: #218838;
+}
+
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.warning {
+    color: red;
+} </style>
+<script>
+document.getElementById('stockForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get user inputs
+    const shares = parseInt(document.getElementById('shares').value);
+    const pricePerShare = parseFloat(document.getElementById('pricePerShare').value);
+
+    // Calculate total stock value
+    const totalValue = shares * pricePerShare;
+
+    // Get result div to show the output
+    const resultDiv = document.getElementById('result');
+    
+    // Clear previous results
+    resultDiv.innerHTML = '';
+
+    // Check if total value exceeds $250,000
+    if (totalValue > 250000) {
+        resultDiv.innerHTML = `<p class="warning">Warning: Total stock value is over $250,000!</p>`;
+    } else {
+        resultDiv.innerHTML = `<p>Total stock value: $${totalValue.toFixed(2)}</p>`;
+    }
+});</script>
