@@ -1,169 +1,71 @@
- 
-<!DOCTYPE html>
-<!--[if lt IE 9]>
-<html class="no-js lt-ie9" lang="en" dir="ltr">
-   <![endif]-->
-   <!--[if gt IE 8]><!-->
-   <html class="no-js" lang="en" dir="ltr">
-      <!--<![endif]-->
-      <head>
-         <meta charset="utf-8">
-         <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-         <title>Employee stock option calculator - Canada.ca</title>
-         <meta content="width=device-width,initial-scale=1" name="viewport">
-         <meta name="robots" content="noindex, follow">
-       
-         <!-- Meta data-->
-         <!-- Load closure template scripts -->
-         
-         <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_47/cdts/compiled/soyutils.js"></script>
-         <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_47/cdts/compiled/wet-en.js"></script>
-         <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
-         
-		  <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
-         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
-         <!-- Write closure template -->
-         <script type="text/javascript">
-            document.write(wet.builder.refTop({
-            }));
-         </script>
-      </head>
-    
 
-     
-<body>
-  <div class="container">
+   
+      
+        <form id="stockForm">
+            <label for="shares">Enter the number of shares (#):</label>
+            <input class="input-lg" type="number" id="shares" placeholder="#" required>
+            
+            <label for="pricePerShare">Enter the price per share ($):</label>
+            <input class="input-lg" type="number" id="pricePerShare" placeholder="$" step="0.01" required>
 
- <h1>Employee stock calculator</h1>
-   <form id="stockForm">
-                                                <div class="input-group pull-right mrgn-tp-sm"> 
- <label for="numOptions">Enter the number of options:</label> 
-<input  class="input-lg text-right" type="number" id="numOptions" placeholder="$"> 
-                                                 
-                                                </div>
-                                           
- 
- <div class="input-group pull-right mrgn-tp-sm"> 
-<label for="exercisePrice">Enter the exercise price ($) per option:</label> 
-<input  class="input-lg text-right" type="number" id="exercisePrice" placeholder="$"> 
-                                                  
-                                                </div>
+            <button type="submit">Calculate</button>
+        </form>
+        <div id="result" class="result"></div>
+   
+    <script src="script.js"></script>
 
- <div class="input-group pull-right mrgn-tp-sm">
-<label for="currentStockPrice">Current stock price ($):</label> 
-<input  class="input-lg text-right" type="number" id="currentStockPrice" placeholder="$" > 
-                                                 
-                                                </div>
-
- <div class="input-group pull-right mrgn-tp-sm"> 
-<label for="yearsToExercise">Years to exercise:</label> 
-<input  class="input-lg text-right" type="number" id="yearsToExercise" placeholder="$"> 
-                                                
-                                                </div>
-
-<button onclick="calculateProfit()">Calculate Profit</button>  </form>
-
-<div class="result" id="result"></div> <div class="warning" id="warning"></div> 
-  </div>
-  <script src="script.js"></script></body>
-</html>
-
- <style>
-        datalist {
-            display: flex;
-            justify-content: space-between;
-        }
-
-	 .container {
-    max-width: 400px;
-    margin: 0 auto;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  <style>
+/* CSS Document */
+label {
+    font-size: 20px;
+    margin: 10px 0 5px;
+    display: block;
 }
-        .wb-input-range>output.wb-input-range-display, div.wb-input-range-display {
-            font-size: 20px;
-            min-width: 2em;
-            text-align: center;
-            position: absolute;
-            left: 50%;
-            padding-left: 6px;
-            padding-right: 6px;
-            transform: translate(-50%, -2.7em);
-            border-radius: 6px;
-            background: #e3e3e3;
-        }
-
-        output.wb-input-range-display {
-            padding-top: 0px;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            transform: scale(1.5);
-        }
-        input[type=range]::-moz-range-thumb {
-            transform: scale(1.5);
-            height: 50px;
-        }
-        .range-input-group input[type=number] {
-            border: 0;
-            -webkit-box-shadow: unset;
-            box-shadow: unset;
-            background-color: inherit;
-            width: 95px;
-            font-size: 20px;
-        }
-        .range-input-group .input-group-addon {
-            background-color: unset;
-            border: 0;
-            border-radius: 0;
-            width: auto;
-        }
-        .range-input-group.panel-default {
-            border-color:#e1dada;
-        }
-    </style>
+input {
+    font-size: 20px;
+    max-width: 150px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+button {
+    font-size: 20px;
+    background: #28a745;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    max-width: 200px;
+    display: block;
+    margin-bottom: 10px;
+}
+button:hover {
+    background: #218838;
+}
+.result {
+   margin-top: 30px;
+}
+.warning {
+    color: red;
+} </style>
 
 <script>
-function calculateProfit() { 
-  
- // Get the input values 
- let numOptions = document.getElementById('numOptions').value; 
- let exercisePrice = document.getElementById('exercisePrice').value; 
- let currentStockPrice = document.getElementById('currentStockPrice').value; 
- let yearsToExercise = document.getElementById('yearsToExercise').value; 
-   
-// Check if any input is empty 
- if (!numOptions || !exercisePrice || !currentStockPrice || !yearsToExercise) { document.getElementById('result').textContent = "Please fill in all fields."; document.getElementById('warning').textContent = ""; return; } 
-  
-// Calculate the potential profit 
-let potentialProfit = (currentStockPrice - exercisePrice) * numOptions; 
-
-// Display the result
-document.getElementById('result').textContent = `Potential Profit: $${potentialProfit.toFixed(2)}`; 
-
-// Display a warning if the potential profit is over $250,000 if (potentialProfit > 250000) 
-  { document.getElementById('warning').textContent = "Warning: Potential profit exceeds $250,000!"; } 
-  
-  else { document.getElementById('warning').textContent = ""; } }
-</script> 
-
-
-
-
-       
-      
- 
-
-<!--[if gte IE 9 | !IE ]><!-->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="/etc/designs/canada/wet-boew/js/wet-boew.min.js"></script>
-<!--<![endif]-->
-
-<!--[if lt IE 9]>
-<script src="/etc/designs/canada/wet-boew/js/ie8-wet-boew2.min.js"></script>
-<![endif]-->
-
-<script src="/etc/designs/canada/wet-boew/js/theme.min.js"></script>
-
-
+document.getElementById('stockForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    // Get user inputs
+    const shares = parseInt(document.getElementById('shares').value);
+    const pricePerShare = parseFloat(document.getElementById('pricePerShare').value);
+    // Calculate total stock value
+    const totalValue = shares * pricePerShare;
+    // Get result div to show the output
+    const resultDiv = document.getElementById('result');
+    // Clear previous results
+    resultDiv.innerHTML = '';
+    // Check if total value exceeds $250,000
+    if (totalValue > 250000) {
+        resultDiv.innerHTML = `<hr><h3 class="warning">Warning! Your result</h3><p>Based on the information you entered, your total stock value is <strong>more than $250,000</strong>.</p><p class="warning">The new legislation rules apply.</p>`;
+    } else {
+        resultDiv.innerHTML = `<hr><h3>Your result</h3><p>Based on the information you entered, your <strong>total stock value is $${totalValue.toFixed(2)}</strong>.</p>`;
+    }
+});</script>
