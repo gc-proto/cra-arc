@@ -75,8 +75,8 @@ button:hover {
 
 .result {
     margin-top: 30px;
-   
-    border-radius: 0px;
+   border-top: 1px solid #26374a;
+ 
     
 }
 
@@ -107,11 +107,8 @@ document.getElementById('stockForm').addEventListener('submit', function(event) 
 
     // Check if total value exceeds $250,000
     if (totalValue > 250000) {
-        resultDiv.innerHTML = `<h3 class="warning"><small>Warning: Your result </small></h3><hr>
-<p>Based on the information you entered: Your total stock value is more than $250,000. The new legislation rules apply.</p>`;
+        resultDiv.innerHTML = `<h3 class="warning">Warning! Based on the information you entered: </h3><p>Your total stock value is more than $250,000. The new legislation rules apply.</p>`;
     } else {
-        resultDiv.innerHTML = `<h3><small>Your result </small></h3><hr>
-
-<p>Based on the information you entered: Your total stock value is $${totalValue.toFixed(2)}.</p>`;
+        resultDiv.innerHTML = `<h3>Based on the information you entered:</h3><p>Your total stock value is $${totalValue.toFixed(2)}.</p>`;
     }
 });</script>
