@@ -857,6 +857,32 @@ document.getElementById('result').textContent = `Potential Profit: $${potentialP
 </script> 
 
 
+class EmployeeStockCalculator {
+    constructor(baseSalary, stockOptions, vestingPeriod) {
+        this.baseSalary = baseSalary;
+        this.stockOptions = stockOptions;
+        this.vestingPeriod = vestingPeriod;
+    }
+
+    calculateAnnualStockValue(currentStockPrice) {
+        const vestedOptions = this.stockOptions / this.vestingPeriod;
+        return vestedOptions * currentStockPrice;
+    }
+
+    calculateTotalCompensation(currentStockPrice) {
+        const annualStockValue = this.calculateAnnualStockValue(currentStockPrice);
+        return this.baseSalary + annualStockValue;
+    }
+}
+
+// Example usage
+const employee = new EmployeeStockCalculator(80000, 1000, 4);
+const currentStockPrice = 50;
+
+console.log("Annual Stock Value: $" + employee.calculateAnnualStockValue(currentStockPrice));
+console.log("Total Compensation: $" + employee.calculateTotalCompensation(currentStockPrice));
+
+
     <script type="text/javascript" src="/etc/designs/canada/clientlib-publish.js"></script>
 
   <div id="def-preFooter"></div>
