@@ -678,7 +678,9 @@
 </li>
 
 <li><h3 id="step4">Determine when the benefit is taxable</h3>
-<p>Under section 7 of the <abbr title="Income Tax Act">ITA</abbr>, the timing of when a security options taxable benefit must be included in your employee’s income depends on whether you are a <a href="#def-ccpc" aria-controls="def-ccpc" class="overlay-lnk" role="button">CCPC&nbsp;<span class="far fa-question-circle"></span></a> or not.</p>
+<p>Under section 7 of the <abbr title="Income Tax Act">ITA</abbr>, the timing of when a security options taxable benefit must be included in your employee’s income depends on whether you are a <a href="#def-ccpc" aria-controls="def-ccpc" class="wb-lbx" role="button">CCPC&nbsp;<span class="far fa-question-circle"></span></a> or not.</p>
+
+
 <details><summary>What is a <abbr title="Canadian-controlled private corporation">CCPC</abbr></summary>
 <div id="ajax-ccpc">
 <p>Your corporation is a <strong><abbr title="Canadian-controlled private corporation">CCPC</abbr></strong> if it meets <strong>all</strong> of the following requirements at the <strong>end of the tax year</strong>:</p>
@@ -1711,10 +1713,11 @@
 	<div data-ajax-replace="ajax/def-arm-lenght.txt"></div>
 	</div></section>
 
-<section id="def-ccpc" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg"><header class="modal-header"><h2 class="modal-title">Definition for Canadian-controlled private corporation (CCPC)</h2>
+<section id="def-ccpc" class="mfp-hide modal-dialog modal-content overlay-def wb-popup-mid"><header class="modal-header"><h2 class="modal-title">Definition for Canadian-controlled private corporation (CCPC)</h2>
 	</header>	<div class="modal-body">	
 	<div data-ajax-replace="#ajax-ccpc"></div>
 	</div></section>
+
 
 	
 	
@@ -1857,6 +1860,31 @@
          </script>
          <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
+<script defer>
+    "use strict";
+    
+    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
+        if (chkbxChecked.length === 0) {
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + defaultID).removeClass("hidden").addClass("visible");
+        } else if (chkbxGroup.length === chkbxChecked.length) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).removeClass("hidden").addClass("visible");
+        } else {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).removeClass("hidden").addClass("visible");
+        }
+    }, 
+    updateChkbxList = function () {
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
+    };
+   
+    window.onload = updateChkbxList;
 
+    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
+</script>
       </body>
    </html>
