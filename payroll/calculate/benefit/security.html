@@ -1561,8 +1561,36 @@
 <hr>
 <p class="mrgn-tp-lg"><span class="fas fa-file-invoice fa-xl text-muted"></span> Learn how to <strong>report</strong> the benefit on a slip: <a href="https://test.canada.ca/cra-arc/payroll/file/t4slip.html">T4 slip - Information for employers</a>. </p>
 </div>
-</li></ol></details> 
-</div></div>
+</li></ol>
+<script defer>
+    "use strict";
+    
+    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
+        if (chkbxChecked.length === 0) {
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + defaultID).removeClass("hidden").addClass("visible");
+        } else if (chkbxGroup.length === chkbxChecked.length) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).removeClass("hidden").addClass("visible");
+        } else {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).removeClass("hidden").addClass("visible");
+        }
+    }, 
+    updateChkbxList = function () {
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
+    };
+   
+    window.onload = updateChkbxList;
+
+    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
+</script>
+</details> 
+</div>
+</div>
 		 
 <h2 id="h_5">References</h2>
 
@@ -1799,7 +1827,7 @@
   </ul>
 </nav>
 
-            <div id="def-preFooter"></div>
+             <div id="def-preFooter"></div>
             <!-- Write closure template -->
             <script type="text/javascript">
                var defPreFooter = document.getElementById("def-preFooter");
@@ -1827,33 +1855,7 @@
             }));
          </script>
          <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
- <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
-<script defer>
-    "use strict";
-    
-    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
-        if (chkbxChecked.length === 0) {
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + defaultID).removeClass("hidden").addClass("visible");
-        } else if (chkbxGroup.length === chkbxChecked.length) {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).removeClass("hidden").addClass("visible");
-        } else {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).removeClass("hidden").addClass("visible");
-        }
-    }, 
-    updateChkbxList = function () {
-        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
-    };
-   
-    window.onload = updateChkbxList;
 
-    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
-</script>
       </body>
    </html>
