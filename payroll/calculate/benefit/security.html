@@ -681,16 +681,82 @@
 <details><summary>What is a <abbr title="Canadian-controlled private corporation">CCPC</abbr></summary>
 <div id="ajax-ccpc">
 <p>Your corporation is a <strong><abbr title="Canadian-controlled private corporation">CCPC</abbr></strong> if it meets <strong>all</strong> of the following requirements at the <strong>end of the tax year</strong>:</p>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col">It is a private corporation </li>
-<li class="cnjnctn-col">It is a corporation that was resident in Canada and was either incorporated in Canada or resident in Canada from June 18, 1971, to the end of the tax year </li>
-<li class="cnjnctn-col">It is not controlled directly or indirectly by one or more non-resident persons </li>
-<li class="cnjnctn-col">It is not controlled directly or indirectly by one or more public corporations (other than a prescribed venture capital corporation, as defined in Regulation 6700 of the <abbr title="Income Tax Regulations">ITR</abbr> </li>
-<li class="cnjnctn-col">It is not controlled by a Canadian resident corporation that lists its shares on a designated stock exchange outside of Canada </li>
-<li class="cnjnctn-col">It is not controlled directly or indirectly by any combination of persons described in the three previous conditions </li>
-<li class="cnjnctn-col">If all of its shares that are owned by a non-resident person, by a public corporation (other than a prescribed venture capital corporation), or by a corporation with a class of shares listed on a designated stock exchange were owned by one person, that person would not own sufficient shares to control the corporation </li>
-<li class="cnjnctn-col">No class of its shares of capital stock is listed on a designated stock exchange </li>
+
+<p>Select all of the requirements that apply to your situation:</p>
+ <div class="wb-frmvld gc-font-2019">
+       
+<div class="form-group">
+  <fieldset class="gc-chckbxrdio gc-font-2019">
+    <ul class="checkbox-lg checkbox-zebra gc-chckbxrdio">
+	
+         <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg1" name="action-checkbox">
+            <label for="eg1">It is a <strong>private</strong> corporation</label> 
+	 </li>
+
+	  <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg2" name="action-checkbox" aria-describedby="cond2-details">
+            <label for="eg2">It is a corporation that was <strong>resident in Canada</strong> and was <strong>either</strong> incorporated in Canada or resident in Canada from June 18, 1971, to the end of the tax year</label> 
+	 </li>      
+
+	   <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg3" name="action-checkbox" aria-describedby="cond3-details">
+            <label for="eg3">It is not controlled directly or indirectly by one or more non-resident persons</label> 
+ 	 </li>   
+
+	      <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg4" name="action-checkbox" aria-describedby="cond4-details">
+            <label for="eg4">It is not controlled directly or indirectly by one or more public corporations (other than a prescribed venture capital corporation, as defined in Regulation 6700 of the <abbr title="Income Tax Regulations">ITR</abbr> </label> 
+ 	 </li>  
+
+	      <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg5" name="action-checkbox" aria-describedby="cond5-details">
+            <label for="eg5">It is not controlled by a Canadian resident corporation that lists its shares on a designated stock exchange outside of Canada</label> 
+ 	 </li>  
+
+	      <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg6" name="action-checkbox" aria-describedby="cond6-details">
+            <label for="eg6">It is not controlled directly or indirectly by any combination of persons described in the three previous conditions</label> 
+ 	 </li>  
+	   
+	    <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg7" name="action-checkbox" aria-describedby="cond7-details">
+            <label for="eg7">If all of its shares that are owned by a non-resident person, by a public corporation (other than a prescribed venture capital corporation), or by a corporation with a class of shares listed on a designated stock exchange were owned by one person, that person would not own sufficient shares to control the corporation</label> 
+ 	 </li>  
+
+	    <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg8" name="action-checkbox" aria-describedby="cond8-details">
+            <label for="eg8">No class of its shares of capital stock is listed on a designated stock exchange </label> 
+ 	 </li>  
+
 </ul>
+
+  <div class="alert alert-info provisional mrgn-tp-lg" id="action-default-msg">
+                    <h3>Your corporation must meet all of the conditions above to be considered a <abbr title="Canadian-controlled private corporation">CCPC</abbr></h3>
+	  <hr>
+ <div data-ajax-replace="#ajax-no-ccpc"></div>
+          
+</div>
+                  <div class="alert alert-warning hidden provisional" id="action-not-qualify-msg">
+                   <h3><small>Your result </small><br> Your corporation must meet all of the conditions above to be considered a <abbr title="Canadian-controlled private corporation">CCPC</abbr></h3>
+			 <hr>  
+<div id="ajax-no-ccpc">
+               <p>If your corporation <strong>does not</strong> meet all conditions above, it is <strong>not</strong> a <abbr title="Canadian-controlled private corporation">CCPC</abbr>.</p>
+
+      </div>            </div>
+
+                  <div class="alert alert-success hidden provisional" id="action-qualify-msg">
+                   
+              <h3><small>Your result </small><br> Your corporation meets all of the conditions above to be considered a <abbr title="Canadian-controlled private corporation">CCPC</abbr></h3>
+			  <hr>
+  <p>If your corporation <strong>meets</strong> all conditions above, you are a <abbr title="Canadian-controlled private corporation">CCPC</abbr>.</p>
+
+ 
+                  </div>
+
+</fieldset>
+                     </div> </div>
+
 </div></details>
 <p>If the benefit is taxable under section 7, you must include the benefit in your employee's income <strong>in the taxation year</strong> in which:</p>
 <ul class="list-unstyled cnjnctn-type-or">
@@ -1761,6 +1827,33 @@
             }));
          </script>
          <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
+ <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
+<script defer>
+    "use strict";
+    
+    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
+        if (chkbxChecked.length === 0) {
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + defaultID).removeClass("hidden").addClass("visible");
+        } else if (chkbxGroup.length === chkbxChecked.length) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).removeClass("hidden").addClass("visible");
+        } else {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).removeClass("hidden").addClass("visible");
+        }
+    }, 
+    updateChkbxList = function () {
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
+    };
+   
+    window.onload = updateChkbxList;
 
+    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
+</script>
       </body>
    </html>
