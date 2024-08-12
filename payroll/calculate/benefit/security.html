@@ -1,10 +1,11 @@
-<!DOCTYPE html>  
-<!--[if lt IE 9]>  
+<!DOCTYPE html>
+<!--[if lt IE 9]>
 <html class="no-js lt-ie9" lang="en" dir="ltr">
    <![endif]-->
    <!--[if gt IE 8]><!-->
    <html class="no-js" lang="en" dir="ltr">
       <!--<![endif]-->
+
       <head>
          <meta charset="utf-8">
          <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
@@ -756,7 +757,32 @@
 
 </fieldset>
                      </div> </div>
+<script defer>
+    "use strict";
+    
+    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
+        if (chkbxChecked.length === 0) {
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + defaultID).removeClass("hidden").addClass("visible");
+        } else if (chkbxGroup.length === chkbxChecked.length) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).removeClass("hidden").addClass("visible");
+        } else {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).removeClass("hidden").addClass("visible");
+        }
+    }, 
+    updateChkbxList = function () {
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
+    };
+   
+    window.onload = updateChkbxList;
 
+    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
+</script>
 </div></details>
 <p>If the benefit is taxable under section 7, you must include the benefit in your employee's income <strong>in the taxation year</strong> in which:</p>
 <ul class="list-unstyled cnjnctn-type-or">
@@ -1562,32 +1588,6 @@
 <p class="mrgn-tp-lg"><span class="fas fa-file-invoice fa-xl text-muted"></span> Learn how to <strong>report</strong> the benefit on a slip: <a href="https://test.canada.ca/cra-arc/payroll/file/t4slip.html">T4 slip - Information for employers</a>. </p>
 </div>
 </li></ol>
-<script defer>
-    "use strict";
-    
-    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
-        if (chkbxChecked.length === 0) {
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + defaultID).removeClass("hidden").addClass("visible");
-        } else if (chkbxGroup.length === chkbxChecked.length) {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).removeClass("hidden").addClass("visible");
-        } else {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).removeClass("hidden").addClass("visible");
-        }
-    }, 
-    updateChkbxList = function () {
-        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
-    };
-   
-    window.onload = updateChkbxList;
-
-    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
-</script>
 </details> 
 </div>
 </div>
