@@ -4,42 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stock Option Taxable Benefit Calculator</title>
+
+<body>
 <style>
      .result {
         display: none; /* Hide results initially */
      }
 </style>
 <script src="calculator.js" defer></script>
-</head>
-<body>
-<h2>Stock Option Taxable Benefit Calculator</h2>
-<h3>Situation 1 (Before June 25, 2024)</h3>
-<label for="grantPrice1">Grant Price per Share ($):</label>
+
+<h3>Stock option estimated calculator</h3>
+<ul class="list-unstyled cnjnctn-type-or">
+<li class="cnjnctn-col"><h4>Situation 1 - From January 1 to June 25, 2024</h4>
+<label for="grantPrice1">Grant price per share ($):</label>
 <input type="number" id="grantPrice1" step="0.01"><br><br>
-<label for="exercisePrice1">Exercise Price per Share ($):</label>
+<label for="exercisePrice1">Exercise price per share ($):</label>
 <input type="number" id="exercisePrice1" step="0.01"><br><br>
-<label for="fmvAtExercise1">Fair Market Value at Exercise ($):</label>
+<label for="fmvAtExercise1">Fair market value (FMV) at exercise ($):</label>
 <input type="number" id="fmvAtExercise1" step="0.01"><br><br>
-<label for="numberOfShares1">Number of Shares:</label>
+<label for="numberOfShares1">Number of shares:</label>
 <input type="number" id="numberOfShares1"><br><br>
-<label for="employeeContribution1">Employee Contribution ($):</label>
+<label for="employeeContribution1">Employee contribution ($):</label>
 <input type="number" id="employeeContribution1" step="0.01" value=""><br><br>
-<label for="exerciseDate1">Exercise Date:</label>
-<input type="date" id="exerciseDate1" min="2024-01-01" max="2024-06-25"><br><br>
-<h3>Situation 2 (After June 25, 2024)</h3>
-<label for="grantPrice2">Grant Price per Share ($):</label>
+<label for="exerciseDate1">Exercise date:</label>
+<input type="date" id="exerciseDate1" min="2024-01-01" max="2024-06-25"><br><br></li>
+
+<li class="cnjnctn-col"><h3>Situation 2 - From June 26 to December 31, 2024</h3>
+<label for="grantPrice2">Grant price per share ($):</label>
 <input type="number" id="grantPrice2" step="0.01"><br><br>
-<label for="exercisePrice2">Exercise Price per Share ($):</label>
+<label for="exercisePrice2">Exercise price per share ($):</label>
 <input type="number" id="exercisePrice2" step="0.01"><br><br>
-<label for="fmvAtExercise2">Fair Market Value at Exercise ($):</label>
+<label for="fmvAtExercise2">Fair market value at exercise ($):</label>
 <input type="number" id="fmvAtExercise2" step="0.01"><br><br>
-<label for="numberOfShares2">Number of Shares:</label>
+<label for="numberOfShares2">Number of shares:</label>
 <input type="number" id="numberOfShares2"><br><br>
-<label for="employeeContribution2">Employee Contribution ($):</label>
+<label for="employeeContribution2">Employee contribution ($):</label>
 <input type="number" id="employeeContribution2" step="0.01" value=""><br><br>
-<label for="exerciseDate2">Exercise Date:</label>
-<input type="date" id="exerciseDate2" min="2024-06-26" max="2024-12-31"><br><br>
+<label for="exerciseDate2">Exercise date:</label>
+<input type="date" id="exerciseDate2" min="2024-06-26" max="2024-12-31"><br><br></li></ul>
 <button onclick="calculateT4Values()">Calculate T4 Values</button>
+<hr>
 <h3>Results:</h3>
 <p id="box14" class="result">Box 14 (Employment Income): $0.00</p>
 <p id="box90" class="result">Box 90 (Security Options Benefits): $0.00</p>
