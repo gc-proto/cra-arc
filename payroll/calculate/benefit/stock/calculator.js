@@ -15,12 +15,12 @@ function validateInputsForSituation1() {
    var dateInput = document.getElementById('exerciseDate1');
    var exerciseDate = new Date(dateInput.value);
    if (!dateInput.value) {
-       alert("Exercise Date for Situation 1 is mandatory.");
+       alert("Exercise date for situation 1 is mandatory.");
        dateInput.focus();
        return false;
    }
    if (!validateDate(exerciseDate, startDate1, endDate1)) {
-       alert("Exercise Date for Situation 1 must be between " + startDate1.toDateString() + " and " + endDate1.toDateString() + ".");
+       alert("Exercise date for Situation 1 must be between " + startDate1.toDateString() + " and " + endDate1.toDateString() + ".");
        dateInput.focus();
        return false;
    }
@@ -30,12 +30,12 @@ function validateInputsForSituation2() {
    var dateInput = document.getElementById('exerciseDate2');
    var exerciseDate = new Date(dateInput.value);
    if (!dateInput.value) {
-       alert("Exercise Date for Situation 2 is mandatory.");
+       alert("Exercise date for situation 2 is mandatory.");
        dateInput.focus();
        return false;
    }
    if (!validateDate(exerciseDate, startDate2, endDate2)) {
-       alert("Exercise Date for Situation 2 must be between " + startDate2.toDateString() + " and " + endDate2.toDateString() + ".");
+       alert("Exercise date for situation 2 must be between " + startDate2.toDateString() + " and " + endDate2.toDateString() + ".");
        dateInput.focus();
        return false;
    }
@@ -96,11 +96,11 @@ function calculateT4Values() {
    // Calculate the total taxable benefit
    var totalBox14Amount = totalBox90Amount + totalBox38Amount;
    // Display the results
-   document.getElementById('box14').textContent = "Box 14 (Employment Income): $" + totalBox14Amount.toFixed(2);
-   document.getElementById('box90').textContent = "Box 90 (Security Options Benefits): $" + totalBox90Amount.toFixed(2);
-   document.getElementById('box91').textContent = "Box 91 (Security Options Deduction): $" + totalBox91Amount.toFixed(2);
-   document.getElementById('box38').textContent = "Box 38 (Security Options Benefits): $" + totalBox38Amount.toFixed(2);
-   document.getElementById('box39').textContent = "Box 39 (Security Options Deduction): $" + totalBox39Amount.toFixed(2);
+   document.getElementById('box14').textContent = "Box 14 - Employment income (may include other income): $" + totalBox14Amount.toFixed(2);
+   document.getElementById('box90').textContent = "Code 90 - Security options benefits - From January 1 to June 24, 2024: $" + totalBox90Amount.toFixed(2);
+   document.getElementById('box91').textContent = "Code 91 or 92 - Security options deduction- From January 1 to June 24, 2024: $" + totalBox91Amount.toFixed(2);
+   document.getElementById('box38').textContent = "Code 38 - Security options benefits - From June 25 to December 31, 2024: $" + totalBox38Amount.toFixed(2);
+   document.getElementById('box39').textContent = "Code 39 or 41 - Security options deduction - From June 25 to December 31, 2024: $" + totalBox39Amount.toFixed(2);
    // Show results after calculation
    results.forEach(function(element) {
        element.style.display = 'block';
