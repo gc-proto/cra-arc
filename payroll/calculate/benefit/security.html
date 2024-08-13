@@ -761,32 +761,7 @@
                      </div> </div>
 
 </div></details>
-<script defer>
-    "use strict";
-    
-    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
-        if (chkbxChecked.length === 0) {
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + defaultID).removeClass("hidden").addClass("visible");
-        } else if (chkbxGroup.length === chkbxChecked.length) {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).removeClass("hidden").addClass("visible");
-        } else {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).removeClass("hidden").addClass("visible");
-        }
-    }, 
-    updateChkbxList = function () {
-        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
-    };
-   
-    window.onload = updateChkbxList;
 
-    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
-</script>
 <p>If the benefit is taxable under section 7 of the <abbr title="Income Tax Act">ITA</abbr>, you must include the benefit in your employee's income <strong>in the taxation year</strong> in which:</p>
 <ul class="list-unstyled cnjnctn-type-or">
 <li class="cnjnctn-col"><h4 class="text-muted">You are a <abbr title="Canadian-controlled private corporation">CCPC</abbr></h4>
@@ -1860,31 +1835,43 @@
          </script>
          <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
-<script defer>
-    "use strict";
-    
-    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
-        if (chkbxChecked.length === 0) {
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + defaultID).removeClass("hidden").addClass("visible");
-        } else if (chkbxGroup.length === chkbxChecked.length) {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).removeClass("hidden").addClass("visible");
-        } else {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).removeClass("hidden").addClass("visible");
-        }
-    }, 
-    updateChkbxList = function () {
-        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
-    };
-   
-    window.onload = updateChkbxList;
+ <script defer>
+       "use strict";
+       
+       // Function to update the visibility of messages based on checkboxes
+       function updateChkbx() {
+           // Get all checkboxes
+           let checkboxes = document.querySelectorAll("input[type=checkbox][name=action-checkbox]");
+           // Get all checked checkboxes
+           let checked = document.querySelectorAll("input[type=checkbox][name=action-checkbox]:checked");
+           
+           // Elements to show/hide based on the checkbox state
+           let defaultMsg = document.getElementById("action-default-msg");
+           let qualifyMsg = document.getElementById("action-qualify-msg");
+           let notQualifyMsg = document.getElementById("action-not-qualify-msg");
 
-    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
+           // Hide all messages first
+           defaultMsg.classList.add("hidden");
+           qualifyMsg.classList.add("hidden");
+           notQualifyMsg.classList.add("hidden");
+
+           // Show the appropriate message
+           if (checked.length === 0) {
+               defaultMsg.classList.remove("hidden");
+           } else if (checkboxes.length === checked.length) {
+               qualifyMsg.classList.remove("hidden");
+           } else {
+       notQualifyMsg.classList.remove("hidden");
+   }
+}
+
+// Call updateChkbx when the page loads to set the initial state
+window.onload = updateChkbx;
+
+// Attach the updateChkbx function to the change event for the checkboxes
+document.querySelectorAll("input[type=checkbox][name=action-checkbox]").forEach(function (checkbox) {
+   checkbox.addEventListener("change", updateChkbx);
+});
 </script>
       </body>
    </html>
