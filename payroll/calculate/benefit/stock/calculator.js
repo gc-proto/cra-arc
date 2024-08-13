@@ -97,10 +97,10 @@ function calculateT4Values() {
    var totalBox14Amount = totalBox90Amount + totalBox38Amount;
    // Display the results
    document.getElementById('box14').textContent = "Box 14 - Employment income (may include other income): $" + totalBox14Amount.toFixed(2);
-   document.getElementById('box90').textContent = "Code 90 - Security options benefits - From January 1 to June 24, 2024: $" + totalBox90Amount.toFixed(2);
-   document.getElementById('box91').textContent = "Code 91 or 92 - Security options deduction- From January 1 to June 24, 2024: $" + totalBox91Amount.toFixed(2);
-   document.getElementById('box38').textContent = "Code 38 - Security options benefits - From June 25 to December 31, 2024: $" + totalBox38Amount.toFixed(2);
-   document.getElementById('box39').textContent = "Code 39 or 41 - Security options deduction - From June 25 to December 31, 2024: $" + totalBox39Amount.toFixed(2);
+   document.getElementById('box90').textContent = "Code 90 - Security options benefits: $" + totalBox90Amount.toFixed(2);
+   document.getElementById('box91').textContent = "Code 91 or 92 - Security options deduction: $" + totalBox91Amount.toFixed(2);
+   document.getElementById('box38').textContent = "Code 38 - Security options benefits: $" + totalBox38Amount.toFixed(2);
+   document.getElementById('box39').textContent = "Code 39 or 41 - Security options deduction: $" + totalBox39Amount.toFixed(2);
    // Show results after calculation
    results.forEach(function(element) {
        element.style.display = 'block';
