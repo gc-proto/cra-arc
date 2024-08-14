@@ -8,7 +8,7 @@
       <head>
          <meta charset="utf-8">
          <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-            <title>Stock option estimated calculator</title>
+            <title>Stock options benefit calculator</title>
          <meta content="width=device-width,initial-scale=1" name="viewport">
          <meta name="robots" content="noindex, follow">
          <!-- Meta data -->
@@ -41,37 +41,50 @@
      }
 </style>
 <script src="calculator.js" defer></script>
-<h3>Stock option estimated calculator</h3>
+<h3>Stock options benefit calculator</h3>
 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><h4>Situation 1 - From January 1, 2024 to June 24, 2024</h4>
-<label for="grantPrice1">Grant price per share ($):</label>
-<input type="number" id="grantPrice1" step="0.01"><br><br>
-<label for="exercisePrice1">Exercise price per share ($):</label>
-<input type="number" id="exercisePrice1" step="0.01"><br><br>
-<label for="fmvAtExercise1">Fair market value (FMV) at exercise ($):</label>
-<input type="number" id="fmvAtExercise1" step="0.01"><br><br>
-<label for="numberOfShares1">Number of shares:</label>
+<li class="cnjnctn-col"><h4>Period 1 - From January 1, 2024 to June 24, 2024</h4>
+<label for="numberOfShares1">Number of shares acquired:</label>
 <input type="number" id="numberOfShares1"><br><br>
-<label for="employeeContribution1">Employee contribution ($):</label>
+
+<label for="exercisePrice1">Option price per share at the time it was exercised ($):</label>
+<input type="number" id="exercisePrice1" step="0.01"><br><br>
+
+<label for="grantPrice1">Option price per share at the time it was granted ($):</label>
+<input type="number" id="grantPrice1" step="0.01"><br><br>
+
+<label for="fmvAtExercise1">FMV per share at the time it was exercised ($):</label>
+<input type="number" id="fmvAtExercise1" step="0.01"><br><br>
+
+<label for="employeeContribution1">Total amount your employee paid to be paid to acquire the security option rights ($):</label>
 <input type="number" id="employeeContribution1" step="0.01" value=""><br><br>
-<label for="exerciseDate1">Exercise date:</label>
+
+<label for="exerciseDate1">Date it was exercised:</label>
 <input type="date" id="exerciseDate1" min="2024-01-01" max="2024-06-25"><br><br></li>
 
-<li class="cnjnctn-col"><h4>Situation 2 - For 2023 or an earlier calendar year, or for June 25, 2024 and after</h4>
-<label for="grantPrice2">Grant price per share ($):</label>
-<input type="number" id="grantPrice2" step="0.01"><br><br>
-<label for="exercisePrice2">Exercise price per share ($):</label>
-<input type="number" id="exercisePrice2" step="0.01"><br><br>
-<label for="fmvAtExercise2">Fair market value at exercise ($):</label>
-<input type="number" id="fmvAtExercise2" step="0.01"><br><br>
-<label for="numberOfShares2">Number of shares:</label>
+
+
+<li class="cnjnctn-col"><h4>Period 2 - For 2023 or an earlier calendar year, or for June 25, 2024 and after</h4>
+<label for="numberOfShares2">Number of shares acquired:</label>
 <input type="number" id="numberOfShares2"><br><br>
-<label for="employeeContribution2">Employee contribution ($):</label>
+
+<label for="exercisePrice2">Option price per share at the time it was exercised ($):</label>
+<input type="number" id="exercisePrice2" step="0.01"><br><br>
+
+<label for="grantPrice2">Option price per share at the time it was granted ($):</label>
+<input type="number" id="grantPrice2" step="0.01"><br><br>
+
+<label for="fmvAtExercise2">FMV per share at the time it was exercised ($):</label>
+<input type="number" id="fmvAtExercise2" step="0.01"><br><br>
+
+<label for="employeeContribution2">Total amount your employee paid to be paid to acquire the security option rights ($):</label>
 <input type="number" id="employeeContribution2" step="0.01" value=""><br><br>
-<label for="exerciseDate2">Exercise date:</label>
+
+<label for="exerciseDate2">Date it was exercised:</label>
 <input type="date" id="exerciseDate2" min="2024-06-26" max="2024-12-31"><br><br></li></ul>
-<button onclick="calculateT4Values()" class="btn-primary">Calculate the value of the taxable benefits to be inlcuded on the T4 slip</button>
+
+<button onclick="calculateT4Values()" class="btn-primary">Calculate the value of the benefit</button>
 
 <div class="alert alert-info mrgn-tp-lg">
 <h3>Based on the information you entered:</h3>
