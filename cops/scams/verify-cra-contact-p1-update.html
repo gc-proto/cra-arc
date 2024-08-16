@@ -281,7 +281,7 @@ $(function () {
         var match = xString.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/);
         var xMatch = match[1] + '-' + match[2] + '-' + match[3] + '-' + match[4];
     // Pull JSON file to parse
-      fetch('/content/dam/cra-arc/json/phone-verify.json') .then(response => response.json()) .then(jsonData => {
+      fetch('data/phone-verify.json') .then(response => response.json()) .then(jsonData => {
             let result = findEntryByPhone(xMatch, jsonData); 
     if (typeof result === 'string') {
 invalidResult();  
