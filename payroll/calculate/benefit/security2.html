@@ -431,20 +431,18 @@
 <hr>
  <ol class="lst-stps ld-zr stps-strpd">
  <li><h3>Determine if the benefit is taxable</h3>
-
+ <div data-ajax-replace="#ajax-stock-agreement-no"></div>
 </li>
 <li><h3>Determine when the benefit must be included in your employee’s income</h3>
-
+<div data-ajax-replace="#ajax-stock-agreement-no1"></div>
 </li>
 <li><h3>Determine if your employee is eligible for any option benefit deductions</h3>
-<p><span class="fas fa-ban text-danger fa-lg"> </span> Your employee is <strong>not</strong> eligible for any option benefit deductions unders section 5(1) or 6(1)(a).</p>
+<p><span class="fas fa-ban text-danger fa-lg"> </span> Your employee is <strong>not</strong> eligible for any option benefit deductions unders sections 5(1) or 6(1)(a).</p>
 </li>
- <li><h3>Calculate the total value of the benefit</h3>
 
-<div data-ajax-replace="#ajax-calc-help"></div>
-</li>
 <li><h3>Withhold payroll deductions and remit GST/HST</h3>
-
+<div data-ajax-replace="#ajax-withhold3"></div>
+<div data-ajax-replace="#ajax-calc-help"></div>
 </li>
 <li><h3>Report the benefit on a slip</h3>
 
@@ -470,7 +468,8 @@
 </div>
 <div id="ajax-stock-agreement2">
  <p>For section 7 of the <abbr title="Income Tax Act">ITA</abbr> to apply, the security options agreement <strong>must contain terms intending for securities to be sold or issued</strong> to your employee if the terms of the agreement are met. </p>
-
+</div>
+<div id="ajax-stock-agreement-no">
 <p>If the benefit from the transaction is in <strong>one</strong> of the following situations, the benefit is taxable under <strong>sections 5(1) or 6(1)(a)</strong> of the <abbr title="Income Tax Act">ITA</abbr>:</p>
 <ul class="list-unstyled cnjnctn-type-or">
 <li class="cnjnctn-col"><div id="ajax-taxable8-2"><p>There was <strong>no</strong> stock option agreement.</p></div></li>
@@ -480,7 +479,8 @@
 <hr>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col">
-<p><span class="fas fa-check text-success fa-lg"></span> If there was <strong>no</strong> stock option agreement or there was <strong>no</strong> intention in the agreement for securities to be issued, you <strong>must</strong> include the payment in your employee’s income in the <strong>taxation year</strong> in which your employee <strong>received the payment</strong>.</p>
+<div id="ajax-stock-agreement-no1">
+<p><span class="fas fa-check text-success fa-lg"></span> If there was <strong>no</strong> stock option agreement or there was <strong>no</strong> intention in the agreement for securities to be issued, you <strong>must</strong> include the payment in your employee’s income in the <strong>taxation year</strong> in which your employee <strong>received the payment</strong>.</p></div>
 <p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#step9">Step 9 - Withhold payroll deductions and remit GST/HST</a>.</p></li>
 <li class="cnjnctn-col"><p><span class="fas fa-check text-success fa-lg"></span> If there was a security options agreement and the security options agreement contains terms intending for securities to be sold or issued to your employee if the terms of the agreement are met, the benefit may be taxable under <strong>section 7</strong> of the <abbr title="Income Tax Act">ITA</abbr>.</p>
 <p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#step2">Step 2 - Determine if the security options agreement was made because of an employment relationship</a>.</p>
@@ -2443,16 +2443,17 @@
 </li>
 
 <li> <h3 id="step9">Withhold payroll deductions and remit GST/HST</h3>
-<div id="ajax-withhold1-1">
-<p>Generally, security options taxable benefits are considered non-cash, unless the security option was cashed out.</p>  
-<p><strong>If there is a security options taxable benefit,</strong> you must withhold the following deductions:</p></div>
-<div id="ajax-withhold1">
+<div id="ajax-withhold0">
+<p>Generally, security options taxable benefits are considered non-cash, unless the security option was cashed out.</p>  </div>
+<div id="ajax-withhold1"><p><strong>If there is a security options taxable benefit,</strong> you must withhold the following deductions:</p></div>
+
 <ul class="list-unstyled cnjnctn-type-or">
 <li class="cnjnctn-col">
-    <h3 class="mrgn-tp-sm h4">Non-cash and near-cash<span class="wb-inv">: Option 1</span></h3>
+ <h3 class="mrgn-tp-sm h4">Non-cash and near-cash<span class="wb-inv">: Option 1</span></h3>
+<div id="ajax-withhold2"> 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col"><h4 class="text-muted"><a href="#def-ccpc" aria-controls="def-ccpc" class="overlay-lnk" role="button">CCPC&nbsp;<span class="far fa-question-circle"></span></a></h4>
-<div id="ajax-withhold1-3"><ul class="fa-ul">
+<div id="ajax-withhold2-1"><ul class="fa-ul">
                       
                        <li><span class="fas fa-times text-danger fa-li"></span> Income tax <small class="text-muted">(do not withhold)</small></li>
                          <li><span class="fas fa-times text-danger fa-li"></span> <abbr title="Canada Pension Plan">CPP</abbr> <small class="text-muted">(do not withhold)</small></li>
@@ -2461,17 +2462,17 @@
                      </ul></div>
 </li>
 <li class="cnjnctn-col"><h4 class="text-muted">Non-CCPC or mutual fund trust</h4>
- <div id="ajax-withhold1-5">               <ul class="fa-ul mrgn-bttm-lg">
+ <div id="ajax-withhold2-2">               <ul class="fa-ul mrgn-bttm-lg">
                         <li><span class="fas fa-check fa-li text-success"></span> Income tax</li>
                          <li><span class="fas fa-check fa-li text-success"></span> <abbr title="Canada Pension Plan">CPP</abbr></li>
                          <li><span class="fas fa-times text-danger fa-li"></span> <abbr title="Employment Insurance">EI</abbr> <small class="text-muted">(do not withhold)</small></li>
-			 <li><span class="fas fa-times text-danger fa-li"></span> GST/HST <small class="text-muted">(do not remit)</small></li></ul>
-<p>If your employee is <strong>eligible</strong> to claim the deduction under paragraph <strong>110(1)(d) (step 6)</strong>, you can <strong>reduce</strong> the security options taxable benefit by this deduction when you determine the amount to withhold.</p>
-</div>
-</li></ul></li>
+			 <li><span class="fas fa-times text-danger fa-li"></span> GST/HST <small class="text-muted">(do not remit)</small></li></ul></div>
+<div id="ajax-withhold2-3"> <p>If your employee is <strong>eligible</strong> to claim the deduction under paragraph <strong>110(1)(d) (step 6)</strong>, you can <strong>reduce</strong> the security options taxable benefit by this deduction when you determine the amount to withhold.</p></div>
+
+</li></ul></div></li>
  <li class="cnjnctn-col">
     <h3 class="mrgn-tp-sm h4">Cash<span class="wb-inv">: Option 2</span></h3>
-<div id="ajax-withhold4">
+<div id="ajax-withhold3">
 <ul class="fa-ul">
                       
                        <li><span class="fas fa-check fa-li text-success"></span> Income tax</li>
@@ -2480,7 +2481,7 @@
 			 <li><span class="fas fa-times text-danger fa-li"></span> GST/HST <small class="text-muted">(do not remit)</small></li>	
                      </ul>
 </div>
- </li> </ul></div>
+ </li> </ul>
 </li>
 
 <li><h3 id="step10"> Report the benefit on a slip</h3>
