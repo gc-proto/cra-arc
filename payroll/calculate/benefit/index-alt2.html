@@ -629,23 +629,14 @@
                         </tr>
                 
  
-<script>
-   let isVisible = false; // Track whether the column is visible or not
-   function toggleColumn(columnIndex) {
-       const cells = document.querySelectorAll(`#myTable td:nth-child(${columnIndex + 1}), #myTable th:nth-child(${columnIndex + 1})`);
-       isVisible = !isVisible; // Toggle the visibility state
-       cells.forEach(cell => {
-           if (isVisible) {
-               cell.classList.remove('hidden');
-           } else {
-               cell.classList.add('hidden');
-           }
-       });
-       // Change the button text based on the visibility
-       const button = document.querySelector('button');
-       button.textContent = isVisible ? 'Hide' : 'Show';
-   }
-</script>
+ <script>
+       function toggleColumn(columnIndex) {
+           const cells = document.querySelectorAll(`#myTable td:nth-child(${columnIndex + 1}), #myTable th:nth-child(${columnIndex + 1})`);
+           cells.forEach(cell => {
+               cell.classList.toggle('hidden');
+           });
+       }
+   </script>
 
 
                      </tbody>
