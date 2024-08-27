@@ -25,6 +25,21 @@
             document.write(wet.builder.refTop({
             }));
          </script>
+
+<style>
+       table {
+           width: 100%;
+           border-collapse: collapse;
+       }
+       th, td {
+           border: 1px solid black;
+           padding: 8px;
+           text-align: left;
+       }
+       .hidden {
+           display: none;
+       }
+   </style>
       </head>
       <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
          <div id="def-top">
@@ -104,7 +119,13 @@
 
 
               <div class="row mrgn-tp-lg">
-	       <div class="col-xs-12"><table id="table" class="wb-tables table table-condensed table-bordered table-striped table-hover" data-wb-tables='{"ordering" : false , "columnDefs": [ { "visible": false, "targets": [ 5 ] } ], "paging": false, "oLanguage": {
+	       <div class="col-xs-12">
+   <button onclick="toggleColumn(1)">Toggle Column CPP</button>
+   <button onclick="toggleColumn(2)">Toggle Column EI</button>
+  <button onclick="toggleColumn(3)">Toggle Column IT</button>
+ <button onclick="toggleColumn(4)">Toggle Column slip codes</button>
+
+<table id="myTable" class="wb-tables table table-condensed table-bordered table-striped table-hover" data-wb-tables='{"ordering" : false , "columnDefs": [ { "visible": false, "targets": [ 5 ] } ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by keyword"
                      } }'>
                      <thead>
@@ -112,16 +133,16 @@
                            <th scope="col">
                               Type of benefits
                            </th>
-  	<th scope="col">
+  	<th  class="toggle-column" scope="col">
                              <abbr title="Canada Pension Plan">CPP</abbr>
                            </th>
- 	 <th scope="col">
+ 	 <th  class="toggle-column" scope="col">
                               <abbr title="Employment insurance">EI</abbr>
                            </th>
- 	 <th scope="col">
+ 	 <th  class="toggle-column" scope="col">
                               <abbr title="Income tax">IT</abbr>
                            </th>
-	 <th scope="col">
+	 <th  class="toggle-column" scope="col">
                               Slip codes
                            </th>			 
                            <th scope="col">
@@ -544,7 +565,16 @@
 		<td class="small">40</td>
                            <td>Work-related expenses</td>
                         </tr>
-                     
+                
+  <script>
+       function toggleColumn(columnIndex) {
+           const cells = document.querySelectorAll(`#myTable td:nth-child(${columnIndex + 1}), #myTable th:nth-child(${columnIndex + 1})`);
+           cells.forEach(cell => {
+               cell.classList.toggle('hidden');
+           });
+       }
+   </script>
+     
                      </tbody>
                   </table>
 	      </div></div>
