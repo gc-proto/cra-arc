@@ -98,30 +98,21 @@
 <p>Before you calculate, determine if a benefit is taxable and if you need to deduct <abbr title="Canada Pension Plan">CPP</abbr>, <abbr title="Employment insurance">EI</abbr> and income tax.</p> 
      <small>Overview: <a href="what.html">What is a taxable benefit</a></small>
 <hr>
-<h3>Steps</h3>
+
  <ol class="lst-stps">
 <li><strong>Click on the link to confirm</strong> if the benefit is <strong>taxable</strong> and if you have to include the value in your employee's income. </li>
 <li><strong>If you know the benefit is taxable</strong>, you can also review the full summary of the payroll deductions you must withhold and in which box of the T4 or T4A slip the value of the benefit must be included.
-<div id="toolbar">
-  <button id="button" class="btn btn-secondary">Show</button>
-  <button id="button2" class="btn btn-secondary">Hide</button>
-</div>
+ <button class="btn btn-default" onclick="toggleColumn(1), toggleColumn(2), toggleColumn(3), toggleColumn(4)">View/hide - CPP, EI and IT withholdings or slip codes</button>
 
 </li>
 </ol>
 
+<hr>
 
               <div class="row mrgn-tp-lg">
 	       <div class="col-xs-12">
   
-<table
-  id="table"
-  data-toggle="table"
-  data-toolbar="#toolbar"
-  data-height="460"
-  data-show-columns="true"
-  class="wb-tables table table-condensed table-bordered table-striped table-hover" 
-  data-wb-tables='{"ordering" : false , "columnDefs": [ { "visible": false, "targets": [ 5 ] } ], "paging": false, "oLanguage": {
+<table id="myTable" class="wb-tables table table-condensed table-striped table-hover" data-wb-tables='{"ordering" : false , "columnDefs": [ { "visible": false, "targets": [ 5 ] } ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by keyword"
                      } }'>
                      <thead>
@@ -129,16 +120,16 @@
                            <th scope="col">
                               Type of benefits
                            </th>
-  	<th  data-field="more" id="toggle1" class="toggle-column" scope="col">
+  	<th  id="toggle1" class="toggle-column" scope="col">
                              <abbr title="Canada Pension Plan">CPP</abbr>
                            </th>
- 	 <th  data-field="more" id="toggle2" class="toggle-column" scope="col">
+ 	 <th  id="toggle2" class="toggle-column" scope="col">
                               <abbr title="Employment insurance">EI</abbr>
                            </th>
- 	 <th data-field="more" id="toggle3" class="toggle-column" scope="col">
+ 	 <th id="toggle3" class="toggle-column" scope="col">
                               <abbr title="Income tax">IT</abbr>
                            </th>
-	 <th data-field="more" id="toggle4" class="toggle-column" scope="col">
+	 <th id="toggle4" class="toggle-column" scope="col">
                               Slip codes
                            </th>			 
                            <th scope="col">
@@ -500,31 +491,31 @@
 
 <tr>
                           <td> <a href="social.html">Social events and hospitality functions</a> </td>
- <td class="small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
-		<td class="small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Non-cash</span><br>
+ <td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
+		<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Non-cash</span><br>
 		<span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Cash</span></td>
-		<td class="small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
-		<td class="small">40</td>
+		<td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
+		<td class="toggle-column hidden small">40</td>
                            <td>Work-related expenses</td>
                         </tr>
 
   <tr>
                          <td><a href="tool.html">Tool reimbursements, allowances and rental payments</a> <span class="wb-inv">Keywords: power saws tree trimmers forestry apprentice mechanics tradesperson</span></td>
- <td class="small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
-		<td class="small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Non-cash</span><br>
+ <td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
+		<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Non-cash</span><br>
 		<span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Cash</span></td>
-		<td class="small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
-		<td class="small">40</td>
+		<td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
+		<td class="toggle-column hidden small">40</td>
                            <td>Work-related expenses</td>
                         </tr>
                                            
                           <tr>
                           <td><a href="transportation-pass.html">Transportation and airline passes</a></td>
- <td class="small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
-		<td class="small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Non-cash</span><br>
+<td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
+		<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Non-cash</span><br>
 		<span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Cash</span></td>
-		<td class="small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
-		<td class="small">40</td>
+		<td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
+		<td class="toggle-column hidden small">40</td>
                            <td>Transportation</td>
                         </tr>
 
@@ -545,37 +536,31 @@
 						   </ul></details>
 
 </td>
- <td class="small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
-		<td class="small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Non-cash</span><br>
+ <td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
+		<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Non-cash</span><br>
 		<span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Cash</span></td>
-		<td class="small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
-		<td class="small">40</td>
+		<td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
+		<td class="toggle-column hidden small">40</td>
                            <td>Travel</td>
                         </tr>
 	        <tr>
                           <td> <a href="uniforms.html">Uniforms, protective clothing, safety and special clothing</a></td>
- <td class="small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
-		<td class="small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Non-cash</span><br>
+ <td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
+		<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Non-cash</span><br>
 		<span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Cash</span></td>
-		<td class="small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
-		<td class="small">40</td>
+		<td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span></td>
+		<td class="toggle-column hidden small">40</td>
                            <td>Work-related expenses</td>
                         </tr>
                 
- <script>
-  var $table = $('#table')
-  var $button = $('#button')
-  var $button2 = $('#button2')
-
-  $(function() {
-    $button.click(function () {
-      $table.bootstrapTable('showColumn', 'more')
-    })
-    $button2.click(function () {
-      $table.bootstrapTable('hideColumn', 'more')
-    })
-  })
-</script>
+  <script>
+       function toggleColumn(columnIndex) {
+           const cells = document.querySelectorAll(`#myTable td:nth-child(${columnIndex + 1}), #myTable th:nth-child(${columnIndex + 1})`);
+           cells.forEach(cell => {
+               cell.classList.toggle('hidden');
+           });
+       }
+   </script>
      
                      </tbody>
                   </table>
