@@ -99,59 +99,54 @@
      <small>Overview: <a href="what.html">What is a taxable benefit</a></small>
 <hr>
 
-<table id="myTable" class="wb-tables table table-striped table-hover small table-condensed"
-      data-wb-tables='{
-          "columnDefs": [
-              { "orderable": true, "targets": [0] },    <!-- Enable sorting only on the first column -->
-              { "orderable": false, "targets": "_all" }, <!-- Disable sorting on all other columns -->
-              { "searchable": true, "targets": [0] },    <!-- Enable searching only on the first column -->
-              { "searchable": false, "targets": "_all" } <!-- Disable searching on all other columns -->
-          ],
-          "paging": false,
-          "oLanguage": {
-              "sSearch": "Filter by keyword"
-          }
-      }'>
-
+<table id="myTable" class="wb-tables table table-striped table-hover small table-condensed">
 <thead>
 <tr>
 <th rowspan="2" class="small">Benefits and allowances</th>
 <th colspan="3" class="text-center">Current <br> employee</th>
 <th colspan="1" class="text-center">Former/Non<br>employee</th>
-<th rowspan="2" class="small" data-dt-order="disable">Remit<br> GST/HST</th> 
+<th rowspan="2" class="small">Remit<br> GST/HST</th>
 </tr>
 <tr>
-<th data-dt-order="disable" class="small">Deduct<br> <abbr title="Canada Pension Plan">CPP</abbr></th>
-<th data-dt-order="disable" class="small">Deduct<br> <abbr title="Employment insurance">EI</abbr></th>
-<th data-dt-order="disable" class="small"><span class="nowrap">T4 slip</span><br> code</th>                
-<th data-dt-order="disable" class="small"><span class="nowrap">T4A slip</span><br> code</th>
+<th class="small">Deduct<br> <abbr title="Canada Pension Plan">CPP</abbr></th>
+<th class="small">Deduct<br> <abbr title="Employment insurance">EI</abbr></th>
+<th class="small"><span class="nowrap">T4 slip</span><br> code</th>
+<th class="small"><span class="nowrap">T4A slip</span><br> code</th>
 </tr>
 </thead>
-
-  
-        <tbody>
-            <tr>
-                <td><a href="vehicle-allowance.html">Automobile or motor vehicle benefits – Allowances or reimbursements provided to an employee for the use of their own vehicle</a> </td>
-                <td><span class="fas fa-check text-success"></span> Yes</td>
-                <td><span class="fas fa-check text-success"></span> Yes</td>
-                <td>40</td>
-                <td>028</td>
-  	        <td><span class="fas fa-times text-danger"></span> No</td>    
-            </tr>
-            <tr>
-                <td><a href="automobile.html">Automobile provided by the employer</a></td>
-                <td><span class="fas fa-check text-success"></span>  Yes</td>
-                <td><span class="fas fa-check text-success"></span>  Yes</td>
-                <td>40</td>
-                <td>028</td>
-		 <td><span class="fas fa-times text-danger"></span> No</td>    
-            </tr>
-         
-        </tbody>
-      
-    </table>
-
-
+<tbody>
+<tr>
+<td><a href="vehicle-allowance.html">Automobile or motor vehicle benefits – Allowances or reimbursements provided to an employee for the use of their own vehicle</a></td>
+<td><span class="fas fa-check text-success"></span> Yes</td>
+<td><span class="fas fa-check text-success"></span> Yes</td>
+<td>40</td>
+<td>028</td>
+<td><span class="fas fa-times text-danger"></span> No</td>
+</tr>
+<tr>
+<td><a href="automobile.html">Automobile provided by the employer</a></td>
+<td><span class="fas fa-check text-success"></span> Yes</td>
+<td><span class="fas fa-check text-success"></span> Yes</td>
+<td>40</td>
+<td>028</td>
+<td><span class="fas fa-times text-danger"></span> No</td>
+</tr>
+</tbody>
+</table>
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable({
+        "paging": false,
+        "oLanguage": {
+            "sSearch": "Filter by keyword"
+        },
+        "columnDefs": [
+            { "orderable": true, "searchable": true, "targets": 0 }, // Sorting and search enabled only for first column
+            { "orderable": false, "searchable": false, "targets": [1, 2, 3, 4, 5] } // Disable sorting and search for other columns
+        ]
+    });
+});
+</script>
 
 
 <section id="info-1" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg"><header class="modal-header"><h2 class="modal-title">Situation: Only remuneration provided is a taxable benefit</h2>
