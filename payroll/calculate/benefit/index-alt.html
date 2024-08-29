@@ -101,10 +101,12 @@
 
  <ol class="lst-stps">
 <li><strong>Click on the link to confirm</strong> if the benefit is <strong>taxable</strong> and if you have to include the value in your employee's income. </li>
-<li><strong>If you know the benefit is taxable</strong>, you can also review the full summary of the payroll deductions you must withhold and in which box of the T4 or T4A slip the value of the benefit must be included.
+<li><p> <strong>If you know the benefit is taxable</strong>, you can also review the full summary of the payroll deductions you must withhold and in which box of the T4 or T4A slip the value of the benefit must be included.</p> 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"> <button class="btn btn-primary" onclick="toggleColumn(1), toggleColumn(2), toggleColumn(3), toggleColumn(4)">Show/hide<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current employee&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></li>
-<li class="cnjnctn-col"><button class="btn btn-default" onclick="toggleColumn(3), toggleColumn(5)">Show/hide<br>Former and non-employee</button></li>
+<li class="cnjnctn-col"> <button class="btn btn-primary" onclick="toggleColumn(1), toggleColumn(2), toggleColumn(3), toggleColumn(4)">Show/hide<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current employee&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+<p class="small"> <a href="#info-1" aria-controls="info-1" class="overlay-lnk" role="button">CPP: Only remuneration is a non-cash taxable benefit&nbsp;<span class="far fa-question-circle"></span></a></p> 
+</li>
+<li class="cnjnctn-col"><button class="btn btn-default" onclick="toggleColumn(5), toggleColumn(6)">Show/hide<br>Former and non-employee</button></li>
 </ul>
 </li>
 </ol>
@@ -117,31 +119,25 @@
     <table id="myTable" class="wb-tables table table-striped table-hover" data-wb-tables='{"columnDefs": [ { "visible": true, "targets": [ 0 ] } ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by keyword"
                      } }'>
- 
-      <thead>
-                         <tr>
-                           <th scope="col" class="small">
-                              Benefits and<br>allowances<br>
-                           </th>
-  	<th  id="toggle1" class="toggle-column hidden small" scope="col">Current<br>Deduct<br>
-                             <abbr title="Canada Pension Plan">CPP</abbr><br>
-                           </th>
- 	 <th  id="toggle2" class="toggle-column hidden small" scope="col">Current <br>Deduct<br>
-                              <abbr title="Employment insurance">EI</abbr><br>
-                           </th>
- 	 <th id="toggle3" class="toggle-column hidden small" scope="col">Current<br>Remit<br>
-                              GST/HST<br>
-                           </th>
-	 <th id="toggle4" class="toggle-column hidden small" scope="col">Current<br>Code for<br>T4 slip<br>
-                           </th>	
-	
- 	
-	 <th id="toggle6" class="toggle-column hidden small" scope="col">Former<br>Code for<br>T4A slip<br>
-                           </th>		 
-                           
-                        </tr>
-                     </thead>
-                     <tbody>
+
+
+<thead>
+<tr>
+<th rowspan="2" class="small">Benefits and allowances</th>
+<th colspan="4" class="text-center">Current <br> employee</th>
+<th colspan="2" class="text-center">Former/Non<br>employee</th>
+</tr>
+<tr>
+<th id="toggle1" class="toggle-column hidden small" scope="col">Deduct<br> <abbr title="Canada Pension Plan">CPP</abbr><br></th>
+<th id="toggle2" class="toggle-column hidden small" scope="col">Deduct<br> <abbr title="Employment insurance">EI</abbr><br></th>
+<th id="toggle3" class="toggle-column hidden small" scope="col">Remit<br> GST/HST<br></th>
+<th id="toggle4" class="toggle-column hidden small" scope="col"><span class="nowrap">T4 slip</span><br> code<br></th>
+<th id="toggle5" class="toggle-column hidden small" scope="col">Remit<br> GST/HST<br></th>
+<th id="toggle6" class="toggle-column hidden small" scope="col"><span class="nowrap">T4A slip</span><br> code<br></th>
+</tr>
+</thead>
+
+                      <tbody>
                         
 
 <tr>
@@ -152,7 +148,7 @@
 		<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span></span></td>
 		<td class="toggle-column hidden small">40</td>
 
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> </span></td>
 <td class="toggle-column hidden small">028</td>
                            
                         </tr>
@@ -167,7 +163,7 @@
 		
 		</td>	
                      
-
+<td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"> </span><span class="wb-inv">Yes</span></td>
 <td class="toggle-column hidden small"><span class="nowrap">028</span></td>     
                         </tr>
 
@@ -180,7 +176,7 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                        
-
+<td class="toggle-column hidden small">N/A</td>
 <td class="toggle-column hidden small">N/A</td>  
                         </tr>
 
@@ -195,7 +191,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span>&nbsp; Cash</span></td>
 		<td class="toggle-column hidden small"><span class="nowrap">30 or 40</span></td>	
 
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span>&nbsp; Cash</span></td>
 <td class="toggle-column hidden small"><span class="nowrap">028</span></td>
                         </tr>
 
@@ -208,7 +205,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span>&nbsp; Cash</span></td>
 		<td class="toggle-column hidden small"><span class="nowrap">30 and 40</span></td>	
                  
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span>&nbsp; Cash</span></td>
 <td class="toggle-column hidden small"><span class="nowrap">028</span></td>      
                         </tr>
 
@@ -222,6 +220,9 @@
 		<td class="toggle-column hidden small"><span>30, 31, 32, 33 or 40</span>
 		</td>	
 
+	
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span>  <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small"><span>028, 116 or 124</span></td>
                         </tr>
 
@@ -234,6 +235,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
 	 
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>
 
@@ -247,6 +250,8 @@
 		<td class="toggle-column hidden small">40</td>
 
 	 
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>
 			     
@@ -276,6 +281,9 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
 
+
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
 	
                         </tr>	 
@@ -289,7 +297,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                         
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>
 
@@ -311,7 +320,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small"><span class="nowrap">40</span></td>
                       
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small"><span class="nowrap">105</span></td>   
                         </tr>
 
@@ -323,6 +333,8 @@
 		<td class="toggle-column hidden small"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> </td>
 		<td class="toggle-column hidden small">38 or <span class="label label-warning">New</span> 90</td>
 
+	   
+<td class="toggle-column hidden small"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> </td>
 <td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-exclamation-triangle text-info"></span>&nbsp; <strong>T4</strong> slip</span><br> 38 or <span class="label label-warning">New</span> 90</td>
                         </tr>
 
@@ -333,7 +345,8 @@
 		<td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"> </span><span class="wb-inv">Yes</span></td>
 		<td class="toggle-column hidden small"><span class="nowrap">40</span></td>	
 
-		
+			
+<td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"> </span><span class="wb-inv">Yes</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>
 
@@ -346,6 +359,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small"><span class="nowrap">40</span></td>
 	
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span>&nbsp; Cash</span></td>
 <td class="toggle-column hidden small"><span class="nowrap">028 or 154</span></td>
                         </tr>  
 
@@ -359,6 +374,8 @@
 		<td class="toggle-column hidden small">30 and 40</td>
 
 	 
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>
 
@@ -371,6 +388,9 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">30 and 40</td>
 
+	 
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>	
 
@@ -385,6 +405,7 @@
 		
 		</td>	
                         
+<td class="toggle-column hidden small"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> </td>
 <td class="toggle-column hidden small"><span class="nowrap">117</span></td> 
                         </tr> 
 			      <tr>
@@ -396,7 +417,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                         
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td> 
                         </tr>
 
@@ -421,6 +443,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                         
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td> 
                         </tr> 
 
@@ -434,7 +458,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                           
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr> 
 			       <tr>
@@ -446,7 +471,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                          
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>
 
@@ -460,7 +486,7 @@
 		
 		</td>	
                          
-
+<td class="toggle-column hidden small"><span class="fas fa-check fa-lg text-success"> </span><span class="wb-inv">Yes</span></td>
 <td class="toggle-column hidden small"><span class="nowrap">028</span></td>
                         </tr>
  		
@@ -474,6 +500,9 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>                      
 
+				
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>
 		
@@ -487,6 +516,9 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
 
+			 
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>
 
@@ -508,7 +540,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                       
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>   
                         </tr>	
 
@@ -521,7 +554,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                         
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr> 
 			         <tr>
@@ -533,6 +567,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                        
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr> 
 
@@ -547,7 +583,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                           
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>
 
@@ -560,6 +597,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                           
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>
                         </tr>
                                            
@@ -572,6 +611,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                          
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> Cash</span></td>
 <td class="toggle-column hidden small">028</td> 
                         </tr>
 
@@ -599,7 +640,8 @@
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
                      
-
+<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span> <span class="text-muted">(in some situations)</span><br>
+<span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 <td class="toggle-column hidden small">028</td>    
                         </tr>
 	        <tr>
@@ -610,7 +652,7 @@
 		<td class="toggle-column hidden small"><span class="nowrap"><span class="fas fa-check fa-lg text-success"></span><span class="wb-inv">Yes</span> Non-cash</span><br>
 <span class="nowrap"><span class="fas fa-times text-danger fa-lg"></span><span class="wb-inv">No</span> &nbsp;Cash</span></td>
 		<td class="toggle-column hidden small">40</td>
-                
+                 <td class="toggle-column hidden small">N/A</td>
 <td class="toggle-column hidden small">N/A</td>
                         </tr>
                 
@@ -630,6 +672,17 @@
 
 
 
+
+<section id="info-1" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg"><header class="modal-header"><h2 class="modal-title">Situation: Only remuneration provided is a taxable benefit</h2>
+	</header>	<div class="modal-body">		
+		<p><strong>Do not</strong> deduct CPP contributions if all of the following apply:</p>
+
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col">It is a <strong>non-cash</strong> taxable benefit (with the exception of security options) </li>
+	
+<li class="cnjnctn-col">It is the <strong>only remuneration</strong> you provide to your employee (your employee did not receive any cash earnings)</li> </ul>
+		
+	</div></section>
 
             <div id="def-preFooter"></div>
             <!-- Write closure template -->
