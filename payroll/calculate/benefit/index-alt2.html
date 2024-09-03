@@ -100,7 +100,18 @@
 <li><p><strong>Click on the link in the table below to determine if the specific benefit or allowance you provided is taxable</strong>. If the benefit or allowance is taxable, you have to include the value in your employee's income.</p>
   <small>Overview: <a href="what.html">What is a taxable benefit</a></small>
 <br>
-<p align="right"><button class="btn btn-default" aria-pressed="false" onclick="toggleColumn(1), toggleColumn(2), toggleColumn(3), toggleColumn(4), toggleColumn(5)">View/hide - Step 2</button></p>
+   <p class="text-right">
+           <button 
+             class="btn btn-default" 
+             aria-controls="myTable" 
+             aria-expanded="false" 
+             aria-label="View or hide Step 2 details" 
+             aria-pressed="false"
+             role="button"
+             onclick="toggleColumn(1); toggleColumn(2); toggleColumn(3); toggleColumn(4); toggleColumn(5); this.setAttribute('aria-pressed', this.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');">
+             View/hide - Step 2
+           </button>
+         </p>
 
  </li>
 <li><p><strong>If the benefit or allowance is taxable</strong>, the table below summarizes if you must withhold <abbr title="Canada Pension Plan">CPP</abbr> or <abbr title="Employment insurance">EI</abbr> on the value of the benefit, which codes to use to report the benefit or allowance and if GST/HST must be included in the value of the benefit.</p>
@@ -120,23 +131,23 @@
 <thead>
  <tr>
              
-                <th colspan="1" class="toggle-column text-center h3">Step 1</th>
-                <th colspan="5" class="toggle-column text-center h3">Step 2</th>
+                <th scope="col" colspan="1" class="toggle-column text-center h3">Step 1</th>
+                <th scope="col" colspan="5" class="toggle-column text-center h3">Step 2</th>
             </tr>
             
 <tr>
-<th class="toggle-column" colspan="1"></th>	
-<th class="toggle-column" colspan="3" class="text-center">Current employee</th>
-<th class="toggle-column" colspan="1" class="text-center">Former/Non<br>employee</th>
-<th class="toggle-column" colspan="1"></th>
+<th scope="col" class="toggle-column" colspan="1"></th>	
+<th scope="col" class="toggle-column" colspan="3" class="text-center">Current employee</th>
+<th scope="col" class="toggle-column" colspan="1" class="text-center">Former/Non<br>employee</th>
+<th scope="col" class="toggle-column" colspan="1"></th>
 </tr>
 <tr>
-<th><span class="nowrap">Benefits and allowances</span></th>
-<th class="toggle-column">Withhold<br> <abbr title="Canada Pension Plan">CPP</abbr><br></th>
-<th class="toggle-column">Withhold<br> <abbr title="Employment insurance">EI</abbr><br></th>
-<th class="toggle-column"><span class="nowrap">T4 slip</span><br> code<br></th>
-<th class="toggle-column"><span class="nowrap">T4A slip</span><br> code<br></th>
-<th class="toggle-column">Include<br> GST/HST<br></th>
+<th scope="col"><span class="nowrap">Benefits and allowances</span></th>
+<th scope="col" class="toggle-column">Withhold<br> <abbr title="Canada Pension Plan">CPP</abbr><br></th>
+<th scope="col" class="toggle-column">Withhold<br> <abbr title="Employment insurance">EI</abbr><br></th>
+<th scope="col" class="toggle-column"><span class="nowrap">T4 slip</span><br> code<br></th>
+<th scope="col" class="toggle-column"><span class="nowrap">T4A slip</span><br> code<br></th>
+<th scope="col" class="toggle-column">Include<br> GST/HST<br></th>
 </tr>
 </thead>
 
