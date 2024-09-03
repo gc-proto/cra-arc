@@ -216,10 +216,10 @@ form.addEventListener('submit', handleForm);
 // language switches
 switch (wb.lang){
     case "en": 
-        var dataAjax = "https://www.canada.ca/en/revenue-agency/corporate/contact-information.html#", mobileLang = "opens up phone application", noHours = "Current office hours are not available";
-        break;
+        var dataAjax = "https://www.canada.ca/en/revenue-agency/corporate/contact-information.html#", mobileLang = "opens up phone application", noHours = "Current office hours are not available", phoneType = result.entry.name_e;
+        break; 
     case "fr":
-        dataAjax = "https://www.canada.ca/fr/agence-revenu/organisation/coordonnees.html#", mobileLang = "s’ouvre dans l’application téléphonique", noHours = "Les heures de bureau actuelles ne sont pas disponibles";
+        dataAjax = "https://www.canada.ca/fr/agence-revenu/organisation/coordonnees.html#", mobileLang = "s’ouvre dans l’application téléphonique", noHours = "Les heures de bureau actuelles ne sont pas disponibles", phoneType = result.entry.name_f;
     } 
 // Function for Adobe Analytic calls
     function errorResult() {
@@ -294,7 +294,7 @@ invalidResult();
             else {
                 const resultKeyStr = result.key;
                 if (resultKeyStr.startsWith('automated')) {
-                    $("#result-yes-auto").text(result.phoneNumber + " " + result.entry.name_e);
+                    $("#result-yes-auto").text(result.phoneNumber + " " + phoneType);
                     
                  
                     $(".alert-results, #default-link").addClass("hidden");
@@ -302,7 +302,7 @@ invalidResult();
 		validResult();
                 }
           else if (result.key == "fax-machine") {
-                    $("#result-yes-fax").text(result.phoneNumber + " " + result.entry.name_e);
+                    $("#result-yes-fax").text(result.phoneNumber + " " + phoneType);
                     
                  
                     $(".alert-results, #default-link").addClass("hidden");
