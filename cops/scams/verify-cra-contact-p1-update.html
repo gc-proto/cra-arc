@@ -283,13 +283,7 @@ $(function () {
     // Pull JSON file to parse
       fetch('data/phone-verify.json') .then(response => response.json()) .then(jsonData => {
             let result = findEntryByPhone(xMatch, jsonData);
-	        switch (wb.lang){
-    case "en": 
-          var phoneType = result.entry.name_e;
-        break;
-    case "fr":
-        var phoneType = result.entry.name_f;
-    }; 
+	      
     if (typeof result === 'string') {
 invalidResult();  
         console.log(result);
@@ -299,6 +293,13 @@ invalidResult();
         
     } 
             else {
+		    switch (wb.lang){
+    case "en": 
+          var phoneType = result.entry.name_e;
+        break;
+    case "fr":
+        var phoneType = result.entry.name_f;
+    };   
                 const resultKeyStr = result.key;
                 if (resultKeyStr.startsWith('automated')) {
                     $("#result-yes-auto").text(result.phoneNumber + " " + phoneType);
