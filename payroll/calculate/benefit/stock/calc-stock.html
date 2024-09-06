@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee stock calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Employee stock calculator</h2>
+        <form id="stockForm">
+            <label for="shares">Enter the number of shares (#):</label>
+            <input class="input-lg" type="number" id="shares" placeholder="#" required>
+            
+            <label for="pricePerShare">Enter the price per share ($):</label>
+            <input class="input-lg" type="number" id="pricePerShare" placeholder="$" step="0.01" required>
+
+            <button type="submit">Calculate</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+  <style>
+
+      /* CSS Document */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+.container {
+    font-size: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-size: 20px;
+    margin: 10px 0 5px;
+    display: block;
+}
+
+input {
+    font-size: 20px;
+    max-width: 150px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+button {
+    font-size: 20px;
+    background: #28a745;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    max-width: 200px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background: #218838;
+}
+
+.result {
+   margin-top: 30px;
+    
+}
+
+.warning {
+    color: red;
+} </style>
+
+
+
+
+
+<script>
+document.getElementById('stockForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get user inputs
+    const shares = parseInt(document.getElementById('shares').value);
+    const pricePerShare = parseFloat(document.getElementById('pricePerShare').value);
+
+    // Calculate total stock value
+    const totalValue = shares * pricePerShare;
+
+    // Get result div to show the output
+    const resultDiv = document.getElementById('result');
+
+    
+    // Clear previous results
+    resultDiv.innerHTML = '';
+
+    // Check if total value exceeds $250,000
+    if (totalValue > 250000) {
+        resultDiv.innerHTML = `<hr><h3 class="warning">Warning! Your result</h3><p>Based on the information you entered, your total stock value is <strong>more than $250,000</strong>.</p><p class="warning">The new legislation rules apply.</p>`;
+    } else {
+        resultDiv.innerHTML = `<hr><h3>Your result</h3><p>Based on the information you entered, your <strong>total stock value is $${totalValue.toFixed(2)}</strong>.</p>`;
+    }
+});</script>
