@@ -33,45 +33,110 @@
          <main role="main" property="mainContentOfPage" class="container">
 
 
-    <div class="container">
-        <h1>Determine Shareholder Benefit</h1>
-        <form id="benefitForm">
-            <div class="form-group">
-                <label>Is the total income of the corporation greater than $100,000?</label><br>
-                <label><input type="radio" name="income" value="yes" required> Yes</label>
-                <label><input type="radio" name="income" value="no"> No</label>
-            </div>
-            <div class="form-group">
-                <label>Do you own more than 50% of the shares in the corporation?</label><br>
-                <label><input type="radio" name="ownership" value="yes" required> Yes</label>
-                <label><input type="radio" name="ownership" value="no"> No</label>
-            </div>
-            <div class="form-group">
-                <label>Is the corporation providing benefits to shareholders?</label><br>
-                <label><input type="radio" name="benefits" value="yes" required> Yes</label>
-                <label><input type="radio" name="benefits" value="no"> No</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Check Benefit</button>
+        <h1>Shareholder Benefit Determination Tool</h1>
+        <p>Use this tool to determine if a benefit provided to a shareholder is a taxable benefit, how to calculate it, and how to report it correctly.</p>
+        <form id="shareholderBenefitForm" class="well-formed">
+            <fieldset>
+                <legend>Determine if there is a Shareholder Benefit</legend>
+                <div class="radio-group">
+                    <label>Is the benefit provided to the shareholder due to their shareholding in the company?</label>
+                    <label class="gc-radio"><input type="radio" name="dueToShareholding" value="yes" required> Yes</label>
+                    <label class="gc-radio"><input type="radio" name="dueToShareholding" value="no"> No</label>
+                </div>
+                <div class="radio-group">
+                    <label>Does the shareholder benefit also extend to employees who are not shareholders?</label>
+                    <label class="gc-radio"><input type="radio" name="employeesBenefit" value="yes" required> Yes</label>
+                    <label class="gc-radio"><input type="radio" name="employeesBenefit" value="no"> No</label>
+                </div>
+                <div class="radio-group">
+                    <label>Is the benefit offered as part of an agreement or arrangement between the company and the shareholder?</label>
+                    <label class="gc-radio"><input type="radio" name="agreementWithCompany" value="yes" required> Yes</label>
+                    <label class="gc-radio"><input type="radio" name="agreementWithCompany" value="no"> No</label>
+                </div>
+                <div class="radio-group">
+                    <label>Is the benefit provided at or above fair market value?</label>
+                    <label class="gc-radio"><input type="radio" name="fairMarketValue" value="yes" required> Yes</label>
+                    <label class="gc-radio"><input type="radio" name="fairMarketValue" value="no"> No</label>
+                </div>
+                <div class="radio-group">
+                    <label>Is this benefit something that the shareholder would have personally received even without owning shares?</label>
+                    <label class="gc-radio"><input type="radio" name="personalBenefit" value="yes" required> Yes</label>
+                    <label class="gc-radio"><input type="radio" name="personalBenefit" value="no"> No</label>
+                </div>
+                <div class="radio-group">
+                    <label>Is the benefit consistent with what non-shareholding employees are compensated?</label>
+                    <label class="gc-radio"><input type="radio" name="consistentCompensation" value="yes" required> Yes</label>
+                    <label class="gc-radio"><input type="radio" name="consistentCompensation" value="no"> No</label>
+                </div>
+            </fieldset>
+
+            <input type="submit" class="btn btn-primary" value="Determine Benefit and Calculate">
         </form>
-        <div id="result" class="mt-3"></div>
-    </div>
+        
+        <div class="result" id="result" role="alert"></div>
+        <div class="reporting" id="reporting"></div>
+    </main>
 
+   
     <script>
-        document.getElementById('benefitForm').addEventListener('submit', function(event) {
+        document.getElementById("shareholderBenefitForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            const income = document.querySelector('input[name="income"]:checked').value;
-            const ownership = document.querySelector('input[name="ownership"]:checked').value;
-            const benefits = document.querySelector('input[name="benefits"]:checked').value;
 
-            let resultText;
-            if (income === "yes" && ownership === "yes" && benefits === "yes") {
-                resultText = "There is a Shareholder Benefit.";
+            var dueToShareholding = document.querySelector('input[name="dueToShareholding"]:checked').value;
+            var employeesBenefit = document.querySelector('input[name="employeesBenefit"]:checked').value;
+            var agreementWithCompany = document.querySelector('input[name="agreementWithCompany"]:checked').value;
+            var fairMarketValue = document.querySelector('input[name="fairMarketValue"]:checked').value;
+            var personalBenefit = document.querySelector('input[name="personalBenefit"]:checked').value;
+            var consistentCompensation = document.querySelector('input[name="consistentCompensation"]:checked').value;
+
+            var isShareholderBenefit = (dueToShareholding === "yes" &&
+                                        agreementWithCompany === "yes" &&
+                                        fairMarketValue === "yes" &&
+                                        (employeesBenefit === "no" || consistentCompensation === "no") &&
+                                        personalBenefit === "yes");
+
+            var resultText;
+            if (isShareholderBenefit) {
+                resultText = "This is likely a shareholder benefit.";
+                showCalculationSection();
             } else {
-                resultText = "There is no Shareholder Benefit.";
+                resultText = "This is likely not a shareholder benefit. No further calculations are necessary.";
+                hideCalculationSection();
             }
-
-            document.getElementById('result').innerText = resultText;
+            document.getElementById("result").innerHTML = resultText;
         });
+
+        function showCalculationSection() {
+            const calculationHTML = `
+                <fieldset id="calculationSection">
+                    <legend>Calculate the Shareholder Benefit</legend>
+                    <label for="fmv">Enter the Fair Market Value (FMV) of the benefit: 
+                        <input type="number" id="fmv" placeholder="0" required aria-label="Fair Market Value of benefit" step="0.01">
+                    </label>
+                    <label for="valueReceived">Enter the Value Received by Shareholder: 
+                        <input type="number" id="valueReceived" placeholder="0" required aria-label="Value received by shareholder" step="0.01">
+                    </label>
+                    <input type="button" id="calculateBenefit" class="btn btn-secondary" value="Calculate Benefit">
+                </fieldset>
+            `;
+            document.getElementById("result").innerHTML += calculationHTML;
+
+            document.getElementById("calculateBenefit").addEventListener("click", function() {
+                const fmv = parseFloat(document.getElementById("fmv").value);
+                const valueReceived = parseFloat(document.getElementById("valueReceived").value);
+                const shareholderBenefit = fmv - valueReceived;
+
+                let reportingText = `<h2>Calculated Shareholder Benefit: $${shareholderBenefit.toFixed(2)}</h2>`;
+                reportingText += `<h3>How to Report the Shareholder Benefit</h3>`;
+                reportingText += `<p>This benefit should be reported on a T4A slip under "Other Income". The amount of the benefit ($${shareholderBenefit.toFixed(2)}) should be included in box 028 of the T4A slip.</p>`;
+                document.getElementById("reporting").innerHTML = reportingText;
+            });
+        }
+
+        function hideCalculationSection() {
+            document.getElementById("reporting").innerHTML = '';
+        }
     </script>
-</body>
+
+	</body>
 </html>
