@@ -330,15 +330,16 @@ invalidResult();
                     $("#valid-yes").removeClass("hidden");
 		validResult();
                 };
-            } 
-           if (result.entry.hours_ajax_id == "" || result.entry.hours_ajax_id === undefined ) {
+		   if (result.entry.hours_ajax_id == "" ) {
                         $(".hours").text(noHours);
                $(".hours-note").addClass("hidden");
                     }
                     else {
                         $(".hours").attr("data-ajax-replace", dataAjax + result.entry.hours_ajax_id).trigger( "wb-update.wb-data-ajax");
                         $(".hours-note").removeClass("hidden");
-                    }
+                    }  
+            } 
+          
         }) .catch(error => console.error('Error fetching the JSON file:', error))
     });
 });
