@@ -595,6 +595,81 @@
           <p class="wb-fieldflow-label">This would be the next steps to provide</p>
         </div>      
         
+<div id="calc-section" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "noForm": true, "isoptional": true}' class="wb-fieldflow-sub">
+  <div class="wb-fieldflow-header">
+    <h3 class="h2 mrgn-tp-md row" id="calc-shareholder-benefit">Calculate the Value of the Shareholder Benefit</h3>
+    <p class="wb-fieldflow-label">Follow these steps to calculate the value of the taxable shareholder benefit:</p>
+  </div>
+  
+  <div id="calc-steps">
+    <ol>
+      <li>
+        <p><strong>Step 1:</strong> Identify the fair market value (FMV) of the benefit provided.</p>
+        <p>Example: If the benefit is the use of corporate property, determine the cost that an independent third party would charge for similar use of the property.</p>
+      </li>
+      
+      <li>
+        <p><strong>Step 2:</strong> Subtract any amount the employee paid for the benefit.</p>
+        <p>Example: If the employee paid a portion for the use of corporate property, deduct that from the FMV.</p>
+      </li>
+      
+      <li>
+        <p><strong>Step 3:</strong> Add any other costs related to the benefit that the corporation paid on behalf of the employee.</p>
+        <p>Example: If the corporation paid for maintenance or insurance related to the benefit, include these amounts in the total.</p>
+      </li>
+      
+      <li>
+        <p><strong>Step 4:</strong> The resulting amount is the taxable value of the benefit that should be reported.</p>
+      </li>
+    </ol>
+  </div>
+
+  <div class="mrgn-tp-md">
+    <p class="wb-fieldflow-label">Q1: Did the employee pay any amount towards the benefit?</p>
+    <ul>
+      <li data-wb-fieldflow='[{"action": "toggle", "live": true, "toggle": "#paid-yes"}, {"action": "append", "source": "#deduct-paid"}]'>
+        Yes - Deduct from the fair market value
+      </li>
+      <li data-wb-fieldflow='[{"action": "toggle", "live": true, "toggle": "#paid-no"}, {"action": "append", "source": "#no-deduct"}]'>
+        No - Full fair market value is taxable
+      </li>
+    </ul>
+  </div>
+
+  <div id="deduct-paid" class="hidden">
+    <p class="wb-fieldflow-label">Enter the amount paid by the employee:</p>
+    <input type="text" id="amount-paid" name="amount-paid" class="form-control" placeholder="Enter amount">
+  </div>
+
+  <div id="no-deduct" class="hidden">
+    <p>No deduction will be made for employee payments. The full fair market value will be considered taxable.</p>
+  </div>
+
+  <div class="mrgn-tp-md">
+    <p class="wb-fieldflow-label">Q2: Did the corporation pay any additional costs on behalf of the employee?</p>
+    <ul>
+      <li data-wb-fieldflow='[{"action": "toggle", "live": true, "toggle": "#additional-costs-yes"}, {"action": "append", "source": "#additional-costs"}]'>
+        Yes - Include these costs in the calculation
+      </li>
+      <li data-wb-fieldflow='[{"action": "toggle", "live": true, "toggle": "#additional-costs-no"}, {"action": "append", "source": "#no-additional-costs"}]'>
+        No - No additional costs
+      </li>
+    </ul>
+  </div>
+
+  <div id="additional-costs" class="hidden">
+    <p class="wb-fieldflow-label">Enter any additional costs paid by the corporation:</p>
+    <input type="text" id="additional-costs-amount" name="additional-costs-amount" class="form-control" placeholder="Enter additional costs">
+  </div>
+
+  <div id="no-additional-costs" class="hidden">
+    <p>No additional costs will be included in the calculation.</p>
+  </div>
+
+  <div class="mrgn-tp-md">
+    <p><strong>Result:</strong> The final taxable value of the shareholder benefit is the fair market value minus any employee payments plus any additional costs paid by the corporation.</p>
+  </div>
+</div>
 
  </div></div>    
        
