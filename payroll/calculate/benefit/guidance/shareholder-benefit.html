@@ -583,72 +583,18 @@
         
   <h3>Calculate the value of the shareholder benefit</h3>
   <p>Follow these steps to calculate the value of the taxable shareholder benefit:</p>
-  
-  <ol>
-    <li>
-      <strong>Step 1:</strong> Identify the fair market value (FMV) of the benefit.
-      <p>Example: If the benefit is the use of corporate property, determine the cost that an independent third party would charge for similar use of the property.</p>
-      <input type="text" id="fmv" placeholder="Enter fair market value" class="form-control" />
-    </li>
 
-    <li>
-      <strong>Step 2:</strong> Subtract any amount the employee paid for the benefit.
-      <p>Did the employee pay any amount towards the benefit?</p>
-      <label><input type="radio" name="paid" value="yes" onclick="toggleEmployeePayment(true)" /> Yes</label>
-      <label><input type="radio" name="paid" value="no" onclick="toggleEmployeePayment(false)" /> No</label>
+<ol>
+<li>  <h3 id="h_5">Report the benefit on a slip</h3>
+<p><strong>If the shareholder benefit is taxable,</strong> you must report the following on the T4A slip: </p>
 
-      <div id="employee-payment-section" style="display:none;">
-        <input type="text" id="employee-paid" placeholder="Enter amount paid by employee" class="form-control" />
-      </div>
-    </li>
-
-    <li>
-      <strong>Step 3:</strong> Add any additional costs paid by the corporation.
-      <p>Did the corporation pay any additional costs on behalf of the employee?</p>
-      <label><input type="radio" name="additional-costs" value="yes" onclick="toggleAdditionalCosts(true)" /> Yes</label>
-      <label><input type="radio" name="additional-costs" value="no" onclick="toggleAdditionalCosts(false)" /> No</label>
-
-      <div id="additional-cost-section" style="display:none;">
-        <input type="text" id="additional-costs" placeholder="Enter additional costs" class="form-control" />
-      </div>
-    </li>
-
-    <li>
-      <button onclick="calculateBenefit()">Calculate Taxable Benefit</button>
-    </li>
-
-    <li>
-      <strong>Result:</strong> 
-      <div id="result" style="font-weight: bold;"></div>
-    </li>
-  </ol>
+<ul class="fa-ul">
+                          <li><span class="fas fa-check fa-li text-success"></span>Code 117 - Loan benefits</li>
+                     </ul>
+	<p><span class="fas fa-file-invoice fa-xl text-muted"></span> Learn more: <a href="/cra-arc/payroll/file/complete.html">Fill out the slips and summaries - File information returns (slips and summaries)</a> </p>
+	
+ </li></ol>
 </div>
-
-<script>
-  // Toggle employee payment input
-  function toggleEmployeePayment(show) {
-    document.getElementById('employee-payment-section').style.display = show ? 'block' : 'none';
-  }
-
-  // Toggle additional costs input
-  function toggleAdditionalCosts(show) {
-    document.getElementById('additional-cost-section').style.display = show ? 'block' : 'none';
-  }
-
-  // Calculate the taxable benefit
-  function calculateBenefit() {
-    var fmv = parseFloat(document.getElementById('fmv').value) || 0;
-    var employeePaid = parseFloat(document.getElementById('employee-paid').value) || 0;
-    var additionalCosts = parseFloat(document.getElementById('additional-costs').value) || 0;
-
-    var taxableBenefit = fmv - employeePaid + additionalCosts;
-    
-    document.getElementById('result').innerText = "The taxable value of the shareholder benefit is: $" + taxableBenefit.toFixed(2);
-  }
-</script>
-
-       
-     
 
 	    </details>
 		
