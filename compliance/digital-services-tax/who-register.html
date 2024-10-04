@@ -145,24 +145,28 @@
            <li><a href="#h_2">How to register</a></li>
          </ul>
         <h2>Who must register</h2>
-        <p>A foreign or domestic business <strong>must apply to register</strong> by <span class="nowrap">January 31, 2025,</span> if for any one of the 2022, 2023, or 2024 calendar years, <strong>all 3</strong> of the following conditions are true:</p>
+        <p>A foreign or domestic business <strong>must apply to register</strong> by <span class="nowrap">January 31, 2025,</span> if for any one of the 2022, 2023, or 2024 calendar years, <strong>all</strong> of the following conditions are met:</p>
         <section class="chcklst">
            <ul class="checkbox-zebra gc-chckbxrdio">
             <li class="checkbox">
                <input type="checkbox" id="cond1" class="action-checkbox cb-dmm">
-               <label for="cond1">The business had Canadian digital services revenue greater than nil in the calendar year</label>
+               <label for="cond1">The business had Canadian digital services revenue <strong>greater than nil</strong> in the calendar year</label>
              </li>
             <li class="checkbox">
                <input type="checkbox" id="cond2" class="action-checkbox cb-dmm">
-               <label for="cond2">The business had, or was a member (in the calendar year or in the prior calendar year) of a consolidated group that had, total revenue of at least <span class="nowrap">€750 million</span> during a fiscal year that ended in the prior calendar year</label>
+               <label for="cond2">The business had, or was a member (in the calendar year or in the prior calendar year) of a consolidated group that had, total revenue of <strong>at least <span class="nowrap">€750 million</span></strong> during a fiscal year that ended in the prior calendar year</label>
              </li>
             <li class="checkbox">
                <input type="checkbox" id="cond3" class="action-checkbox cb-dmm">
-               <label for="cond3">The business had, or was a member (in the calendar year) of a consolidated group that had, Canadian digital services revenue greater than <span class="nowrap">CAN$10 million</span> in the calendar year</label>
+               <label for="cond3">The business had, or was a member (in the calendar year) of a consolidated group that had, Canadian digital services revenue <strong>greater than <span class="nowrap">CAN$10 million</span></strong> in the calendar year</label>
              </li>
           </ul>
          </section>
-        <div class="alert alert-info provisional" id="action-no-msg">
+        <div class="alert alert-info provisional" id="default-msg">
+           <h3 class="mrgn-tp-sm">You will need to register if your business meets all of the above</h3>
+           <p>You may not need to register.</p>
+         </div>
+        <div class="alert alert-info hidden provisional" id="action-no-msg">
            <p class="text-muted small">Based on your selections above:</p>
            <h3 class="mrgn-tp-sm">One or more of the conditions do not apply to your business</h3>
            <p>You may not need to register.</p>
@@ -330,10 +334,12 @@
 <script>
          $(".action-checkbox").change(function(){
          if ($('.action-checkbox:checked').length == $('.action-checkbox').length) {
+         $("#default-msg").addClass("hidden").removeClass("visible");
          $("#action-msg1").removeClass("hidden").addClass("visible");
          $("#action-no-msg").addClass("hidden").removeClass("visible");
          }
          if ($('.action-checkbox:checked').length !== $('.action-checkbox').length) {
+         $("#default-msg").addClass("hidden").removeClass("visible");
          $("#action-msg1").addClass("hidden").removeClass("visible");
          $("#action-no-msg").removeClass("hidden").addClass("visible");
          }
