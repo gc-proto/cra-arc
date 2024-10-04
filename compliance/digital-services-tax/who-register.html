@@ -333,7 +333,12 @@
 <script src="/etc/designs/canada/wet-boew/js/theme.min.js"></script>
 <script>
          $(".action-checkbox").change(function(){
-         if ($('.action-checkbox:checked').length == 1) {
+         if ($('.action-checkbox:checked').length !== $('.action-checkbox').length) {
+         $("#default-msg").removeClass("visible").addClass("hidden");
+         $("#action-msg1").removeClass("visible").addClass("hidden");
+         $("#action-no-msg").removeClass("hidden").addClass("visible");
+         }
+         if ($('.action-checkbox:checked').length == 0) {
          $("#default-msg").removeClass("hidden").addClass("visible");
          $("#action-msg1").removeClass("visible").addClass("hidden");
          $("#action-no-msg").removeClass("visible").addClass("hidden");
@@ -342,11 +347,6 @@
          $("#default-msg").removeClass("visible").addClass("hidden");
          $("#action-msg1").removeClass("hidden").addClass("visible");
          $("#action-no-msg").removeClass("visible").addClass("hidden");
-         }
-         if ($('.action-checkbox:checked').length !== $('.action-checkbox').length) {
-         $("#default-msg").removeClass("visible").addClass("hidden");
-         $("#action-msg1").removeClass("visible").addClass("hidden");
-         $("#action-no-msg").removeClass("hidden").addClass("visible");
          }
          })
  </script>
