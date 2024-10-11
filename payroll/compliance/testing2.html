@@ -87,53 +87,97 @@
         </ul>
     </nav>
 
-		
-   <div class="results-container">
-       <h1>Payroll Examination Review Results</h1>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Payroll Examination Review - Supporting Documents Checklist</title>
+   <style>
+       body {
+           font-family: Arial, sans-serif;
+           background-color: #f4f4f9;
+           margin: 0;
+           padding: 20px;
+       }
+       h1 {
+           text-align: center;
+       }
+       .checklist-container {
+           max-width: 600px;
+           margin: 0 auto;
+           background-color: white;
+           padding: 20px;
+           border-radius: 10px;
+           box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+       }
+       ul {
+           list-style: none;
+           padding: 0;
+       }
+       li {
+           padding: 10px;
+           margin-bottom: 10px;
+           border-radius: 5px;
+           background-color: #eaeaea;
+           display: flex;
+           align-items: center;
+       }
+       li.completed {
+           background-color: #b2fab4;
+           text-decoration: line-through;
+       }
+       label {
+           flex: 1;
+       }
+       progress {
+           width: 100%;
+           height: 20px;
+       }
+       .progress-container {
+           margin-bottom: 20px;
+       }
+   </style>
+</head>
 
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>1. Full Compliance</h2>
-           <p>If the CRA finds no issues during the payroll examination, you will receive a report confirming that your payroll records are compliant. No further action is required, and you will not owe any additional taxes or penalties.</p>
+   <div class="checklist-container">
+       <h1>Payroll Review - Documents Checklist</h1>
+       <div class="progress-container">
+           <progress id="progress" value="0" max="100"></progress>
+           <p id="progress-text">0% Complete</p>
        </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>2. Minor Discrepancies Found</h2>
-           <p>Small discrepancies may be found, such as minor errors in deductions or reporting. The CRA will ask for corrections to be made, but penalties or interest may be avoided if the errors are corrected promptly.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>3. Under-Remittance of Taxes</h2>
-           <p>If the CRA finds that you have under-remitted income taxes, CPP, or EI contributions, you will be required to pay the outstanding amounts. The CRA will provide a notice detailing the amounts owed, and interest may be applied to the overdue payments.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>4. Penalties and Interest Imposed</h2>
-           <p>In cases of significant non-compliance, such as repeated errors or late remittances, the CRA may impose penalties along with interest on any overdue taxes or contributions. The CRA will issue a formal notice of the penalties, and employers may be required to make immediate payment.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>5. Reclassification of Employees</h2>
-           <p>If the CRA determines that certain workers classified as independent contractors should have been treated as employees, you may be required to retroactively remit employment taxes (CPP, EI) for these individuals. Correcting misclassified workers can lead to significant additional taxes and penalties.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>6. Required Follow-Up Audit</h2>
-           <p>If serious issues are found or if there is a history of non-compliance, the CRA may schedule a follow-up audit. This can involve a deeper review of your payroll records and practices to ensure that all corrections have been made and compliance is maintained.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>7. Appeal Process</h2>
-           <p>If you disagree with the CRA’s findings, you have the right to appeal. You can file a Notice of Objection to dispute the results. If necessary, the dispute can be escalated to the Tax Court of Canada.</p>
-       </div>
+       <ul id="checklist">
+           <li><input type="checkbox" id="task1" onclick="updateProgress()"> <label for="task1">Payroll registers and employee earnings records</label></li>
+           <li><input type="checkbox" id="task2" onclick="updateProgress()"> <label for="task2">T4 slips and T4 summary reports</label></li>
+           <li><input type="checkbox" id="task3" onclick="updateProgress()"> <label for="task3">Remittance forms (tax, CPP, EI)</label></li>
+           <li><input type="checkbox" id="task4" onclick="updateProgress()"> <label for="task4">Employee timesheets or attendance records</label></li>
+           <li><input type="checkbox" id="task5" onclick="updateProgress()"> <label for="task5">Records of taxable benefits (e.g., company cars, housing allowances)</label></li>
+           <li><input type="checkbox" id="task6" onclick="updateProgress()"> <label for="task6">Employee classification records (contracts, employment agreements)</label></li>
+           <li><input type="checkbox" id="task7" onclick="updateProgress()"> <label for="task7">Records of Employment (ROEs)</label></li>
+           <li><input type="checkbox" id="task8" onclick="updateProgress()"> <label for="task8">Payroll journals or ledgers</label></li>
+           <li><input type="checkbox" id="task9" onclick="updateProgress()"> <label for="task9">Details of bonuses, commissions, or other variable pay</label></li>
+           <li><input type="checkbox" id="task10" onclick="updateProgress()"> <label for="task10">CPP and EI exemption records (if applicable)</label></li>
+           <li><input type="checkbox" id="task11" onclick="updateProgress()"> <label for="task11">Provincial health or workers’ compensation records</label></li>
+           <li><input type="checkbox" id="task12" onclick="updateProgress()"> <label for="task12">Copies of any corrected or amended payroll reports</label></li>
+       </ul>
    </div>
 
    <script>
-       function toggleDetails(element) {
-           const activeItem = document.querySelector('.result-item.active');
-           if (activeItem && activeItem !== element) {
-               activeItem.classList.remove('active');
-           }
-           element.classList.toggle('active');
+       function updateProgress() {
+           const checklist = document.querySelectorAll('#checklist li');
+           let completed = 0;
+
+           checklist.forEach((item) => {
+               const checkbox = item.querySelector('input[type="checkbox"]');
+               if (checkbox.checked) {
+                   item.classList.add('completed');
+                   completed++;
+               } else {
+                   item.classList.remove('completed');
+               }
+           });
+
+           const progress = (completed / checklist.length) * 100;
+           document.getElementById('progress').value = progress;
+           document.getElementById('progress-text').innerText = `${Math.round(progress)}% Complete`;
        }
    </script>
 
