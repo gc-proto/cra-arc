@@ -88,54 +88,91 @@
     </nav>
 
 		
-   <div class="results-container">
-       <h1>Payroll Examination Review Results</h1>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>1. Full Compliance</h2>
-           <p>If the CRA finds no issues during the payroll examination, you will receive a report confirming that your payroll records are compliant. No further action is required, and you will not owe any additional taxes or penalties.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>2. Minor Discrepancies Found</h2>
-           <p>Small discrepancies may be found, such as minor errors in deductions or reporting. The CRA will ask for corrections to be made, but penalties or interest may be avoided if the errors are corrected promptly.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>3. Under-Remittance of Taxes</h2>
-           <p>If the CRA finds that you have under-remitted income taxes, CPP, or EI contributions, you will be required to pay the outstanding amounts. The CRA will provide a notice detailing the amounts owed, and interest may be applied to the overdue payments.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>4. Penalties and Interest Imposed</h2>
-           <p>In cases of significant non-compliance, such as repeated errors or late remittances, the CRA may impose penalties along with interest on any overdue taxes or contributions. The CRA will issue a formal notice of the penalties, and employers may be required to make immediate payment.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>5. Reclassification of Employees</h2>
-           <p>If the CRA determines that certain workers classified as independent contractors should have been treated as employees, you may be required to retroactively remit employment taxes (CPP, EI) for these individuals. Correcting misclassified workers can lead to significant additional taxes and penalties.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>6. Required Follow-Up Audit</h2>
-           <p>If serious issues are found or if there is a history of non-compliance, the CRA may schedule a follow-up audit. This can involve a deeper review of your payroll records and practices to ensure that all corrections have been made and compliance is maintained.</p>
-       </div>
-
-       <div class="result-item" onclick="toggleDetails(this)">
-           <h2>7. Appeal Process</h2>
-           <p>If you disagree with the CRA’s findings, you have the right to appeal. You can file a Notice of Objection to dispute the results. If necessary, the dispute can be escalated to the Tax Court of Canada.</p>
-       </div>
-   </div>
-
-   <script>
+  <style>
+       body {
+           font-family: Arial, sans-serif;
+           background-color: #f4f4f9;
+           margin: 0;
+           padding: 20px;
+       }
+       h1 {
+           text-align: center;
+       }
+       .correspondence-container {
+           max-width: 600px;
+           margin: 0 auto;
+           background-color: white;
+           padding: 20px;
+           border-radius: 10px;
+           box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+       }
+       .correspondence-item {
+           margin-bottom: 15px;
+           background-color: #eaeaea;
+           border-radius: 5px;
+           padding: 10px;
+           cursor: pointer;
+       }
+       .correspondence-item h2 {
+           margin: 0;
+           font-size: 18px;
+       }
+       .correspondence-item p {
+           margin: 0;
+           display: none;
+       }
+       .correspondence-item.active p {
+           display: block;
+       }
+</style>
+</head>
+<body>
+<div class="correspondence-container">
+<h1>CRA Payroll Review Correspondence</h1>
+<h2>Before the Payroll Review</h2>
+<div class="correspondence-item" onclick="toggleDetails(this)">
+<h2>1. Initial Contact Letter</h2>
+<p>This letter notifies the employer that their payroll records have been selected for review. The letter will outline the purpose of the review, the records required, and the timeframe for the examination.</p>
+</div>
+<div class="correspondence-item" onclick="toggleDetails(this)">
+<h2>2. Request for Documents</h2>
+<p>The CRA will send a follow-up request for specific payroll records such as payroll ledgers, employee timesheets, T4 summaries, and remittance forms. This letter will typically include a deadline for submission of the documents.</p>
+</div>
+<div class="correspondence-item" onclick="toggleDetails(this)">
+<h2>3. Confirmation of Scheduled Review</h2>
+<p>The CRA may send a confirmation letter outlining the date and time of the review if an in-person examination is required. This letter will confirm the CRA auditor assigned to the case and the format of the review (onsite or virtual).</p>
+</div>
+<h2>After the Payroll Review</h2>
+<div class="correspondence-item" onclick="toggleDetails(this)">
+<h2>4. Review Findings Report</h2>
+<p>After the review, the CRA will send a detailed report outlining the findings. This report will indicate whether the employer is fully compliant or if any discrepancies were found that need to be corrected.</p>
+</div>
+<div class="correspondence-item" onclick="toggleDetails(this)">
+<h2>5. Notice of Reassessment</h2>
+<p>If under-remittances or significant errors are found, the CRA will issue a Notice of Reassessment. This document will detail the additional amounts owed, including any penalties or interest applied to overdue payments.</p>
+</div>
+<div class="correspondence-item" onclick="toggleDetails(this)">
+<h2>6. Penalties and Interest Notice</h2>
+<p>If the CRA identifies non-compliance with remittance schedules or payroll errors, you may receive a letter outlining any penalties and interest charges. This notice will provide instructions on how to make the payment and the due date.</p>
+</div>
+<div class="correspondence-item" onclick="toggleDetails(this)">
+<h2>7. Follow-Up Audit Notice</h2>
+<p>If the CRA decides that further review is necessary, you may receive a notice of a follow-up audit. This letter will outline the scope of the next audit and the records you need to prepare for the next stage of examination.</p>
+</div>
+<div class="correspondence-item" onclick="toggleDetails(this)">
+<h2>8. Appeal or Objection Letter</h2>
+<p>If you disagree with the CRA's findings, you will be sent a formal letter regarding your right to appeal. This letter will outline the process for filing a Notice of Objection or appealing the reassessment to the Tax Court of Canada.</p>
+</div>
+</div>
+<script>
        function toggleDetails(element) {
-           const activeItem = document.querySelector('.result-item.active');
+           const activeItem = document.querySelector('.correspondence-item.active');
            if (activeItem && activeItem !== element) {
                activeItem.classList.remove('active');
            }
            element.classList.toggle('active');
        }
-   </script>
+</script>
 
 
 
