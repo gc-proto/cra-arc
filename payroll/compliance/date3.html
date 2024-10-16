@@ -240,6 +240,19 @@
            document.getElementById("date_calc_opt2_result").classList.add('hidden'); // Hide result for second tab
        }
    }
+
+// Function to close modal and reset both forms
+function closeModalAndReset() {
+   // Reset both forms
+   clearForm('form_date_calc_opt1');
+   clearForm('form_date_calc_opt2');
+   // Optional: Hide modal if you are using one
+   // For example, using jQuery if you're using Bootstrap modals
+   $('#modal_date_calc').modal('hide');
+}
+// Ensure this function is called when the close button is clicked
+document.getElementById('closeButton').addEventListener('click', closeModalAndReset);
+
 </script>
       
 
