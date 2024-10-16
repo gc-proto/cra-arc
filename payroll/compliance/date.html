@@ -153,16 +153,8 @@
 	
 
 <script type="text/javascript" 
-/*
-Based on calc-date.js 
-*/
-
-// adds a date calculator modal dialog to the page, requires button to activate
-// 
-
 $(document).on('wb-ready.wb', function() {
-	// template is a shadow root and needs to be treated special
-	// @todo If we have jQuery 3.2+, we can use .contents() instead and simplify this
+	
 	var templ = $('template[data-type="date-calc"]:lang(' + wb.lang + ')')[0].content;
 	// the overlay should have an id specified; we need it
 	var modal = $(templ).children('section[id].modal-dialog');
