@@ -139,7 +139,7 @@
 								<div id="date_calc_opt2_result" class="row hidden mrgn-bttm-lg">
 									<div class="col-md-12">
 										<h4>Your result - Elapsed number of business days:</h4>
-										<p id="resultText"></p>
+										<p></p>
 									</div>
 								</div>
 								<div class="mrgn-tp-lg mrgn-bttm-md">
@@ -226,10 +226,14 @@
            if (!isWeekend(currentDate)) {
                businessDays++;
            }
-           currentDate.setDate(currentDate.getDate() + 1);
-       }
-       resultText.innerHTML = `Number of business days: ${businessDays}`;
+           currentDate.setDate(currentDate.getDate() + 1); }
+
+ // Display the result
+      document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+      document.getElementById("date_calc_opt2_result").getElementsByTagName('p')[0].innerHTML =
+          `Number of business days: ${businessDays}`;
    }
+ 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
