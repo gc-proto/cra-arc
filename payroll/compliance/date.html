@@ -112,12 +112,13 @@
 								<div id="date_calc_opt1_result" class="row mrgn-bttm-lg">
 									<div class="col-md-12">
 										<h4>Your result</h4>
-										<p></p>
+										<p id="resultTextAfter"></p>
 									</div>
 								</div>
 								<div class="mrgn-tp-lg mrgn-bttm-md">
-<button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
+<button type="button" class="btn btn-primary" onclick="calculateDateAfter()">Calculate</button>
 <button type="reset" class="btn btn-default">Clear</button>
+</div>
 </div>
 							</div>
 							</form>
@@ -144,8 +145,9 @@
 									</div>
 								</div>
 								<div class="mrgn-tp-lg mrgn-bttm-md">
-<button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
+<button type="button" class="btn btn-primary" onclick="calculateBusinessDays()">Calculate</button>
 <button type="reset" class="btn btn-default">Clear</button>
+</div>
 </div>
 							</div>
 							</form>
@@ -160,6 +162,43 @@
    function isWeekend(date) {
        const day = date.getDay();
        return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
+   }
+   // Function to add business days to a date
+   function addBusinessDays(startDate, days) {
+       let resultDate = new Date(startDate);
+       while (days > 0) {
+           resultDate.setDate(resultDate.getDate() + 1);
+           if (!isWeekend(resultDate)) {
+               days--;
+           }
+       }
+       return resultDate;
+   }
+   // Function to calculate the future/past date based on elapsed time
+   function calculateDateAfter() {
+       const startDate = new Date(document.getElementById("date_calc_from1").value);
+       const elapsed = parseInt(document.getElementById("date_calc_elapsed").value);
+       const unit = document.getElementById("date_calc_unit").value;
+       const direction = document.getElementById("date_calc_dir").value === "true";
+       const resultTextAfter = document.getElementById("resultTextAfter");
+       if (isNaN(startDate) || isNaN(elapsed)) {
+           resultTextAfter.innerHTML = "Please select a valid start date and enter elapsed time.";
+           return;
+       }
+       let newDate = new Date(startDate);
+       // Adjust the date based on the time unit selected
+       if (unit === "days") {
+           newDate.setDate(newDate.getDate() + (direction ? elapsed : -elapsed));
+       } else if (unit === "work") {
+           newDate = addBusinessDays(newDate, direction ? elapsed : -elapsed);
+       } else if (unit === "weeks") {
+           newDate.setDate(newDate.getDate() + (direction ? elapsed * 7 : -elapsed * 7));
+       } else if (unit === "months") {
+           newDate.setMonth(newDate.getMonth() + (direction ? elapsed : -elapsed));
+       } else if (unit === "years") {
+           newDate.setFullYear(newDate.getFullYear() + (direction ? elapsed : -elapsed));
+       }
+       resultTextAfter.innerHTML = `The calculated date is: ${newDate.toISOString().slice(0, 10)}`;
    }
    // Function to calculate business days between two dates
    function calculateBusinessDays() {
