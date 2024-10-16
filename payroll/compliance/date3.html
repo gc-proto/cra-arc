@@ -136,7 +136,7 @@
 <div id="date_calc_opt2_result" class="row hidden mrgn-bttm-lg">
 <div class="col-md-12">
 <h4>Your result - Elapsed number of business days:</h4>
-<p id="resultText"> </p>
+<p id=""> </p>
 </div>
 </div>
 <div class="mrgn-tp-lg mrgn-bttm-md">
@@ -226,8 +226,9 @@
            }
            currentDate.setDate(currentDate.getDate() + 1);
        }
-       resultText.innerHTML = businessDaysCount;
-       document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+
+ resultText.innerHTML = `${businessDaysCount} business days`;      
+ document.getElementById("date_calc_opt2_result").classList.remove('hidden');
    }
    // Function to clear forms and results
    function clearForm(formId) {
