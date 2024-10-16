@@ -232,30 +232,32 @@
    
  document.getElementById("date_calc_opt2_result").classList.remove('hidden');
    }
-   // Function to clear forms and results
-   function clearForm(formId) {
-       document.getElementById(formId).reset(); // Reset the form
-       if (formId === 'form_date_calc_opt1') {
-           document.getElementById("date_calc_opt1_result").classList.add('hidden'); // Hide result for first tab
-       } else if (formId === 'form_date_calc_opt2') {
-           document.getElementById("date_calc_opt2_result").classList.add('hidden'); // Hide result for second tab
-       }
-   }
 
-// Function to close modal and reset both forms
-function closeModalAndReset() {
-   // Reset both forms
+	
+// Function to reset all entered values and results
+function clearForm(formId) {
+   // Reset the form inputs
+   document.getElementById(formId).reset();
+   // Hide the result for the respective tab
+   if (formId === 'form_date_calc_opt1') {
+       document.getElementById("date_calc_opt1_result").classList.add('hidden'); // Hide result for first tab
+       document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML = ""; // Clear result text for first tab
+   } else if (formId === 'form_date_calc_opt2') {
+       document.getElementById("date_calc_opt2_result").classList.add('hidden'); // Hide result for second tab
+       document.getElementById("resultText").innerHTML = ""; // Clear result text for second tab
+   }
+}
+// Function to reset both forms
+function resetModalForms() {
    clearForm('form_date_calc_opt1');
    clearForm('form_date_calc_opt2');
-   // Optional: Hide modal if you are using one
-   // For example, using jQuery if you're using Bootstrap modals
-   $('#modal_date_calc').modal('hide');
 }
-// Ensure this function is called when the close button is clicked
-document.getElementById('closeButton').addEventListener('click', closeModalAndReset);
-
+// Bind the Bootstrap modal's 'hidden' event to reset forms when the modal is closed
+$('#modal_date_calc').on('hidden.bs.modal', function () {
+   resetModalForms();
+});
 </script>
-      
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
