@@ -205,42 +205,45 @@
   }
 
 </script>
-
+		 
 <script>
-   // Function to check if a date is a weekend
-   function isWeekend(date) {
-       const day = date.getDay();
-       return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
-   }
-   // Function to calculate business days between two dates
-   function calculateBusinessDays() {
-       const startDate = new Date(document.getElementById("date_calc_from2").value);
-       const endDate = new Date(document.getElementById("date_calc_to2").value);
-       const resultText = document.getElementById("resultText");
-       if (isNaN(startDate) || isNaN(endDate)) {
-           resultText.innerHTML = "Please select valid start and end dates.";
-           return;
-       }
-       if (startDate > endDate) {
-           resultText.innerHTML = "End date must be after the start date.";
-           return;
-       }
-       let businessDays = 0;
-       let currentDate = new Date(startDate);
-       while (currentDate <= endDate) {
-           if (!isWeekend(currentDate)) {
-               businessDays++;
-           }
-           currentDate.setDate(currentDate.getDate() + 1); }
-
- // Display the result
+  // Function to check if a date is a weekend
+  function isWeekend(date) {
+      const day = date.getDay();
+      return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
+  }
+  // Function to calculate business days between two dates
+  function calculateBusinessDays() {
+      const startDate = new Date(document.getElementById("date_calc_from2").value);
+      const endDate = new Date(document.getElementById("date_calc_to2").value);
+      const resultText = document.getElementById("resultText");
+      // Check for valid date inputs
+      if (isNaN(startDate) || isNaN(endDate)) {
+          resultText.innerHTML = "Please select valid start and end dates.";
+          document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+          return;
+      }
+      // Check if start date is greater than end date
+      if (startDate > endDate) {
+          resultText.innerHTML = "End date must be after the start date.";
+          document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+          return;
+      }
+      let businessDays = 0;
+      let currentDate = new Date(startDate);
+      // Count business days between the two dates
+      while (currentDate <= endDate) {
+          if (!isWeekend(currentDate)) {
+              businessDays++;
+          }
+          currentDate.setDate(currentDate.getDate() + 1);
+      }
+      // Display the result
       document.getElementById("date_calc_opt2_result").classList.remove('hidden');
-      document.getElementById("date_calc_opt2_result").getElementsByTagName('p')[0].innerHTML =
-          `${businessDays} days`;
-   
-   }
- 
+      resultText.innerHTML = `${businessDays} business days`;
+  }
 </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
