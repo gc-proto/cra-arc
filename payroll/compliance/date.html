@@ -9,7 +9,7 @@
       <head>
          <meta charset="utf-8">
          <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-         <title>1 Date calculator</title>
+         <title>2 Date calculator</title>
          <meta content="width=device-width,initial-scale=1" name="viewport">
          <meta name="robots" content="noindex, follow">
        <!-- Meta data-->
@@ -64,22 +64,11 @@
 <h1 property="name" id="wb-cont" class="gc-thickline">Date calculator</h1>
 
 
-<a href="#" data-toggle="modal" data-target="#modal_date_calc"><i class="fa fa-calculator"></i> Date calculator</a>
-
-
-
-
-
-
  <a href="#modal_date_calc" aria-controls="modal_date_calc" data-num="30" role="button" class="date_calc btn btn-primary wb-lbx">
 <i class="fa fa-calculator"></i> Date calculator</a>
 
- <a href="#modal_date_calc" aria-controls="modal_date_calc" data-num="90" role="button" class="date_calc wb-lbx">
-<i class="fa fa-calculator"></i> Date calculator</a>
 
-		 
-<div id="modal_date_calc" class="modal fade" tabindex="-1" role="dialog">
-<section class="mfp-hide modal-dialog modal-content overlay-def no-print" aria-live="assertive" aria-modal="true">
+<section id="modal_date_calc" class="mfp-hide modal-dialog modal-content overlay-def no-print" aria-live="assertive" aria-modal="true">
 			<header class="modal-header">
 				<h2 class="modal-title">Date calculator</h1>
 			</header>
@@ -163,101 +152,97 @@
 				</div>
 			</div>
 		</section>
-</div>
+
 <script>
- // Function to check if a date is a weekend
- function isWeekend(date) {
-   const day = date.getDay();
-   return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
- }
- // Function to add time (days, business days, weeks, months, or years) to a date
- function calculateDate() {
-   const startDate = new Date(document.getElementById("date_calc_from1").value);
-   const elapsed = parseInt(document.getElementById("date_calc_elapsed").value);
-   const unit = document.getElementById("date_calc_unit").value;
-   const direction = document.getElementById("date_calc_dir").value === "true"; // true = future, false = past
-   let resultDate = new Date(startDate); // Start from this date
-   if (isNaN(startDate) || isNaN(elapsed)) {
-     alert("Please enter a valid start date and elapsed time.");
-     return;
-   }
-   // Adding time based on the selected unit
-   if (unit === "days") {
-     resultDate = addDays(resultDate, elapsed, direction, false);
-   } else if (unit === "work") {
-     resultDate = addDays(resultDate, elapsed, direction, true);
-   } else if (unit === "weeks") {
-     resultDate.setDate(resultDate.getDate() + (direction ? elapsed * 7 : -elapsed * 7));
-   } else if (unit === "months") {
-     resultDate.setMonth(resultDate.getMonth() + (direction ? elapsed : -elapsed));
-   } else if (unit === "years") {
-     resultDate.setFullYear(resultDate.getFullYear() + (direction ? elapsed : -elapsed));
-   }
-   // Display the result in the format: Sunday, October 14, 2024
-   document.getElementById("date_calc_opt1_result").classList.remove('hidden');
-   document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML =
-     `${formatDate(resultDate)}`;
- }
- // Helper function to add or subtract days, with an option for business days
- function addDays(date, days, forward = true, businessDays = false) {
-   let direction = forward ? 1 : -1;
-   while (days > 0) {
-     date.setDate(date.getDate() + direction);
-     if (!businessDays || !isWeekend(date)) {
-       days--;
-     }
-   }
-   return date;
- }
- // Helper function to format date as: Sunday, October 14, 2024
- function formatDate(date) {
-   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-   return date.toLocaleDateString(undefined, options);
- }
- // Function to calculate business days between two dates
- function calculateBusinessDays() {
-   const startDate = new Date(document.getElementById("date_calc_from2").value);
-   const endDate = new Date(document.getElementById("date_calc_to2").value);
-   const resultText = document.getElementById("resultText");
-   // Check for valid date inputs
-   if (isNaN(startDate) || isNaN(endDate)) {
-     resultText.innerHTML = "Please select valid start and end dates.";
-     document.getElementById("date_calc_opt2_result").classList.remove('hidden');
-     return;
-   }
-   // Check if start date is greater than end date
-   if (startDate > endDate) {
-     resultText.innerHTML = "End date must be after the start date.";
-     document.getElementById("date_calc_opt2_result").classList.remove('hidden');
-     return;
-   }
-   let businessDays = 0;
-   let currentDate = new Date(startDate);
-   // Count business days between the two dates
-   while (currentDate <= endDate) {
-     if (!isWeekend(currentDate)) {
-       businessDays++;
-     }
-     currentDate.setDate(currentDate.getDate() + 1);
-   }
-   // Display the result
-   document.getElementById("date_calc_opt2_result").classList.remove('hidden');
-   resultText.innerHTML = `${businessDays} business days`;
- }
- // Function to reset all inputs when the modal is closed
- $(document).on('hide.bs.modal', '#modal_date_calc', function () {
-   // Clear all input fields within the modal
-   $('#modal_date_calc').find('input[type="date"], input[type="number"], select').val('');
-   // Hide any result sections
-   $('#date_calc_opt1_result').addClass('hidden');
-   $('#date_calc_opt2_result').addClass('hidden');
-   // Clear result text
-   $('#date_calc_opt1_result p').text('');
-   $('#resultText').text('');
- });
+  // Function to check if a date is a weekend
+  function isWeekend(date) {
+      const day = date.getDay();
+      return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
+  }
+  // Function to add time (days, business days, weeks, months, or years) to a date
+  function calculateDate() {
+      const startDate = new Date(document.getElementById("date_calc_from1").value);
+      const elapsed = parseInt(document.getElementById("date_calc_elapsed").value);
+      const unit = document.getElementById("date_calc_unit").value;
+      const direction = document.getElementById("date_calc_dir").value === "true"; // true = future, false = past
+      let resultDate = new Date(startDate); // Start from this date
+      if (isNaN(startDate) || isNaN(elapsed)) {
+          alert("Please enter a valid start date and elapsed time.");
+          return;
+      }
+      // Adding time based on the selected unit
+      if (unit === "days") {
+          resultDate = addDays(resultDate, elapsed, direction, false);
+      } else if (unit === "work") {
+          resultDate = addDays(resultDate, elapsed, direction, true);
+      } else if (unit === "weeks") {
+          resultDate.setDate(resultDate.getDate() + (direction ? elapsed * 7 : -elapsed * 7));
+      } else if (unit === "months") {
+          resultDate.setMonth(resultDate.getMonth() + (direction ? elapsed : -elapsed));
+      } else if (unit === "years") {
+          resultDate.setFullYear(resultDate.getFullYear() + (direction ? elapsed : -elapsed));
+      }
+     // Display the result in the format: Sunday, October 14, 2024
+      document.getElementById("date_calc_opt1_result").classList.remove('hidden');
+      document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML =
+          `${formatDate(resultDate)}`;
+  }
+  // Helper function to add or subtract days, with an option for business days
+  function addDays(date, days, forward = true, businessDays = false) {
+      let direction = forward ? 1 : -1;
+      while (days > 0) {
+          date.setDate(date.getDate() + direction);
+          if (!businessDays || !isWeekend(date)) {
+              days--;
+          }
+      }
+      return date;
+  }
+  // Helper function to format date as: Sunday, October 14, 2024
+  function formatDate(date) {
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString(undefined, options);
+  }
+
 </script>
-
-
+		 
+<script>
+  // Function to check if a date is a weekend
+  function isWeekend(date) {
+      const day = date.getDay();
+      return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
+  }
+  // Function to calculate business days between two dates
+  function calculateBusinessDays() {
+      const startDate = new Date(document.getElementById("date_calc_from2").value);
+      const endDate = new Date(document.getElementById("date_calc_to2").value);
+      const resultText = document.getElementById("resultText");
+      // Check for valid date inputs
+      if (isNaN(startDate) || isNaN(endDate)) {
+          resultText.innerHTML = "Please select valid start and end dates.";
+          document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+          return;
+      }
+      // Check if start date is greater than end date
+      if (startDate > endDate) {
+          resultText.innerHTML = "End date must be after the start date.";
+          document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+          return;
+      }
+      let businessDays = 0;
+      let currentDate = new Date(startDate);
+      // Count business days between the two dates
+      while (currentDate <= endDate) {
+          if (!isWeekend(currentDate)) {
+              businessDays++;
+          }
+          currentDate.setDate(currentDate.getDate() + 1);
+      }
+      // Display the result
+      document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+      resultText.innerHTML = `${businessDays} business days`;
+  }
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
