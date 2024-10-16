@@ -63,320 +63,81 @@
 
 <h1 property="name" id="wb-cont" class="gc-thickline">Date calculator</h1>
 
- <a href="#modal_date_calc" aria-controls="modal_date_calc" data-num="90" role="button" class="date_calc btn btn-default wb-lbx"><i class="fa fa-calculator"></i> Date calculator</a>
+ <a href="#modal_date_calc" aria-controls="modal_date_calc" data-num="90" role="button" class="date_calc btn btn-default wb-lbx">
+<i class="fa fa-calculator"></i> Date calculator
+</a>
 
+<section id="modal_date_calc" class="mfp-hide modal-dialog modal-content overlay-def no-print" aria-live="assertive" aria-modal="true">
+<header class="modal-header">
+<h2 class="modal-title">Date calculator</h2>
+</header>
+<div class="modal-body">
+<div class="wb-tabs ignore-session">
+<div class="tabpanels">
+<details id="date_calc_opt2" open="open">
+<summary>Elapsed time between two dates</summary>
+<form id="businessDaysForm">
+<div class="container-fluid">
+<div class="form-group row">
+<div class="col-md-6">
+<label for="date_calc_from2">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+<input class="form-control" type="date" id="date_calc_from2" name="date_calc_from" min="1900-01-01" max="2050-01-01" required>
+</div>
+<div class="col-md-6">
+<label for="date_calc_to2">End date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+<input class="form-control" type="date" id="date_calc_to2" name="date_calc_to" min="1900-01-01" max="2050-01-01" required>
+</div>
+</div>
+<div id="date_calc_opt2_result" class="row mrgn-bttm-lg">
+<div class="col-md-12">
+<h4>Result</h4>
+<p id="resultText"></p>
+</div>
+</div>
+<div class="mrgn-tp-lg mrgn-bttm-md">
+<button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
+<button type="reset" class="btn btn-default">Clear</button>
+</div>
+</div>
+</form>
+</details>
+</div>
+</div>
+</div>
+</section>
+<script>
+   // Function to check if a date is a weekend
+   function isWeekend(date) {
+       const day = date.getDay();
+       return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
+   }
+   // Function to calculate business days between two dates
+   function calculateBusinessDays() {
+       const startDate = new Date(document.getElementById("date_calc_from2").value);
+       const endDate = new Date(document.getElementById("date_calc_to2").value);
+       const resultText = document.getElementById("resultText");
+       if (isNaN(startDate) || isNaN(endDate)) {
+           resultText.innerHTML = "Please select valid start and end dates.";
+           return;
+       }
+       if (startDate > endDate) {
+           resultText.innerHTML = "End date must be after the start date.";
+           return;
+       }
+       let businessDays = 0;
+       let currentDate = new Date(startDate);
+       while (currentDate <= endDate) {
+           if (!isWeekend(currentDate)) {
+               businessDays++;
+           }
+           currentDate.setDate(currentDate.getDate() + 1);
+       }
+       resultText.innerHTML = `Number of business days: ${businessDays}`;
+   }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-		<section id="modal_date_calc" class="mfp-hide modal-dialog modal-content overlay-def no-print" aria-live="assertive" aria-modal="true">
-			<header class="modal-header">
-				<h2 class="modal-title">Date calculator</h1>
-			</header>
-			<div class="modal-body">
-				<div class="wb-tabs ignore-session">
-					<div class="tabpanels">
-						<details id="date_calc_opt1" open="open">
-							<summary>Date after amount of time</summary>
-							<form>
-							<div class="container-fluid">
-								<div class="form-group row">
-									<div class="col-md-6">
-										<label for="date_calc_from1">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-										<input class="form-control" type="date" id="date_calc_from1" name="date_calc_from" min="1900-01-01" max="2050-01-01" required/>
-									</div>
-								</div>
-								<div class="form-group row">
-									<div class="col-md-12">
-										<label for="date_calc_elapsed">Elapsed time</label>
-										<div class="input-group">
-											<input type="number" id="date_calc_elapsed" class="form-control num" min="1" max="3653" maxlength="4" required>
-											<span class="input-group-btn">
-												<select id="date_calc_unit" class="btn btn-default brdr-rds-0" title="Temporal unit" required>
-													<option value="days" selected>days</option>
-													<option value="work">business days</option>
-													<option value="weeks">weeks</option>
-													<option value="months">months</option>
-													<option value="years">years</option>
-												</select>
-											</span>
-											<span class="input-group-btn">
-												<select id="date_calc_dir" class="btn btn-default" title="Temporal direction" required>
-													<option value="true" selected>in the future</option>
-													<option value="false">in the past</option>
-												</select>
-											</span>
-										</div>
-									</div>
-								</div>
-								<div id="date_calc_opt1_result" class="row hidden">
-									<div class="col-md-12">
-										<h4>Result</h4>
-										<p></p>
-									</div>
-								</div>
-								<div class="mrgn-tp-lg mrgn-bttm-md">
-									<button type="submit" class="btn btn-primary mrgn-rght-sm">Calculate</button>
-									<button type="reset" class="btn btn-default">Clear</button>
-								</div>
-							</div>
-							</form>
-						</details>
-						<details id="date_calc_opt2">
-							<summary>Elapsed time between two dates</summary>
-							<form>
-							<div class="container-fluid">
-								<div class="form-group row">
-									<div class="col-md-6">
-										<label for="date_calc_from2">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-										<input class="form-control" type="date" id="date_calc_from2" name="date_calc_from" min="1900-01-01" max="2050-01-01" required>
-									</div>
-									<div class="col-md-6">
-										<label for="date_calc_to2">End date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-										<input class="form-control" type="date" id="date_calc_to2" name="date_calc_to" min="1900-01-01" max="2050-01-01" required>
-									</div>
-								</div>
-								<div id="date_calc_opt2_result" class="row mrgn-bttm-lg hidden">
-									<div class="col-md-12">
-										<h4>Time elapsed</h4>
-										<p></p>
-									</div>
-								</div>
-								<div class="mrgn-tp-lg mrgn-bttm-md">
-										<button type="submit" class="btn btn-primary mrgn-rght-sm">Calculate</button>
-										<button type="reset" class="btn btn-default">Clear</button>
-								</div>
-							</div>
-							</form>
-						</details>
-					</div>
-				</div>
-			</div>
-		</section>
-
-
-<script type="text/javascript" 
-$(document).on('wb-ready.wb', function() {
-	
-	var templ = $('template[data-type="date-calc"]:lang(' + wb.lang + ')')[0].content;
-	// the overlay should have an id specified; we need it
-	var modal = $(templ).children('section[id].modal-dialog');
-
-	// take the modal and toss it in to the regular DOM
-	$('main').append(modal);
-	$(wb.allSelectors, modal).trigger('timerpoke.wb');
-
-	console.info('init: date-calc')
-
-	// function for comparing dates
-	// this function modifies the from (and possibly to) date object(s)
-	function dateDiff(from, to, method) {
-		var ret = -1;
-
-		if (from > to) {
-			[from, to] = [to, from];
-		}
-
-		while (from <= to) {
-			ret++;
-			from['set' + method](from['get' + method]() + 1);
-		}
-
-		from['set' + method](from['get' + method]() - 1);
-
-		return ret;
-	}
-
-	// reset the inputs
-	modal.on('reset', function(e) {
-		$('input,select', e.target).trigger('change');
-		$('#date_calc_opt1_result,#date_calc_opt2_result').toggleClass('show hidden').hide();
-		$('#date_calc_opt1_result p,#date_calc_opt2_result p').empty();
-	});
-
-	// track loading of the Moment library
-	var momentLoaded = false;
-
-	modal.on('submit', function(e) {
-		e.preventDefault();
-
-		var type = $('a[tabindex=0]', modal).attr("aria-controls");
-		var result = $('#' + type + "_result");
-		var format_opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
-		if (type == 'date_calc_opt1') {
-			var from = new Date($('input[name="date_calc_from"]', e.target).val()+'T00:00:00');
-			var to = from;
-			var elapsed = parseInt($('#date_calc_elapsed', e.target).val());
-
-			if (!isNaN(from) && !isNaN(elapsed)) {
-				var unit = $('#date_calc_unit', e.target).val();
-				var dir = $('#date_calc_dir', e.target).val();
-				var queue; // deferred queue; req'd for moment.js dynamic loading
-
-				if (dir == 'false') {
-					elapsed *= -1; // flip it negative
-				}
-
-				switch (unit) {
-					case 'days':
-						to.setDate(from.getDate() + elapsed);
-						break;
-					case 'weeks':
-						to.setDate(from.getDate() + (elapsed * 7));
-						break;
-					case 'months':
-						to.setMonth(from.getMonth() + elapsed);
-						break;
-					case 'years':
-						to.setFullYear(from.getFullYear() + elapsed);
-						break;
-					case 'work': {
-						if (!momentLoaded) {
-							queue = $.when($.ajax({'type':"GET",'cache':true,'dataType':"script",'url':'/english/r5011204/include/jQuery/jquery.moment.js'})).then(function() {
-								momentLoaded = true;
-								console.log("init-text moment.js");
-							});
-						}
-
-						$.when(queue).then(function() {
-							to = moment(from.valueOf()).businessAdd(elapsed).toDate();
-						});
-					}
-				}
-
-				$.when(queue).then(function() {
-					$('p', result).html(to.toLocaleDateString(wb.lang == 'fr' ? 'fr-CA' : 'en-CA',  format_opts));
-
-					if (unit == "work") $('p', result).append(wb.lang == 'fr' ? '<br><div class="alert alert-info"><p>Veuillez noter que le calcul des jours ouvrables ne tient compte que des jours fÃ©riÃ©s fÃ©dÃ©raux.</p></div>' : '<br><div class="alert alert-info"><p>Please note calculation of business days only takes into account federal holidays.</p></div>');
-				});
-			}
-		} else if (type == 'date_calc_opt2') {
-			var from = new Date($('input[name="date_calc_from"]', e.target).val()+'T00:00:00');
-			var to = new Date($('input[name="date_calc_to"]', e.target).val()+'T00:00:00');
-
-			if (!isNaN(from) && !isNaN(to)) {
-				var diff = {
-					total: {
-						days: dateDiff(new Date(from.getTime()), new Date(to.getTime()), 'Date'), // needs to work for leap years
-						weeks: Math.abs(~~((to - from) / 604800000)) // i think this is leap year safe?
-					},
-					years: dateDiff(from, to, 'FullYear'),
-					months: dateDiff(from, to, 'Month'),
-					days: dateDiff(from, to, 'Date'),
-				};
-
-				if (wb.lang == 'fr') {
-					$('p', result).html(diff.total.days + ' jours (' + diff.total.weeks + ' semaines), ou ' + (diff.years ? diff.years + ' annÃ©es, ' : '') + (diff.months ? diff.months + ' mois, ' : (diff.years ? '0 mois, ' : '')) + (diff.days ? diff.days + ' journÃ©es' : '0 journÃ©es'));
-				}
-				else {
-					$('p', result).html(diff.total.days + ' days (' + diff.total.weeks + ' weeks), or ' + (diff.years ? diff.years + ' years, ' : '') + (diff.months ? diff.months + ' months, ' : (diff.years ? '0 mois, ' : '')) + (diff.days ? diff.days + ' days' : '0 days'));
-				}
-			}
-		}
-
-		result.toggleClass('show hidden').show().slideDown('fast');
-	});
-}); </script>
-
-<script type="text/javascript" 
-/ turns them in to links that open the date-calc.js calculator (required, obviously)
-var linky_links;
-$(function() {
-	var numbers_map = {
-		'two':2,'deux':2,'three':3,'trois':3,'four':4,'quatre':4,'five':5,'cinq':5,'six':6,'seven':7,'sept':7,'eight':8,'huit':8,'nine':9,'neuf':9,'ten':10,'dix':10
-	};
-
-	var pattern = new RegExp('((?:[\\(«]\\s*)?(?:(next|past)\\s+)?(\\d+|' + Object.keys(numbers_map).join('|') + ')\\s*[\\)»]?\\s+(?:(prochains|derniers)\\s+)?(working day|business day|jours ouvrable|day|calendar day|week|month|year|jour|journée|semaine|mois|année|ans)s?)\\b', 'i');
-
-	function linky_link(elem) {
-		// check for pathId; is only set when in edit mode
-		if (typeof pathId !== 'undefined') return;
-
-		// find matching text and make them calc links
-		elem.getTextNodes().each(function() {
-			if (!$(this).closest('a,h1,h2,h3,.nodatecal,.badge-date').length && pattern.test(this.nodeValue)) {
-				$(this).replaceWith(this.nodeValue.replace(new RegExp(pattern, 'ig'), '<a href="#" class="date_calc" data-num="$3">$1</a>') );
-			}// looks for text nodes that could be referring to relative dates
-/
-		});
-	}
-	linky_links = linky_link;
-
-	console.info('init: date-calc-links');
-
-	// @XXX a.datecalc is for legacy links; can be removed eventually
-	$('body').on('click', 'a.date_calc,a.datecalc', function(e) {
-		var elem = $(e.target);
-
-		e.preventDefault();
-		e.stopImmediatePropagation();
-
-		$(document).trigger('open.wb-lbx', [[{'src':'#modal_date_calc', 'type':'inline'}]]);
-
-		setTimeout(function() {
-			// reset the form
-			$('form', '#modal_date_calc').trigger('reset');
-			$('div.wb-tabs', '#modal_date_calc').trigger({'type':'wb-select.wb-tabs','id':'date_calc_opt1'});
-
-			// get the number
-			var num = elem.attr('data-num') || elem.text().replace(/\D/g, '');
-			// ... in case it's text, like "two" or "trois"
-			if (numbers_map[num.toLowerCase()]) num = numbers_map[num.toLowerCase()];
-
-			// set the parsed number in to the input field
-			$("#date_calc_elapsed", "#modal_date_calc").val(num);
-
-			// parse references to days prior/past
-			if (/(past|derniers)/i.test(elem.text())) {
-				$("#date_calc_dir", "#modal_date_calc").val('false');
-			}
-
-			// parse unit of time
-			var unit = /(working day|business day|jours ouvrable|day|week|month|year|jour|semaine|mois|année)/i.exec(elem.text());
-			switch (unit && unit[1]) {
-				case 'day': case 'jour': case 'calendar day':
-					$("#date_calc_unit", "#modal_date_calc").val('days');
-					break;
-				case 'week': case 'semaine':
-					$("#date_calc_unit", "#modal_date_calc").val('weeks');
-					break;
-				case 'month': case 'mois':
-					$("#date_calc_unit", "#modal_date_calc").val('months');
-					break;
-				case 'year': case 'année':
-					$("#date_calc_unit", "#modal_date_calc").val('years');
-					break;
-				case 'working day': case 'business day': case 'jours ouvrable':
-					$("#date_calc_unit", "#modal_date_calc").val('work');
-					break;
-			}
-		}, 200);
-	});
-
-	// find any text in the body to make in to links
-	linky_link($('body>main'));
-
-	// watch for any injected content to be abbr'd
-	var the_ring = {'subtree': true, 'childList': true, 'characterData': true, 'attributes': false};
-	var eye_of_sauron = new MutationObserver(function(records, observer) {
-		// if in edit mode, skip out now to save time
-		if (typeof pathId !== "undefined") return;
-
-		// disconnect the observer so we don't cause a mutation event loop when we alter DOM
-		observer.disconnect();
-
-		records.forEach((mu) => {
-			if (mu.type == 'childList') {
-				mu.addedNodes.forEach((elem) => {
-					linky_link($(elem));
-				});
-			}
-		});
-
-		// DOM tweaks done; re-establish the observer
-		observer.observe($('body').get(0), the_ring);
-	});
-
-	eye_of_sauron.observe($('body').get(0), the_ring);
-});</script>
 
  <div id="def-preFooter"></div>
             <!-- Write closure template -->
