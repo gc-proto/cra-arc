@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 9]>
+<html class="no-js lt-ie9" lang="en" dir="ltr">
+   <![endif]-->
+   <!--[if gt IE 8]><!-->
+   <html class="no-js" lang="en" dir="ltr">
+      <!--<![endif]-->
+      <head>
+         <meta charset="utf-8">
+         <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+         <title>Date calculator</title>
+         <meta content="width=device-width,initial-scale=1" name="viewport">
+         <meta name="robots" content="noindex, follow">
+       <!-- Meta data-->
+                 <!-- Load closure template scripts --> 
+ <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
+         <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
+         <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+         <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+		 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
+         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"> 
+	      <!-- Write closure template -->
+         <script type="text/javascript">
+            document.write(wet.builder.refTop({
+            }));
+         </script>
+      </head>
+      <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+         <div id="def-top">
+         </div>
+         <!-- Write closure template -->
+         <script type="text/javascript">
+            var defTop = document.getElementById("def-top");
+            defTop.outerHTML = wet.builder.top({
+              lngLinks: [{
+                lang: "fr",
+                href: "#",
+                text: "Français"
+              }],
+              breadcrumbs: [{
+                title: "Canada.ca",
+                href: "https://www.canada.ca/en.html"
+              },{
+                title: "Taxes",
+                href: "https://www.canada.ca/en/services/taxes.html"
+              },{
+                title: "Payroll",
+                href: "https://test.canada.ca/cra-arc/payroll/index.html"
+              },
+{
+                title: "Payroll compliance and enforcement",
+                href: "https://test.canada.ca/cra-arc/payroll/compliance/index.html"
+              }
+              ],
+              search: true,
+              siteMenu: true,
+              showPreContent: true
+            });
+         </script>
+         <main role="main" property="mainContentOfPage" class="container">
+
+
+<h1 property="name" id="wb-cont" class="gc-thickline">Date calculator</h1>
+
+ <a href="#modal_date_calc" aria-controls="modal_date_calc" data-num="90" role="button" class="date_calc btn btn-default wb-lbx">
+<i class="fa fa-calculator"></i> Date calculator
+</a>
+
+
+
+<section id="modal_date_calc" class="mfp-hide modal-dialog modal-content overlay-def no-print" aria-live="assertive" aria-modal="true">
+			<header class="modal-header">
+				<h2 class="modal-title">Date calculator</h1>
+			</header>
+			<div class="modal-body">
+				<div class="wb-tabs ignore-session">
+					<div class="tabpanels">
+						<details id="date_calc_opt1" open="open">
+							<summary>Date after amount of time</summary>
+							<form>
+							<div class="container-fluid">
+								<div class="form-group row">
+									<div class="col-md-6">
+										<label for="date_calc_from1">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+										<input class="form-control" type="date" id="date_calc_from1" name="date_calc_from" min="1900-01-01" max="2050-01-01" required/>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-12">
+										<label for="date_calc_elapsed">Elapsed time</label>
+										<div class="input-group">
+											<input type="number" id="date_calc_elapsed" class="form-control num" min="1" max="3653" maxlength="4" required>
+											<span class="input-group-btn">
+												<select id="date_calc_unit" class="btn btn-default brdr-rds-0" title="Temporal unit" required>
+													<option value="days" selected>days</option>
+													<option value="work">business days</option>
+													<option value="weeks">weeks</option>
+													<option value="months">months</option>
+													<option value="years">years</option>
+												</select>
+											</span>
+											<span class="input-group-btn">
+												<select id="date_calc_dir" class="btn btn-default" title="Temporal direction" required>
+													<option value="true" selected>in the future</option>
+													<option value="false">in the past</option>
+												</select>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div id="date_calc_opt1_result" class="row hidden">
+									<div class="col-md-12">
+										<h4>Result</h4>
+										<p></p>
+									</div>
+								</div>
+								<div class="mrgn-tp-lg mrgn-bttm-md">
+<button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
+<button type="reset" class="btn btn-default">Clear</button>
+</div>
+							</div>
+							</form>
+						</details>
+						<details id="date_calc_opt2">
+							<summary>Elapsed time between two dates</summary>
+							<form>
+							<div class="container-fluid">
+								<div class="form-group row">
+									<div class="col-md-6">
+										<label for="date_calc_from2">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+										<input class="form-control" type="date" id="date_calc_from2" name="date_calc_from" min="1900-01-01" max="2050-01-01" required>
+									</div>
+									<div class="col-md-6">
+										<label for="date_calc_to2">End date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+										<input class="form-control" type="date" id="date_calc_to2" name="date_calc_to" min="1900-01-01" max="2050-01-01" required>
+									</div>
+								</div>
+								<div id="date_calc_opt2_result" class="row mrgn-bttm-lg hidden">
+									<div class="col-md-12">
+										<h4>Time elapsed</h4>
+										<p></p>
+									</div>
+								</div>
+								<div class="mrgn-tp-lg mrgn-bttm-md">
+<button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
+<button type="reset" class="btn btn-default">Clear</button>
+</div>
+							</div>
+							</form>
+						</details>
+					</div>
+				</div>
+			</div>
+		</section>
+
+<script>
+   // Function to check if a date is a weekend
+   function isWeekend(date) {
+       const day = date.getDay();
+       return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
+   }
+   // Function to calculate business days between two dates
+   function calculateBusinessDays() {
+       const startDate = new Date(document.getElementById("date_calc_from2").value);
+       const endDate = new Date(document.getElementById("date_calc_to2").value);
+       const resultText = document.getElementById("resultText");
+       if (isNaN(startDate) || isNaN(endDate)) {
+           resultText.innerHTML = "Please select valid start and end dates.";
+           return;
+       }
+       if (startDate > endDate) {
+           resultText.innerHTML = "End date must be after the start date.";
+           return;
+       }
+       let businessDays = 0;
+       let currentDate = new Date(startDate);
+       while (currentDate <= endDate) {
+           if (!isWeekend(currentDate)) {
+               businessDays++;
+           }
+           currentDate.setDate(currentDate.getDate() + 1);
+       }
+       resultText.innerHTML = `Number of business days: ${businessDays}`;
+   }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+ <div id="def-preFooter"></div>
+            <!-- Write closure template -->
+            <script type="text/javascript">
+               var defPreFooter = document.getElementById("def-preFooter");
+               defPreFooter.outerHTML = wet.builder.preFooter({
+               dateModified: "2020-03-13",
+               showPostContent: true,
+               showFeedback: true,
+               showShare: true
+               });
+            </script>
+         </main>
+         <div id="def-footer">
+         </div>
+         <!-- Write closure template -->
+         <script type="text/javascript">
+            var defFooter = document.getElementById("def-footer");
+            defFooter.outerHTML = wet.builder.footer({
+            showFooter: true,
+            showFeatures: true
+            });
+         </script>
+         <!-- Write closure template -->
+         <script type="text/javascript">
+            document.write(wet.builder.refFooter({
+            }));
+         </script>
+         <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
+ <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
+		     </body>
+   </html>
