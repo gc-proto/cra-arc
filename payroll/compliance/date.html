@@ -9,7 +9,7 @@
       <head>
          <meta charset="utf-8">
          <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-         <title>Date calculator</title>
+         <title>1 Date calculator</title>
          <meta content="width=device-width,initial-scale=1" name="viewport">
          <meta name="robots" content="noindex, follow">
        <!-- Meta data-->
@@ -63,13 +63,13 @@
 
 <h1 property="name" id="wb-cont" class="gc-thickline">Date calculator</h1>
 
- <a href="#modal_date_calc" aria-controls="modal_date_calc" role="button" class="date_calc btn btn-default wb-lbx">
+ <a href="#modal_date_calc" aria-controls="modal_date_calc" data-num="90" role="button" class="date_calc btn btn-default wb-lbx">
 <i class="fa fa-calculator"></i> Date calculator
 </a>
 
 
 
-<section id="modal_date_calc" class=" modal-dialog modal-content overlay-def no-print" aria-live="assertive" aria-modal="true">
+<section id="modal_date_calc" class="mfp-hide modal-dialog modal-content overlay-def no-print" aria-live="assertive" aria-modal="true">
 			<header class="modal-header">
 				<h2 class="modal-title">Date calculator</h1>
 			</header>
@@ -109,16 +109,15 @@
 										</div>
 									</div>
 								</div>
-								<div id="date_calc_opt1_result" class="row mrgn-bttm-lg">
+								<div id="date_calc_opt1_result" class="row hidden">
 									<div class="col-md-12">
-										<h4>Your result</h4>
-										<p id="resultTextAfter"></p>
+										<h4>Result</h4>
+										<p></p>
 									</div>
 								</div>
 								<div class="mrgn-tp-lg mrgn-bttm-md">
-<button type="button" class="btn btn-primary" onclick="calculateDateAfter()">Calculate</button>
+<button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
 <button type="reset" class="btn btn-default">Clear</button>
-</div>
 </div>
 							</div>
 							</form>
@@ -137,17 +136,15 @@
 										<input class="form-control" type="date" id="date_calc_to2" name="date_calc_to" min="1900-01-01" max="2050-01-01" required>
 									</div>
 								</div>
-
 								<div id="date_calc_opt2_result" class="row mrgn-bttm-lg">
 									<div class="col-md-12">
-										<h4>Your result</h4>
+										<h4>Result</h4>
 										<p id="resultText"></p>
 									</div>
 								</div>
 								<div class="mrgn-tp-lg mrgn-bttm-md">
-<button type="button" class="btn btn-primary" onclick="calculateBusinessDays()">Calculate</button>
+<button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
 <button type="reset" class="btn btn-default">Clear</button>
-</div>
 </div>
 							</div>
 							</form>
@@ -162,43 +159,6 @@
    function isWeekend(date) {
        const day = date.getDay();
        return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
-   }
-   // Function to add business days to a date
-   function addBusinessDays(startDate, days) {
-       let resultDate = new Date(startDate);
-       while (days > 0) {
-           resultDate.setDate(resultDate.getDate() + 1);
-           if (!isWeekend(resultDate)) {
-               days--;
-           }
-       }
-       return resultDate;
-   }
-   // Function to calculate the future/past date based on elapsed time
-   function calculateDateAfter() {
-       const startDate = new Date(document.getElementById("date_calc_from1").value);
-       const elapsed = parseInt(document.getElementById("date_calc_elapsed").value);
-       const unit = document.getElementById("date_calc_unit").value;
-       const direction = document.getElementById("date_calc_dir").value === "true";
-       const resultTextAfter = document.getElementById("resultTextAfter");
-       if (isNaN(startDate) || isNaN(elapsed)) {
-           resultTextAfter.innerHTML = "Please select a valid start date and enter elapsed time.";
-           return;
-       }
-       let newDate = new Date(startDate);
-       // Adjust the date based on the time unit selected
-       if (unit === "days") {
-           newDate.setDate(newDate.getDate() + (direction ? elapsed : -elapsed));
-       } else if (unit === "work") {
-           newDate = addBusinessDays(newDate, direction ? elapsed : -elapsed);
-       } else if (unit === "weeks") {
-           newDate.setDate(newDate.getDate() + (direction ? elapsed * 7 : -elapsed * 7));
-       } else if (unit === "months") {
-           newDate.setMonth(newDate.getMonth() + (direction ? elapsed : -elapsed));
-       } else if (unit === "years") {
-           newDate.setFullYear(newDate.getFullYear() + (direction ? elapsed : -elapsed));
-       }
-       resultTextAfter.innerHTML = `Number of business days: ${businessDays}`;
    }
    // Function to calculate business days between two dates
    function calculateBusinessDays() {
