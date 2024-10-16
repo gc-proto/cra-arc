@@ -117,7 +117,7 @@
 								</div>
 								<div class="mrgn-tp-lg mrgn-bttm-md">
 <button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateDate()">Calculate</button>
-<button type="reset" class="btn btn-default">Clear</button>
+<button type="button" class="btn btn-default" onclick="clearForm('form_date_calc_opt1')">Clear</button>
 </div>
 							</div>
 							</form>
@@ -144,7 +144,7 @@
 								</div>
 								<div class="mrgn-tp-lg mrgn-bttm-md">
 <button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
-<button type="reset" class="btn btn-default">Clear</button>
+<button type="button" class="btn btn-default" onclick="clearForm('form_date_calc_opt2')">Clear</button>
 </div>
 							</div>
 							</form>
@@ -246,17 +246,15 @@
 </script>
 
 <script>
- // Function to reset all inputs when the modal is closed
-$(document).on('mfpClose', function() {
- // Clear all input fields within the modal
- $('#modal_date_calc').find('input[type="date"], input[type="number"], select').val('');
- // Hide any result sections
- $('#date_calc_opt1_result').addClass('hidden');
- $('#date_calc_opt2_result').addClass('hidden');
- // Clear result text
- $('#date_calc_opt1_result p').text('');
- $('#resultText').text('');
-});
+ // Function to clear forms and results
+   function clearForm(formId) {
+       document.getElementById(formId).reset(); // Reset the form
+       if (formId === 'form_date_calc_opt1') {
+           document.getElementById("date_calc_opt1_result").classList.add('hidden'); // Hide result for first tab
+       } else if (formId === 'form_date_calc_opt2') {
+           document.getElementById("date_calc_opt2_result").classList.add('hidden'); // Hide result for second tab
+       }
+   }
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
