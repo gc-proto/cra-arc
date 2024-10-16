@@ -244,6 +244,21 @@
   }
 </script>
 
+
+<script>
+   // Function to reset all inputs when modal is closed
+   $(document).on('hide.bs.modal', '#modal_date_calc', function () {
+       // Clear all input fields within the modal
+       $('#modal_date_calc').find('input[type="date"], input[type="number"], select').val('');
+       // Hide any result sections
+       $('#date_calc_opt1_result').addClass('hidden');
+       $('#date_calc_opt2_result').addClass('hidden');
+       // Clear result text
+       $('#date_calc_opt1_result p').text('');
+       $('#resultText').text('');
+   });
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
