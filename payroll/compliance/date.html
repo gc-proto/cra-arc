@@ -183,10 +183,10 @@
       } else if (unit === "years") {
           resultDate.setFullYear(resultDate.getFullYear() + (direction ? elapsed : -elapsed));
       }
-      // Display the result
+     // Display the result in the format: Sunday, October 14, 2024
       document.getElementById("date_calc_opt1_result").classList.remove('hidden');
       document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML =
-          `${resultDate.toISOString().substring(0, 10)}`;
+          `${formatDate(resultDate)}`;
   }
   // Helper function to add or subtract days, with an option for business days
   function addDays(date, days, forward = true, businessDays = false) {
@@ -199,6 +199,12 @@
       }
       return date;
   }
+  // Helper function to format date as: Sunday, October 14, 2024
+  function formatDate(date) {
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString(undefined, options);
+  }
+
 </script>
 
 <script>
