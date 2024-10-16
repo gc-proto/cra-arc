@@ -63,21 +63,9 @@
 
 <h1 property="name" id="wb-cont" class="gc-thickline">Date calculator</h1>
 
-<a href="modal_date_calc" class="date_calc" data-num="90">90 days</a>
+ <a href="#modal_date_calc" aria-controls="modal_date_calc" data-num="90" role="button" class="date_calc btn btn-default wb-lbx"><i class="fa fa-calculator"></i> Date calculator</a>
 
-<p><a class="btn btn-default datecal" role="button" aria-controls="centred-popup" href="#centred-popup">Date Calculator <span class="fa fa-calendar"></span></a> </p>
 
- <a href="#modal_date_calc" aria-controls="modal_date_calc" role="button" class="btn btn-default wb-lbx"><i class="fa fa-calculator"></i> Date calculator</a>
-
-<script type="text/javascript" 
-/*
-Based on calc-date.js 
-*/
-
-// adds a date calculator modal dialog to the page, requires button to activate
-// 
-$(function() {
-	$('body>main').append(`<template data-type="date-calc" lang="en">
 		<section id="modal_date_calc" class="mfp-hide modal-dialog modal-content overlay-def no-print" aria-live="assertive" aria-modal="true">
 			<header class="modal-header">
 				<h2 class="modal-title">Date calculator</h1>
@@ -162,94 +150,15 @@ $(function() {
 				</div>
 			</div>
 		</section>
-	</template>
-	<template data-type="date-calc" lang="fr">
-		<section id="modal_date_calc" class="mfp-hide modal-dialog modal-content overlay-def no-print" aria-live="assertive" aria-modal="true">
-			<header class="modal-header">
-				<h2 class="modal-title">Calculateur de dates</h1>
-			</header>
-			<div class="modal-body">
-				<div class="wb-tabs ignore-session">
-					<div class="tabpanels">
-						<details id="date_calc_opt1" open="open">
-							<summary>Date aprÃ¨s un laps de temps</summary>
-							<form>
-							<div class="container-fluid">
-								<div class="form-group row">
-									<div class="col-md-6">
-										<label for="date_calc_from1">Date de dÃ©but <span class="datepicker-format">(<abbr title="AnnÃ©e Ã  quatre chiffres, tiret, mois Ã  deux chiffres, tiret, jour Ã  deux chiffres">AAAA-MM-JJ</abbr>)</span></label>
-										<input class="form-control" type="date" id="date_calc_from1" name="date_calc_from" min="2000-01-01" max="2030-01-01" required/>
-									</div>
-								</div>
-								<div class="form-group row">
-									<div class="col-md-12">
-										<label for="date_calc_elapsed">Temps Ã©coulÃ©</label>
-										<div class="input-group">
-											<input type="number" id="date_calc_elapsed" class="form-control num" min="1" max="3653" maxlength="4" required>
-											<span class="input-group-btn">
-												<select id="date_calc_unit" class="btn btn-default brdr-rds-0" title="UnitÃ© temporelle" required>
-													<option value="days" selected>jours</option>
-													<option value="work">jours ouvrables</option>
-													<option value="weeks">semaines</option>
-													<option value="months">mois</option>
-													<option value="years">ans</option>
-												</select>
-											</span>
-											<span class="input-group-btn">
-												<select id="date_calc_dir" class="btn btn-default" title="Direction temporelle" required>
-													<option value="true" selected>dans le futur</option>
-													<option value="false">dans le passÃ©</option>
-												</select>
-											</span>
-										</div>
-									</div>
-								</div>
-								<div id="date_calc_opt1_result" class="row hidden">
-									<div class="col-md-12">
-										<h4>RÃ©sultat</h4>
-										<p></p>
-									</div>
-								</div>
-								<div class="mrgn-tp-lg mrgn-bttm-md">
-									<button type="submit" class="btn btn-primary mrgn-rght-sm">Calculer</button>
-									<button type="reset" class="btn btn-default">Effacer</button>
-								</div>
-							</div>
-							</form>
-						</details>
-						<details id="date_calc_opt2">
-							<summary>Temps Ã©coulÃ© entre deux dates</summary>
-							<form>
-							<div class="container-fluid">
-								<div class="form-group row">
-									<div class="col-md-6">
-										<label for="date_calc_from2">Date de dÃ©but <span class="datepicker-format">(<abbr title="AnnÃ©e Ã  quatre chiffres, tiret, mois Ã  deux chiffres, tiret, jour Ã  deux chiffres">AAAA-MM-JJ</abbr>)</span></label>
-										<input class="form-control" type="date" id="date_calc_from2" name="date_calc_from" min="2000-01-01" max="2030-01-01" required>
-									</div>
-									<div class="col-md-6">
-										<label for="date_calc_to2">Date de fin <span class="datepicker-format">(<abbr title="AnnÃ©e Ã  quatre chiffres, tiret, mois Ã  deux chiffres, tiret, jour Ã  deux chiffres">AAAA-MM-JJ</abbr>)</span></label>
-										<input class="form-control" type="date" id="date_calc_to2" name="date_calc_to" min="2000-01-01" max="2030-01-01" required>
-									</div>
-								</div>
-								<div id="date_calc_opt2_result" class="row mrgn-bttm-lg hidden">
-									<div class="col-md-12">
-										<h4>Temps Ã©coulÃ©</h4>
-										<p></p>
-									</div>
-								</div>
-								<div class="mrgn-tp-lg mrgn-bttm-md">
-									<button type="submit" class="btn btn-primary mrgn-rght-sm">Calculer</button>
-									<button type="reset" class="btn btn-default">Effacer</button>
-								</div>
-							</div>
-							</form>
-						</details>
-					</div>
-				</div>
-			</div>
-		</section>
-	</template>`);
-});
+	
+
+<script type="text/javascript" 
+/*
+Based on calc-date.js 
+*/
+
+// adds a date calculator modal dialog to the page, requires button to activate
+// 
 
 $(document).on('wb-ready.wb', function() {
 	// template is a shadow root and needs to be treated special
