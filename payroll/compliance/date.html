@@ -116,7 +116,7 @@
 									</div>
 								</div>
 								<div class="mrgn-tp-lg mrgn-bttm-md">
-<button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
+<button type="button" class="btn btn-primary mrgn-rght-sm" onclick="calculateDate()">Calculate</button>
 <button type="reset" class="btn btn-default">Clear</button>
 </div>
 							</div>
@@ -153,6 +153,53 @@
 				</div>
 			</div>
 		</section>
+
+<script>
+  // Function to check if a date is a weekend
+  function isWeekend(date) {
+      const day = date.getDay();
+      return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
+  }
+  // Function to add time (days, business days, weeks, months, or years) to a date
+  function calculateDate() {
+      const startDate = new Date(document.getElementById("date_calc_from1").value);
+      const elapsed = parseInt(document.getElementById("date_calc_elapsed").value);
+      const unit = document.getElementById("date_calc_unit").value;
+      const direction = document.getElementById("date_calc_dir").value === "true"; // true = future, false = past
+      let resultDate = new Date(startDate); // Start from this date
+      if (isNaN(startDate) || isNaN(elapsed)) {
+          alert("Please enter a valid start date and elapsed time.");
+          return;
+      }
+      // Adding time based on the selected unit
+      if (unit === "days") {
+          resultDate = addDays(resultDate, elapsed, direction, false);
+      } else if (unit === "work") {
+          resultDate = addDays(resultDate, elapsed, direction, true);
+      } else if (unit === "weeks") {
+          resultDate.setDate(resultDate.getDate() + (direction ? elapsed * 7 : -elapsed * 7));
+      } else if (unit === "months") {
+          resultDate.setMonth(resultDate.getMonth() + (direction ? elapsed : -elapsed));
+      } else if (unit === "years") {
+          resultDate.setFullYear(resultDate.getFullYear() + (direction ? elapsed : -elapsed));
+      }
+      // Display the result
+      document.getElementById("date_calc_opt1_result").classList.remove('hidden');
+      document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML =
+          `The calculated date is: ${resultDate.toISOString().substring(0, 10)}`;
+  }
+  // Helper function to add or subtract days, with an option for business days
+  function addDays(date, days, forward = true, businessDays = false) {
+      let direction = forward ? 1 : -1;
+      while (days > 0) {
+          date.setDate(date.getDate() + direction);
+          if (!businessDays || !isWeekend(date)) {
+              days--;
+          }
+      }
+      return date;
+  }
+</script>
 
 <script>
    // Function to check if a date is a weekend
