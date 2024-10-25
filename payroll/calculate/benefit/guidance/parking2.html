@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>
+<html class="no-js lt-ie9" lang="en" dir="ltr">
+   <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" dir="ltr">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Parking: Taxable benefit calculator  - Canada.ca</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="robots" content="noindex, follow">
+
+<!-- Meta data--> 
+<!-- Load closure template scripts --> 
+<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script> 
+<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
+<link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+<!-- Write closure template --> 
+<script type="text/javascript">
+            document.write(wet.builder.refTop({
+            }));
+         </script>
+</head>
+<body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+<div id="def-top"> </div>
+<!-- Write closure template --> 
+<script type="text/javascript">
+            var defTop = document.getElementById("def-top");
+            defTop.outerHTML = wet.builder.top({
+              lngLinks: [{
+                lang: "fr",
+                href: "#",
+                text: "Français"
+              }],
+              breadcrumbs: [{
+                title: "Canada.ca",
+                href: "https://www.canada.ca/en.html"
+              },{
+                title: "Taxes",
+                href: "https://www.canada.ca/en/services/taxes.html"
+              },{
+                title: "Payroll",
+                href: "https://test.canada.ca/cra-arc/payroll/index.html"
+              }
+              ],
+              search: true,
+              siteMenu: true,
+              showPreContent: true
+            });
+         </script>
+<main role="main" property="mainContentOfPage" class="container">
+<h1 property="name" id="wb-cont">Parking: Taxable benefit calculator</h1>
+
+
+<form id="form_date_calc_opt1">
+            <div class="container-fluid">
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label for="date_calc_from1">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                  <input class="form-control" type="date" id="date_calc_from1" name="date_calc_from" min="1900-01-01" max="2050-01-01" required/>
+                </div>
+                <div class="col-md-10">
+                  <label for="date_calc_elapsed">Elapsed time</label>
+                  <div class="input-group">
+                    <input type="number" id="date_calc_elapsed" class="form-control input-lg brdr-rds-2 num" placeholder="Enter the amount of time" min="1" max="3653" required>
+                    <span class="input-group-btn">
+                    <select id="date_calc_unit" class="btn btn-lg btn-default" title="Temporal unit" required>
+                      <option value="days" selected>Days</option>
+                      <option value="work">Business days</option>
+                      <option value="weeks">Weeks</option>
+                      <option value="months">Months</option>
+                      <option value="years">Years</option>
+                    </select>
+                    </span> <span class="input-group-btn">
+                    <select id="date_calc_dir" class="btn btn-lg btn-default" title="Temporal direction" required>
+                      <option value="true" selected>In the future</option>
+                      <option value="false">In the past</option>
+                    </select>
+                    </span> </div>
+                </div>
+              </div>
+              <div id="date_calc_opt1_result" class="alert alert-info row hidden">
+                <div class="col-md-11 mrgn-lft-sm">
+                  <h3>Your result - The calculated date is:</h3>
+                  <p></p>
+                </div>
+              </div>
+              <div class="mrgn-tp-lg mrgn-bttm-md">
+                <button type="button" class="btn btn-lg btn-primary mrgn-rght-sm" onclick="calculateDate()">Calculate</button>
+                <button type="button" class="btn btn-lg btn-default" onclick="clearForm('form_date_calc_opt1')">Clear</button>
+              </div>
+            </div>
+          </form>
+
+<div id="def-preFooter"></div>
+<!-- Write closure template --> 
+<script type="text/javascript">
+               var defPreFooter = document.getElementById("def-preFooter");
+               defPreFooter.outerHTML = wet.builder.preFooter({
+               dateModified: "2020-03-13",
+               showPostContent: true,
+               showFeedback: true,
+               showShare: true
+               });
+            </script>
+</main>
+<div id="def-footer"> </div>
+<!-- Write closure template --> 
+<script type="text/javascript">
+            var defFooter = document.getElementById("def-footer");
+            defFooter.outerHTML = wet.builder.footer({
+            showFooter: true,
+            showFeatures: true
+            });
+         </script> 
+<!-- Write closure template --> 
+<script type="text/javascript">
+            document.write(wet.builder.refFooter({
+            }));
+         </script> 
+<script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script> 
+<script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script> 
+<script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script> 
+<script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script> 
+<script defer>
+       "use strict";
+       
+       // Function to update the visibility of messages based on checkboxes
+       function updateChkbx() {
+           // Get all checkboxes
+           let checkboxes = document.querySelectorAll("input[type=checkbox][name=action-checkbox]");
+           // Get all checked checkboxes
+           let checked = document.querySelectorAll("input[type=checkbox][name=action-checkbox]:checked");
+           
+           // Elements to show/hide based on the checkbox state
+           let defaultMsg = document.getElementById("action-default-msg");
+           let qualifyMsg = document.getElementById("action-qualify-msg");
+           let notQualifyMsg = document.getElementById("action-not-qualify-msg");
+
+           // Hide all messages first
+           defaultMsg.classList.add("hidden");
+           qualifyMsg.classList.add("hidden");
+           notQualifyMsg.classList.add("hidden");
+
+           // Show the appropriate message
+           if (checked.length === 0) {
+               defaultMsg.classList.remove("hidden");
+           } else if (checkboxes.length === checked.length) {
+               qualifyMsg.classList.remove("hidden");
+           } else {
+       notQualifyMsg.classList.remove("hidden");
+   }
+}
+
+// Call updateChkbx when the page loads to set the initial state
+window.onload = updateChkbx;
+
+// Attach the updateChkbx function to the change event for the checkboxes
+document.querySelectorAll("input[type=checkbox][name=action-checkbox]").forEach(function (checkbox) {
+   checkbox.addEventListener("change", updateChkbx);
+});
+</script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+<script>
+   // Function to check if a date is a weekend
+   function isWeekend(date) {
+       const day = date.getDay();
+       return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
+   }
+   // Function to calculate date after amount of time
+   function calculateDate() {
+       const startDate = new Date(document.getElementById("date_calc_from1").value);
+       const elapsed = parseInt(document.getElementById("date_calc_elapsed").value);
+       const unit = document.getElementById("date_calc_unit").value;
+       const direction = document.getElementById("date_calc_dir").value === "true"; // true = future, false = past
+       let resultDate = new Date(startDate); // Start from this date
+       if (isNaN(startDate) || isNaN(elapsed)) {
+           alert("Please enter a valid start date and elapsed time.");
+           return;
+       }
+       // Adding time based on the selected unit
+       if (unit === "days") {
+           resultDate = addDays(resultDate, elapsed, direction, false);
+       } else if (unit === "work") {
+           resultDate = addDays(resultDate, elapsed, direction, true);
+       } else if (unit === "weeks") {
+           resultDate.setDate(resultDate.getDate() + (direction ? elapsed * 7 : -elapsed * 7));
+       } else if (unit === "months") {
+           resultDate.setMonth(resultDate.getMonth() + (direction ? elapsed : -elapsed));
+       } else if (unit === "years") {
+           resultDate.setFullYear(resultDate.getFullYear() + (direction ? elapsed : -elapsed));
+       }
+       // Display the result
+       document.getElementById("date_calc_opt1_result").classList.remove('hidden');
+       document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML = formatDate(resultDate);
+   }
+   // Helper function to add or subtract days, with an option for business days
+   function addDays(date, days, forward = true, businessDays = false) {
+       let direction = forward ? 1 : -1;
+       while (days > 0) {
+           date.setDate(date.getDate() + direction);
+           if (!businessDays || !isWeekend(date)) {
+               days--;
+           }
+       }
+       return date;
+   }
+   // Helper function to format date as: Sunday, October 14, 2024
+   function formatDate(date) {
+       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+       return date.toLocaleDateString(undefined, options);
+   }
+   // Function to calculate business days between two dates
+   function calculateBusinessDays() {
+       const startDate = new Date(document.getElementById("date_calc_from2").value);
+       const endDate = new Date(document.getElementById("date_calc_to2").value);
+       const resultText = document.getElementById("resultText");
+       // Check for valid date inputs
+       if (isNaN(startDate) || isNaN(endDate)) {
+           resultText.innerHTML = "Please select valid start and end dates.";
+           document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+           return;
+       }
+       // Check if start date is greater than end date
+       if (startDate > endDate) {
+           resultText.innerHTML = "End date must be after the start date.";
+           document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+           return;
+       }
+       let businessDaysCount = 0;
+       let currentDate = new Date(startDate);
+       while (currentDate <= endDate) {
+           if (!isWeekend(currentDate)) {
+               businessDaysCount++;
+           }
+           currentDate.setDate(currentDate.getDate() + 1);
+       }
+
+   resultText.innerHTML = businessDaysCount + " business days";
+   
+ document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+   }
+
+	
+// Function to reset all entered values and results
+function clearForm(formId) {
+   // Reset the form inputs
+   document.getElementById(formId).reset();
+   // Hide the result for the respective tab
+   if (formId === 'form_date_calc_opt1') {
+       document.getElementById("date_calc_opt1_result").classList.add('hidden'); // Hide result for first tab
+       document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML = ""; // Clear result text for first tab
+   } else if (formId === 'form_date_calc_opt2') {
+       document.getElementById("date_calc_opt2_result").classList.add('hidden'); // Hide result for second tab
+       document.getElementById("resultText").innerHTML = ""; // Clear result text for second tab
+   }
+}
+// Function to reset both forms
+function resetModalForms() {
+   clearForm('form_date_calc_opt1');
+   clearForm('form_date_calc_opt2');
+}
+// Bind the Bootstrap modal's 'hidden' event to reset forms when the modal is closed
+$('#modal_date_calc').on('hidden.bs.modal', function () {
+   resetModalForms();
+});
+</script>
+</body>
+</html>
