@@ -99,97 +99,86 @@
     </div>
   </div>
 </div>
-<!-- <h2 >On this page</h2>
-<ul>
-  <li><a href="#step1">Process of the review</a></li>
-  <li><a href="#ref">References</a> </li>
-</ul>
-  <p class="text-right"> <a href="#process"  aria-controls="mid-screen-bg" role="button" class="overlay-lnk btn btn-primary" role="button"><i class="fas fa-chalkboard-teacher"></i>&emsp; Overview - Review process&emsp;</a></p>
-  <p class="text-right"> <a href="#modal_date_calc"  aria-controls="mid-screen-bg" role="button" class="overlay-lnk btn btn-primary" role="button"><i class="fa fa-calculator"></i>&emsp; Date calculator&emsp;</a></p>
-  
-
--->
-<div>
-  <section id="modal_date_calc" class="wb-overlay modal-content overlay-def wb-popup-mid">
-    <header class="modal-header">
-      <h2 class="modal-title"><i class="fa fa-calculator"></i>&emsp; Date calculator</h2>
-    </header>
-    <div class="modal-body">
-      <div class="wb-tabs ignore-session">
-        <div class="tabpanels">
-          <details id="date_calc_opt1" open="open">
-            <summary>Date after amount of time</summary>
-            <form id="form_date_calc_opt1">
-              <div class="container-fluid">
-                <div class="form-group row">
-                  <div class="col-md-2">
-                    <label for="date_calc_from1">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-                    <input class="form-control" type="date" id="date_calc_from1" name="date_calc_from" min="1900-01-01" max="2050-01-01" required/>
-                  </div>
-                  <div class="col-md-10">
-                    <label for="date_calc_elapsed">Elapsed time</label>
-                    <div class="input-group">
-                      <input type="number" id="date_calc_elapsed" class="form-control input-lg brdr-rds-2 num" placeholder="Enter the amount of time" min="1" max="3653" required>
-                      <span class="input-group-btn">
-                      <select id="date_calc_unit" class="btn btn-lg btn-default" title="Temporal unit" required>
-                        <option value="days" selected>Days</option>
-                        <option value="work">Business days</option>
-                        <option value="weeks">Weeks</option>
-                        <option value="months">Months</option>
-                        <option value="years">Years</option>
-                      </select>
-                      </span> <span class="input-group-btn">
-                      <select id="date_calc_dir" class="btn btn-lg btn-default" title="Temporal direction" required>
-                        <option value="true" selected>In the future</option>
-                        <option value="false">In the past</option>
-                      </select>
-                      </span> </div>
-                  </div>
+<section id="modal_date_calc" class="wb-overlay modal-content overlay-def wb-popup-mid">
+  <header class="modal-header">
+    <h2 class="modal-title"><i class="fa fa-calculator"></i>&emsp; Date calculator</h2>
+  </header>
+  <div class="modal-body">
+    <div class="wb-tabs ignore-session">
+      <div class="tabpanels">
+        <details id="date_calc_opt1" open="open">
+          <summary>Date after amount of time</summary>
+          <form id="form_date_calc_opt1">
+            <div class="container-fluid">
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label for="date_calc_from1">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                  <input class="form-control" type="date" id="date_calc_from1" name="date_calc_from" min="1900-01-01" max="2050-01-01" required/>
                 </div>
-                <div id="date_calc_opt1_result" class="alert alert-info row hidden">
-                  <div class="col-md-11 mrgn-lft-sm">
-                    <h3>Your result - The calculated date is:</h3>
-                    <p></p>
-                  </div>
-                </div>
-                <div class="mrgn-tp-lg mrgn-bttm-md">
-                  <button type="button" class="btn btn-lg btn-primary mrgn-rght-sm" onclick="calculateDate()">Calculate</button>
-                  <button type="button" class="btn btn-lg btn-default" onclick="clearForm('form_date_calc_opt1')">Clear</button>
+                <div class="col-md-10">
+                  <label for="date_calc_elapsed">Elapsed time</label>
+                  <div class="input-group">
+                    <input type="number" id="date_calc_elapsed" class="form-control input-lg brdr-rds-2 num" placeholder="Enter the amount of time" min="1" max="3653" required>
+                    <span class="input-group-btn">
+                    <select id="date_calc_unit" class="btn btn-lg btn-default" title="Temporal unit" required>
+                      <option value="days" selected>Days</option>
+                      <option value="work">Business days</option>
+                      <option value="weeks">Weeks</option>
+                      <option value="months">Months</option>
+                      <option value="years">Years</option>
+                    </select>
+                    </span> <span class="input-group-btn">
+                    <select id="date_calc_dir" class="btn btn-lg btn-default" title="Temporal direction" required>
+                      <option value="true" selected>In the future</option>
+                      <option value="false">In the past</option>
+                    </select>
+                    </span> </div>
                 </div>
               </div>
-            </form>
-          </details>
-          <details id="date_calc_opt2">
-            <summary>Elapsed time between 2 dates</summary>
-            <form id="form_date_calc_opt2">
-              <div class="container-fluid">
-                <div class="form-group row">
-                  <div class="col-md-2">
-                    <label for="date_calc_from2">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-                    <input class="form-control" type="date" id="date_calc_from2" name="date_calc_from" min="1900-01-01" max="2050-01-01" required>
-                  </div>
-                  <div class="col-md-10">
-                    <label for="date_calc_to2">End date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-                    <input class="form-control" type="date" id="date_calc_to2" name="date_calc_to" min="1900-01-01" max="2050-01-01" required>
-                  </div>
-                </div>
-                <div id="date_calc_opt2_result" class="alert alert-info row hidden">
-                  <div class="col-md-11 mrgn-lft-sm">
-                    <h3>Your result - Elapsed number of business days:</h3>
-                    <p id="resultText"> </p>
-                  </div>
-                </div>
-                <div class="mrgn-tp-lg mrgn-bttm-md">
-                  <button type="button" class="btn btn-lg btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
-                  <button type="button" class="btn btn-lg btn-default" onclick="clearForm('form_date_calc_opt2')">Clear</button>
+              <div id="date_calc_opt1_result" class="alert alert-info row hidden">
+                <div class="col-md-11 mrgn-lft-sm">
+                  <h3>Your result - The calculated date is:</h3>
+                  <p></p>
                 </div>
               </div>
-            </form>
-          </details>
-        </div>
+              <div class="mrgn-tp-lg mrgn-bttm-md">
+                <button type="button" class="btn btn-lg btn-primary mrgn-rght-sm" onclick="calculateDate()">Calculate</button>
+                <button type="button" class="btn btn-lg btn-default" onclick="clearForm('form_date_calc_opt1')">Clear</button>
+              </div>
+            </div>
+          </form>
+        </details>
+        <details id="date_calc_opt2">
+          <summary>Elapsed time between 2 dates</summary>
+          <form id="form_date_calc_opt2">
+            <div class="container-fluid">
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label for="date_calc_from2">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                  <input class="form-control" type="date" id="date_calc_from2" name="date_calc_from" min="1900-01-01" max="2050-01-01" required>
+                </div>
+                <div class="col-md-10">
+                  <label for="date_calc_to2">End date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                  <input class="form-control" type="date" id="date_calc_to2" name="date_calc_to" min="1900-01-01" max="2050-01-01" required>
+                </div>
+              </div>
+              <div id="date_calc_opt2_result" class="alert alert-info row hidden">
+                <div class="col-md-11 mrgn-lft-sm">
+                  <h3>Your result - Elapsed number of business days:</h3>
+                  <p id="resultText"> </p>
+                </div>
+              </div>
+              <div class="mrgn-tp-lg mrgn-bttm-md">
+                <button type="button" class="btn btn-lg btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
+                <button type="button" class="btn btn-lg btn-default" onclick="clearForm('form_date_calc_opt2')">Clear</button>
+              </div>
+            </div>
+          </form>
+        </details>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 </div>
 <section id="modal_checklist" class="wb-overlay modal-content overlay-def wb-popup-mid">
   <header class="modal-header">
@@ -659,6 +648,7 @@
           <h4> <span class="far fa-calendar-alt mrgn-rght-sm"></span> When to provide your documents</h4>
           <p>Generally, you have <strong>15 days</strong> from the date of the letter you received to submit your documents online. </p>
           <p><strong>After 15 days</strong>, if the requested books and records are <strong>not</strong> received, we may examine your books and records at your place of business (in-person review).</p>
+          <p>To determine the due date, use the: <a href="#modal_date_calc"  aria-controls="mid-screen-bg" role="button" class="overlay-lnk btn btn-primary btn-lg" role="button"><i class="fa fa-calendar-check mrgn-rght-sm"></i>Date calculator</a></p>
           <h5>What if you need more time to respond or cannot get the documents</h5>
           <p>If you are running late or you cannot get the documents requested by the due date, call the CRA officer assigned to your case at the number provided in your letter to let them know you need more time.</p>
           <p>If you no longer have specific books and records, you can discuss with the CRA officer assigned to your case to find alternate methods to confirm the amounts reported on your slips and summaries.</p>
@@ -689,7 +679,8 @@
     </ul>
     <br>
     <h4><span class="far fa-calendar-alt mrgn-rght-sm"></span>Paying a balance owing</h4>
-    <p>You have <strong>30 days</strong> from the date of the <abbr title="Notice of reassessment">NOR</abbr> to pay your balance owing.
+    <p>You have <strong>30 days</strong> from the date of the <abbr title="Notice of reassessment">NOR</abbr> to pay your balance owing.</p>
+    <p>To determine the due date, use the: <a href="#modal_date_calc"  aria-controls="mid-screen-bg" role="button" class="overlay-lnk btn btn-primary btn-lg" role="button"><i class="fa fa-calendar-check mrgn-rght-sm"></i>Date calculator</a></p>
     <h4> If you want to respond to our letter </h4>
     <p>You can respond to the letter by providing further documentation or request a second review. If issues remain unresolved, you can contact the officer’s team leader to discuss further.</p>
   </li>
@@ -700,6 +691,7 @@
     <p>Objections (also appeals specifically for CPP or EI) lead to a formal and impartial review of an assessment, determination, or decision. When any type of objection is filed, the CRA reviews all the information before making its decision.</p>
     <h4> <span class="far fa-calendar-alt mrgn-rght-sm"></span> When to file an objection</h4>
     <p>You have <strong>90 days</strong> from the date of the <abbr title="Notice of assessment">NOA</abbr> or <abbr title="Notice of reassessment">NOR</abbr> to file the objection.</p>
+    <p>To determine the due date, use the: <a href="#modal_date_calc"  aria-controls="mid-screen-bg" role="button" class="overlay-lnk btn btn-primary btn-lg" role="button"><i class="fa fa-calendar-check mrgn-rght-sm"></i>Date calculator</a></p>
     <p>Learn more:</p>
     <ul>
       <li>If you disagree with a decision letter from the CPP/EI Rulings Division or a <abbr title="Notice of assessment">NOA</abbr> for payroll source deductions: <a href="https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/complaints-disputes/file-appeal-canada-pension-plan-employment-insurance.html">File an appeal</a></li>
