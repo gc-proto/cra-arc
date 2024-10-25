@@ -57,45 +57,84 @@
 <h1 property="name" id="wb-cont">Parking: Taxable benefit calculator</h1>
 
 
-<form id="form_date_calc_opt1">
-            <div class="container-fluid">
-              <div class="form-group row">
-                <div class="col-md-2">
-                  <label for="date_calc_from1">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-                  <input class="form-control" type="date" id="date_calc_from1" name="date_calc_from" min="1900-01-01" max="2050-01-01" required/>
-                </div>
-                <div class="col-md-10">
-                  <label for="date_calc_elapsed">Elapsed time</label>
-                  <div class="input-group">
-                    <input type="number" id="date_calc_elapsed" class="form-control input-lg brdr-rds-2 num" placeholder="Enter the amount of time" min="1" max="3653" required>
-                    <span class="input-group-btn">
-                    <select id="date_calc_unit" class="btn btn-lg btn-default" title="Temporal unit" required>
-                      <option value="days" selected>Days</option>
-                      <option value="work">Business days</option>
-                      <option value="weeks">Weeks</option>
-                      <option value="months">Months</option>
-                      <option value="years">Years</option>
-                    </select>
-                    </span> <span class="input-group-btn">
-                    <select id="date_calc_dir" class="btn btn-lg btn-default" title="Temporal direction" required>
-                      <option value="true" selected>In the future</option>
-                      <option value="false">In the past</option>
-                    </select>
-                    </span> </div>
-                </div>
-              </div>
-              <div id="date_calc_opt1_result" class="alert alert-info row hidden">
-                <div class="col-md-11 mrgn-lft-sm">
-                  <h3>Your result - The calculated date is:</h3>
-                  <p></p>
-                </div>
-              </div>
-              <div class="mrgn-tp-lg mrgn-bttm-md">
-                <button type="button" class="btn btn-lg btn-primary mrgn-rght-sm" onclick="calculateDate()">Calculate</button>
-                <button type="button" class="btn btn-lg btn-default" onclick="clearForm('form_date_calc_opt1')">Clear</button>
-              </div>
-            </div>
-          </form>
+<form id="parkingForm">
+<!-- Step 1: Type of Parking -->
+<div class="step">
+<label>Step 1: Type of Parking</label>
+<select id="parkingType" required>
+<option value="" disabled selected>Select parking type</option>
+<option value="commercial">Paid Public Parking Lot (Commercial)</option>
+<option value="employer">Employer-Owned/Leased Parking</option>
+<option value="street_paid">Street Parking (Paid)</option>
+<option value="street_free">Street Parking (Free)</option>
+<option value="special">Other (Airport, Malls, etc.)</option>
+</select>
+</div>
+<!-- Step 2: Location -->
+<div class="step">
+<label>Step 2: Location</label>
+<select id="location" required>
+<option value="" disabled selected>Select location</option>
+<option value="urban">Urban Area (High Demand)</option>
+<option value="suburban">Suburban Area</option>
+<option value="rural">Rural Area</option>
+<option value="special">Airport, Shopping Mall, or Special Location</option>
+</select>
+</div>
+<!-- Step 3: Parking Features -->
+<div class="step">
+<label>Step 3: Parking Features</label>
+<label>Is the parking space reserved?</label>
+<select id="reserved" required>
+<option value="" disabled selected>Select</option>
+<option value="yes">Yes (Exclusive Reserved)</option>
+<option value="no">No (Unreserved)</option>
+</select>
+<label>Does the employer subsidize or discount the parking cost?</label>
+<select id="subsidized" required onchange="toggleSubsidyAmount()">
+<option value="" disabled selected>Select</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+<!-- Subsidy Amount -->
+<div id="subsidyAmountDiv" style="display:none;">
+<label>How much does the employee pay monthly?</label>
+<input type="number" id="subsidyAmount" min="0" step="0.01">
+</div>
+</div>
+<!-- Step 4: Availability & Special Considerations -->
+<div class="step">
+<label>Step 4: Availability & Special Considerations</label>
+<label>Is the parking essential for the employee’s role?</label>
+<select id="essential">
+<option value="" disabled selected>Select</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+<label>Is the parking used exclusively for shifts (e.g., night shifts)?</label>
+<select id="shiftParking">
+<option value="" disabled selected>Select</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+</div>
+<!-- Step 5: Exceptions and Adjustments -->
+<div class="step">
+<label>Step 5: Exceptions and Adjustments</label>
+<label>Select any exceptions that apply:</label>
+<input type="checkbox" id="disability" value="disability"> Parking provided due to a disability<br>
+<input type="checkbox" id="business" value="business"> Parking for business-related use (e.g., company car)<br>
+<input type="checkbox" id="scramble" value="scramble"> Scramble parking (limited availability)<br>
+<input type="checkbox" id="freeParking" value="freeParking"> Free parking available in the area<br>
+<input type="checkbox" id="temporary" value="temporary"> Occasional or temporary parking for special events<br>
+</div>
+<!-- Calculate Button -->
+<button type="button" onclick="calculateFMV()">Calculate FMV</button>
+<!-- Display Result -->
+<div class="step">
+<p id="result" class="result"></p>
+</div>
+</form>
 
 <div id="def-preFooter"></div>
 <!-- Write closure template --> 
@@ -127,149 +166,58 @@
 <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script> 
 <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script> 
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script> 
+
+
+
+
 <script defer>
        "use strict";
-       
-       // Function to update the visibility of messages based on checkboxes
-       function updateChkbx() {
-           // Get all checkboxes
-           let checkboxes = document.querySelectorAll("input[type=checkbox][name=action-checkbox]");
-           // Get all checked checkboxes
-           let checked = document.querySelectorAll("input[type=checkbox][name=action-checkbox]:checked");
-           
-           // Elements to show/hide based on the checkbox state
-           let defaultMsg = document.getElementById("action-default-msg");
-           let qualifyMsg = document.getElementById("action-qualify-msg");
-           let notQualifyMsg = document.getElementById("action-not-qualify-msg");
-
-           // Hide all messages first
-           defaultMsg.classList.add("hidden");
-           qualifyMsg.classList.add("hidden");
-           notQualifyMsg.classList.add("hidden");
-
-           // Show the appropriate message
-           if (checked.length === 0) {
-               defaultMsg.classList.remove("hidden");
-           } else if (checkboxes.length === checked.length) {
-               qualifyMsg.classList.remove("hidden");
-           } else {
-       notQualifyMsg.classList.remove("hidden");
-   }
-}
-
-// Call updateChkbx when the page loads to set the initial state
-window.onload = updateChkbx;
-
-// Attach the updateChkbx function to the change event for the checkboxes
-document.querySelectorAll("input[type=checkbox][name=action-checkbox]").forEach(function (checkbox) {
-   checkbox.addEventListener("change", updateChkbx);
-});
-</script> 
+       // Function to show/hide subsidy amount field
+       function toggleSubsidyAmount() {
+           var subsidized = document.getElementById('subsidized').value;
+           var subsidyAmountDiv = document.getElementById('subsidyAmountDiv');
+           subsidyAmountDiv.style.display = (subsidized === 'yes') ? 'block' : 'none';
+       }
+       // Function to calculate FMV
+       function calculateFMV() {
+           // Retrieve form data
+           var parkingType = document.getElementById('parkingType').value;
+           var location = document.getElementById('location').value;
+           var reserved = document.getElementById('reserved').value;
+           var subsidized = document.getElementById('subsidized').value;
+           var subsidyAmount = document.getElementById('subsidyAmount').value || 0;
+           var essential = document.getElementById('essential').value;
+           var shiftParking = document.getElementById('shiftParking').value;
+           var disability = document.getElementById('disability').checked;
+           var business = document.getElementById('business').checked;
+           var scramble = document.getElementById('scramble').checked;
+           var freeParking = document.getElementById('freeParking').checked;
+           var temporary = document.getElementById('temporary').checked;
+           // Initial FMV Calculation (rough estimation)
+           var baseFMV = 0;
+           switch(parkingType) {
+               case "commercial": baseFMV = 200; break;
+               case "employer": baseFMV = 150; break;
+               case "street_paid": baseFMV = 100; break;
+               case "street_free": baseFMV = 0; break;
+               case "special": baseFMV = 250; break;
+           }
+           // Adjust FMV by location
+           if (location === "urban") baseFMV *= 1.2;
+           if (location === "rural") baseFMV *= 0.8;
+           // Adjust FMV by reserved parking
+           if (reserved === "yes") baseFMV += 50;
+           // Deduct subsidy if applicable
+           if (subsidized === "yes") baseFMV -= parseFloat(subsidyAmount);
+           // Adjust for essential use and shift parking
+           if (essential === "yes" || shiftParking === "yes") baseFMV *= 0.5;
+           // Consider exceptions (disability, business use, etc.)
+           if (disability || business || scramble || freeParking || temporary) baseFMV = 0;
+           // Display the result
+           document.getElementById('result').textContent = `The Fair Market Value of the parking benefit is $${baseFMV.toFixed(2)} per month.`;
+       }
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-<script>
-   // Function to check if a date is a weekend
-   function isWeekend(date) {
-       const day = date.getDay();
-       return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
-   }
-   // Function to calculate date after amount of time
-   function calculateDate() {
-       const startDate = new Date(document.getElementById("date_calc_from1").value);
-       const elapsed = parseInt(document.getElementById("date_calc_elapsed").value);
-       const unit = document.getElementById("date_calc_unit").value;
-       const direction = document.getElementById("date_calc_dir").value === "true"; // true = future, false = past
-       let resultDate = new Date(startDate); // Start from this date
-       if (isNaN(startDate) || isNaN(elapsed)) {
-           alert("Please enter a valid start date and elapsed time.");
-           return;
-       }
-       // Adding time based on the selected unit
-       if (unit === "days") {
-           resultDate = addDays(resultDate, elapsed, direction, false);
-       } else if (unit === "work") {
-           resultDate = addDays(resultDate, elapsed, direction, true);
-       } else if (unit === "weeks") {
-           resultDate.setDate(resultDate.getDate() + (direction ? elapsed * 7 : -elapsed * 7));
-       } else if (unit === "months") {
-           resultDate.setMonth(resultDate.getMonth() + (direction ? elapsed : -elapsed));
-       } else if (unit === "years") {
-           resultDate.setFullYear(resultDate.getFullYear() + (direction ? elapsed : -elapsed));
-       }
-       // Display the result
-       document.getElementById("date_calc_opt1_result").classList.remove('hidden');
-       document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML = formatDate(resultDate);
-   }
-   // Helper function to add or subtract days, with an option for business days
-   function addDays(date, days, forward = true, businessDays = false) {
-       let direction = forward ? 1 : -1;
-       while (days > 0) {
-           date.setDate(date.getDate() + direction);
-           if (!businessDays || !isWeekend(date)) {
-               days--;
-           }
-       }
-       return date;
-   }
-   // Helper function to format date as: Sunday, October 14, 2024
-   function formatDate(date) {
-       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-       return date.toLocaleDateString(undefined, options);
-   }
-   // Function to calculate business days between two dates
-   function calculateBusinessDays() {
-       const startDate = new Date(document.getElementById("date_calc_from2").value);
-       const endDate = new Date(document.getElementById("date_calc_to2").value);
-       const resultText = document.getElementById("resultText");
-       // Check for valid date inputs
-       if (isNaN(startDate) || isNaN(endDate)) {
-           resultText.innerHTML = "Please select valid start and end dates.";
-           document.getElementById("date_calc_opt2_result").classList.remove('hidden');
-           return;
-       }
-       // Check if start date is greater than end date
-       if (startDate > endDate) {
-           resultText.innerHTML = "End date must be after the start date.";
-           document.getElementById("date_calc_opt2_result").classList.remove('hidden');
-           return;
-       }
-       let businessDaysCount = 0;
-       let currentDate = new Date(startDate);
-       while (currentDate <= endDate) {
-           if (!isWeekend(currentDate)) {
-               businessDaysCount++;
-           }
-           currentDate.setDate(currentDate.getDate() + 1);
-       }
-
-   resultText.innerHTML = businessDaysCount + " business days";
-   
- document.getElementById("date_calc_opt2_result").classList.remove('hidden');
-   }
-
-	
-// Function to reset all entered values and results
-function clearForm(formId) {
-   // Reset the form inputs
-   document.getElementById(formId).reset();
-   // Hide the result for the respective tab
-   if (formId === 'form_date_calc_opt1') {
-       document.getElementById("date_calc_opt1_result").classList.add('hidden'); // Hide result for first tab
-       document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML = ""; // Clear result text for first tab
-   } else if (formId === 'form_date_calc_opt2') {
-       document.getElementById("date_calc_opt2_result").classList.add('hidden'); // Hide result for second tab
-       document.getElementById("resultText").innerHTML = ""; // Clear result text for second tab
-   }
-}
-// Function to reset both forms
-function resetModalForms() {
-   clearForm('form_date_calc_opt1');
-   clearForm('form_date_calc_opt2');
-}
-// Bind the Bootstrap modal's 'hidden' event to reset forms when the modal is closed
-$('#modal_date_calc').on('hidden.bs.modal', function () {
-   resetModalForms();
-});
-</script>
 </body>
 </html>
