@@ -78,7 +78,54 @@
     
   <p>Intro text</p>
 
-
+  <p>Find out who to contact by answering the question below.</p>
+  
+  <div data-wb-urlmapping='{
+		"contact=technical": [{ "action": "selectInput", "source": "#contactOptions", "value": "Technical guidance on CT property" },{ "action": "removeClass", "source": "#guidance", "class": "hidden" }],
+		"contact=claiming": [{ "action": "selectInput", "source": "#contactOptions", "value": "Claiming the tax credit" },{ "action": "removeClass", "source": "#admin", "class": "hidden" }],
+		"contact=labour": [{ "action": "selectInput", "source": "#contactOptions", "value": "Labour requirements" },{ "action": "removeClass", "source": "#admin", "class": "hidden" }]
+	}'></div>
+  <div class="wb-frmvld gc-font-2019">
+    <form id="contactOptions" class="hidden">
+      <div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true, "isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "reset": {"action": "addClass", "source": ".phone", "class": "hidden", "live": true}, "itmselector": "#options", "unhideelm": "#contactOptions", "hideelm": ".hidden-header,.phone"}'>
+        <div class="wb-fieldflow-header">
+          <div class="wb-fieldflow-label">What is your question related to?</div>
+        </div>
+        <div id="options">
+          <ul>
+            <li data-wb-fieldflow='{"action": "removeClass", "source": "#guidance", "class": "hidden", "live": true}'>Eligibility or verification of Class 57 and Class 58 property, and dual-use equipment</li>
+<li data-wb-fieldflow='{"action": "removeClass", "source": "#guidance", "class": "hidden", "live": true}'>Project evaluations</li>
+<li data-wb-fieldflow='{"action": "removeClass", "source": "#guidance", "class": "hidden", "live": true}'>Scientific, engineering, or technical guidance</li>
+		<li data-wb-fieldflow='{"action": "removeClass", "source": "#guidance", "class": "hidden", "live": true}'>Changes to your project</li>  
+           
+		  <li data-wb-fieldflow='{"action": "removeClass", "source": "#admin", "class": "hidden", "live": true}'>Claiming the tax credit</li>
+<li data-wb-fieldflow='{"action": "removeClass", "source": "#guidance", "class": "hidden", "live": true}'>Submitting your annual claim report or knowledge sharing report</li>  
+		<li data-wb-fieldflow='{"action": "removeClass", "source": "#admin", "class": "hidden", "live": true}'>Completing your annual climate risk disclosure report</li>  
+            <li data-wb-fieldflow='{"action": "removeClass", "source": "#admin", "class": "hidden", "live": true}'>Labour requirements</li>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="phone-numbers">
+    <div id="guidance" class="phone" tabindex="0">
+      <h2 class="h4 hidden-header">For technical guidance on CT property</h2>
+      <div class="alert alert-info">
+        <h2 class="h3 mrgn-tp-0">Contact Natural Resources Canada (NRCan)</h2>
+        <p><strong>Email: </strong>itc_ccus-cii_cusc@nrcan-rncan.gc.ca</p>
+<p>[NRCan recognizes that e-mail is not a secure means of communication, and cannot guarantee the security of confidential information sent via email while it is in transit.]</p>
+	      
+      </div>
+    </div>
+    <div id="admin" class="phone" tabindex="0">
+      <h2 class="h4 hidden-header">For information on claiming the tax credit or labour requirements</h2>
+      <div class="alert alert-info">
+        <h2 class="h3 mrgn-tp-0">Contact the Canada Revenue Agency (CRA)</h2>
+        <div data-ajax-replace="https://cra-proto.github.io/clean-economy/clean-economy-itc/labour-requirements-itc.html#ajax-fraser"><a href="https://cra-proto.github.io/clean-economy/clean-economy-itc/labour-requirements-itc.html#ajax-fraser">Fraser Valley and Interior Tax Services Office</a></div>
+      </div>
+    </div>
+  </div>
+	    
 
 
 
