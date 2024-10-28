@@ -394,7 +394,119 @@
 <li><strong>Feedback on Policies:</strong> Collect employee feedback on policies and procedures for continuous improvement.</li>
 </ul>
 </details>
-<details><summary></summary>
+<details><summary>10 quiz</summary>
+<div class="container">
+<h1>CRA Review Programs Quiz</h1>
+<p>Test your understanding of the three types of CRA reviews for employers.</p>
+<!-- Question 1 -->
+<div class="question">
+<h2>1. What is the main purpose of the Employer Examination?</h2>
+<label><input type="radio" name="q1" value="correct"> To verify the accuracy of specific information in employer filings.</label>
+<label><input type="radio" name="q1" value="incorrect"> To provide employers with proactive compliance guidance.</label>
+<label><input type="radio" name="q1" value="incorrect"> To conduct a full audit of payroll records.</label>
+<div class="feedback" id="feedback1"></div>
+</div>
+<!-- Question 2 -->
+<div class="question">
+<h2>2. Which CRA review type is the most comprehensive?</h2>
+<label><input type="radio" name="q2" value="correct"> Employer Audit</label>
+<label><input type="radio" name="q2" value="incorrect"> Employer Examination</label>
+<label><input type="radio" name="q2" value="incorrect"> Assisted Compliance Review</label>
+<div class="feedback" id="feedback2"></div>
+</div>
+<!-- Question 3 -->
+<div class="question">
+<h2>3. What kind of review focuses on specific issues or areas based on risk?</h2>
+<label><input type="radio" name="q3" value="correct"> Employer Examination</label>
+<label><input type="radio" name="q3" value="incorrect"> Employer Audit</label>
+<label><input type="radio" name="q3" value="incorrect"> Assisted Compliance Review</label>
+<div class="feedback" id="feedback3"></div>
+</div>
+<!-- Question 4 -->
+<div class="question">
+<h2>4. Which type of review may involve penalties if non-compliance is identified?</h2>
+<label><input type="radio" name="q4" value="correct"> Employer Audit</label>
+<label><input type="radio" name="q4" value="incorrect"> Assisted Compliance Review</label>
+<label><input type="radio" name="q4" value="incorrect"> Employer Examination</label>
+<div class="feedback" id="feedback4"></div>
+</div>
+<!-- Question 5 -->
+<div class="question">
+<h2>5. Which review is typically voluntary and focuses on supporting compliance improvement?</h2>
+<label><input type="radio" name="q5" value="correct"> Assisted Compliance Review</label>
+<label><input type="radio" name="q5" value="incorrect"> Employer Audit</label>
+<label><input type="radio" name="q5" value="incorrect"> Employer Examination</label>
+<div class="feedback" id="feedback5"></div>
+</div>
+<!-- Question 6 -->
+<div class="question">
+<h2>6. Which review is the least intrusive and has a limited focus?</h2>
+<label><input type="radio" name="q6" value="correct"> Employer Examination</label>
+<label><input type="radio" name="q6" value="incorrect"> Employer Audit</label>
+<label><input type="radio" name="q6" value="incorrect"> Assisted Compliance Review</label>
+<div class="feedback" id="feedback6"></div>
+</div>
+<!-- Question 7 -->
+<div class="question">
+<h2>7. True or False: The Employer Examination often involves on-site visits.</h2>
+<label><input type="radio" name="q7" value="incorrect"> True</label>
+<label><input type="radio" name="q7" value="correct"> False</label>
+<div class="feedback" id="feedback7"></div>
+</div>
+<!-- Question 8 -->
+<div class="question">
+<h2>8. What type of review is designed to educate employers about compliance?</h2>
+<label><input type="radio" name="q8" value="correct"> Assisted Compliance Review</label>
+<label><input type="radio" name="q8" value="incorrect"> Employer Audit</label>
+<label><input type="radio" name="q8" value="incorrect"> Employer Examination</label>
+<div class="feedback" id="feedback8"></div>
+</div>
+<!-- Question 9 -->
+<div class="question">
+<h2>9. Which review requires detailed records and may cover several years?</h2>
+<label><input type="radio" name="q9" value="correct"> Employer Audit</label>
+<label><input type="radio" name="q9" value="incorrect"> Assisted Compliance Review</label>
+<label><input type="radio" name="q9" value="incorrect"> Employer Examination</label>
+<div class="feedback" id="feedback9"></div>
+</div>
+<!-- Question 10 -->
+<div class="question">
+<h2>10. Which review aims to address specific issues with minimal impact?</h2>
+<label><input type="radio" name="q10" value="correct"> Employer Examination</label>
+<label><input type="radio" name="q10" value="incorrect"> Employer Audit</label>
+<label><input type="radio" name="q10" value="incorrect"> Assisted Compliance Review</label>
+<div class="feedback" id="feedback10"></div>
+</div>
+<button onclick="checkAnswers()">Submit Quiz</button>
+<div id="finalResult" class="feedback"></div>
+</div>
+<script>
+   function checkAnswers() {
+       let correctAnswers = 0;
+       for (let i = 1; i <= 10; i++) {
+           const radios = document.getElementsByName("q" + i);
+           const feedback = document.getElementById("feedback" + i);
+           let answeredCorrectly = false;
+           radios.forEach((radio) => {
+               if (radio.checked && radio.value === "correct") {
+                   answeredCorrectly = true;
+               }
+           });
+           if (answeredCorrectly) {
+               feedback.textContent = "Correct!";
+               feedback.classList.add("correct");
+               feedback.classList.remove("incorrect");
+               correctAnswers++;
+           } else {
+               feedback.textContent = "Incorrect.";
+               feedback.classList.add("incorrect");
+               feedback.classList.remove("correct");
+           }
+       }
+       document.getElementById("finalResult").textContent = `You scored ${correctAnswers} out of 10.`;
+   }
+</script>
+	
 </details>
 
  <div id="def-preFooter"></div>
