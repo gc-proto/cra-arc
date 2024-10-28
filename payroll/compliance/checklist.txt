@@ -83,6 +83,47 @@
             </div>
           </fieldset>
         </div>
+
+<script defer>
+       "use strict";
+       
+       // Function to update the visibility of messages based on checkboxes
+       function updateChkbx() {
+           // Get all checkboxes
+           let checkboxes = document.querySelectorAll("input[type=checkbox][name=action-checkbox]");
+           // Get all checked checkboxes
+           let checked = document.querySelectorAll("input[type=checkbox][name=action-checkbox]:checked");
+           
+           // Elements to show/hide based on the checkbox state
+           let defaultMsg = document.getElementById("action-default-msg");
+           let qualifyMsg = document.getElementById("action-qualify-msg");
+           let notQualifyMsg = document.getElementById("action-not-qualify-msg");
+
+           // Hide all messages first
+           defaultMsg.classList.add("hidden");
+           qualifyMsg.classList.add("hidden");
+           notQualifyMsg.classList.add("hidden");
+
+           // Show the appropriate message
+           if (checked.length === 0) {
+               defaultMsg.classList.remove("hidden");
+           } else if (checkboxes.length === checked.length) {
+               qualifyMsg.classList.remove("hidden");
+           } else {
+       notQualifyMsg.classList.remove("hidden");
+   }
+}
+
+// Call updateChkbx when the page loads to set the initial state
+window.onload = updateChkbx;
+
+// Attach the updateChkbx function to the change event for the checkboxes
+document.querySelectorAll("input[type=checkbox][name=action-checkbox]").forEach(function (checkbox) {
+   checkbox.addEventListener("change", updateChkbx);
+});
+</script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
       </div>
     </div>
   </div>
