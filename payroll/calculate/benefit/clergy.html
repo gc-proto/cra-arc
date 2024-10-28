@@ -331,14 +331,14 @@
 <ul class="list-unstyled cnjnctn-type-and">
 <li class="cnjnctn-col"><h4>Status test</h4><p>Your employee’s <strong>status</strong> is <strong>one</strong> of the following:</p>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"> Member of the clergy</li>
-<li class="cnjnctn-col">Member of a religious order </li>
-<li class="cnjnctn-col">Regular minister of a religious denomination  </li>
+<li class="cnjnctn-col"> <a href="#clergy" aria-controls="centred-popup" class="wb-lbx" role="button">Member of the clergy&nbsp;<span class="far fa-question-circle"></span></a></li>
+<li class="cnjnctn-col">Member of a <a href="#religious" aria-controls="centred-popup" class="wb-lbx" role="button">religious order&nbsp;<span class="far fa-question-circle"></span></a></li>
+<li class="cnjnctn-col"><a href="#minister" aria-controls="centred-popup" class="wb-lbx" role="button">Regular minister&nbsp;<span class="far fa-question-circle"></span></a> of a <a href="#religiousden" aria-controls="centred-popup" class="wb-lbx" role="button">religious denomination&nbsp;<span class="far fa-question-circle"></span></a> </li>
 </ul>
 </li>
 <li class="cnjnctn-col"><h4>Function test</h4> <p>Your employee’s <strong>function</strong> is <strong>one</strong> of the following:</p>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col">In charge of, or ministering to a diocese, parish or congregation </li>
+<li class="cnjnctn-col">In charge of, or ministering to a diocese, parish or <a href="#congregation" aria-controls="centred-popup" class="wb-lbx" role="button">congregation&nbsp;<span class="far fa-question-circle"></span></a> </li>
 <li class="cnjnctn-col">Engaged exclusively in full-time administrative service by appointment of a religious order or religious denomination </li>
 </ul>
 </li>
@@ -348,7 +348,7 @@
 <div class="col-xs-12">
 <dl class="dl-horizontal">
 <dt> Congregation</dt>
-<dd><p>A <strong>congregation</strong> is not limited by church structure, territory, or the number of people gathered.</p>
+<dd><div id="ajax-def-congregation"><p>A <strong>congregation</strong> is not limited by church structure, territory, or the number of people gathered.</p>
 
 <p>A congregation will have the following:</p>
 <ul>
@@ -358,10 +358,10 @@
 <li><strong>Multiple congregations:</strong> Ministers or spiritual leaders do not have to serve a single congregation; they may serve multiple groups across different locations or communities.</li>
 <li><strong>Chaplains as ministers to congregations:</strong> Chaplains in hospitals, jails, the armed forces, and similar organizations are generally considered to minister to congregations, providing spiritual care in these settings.</li>
 </ul>
-</dd>
+</div></dd>
 
 <dt> Member of the clergy </dt>
-<dd><p>A <strong>member of the clergy</strong> is a person set apart as a spiritual leader within a church or religious denomination.</p>
+<dd><div id="ajax-def-clergy"><p>A <strong>member of the clergy</strong> is a person set apart as a spiritual leader within a church or religious denomination.</p>
 <p>A member of the clergy will have the following:</p>
 <ul>
 <li><strong>Role as a spiritual leader:</strong> The individual is recognized as a spiritual leader distinct from other members of their religious community.</li>
@@ -375,10 +375,10 @@
 </ul>
 </li>
 </ul> 
-</dd>
+</div></dd>
 
 <dt> Regular minister </dt>
-<dd><p>A <strong>regular minister</strong> is a person who meets specific criteria to serve in a religious organization.</p>
+<dd><div id="ajax-def-minister"><p>A <strong>regular minister</strong> is a person who meets specific criteria to serve in a religious organization.</p>
 <p>A regular minister will have the following:</p>
 <ul>
 <li><strong>Authority to perform spiritual duties:</strong> The individual is authorized to conduct religious services, administer sacraments, and perform other spiritual functions. These duties may include:
@@ -392,14 +392,14 @@
 <li><strong>Position of permanence:</strong> The appointment is intended to be long-term or permanent within the organization.</li>
 </ul>
 <p>Simply performing the duties of a minister is not enough to be considered a "regular minister". A formal, legitimate appointment or recognition is required.</p>
-</dd>
+</div></dd>
 <dt>Religious denomination</dt>
-<dd><p>A <strong>religious denomination</strong> is a group of individuals who share a common name and a distinct system of religious faith or belief.</p>
+<dd><div id="ajax-def-religious-den"> <p>A <strong>religious denomination</strong> is a group of individuals who share a common name and a distinct system of religious faith or belief.</p>
 <p>A religious denomination will have the following:</p>	
 <ul>
 <li><strong>Shared name:</strong> Members of the denomination are identified by the same name, uniting them under a common identity.</li>
 <li><strong>Distinct system of beliefs:</strong> The group has specific religious beliefs, ideologies, or practices that are unique and distinguishable from those of society as a whole.</li>
-</ul></dd>
+</ul></div></dd>
 <dt> Religious order </dt>
 <dd><div id="ajax-def-religious"> 
 <p>Your employee is considered a member of a <strong>religious order</strong> if they are part of a <strong>group</strong> of people bound by the same religious, moral, and social rules and discipline.</p>
@@ -793,6 +793,31 @@
 </dl>
 </div>
 </div>
+
+<section id="clergy" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">What is a member of the clergy</h2>
+	</header>	<div class="modal-body">	
+	<div data-ajax-replace="#ajax-def-clergy"></div>
+</section>
+
+<section id="congregation" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">What is a congregation</h2>
+	</header>	<div class="modal-body">	
+	<div data-ajax-replace="#ajax-def-congregation"></div>
+</section>
+
+<section id="minister" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">What is a regular minister</h2>
+	</header>	<div class="modal-body">	
+	<div data-ajax-replace="#ajax-def-minister"></div>
+</section>
+
+<section id="religiousden" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">What is a religious denomination</h2>
+	</header>	<div class="modal-body">	
+	<div data-ajax-replace="#ajax-def-religiousden"></div>
+</section>
+
+<section id="religious" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">What is a religious order</h2>
+	</header>	<div class="modal-body">	
+	<div data-ajax-replace="#ajax-def-religious"></div>
+</section>
 
 <section id="fmv" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">Fair market value (FMV)</h2>
 	</header>	<div class="modal-body">	
