@@ -1,8 +1,3 @@
-<section id="modal_date_calc" class="wb-overlay modal-content overlay-def wb-popup-mid">
-  <header class="modal-header">
-    <h2 class="modal-title"><i class="fa fa-calculator"></i>&emsp; Date calculator</h2>
-  </header>
-  <div class="modal-body">
     <div class="wb-tabs ignore-session">
       <div class="tabpanels">
         <details id="date_calc_opt1" open="open">
@@ -76,5 +71,109 @@
         </details>
       </div>
     </div>
-  </div>
-</section>
+
+
+<script>
+   // Function to check if a date is a weekend
+   function isWeekend(date) {
+       const day = date.getDay();
+       return (day === 0 || day === 6); // 0 = Sunday, 6 = Saturday
+   }
+   // Function to calculate date after amount of time
+   function calculateDate() {
+       const startDate = new Date(document.getElementById("date_calc_from1").value);
+       const elapsed = parseInt(document.getElementById("date_calc_elapsed").value);
+       const unit = document.getElementById("date_calc_unit").value;
+       const direction = document.getElementById("date_calc_dir").value === "true"; // true = future, false = past
+       let resultDate = new Date(startDate); // Start from this date
+       if (isNaN(startDate) || isNaN(elapsed)) {
+           alert("Please enter a valid start date and elapsed time.");
+           return;
+       }
+       // Adding time based on the selected unit
+       if (unit === "days") {
+           resultDate = addDays(resultDate, elapsed, direction, false);
+       } else if (unit === "work") {
+           resultDate = addDays(resultDate, elapsed, direction, true);
+       } else if (unit === "weeks") {
+           resultDate.setDate(resultDate.getDate() + (direction ? elapsed * 7 : -elapsed * 7));
+       } else if (unit === "months") {
+           resultDate.setMonth(resultDate.getMonth() + (direction ? elapsed : -elapsed));
+       } else if (unit === "years") {
+           resultDate.setFullYear(resultDate.getFullYear() + (direction ? elapsed : -elapsed));
+       }
+       // Display the result
+       document.getElementById("date_calc_opt1_result").classList.remove('hidden');
+       document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML = formatDate(resultDate);
+   }
+   // Helper function to add or subtract days, with an option for business days
+   function addDays(date, days, forward = true, businessDays = false) {
+       let direction = forward ? 1 : -1;
+       while (days > 0) {
+           date.setDate(date.getDate() + direction);
+           if (!businessDays || !isWeekend(date)) {
+               days--;
+           }
+       }
+       return date;
+   }
+   // Helper function to format date as: Sunday, October 14, 2024
+   function formatDate(date) {
+       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+       return date.toLocaleDateString(undefined, options);
+   }
+   // Function to calculate business days between two dates
+   function calculateBusinessDays() {
+       const startDate = new Date(document.getElementById("date_calc_from2").value);
+       const endDate = new Date(document.getElementById("date_calc_to2").value);
+       const resultText = document.getElementById("resultText");
+       // Check for valid date inputs
+       if (isNaN(startDate) || isNaN(endDate)) {
+           resultText.innerHTML = "Please select valid start and end dates.";
+           document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+           return;
+       }
+       // Check if start date is greater than end date
+       if (startDate > endDate) {
+           resultText.innerHTML = "End date must be after the start date.";
+           document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+           return;
+       }
+       let businessDaysCount = 0;
+       let currentDate = new Date(startDate);
+       while (currentDate <= endDate) {
+           if (!isWeekend(currentDate)) {
+               businessDaysCount++;
+           }
+           currentDate.setDate(currentDate.getDate() + 1);
+       }
+
+   resultText.innerHTML = businessDaysCount + " business days";
+   
+ document.getElementById("date_calc_opt2_result").classList.remove('hidden');
+   }
+
+	
+// Function to reset all entered values and results
+function clearForm(formId) {
+   // Reset the form inputs
+   document.getElementById(formId).reset();
+   // Hide the result for the respective tab
+   if (formId === 'form_date_calc_opt1') {
+       document.getElementById("date_calc_opt1_result").classList.add('hidden'); // Hide result for first tab
+       document.getElementById("date_calc_opt1_result").getElementsByTagName('p')[0].innerHTML = ""; // Clear result text for first tab
+   } else if (formId === 'form_date_calc_opt2') {
+       document.getElementById("date_calc_opt2_result").classList.add('hidden'); // Hide result for second tab
+       document.getElementById("resultText").innerHTML = ""; // Clear result text for second tab
+   }
+}
+// Function to reset both forms
+function resetModalForms() {
+   clearForm('form_date_calc_opt1');
+   clearForm('form_date_calc_opt2');
+}
+// Bind the Bootstrap modal's 'hidden' event to reset forms when the modal is closed
+$('#modal_date_calc').on('hidden.bs.modal', function () {
+   resetModalForms();
+});
+</script>
