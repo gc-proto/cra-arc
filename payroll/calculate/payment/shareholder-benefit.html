@@ -276,8 +276,9 @@
 
 <h1 property="name" id="wb-cont" class="gc-thickline">Shareholder benefits</h1>
 
- 
-<p>You may need to determine if a person received a shareholder benefit for the purposes of subsection 15(1) of the Income Tax Act. </p>
+<p>You may need to determine if a benefit provided to a shareholder is a taxable benefit (for the purposes of subsection 15(1) of the Income Tax Act)</p>
+<p>If the shareholder benefit is taxable, you need to determine how to calculate the value, which payroll deductions you need to withhold from the payment and how to report on a T4A slip. </p>
+		 
 <details><summary><strong>Before you begin</strong> - You must confirm if this content applies to you</summary>
 <p>This content only applies to persons who are one of the following:</p>
 
@@ -308,13 +309,6 @@
 </ul>
 </details>
 
- <h2 class="h3">On this page</h2>
-    <ul>
-      <li><a href="#h-1">Gather the facts</a></li>
-      <li><a href="#h-2">Analyze the facts</a></li>
-      <li><a href="#h-4">What if you cannot confirm if the benefit is received because of shareholdings</a></li>
-    </ul>
-    <h2 id="h-1" class="h3">Gather the facts</h2>
     <p>There are <strong>2 ways</strong> you can determine if the benefit is received because of shareholdings:</p>
     <ul class="cnjnctn-type-or cnjnctn-sm">
       <li class="cnjnctn-col"><a href="#interactive">Answer questions about the shareholder benefit</a> to view a summary based on factors</li>
@@ -327,28 +321,45 @@
         <summary>Answer interactive questions</summary>
     <div id="interactive">
 		<div class="mrgn-lft-md mrgn-rght-md">
-      <h3 class="mrgn-tp-md">Answer a maximum of 12 questions to gather the facts</h3>
-      <p class="text-muted small">Make a selection and <strong> scroll down</strong> for further questions or results.</p>
+           <p class="text-muted small">Make a selection and <strong> scroll down</strong> for further questions or results.</p>
 			</div>
      <div class="wb-frmvld gc-font-2019 mrgn-lft-md mrgn-rght-md">
+
+	      
       <form>
 
 		  
         <div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "noForm": true, "isoptional": true, "default": {"action": "addClass", "source": "#results", "class": "hidden", "live": true}}'>
           <div class="wb-fieldflow-header">
-            <h3 class="h3 mrgn-tp-md text-info row" id="personal"> Type of benefit</h3>
+          	  
+            <p class="wb-fieldflow-label">What type of information are you looking for? </p>
+            
+          </div>
+          <ul>
+		
+            <li data-wb-fieldflow='[{"action": "toggle", "live": true, "toggle": "#q1y"}, {"action": "append", "source": "#q1"}]'>Determine if the shareholder benefit is taxable</li>
+	   <li data-wb-fieldflow='[{"action": "toggle", "live": true, "toggle": "#q1n"}, {"action": "removeClass", "source": "#calc-q1", "class": "hidden", "live": true}]'>Shareholder benefit is taxable: Calculate the value, determine the payroll deductions to withhold and report the benefit on a slip</li>
+	   </ul>
+        </div>
+      </form>
+
+   <div id="q1" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "noForm": true, "isoptional": true}' class="wb-fieldflow-sub hidden">
+          <div class="wb-fieldflow-header">
+            <h3 class="h2 text-info mrgn-tp-md row" id="personal"> <small> Factors to consiter:</small> <br> Determine if the shareholder benefit is taxable</h3>
 		  
-            <p class="wb-fieldflow-label">Q1. What is the shareholder benefit received? </p>
+            <p class="wb-fieldflow-label">Q1. What is the type of shareholder benefit? </p>
 <details><summary>Types of shareholder benefits</summary>
-<p>Shareholder benefits includes:</p>
-<ul>
-<li>A payment or reimbursement of expenses</li>
-<li>A life insurance policy or personal health services plan</li>
-<li>A transaction involving the corporation from which the employee profited</li>
-<li>Stock options or discretionary dividend shares</li>
-<li>Funds</li>
-<li>Other type of benefit</li>	
-</ul> </details> 
+
+	<p>The following are types of shareholder benefits:</p> 
+	<ul> 
+		<li><strong>Personal use of company property:</strong> Personal use of company assets like cars, homes, or boats is a taxable benefit.</li> 
+		<li><strong>Loans to shareholders:</strong> Low or no-interest loans to shareholders can result in taxable benefits.</li> 
+		<li><strong>Forgiven or low-interest loans:</strong> Loans that are forgiven or not required to be repaid are shareholder benefits.</li> 
+		<li><strong>Dividends in lieu of salary:</strong> Dividends paid instead of salary to avoid taxes can be a taxable shareholder benefit.</li> 
+		<li><strong>Benefits to family members:</strong> If benefits are given to family members of shareholders, they are also considered taxable.</li> 
+		<li><strong>Personal expenses paid by the company:</strong> If the company pays personal expenses on behalf of shareholders, it is considered a benefit.</li> 
+		<li><strong>Below-market rent:</strong> Rent charged below fair market value is considered a shareholder benefit.</li> </ul> 
+ </details> 
              
           </div>
           <ul>
@@ -357,7 +368,7 @@
             <li data-wb-fieldflow='[{"action": "toggle", "live": true, "toggle": "#q1-2"}, {"action": "append", "source": "#q2"}]'>Other type of shareholder benefit</li>
 	   </ul>
         </div>
-      </form>
+	     
       <div id="q1a" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "noForm": true, "isoptional": true}' class="wb-fieldflow-sub hidden">
 	  <div class="wb-fieldflow-header">
           <h3 class="h3 mrgn-tp-md text-info row" id="use"> Use of the corporate property </h3>
@@ -517,15 +528,14 @@
 
           
 
-  <div id="results" class="alert alert-info hidden">
-    <h3><small>Your result based on the factors to consider</small></h3>
+  <div id="results" class="hidden">
+  <p id="q1-1" class="h4 mrgn-tp-md text-info hidden"><span class="text-muted ">You indicated that the shareholder benefit is: </span><br>Use of corporate tangible property </p>
+ <p id="q1-2" class="h4 mrgn-tp-md text-info hidden"><span class="text-muted ">You indicated that the shareholder benefit is: </span><br>Other type of shareholder benefit</p>
 
-  <p id="q1-1" class="h4 mrgn-tp-md text-info hidden"><span class="text-muted ">You indicated that the shareholder benefit is: </span><br><big>Use of corporate tangible property </big></p>
- <p id="q1-2" class="h4 mrgn-tp-md text-info hidden"><span class="text-muted ">You indicated that the shareholder benefit is: </span><br><big>Other type of shareholder benefit</big></p>
-
- <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col">   <h5 class="text-muted"> Indicators: Shareholder benefit</h5>
-    <p>Add intro  </p>
+<p>Based on the information you answered, the following factors may help you determine if the benefit is:</p>
+ <ul class="list-unstyled cnjnctn-type-or">
+<li class="cnjnctn-col">   <h5 class="text-muted">Likely a shareholder benefit</h5>
+    <p></p>
      <ul class="fa-ul mrgn-lft-lg"> 
    
       <li id="q1a-no" class="hidden"><span class="fas fa-check text-success fa-li"></span> A1a. The employee used corporate property for <strong>non-business</strong> purposes</li>
@@ -544,8 +554,8 @@
       <li id="q11-no" class="hidden"><span class="fas fa-check text-success fa-li"></span> A11. The benefit was <strong>not</strong> given to the employee pursuant to a <strong>worker agreement</strong> with the corporation</li>
       <li id="q12-no" class="hidden"><span class="fas fa-check text-success fa-li"></span> A12. The same benefit was <strong>not</strong> offered to <strong>other workers, officers or directors</strong></li>
     </ul> </li>
-<li class="cnjnctn-col"> <h5 class="text-muted">Indicators: Not a shareholder benefit</h5>
-    <p>Add intro  </p>
+<li class="cnjnctn-col"> <h5 class="text-muted">Likely not a shareholder benefit</h5>
+    <p> </p>
  
       <ul class="fa-ul mrgn-lft-lg"> 
      
@@ -564,11 +574,83 @@
 	       <li id="q11-yes" class="hidden"><span class="fas fa-check text-success fa-li"></span> A11. The benefit was given to the employee <strong>pursuant to a worker agreement</strong> with the corporation</li>
 	       <li id="q12-yes" class="hidden"><span class="fas fa-check text-success fa-li"></span> A12. The same benefit was <strong>offered to other workers, officers or directors</strong></li>
     </ul> </li>
-</ul
-
-    
-    
+</ul>
   </div>
+
+ <div id="calc-q1"  class="hidden">
+	  <h3 id="q1n" class="h3 text-info mrgn-tp-md" id="use"><small> Shareholder benefit is taxable:</small> <br>Calculate the value, determine the payroll deductions to withhold and report the benefit on a slip</h3>
+     
+        
+  <ol class="lst-stps ld-zr stps-strpd">
+<li><h3 id="step4">Calculate the value of the shareholder benefit</h3>
+<p><strong>If the shareholder benefit is taxable</strong>, the calculation of the benefit will depend on the type of shareholder benefit received. </p>
+
+
+</li>
+
+<li><h3 id="h_4">Withhold payroll deductions</h3>
+<p><strong>If the shareholder benefit is taxable,</strong> you must withhold the following deductions:</p>
+
+<p> The amounts must be included in the pay period they were received or enjoyed. </p>
+
+<p><span class="fas fa-calculator fa-xl text-muted"></span> Learn more: <a href="/cra-arc/payroll/calculate/how/index.html">How to calculate - Calculate payroll deductions and contributions</a></p>
+
+</li> 
+
+<li>  <h3 id="h_5">Report the benefit on a slip</h3>
+<p><strong>If the shareholder benefit is taxable,</strong> you must report on the following slip depending on the type of benefit: </p>
+ 
+  
+    <table class="table table-striped small table-condensed" id="ajax-tbl">
+            <thead>
+            <tr>
+                <th>Slip type</th>
+                <th>Description</th>
+                <th>Box/line</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>T4</td>
+                <td>Report employment income and benefits for shareholders who are also employees</td>
+                <td>Box 14 <small>(employment income)</small>... need to add the specific codes</td>
+            </tr>
+            <tr>
+                <td>T4A</td>
+                <td>Report other types of income and certain benefits for shareholders who are recipients (including non-residents)</td>
+                <td>Box 105 <small>(other income)</small>... need to add the specific codes</td>
+            </tr>
+            <tr>
+                <td>T5</td>
+                <td>Report dividends and other distributions to shareholders (including non-residents)</td>
+                <td>Box 24 <small>(actual amount of dividends)</small></td>
+            </tr>
+            <tr>
+                <td>T5013</td>
+                <td>Report income from partnerships and benefits distributed to partners</td>
+                <td>Box 130 <small>(partnership income)</small>... need to add the specific codes</td>
+            </tr>
+            <tr>
+                <td>T3</td>
+                <td>Report income from trusts and distributions to beneficiaries</td>
+                <td>Box 22 <small>(income from trusts)</small>... need to add the specific codes</td>
+            </tr>
+            <tr>
+                <td>T1 return</td>
+                <td>Report the value of shareholder benefits under "Other Income"</td>
+                <td>Line 13000</td>
+            </tr>
+
+		
+        </tbody>
+    </table>
+
+
+	<p><span class="fas fa-file-invoice fa-xl text-muted"></span> Learn more: <a href="/cra-arc/payroll/file/complete.html">Fill out the slips and summaries - File information returns (slips and summaries)</a> </p>
+	
+ </li></ol>
+</div>
+
 	    </details>
 		
 		  <details id="tab2">
@@ -608,33 +690,9 @@
 		</div>
     </div>
 	  
-    <h2 class="h3" id="h-2">Analyze the facts</h2>
-	  <p>You must analyze the information from both the employee <strong>and</strong> the employer to help you decide if the evidence moves the employee or the employer is the primary beneficiary of the benefit side of the continuum.</p>
-	  <p>Do the facts indicate that, for the benefit, the:</p>
-	
+    
 	  
-	  
-    <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-      <li class="cnjnctn-col"><span class="fas fa-hand-holding-usd text-info fa-2x"> </span> Employee is the primary beneficiary</li>
-      <li class="cnjnctn-col"><span class="fas fa-user-tie text-info fa-2x"> </span> Employer is the primary beneficiary</li>
-    </ul> 
-	  
-    <p>You need to analyze the facts by organizing and assessing the information you gathered. This process will move the worker into one side of the continuum, and confirm if the employee or the employer is the primary beneficiary of the benefit.</p>
-   
-    <h4 id="h_0_1">Weighing the facts</h4>
-    <p>This is the most important part of analyzing the information. When reviewing the factors, there may be some facts that support the benefit is taxable or not.</p>
-    <h4 id="h_0_2">Case-by-case basis</h4>
-    <p>Whether the employee or the employer is the primary beneficiary of the benefit needs to be analyzed on a case-by-case basis. Each case is unique and requires a thorough review of the facts. It is also important to remember that when attempting to move the employee or the employer as the primary beneficiary of the benefit to one side of the continuum or the other, you must examine all factors. There is no one factor that is determinative, and there is a non-exhaustive list of factors to consider.</p>
-    <p><span class="fas fa-hand-holding-usd text-info fa-2x"> </span> <strong>If the primary beneficiary of the benefit is the employee</strong>, you will need to determine if the benefit is taxable. Learn more: <a href="/cra-arc/payroll/calculate/benefit/index.html">Determine if a benefit is taxable</a>.</p>
-   
-    <h2 class="h3" id="h-4">What if you cannot confirm who is the primary beneficiary</h2>
-    <div class="row">
-      <div class="col-xs-3 col-sm-2"> <span class="fa-stack fa-2x text-muted pull-left"> <span class="far fa-circle fa-stack-2x"></span> <span class="fas fa-comments fa-stack-1x"></span> </span> </div>
-      <div class="col-xs-9 col-sm-10">
-        <p>You can ask for a CPP/EI ruling. If you are not sure of who is the primary beneficiary (employer or employee), you can request a CPP/EI ruling. </p>
-        <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained/canada-pension-plan-employment-insurance-explained-11.html">How to get a CPP/EI ruling</a></p>
-      </div>
-    </div>
+  
 
 <h2 id="h_5">References</h2>
 
