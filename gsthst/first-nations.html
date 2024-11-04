@@ -81,7 +81,9 @@
 <p>On this webpage, the term “First Nations individual” is used to describe an individual who is registered or entitled to be registered under the Indian Act. The term “First Nations band” is used to describe the primary levels of Indigenous government (band  councils and tribal councils)</p>
    <p>We recognize that many First Nations people in Canada prefer <strong>not</strong> to describe themselves as Indians. However, we sometimes use the term “Indian” because it has a legal meaning in the <a href="http://laws-lois.justice.gc.ca/eng/acts/I-5/">Indian Act</a>. </p>
     </div>
-<p>Generally, everyone has to pay tax in Canada, except when the (<a href="#ajax-indian" aria-controls="ajax-indian" class="overlay-lnk" role="button">First Nations individual&nbsp;<span class="far fa-question-circle"></span></a>, <a href="#ajax-indian-band" aria-controls="ajax-indian-band" class="overlay-lnk" role="button">First Nations  band&nbsp;<span class="far fa-question-circle"></span></a> or <a href="#ajax-band-entity" aria-controls="ajax-band-entity" class="overlay-lnk" role="button">Band-empowered entity&nbsp;<span class="far fa-question-circle"></span></a>) is eligible for GST/HST relief. The exemption from tax under section 87 of the Indian Act <strong>only</strong> applies to an individual who is registered or entitled to be registered under the Indian Act.</p> 
+<p>Generally, everyone has to pay tax in Canada, except when the (<a href="#ajax-indian" aria-controls="ajax-indian" class="overlay-lnk" role="button">First Nations individual&nbsp;<span class="far fa-question-circle"></span></a>, <a href="#ajax-indian-band" aria-controls="ajax-indian-band" class="overlay-lnk" role="button">First Nations  band&nbsp;<span class="far fa-question-circle"></span></a> or <a href="#ajax-band-entity" aria-controls="ajax-band-entity" class="overlay-lnk" role="button">Band-empowered entity&nbsp;<span class="far fa-question-circle"></span></a>) is eligible for GST/HST relief. </p> 
+
+<div data-ajax-replace="#ajax-get-noproof0"></div>
      
 <h3>You have the choice to read the same information in <strong>2</strong> different formats:</h3>			 
 <ul class="cnjnctn-type-or cnjnctn-sm">
@@ -1100,7 +1102,9 @@
 <p class="h3 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your customer is a First Nations individual</big></p>
 
 			<p class="wb-fieldflow-label">Does your customer have proof of registration from Indigenous Services Canada?</p>
-			<p>You must get proof  that the purchaser is registered with Indigenous Services Canada. The exemption from tax under section 87 of the Indian Act only applies to an individual who is registered or entitled to be registered under the Indian Act.</p>
+			<div data-ajax-replace="#ajax-get-proof"></div>
+			<div data-ajax-replace="#ajax-get-noproof0"></div>
+
 		</div>
 		<ul>
 			<li data-wb-fieldflow='{"action": "append", "source": "#question-60"}'>Yes</li>
@@ -2012,9 +2016,8 @@
 <hr>
 	<p class="mrgn-lft-sm mrgn-tp-lg"><span class="fa-stack">     <span class="fas fa-dollar-sign fa-stack-1x"></span>     <span class="far fa-circle fa-stack-2x text-success"></span>   </span>You must pay the GST/HST in this situation because you <strong>do not</strong> have proof of registration from Indigenous Services Canada. You <strong>do not</strong> meet the conditions for GST/HST relief.</p>
 
-<p>The exemption from tax under section 87 of the Indian Act only applies to an individual who is registered or entitled to be registered under the Indian Act.</p>
-
-<p>Learn more from Indigenous Services Canada: <a href="https://www.sac-isc.gc.ca/eng/1100100032463/1572459644986" target="_blank">About Indian status</a></p>
+<div data-ajax-replace="#ajax-get-noproof0"></div>
+<div data-ajax-replace="#ajax-get-noproof1"></div>
 </section>
 
 <section class="alert alert-info hidden gc-font-2019" id="C-R2">
@@ -2356,9 +2359,10 @@
 	
 <section class="alert alert-info hidden gc-font-2019" id="B-R1">
 	<h3><small>Your result</small><br> Based on the information you entered: You must charge the GST/HST </h3>
-<hr>	<p class="mrgn-lft-sm mrgn-tp-lg"><span class="fa-stack">     <span class="fas fa-dollar-sign fa-stack-1x"></span>     <span class="far fa-circle fa-stack-2x text-success"></span>   </span>You must charge the GST/HST in this situation because the customer <strong>does not</strong> have proof of registration from Indigenous Services Canada. The customer <strong>does not</strong> meet the conditions for GST/HST relief.</p>
-<p>The exemption from tax under section 87 of the Indian Act only applies to an individual who is registered or entitled to be registered under the Indian Act.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+<hr>	
+<div data-ajax-replace="#ajax-get-noproof0"></div>
+<div data-ajax-replace="#ajax-get-noproof1"></div>
+
 <br>
 <h4 class="mrgn-tp-lg"><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;  How to report</h4>
 	<p>You must report the amount of the GST/HST you charged on <strong>line 105</strong> of your GST/HST return.</p>
@@ -3029,7 +3033,7 @@
 <li><a href="#paygsthst">Paying or charging the GST/HST</a></li>
 <li><a href="#rbts">GST/HST rebates available</a></li>
 <li><a href="#dcmnts">Documents&nbsp;you need for GST/HST relief</a></li>
-<li><a href="#rspnsblt">GST/HST responsibilities as a vendor</a></li>
+<li><a href="#rspnsblt">GST/HST responsibilities as a business</a></li>
 <li><a href="#thr">Land where the First Nations Goods and Services Tax (FNGST) or the First Nations Tax (FNT) applies</a></li>
 </ul>
 
@@ -3518,18 +3522,30 @@ Band funding of a <a href="/en/revenue-agency/services/tax/businesses/topics/gst
 
 
 </div>
-<div class="mwsbodytext text parbase section">
-    
+   
+        <h2 class="text-left" id="dcmnts">Documents you need for GST/HST relief</h2>
+<div id="ajax-get-proof">
+<p>You must get proof that the purchaser is registered with Indigenous Services Canada. </p>
+</div>
+<h3>What if your your customer does not have proof of registration from Indigenous Services Canada</h3>
+<div id="ajax-get-noproof0">
+<p>The exemption from tax under section 87 of the Indian Act only applies to an individual who is registered or entitled to be registered under the Indian Act.</p>
 
-    
-        <h3 class="text-left" id="dcmnts">Documents&nbsp;you need for GST/HST relief</h3>
-<p class="text-left">To be eligible for GST/HST relief, you have to get proof of Indian-status registration with Indigenous Services Canada (ISC). For more information, see <a href="http://www.aadnc-aandc.gc.ca/eng/1100100032374/1100100032378">Indian Status</a>.</p>
+<p>Learn more from Indigenous Services Canada: <a href="https://www.sac-isc.gc.ca/eng/1100100032463/1572459644986" target="_blank">About Indian status</a></p>
+</div>
+<div id="ajax-get-noproof1">
+<h4 class="mrgn-lft-sm mrgn-tp-lg"><span class="fa-stack">     <span class="fas fa-dollar-sign fa-stack-1x"></span>     <span class="far fa-circle fa-stack-2x text-success"></span>   </span>
+How to charge the GST/HST </h4>
+<p class="mrgn-lft-sm mrgn-tp-lg"><span class="fa-stack">     <span class="fas fa-dollar-sign fa-stack-1x"></span>     <span class="far fa-circle fa-stack-2x text-success"></span>   </span>You must charge the GST/HST in this situation because the customer <strong>does not</strong> have proof of registration from Indigenous Services Canada. The customer <strong>does not</strong> meet the conditions for GST/HST relief.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+
+<br>
+<h4 class="mrgn-tp-lg"><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;  How to report</h4>
+	<p>You must report the amount of the GST/HST you charged on <strong>line 105</strong> of your GST/HST return.</p>
+	<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/file-a-gst-hst-return/complete-a-gst-hst-return.html" target="_blank">Complete a GST/HST return</a></p>
+</div>
 <p class="text-left">As a vendor, if you do not charge the GST/HST on sales of taxable property and services, you need proof that the purchaser is an Indian, an Indian band, or a band-empowered entity. The chart below shows the different documents you need to ask for and keep in your records.<span lang="EN"></span></p>
 
-    
-
-
-</div>
 <div class="table-responsive section">
 
         
@@ -3570,7 +3586,7 @@ Band funding of a <a href="/en/revenue-agency/services/tax/businesses/topics/gst
 </div>
         <h3 id="rspnsblt">GST/HST responsibilities as a business</h3>
 
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<ul class="list-unstyled cnjnctn-type-or">
 <li class="cnjnctn-col"><h4>If you are not a GST/HST registrant</h4>
 <div id="ajax-not-reg">
 	<p class="mrgn-lft-sm mrgn-tp-lg"><span class="fa-stack">     <span class="fas fa-dollar-sign fa-stack-1x"></span>     <span class="fas fa-ban fa-stack-2x text-danger"></span>   </span> Generally, you <strong>do not</strong> charge the GST/HST unless you are a GST/HST registrant.</p> 
