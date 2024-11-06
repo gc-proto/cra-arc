@@ -462,7 +462,7 @@
 
 					number = new Number(calc);
 					data.calc.value = number.toLocaleString('en-CA', { minimumFractionDigits: 2 });
-					data.calcTxt.value = '$'+document.getElementById('curAmount').value+' (net tax) ÷ '+data.days.value+' (days) × '+data.daysYear.value+' = $'+data.calc.value;
+					data.calcTxt.value = '$'+document.getElementById('curAmount').value+'  ÷ for '+data.days.value+' days × '+data.daysYear.value+' (prorated over a full year) = $'+data.calc.value;
 
 					if (data.map.value == 'Q2Y') {
 						document.getElementById('i4_T2_S3').innerText = 'next';
@@ -528,7 +528,7 @@
 
 <fieldset class="mrgn-bttm-md hidden" id="2_S3">
 <label class="gc-font-2019" id="T2_S3"><strong>Q5. Do you estimate your net tax for the <strong id="i4_T2_S3">next</strong> fiscal year, <strong id="i_T2_S3"></strong> to <strong id="i2_T2_S3"></strong>, to be <strong id="i7_T2_S3">lower</strong> than <strong id="i6_T2_S3">your</strong> amount <strong id="i3_T2_S3"></strong> for the <strong id="i5_T2_S3">current</strong> fiscal year?</strong></label>
-<p id="calcS3"></p>
+<p>Based on the information you entered, your estimated net tax would be:  <strong id="calcS3"></strong> </p>
 <ul class="list-unstyled lst-spcd-2 gc-chckbxrdio chckbxrdio-grp">
  <li class="radio">
  <input type="radio" name="Q3" id="Q3Y" value="0" data-Q3Y="true" data-rule-required="true">
