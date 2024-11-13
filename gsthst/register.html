@@ -733,8 +733,8 @@
 	<!--QUESTION 11-->
 	<fieldset name="quest" id="question11" class="hidden gc-chckbxrdio">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are a taxi operator or a commercial ride-sharing driver</big></p>
-<label class="mrgn-tp-sm">Do you know for sure whether you are an employee or self-employed?</label>
-<p><a href="#taxi" aria-controls="taxi" class="overlay-lnk" role="button">What is considered a self-employed taxi operator or a commercial ride-sharing driver&nbsp;<span class="far fa-question-circle"></span></a></p>
+<label class="mrgn-tp-sm">Are you considered a self-employed taxi operator or a commercial ride-sharing driver?</label>
+<p class="small"><a href="#taxi" aria-controls="taxi" class="overlay-lnk" role="button">What is considered a self-employed taxi operator or a commercial ride-sharing driver&nbsp;<span class="far fa-question-circle"></span></a></p>
 
 		<ul class="list-unstyled lst-spcd-2" onchange="
 			var results = getElementsByName('results');
@@ -749,11 +749,11 @@
 		">	
 		 <li class="radio">
                                         <input type="radio" name="q11" id="q11-true" value="0" data-q11="true" data-rule-required="true">
-                                        <label for="q11-true">Yes</label>
+                                        <label for="q11-true">Yes - Self-employed</label>
                                     </li>
 			 <li class="radio">
                                         <input type="radio" name="q11" id="q11-false" value="1" data-q11="false" data-rule-required="true">
-                                        <label for="q11-false">No</label>
+                                        <label for="q11-false">No - Employee or unsure</label>
                                     </li>
 			  </ul>
 		
@@ -1681,17 +1681,14 @@
 </section>
 
 <section class="alert alert-warning hidden" id="R2" name="results">
-	<h3><small>Your result </small><br> R2 Based on the information you entered: You need to confirm if you are an employee or self-employed</h3>
+	<h3><small>Your result </small><br> R2 Based on the information you entered: You are an employee or you are unsure</h3>
 <hr>
-	
-	<p>You need to consider multiple factors to determine if you are an employee or self-employed.</p>
-	
-<p>Learn more: <a href="https://test.canada.ca/cra-arc/payroll/emp-status/index.html" target="_blank">Determine the relationship with the employer or the payer</a></p>
-<br>
-<p>Depending on your employment status: </p>
+<div data-ajax-replace="#ajax-taxi2"></div>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><span class="fas fa-ban text-danger fa-lg"></span> <strong>Do not</strong> use this interactive content if you are an <strong>employee</strong>.</li>
-<li class="cnjnctn-col"><span class="fas fa-check fa-lg text-success"></span> You can use this interactive content if you are <strong>not</strong> an employee.</li>
+<li class="cnjnctn-col"><h5>You are an employee</h5>
+<span class="fas fa-ban text-danger fa-lg"></span> If you are an <strong>employee</strong>, <strong>do not</strong> use this webpage.</li>
+<li class="cnjnctn-col"><h5>You are self-employed</h5>
+<span class="fas fa-check fa-lg text-success"></span> If you are <strong>self-employed</strong> you can use this interactive content.</li>
 </ul>
 </section>
 
@@ -2806,7 +2803,7 @@
   <div id="ajax-taxi" class="mrgn-tp-md">
 <p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
 <h4><span class="fas fa-user-check fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Confirming if you are self-employed</h4>
-		
+  <div id="ajax-taxi2">		
 <p>You are usually self-employed if you are in <strong>one </strong>of the following situations:</p>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col">You own your taxicab/motor vehicle</li>
@@ -2815,40 +2812,41 @@
 </ul>
 <p>Learn more to find out if you are self-employed or an employee: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained/canada-pension-plan-employment-insurance-explained-11.html">How to get a CPP/EI ruling</a>.</p>
 </div>
+</div>
  
-<div id="ajax-taxi-reg" class="mrgn-tp-md">
+<div id="ajax-taxi-reg" class="mrgn-tp-lg">
 <h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
 <p>If you are a self-employed taxi operator or a commercial ride-sharing driver, you have to register for the GST/HST even if you are a small supplier.</p>
 <p>You have to register for a GST/HST account number as of the date your business began as a taxi operator or a commercial ride-sharing driver.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
 </div>
 
-<div id="ajax-taxi-charge" class="mrgn-tp-md">
+<div id="ajax-taxi-charge" class="mrgn-tp-lg">
 <h4><span class="fas fa-hand-holding-usd fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Charging</h4>  
  <p>You have to charge the GST/HST as of the date your business began.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
 </div>
 
-<div id="ajax-taxi-itc" class="mrgn-tp-md">
+<div id="ajax-taxi-itc" class="mrgn-tp-lg">
 <h4><span class="fas fa-funnel-dollar fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Claiming input tax credits (ITC)</h4> 
 <p>You may be eligible for to claim input tax credits for the GST/HST you pay on your purchase and expenses.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
 </div>
 
-<div id="ajax-taxi-file" class="mrgn-tp-md">
+<div id="ajax-taxi-file" class="mrgn-tp-lg">
 <h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing </h4>
 <p>You must file GST/HST returns.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business.html" target="_blank">Complete and file a GST/HST return</a></p>
 </div>
 
-<div id="ajax-taxi-remit" class="mrgn-tp-md">
+<div id="ajax-taxi-remit" class="mrgn-tp-lg">
 <h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying)</h4>
 <p>You must remit (pay) the net GST/HST payable.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html" target="_blank">Remit (pay) the tax you collected</a></p>
 </div>
 
-<div id="ajax-taxi-more" class="mrgn-tp-md">
-<h4>Resources</h4>
+<div id="ajax-taxi-more" class="mrgn-tp-lg">
+<h4><span class="fas fa-folder-plus fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Resources</h4>
 <p><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/taxi-ride-sharing-drivers.html" target="_blank">GST/HST information for taxi operators and commercial ride-sharing drivers</a></p>
 </div>
     </details>
