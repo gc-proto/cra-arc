@@ -347,7 +347,7 @@
 
 		 <li class="radio">
                                         <input type="radio" name="q5" id="q5-true" value="0" data-q5="true" data-rule-required="true">
-                                        <label for="q5-true">Yes</label>
+                                        <label for="q5-true">Yes - Branch or division, or not sure</label>
                                     </li>
 			 <li class="radio">
                                         <input type="radio" name="q5" id="q5-false" value="1" data-q5="false" data-rule-required="true">
@@ -475,7 +475,7 @@
 		">
 		 <li class="radio">
                                         <input type="radio" name="q6" id="q6-true" value="0" data-q6="true" data-rule-required="true">
-                                        <label for="q6-true">Yes</label>
+                                        <label for="q6-true">Yes - Branch or division, or not sure</label>
                                     </li>
 			 <li class="radio">
                                         <input type="radio" name="q6" id="q6-false" value="1" data-q6="false" data-rule-required="true">
@@ -1665,8 +1665,8 @@
 	<h3><small>Your result </small><br> R2 Based on the information you entered: You are an employee or you are not sure</h3>
 <hr>
 <div data-ajax-replace="#ajax-confirm"></div>
-<div data-ajax-replace="#ajax-confirm2"></div>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-tp-lg">
+<div data-ajax-replace="#ajax-confirm1"></div>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-lft-xl">
 <li class="cnjnctn-col">
 <span class="fas fa-ban text-danger fa-lg"></span> If you are an <strong>employee</strong>, <strong>do not</strong> use this webpage.</li>
 <li class="cnjnctn-col">
@@ -1677,8 +1677,12 @@
 <section class="alert alert-warning hidden" id="R3" name="results">
 	<h3><small>Your result </small><br> R3 Based on the information you entered: You cannot register for a GST/HST account number separately </h3>
 <hr>
-<div data-ajax-replace="#ajax-char-div"></div>
-
+<div data-ajax-replace="#ajax-confirm2"></div>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-tp-lg">
+<li class="cnjnctn-col"><div data-ajax-replace="#ajax-char-div"></div></li>
+<li class="cnjnctn-col">
+<span class="fas fa-check fa-lg text-success"></span> If you are <strong>not</strong> a branch or a division, select <strong>No</strong>.</li>
+</ul>
 </section>
 
 <section class="alert alert-info hidden" id="R4" name="results">
@@ -2243,21 +2247,17 @@
        
         <h3 id="charities">Charity or public institution</h3>
 
- <ol class="lst-stps ld-zr stps-strpd">
-<li> <h3 id="steps">Determine if you are a branch or division of the charity or public institution</h3>
- <div id="ajax-char-div">
-<h4 class="mrgn-lft-sm text-info"><span class="fa-stack"><span class="fas fa-id-card fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>Registering</h4>
- <p>You <strong>cannot</strong> register for a GST/HST account number separately because you are a branch or a division.</p>
+<div id="ajax-confirm2" class="mrgn-tp-lg">
+<h4><span class="fas fa-users fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Confirming if you are a branch or division</h4>
+ </div>
+<div id="ajax-char-div" class="mrgn-lft-xl">
+<p><span class="fas fa-ban text-danger fa-lg"></span> If you are a branch or a division, you <strong>cannot</strong> register for a GST/HST account number separately.</p>
+<p>However, if your charity or public institution has branches or divisions, you may apply to have each branch or division with $50,000 or less in taxable supplies designated as a small supplier division.</p>
 <p>A public service body (PSB), including a <a href="#ajax-charity" aria-controls="ajax-charity" class="overlay-lnk" role="button">charity&nbsp;<span class="far fa-question-circle"></span></a> and <a href="#ajax-public" aria-controls="ajax-public" class="overlay-lnk" role="button">public institution&nbsp;<span class="far fa-question-circle"></span></a> may apply for its branches or divisions to be designated as small supplier.</p>
-
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/gst31.html" target="_blank">GST31 Application by a Public Service Body to Have Branches or Divisions Treated As Eligible Small Supplier Divisions</a></p>
- </div> 
+</div>
 <hr>
 <p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> a branch or division of the charity or public institution, continue to <a href="#step2-char">Step 2 - ???</a>.</p>
-</li>
-<li>
-
-</li></ol>
 
 
 <p>Use the following two tables to see if you are a <a href="#smallsupplier" aria-controls="smallsupplier" class="wb-lbx" role="button">small supplier&nbsp;<span class="far fa-question-circle"></span></a> under <strong>either </strong>of the following tests:</p>
@@ -2812,7 +2812,7 @@
 <h4><span class="fas fa-user-check fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Confirming if you are self-employed</h4>
  </div>
 
- <div id="ajax-confirm1" class="mrgn-lft-lg">	
+ <div id="ajax-confirm1" class="mrgn-lft-xl">	
 <p>You can ask the CRA for ruling if you are not sure whether you are self-employed or an employee.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained/canada-pension-plan-employment-insurance-explained-11.html">How to get a CPP/EI ruling</a>.</p>
 </div>
@@ -2820,7 +2820,7 @@
 <div id="ajax-reg" class="mrgn-tp-lg">
 <h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
  </div>
-<div id="ajax-taxi-reg" class="mrgn-lft-lg">
+<div id="ajax-taxi-reg" class="mrgn-lft-xl">
 <p>If you are a self-employed taxi operator or a commercial ride-sharing driver, you have to register for the GST/HST even if you are a small supplier.</p>
 <p>You have to register for a GST/HST account number as of the date your business began as a taxi operator or a commercial ride-sharing driver.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
@@ -2830,7 +2830,7 @@
 <h4><span class="fas fa-hand-holding-usd fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Charging</h4>  
  </div>
 
-<div id="ajax-taxi-charge" class="mrgn-lft-lg">
+<div id="ajax-taxi-charge" class="mrgn-lft-xl">
  <p>You have to charge the GST/HST as of the date your business began.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
 </div>
@@ -2839,7 +2839,7 @@
 <h4><span class="fas fa-funnel-dollar fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Claiming input tax credits (ITC)</h4>  
  </div>
 
-<div id="ajax-taxi-itc" class="mrgn-lft-lg">
+<div id="ajax-taxi-itc" class="mrgn-lft-xl">
 <p>You may be eligible for to claim input tax credits for the GST/HST you pay on your purchase and expenses.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
 </div>
@@ -2847,7 +2847,7 @@
 <div id="ajax-file" class="mrgn-tp-lg">
 <h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing </h4> </div>
 
-<div id="ajax-taxi-file" class="mrgn-lft-lg">
+<div id="ajax-taxi-file" class="mrgn-lft-xl">
 <p>You must file GST/HST returns.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business.html" target="_blank">Complete and file a GST/HST return</a></p>
 </div>
@@ -2855,7 +2855,7 @@
 <div id="ajax-remit" class="mrgn-tp-lg">
 <h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying)</h4> </div>
 
-<div id="ajax-taxi-remit" class="mrgn-lft-lg">
+<div id="ajax-taxi-remit" class="mrgn-lft-xl">
 <p>You must remit (pay) the net GST/HST payable.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html" target="_blank">Remit (pay) the tax you collected</a></p>
 </div>
@@ -2863,7 +2863,7 @@
 <div id="ajax-more" class="mrgn-tp-lg">
 <h4><span class="fas fa-folder-plus fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Resources</h4> </div>
 
-<div id="ajax-taxi-more" class="mrgn-lft-lg">
+<div id="ajax-taxi-more" class="mrgn-lft-xl">
 <p><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/taxi-ride-sharing-drivers.html" target="_blank">GST/HST information for taxi operators and commercial ride-sharing drivers</a></p>
 </div>
     </details>
