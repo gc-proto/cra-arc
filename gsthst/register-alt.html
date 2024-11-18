@@ -273,8 +273,8 @@
 		">
 			<option value="5" selected>Make your selection...</option> 
 			<option value="0" name="q3">Sole proprietor, a partnership or a corporation</option>
-			<option value="1" name="q3">Public service body (other than a charity or public institution)</option>
 			<option value="2" name="q3">Charity or public institution</option>
+			<option value="1" name="q3">Public service body that is not a charity or a public institution</option>
 			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
 		</select>
 	</fieldset>
@@ -320,7 +320,7 @@
 	<!--QUESTION 5-->
 
 <fieldset name="quest" id="question5" class="hidden gc-chckbxrdio">
-  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are a public service body (other than a charity or public institution)</big></p>
+  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are a public service body that is not a charity or a public institution</big></p>
 <label class="mrgn-tp-sm">Are you a branch or division of the public service body? </label>
 	
 <div class="small" data-ajax-replace="#service"></div>	
@@ -2220,7 +2220,7 @@
 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col-40"><h4>You are not a branch or a division</h4>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> a branch or a division, continue to: <a href="#ajax-confirm-small">Determine if you are a small supplier</a>.</p>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> a branch or a division, continue to: <a href="#step2">Determine if you are a small supplier</a>.</p>
 </li>
 <li class="cnjnctn-col"><h4>You are a branch or a division</h4>
  <div id="ajax-char-div">
@@ -2232,7 +2232,7 @@
 </li></ul>
  </div>
 <div id="ajax-confirm-small" class="mrgn-tp-lg">
-<h4><span class="fas fa-user-tie fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Determine if you are a small supplier</h4>
+<h4 id="step2"><span class="fas fa-user-tie fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Determine if you are a small supplier</h4>
  </div>
 <div id="ajax-confirm-small-char" class="mrgn-lft-xl">
 <ol class="lst-stps ld-zr stps-strpd">
@@ -2251,7 +2251,7 @@
 <hr>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col-40"><h4>You are no longer a small supplier</h4>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <a href="#regdate">How to determine your date of registration</a>.</p>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <a href="#step3">How to determine your date of registration</a>.</p>
 </li>
 
 <li class="cnjnctn-col"><h4>You are small supplier</h4>
@@ -2277,7 +2277,7 @@
 
 <div id="ajax-date-reg-gen">
 <div id="ajax-date-reg" class="mrgn-tp-lg">
-<h4 id="regdate"><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;How to determine your date of registration</h4>
+<h4 id="step3"><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;How to determine your date of registration</h4>
  </div>
 <div id="ajax-date-reg-1" class="mrgn-lft-xl">
 <ul class="list-unstyled cnjnctn-type-or">
@@ -2458,22 +2458,18 @@
 
 <div data-ajax-replace="#ajax-confirm-branch"></div>
 
-
-<p>Use this table to find out:</p>
-
-    <details>
-        <summary>Examples</summary>
-          <section class="panel well">
-        <header class="panel-heading">
-            <h4 class="panel-title">Example 1 – Did not exceed the $50,000 threshold amount in four consecutive calendar quarters<br/></h4>
-        </header>
-
-        <div class="panel-body">
-          
+<div data-ajax-replace="#ajax-date-reg"></div>
+<ul class="list-unstyled cnjnctn-type-or">
+<li class="cnjnctn-col">
+<details><summary>$50,000 threshold over <strong>4 consecutive</strong> calendar quarter</summary>
+<div id="ajax-date-reg-2a">
+<h5>$50,000 threshold over 4 consecutive calendar quarter</h5>
+<div data-ajax-replace="#ajax-reg-char1a-4"></div>
+</div>
+    <details class="mrgn-lft-xl"><summary>Example 1 – Did not exceed the $50,000 threshold amount in 4 consecutive calendar quarters</summary>
         <p>On January 1, 2019, your public service body started making taxable supplies of goods and services. You made the following sales:</p>
-
-        <table class="small table table-bordered table-condensed table-responsive">
-<caption>Calculation for public service bodies – Example 1</caption>
+<table class="small table table-bordered table-condensed table-responsive">
+<caption>Calculation for public service bodies</caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
 <th scope="col" class="text-right">Amount</th>
 </tr></thead><tbody><tr><td>First quarter (January 1 to March 31)</td>
@@ -2487,50 +2483,12 @@
 </tr><tr><td><b>Total</b></td>
 <td class="text-right"><b>$49,000</b></td>
 </tr></tbody></table>
+   <p>You are a small supplier in 2019 because you did not exceed the $50,000 threshold in four consecutive calendar quarters. You are also a small supplier in the first quarter of 2020, unless you exceed the $50,000 threshold in that one quarter.</p>
+  </details>
 
-   
-        <p>You are a small supplier in 2019 because you did not exceed the $50,000 threshold in four consecutive calendar quarters. You are also a small supplier in the first quarter of 2020, unless you exceed the $50,000 threshold in that one quarter.</p>
- </div>   </section>
+ <details class="mrgn-lft-xl"><summary>Example 2 – Exceed the $50,000 threshold amount in 2 consecutive calendar quarters</summary>
+           <p>On October 1, 2019, your public service body started making taxable supplies of goods and services and made the following sales:</p>
 
-
-    <section class="panel well">
-        <header class="panel-heading">
-            <h4 class="panel-title">Example 2 – Exceed the $50,000 threshold amount in one quarter<br/></h4>
-        </header>
-
-        <div class="panel-body">
-           <p>On January 1, 2019, your public service body that started making taxable supplies of goods and services and made the following sales:</p>
-
-        <table class="small table table-bordered table-condensed table-responsive">
-<caption>Calculation for public service bodies – Example 2</caption>
-<thead><tr class="active"><th scope="col">Quarter</th>
-<th scope="col" class="text-right">Amount</th>
-</tr></thead><tbody><tr><td>First quarter (January 1 to March 31)</td>
-<td class="text-right">$7,000</td>
-</tr><tr><td>Second quarter (April 1 to June 30)</td>
-<td class="text-right">$15,000</td>
-</tr><tr><td>Third quarter (July 1 to September 30)</td>
-<td class="text-right">$58,000</td>
-</tr></tbody></table>
-
-       <ul>
-<li>You stopped being a small supplier the day you exceed the $50,000 threshold in one calendar quarter.</li>
-<li>Your <strong>effective date of registration</strong> is no later than the day of the supply that made you exceed $50,000.</li>
-<li>You have to start charging GST/HST on your date of registration (including the sale that made you exceed the $50,000 threshold).</li>
-<li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
-</ul>
-</div>
-        </section>
-
-
-    <section class="panel well">
-        <header class="panel-heading">
-            <h4 class="panel-title">Example 3 – Exceed the $50,000 threshold amount in two consecutive calendar quarters<br/></h4>
-        </header>
-       <div class="panel-body">
-              <p>On October 1, 2019, your public service body started making taxable supplies of goods and services and made the following sales:</p>
-
-   
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for public service bodies – Example 3</caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
@@ -2542,8 +2500,6 @@
 </tr><tr><td><strong>Total</strong></td>
 <td class="text-right"><strong>$70,000</strong></td>
 </tr></tbody></table>
-
-
         <p>In April 2020, your sales totaled $8,000.</p>
 <p>Your first sale after April was on May 1, 2020.</p>
 <ul>
@@ -2552,17 +2508,11 @@
 <li>You have to start charging GST/HST on your date of registration.</li>
 <li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
-        </div>
-    </section>
+       
+    </details>
 
-
-    <section class="panel well">
-        <header class="panel-heading">
-            <h4 class="panel-title">Example 4 – Exceed the $50,000 threshold amount within the previous four consecutive calendar quarters<br/></h4>
-        </header>
-
-        <div class="panel-body">
-           
+ <details class="mrgn-lft-xl"><summary>Example 3 Exceed the $50,000 threshold within the previous 4 consecutive calendar quarters</summary>
+             
         <p>On April 1, 2019, your public service body started making taxable supplies of goods and services and made the following sales:</p>
 
         <table class="small table table-bordered table-condensed table-responsive">
@@ -2589,28 +2539,74 @@
 <li>You have to start charging GST/HST on your date of registration.</li>
 <li>You'll have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
-     </div>   
-    </section>
-	    
-    </details>
+     </details>
 
-    <aside class="wb-fnote" role="note">
-	  <h4 id="fnd">Footnotes</h4>
-    <dl>
-      <dt>Footnote 6</dt>
-      <dd id="fn6">
-        <p>Include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including <a href="#zero" aria-controls="zero" class="wb-lbx" role="button">zero-rated supplies&nbsp;<span class="far fa-question-circle"></span></a>). You also have to include revenues from all of the organization's activities and those of your <a href="#associate" aria-controls="associate" class="wb-lbx" role="button">associates&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-        <p>Do <strong>not</strong> include financial services, goodwill, and sales of capital property. If you have <a href="/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html#branches">branches or divisions</a>, you may want to review our information on how to apply to have each branch or division with $50,000 or less in annual taxable supplies designated as a <a href="#ajax-smallsupplier" aria-controls="ajax-smallsupplier" class="overlay-lnk" role="button">small supplier&nbsp;<span class="far fa-question-circle"></span></a>. For more information, see <a href="/en/revenue-agency/services/forms-publications/forms/gst31.html">GST31, Application by a Public Service Body to Have Branches or Divisions Treated as Eligible Small Supplier Divisions</a>.</p>
-        <p class="fn-rtn"><a href="#fn6-1-rf"><span class="wb-inv">Return to footnote</span>6<span class="wb-inv"> Referrer</span></a></p>
-      </dd>
-      <dt>Footnote 7</dt>
-      <dd id="fn7">
-        <p><strong>Calendar quarter</strong> means a period of three months beginning on the first day of January, April, July, or October in each calendar year.</p>
-        
-        <p class="fn-rtn"><a href="#fn7-1-rf"><span class="wb-inv">Return to footnote</span>7<span class="wb-inv"> Referrer</span></a></p>
-      </dd>
-    </dl>
-  </aside>
+<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
+<div data-ajax-replace="#ajax-reg-char1a"></div>
+
+<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
+<div data-ajax-replace="#ajax-charge-char1a"></div>
+
+<div data-ajax-replace="#ajax-itc"></div>
+<div data-ajax-replace="#ajax-itc-char1a"></div>
+
+<div data-ajax-replace="#ajax-file"></div>
+<div data-ajax-replace="#ajax-file-char1a"></div>
+
+<div data-ajax-replace="#ajax-remit"></div>
+<div data-ajax-replace="#ajax-remit-char1a"></div>
+
+</details>
+</li>
+<li class="cnjnctn-col">
+<details><summary>$50,000 threshold in a <strong>single</strong> calendar quarter</summary>
+<div id="ajax-date-reg-2b">
+<h5>$50,000 threshold in a single calendar quarter</h5>
+<div data-ajax-replace="#ajax-reg-char1b-1"></div>
+</div>
+
+ <details><summary>Exceed the $50,000 threshold amount in one single calendar quarter</summary>
+           <p>On January 1, 2019, your public service body that started making taxable supplies of goods and services and made the following sales:</p>
+
+        <table class="small table table-bordered table-condensed table-responsive">
+<caption>Calculation for public service bodies – Example 2</caption>
+<thead><tr class="active"><th scope="col">Quarter</th>
+<th scope="col" class="text-right">Amount</th>
+</tr></thead><tbody><tr><td>First quarter (January 1 to March 31)</td>
+<td class="text-right">$7,000</td>
+</tr><tr><td>Second quarter (April 1 to June 30)</td>
+<td class="text-right">$15,000</td>
+</tr><tr><td>Third quarter (July 1 to September 30)</td>
+<td class="text-right">$58,000</td>
+</tr></tbody></table>
+
+       <ul>
+<li>You stopped being a small supplier the day you exceed the $50,000 threshold in one calendar quarter.</li>
+<li>Your <strong>effective date of registration</strong> is no later than the day of the supply that made you exceed $50,000.</li>
+<li>You have to start charging GST/HST on your date of registration (including the sale that made you exceed the $50,000 threshold).</li>
+<li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
+</ul>
+</div>
+        </details>
+
+<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
+<div data-ajax-replace="#ajax-reg-char1b"></div>
+
+<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
+<div data-ajax-replace="#ajax-charge-char1b"></div>
+
+<div data-ajax-replace="#ajax-itc"></div>
+<div data-ajax-replace="#ajax-itc-char1a"></div>
+
+<div data-ajax-replace="#ajax-file"></div>
+<div data-ajax-replace="#ajax-file-char1a"></div>
+
+<div data-ajax-replace="#ajax-remit"></div>
+<div data-ajax-replace="#ajax-remit-char1a"></div>
+
+</details>
+</li>
+</ul>
 	    
     </details>
                 
