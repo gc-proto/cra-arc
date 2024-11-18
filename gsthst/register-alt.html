@@ -1681,16 +1681,16 @@
 <hr>
 <div data-ajax-replace="#ajax-confirm2"></div>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-tp-lg">
-<li class="cnjnctn-col"><div data-ajax-replace="#ajax-char-div"></div></li>
-<li class="cnjnctn-col">
+<li class="cnjnctn-col-30">
 <span class="fas fa-check fa-lg text-success"></span> If you are <strong>not</strong> a branch or a division, select <strong>No</strong>.</li>
+<li class="cnjnctn-col"><div data-ajax-replace="#ajax-char-div"></div></li>
 </ul>
 </section>
 
 <section class="alert alert-info hidden" id="R4" name="results">
 	<h3><small>Your result </small><br>R4 Based on the information you entered: You do not have to register for a GST/HST account number</h3>
 <hr>
-<details class="mrgn-lft-xl"><summary>Conditions: Small supplier</summary>
+<details><summary>Conditions: Small supplier</summary>
 <div data-ajax-replace="#ajax-confirm-small"></div>
 <div data-ajax-replace="#ajax-confirm-small-char"></div></details>
 <div data-ajax-replace="#ajax-reg"></div>
@@ -1856,8 +1856,6 @@
 </div>
 </details>
 
-<p>	
-</p>
 </section>
 
 <section class="alert alert-info hidden" id="R9" name="results">
@@ -2232,14 +2230,21 @@
  </div>
 
 <div id="ajax-confirm2" class="mrgn-tp-lg">
-<h4><span class="fas fa-users fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Determine if you are a branch or division</h4>
+<h4><span class="fas fa-users fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;How to determine if you are a branch or division</h4>
  </div>
+
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col-30"><h4>You are not a branch or a division</h4>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> a branch or a division, continue to: <a href="#ajax-confirm-small">How to determine if you are a small supplier</a>.</p>
+</li>
+<li class="cnjnctn-col"><h4>You are a branch or a division</h4>
  <div id="ajax-char-div" class="mrgn-lft-xl">
 <p><span class="fas fa-ban text-danger fa-lg"></span> If you are a branch or a division, you <strong>cannot</strong> register for a GST/HST account number separately.</p>
 <p>However, if your public service body, including a <a href="#ajax-charity" aria-controls="ajax-charity" class="overlay-lnk" role="button">charity&nbsp;<span class="far fa-question-circle"></span></a> or <a href="#ajax-public" aria-controls="ajax-public" class="overlay-lnk" role="button">public institution&nbsp;<span class="far fa-question-circle"></span></a> has branches or divisions, you may apply to have each branch or division with $50,000 or less in taxable supplies designated as a small supplier division.</p>
 <p>A public service body (PSB), including a charity or public institution, you may apply for its branches or divisions to be designated as small supplier.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/gst31.html" target="_blank">GST31 Application by a Public Service Body to Have Branches or Divisions Treated As Eligible Small Supplier Divisions</a></p>
 </div>
+</li></ul>
 
 <div id="ajax-confirm-small" class="mrgn-tp-lg">
 <h4><span class="fas fa-user-tie fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;How to determine if you are a small supplier</h4>
@@ -2274,11 +2279,11 @@
 <p>If you register voluntarily, your effective date of registration is generally the <strong>day you request</strong> your GST/HST account number or <strong>30 days before that day</strong>.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html" target="_blank">Register voluntarily for a GST/HST account number</a></p>
 </div>
-<div data-ajax-replace="#ajax-charge"></div>
+<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
 <div id="ajax-charge-no"  class="mrgn-lft-xl">
 <p><span class="fas fa-ban text-danger fa-lg"></span> You do <strong>not</strong> charge GST/HST if you are a small supplier and you do not have a GST/HST account number.</p>
 </div>
-<div data-ajax-replace="#ajax-itc"></div>
+<div data-ajax-replace="#ajax-itc" class="mrgn-tp-lg"></div>
 <div id="ajax-itc-char"  class="mrgn-lft-xl">
 <p>You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4082/gst-hst-information-charities.html" target="_blank"> GST/HST Information for Charities</a></p>
@@ -2290,12 +2295,51 @@
 <h4 id="regdate"><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;How to determine your date of registration</h4>
  </div>
 <div id="ajax-date-reg-1" class="mrgn-lft-xl">
-<ol class="lst-stps ld-zr stps-strpd">
-<li><div id="ajax-date-reg-1a">
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-1a">
 <h5>$50,000 threshold over 4 consecutive calendar quarter</h5>
-</div></li>
-<li><div id="ajax-date-reg-1b"><h5>$50,000 threshold in a single calendar quarter</h5>
-</div> </li></ol>
+<div id="ajax-reg-char1a-4" class="mrgn-lft-xl">
+<p>You <span id="estimate">have</span> to register for a GST/HST account number because you exceeded the <strong>$50,000<span id="warning_amount"></span></strong> threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
+<p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$50,000<span id="warning_amount2"></span></strong> threshold. The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
+</div>
+<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
+<div id="ajax-reg-char1a" class="mrgn-lft-xl">
+<p>You must register for a GST/HST account number <strong>no later than <span id="plus29">29 days after</span> </strong> your effective date of registration. </p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
+<h5><span class="fas fa-exclamation-triangle fa-lg text-warning"></span>&nbsp;&nbsp; What if you exceed the threshold in a single calendar quarter</h5> 
+<p>If you exceed the threshold in a <strong>single calendar quarter</strong>, you would have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed the <strong>threshold</strong>.</p>
+</div>
+<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
+<div id="ajax-charge-char1a" class="mrgn-lft-xl">
+<p>You must charge GST/HST on the taxable supplies starting on your effective date of registration. </p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+</div>
+
+<div data-ajax-replace="#ajax-itc"></div>
+<div id="ajax-itc-char1a" class="mrgn-lft-xl">
+<p>You are eligible to claim ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies you made after your registration date.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
+</div>
+
+<div data-ajax-replace="#ajax-file"></div>
+<div id="ajax-file-char1a" class="mrgn-lft-xl">
+<p>You must file GST/HST returns for your reporting periods starting on your effective date of registration. Your reporting period depends on your fiscal year, total annual sales and whether you elected to file more frequently.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business.html" target="_blank">Complete and file a GST/HST return</a></p>
+</div>
+
+<div data-ajax-replace="#ajax-remit"></div>
+<div id="ajax-remit-char1a" class="mrgn-lft-xl">
+<p>You have to calculate your net tax for each GST/HST reporting period and report the amount on your GST/HST return. If your net tax calculation shows an amount owing, you have to remit (pay) the amount by the payment due date.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html" target="_blank">Remit (pay) the tax you collected</a></p>
+</div>
+</div>
+</li>
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-1b">
+<h5>$50,000 threshold in a single calendar quarter</h5>
+</div> 
+</li></ul>
 </div>   
 
     <details>
@@ -3040,15 +3084,17 @@
 <dt><a href="">ETA: 123(1)</a></dt><dd> Definition of "commercial activity"</dd>
 <dt><a href="">ETA: 129(3)</a></dt><dd> Designated small supplier divisions</dd>
 <dt><a href="">ETA: 148</a></dt><dd> Definition of "small supplier"</dd>
+<dt><a href="">ETA: 148(2)</a></dt><dd> Cease to be a small supplier over four consecutive quarter</dd>
 <dt><a href="">ETA: 148.1</a></dt><dd> Gross revenue small suppliers</dd>
 <dt><a href="">ETA: 169(1)</a></dt><dd> Input tax credit allowed</dd>
-<dt><a href="">ETA: 240(1.1)</a></dt><dd> Requirement to register for small supplier taxi businesses</dd>
-<dt><a href="">ETA: 240(2.1)</a></dt><dd> Requirement to register as of date first supply is made as a taxi business</dd>
-<dt><a href="">ETA: 240(3)</a></dt><dd> Voluntary registration</dd>
 <dt><a href="">ETA: 221(1)</a></dt><dd> Requirement to charge GST/HST on taxable supply </dd>
-<dt><a href="">ETA: 238(1)</a></dt><dd> Requirement to file a return for each reporting period</dd>
 <dt><a href="">ETA: 228(2)</a></dt><dd> Requirement to remit net tax payable from GST/HST return by due date</dd>
+<dt><a href="">ETA: 238(1)</a></dt><dd> Requirement to file a return for each reporting period</dd>
+<dt><a href="">ETA: 240(1)</a></dt><dd> Requirement to register for GST/HST</dd>
+<dt><a href="">ETA: 240(2.1)</a></dt><dd> Application for registration within 29 days of mandatory registration</dd>
+<dt><a href="">ETA: 240(3)</a></dt><dd> Voluntary registration</dd>
 <dt><a href="">ETA: 259(5)</a></dt><dd> Public Service Body rebate</dd>
+
 </dl>
 </div>
 </div>
