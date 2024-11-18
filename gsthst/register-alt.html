@@ -877,7 +877,7 @@
 			document.getElementById('hideResults').click() ;
 			
 			">
-   			<label for="noRev"><input type="checkbox" id="noRev">No revenue received until the current calendar quarter.</label>
+   			<label for="noRev"><input type="checkbox" id="noRev">No revenue received until the current <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</label>
 		</div>
 
 		<button class="btn btn-primary btn-lg required" type="button" onclick="
@@ -1810,7 +1810,7 @@
 	<h3><small>Your result </small><br>R8 Based on the information you entered: You <span id="have0"></span> to register for a GST/HST account number</h3>
 <hr>
  <h4><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registration date</h4>
-<p>You <span id="estimate"></span> to register for a GST/HST account number because you exceeded the <strong>$<span id="warning_amount"></span></strong> threshold over 4 consecutive calendar quarters.</p>
+<p>You <span id="estimate"></span> to register for a GST/HST account number because you exceeded the <strong>$<span id="warning_amount"></span></strong> threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
 <p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2"></span></strong> threshold. The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
 <p><label id="plus291"></label>, the effective date of registration <span id="have1"></span> <strong>no later than</strong> <label id="chargeDate1">.</label>.</p>
 <br> 
@@ -1866,7 +1866,7 @@
 	<h3><small>Your result </small><br>R9 Based on the information you entered: You <span id="tense151"></span> to register for a GST/HST account number</h3>
 <hr>
  <h4><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registration date</h4>
-<p>You <span id="tense152"></span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount"></span></strong> threshold in a single calendar quarter.</p>
+<p>You <span id="tense152"></span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount"></span></strong> threshold in a single <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
 <p>You are <strong>no longer</strong> a small supplier. The effective date of registration is <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount2"></span></strong> threshold.</p>
 <p><strong>If your actual sales match the amounts you entered</strong>, the effective date of registration <span id="tense153"></span> <label id="chargeDate0"></label>. </p>
 <br> 
@@ -1917,7 +1917,7 @@
 	<h3><small>Your result </small><br>R10 Based on the information you entered: You may not have to register for a GST/HST account number</h3>
 <hr>
 <h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
-<p>You <strong>may not</strong> have to register for a GST/HST account number if your <strong>actual sales match your estimates</strong> because you <strong>do not</strong> exceed <strong>$50,000</strong> over 4 consecutive calendar quarters.</p> 
+<p>You <strong>may not</strong> have to register for a GST/HST account number if your <strong>actual sales match your estimates</strong> because you <strong>do not</strong> exceed <strong>$50,000</strong> over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p> 
 <p> You must continue to monitor your sales to determine when you exceed the <strong>$50,000</strong> threshold.</p> 	
 <h5><span class="fas fa-exclamation-triangle fa-lg text-warning"></span>&nbsp;&nbsp; What if you exceed the threshold in a single calendar quarter</h5> 
 <p>If you exceed the threshold in a <strong>single calendar quarter</strong>, you would have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed the <strong>threshold</strong>.</p>
@@ -2263,7 +2263,7 @@
 <hr>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col-30"><h4>You are no longer a small supplier</h4>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <a href="#regdate">Determine your date of registration</a>.</p>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <a href="#regdate">How to determine your date of registration</a>.</p>
 </li>
 
 <li class="cnjnctn-col"><h4>You are small supplier</h4>
@@ -2288,7 +2288,9 @@
 </li>
 </ul>
 
- <h4 id="regdate" class="mrgn-tp-lg"><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Determine your date of registration</h4>
+<div id="ajax-date-reg" class="mrgn-tp-lg">
+<h4 id="regdate"><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;How to determine your date of registration</h4>
+ </div>
 
       
 <p>You start charging the GST/HST at the beginning of the month after you are no longer a small supplier.</p>
@@ -2451,23 +2453,7 @@
 
     </details>
 
-    <aside class="wb-fnote" role="note">
-  <h4 id="fnc">Footnotes</h4>
-  <dl>
-    <dt>Footnote 4</dt>
-    <dd id="fn4">
-      <p>Include the total amount of all revenues (before expenses) from your worldwide taxable supplies (including <a href="#zero" aria-controls="zero" class="wb-lbx" role="button">zero-rated supplies&nbsp;<span class="far fa-question-circle"></span></a>). You also have to include revenues of any of your <a href="#associate" aria-controls="associate" class="wb-lbx" role="button">associates&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-      <p>Do <strong>not </strong>include financial services, <a href="#goodwill" aria-controls="goodwill" class="wb-lbx" role="button">goodwill&nbsp;<span class="far fa-question-circle"></span></a>, and sales of <a href="#capital" aria-controls="capital" class="wb-lbx" role="button">capital property&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-      <p>If you have branches or divisions, you may want to review our information on how to apply to have each branch or division with&nbsp;$50,000 or less in annual taxable supplies designated as a <a href="#ajax-smallsupplier" aria-controls="ajax-smallsupplier" class="overlay-lnk" role="button">small supplier&nbsp;<span class="far fa-question-circle"></span></a>. For more information, see <a href="/en/revenue-agency/services/forms-publications/forms/gst10.html">Form GST10, Application or Revocation of the Authorization to File Separate GST/HST Returns and Rebate Applications for Branches or Divisions</a>.</p>
-      <p class="fn-rtn"> <a href="#fn4-1-rf"><span class="wb-inv">Return to footnote</span>4<span class="wb-inv"> Referrer</span></a> </p>
-    </dd>
-    <dt>Footnote 5</dt>
-    <dd id="fn5">
-      <p><strong>Calendar quarter</strong> means a period of three months beginning on the first day of January, April, July, or October in each calendar year.</p>
-      <p class="fn-rtn"> <a href="#fn5-1-rf"><span class="wb-inv">Return to footnote</span>5<span class="wb-inv"> Referrer</span></a> </p>
-    </dd>
-  </dl>
-</aside>
+  
     </details>
               
     <details>
