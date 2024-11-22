@@ -1225,6 +1225,7 @@
 <hr>	
 <div data-ajax-replace="#ajax-get-noproof1"></div>
 <div data-ajax-replace="#ajax-how-report0"></div>
+<div data-ajax-replace="#ajax-report2"></div>
 <div data-ajax-replace="#ajax-how-report"></div>
 </section>
 	
@@ -1320,17 +1321,18 @@
 <br>	
 <div data-ajax-replace="#ajax-keep1b"></div>
 <br>
-<div data-ajax-replace="#ajax-how-report0"></div>	
+<div data-ajax-replace="#ajax-how-report0"></div>
 <div data-ajax-replace="#ajax-report1"></div>	
 </section>
 
 
 <section class="alert alert-info hidden gc-font-2019" id="B-R4">
-	<h3><small>Your result</small><br> Based on the information you entered: You must charge the GST/HST </h3>
+	<h3><small>Based on the information you entered</small><br> You must charge the GST/HST </h3>
 <hr>
 <div data-ajax-replace="#ajax-paygstyes"></div>
 <br>
 <div data-ajax-replace="#ajax-how-report0"></div>
+<div data-ajax-replace="#ajax-report2"></div>
 <div data-ajax-replace="#ajax-how-report"></div>
 </section>
 
@@ -1370,6 +1372,7 @@
 <div data-ajax-replace="#ajax-paygstyes"></div>
 <br>	
 <div data-ajax-replace="#ajax-how-report0"></div>
+<div data-ajax-replace="#ajax-report2"></div>
 <div data-ajax-replace="#ajax-how-report"></div>
 </section>
 	
@@ -1382,6 +1385,7 @@
 <div class="mrgn-lft-xl" data-ajax-replace="#ajax-charge-trans"></div>
 <br>
 <div data-ajax-replace="#ajax-how-report0"></div>
+<div data-ajax-replace="#ajax-report2"></div>
 <div data-ajax-replace="#ajax-how-report"></div>
 </section>
 	
@@ -1396,6 +1400,7 @@
 <div class="mrgn-lft-xl" data-ajax-replace="#ajax-proof2"></div>
 <br>
 <div data-ajax-replace="#ajax-how-report0"></div>
+<div data-ajax-replace="#ajax-report2"></div>
 <div data-ajax-replace="#ajax-how-report"></div>
 </section>
 	
@@ -1408,6 +1413,7 @@
 <div class="mrgn-lft-xl" data-ajax-replace="#ajax-proof3"></div>
 <br>
 <div data-ajax-replace="#ajax-how-report0"></div>
+<div data-ajax-replace="#ajax-report2"></div>
 <div data-ajax-replace="#ajax-how-report"></div>
 </section>
 </details>
@@ -1565,20 +1571,11 @@
 <h4 class="mrgn-tp-lg">What to do if no proof of registration is provided</h4>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col">
-<h4>Vendor</h4>
 <div id="ajax-get-noproof1">
-<h4 class="mrgn-tp-lg mrgn-lft-0"><span class="fa-stack mrgn-lft-0">     <span class="fas fa-dollar-sign fa-stack-1x"></span>     <span class="far fa-circle fa-stack-2x text-success"></span> </span> The vendor must charge the GST/HST</h4>
-<p class="mrgn-lft-xl">The vendor must charge the GST/HST in this situation because the customer <strong>does not</strong> meet the conditions for GST/HST relief.</p>
-<p class="mrgn-lft-xl">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+<p>If the customer <strong>does not</strong> provide the required documentation, the vendor <strong>have</strong> to charge the GST/HST. The customer <strong>does not</strong> meet the conditions for GST/HST relief.</p>
 </div>
-<div id="ajax-how-report0" class="mrgn-tp-lg">
-<h4 class="mrgn-tp-lg mrgn-lft-0"><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;  Reporting on a GST/HST return</h4>
-</div>
-<div id="ajax-how-report">
-	<p class="mrgn-lft-xl">The vendor must report the GST/HST charged on <strong>line 105</strong>.</p>
-	<p class="mrgn-lft-xl">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/file-a-gst-hst-return/complete-a-gst-hst-return.html" target="_blank">Complete a GST/HST return</a></p>
-</div>
-</li>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#step6">Report on the GST/HST return</a>.</p>
+</li>	
 <li class="cnjnctn-col">
 <h4>Customer</h4>
 <div id="ajax-get-noproof2">
@@ -1768,8 +1765,10 @@
  </ul>
 </li>
 
-<li> <h3 id="step6">Report on the GST/HST return</h3>
-<p>The following amounts must be reported on the GST/HST return depending on the following situation:</p>
+<li> <div id="ajax-how-report0">
+<h3 class="mrgn-tp-lg mrgn-lft-0">Reporting on the GST/HST return</h3>
+</div>
+<p id="step6">The following amounts must be reported on the GST/HST return depending on the following situation:</p>
 <ul class="list-unstyled cnjnctn-type-and">
 <li class="cnjnctn-col"><h4>GST/HST relief applied to the sale</h4>
 <div id="ajax-report1">
@@ -1780,6 +1779,7 @@
 </ul>
 	</div> 
 </li>
+
 <li class="cnjnctn-col"><h4>Sale not eligibile for GST/HST relief</h4>
 <div id="ajax-report2">
 <ul  class="fa-ul">
@@ -1811,6 +1811,9 @@
 	</div> 
 </li>
 </ul>
+<div id="ajax-how-report">
+<p class="mrgn-lft-xl">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-account/file-a-gst-hst-return/complete-a-gst-hst-return.html" target="_blank">Complete a GST/HST return</a></p>
+</div> 
 </li>
 <li><div id="ajax-keep0"><h3 id="step7">Records to keep</h3></div>
 <div id="ajax-keep1">
