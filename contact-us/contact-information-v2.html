@@ -536,8 +536,16 @@ background-color: #26384a !important
     <!-- NOTE: on a normal page the container class is set on the main tag. The edge class needs to be on it's own container to work correctly so each section needs it's own container class to keep the content properly aligned. -->
 <div class="container">
     <h1 property="name" id="wb-cont" dir="ltr" class="mrgn-bttm-lg">Contact the Canada Revenue Agency (CRA)</h1>
-    <!--Do not remove this ajax line, comment out the code in the include file instead-->
-    <section data-ajax-replace="/content/dam/cra-arc/includes/eservices-outage.txt#contact-outage-en"></section>
+    <div data-ajax-prepend="alerts.txt#canada-post" id="cp-container">
+
+
+<p id="canada-post-restore"><button data-wb-doaction='[{"action": "ajax", "url": "alerts.txt#canada-post-cntnt", "container": "#canada-post-prnt"}]' onclick="localStorage.removeItem( 'canada-post-cntnt' );" class="btn btn-link">Recover alerts</button></p>	
+</div>
+	
+	<!--Do not remove this ajax line, comment out the code in the include file instead-->
+   
+	
+	<section data-ajax-replace="/content/dam/cra-arc/includes/eservices-outage.txt#contact-outage-en"></section>
 
     <!-- chatbot starts -->
     <section id="chat-bottom-bar" class="chat smallchat minimizedchat">
