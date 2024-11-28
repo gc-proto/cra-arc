@@ -1,0 +1,919 @@
+<!DOCTYPE html><!--[if lt IE 9]>
+	<html class="no-js lt-ie9" lang="en" dir="ltr">
+	   <![endif]--><!--[if gt IE 8]><!-->
+<html class="no-js" lang="fr" dir="ltr">
+<!--<![endif]-->
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEXGY36077"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NEXGY36077');
+    </script>
+    <meta charset="utf-8">
+    <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+				wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+    <title>Système de conception GCWeb – Guide de conception axée sur l’utilisateur de l’ARC</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta name="dcterms.language" title="ISO639-2/T" content="fra">
+    <meta name="dcterms.title" content="Système de conception GCWeb">
+    <meta name="dcterms.description" content="Dans le système de conception GCWeb, vous trouverez des composantes, des modèles et les principes de base de la conception  pour l'ensemble du site Canada.ca, ainsi que des éléments spécifiques aux pages Web de l'ARC.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <!--[if gte IE 9 | !IE ]><!-->
+    <link href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/css/theme.min.css">
+    <!--Custom UCDG styles //-->
+    <link rel="stylesheet" href="../../../assets/css/ucdg-theme.css">
+    <noscript>
+        <link rel="stylesheet" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/css/theme.min.css">
+    </noscript>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!--Custom UCDG script //-->
+    <script src="../../../assets/js/ucdg.js"></script>
+</head>
+
+<body vocab="http://schema.org/" typeof="WebPage" class="cnt-wdth-lmtd">
+    <ul id="wb-tphp">
+        <li class="wb-slc"> <a class="wb-sl" href="#wb-cont">Passer au contenu principal</a></li>
+        <li class="wb-slc"> <a class="wb-sl" href="#wb-info">Passer à «&nbsp;Au sujet du gouvernement&nbsp;»</a> </li>
+    </ul>
+    <header class="menu-inverse">
+        <div id="wb-bnr" class="container">
+            <section id="wb-lng" class="text-right">
+                <h2 class="wb-inv">Sélection de la langue</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list-inline margin-bottom-none">
+                            <li><a lang="en" href="../../../en/design-systems/gcweb/index.html">English</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <div id="menu-include"></div>
+        </div>
+        <div class="container">
+            <nav id="wb-bc" property="breadcrumb">
+                <h2>Vous êtes ici :</h2>
+                <ol class="breadcrumb">
+                    <li><a href="../../index.html">Guide de conception axée sur l’utilisateur</a></li>
+                    <li><a href="../index.html">Systèmes de conception</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+    <main property="mainContentOfPage">
+        <!-- CONTENT STARTS -->
+        <div class="provisional bg-cover" data-bgimg-srcset="../../../assets/images/banners/gcweb-991.png 991w, ../../../assets/images/banners/gcweb-1400.png 1400w, ../../../assets/images/banners/gcweb-1700.png 1700w, ../../../assets/images/banners/gcweb-1900.png 1900w">
+            <div class="container p-sm-3">
+                <div class="well col-md-8 brdr-0 brdr-rds-0 mrgn-tp-xl">
+                    <div class="mrgn-lft-md mrgn-rght-md">
+                        <h1 property="name" id="wb-cont" class="brdr-0 mrgn-tp-md">Système de conception GCWeb</h1>
+                        <p class="mrgn-tp-md">Les modèles et les composantes GCWeb sont utilisés pour <a href="https://canada.ca">Canada.ca</a>. Dans ce système de conception, vous trouverez des composantes, des modèles et les principes de base de la conception pour tout le site Canada.ca, ainsi que des éléments spécifiques aux pages Web de l'ARC.</p>
+                        <p class="mrgn-bttm-md">Pour en savoir plus sur la structure et la terminologie du système de conception GCWeb, lisez l'<a href="apercu-gcweb.html">aperçu du système de conception</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-sm-3 p-0">
+                <div id="tbl-filter">
+                    <ul id="allelm" class="list-unstyled mrgn-tp-md mrgn-lft-0" data-wb-actionmng='[
+			  { "trggroup":"clearFilter", "action": "addClass", "source": ".items ", "class": "hidden" },{ "trggroup":"clearFilter", "action": "addClass", "source": "#tbl-filter li>div>span", "class": "invisible" },
+			  { "trggroup":"clearFilter", "action": "tblfilter", "source": "#dataset-filter", "column": 3, "value": "" },
+			  { "trggroup":"clearFilter", "action": "tblfilter", "source": "#dataset-filter", "value": "" },
+			  {"trggroup":"clearFilter", "action": "removeClass", "source": "#tbl-filter li>div>button>span", "class": "h5" }
+		  ]'>
+                        <li>
+                            <div class="d-flex align-items-center"><span class="hghlght h2 mrgn-tp-0 mrgn-bttm-0">|</span><button type="button" class="btn-link p-0 text-left" data-wb-doaction='[
+				  { "action": "run", "trggroup": "clearFilter" },
+				  { "action": "removeClass", "source": "#tbl-filter> ul>li:nth-child(1)>div>span", "class": "invisible" }, { "action": "removeClass", "source": "#all", "class": "hidden" }, { "action": "addClass", "source": "#tbl-filter>ul>li:nth-child(1)>div>button>span", "class": "h5" }
+			  ]'><span class="hglght-2 h5 mrgn-tp-0 mrgn-bttm-0">Tous les éléments du système de conception</span></button></div>
+                            <ul class="list-unstyled mrgn-lft-md mrgn-tp-0" id="child">
+                                <li>
+                                    <div class="d-flex align-items-center"><span class="hghlght invisible h2 mrgn-tp-0 mrgn-bttm-0">|</span><button type="button" class="btn-link p-0 text-left" data-wb-doaction='[
+				  { "action": "run", "trggroup": "clearFilter" },
+				  { "action": "tblfilter", "source": "#dataset-filter", "column": 3, "value": "composantes" },
+				  { "action": "removeClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(1)>div>span", "class": "invisible" }, { "action": "removeClass", "source": "#composantes", "class": "hidden" }, { "action": "addClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(1)>div>button>span", "class": "h5" }
+			  ]'><span class="mrgn-tp-0 mrgn-bttm-0">Composantes</span></button></div>
+                                </li>
+
+                                <li>
+                                    <div class="d-flex align-items-center"><span class="hghlght invisible h2 mrgn-tp-0 mrgn-bttm-0">|</span><button type="button" class="btn-link p-0 text-left" data-wb-doaction='[
+				  { "action": "run", "trggroup": "clearFilter" },
+				  { "action": "tblfilter", "source": "#dataset-filter", "column": 3, "value": "Modeles" },
+				  { "action": "removeClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(2)>div>span", "class": "invisible" }, { "action": "removeClass", "source": "#modeles", "class": "hidden" }, { "action": "addClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(2)>div>button>span", "class": "h5" }
+			  ]'><span class="mrgn-tp-0 mrgn-bttm-0">Modèles</span></button></div>
+                                </li>
+                                <li>
+                                    <div class="d-flex align-items-center"><span class="hghlght invisible h2 mrgn-tp-0 mrgn-bttm-0">|</span><button type="button" class="btn-link p-0 text-left" data-wb-doaction='[
+				  { "action": "run", "trggroup": "clearFilter" },
+				  { "action": "tblfilter", "source": "#dataset-filter", "column": 3, "value": "Base" },
+				  { "action": "removeClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(3)>div>span", "class": "invisible" }, { "action": "removeClass", "source": "#base", "class": "hidden" }, { "action": "addClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(3)>div>button>span", "class": "h5" }
+			  ]'><span class="mrgn-tp-0 mrgn-bttm-0">Principes de base de la conception</span></button></div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-sm-9">
+                <div class="mrgn-bttm-lg mrgn-tp-md">
+                    <div id="all" class="items">
+                        <h2 class="mrgn-tp-0 mrgn-bttm-lg">Tous les éléments du système de conception</h2>
+                        <p>Comprend toutes les <a href="#" data-wb-doaction='[
+		  { "action": "run", "trggroup": "clearFilter" },
+		  { "action": "tblfilter", "source": "#dataset-filter", "column": 3, "value": "Composantes" },
+		  { "action": "removeClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(1)>div>span", "class": "invisible" }, { "action": "removeClass", "source": "#composantes", "class": "hidden" }, { "action": "addClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(1)>div>button>span", "class": "h5" }
+	  ]'>composantes</a>, les <a href="#modeles" data-wb-doaction='[
+	  { "action": "run", "trggroup": "clearFilter" },
+	  { "action": "tblfilter", "source": "#dataset-filter", "column": 3, "value": "Modeles" },
+	  { "action": "removeClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(2)>div>span", "class": "invisible" }, { "action": "removeClass", "source": "#modeles", "class": "hidden" }, { "action": "addClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(2)>div>button>span", "class": "h5" }
+  ]'>modèles</a>, et les <a href="#base" data-wb-doaction='[
+  { "action": "run", "trggroup": "clearFilter" },
+  { "action": "tblfilter", "source": "#dataset-filter", "column": 3, "value": "Base" },
+  { "action": "removeClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(3)>div>span", "class": "invisible" }, { "action": "removeClass", "source": "#base", "class": "hidden" }, { "action": "addClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(3)>div>button>span", "class": "h5" }
+  ]'>principes de base de la conception</a>.</p>
+                    </div>
+
+                    <div id="composantes" class="items hidden">
+                        <h2 class="mrgn-tp-0 mrgn-bttm-lg">Composantes</h2>
+                        <p>Moyens standardisés et réutilisables pour organiser et afficher le contenu des pages Web.</p>
+                    </div>
+                    <div id="modeles" class="items hidden">
+                        <h2 class="mrgn-tp-0 mrgn-bttm-lg">Modèles</h2>
+                        <p>Définir la disposition du contenu, des composantes, des images et des autres éléments de conception sur une page ou dans un ensemble de pages connexes.</p>
+                    </div>
+                    <div id="base" class="items hidden">
+                        <h2 class="mrgn-tp-0 mrgn-bttm-lg">Principes de base de la conception</h2>
+                        <p>Règles relatives à la typographie, à l'espacement, à l'utilisation des couleurs et à d'autres fondements de la conception qui sont utilisés pour l'ensemble du contenu Web.</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-11 mrgn-lft-0 mrgn-tp-lg mrgn-bttm-lg">
+                            <details>
+                                <summary>Que sont les éléments de base du GC, les éléments spécifiques à l'ARC et les variantes de l'ARC?</summary>
+                                <h3>Éléments de base du GC</h3>
+                                <p>Éléments du système de conception de Canada.ca ainsi que d'autres éléments de la Boîte à outils de l'expérience Web recommandés pour les sites Web du gouvernement du Canada.</p>
+                                <h3>Éléments spécifiques à l'ARC</h3>
+                                <p>Éléments de conception créés et testés à l'ARC et utilisés spécifiquement pour les pages Web de l'ARC.</p>
+                                <h3>Variantes de l'ARC</h3>
+                                <p>Une variante des éléments du GC qui ajoute des directives ou des renseignements supplémentaires sur l'utilisation de ces éléments pour le contenu de l'ARC.</p>
+                            </details>
+                        </div>
+                    </div>
+                    <table class="wb-tables tbl-gridify brdr-0" data-wb-urlmapping='{
+				  "back": [{ "action": "run", "trggroup": "clearFilter" },
+				  { "action": "removeClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(1)>div>span", "class": "invisible" }, { "action": "removeClass", "source": "#bck", "class": "hidden" }, { "action": "addClass", "source": "#tbl-filter> ul>li>ul>li:nth-child(1)>div>button>span", "class": "h5" }]}' id="dataset-filter" aria-live="polite" data-wb-tables='{
+				  "ordering":false, "paging": false,
+				  "columns": [
+					  { "data": "IMAGE", "className": "nws-tbl-img" },
+					  { "data": "TITRE", "className": "mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4" },
+					  { "data": "RESUME", "className": "mrgn-lft-lg mrgn-rght-lg nws-tbl-desc" },
+					  { "data": "TAPEZ", "visible": false },
+					  { "data": "CATEGORIE", "className": "row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat" },
+					  { "data": "BALISES", "visible": false }
+				  ]
+			  }'>
+                        <thead>
+                            <tr>
+                                <th>Banniere</th>
+                                <th>Titre</th>
+                                <th>Resume</th>
+                                <th>Tapez</th>
+                                <th>Categorie</th>
+                                <th>Balises</th>
+                            </tr>
+                        </thead>
+                        <tbody class="mrgn-tp-md row wb-eqht">
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Affichage des données" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/data_inview-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/docs/ref/data-inview/data-inview-en.html">Affichage des données (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Ajouter une superposition lorsqu'une section sort de la fenêtre d'affichage</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Superposition, Visible, Invisible, Afficher, Caché, Fermer, Quitter, Barre, Navigation</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Afficher/masquer" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/expand_hide-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/configurations-conception-communes/contenu-reductible.html">Afficher/masquer</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Style accordéon qui permet à l'utilisateur d'afficher ou de masquer le contenu secondaire à la demande</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Accordéon, masquer, caché, options</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Alertes" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/alerts-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="alertes/index.html">Alertes</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Des messages utilisant un code de couleurs visant à fournir une rétroaction contextuelle sur les actions de l'utilisateur ou les changements importants apportés aux informations ou à la disponibilité des services</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Couleur, changement</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Appel de données Ajax" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/ajax-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/docs/ref/data-ajax/data-ajax-en.html">Appel de données Ajax (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Permettre à des parties d'une page Web de se charger ou de se mettre à jour dans une deuxième page Web (réutilisation du contenu)</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">insertion, contenu, appel, charger</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Badges" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/badges-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/badges-en.html">Badges (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Des indicateurs numériques qui mettent en évidence le nombre de mises à jour, d'éléments nouveaux ou non lus associés à un lien</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Liens, Compteur, Nombre</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Basculer" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/toggle-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/docs/ref/toggle/toggle-en.html">Basculer (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Permettre à un élément de basculer entre l'état actif et l'état inactif</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">développer, cacher, réduire, accordéon</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Bordures" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/borders-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/borders-en.html">Bordures (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Ajouter une ou plusieurs bordures à des éléments de conception, supprimer des bordures ou tailler les coins qui font partie de composantes de conception comme les «&nbsp;puits&nbsp;»</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Règle horizontale, tailler les coins</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Boutons" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/buttons-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/configurations-conception-communes/boutons.html">Boutons</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Créer un appel à l'action qui incite l'utilisateur à soumettre le contenu d'un formulaire ou qui l'amène à une page Web fournissant des informations supplémentaires</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Couleur, Liens</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Calculs et équations mathématiques" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/math-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/docs/ref/mathml/mathml-en.html">Calculs et équations mathématiques (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Afficher les formules mathématiques dans une page</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Variables, Calculs</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Calendrier" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/calendar-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/docs/ref/cal-events/cal-events-en.html">Calendrier (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Interface permettant de naviguer dans une liste chronologique d'événements</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Tableaux, Dates</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Carrousel" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/carousel-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/configurations-conception-communes/carrousels.html">Carrousel</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Faire défiler le contenu sous forme de diaporama</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Onglets, Invisible, Diaporama, Afficher, Images, Défilement, Détails, Résumé, Agrandir, Galerie</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Citations" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/blockquote-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/quotations-en.html">Citations (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Citer une phrase appartenant à quelqu'un d'autre que l'auteur ou le locuteur original</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">bloc-citation</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Code" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/code-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/code-en.html">Code (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Émuler un code source et l'afficher dans une police de caractères à espacement fixe</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Codage, Embellir</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Conception de type «&nbsp;et/ou&nbsp;»" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/and_or-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="et-ou/index.html">Conception de type «&nbsp;et/ou&nbsp;»</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Indiquer clairement qu'il existe des options ou que des blocs de contenu sont complémentaires ou associés</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-primary mrgn-lft-0 mrgn-tp-md">Éléments spécifiques à l'ARC</span></td>
+                                <td class="hidden">Options, colonnes</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Contactez-nous" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/contact_us-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="contactez-nous/index.html">Contactez-nous</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Donner accès à différentes possibilités de contact et les présenter de manière cohérente dans divers contextes</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-primary mrgn-lft-0 mrgn-tp-md">Éléments spécifiques à l'ARC</span></td>
+
+                                <td class="hidden">questions interactives, mon dossier d'entreprise, en ligne, téléphone, ats, appel, numéros de téléphone, heures d'ouverture</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Contenu écartable" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/dismissable-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/docs/ref/dismissable-content/dismissable-content-en.html">Contenu écartable (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Permettre à l'utilisateur d'écarter du contenu non principal qu'il doit voir seulement une fois</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Écarter, masquer, contenu secondaire</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Contenu visible et invisible" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/invisible_visible.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/visible-en.html">Contenu visible et invisible (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Afficher ou masquer du contenu, y compris les styles spécifiques aux technologies d'assistance (soutenir les utilisateurs de lecteurs d'écran), à la conception réactive, à l'utilisation générale et à l'impression</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Impression, caché, périphériques, fenêtres d'affichage, résolution</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Couleurs" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/colour.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/styles/couleurs.html">Couleurs</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Couleurs obligatoires pour le contenu Web de Canada.ca</p>
+                                </td>
+                                <td class="hidden">Base</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden"></td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Diagrammes et graphiques" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/charts.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/configurations-conception-communes/diagrammes-graphiques.html">Diagrammes et graphiques</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Méthodes de présentation permettant de communiquer des données ou des statistiques</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Graphiques, Barre, Valeurs</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Effets de modification du texte" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/text_editing-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="effets-de-modification-du-texte/index.html">Effets de modification du texte</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Utilisation d'effets tels que le texte surligné, le texte supprimé et le texte barré</p>
+                                </td>
+                                <td class="hidden">Base</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Modifications, versions, documents</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Égalisation des hauteurs (égaliser)" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/equalize-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html">Égalisation des hauteurs (égaliser) (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Égaliser la hauteur des éléments situés sur la même ligne de base</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Panneaux, puits, bordures</td>
+                            </tr>
+
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Étiquettes" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/labels-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/labels-fr.html">Étiquettes</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Attirer l'attention sur une section du contenu en ajoutant des informations complémentaires courtes et textuelles.</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Couleur, Attention</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Expiration de la session" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/timeout-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/docs/ref/session-timeout/session-timeout-en.html">Expiration de la session (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Prévenir les utilisateurs lorsque leur session est sur le point d'expirer</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">sortie, redirection, délai d'attente</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Fenêtres contextuelles" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/popups-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html">Fenêtres contextuelles (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Afficher des images et d'autres contenus dans une boîte de dialogue, soit individuellement ou dans une galerie</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">boîte de dialogue, superposition, modèle, galerie</td>
+                            </tr>
+
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Formulaires et éléments de formulaire" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/forms-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/forms-en.html">Formulaires et éléments de formulaire (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Créer un formulaire pour recueillir et transmettre les renseignements entrés par les utilisateurs dans un format prédéfini</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">rétroaction, cases à cocher de validation, boutons radio, étiquettes, entrée, sélection, zone de texte, fichier, sélecteur de date, soumettre, effacer, compléter automatiquement</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Grilles" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/grids.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/grids-en.html">Grilles (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Créer des mises en page à l'aide d'une série de lignes et de colonnes qui renferment du contenu</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Réactif, Écrans de visualisation, Appareils, Résolution</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Icônes" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/icons.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/configurations-conception-communes/icones.html">Icônes</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Utiliser l'un des deux ensembles d'icônes, Glyphicons ou Font Awesome, à des fins esthétiques</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Couleur, Images, Polices de caractère</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Identificateur de pays" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/country-en.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/docs/ref/country-content/country-content-en.html">Identificateur de pays (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Charger ou remplacer le contenu d'un élément en fonction du pays de l'utilisateur</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Emplacement</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Image relative aux données" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/data_picture.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/docs/ref/data-picture/data-picture-en.html">Image relative aux données (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Permettre à une page Web de spécifier différentes sources d'images à afficher en se basant sur les requêtes de média</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Images, Résolution</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Images" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/images.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/configurations-conception-communes/images.html">Images</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Contenu visuel qui complète ou enrichit le texte, y compris les photographies, les graphiques, les dessins ou les diagrammes</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Thumbnais, Responsive, Photos, Visual, Decorative</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Interface à onglets" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/tabs-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/configurations-conception-communes/interface-onglets.html">Interface à onglets</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Séparer du contenu connexe dans différents panneaux qui peuvent être affichés un par un en cliquant sur l'onglet correspondant</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">développer, cacher, onglets, invisible</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Liens" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/links-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="liens/index.html">Liens</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Coder un mot, une phrase ou une image pour permettre à l'utilisateur de naviguer, de consulter ou d'interagir avec le contenu</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-info mrgn-lft-0 mrgn-tp-md">Variantes de l'ARC</span></td>
+                                <td class="hidden">Hyperliens</td>
+                            </tr>
+
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Listes" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/lists-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="listes/index.html">Listes</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Des listes à puces, listes numérotées, listes de descriptions et des améliorations telles que les listes de vérification interactives, les listes filtrées, etc.</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-info mrgn-lft-0 mrgn-tp-md">Variantes de l'ARC</span></td>
+                                <td class="hidden">interactif, ordonné, non ordonné, puces, filtres, colonnes</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Menu d'accueil thématique" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/doormats-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="menu-accueil-thematique/index.html">Menu d'accueil thématique</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Pour présenter des ensembles de liens et de descriptions affichés dans des blocs concis</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-info mrgn-lft-0 mrgn-tp-md">Variantes de l'ARC</span></td>
+                                <td class="hidden">Services et informations, sujets, liens</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Mise en forme du texte" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/text-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="mise-en-forme-du-texte/index.html">Mise en forme du texte</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Accentuation, taille, couleur, alignement, renvoi à la ligne et tronquage du texte</p>
+                                </td>
+                                <td class="hidden">Base</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">gras, italique, souligné, aligner, gauche, droite, centrer, envelopper, tronquer</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Mise en page" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/layout-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="mise-en-page/index.html">Mise en page</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Mise en page des pages Web de Canada.ca, y compris la bannière, le pied de page, la largeur et les points d'interruption</p>
+                                </td>
+                                <td class="hidden">Base</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden"></td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Navigation de style métro" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/subway-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="metro/index.html">Navigation de style métro</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Diviser un contenu long et complexe lié à une même tâche en le fractionnant en sous-tâches</p>
+                                </td>
+                                <td class="hidden">Modeles</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-info mrgn-lft-0 mrgn-tp-md">Variantes de l'ARC</span></td>
+                                <td class="hidden"></td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Notes de bas de page" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/footnotes-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/v4.0-ci/demos/footnotes/footnotes-en.html">Notes de bas de page (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Créer une note, une référence, une citation ou un commentaire qui s'affiche en bas de la page</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Références, liens, citations</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Opacité" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/opacity.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/opacity-en.html">Opacité (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Appliquer de la transparence à un élément de premier plan pour que l'arrière-plan devienne visible</p>
+                                </td>
+                                <td class="hidden">Base</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">invisible</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Outil de rétroaction sur la page" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/feedback-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://test.canada.ca/experimental/feedback-retroaction/outil-retroaction.html">Outil de rétroaction sur la page</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Permettre aux utilisateurs de fournir une rétroaction ou de signaler un problème rencontré sur une page Web spécifique ou sur le site Web en général</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Erreurs, validation, questions, commentaires, fautes</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Page d'accueil institutionnelle" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/institutional-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/modeles-obligatoire/pages-profil-institutionnel.html">Page d'accueil institutionnelle</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Page d'accueil obligatoire pour les institutions et les organisations du gouvernement du Canada</p>
+                                </td>
+                                <td class="hidden">Modeles</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden"></td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Page de base" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/basic-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/modeles-recommandes/generique.html">Page de base</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Mise en page de base pour les pages de contenu de Canada.ca qui peut être combinée avec des composantes appropriées</p>
+                                </td>
+                                <td class="hidden">Modeles</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden"></td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Pages de campagne" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/campaign-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/modeles-recommandes/pages-campagnes.html">Pages de campagne</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Des pages promotionnelles à durée limitée conçues pour communiquer, éduquer, influencer, commercialiser, sensibiliser et appeler à l'action</p>
+                                </td>
+                                <td class="hidden">Modeles</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Promotion, marketing</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Page de sujet" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/topic-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/modeles-obligatoire/theme-sujet.html">Page de sujet</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Permettre de naviguer vers les sujets et les pages de destination qui aident à réaliser une tâche</p>
+                                </td>
+                                <td class="hidden">Modeles</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden"></td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Pagination" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/pagination-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/pagination-en.html">Pagination (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Pour les longs documents répartis sur plusieurs pages, permettre à l'utilisateur de naviguer entre les pages en utilisant les hyperliens «&nbsp;Suivant&nbsp;», «&nbsp;Précédent&nbsp;» ou (s'il y a lieu) les hyperliens de pagination numériques</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Buttons, Links, Navigation</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Panneaux" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/panels-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/panels-en.html">Panneaux (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Créer un regroupement visuel de contenu à l'aide de différents thèmes de couleurs, ainsi que des en-têtes et pieds de page distincts</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Boîtes, Menu, Navigation, Disposition</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Promotions contextuelles" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/context-specific-feature-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/configurations-conception-communes/vignettes-promotionnelles.html">Promotions contextuelles</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Des composantes d’intérieur de page servant à promouvoir des activités, des initiatives, des programmes et des services gouvernementaux</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Promotion, marketing, campagne</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Proximité des marges" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/margin-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/proximity-en.html">Proximité des marges (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Augmenter ou diminuer l'espace vide entre les éléments pour permettre de savoir si les éléments sont liés ou non</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Espacement, Marges, Gauche, Droite, Haut, Bas</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Puits" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/wells-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/wells-en.html">Puits (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Mettre du contenu en évidence en le plaçant dans une case gris clair</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Disposition, Boîtes</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Question interactives (field flow)" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/fieldflow-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="questions-interactives/index.html">Question interactives (field flow)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Présenter aux utilisateurs une séquence de questions simples qui mènent à la réponse précise dont ils ont besoin pour poursuivre leur tâche ou la terminer.</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">arbre décisionnel</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Table des matières" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/toc-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="tdm/index.html">Table des matières</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Provide an outline for the content of a page that has multiple subsections</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-primary mrgn-lft-0 mrgn-tp-md">Éléments spécifiques à l'ARC</span></td>
+                                <td class="hidden">Sur cette page</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Tableaux" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/tables-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/tables-en.html">Tableaux (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Organiser des données en lignes et en colonnes afin de créer des cellules de données</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Tabulaire, bande zébrée, survol, réactif, couleur, validateur de tableau</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: En-têtes" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/headings-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="../../../fr/systemes-conception/gcweb/titres-sous-titres/index.html">Titres et sous-titres</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Créer des sous-titres de contenu qui sont grands, gras, hiérarchiques et concis</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-info mrgn-lft-0 mrgn-tp-md">Variantes de l'ARC</span></td>
+                                <td class="hidden">Taille, Texte, Titres</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Touches de clavier" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/keyboard-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/keyboard-en.html">Touches de clavier (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Reproduire les touches d'un clavier d'ordinateur</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden"></td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Typographie" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/typography.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="typographie/index.html">Typographie</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Polices de caractères pour les en-têtes et le corps du texte, longueur des lignes et apparence des liens</p>
+                                </td>
+                                <td class="hidden">Base</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden"></td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Variables" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/variables.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://wet-boew.github.io/wet-boew-styleguide/design/variables-en.html">Variables (anglais seulement)</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>À utiliser quand il y a une référence à une variable comme «&nbsp;x&nbsp;», «&nbsp;n&nbsp;» ou «&nbsp;o&nbsp;» dans une phrase (une expression non mathématique)</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Calculs</td>
+                            </tr>
+                            <tr class="col-xs-11 col-sm-5 brdr-tp brdr-bttm brdr-lft brdr-rght brdr-rds-0 position-relative eqht-trgt p-0 mrgn-lft-md mrgn-rght-md mrgn-bttm-lg">
+                                <td class="nws-tbl-img"><img alt="Bannière: Vidéo et audio" loading="eager" class="img-responsive hidden-xs" src="../../../assets/images/banners/gcweb/video_audio-fr.jpg"></td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-ttl h4">
+                                    <h3 class="mrgn-tp-md"><a class="stretched-link" href="https://conception.canada.ca/configurations-conception-communes/multimedia.html">Vidéo et audio</a></h3>
+                                </td>
+                                <td class="mrgn-lft-lg mrgn-rght-lg nws-tbl-desc">
+                                    <p>Ajouter des clips vidéo et des enregistrements audio pour compléter ou enrichir le texte</p>
+                                </td>
+                                <td class="hidden">Composantes</td>
+                                <td class="row mrgn-lft-lg mrgn-rght-lg mrgn-bttm-lg nws-tbl-cat"><span class="label label-default mrgn-lft-0 mrgn-tp-md">Éléments de base du GC</span></td>
+                                <td class="hidden">Lecteur multimédia, transcriptions, sous-titres codés, licences</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- CONTENT ENDS -->
+
+        <div class="container">
+            <div class="pagedetails">
+                <dl id="wb-dtmd">
+
+                    <dt>Date de modification&#32;:&#32;</dt>
+                    <dd>
+                        <time property="dateModified">2024-11-28</time>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script src="https://wet-boew.github.io/themes-dist/GCWeb/wet-boew/js/wet-boew.min.js"></script>
+    <script src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/js/theme.min.js"></script>
+    <script>
+        $(".wb-tables").on("wb-ready.wb-tables", function (event) {
+            $(".wb-eqht").trigger("wb-update.wb-eqht");
+        });
+        $(document).on("wb-ready.wb", function (event) {
+            $(".wb-eqht").trigger("wb-update.wb-eqht");
+        });
+        $(window).on("load", function () {
+            $(".wb-eqht").trigger("wb-update.wb-eqht");
+        });
+    </script>
+    <div id="footer-include"></div>
+</body>
+
+</html>
