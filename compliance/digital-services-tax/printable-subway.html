@@ -212,6 +212,13 @@ a::after {
   <!-- Placeholder for combined content --> 
   
   <script>
+      
+    // Function to open all <details> elements
+    function openAllDetails(container) {
+      const detailsElements = container.querySelectorAll("details");
+      detailsElements.forEach(details => details.setAttribute("open", ""));
+    }
+      
     const pages = [
       "digital-services-tax.html", // Replace with actual URLs of your static pages
       "how-applied.html",
@@ -241,6 +248,7 @@ a::after {
           // Extract the main content from the fetched page
           const fetchedContent = tempDiv.querySelector("#mainContent");
           if (fetchedContent) {
+            openAllDetails(fetchedContent); // Open <details> in fetched content
             printContent.appendChild(fetchedContent.cloneNode(true));
             printContent.appendChild(document.createElement("hr"));
           }
