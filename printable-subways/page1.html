@@ -1,64 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sample Page</title>
-  <style>
-    /* General styling */
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 20px;
-    }
-    header, footer {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    button {
-      margin: 10px 5px;
-      padding: 10px 15px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    /* Print-specific styling */
-    @media print {
-      button, nav, footer {
-        display: none; /* Hide non-print elements */
-      }
-      body {
-        margin: 0;
-      }
-      a::after {
-        content: " (" attr(href) ")"; /* Display link URLs */
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Page</title>
+<style>
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+}
+header, footer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+button {
+    margin: 10px 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+/* Print-specific styling */
+@media print {
+button, nav, footer {
+    display: none; /* Hide non-print elements */
+}
+body {
+    margin: 0;
+}
+a::after {
+    content: " (" attr(href) ")"; /* Display link URLs */
+}
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Sample Page</h1>
-    <p>This is an example page with content that will be styled for printing.</p>
-  </header>
-  
-  <main id="mainContent">
-    <h2>Page Content</h2>
-    <p>This is the content of the current page. It will be included in the printable version.</p>
-  </main>
+<header>
+  <h1>Sample Page</h1>
+  <p>This is an example page with content that will be styled for printing.</p>
+</header>
+<main id="mainContent">
+  <h2>Page Content</h2>
+  <p>This is the content of the current page. It will be included in the printable version.</p>
+</main>
+<nav>
+  <button onclick="window.print()">Print This Page</button>
+  <button id="printAllPages">Print All Pages</button>
+</nav>
+<footer>
+  <p>&copy; 2024 Example Site</p>
+</footer>
+<div id="printContent" style="display: none;"></div>
+<!-- Placeholder for combined content --> 
 
-  <nav>
-    <button onclick="window.print()">Print This Page</button>
-    <button id="printAllPages">Print All Pages</button>
-  </nav>
-
-  <footer>
-    <p>&copy; 2024 Example Site</p>
-  </footer>
-
-  <div id="printContent" style="display: none;"></div> <!-- Placeholder for combined content -->
-
-  <script>
+<script>
     const pages = [
       "page1.html", // Replace with actual URLs of your static pages
       "page1.html",
@@ -100,4 +96,3 @@
   </script>
 </body>
 </html>
-
