@@ -30,36 +30,6 @@
 <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/noscript.min.css"/>
 </noscript>
 <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2024-09-kejimkujik.min.css"/>
-<style>
-/* General styling */
-/*body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 20px;
-}
-header, footer {
-    text-align: center;
-    margin-bottom: 20px;
-}
-button {
-    margin: 10px 5px;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-}*/
-/* Print-specific styling */
-@media print {
-button, nav, footer, .pagedetails {
-    display: none; /* Hide non-print elements */
-}
-body {
-    margin: 0;
-}
-a::after {
-    content: " (" attr(href) ")"; /* Display link URLs */
-}
-}
-</style>
 </head>
 
 <body vocab="http://schema.org/" typeof="WebPage" resource="#wb-webpage" class="undefined  cnt-wdth-lmtd">
@@ -151,7 +121,7 @@ a::after {
     </header>
   </div>
 </div>
-<main id="mainContent" property="mainContentOfPage" resource="#wb-main" typeof="WebPageElement" class="container">
+<main property="mainContentOfPage" resource="#wb-main" typeof="WebPageElement" class="container">
   <h1 class="mrgn-tp-0" id="wb-cont">Digital Services Tax</h1>
   <div class="col-md-4 pull-right">
     <div class="mwsbodytext text parbase section">
@@ -179,13 +149,6 @@ a::after {
       </dl>
     </section>
   </nav>
-  <div class="mwsbodytext text parbase section">
-    <div class="brdr-rds-0">
-      <nav>
-        <button id="printAllPages">Print all DST pages</button>
-      </nav>
-    </div>
-  </div>
   <!-- Supporting links -->
   <aside>
     <h2 class="h3">Related information</h2>
@@ -208,54 +171,6 @@ a::after {
       </dd>
     </dl>
   </section>
-  <div id="printContent" style="display: none;"></div>
-  <!-- Placeholder for combined content --> 
-  
-  <script>
-    const pages = [
-      "digital-services-tax.html", // Replace with actual URLs of your static pages
-      "how-applied.html",
-      "who-register.html",
-      "make-election.html",
-      "who-file.html",
-      "calculate-cdsr.html",
-      "contact.html"
-    ];
-
-    document.getElementById("printAllPages").addEventListener("click", async () => {
-      const printContent = document.getElementById("printContent");
-      printContent.innerHTML = ""; // Clear previous content
-
-      // Include current page content
-      // const currentPageContent = document.getElementById("mainContent").cloneNode(true);
-      // printContent.appendChild(currentPageContent);
-
-      // Fetch and append content from other pages
-      for (const page of pages) {
-        try {
-          const response = await fetch(page);
-          const text = await response.text();
-          const tempDiv = document.createElement("div");
-          tempDiv.innerHTML = text;
-
-          // Extract the main content from the fetched page
-          const fetchedContent = tempDiv.querySelector("#mainContent");
-          if (fetchedContent) {
-            printContent.appendChild(fetchedContent.cloneNode(true));
-            printContent.appendChild(document.createElement("hr"));
-          }
-        } catch (error) {
-          console.error(`Failed to fetch ${page}:`, error);
-        }
-      }
-
-      // Create a temporary print view
-      const originalContent = document.body.innerHTML;
-      document.body.innerHTML = printContent.innerHTML;
-      window.print();
-      document.body.innerHTML = originalContent;
-    });
-  </script> 
 </main>
 <div class="newpar new section"> </div>
 <div class="par iparys_inherited"> </div>
