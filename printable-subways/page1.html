@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Page</title>
+  <style>
+    /* General styling */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+    }
+    header, footer {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    button {
+      margin: 10px 5px;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Print-specific styling */
+    @media print {
+      button, nav, footer {
+        display: none; /* Hide non-print elements */
+      }
+      body {
+        margin: 0;
+      }
+      a::after {
+        content: " (" attr(href) ")"; /* Display link URLs */
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sample Page</h1>
+    <p>This is an example page with content that will be styled for printing.</p>
+  </header>
+  
+  <main id="mainContent">
+    <h2>Page Content</h2>
+    <p>This is the content of the current page. It will be included in the printable version.</p>
+  </main>
+
+  <nav>
+    <button onclick="window.print()">Print This Page</button>
+    <button id="printAllPages">Print All Pages</button>
+  </nav>
+
+  <footer>
+    <p>&copy; 2024 Example Site</p>
+  </footer>
+
+  <div id="printContent" style="display: none;"></div> <!-- Placeholder for combined content -->
+
+  <script>
+    const pages = [
+      "file:///C:/CDIA-work-files/Drupal%20books/page1.html", // Replace with actual URLs of your static pages
+      "file:///C:/CDIA-work-files/Drupal%20books/page1.html",
+      "file:///C:/CDIA-work-files/Drupal%20books/page1.html"
+    ];
+
+    document.getElementById("printAllPages").addEventListener("click", async () => {
+      const printContent = document.getElementById("printContent");
+      printContent.innerHTML = ""; // Clear previous content
+
+      // Include current page content
+      // const currentPageContent = document.getElementById("mainContent").cloneNode(true);
+      // printContent.appendChild(currentPageContent);
+
+      // Fetch and append content from other pages
+      for (const page of pages) {
+        try {
+          const response = await fetch(page);
+          const text = await response.text();
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = text;
+
+          // Extract the main content from the fetched page
+          const fetchedContent = tempDiv.querySelector("#mainContent");
+          if (fetchedContent) {
+            printContent.appendChild(fetchedContent.cloneNode(true));
+          }
+        } catch (error) {
+          console.error(`Failed to fetch ${page}:`, error);
+        }
+      }
+
+      // Create a temporary print view
+      const originalContent = document.body.innerHTML;
+      document.body.innerHTML = printContent.innerHTML;
+      window.print();
+      document.body.innerHTML = originalContent;
+    });
+  </script>
+</body>
+</html>
+
