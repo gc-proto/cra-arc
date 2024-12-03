@@ -219,6 +219,12 @@ a::after {
       detailsElements.forEach(details => details.setAttribute("open", ""));
     }
       
+  // Function to remove the 'mfp-hide' class from all <section> elements
+  function removeMfpHideClass(container) {
+    const sectionElements = container.querySelectorAll("section.mfp-hide");
+    sectionElements.forEach(section => section.classList.remove("mfp-hide"));
+  }
+      
     const pages = [
       "digital-services-tax.html", // Replace with actual URLs of your static pages
       "how-applied.html",
@@ -249,9 +255,11 @@ a::after {
           const fetchedContent = tempDiv.querySelector("#mainContent");
           if (fetchedContent) {
             openAllDetails(fetchedContent); // Open <details> in fetched content
-            /*fetchedContent.$("section").removeClass("mfp-hide");*/
-            printContent.appendChild(document.createElement("h1").appendChild(document.createTextNode("Digital Services Tax")));
-            printContent.appendChild(fetchedContent.cloneNode(true));
+          removeMfpHideClass(fetchedContent); // Remove 'mfp-hide' class from <section>
+              
+          const pageTitle = document.createElement("h1");
+          pageTitle.textContent = "Digital Services Tax"; // Adjust if needed
+          printContent.appendChild(pageTitle);            printContent.appendChild(fetchedContent.cloneNode(true));
             printContent.appendChild(document.createElement("hr"));
           }
         } catch (error) {
