@@ -249,6 +249,11 @@ a::after {
           const fetchedContent = tempDiv.querySelector("#mainContent");
           if (fetchedContent) {
             openAllDetails(fetchedContent); // Open <details> in fetched content
+              
+            var h = document.createElement("H1");
+            var t = document.createTextNode(text);
+            h.appendChild(t);
+            printContent.appendChild(h);
             printContent.appendChild(document.createElement("h1").createTextNode("Digital Services Tax"));
             printContent.appendChild(fetchedContent.cloneNode(true));
             printContent.appendChild(document.createElement("hr"));
