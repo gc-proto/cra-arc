@@ -216,12 +216,14 @@
 			
 			var q3 = document.getElementById('q3').value ;
 			if (q3 == 0) {
-				document.getElementById('question4').classList.remove('hidden');
-				var q4 = document.getElementsByName('q4');
+				
 				for (i=0; i<q4.length; i++)
-					q4[i].checked = false ;		
-				document.getElementById('amountString').value = '30,000' ;			
-			}	
+				
+				document.getElementById('amountString').value = '30,000' ;
+				document.getElementById('amount').value = 30000;
+				document.getElementById('showFields').click() ;	
+							
+			}
 			
 			else if (q3 == 1) {
 				document.getElementById('question5').classList.remove('hidden');
@@ -1913,7 +1915,7 @@
 <p class="mrgn-tp-md"> You have to continue to monitor your sales to determine when you exceed the <strong>$30,000</strong> threshold.</p> 
 </div> 
 <h4>Excluded from the threshold amount</h4>
-<div id="ajax-include1" class="mrgn-lft-lg">
+<div id="ajax-include1" class="mrgn-lft-md">
 <p><span class="fas fa-ban text-danger fa-lg"></span> <strong>Do not</strong> include the following in threshold amount:</p>
 <ul>
 <li>Supplies of financial services</li>
