@@ -79,8 +79,6 @@
 	<p>Effective June 17, 2024, individuals with a SIN that starts with the number 9 can now use the <a href="/en/revenue-agency/services/tax/businesses/topics/registering-your-business/business-registration-online-overview.html">Business Registration Online</a> service to register and instantly obtain a business number and a GST/HST account.</p>
 </div>
 
- <p>Generally, you cannot register for a GST/HST account if you provide only <a href="#ajax-exempt" aria-controls="ajax-exempt" class="overlay-lnk" role="button">exempt supplies&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-
 <h3>You have the choice to read the same information in <strong>2</strong> different formats:</h3>			 
 <ul class="cnjnctn-type-or cnjnctn-sm">
 	<li class="cnjnctn-col"><a href="#tab1">Interactive questions</a> to get the specific results </li>
@@ -132,16 +130,16 @@
 			for (i=1; i<=results.length; i++)
 				document.getElementById('R'+i).classList.add('hidden');
 
+			document.getElementById('q2').value = 5 ;
 			
 			var q1 = document.getElementsByName('q1') ;			
 
-		//If yes
-			if {
+			//If yes
+			if (q1[0].checked) {
+				document.getElementById('question2').classList.remove('hidden');	
 				var q2 = document.getElementsByName('q2');
 				for (i=0; i<q2.length; i++)
-					q2[i].checked = false ;
-				document.getElementById('question2').classList.remove('hidden');
-				
+					q2[i].checked = false ;		
 			}
 			
 			//No
@@ -166,8 +164,11 @@
 	<!--QUESTION 2-->
 <fieldset name="quest" id="question2" class="hidden">	
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You supply taxable goods or services</big></p>
-		<label class="mrgn-tp-md" for="q2">Which option best describes your situation?</label>
-
+		<label class="mrgn-tp-sm" for="q2">Which option best describes your situation?</label>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm small">
+<li class="cnjnctn-col"> If your business has <strong>already received revenues</strong>, continue to find out if you need to register for a GST/HST program account, what is your registration date and when to charge the GST/HST.</li>
+<li class="cnjnctn-col"> If your business has <strong>not</strong> already received revenues, continue to create scenarios to understand the conditions to register for a GST/HST program account.</li>
+</ul>
 
 		<select class="form-control required" id="q2" onchange="
 			var q = getElementsByName('quest') ;
@@ -190,38 +191,19 @@
 				document.getElementById('question3').classList.remove('hidden');
 				document.getElementById('age').value = 'Old'
 				document.getElementById('numOfQuarters').value = 8 ;
-			}
-			else if (q2 == 2) {
-				document.getElementById('R6').classList.remove('hidden');
-			}
-			else if (q2 == 3) {
-				document.getElementById('R12').classList.remove('hidden');
-			}
-			else if (q2 == 4) {
-				document.getElementById('R13').classList.remove('hidden');	
-			}
-			else if (q2 == 6) {
-				document.getElementById('R14').classList.remove('hidden');	
-			}
-			else if (q2 == 7) {
-				document.getElementById('R15').classList.remove('hidden');	
-			}
-			else if (q2 == 8) {
-				document.getElementById('R16').classList.remove('hidden');	
+							
 			}
 		">
 			<option value="5" selected>Make your selection...</option>
-		
-			
-			<option value="1">Your business has already received revenues </option>
-			 <option value="0">Your business has not already received revenues </option>
+			<option value="1">Your business has already received revenues</option>
+			 <option value="0">Your business has not already received revenues</option>
 			
 		</select>
 	</fieldset>
 	
 	<!--QUESTION 3 - DROPDOWN-->
 <fieldset name="quest" id="question3" class="hidden">
-  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your business is not part of the special situations - Most businesses</big></p>
+ 
 		<label class="mrgn-tp-md" for="q3">Which option best describes your business? </label>
 		<select class="form-control required" id="q3" onchange="
 			var q = getElementsByName('quest') ;
@@ -262,6 +244,13 @@
 				var q11 = document.getElementsByName('q11');
 				for (i=0; i<q11.length; i++)
 					q11[i].checked = false ;
+
+			}
+			else if (q3 == 6) {
+				document.getElementById('R6').classList.remove('hidden');
+			}
+			else if (q3 == 7) {
+				document.getElementById('R12').classList.remove('hidden');	
 			}	
 		">
 			<option value="5" selected>Make your selection...</option> 
@@ -269,6 +258,8 @@
 			<option value="2" name="q3">Charity or public institution</option>
 			<option value="1" name="q3">Public service body that is not a charity or a public institution</option>
 			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
+			<option value="6" name="q3">Your only commercial activity  is the sale of real property, other than in the course of a business</option>
+			<option value="7" name="q3">You are a non-resident business</option>
 		</select>
 	</fieldset>
 	
@@ -1688,19 +1679,25 @@
 <section class="alert alert-info hidden" id="R4" name="results">
 	<h3><small>Based on the information you entered</small><br>R4 You do not have to register for a GST/HST account number</h3>
 <hr>
-
+<ol class="lst-stps ld-zr stps-strpd">
+<li>
 <h4>Conditions of a small supplier</h4>
 <div data-ajax-replace="#ajax-confirm-small-char"></div>
-
+</li>
+<li>
 <div data-ajax-replace="#ajax-reg"></div>
 <div data-ajax-replace="#ajax-reg-vol"></div>
+</li>
+<li>
 <div data-ajax-replace="#ajax-charge"></div>
 <div id="ajax-charge-no">
 <p><span class="fas fa-ban text-danger fa-lg"></span> You do <strong>not</strong> charge GST/HST if you are a small supplier and you do not have a GST/HST account number.</p>
 <p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
-</div>
+</div></li>
+<li>
 <div data-ajax-replace="#ajax-itc"></div>
-<div data-ajax-replace="#ajax-itc-char"></div>
+<div data-ajax-replace="#ajax-itc-char"></div></li>
+</ol>
 </section>
 
 <section class="alert alert-info hidden" id="R5" name="results">
@@ -1843,6 +1840,8 @@
 <section class="alert alert-info hidden" id="R9" name="results">
 	<h3><small>Based on the information you entered</small><br>R9 You <span id="tense151"></span> to register for a GST/HST account number</h3>
 <hr>
+<ol class="lst-stps ld-zr stps-strpd">
+<li>
 <div data-ajax-replace="#ajax-date-result"></div>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
@@ -1852,7 +1851,8 @@
 <p><strong>If your actual sales match the amounts you entered</strong>, the effective date of registration <span id="tense153"></span> <label id="chargeDate0"></label>. </p>
 </li>
 </ul>
-
+</li>
+<li>
 <div data-ajax-replace="#ajax-reg"></div>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
@@ -1861,8 +1861,8 @@
 <li class="cnjnctn-col-50">
 <p><strong>If your actual sales match the amounts you entered</strong>, you <span id="tense154"></span> to register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate01"></label>.</p>
 </li>
-</ul>
-
+</ul></li>
+<li>
 <div data-ajax-replace="#ajax-charge"></div> 
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
@@ -1871,8 +1871,8 @@
 <li class="cnjnctn-col-50">
 <p><strong>If your actual sales match the amounts you entered</strong>, you <span id="tense155"></span> to charge GST/HST <span id="differenceAB"></span> starting <label id="chargeDate011"></label>, including on the sale that made you exceed the threshold.</p>
 </li>
-</ul>
-
+</ul></li>
+<li>
 <div data-ajax-replace="#ajax-itc"></div>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
@@ -1881,8 +1881,8 @@
 <li class="cnjnctn-col-50">
 <p><strong>If your actual sales match the amounts you entered</strong>, you <span id="tense156"></span> eligible to claim ITCs for purchases that relate to taxable supplies made after <label id="chargeDate0111"></label>.</p>
 </li>
-</ul>
-
+</ul></li>
+<li>
 <div data-ajax-replace="#ajax-file"></div>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
@@ -1891,8 +1891,8 @@
 <li class="cnjnctn-col-50">
 <p><strong>If your actual sales match the amounts you entered</strong>, you <span id="tense157"></span> to file GST/HST returns for purchases that relate to taxable supplies made after <label id="chargeDate01111"></label>.</p>
 </li>
-</ul>
-
+</ul></li>
+<li>
 <div data-ajax-replace="#ajax-remit"></div>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
@@ -1901,13 +1901,17 @@
 <li class="cnjnctn-col-50">
 <p><strong>If your actual sales match the amounts you entered</strong>, you <span id="tense158"></span> to remit (pay) the net GST/HST payable for purchases that relate to taxable supplies made after <label id="chargeDate011111"></label>.</p>
 </li>
-</ul>
+</ul></li>
+</ol>
  <strong><span id="plus29"></span><label id="plus291"></label></strong> 
 </section>
+
 
 <section class="alert alert-info hidden" id="R10" name="results">
 	<h3><small>Based on the information you entered</small><br>R10 You may not have to register for a GST/HST account number</h3>
 <hr>
+<ol class="lst-stps ld-zr stps-strpd">
+<li>
 <h4>Conditions of a small supplier</h4>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
@@ -1917,16 +1921,22 @@
 <p><strong>If your actual sales match your estimates</strong>, you <strong>may not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed <strong>$50,000</strong> over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p> 
 <div data-ajax-replace="#ajax-reg-exceed1"></div>
 </li>
-</ul>
+</ul></li>
+<li>
 <div data-ajax-replace="#ajax-reg"></div>
 <div data-ajax-replace="#ajax-reg-vol"></div>
-
+</li>
+<li>
 <div data-ajax-replace="#ajax-charge"></div>
 <div data-ajax-replace="#ajax-charge-no"></div>
-
+</li>
+<li>
 <div data-ajax-replace="#ajax-itc"></div>
 <div data-ajax-replace="#ajax-itc-most"></div>
+</li></ol>
 </section>
+
+
 
 <section class="hidden  mrgn-lft-lg" id="R11" name="results">
 </section>
@@ -1971,10 +1981,16 @@
         <summary>Read full-text </summary>
    <h4 id="tab2" class="text-muted small">You want to read the information in full-text</h4>
 
-<p>Use the following sections to determine if you are a small supplier to find out if you have to register.</p>
+ <p>Generally, you cannot register for a GST/HST account if you provide only <a href="#ajax-exempt" aria-controls="ajax-exempt" class="overlay-lnk" role="button">exempt supplies&nbsp;<span class="far fa-question-circle"></span></a>.</p>
+
+<p>You have to register for&nbsp;a GST/HST account if <strong>both </strong>situations apply:</p>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col">You are <strong>not</strong> a small supplier</li>
+<li class="cnjnctn-col">You make <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable sales, leases or other supplies&nbsp;<span class="far fa-question-circle"></span></a> in Canada (unless your only taxable supplies are of real property sold other than in the course of a business)</li>
+</ul>
 
 <p>If you are&nbsp;a selected listed financial institution&nbsp;that is making a reporting entity, consolidated filing or tax adjustment transfer election, refer to: <a href="/en/revenue-agency/services/forms-publications/publications/notice265.html">GST/HST Notice 265, GST/HST Registration for Listed Financial Institutions (including Selected Listed Financial Institutions)</a>.</p>    
-
+<p>Use the following sections to determine if you are a small supplier to find out if you have to register.</p>
 
 	<div class="wb-tabs">
     	<div class="tabpanels">
@@ -1987,84 +2003,37 @@
 <li><div data-ajax-replace="#ajax-confirm-small"></div>
 <div id="ajax-confirm-small-most">
 <p id="step3most">If you are a sole proprietor, a partnership or a corporation and your total worldwide <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> from all your businesses and those of your associates <strong>does not</strong> exceed the <strong>$30,000</strong> threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
-<p> You have to continue to monitor your sales to determine when you exceed the <strong>$30,000</strong> threshold.</p> 
 <div id="ajax-include1">
-<h4>Supplies not included in your calculation by type of activities</h4>
-<details><summary>Most businesses</summary>
-<p><strong>Do not</strong> include:</p>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col">Supplies of financial services</li>
-<li class="cnjnctn-col">Sales of capital property</li>
-<li class="cnjnctn-col">Goodwill from the sale of a business</li>
-</ul></details>
-<details><summary>Sale of real property, other than in the course of a business</summary>
-<div id="ajax-small-real" class="mrgn-tp-lg">
-<ol class="lst-stps-sub ld-zr stps-strpd">
-<li><h4>Confirm if the exception to GST/HST registration applies</h4> 
-<p ><span class="fas fa-ban text-danger fa-lg"></span> If your <strong>only</strong> <a href="#ajax-commercial" aria-controls="ajax-commercial" class="overlay-lnk" role="button">commercial activity&nbsp;<span class="far fa-question-circle"></span></a> is the sale of real property, other than in the course of a business, you <strong>do not</strong> have to register for a GST/HST account number.</p> 
-<details><summary >Example</summary>
-<p >A doctor's practice consists of making exempt supplies of health care services. The doctor decides on a one-time basis to buy land which includes a commercial building as the doctor has heard that there will be an increase in demand for this type of property in the next six months. The doctor sells the land and building for a profit after holding it for seven months.</p>
-<p >These transactions would be viewed as an adventure in the nature of trade rather than carrying on a business. The doctor's sale of the property is taxable and he must include GST/HST. </p>
-<p  >The doctor is <strong>not </strong>required to register for a GST/HST account number for the purpose of reporting the GST/HST collectible on this sale, however he may decide to register voluntarily to claim ITCs.</p>
-<div data-ajax-replace="#ajax-more"  ></div>
-<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/19-4-1.html" target="_blank">19-4-1 Commercial Real Property - Sales and Rentals</a></p>
-</details>
-<div data-ajax-replace="#ajax-reg-vol2"></div>
-</li>
-<li><div data-ajax-replace="#ajax-charge"></div>
- <p >You may still have to charge the tax on your sale of <a href="#ajax-property" aria-controls="ajax-property" class="overlay-lnk" role="button">real property&nbsp;<span class="far fa-question-circle"></span></a> if the purchaser is <strong>not</strong> registered for the GST/HST.</p>
-<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
-</li>
-<li><div data-ajax-replace="#ajax-itc"></div>
-<p><span class="fas fa-ban text-danger fa-lg"></span> You are <strong>not</strong> eligible to claim ITCs. If you register voluntarily, you may be eligible to claim ITCs for the GST/HST you had to pay for any costs related to acquiring, improving, leasing or operating the property prior to your sale.</p>
-<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
-</li>
-<li><div data-ajax-replace="#ajax-file"></div>
-<p >You have to file GST/HST returns if you charged GST/HST on the sale.</p>
-<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business.html" target="_blank">Complete and file a GST/HST return</a></p>
-</li>
-<li>
-<div data-ajax-replace="#ajax-remit"></div>
-<p >You have to remit (pay) the net GST/HST payable if you charged GST/HST on the sale.</p>
-<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html" target="_blank">Remit (pay) the tax you collected</a></p>
-</li></ol>
-</div></details>
-
-<details><summary>Independent sales contractor (ISC) - Direct seller</summary>
-<details class="mrgn-tp-lg"><summary>What is a direct seller</summary>
+<p><span class="fas fa-ban text-danger fa-lg"></span> <strong>Do not</strong> include the following in your <strong>$30,000</strong> threshold:</p>
+<ul>
+<li>Supplies of financial services</li>
+<li>Sales of capital property</li>
+<li>Goodwill from the sale of a business</li>
+</ul>
+<details class="mrgn-lft-lg mrgn-tp-md"><summary><strong>Exception</strong> - Independent sales contractor (ISC) of a direct seller</summary>
+<details class="mrgn-tp-md"><summary>What is a direct seller</summary>
 <div id="direct-selling">
 <p><strong>Direct sellers</strong> supply goods to consumers through a network of independent sales contractors (ISCs). They often use non-traditional retail channels, such as door-to-door sales, and party sales.</p>
-<p>Direct sellers who sell their products to ISCs may apply to the CRA to use the ACM.</p>
-	
 <h4>What is the alternate collection method (ACM)</h4>
 <div id="direct-selling-acm">
-<p>Once approved by the CRA to use the ACM, the direct seller (or an approved distributor) accounts for the GST/HST on the suggested retail price of exclusive products sold to their ISCs. A condition of their approval is that they elect with their ISCs to account for the GST/HST on their behalf.  </p>
-
+<p>Direct sellers who sell their products to ISCs may apply to the CRA to use the alternate collection method (ACM).</p>
+<ul class="list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col">The direct seller (or an approved distributor) must receive <strong>approval</strong> from the CRA to use the ACM. Once approved, they account for the GST/HST on the suggested retail price of <strong>exclusive products</strong> sold to their ISCs.</li>
+<li class="cnjnctn-col">The direct seller must <strong>elect</strong> with the ISCs to account for the GST/HST on their behalf.</li>
+</ul>	
 <p>Learn more: <a href="/en/revenue-agency/services/forms-publications/publications/gi-125.html">GST/HST Info Sheet GI-125, Direct Selling Industry - The Alternate Collection Method for Approved Direct Sellers and Approved Distributors</a>.</p>
 </div></div>
 </details>
-<div id="ajax-direct-selling" class="mrgn-tp-lg">
+<div id="ajax-direct-selling" class="mrgn-tp-md">
 <div id="direct-selling2">
-<h4>Confirm if the direct seller has an approved ACM</h4>	
-<p>If you are an <strong>independent sales contractor</strong> (ISC), you may <strong>not</strong> have to register for a GST/HST account number if <strong>all</strong> of the following apply:</p>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col">The direct seller received <strong>approval</strong> from the CRA to use the <a href="#ajax-direct-selling-acm" aria-controls="ajax-direct-selling-acm" class="overlay-lnk" role="button">ACM&nbsp;<span class="far fa-question-circle"></span></a>.
-</li>
-<li class="cnjnctn-col">You received from the direct seller <strong>proof</strong> that they are an approved direct seller.</li>
-<li class="cnjnctn-col">Your <strong>only</strong> supplies are sales of products of a <strong>direct seller</strong>. </li>
+<p><span class="fas fa-ban text-danger fa-lg"></span> <strong>Do not</strong> include the following in your <strong>$30,000</strong> threshold if you are an <strong>independent sales contractor</strong> (ISC) and you have an <strong>election with the direct seller</strong> to use the <a href="#ajax-direct-selling-acm" aria-controls="ajax-direct-selling-acm" class="overlay-lnk" role="button">alternate method of accounting&nbsp;<span class="far fa-question-circle"></span></a> (ACM):</p>
+<ul>	
+<li>Your sales of <strong>exclusive products</strong></li>
+<li>Your supplies of <strong>sales aids</strong> to other ISCs</li>
+<li><strong>Bonus payments</strong> you received from the direct seller</li>
 </ul>
+<p class="mrgn-tp-md">If you are a already a GST/HST registrant, <strong>do not</strong> account for the GST/HST the above supplies.</p>
 </div>
-<hr>
-
-<div id="direct-selling3">
-<h4>Direct seller has an approved ACM</h4>	
-<p>If you are an ISC that has an election with a direct seller to use the <a href="#ajax-direct-selling-acm" aria-controls="ajax-direct-selling-acm" class="overlay-lnk" role="button">ACM&nbsp;<span class="far fa-question-circle"></span></a>, <strong>do not</strong> include in your $30,000 threshold calculation:</p>
-<ul class="list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col">Your sales of <strong>exclusive products</strong></li>
-<li class="cnjnctn-col">Your supplies of <strong>sales aids</strong> to other ISCs</li>
-<li class="cnjnctn-col">Bonus payments you received from the direct seller</li>
-</ul>
-
 <details><summary>Example - Did not exceed the $30,000 threshold</summary>
 <p>A self-employed florist sells exclusive products of a direct seller on a part-time basis. They have an election with the direct seller to use the ACM. Over the last 4 consecutive calendar quarters, they earned $28,000 from selling flowers and $35,000 from selling exclusive products of the direct seller. </p>
 
@@ -2072,11 +2041,11 @@
 </details>
 
 <details><summary>Example - ISCs engaged in other activities or other businesses</summary>
-<p>An individual who is not registered for the GST/HST works from her home for 2 direct selling businesses(Toys Inc and Fashion Inc). Toys Inc  has an approved ACM election. As an ISC, she purchases toys from Toys Inc and sells them to consumers. She also receives bonus payments from Toys Inc and provides training to other ISCs for which she charges a fee to Toys Inc. The ACM rules apply to her sales of Toys Inc products and to the bonus payments she received from Toys Inc, but not to the training services that she provides. </p>
+<p>Diane is not registered for the GST/HST. She works from her home selling products for 2 direct selling businesses(Toys Inc and Fashion Inc). Toys Inc has an approved ACM election. As an ISC, Diane purchases toys from Toys Inc and sells them to consumers. Diane also receives bonus payments from Toys Inc and provides training to other ISCs for which she charges a fee to Toys Inc. The ACM rules apply to Diane sales of Toys Inc products and to the bonus payments she received from Toys Inc, but not to the training services that she provides. </p>
 
-<p>Fashion Inc has not provided her with an approved election to use the ACM.</p>
+<p>Fashion Inc has not provided Diane with an approved election to use the ACM.</p>
 
-<p>When determining if she has exceeded the $30,000 small supplier threshold calculation, the ISC: </p>
+<p>When determining if she has exceeded the $30,000 small supplier threshold calculation, Diane: </p>
 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col"><h4><span class="fas fa-check fa-lg text-success"></span> Includes earnings</h4>
@@ -2092,17 +2061,18 @@
 </li>
 </ul>
 
-<p>If she is required to register for the GST/HST because she exceeded the $30,000 small supplier threshold, the ISC: </p>
+<p>If she is required to register for the GST/HST because she exceeded the $30,000 small supplier threshold, Diane: </p>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col"><span class="fas fa-check fa-lg text-success"></span> Charges the GST/HST on her sales of Fashion Inc products and her invoices for training provided to Toys Inc </li>
 <li class="cnjnctn-col"><span class="fas fa-ban text-danger fa-lg"></span>  Does not charge GST/HST on her sales of Toys Inc products or her bonus payments received from Toys Inc </li>
 </ul>
 </details>
+
 <p class="mrgn-tp-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-126/direct-selling-industry-alternate-collection-method-independent-sales-contractors.html" target="_blank">GST/HST Info Sheet GI-126, Direct Selling Industry - The Alternate Collection Method for Independent Sales Contractors</a>.</p>
 </div>
-</div>
 </details>
-<details><summary>Commission-based sales representative - Network seller </summary>
+
+<details class="mrgn-lft-lg"><summary><strong>Exception</strong> - Commission-based sales representative of a network seller </summary>
 <details class="mrgn-tp-lg"><summary>What is a network seller</summary>
 <div id="network-selling">
 <p>Under the Excise Tax Act, a <strong>network seller </strong>refers to a person or entity that operates a network of independent sales representatives who sell goods or services directly to consumers. The key characteristics of a network seller include:</p>
@@ -2192,7 +2162,41 @@
 </ol>
 </div>
 </details>
-
+<p class="mrgn-tp-md"> You have to continue to monitor your sales to determine when you exceed the <strong>$30,000</strong> threshold.</p> 
+</div>
+<div id="ajax-include3">
+<details><summary>Sale of real property, other than in the course of a business</summary>
+<div id="ajax-small-real" class="mrgn-tp-lg">
+<ol class="lst-stps-sub ld-zr stps-strpd">
+<li><h4>Confirm if the exception to GST/HST registration applies</h4> 
+<p ><span class="fas fa-ban text-danger fa-lg"></span> If your <strong>only</strong> <a href="#ajax-commercial" aria-controls="ajax-commercial" class="overlay-lnk" role="button">commercial activity&nbsp;<span class="far fa-question-circle"></span></a> is the sale of real property, other than in the course of a business, you <strong>do not</strong> have to register for a GST/HST account number.</p> 
+<details><summary >Example</summary>
+<p >A doctor's practice consists of making exempt supplies of health care services. The doctor decides on a one-time basis to buy land which includes a commercial building as the doctor has heard that there will be an increase in demand for this type of property in the next six months. The doctor sells the land and building for a profit after holding it for seven months.</p>
+<p >These transactions would be viewed as an adventure in the nature of trade rather than carrying on a business. The doctor's sale of the property is taxable and he must include GST/HST. </p>
+<p  >The doctor is <strong>not </strong>required to register for a GST/HST account number for the purpose of reporting the GST/HST collectible on this sale, however he may decide to register voluntarily to claim ITCs.</p>
+<div data-ajax-replace="#ajax-more"  ></div>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/19-4-1.html" target="_blank">19-4-1 Commercial Real Property - Sales and Rentals</a></p>
+</details>
+<div data-ajax-replace="#ajax-reg-vol2"></div>
+</li>
+<li><div data-ajax-replace="#ajax-charge"></div>
+ <p >You may still have to charge the tax on your sale of <a href="#ajax-property" aria-controls="ajax-property" class="overlay-lnk" role="button">real property&nbsp;<span class="far fa-question-circle"></span></a> if the purchaser is <strong>not</strong> registered for the GST/HST.</p>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+</li>
+<li><div data-ajax-replace="#ajax-itc"></div>
+<p><span class="fas fa-ban text-danger fa-lg"></span> You are <strong>not</strong> eligible to claim ITCs. If you register voluntarily, you may be eligible to claim ITCs for the GST/HST you had to pay for any costs related to acquiring, improving, leasing or operating the property prior to your sale.</p>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
+</li>
+<li><div data-ajax-replace="#ajax-file"></div>
+<p >You have to file GST/HST returns if you charged GST/HST on the sale.</p>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business.html" target="_blank">Complete and file a GST/HST return</a></p>
+</li>
+<li>
+<div data-ajax-replace="#ajax-remit"></div>
+<p >You have to remit (pay) the net GST/HST payable if you charged GST/HST on the sale.</p>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html" target="_blank">Remit (pay) the tax you collected</a></p>
+</li></ol>
+</div></details>
 </div>
 
 </div>
