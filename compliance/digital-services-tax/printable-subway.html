@@ -222,7 +222,10 @@ a::after {
 
       // Include current page content
       const currentPageContent = document.getElementById("mainContent").cloneNode(true);
+      openAllDetails(currentPageContent); // Open <details> in fetched content
+      removeMfpHideClass(currentPageContent); // Remove 'mfp-hide' class from <section>    
       printContent.appendChild(currentPageContent);
+      printContent.appendChild(document.createElement("hr"));
 
       // Fetch and append content from other pages
       for (const page of pages) {
@@ -236,11 +239,12 @@ a::after {
           const fetchedContent = tempDiv.querySelector("#mainContent");
           if (fetchedContent) {
             openAllDetails(fetchedContent); // Open <details> in fetched content
-          removeMfpHideClass(fetchedContent); // Remove 'mfp-hide' class from <section>
+            removeMfpHideClass(fetchedContent); // Remove 'mfp-hide' class from <section>
               
-          const pageTitle = document.createElement("h1");
-          pageTitle.textContent = "Digital Services Tax"; // Adjust if needed
-          printContent.appendChild(pageTitle);            printContent.appendChild(fetchedContent.cloneNode(true));
+            //const pageTitle = document.createElement("h1");
+            //pageTitle.textContent = "Digital Services Tax"; // Adjust if needed
+            //printContent.appendChild(pageTitle);
+            printContent.appendChild(fetchedContent.cloneNode(true));
             printContent.appendChild(document.createElement("hr"));
           }
         } catch (error) {
