@@ -79,7 +79,7 @@
 	<p>Effective June 17, 2024, individuals with a SIN that starts with the number 9 can now use the <a href="/en/revenue-agency/services/tax/businesses/topics/registering-your-business/business-registration-online-overview.html">Business Registration Online</a> service to register and instantly obtain a business number and a GST/HST account.</p>
 </div>
 
- <p>Generally, you cannot register for a GST/HST account if you provide only <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">exempt supplies&nbsp;<span class="far fa-question-circle"></span></a>.</p>
+ <p>Generally, you cannot register for a GST/HST account if you provide only <a href="#ajax-exempt" aria-controls="ajax-exempt" class="overlay-lnk" role="button">exempt supplies&nbsp;<span class="far fa-question-circle"></span></a>.</p>
 
 <h3>You have the choice to read the same information in <strong>2</strong> different formats:</h3>			 
 <ul class="cnjnctn-type-or cnjnctn-sm">
@@ -167,7 +167,7 @@
 <fieldset name="quest" id="question2" class="hidden">	
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You supply taxable goods or services</big></p>
 		<label class="mrgn-tp-md" for="q2">Which option best describes your situation?</label>
-<p class="small">Meaning of the terms: <a href="#direct-selling" aria-controls="direct-selling" class="overlay-lnk" role="button">Direct seller or a network seller&nbsp;<span class="far fa-question-circle"></span></a></p>
+
 
 		<select class="form-control required" id="q2" onchange="
 			var q = getElementsByName('quest') ;
@@ -211,18 +211,11 @@
 			}
 		">
 			<option value="5" selected>Make your selection...</option>
-		 <optgroup label="Special situations">	
-			<option value="4">You supply products for a direct seller</option>
-			<option value="6">You supply products for a network seller </option>
-			<option value="2">Your only commercial activity is the sale of real property, other than in the course of a business</option>
-			<option value="7">You are a digital economy business that is not a resident of Canada</option> 	
-			<option value="8">You are a listed financial institution (including a selected listed financial institution)</option> 
-			<option value="3">You are a non-resident business</option>
-			</optgroup>
-			 <optgroup label="Most businesses">
-			<option value="1">Your business has already received revenues - You want to know if you need to register and what is your registration date</option>
-			 <option value="0">Your business has not already received revenues - You want to create scenarios to understand the conditions to register</option>
-			</optgroup>
+		
+			
+			<option value="1">Your business has already received revenues </option>
+			 <option value="0">Your business has not already received revenues </option>
+			
 		</select>
 	</fieldset>
 	
@@ -364,8 +357,7 @@
 	<p>Use this interactive content to <strong>create scenarios</strong> based on your <strong>estimated amounts</strong>. The results are only provided as a guideline to help you understand when you may need to register.</p>
 </div>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters </label>	<br>
-<p class="small mrgn-lft-xl"><a href="#ajax-include1" aria-controls="ajax-include1" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
-		
+<div data-ajax-replace="#ajax-include1" class="small mrgn-lft-xl"></div>
 	
 			<div class="row mrgn-bttm-sm">
 				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_New" name="q12_date_New" id="q12_date0_New"></label>
@@ -761,7 +753,8 @@
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span> Enter your actual revenue from your taxable sales, leases and other supplies for these 8 recent quarters </label>
 <label class="wb-inv">Enter your the revenue from your taxable sales, leases and other supplies for recent 8 quarters. Navigate forward through the following fields by using Tab or backward using Shift + Tab.</label>		
 
-		<p class="small mrgn-lft-xl"><a href="#ajax-include1" aria-controls="ajax-include1" class="overlay-lnk" role="button">What to include and not include&nbsp;<span class="far fa-question-circle"></span></a></p>
+		<div data-ajax-replace="#ajax-include1" class="small mrgn-lft-xl"></div>
+
 
 		<br>
 		<div class="row mrgn-bttm-sm">
@@ -1653,14 +1646,18 @@
 <section class="alert alert-danger hidden" id="R1" name="results">
 	<h3><small>Based on the information you entered</small><br> R1 You cannot register for a GST/HST account number</h3>
 <hr>
+<ol class="lst-stps ld-zr stps-strpd">
+<li>
 <div data-ajax-replace="#ajax-reg"></div>
-<p class="mrgn-lft-xl"><span class="fas fa-ban text-danger fa-lg"></span> You <strong>cannot</strong> register for a GST/HST account number because you <strong>do not</strong> supply goods or services that are taxable.</p>
-
-	<div data-ajax-replace="#ajax-charge"></div>
-<p class="mrgn-lft-xl"><span class="fas fa-ban text-danger fa-lg"></span> You do <strong>not</strong> charge GST/HST.</p>
-
-<div data-ajax-replace="#ajax-itc"></div>
-<p class="mrgn-lft-xl"><span class="fas fa-ban text-danger fa-lg"></span> You <strong>cannot</strong> claim ITCs for the GST/HST you pay on your purchase. </p>
+<p><span class="fas fa-ban text-danger fa-lg"></span> You <strong>cannot</strong> register for a GST/HST account number because you <strong>do not</strong> supply goods or services that are taxable.</p>
+</li>
+<li><div data-ajax-replace="#ajax-charge"></div>
+<p ><span class="fas fa-ban text-danger fa-lg"></span> You do <strong>not</strong> charge GST/HST.</p>
+</li>
+<li><div data-ajax-replace="#ajax-itc"></div>
+<p ><span class="fas fa-ban text-danger fa-lg"></span> You <strong>cannot</strong> claim ITCs for the GST/HST you pay on your purchase. </p>
+</li>
+</ol>
 </section>
 
 <section class="alert alert-warning hidden" id="R2" name="results">
@@ -1669,7 +1666,7 @@
 <div data-ajax-replace="#ajax-confirm"></div>
 <div data-ajax-replace="#ajax-confirm1"></div>
 <hr>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-lft-xl">
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col mrgn-lft-md">
 <span class="fas fa-ban text-danger fa-lg"></span> If you are an <strong>employee</strong>, <strong>do not</strong> use this webpage.</li>
 <li class="cnjnctn-col">
@@ -1682,7 +1679,7 @@
 <hr>
 <div data-ajax-replace="#ajax-confirm2"></div>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-tp-lg">
-<li class="cnjnctn-col-30 mrgn-lft-xl">
+<li class="cnjnctn-col-30">
 <span class="fas fa-check fa-lg text-success"></span> If you are <strong>not</strong> a branch or a division, select <strong>No</strong>.</li>
 <li class="cnjnctn-col"><div data-ajax-replace="#ajax-char-div"></div></li>
 </ul>
@@ -1692,13 +1689,16 @@
 	<h3><small>Based on the information you entered</small><br>R4 You do not have to register for a GST/HST account number</h3>
 <hr>
 
-<h4><span class="fas fa-user-tie fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Conditions of a small supplier</h4>
+<h4>Conditions of a small supplier</h4>
 <div data-ajax-replace="#ajax-confirm-small-char"></div>
 
 <div data-ajax-replace="#ajax-reg"></div>
 <div data-ajax-replace="#ajax-reg-vol"></div>
 <div data-ajax-replace="#ajax-charge"></div>
-<div data-ajax-replace="#ajax-charge-no"></div>
+<div id="ajax-charge-no">
+<p><span class="fas fa-ban text-danger fa-lg"></span> You do <strong>not</strong> charge GST/HST if you are a small supplier and you do not have a GST/HST account number.</p>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+</div>
 <div data-ajax-replace="#ajax-itc"></div>
 <div data-ajax-replace="#ajax-itc-char"></div>
 </section>
@@ -1706,21 +1706,28 @@
 <section class="alert alert-info hidden" id="R5" name="results">
 	<h3><small>Based on the information you entered</small><br> R5 You have to register for a GST/HST account number</h3>
 <hr>
+<ol class="lst-stps ld-zr stps-strpd">
+<li>
 <div data-ajax-replace="#ajax-reg"></div>
 <div data-ajax-replace="#ajax-taxi-reg"></div>
-
+</li>
+<li>
 <div data-ajax-replace="#ajax-charge"></div>
 <div data-ajax-replace="#ajax-taxi-charge"></div>
-
+</li>
+<li>
 <div data-ajax-replace="#ajax-itc"></div>
 <div data-ajax-replace="#ajax-taxi-itc"></div>
-
+</li>
+<li>
 <div data-ajax-replace="#ajax-file"></div>
 <div data-ajax-replace="#ajax-taxi-file"></div>
-
+</li>
+<li>
 <div data-ajax-replace="#ajax-remit"></div>
 <div data-ajax-replace="#ajax-taxi-remit"></div>
-
+</li>
+</ol>
 <div data-ajax-replace="#ajax-more"></div>
 <div data-ajax-replace="#ajax-taxi-more"></div>
 </section>
@@ -1728,32 +1735,41 @@
 <section class="alert alert-info hidden" id="R6" name="results">
 	<h3><small>Based on the information you entered</small><br> R6 You do not have to register for a GST/HST account number</h3>
 <hr>
-<h4><span class="fas fa-user-tie fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Conditions of a small supplier</h4>
+<h4>Conditions of a small supplier</h4>
 <div data-ajax-replace="#ajax-small-real"></div>
 </section>
 
 <section class="alert alert-info hidden" id="R7" name="results">
 	<h3><small>Based on the information you entered</small><br>R7 You may not have to register for a GST/HST account number</h3>
 <hr>
-<h4><span class="fas fa-user-tie fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Conditions of a small supplier</h4>
+<h4>Conditions of a small supplier</h4>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-confirm-small-most"></div>
 </li>
 <li class="cnjnctn-col">
 <p><strong>If your actual sales match your estimates</strong>, you <strong>may not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed <strong>$30,000</strong> over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p> 
-<div data-ajax-replace="#ajax-reg-exceed1"></div>
+<div id="ajax-reg-exceed1">
+<h5><span class="fas fa-exclamation-triangle fa-lg text-warning"></span>&nbsp;&nbsp; What if you exceed the threshold in a single calendar quarter</h5> 
+<p>If you exceed the threshold in a <strong>single calendar quarter</strong>, you would have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed the <strong>threshold</strong>.</p></div>
 </li>
 </ul>
-	
+<ol class="lst-stps ld-zr stps-strpd">
+<li>	
 <div data-ajax-replace="#ajax-reg"></div>
 <div data-ajax-replace="#ajax-reg-vol"></div>
-
+</li>
+<li>
 <div data-ajax-replace="#ajax-charge"></div>
 <div data-ajax-replace="#ajax-charge-no"></div>
-
+</li>
+<li>
 <div data-ajax-replace="#ajax-itc"></div>
-<div data-ajax-replace="#ajax-itc-most"></div>
+<div id="ajax-itc-most">
+<p><span class="fas fa-ban text-danger fa-lg"></span> You are <strong>not</strong> eligible to claim ITC if you are a small supplier.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
+</div>
+</li></ol>
 </section>
 
 <section class="alert alert-info hidden" id="R8" name="results">
@@ -1761,7 +1777,7 @@
 <hr>
 
 <div id="ajax-date-result" class="mrgn-tp-lg">
-<h4><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registration date</h4>
+<h4>Effective date of registration</h4>
  </div>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
@@ -1775,7 +1791,7 @@
 <div data-ajax-replace="#ajax-reg"></div>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
-<div data-ajax-replace="#ajax-reg-char1a"></div>
+<div data-ajax-replace="#ajax-reg-char1all"></div>
 </li>
 <li class="cnjnctn-col-50">
 <p><label id="plus2911"></label> you <span id="have2"></span> to register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate11"></label>.</p>
@@ -1892,7 +1908,7 @@
 <section class="alert alert-info hidden" id="R10" name="results">
 	<h3><small>Based on the information you entered</small><br>R10 You may not have to register for a GST/HST account number</h3>
 <hr>
-<h4><span class="fas fa-user-tie fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Conditions of a small supplier</h4>
+<h4>Conditions of a small supplier</h4>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-confirm-small-psb"></div>
@@ -1926,45 +1942,13 @@
 <section class="alert alert-warning hidden" id="R13" name="results">
 	<h3><small>Based on the information you entered</small><br>  R13 You may not need to register for a GST/HST account number</h3>
 <hr>
-<ul class="list-unstyled cnjnctn-type-or">
-<li class="cnjnctn-col"><h3>The direct seller does not have a CRA approval</h3>
-<p><span class="fas fa-id-card fa-lg text-info"> </span>&nbsp; Before a business can qualify as a direct seller, they have to apply for and receive approval from the CRA to use the alternate collection method. A condition of their approval is that they elect with their independent sales contractors to account for the GST/HST on their behalf. If you believe you are an independent sales contractor for a direct seller, contact them for a copy of the election. Otherwise, you may need to register for a GST/HST account number. </p>
-<p>You may also need to register for a GST/HST account number if you make taxable supplies in any other situation.</p>
-
-<p><span class="fas fa-check fa-lg text-success"></span> <strong>Continue to use this interactive content to find out if you have to register for a GST/HST account number</strong>. When determining if you are required to register for a GST/HST account number, do not include any earnings from which an election with a direct seller applies.</p></li>
-
-	<li class="cnjnctn-col"><h3>The direct seller has a CRA approval</h3>
- <p><span class="fa-stack"><span class="fas fa-id-card fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>&nbsp;You <strong>do not</strong> have to register for a GST/HST account number if your only supplies are sales of products of a direct seller. <strong>Do not</strong> continue to use this interactive content.</p>
-<br>
-<div data-ajax-replace="#ajax-reg"></div>
-<div data-ajax-replace="#ajax-reg-vol"></div>
-
-<p>Direct sellers who sell their products to independent sales contractors may apply to the CRA to use the alternate collection method (ACM). Once approved, the direct seller or an approved distributor accounts for the GST/HST on the  suggested retail price of exclusive products sold to their independent sales contractors. Independent sales contractor in this situation <strong>do not have to register for the GST/HST</strong> because they do not include revenues from their sales of exclusive products in their calculation to determine if they are small suppliers. </p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-126/direct-selling-industry-alternate-collection-method-independent-sales-contractors.html" target="_blank">GST/HST Info Sheet GI-126, Direct Selling Industry - The Alternate Collection Method for Independent Sales Contractors</a>.</p>
+<div data-ajax-replace="#direct-selling2"></div>
 </section>
 
 <section class="alert alert-warning hidden" id="R14" name="results">
 	<h3><small>Based on the information you entered</small><br>  R14 You may not need to register for a GST/HST account number</h3>
 <hr>
-
-<ul class="list-unstyled cnjnctn-type-or">
-<li class="cnjnctn-col"><h3>The network seller does not have a CRA approval</h3>
-<p><span class="fas fa-id-card fa-lg text-info"> </span> Before a business can qualify as a network seller, they have to apply for and receive approval from the CRA to use the network seller’s method. A condition of their approval is that they elect with their sales representatives so that the GST/HST would not apply to the commissions they pay to the sales representatives. If you believe you are a sales representative for a network seller, contact them for a copy of the election. Otherwise, you may need to register for a GST/HST account number. </p>
-	
-<p>You may also need to register for a GST/HST account number if you make taxable supplies in any other situations.</p>
-
-<p><span class="fas fa-check fa-lg text-success"></span> <strong>Continue to use this interactive content to find out if you have to register for a GST/HST account number</strong>. When determining if you are required to register for a GST/HST account number, do not include any earnings from which an election with a network seller applies.</p></li>
-
-	<li class="cnjnctn-col"><h3>The network seller has a CRA approval</h3>
- <p><span class="fa-stack"><span class="fas fa-id-card fa-stack-1x"></span><span class="fas fa-ban fa-stack-2x text-danger"></span></span>&nbsp;You <strong>do not</strong> have to register for a GST/HST account number if your only supply is arranging for the sale of select products of a network seller. <strong>Do not</strong> continue to use this interactive content.</p>
-<br>
-<div data-ajax-replace="#ajax-reg"></div>
-<div data-ajax-replace="#ajax-reg-vol"></div>
-
-<hr>
-<p>Network sellers who sell their products to consumers through sales representatives may apply to the CRA for approval to use the network sellers method (NSM). Once approved, the network seller accounts for the GST/HST when they sell their products directly to consumers through sales representatives who receive commissions for arranging the sales. The commissions paid to sales representatives for arranging for the sale of the network seller's select products <strong>would not be subject to the GST/HST</strong> and would not be used for determining whether sales representatives are small suppliers. Sales representatives in this situation <strong>do not have to register for the GST/HST</strong>.</p>
-<p>Learn more, including how to apply for approval to use the network sellers method: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-052/direct-selling-industry-network-sellers-method-network-sellers-sales-representatives.html" target="_blank">GST/HST Info Sheet <span class="nowrap">GI-052</span>, Direct Selling Industry - The Network Sellers Method for Network Sellers and Sales Representatives</a>.</p>
-
+<div data-ajax-replace="#network-selling2"></div>
 </section>
 
 <section class="alert alert-danger hidden" id="R15" name="results">
@@ -1997,81 +1981,225 @@
     <details>
         <summary><small>Sole proprietor, partnership or corporation</small></summary>
       
-        <h3 id="mostbus">Sole proprietor, partnership or corporation</h3>
+<h2 id="mostbus" class="h3">Steps</h2>
+<ol class="lst-stps ld-zr stps-strpd">
 
-
-<div data-ajax-replace="#ajax-confirm"></div>
-<div data-ajax-replace="#ajax-confirm1"></div>
-<p class="mrgn-lft-xl"><span class="fas fa-ban text-danger fa-lg"></span> If you are an <strong>employee</strong>, <strong>do not</strong> use this webpage.</p>
-
-<h4><span class="fas fa-user-tag fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Determine if you are in a special situation</h4>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-lft-xl">
-<li class="cnjnctn-col-50"><h4>You are not in a special situation</h4>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> in a special situation, continue to: <strong>Determine if you are a small supplier</strong>.</p>
-</li>
-<li class="cnjnctn-col"><h4>You are in a special situation</h4>
-<div id="ajax-small-real">
-<p class="mrgn-lft-xl"><span class="fas fa-ban text-danger fa-lg"></span> If your <strong>only</strong> <a href="#ajax-commercial" aria-controls="ajax-commercial" class="overlay-lnk" role="button">commercial activity&nbsp;<span class="far fa-question-circle"></span></a> is the sale of real property, other than in the course of a business, you are a small supplier.</p> 
-<details><summary class="mrgn-lft-md">Example</summary>
-<p  class="mrgn-lft-xl">A doctor's practice consists of making exempt supplies of health care services. The doctor decides on a one-time basis to buy land which includes a commercial building as the doctor has heard that there will be an increase in demand for this type of property in the next six months. The doctor sells the land and building for a profit after holding it for seven months.</p>
-<p  class="mrgn-lft-xl">These transactions would be viewed as an adventure in the nature of trade rather than carrying on a business. The doctor's sale of the property is taxable and he must include GST/HST. </p>
-<p  class="mrgn-lft-xl">The doctor is <strong>not </strong>required to register for a GST/HST account number for the purpose of reporting the GST/HST collectible on this sale, however he may decide to register voluntarily to claim ITCs.</p>
-<div data-ajax-replace="#ajax-more"  class="mrgn-lft-xl"></div>
-<p  class="mrgn-lft-xl">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/19-4-1.html" target="_blank">19-4-1 Commercial Real Property - Sales and Rentals</a></p>
+<li><div data-ajax-replace="#ajax-confirm-small"></div>
+<div id="ajax-confirm-small-most">
+<p id="step3most">If you are a sole proprietor, a partnership or a corporation and your total worldwide <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> from all your businesses and those of your associates <strong>does not</strong> exceed the <strong>$30,000</strong> threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
+<p> You have to continue to monitor your sales to determine when you exceed the <strong>$30,000</strong> threshold.</p> 
+<div id="ajax-include1">
+<h4>Supplies not included in your calculation by type of activities</h4>
+<details><summary>Most businesses</summary>
+<p><strong>Do not</strong> include:</p>
+<ul class="list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col">Supplies of financial services</li>
+<li class="cnjnctn-col">Sales of capital property</li>
+<li class="cnjnctn-col">Goodwill from the sale of a business</li>
+</ul></details>
+<details><summary>Sale of real property, other than in the course of a business</summary>
+<div id="ajax-small-real" class="mrgn-tp-lg">
+<ol class="lst-stps-sub ld-zr stps-strpd">
+<li><h4>Confirm if the exception to GST/HST registration applies</h4> 
+<p ><span class="fas fa-ban text-danger fa-lg"></span> If your <strong>only</strong> <a href="#ajax-commercial" aria-controls="ajax-commercial" class="overlay-lnk" role="button">commercial activity&nbsp;<span class="far fa-question-circle"></span></a> is the sale of real property, other than in the course of a business, you <strong>do not</strong> have to register for a GST/HST account number.</p> 
+<details><summary >Example</summary>
+<p >A doctor's practice consists of making exempt supplies of health care services. The doctor decides on a one-time basis to buy land which includes a commercial building as the doctor has heard that there will be an increase in demand for this type of property in the next six months. The doctor sells the land and building for a profit after holding it for seven months.</p>
+<p >These transactions would be viewed as an adventure in the nature of trade rather than carrying on a business. The doctor's sale of the property is taxable and he must include GST/HST. </p>
+<p  >The doctor is <strong>not </strong>required to register for a GST/HST account number for the purpose of reporting the GST/HST collectible on this sale, however he may decide to register voluntarily to claim ITCs.</p>
+<div data-ajax-replace="#ajax-more"  ></div>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/19-4-1.html" target="_blank">19-4-1 Commercial Real Property - Sales and Rentals</a></p>
 </details>
-<div data-ajax-replace="#ajax-reg"></div>
-<div data-ajax-replace="#ajax-reg-vol"></div>
-
-<div data-ajax-replace="#ajax-charge"></div>
- <p class="mrgn-lft-xl">You may still have to charge the tax on your sale of <a href="#ajax-property" aria-controls="ajax-property" class="overlay-lnk" role="button">real property&nbsp;<span class="far fa-question-circle"></span></a> if the purchaser is <strong>not</strong> registered for the GST/HST.</p>
-<p class="mrgn-lft-xl">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
-
-<div data-ajax-replace="#ajax-itc"></div>
-<p class="mrgn-lft-xl">You are not eligible to claim ITCs. If you register voluntarily, you may be eligible to claim ITCs for the GST/HST you had to pay for any costs related to acquiring, improving, leasing or operating the property prior to your sale.</p>
-<p class="mrgn-lft-xl">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
-
-<div data-ajax-replace="#ajax-file"></div>
-<p class="mrgn-lft-xl">You must file GST/HST returns if you charged GST/HST on the sale.</p>
-<p class="mrgn-lft-xl">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business.html" target="_blank">Complete and file a GST/HST return</a></p>
-
+<div data-ajax-replace="#ajax-reg-vol2"></div>
+</li>
+<li><div data-ajax-replace="#ajax-charge"></div>
+ <p >You may still have to charge the tax on your sale of <a href="#ajax-property" aria-controls="ajax-property" class="overlay-lnk" role="button">real property&nbsp;<span class="far fa-question-circle"></span></a> if the purchaser is <strong>not</strong> registered for the GST/HST.</p>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+</li>
+<li><div data-ajax-replace="#ajax-itc"></div>
+<p><span class="fas fa-ban text-danger fa-lg"></span> You are <strong>not</strong> eligible to claim ITCs. If you register voluntarily, you may be eligible to claim ITCs for the GST/HST you had to pay for any costs related to acquiring, improving, leasing or operating the property prior to your sale.</p>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
+</li>
+<li><div data-ajax-replace="#ajax-file"></div>
+<p >You have to file GST/HST returns if you charged GST/HST on the sale.</p>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business.html" target="_blank">Complete and file a GST/HST return</a></p>
+</li>
+<li>
 <div data-ajax-replace="#ajax-remit"></div>
-<p class="mrgn-lft-xl">You must remit (pay) the net GST/HST payable if you charged GST/HST on the sale.</p>
-<p class="mrgn-lft-xl">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html" target="_blank">Remit (pay) the tax you collected</a></p>
+<p >You have to remit (pay) the net GST/HST payable if you charged GST/HST on the sale.</p>
+<p >Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html" target="_blank">Remit (pay) the tax you collected</a></p>
+</li></ol>
+</div></details>
+
+<details><summary>Independent sales contractor (ISC) - Direct seller</summary>
+<details class="mrgn-tp-lg"><summary>What is a direct seller</summary>
+<div id="direct-selling">
+<p><strong>Direct sellers</strong> supply goods to consumers through a network of independent sales contractors (ISCs). They often use non-traditional retail channels, such as door-to-door sales, and party sales.</p>
+<p>Direct sellers who sell their products to ISCs may apply to the CRA to use the ACM.</p>
+	
+<h4>What is the alternate collection method (ACM)</h4>
+<div id="direct-selling-acm">
+<p>Once approved by the CRA to use the ACM, the direct seller (or an approved distributor) accounts for the GST/HST on the suggested retail price of exclusive products sold to their ISCs. A condition of their approval is that they elect with their ISCs to account for the GST/HST on their behalf.  </p>
+
+<p>Learn more: <a href="/en/revenue-agency/services/forms-publications/publications/gi-125.html">GST/HST Info Sheet GI-125, Direct Selling Industry - The Alternate Collection Method for Approved Direct Sellers and Approved Distributors</a>.</p>
+</div></div>
+</details>
+<div id="ajax-direct-selling" class="mrgn-tp-lg">
+<div id="direct-selling2">
+<h4>Confirm if the direct seller has an approved ACM</h4>	
+<p>If you are an <strong>independent sales contractor</strong> (ISC), you may <strong>not</strong> have to register for a GST/HST account number if <strong>all</strong> of the following apply:</p>
+<ul class="list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col">The direct seller received <strong>approval</strong> from the CRA to use the <a href="#ajax-direct-selling-acm" aria-controls="ajax-direct-selling-acm" class="overlay-lnk" role="button">ACM&nbsp;<span class="far fa-question-circle"></span></a>.
+</li>
+<li class="cnjnctn-col">You received from the direct seller <strong>proof</strong> that they are an approved direct seller.</li>
+<li class="cnjnctn-col">Your <strong>only</strong> supplies are sales of products of a <strong>direct seller</strong>. </li>
+</ul>
 </div>
+<hr>
+
+<div id="direct-selling3">
+<h4>Direct seller has an approved ACM</h4>	
+<p>If you are an ISC that has an election with a direct seller to use the <a href="#ajax-direct-selling-acm" aria-controls="ajax-direct-selling-acm" class="overlay-lnk" role="button">ACM&nbsp;<span class="far fa-question-circle"></span></a>, <strong>do not</strong> include in your $30,000 threshold calculation:</p>
+<ul class="list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col">Your sales of <strong>exclusive products</strong></li>
+<li class="cnjnctn-col">Your supplies of <strong>sales aids</strong> to other ISCs</li>
+<li class="cnjnctn-col">Bonus payments you received from the direct seller</li>
+</ul>
+
+<details><summary>Example - Did not exceed the $30,000 threshold</summary>
+<p>A self-employed florist sells exclusive products of a direct seller on a part-time basis. They have an election with the direct seller to use the ACM. Over the last 4 consecutive calendar quarters, they earned $28,000 from selling flowers and $35,000 from selling exclusive products of the direct seller. </p>
+
+<p>The florist is not required to register for a GST/HST account number. The $35,000 revenues from the sale of exclusive products of a direct seller with an approved ACM election are not considered when determining whether he has to register.</p>
+</details>
+
+<details><summary>Example - ISCs engaged in other activities or other businesses</summary>
+<p>An individual who is not registered for the GST/HST works from her home for 2 direct selling businesses(Toys Inc and Fashion Inc). Toys Inc  has an approved ACM election. As an ISC, she purchases toys from Toys Inc and sells them to consumers. She also receives bonus payments from Toys Inc and provides training to other ISCs for which she charges a fee to Toys Inc. The ACM rules apply to her sales of Toys Inc products and to the bonus payments she received from Toys Inc, but not to the training services that she provides. </p>
+
+<p>Fashion Inc has not provided her with an approved election to use the ACM.</p>
+
+<p>When determining if she has exceeded the $30,000 small supplier threshold calculation, the ISC: </p>
+
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h4><span class="fas fa-check fa-lg text-success"></span> Includes earnings</h4>
+<ul>
+<li>Training provided to Toys Inc</li>
+<li>Sales of Fashion Inc products </li>	
+</ul></li>
+<li class="cnjnctn-col"><h4><span class="fas fa-ban text-danger fa-lg"></span> Does not include earnings</h4>
+<ul>
+<li>Sales of Toys Inc products </li>
+<li>Bonus payments from Toys Inc. </li>	
+</ul>
 </li>
 </ul>
 
-<div data-ajax-replace="#ajax-confirm-small"></div>
-<div id="ajax-confirm-small-most" class="mrgn-lft-xl">
-<p>If you are a sole proprietor, a partnership or a corporation and you <strong>do not</strong> exceed the <a href="#ajax-include1" aria-controls="ajax-include1" class="overlay-lnk" role="button">$30,000&nbsp;<span class="far fa-question-circle"></span></a> threshold <strong>over 4 consecutive</strong> calendar quarters, you are a small supplier.</p>
-<p> You must continue to monitor your sales to determine when you exceed the <strong>$30,000</strong> threshold.</p> 
+<p>If she is required to register for the GST/HST because she exceeded the $30,000 small supplier threshold, the ISC: </p>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><span class="fas fa-check fa-lg text-success"></span> Charges the GST/HST on her sales of Fashion Inc products and her invoices for training provided to Toys Inc </li>
+<li class="cnjnctn-col"><span class="fas fa-ban text-danger fa-lg"></span>  Does not charge GST/HST on her sales of Toys Inc products or her bonus payments received from Toys Inc </li>
+</ul>
+</details>
+<p class="mrgn-tp-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-126/direct-selling-industry-alternate-collection-method-independent-sales-contractors.html" target="_blank">GST/HST Info Sheet GI-126, Direct Selling Industry - The Alternate Collection Method for Independent Sales Contractors</a>.</p>
 </div>
+</div>
+</details>
+<details><summary>Commission-based sales representative - Network seller </summary>
+<details class="mrgn-tp-lg"><summary>What is a network seller</summary>
+<div id="network-selling">
+<p>Under the Excise Tax Act, a <strong>network seller </strong>refers to a person or entity that operates a network of independent sales representatives who sell goods or services directly to consumers. The key characteristics of a network seller include:</p>
 
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-lft-xl">
-<li class="cnjnctn-col-40"><div data-ajax-replace="#ajax-confirm-smallno"></div>
+<ol>
+<li><strong>Use of a representative network: </strong>The network seller supplies goods or services to independent representatives (for example: consultants or distributors), who in turn resell these products directly to consumers. </li>
+<li><strong>Sales models: </strong>Similar to direct sellers, network sellers may use the <strong>buy-and-sell model </strong>or the <strong>commission-based model</strong>:
+<ul>
+<li><strong>Buy-and-sell model: </strong>Representatives buy products from the network seller and resell them to customers </li>
+<li><strong>Commission-based model: </strong>Representatives sell goods on behalf of the network seller and earn a commission </li>
+</ul>
 </li>
+</ol>
+</div>
+</details>
+<div id="network-selling2">
+<ol class="lst-stps-sub ld-zr stps-strpd">
+<li><h4>Confirm if the registered network seller made a joint election with each of its sales representatives</h4> 
+<div id="network-step1">
+<p>If you are a <strong>commission-based sales representatives</strong>, you may <strong>not</strong> have to register for a GST/HST account number if <strong>all</strong> of the following apply:</p>
+<ul class="list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col">The registered network seller received an <strong>approval from the CRA</strong> to use the network seller method (NSM).
+<details><summary>What is a registered network seller</summary>
+<p>The network seller must request a <strong>CRA approval</strong> to use the <strong>network sellers method</strong> (NSM) for network sellers.</p>
+<p>Once the CRA approval is received, the network seller collects and remits the GST/HST on the suggested retail price of exclusive products sold to their sales representatives, instead of calculating and remitting GST/HST on every transaction.</p>
+<p> This approach reduces administrative burden, streamlines tax reporting, and is especially beneficial for businesses with straightforward operations or limited accounting resources.</p>
+<p>Learn more, including how to apply for approval to use the network sellers method: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-052/direct-selling-industry-network-sellers-method-network-sellers-sales-representatives.html" target="_blank">GST/HST Info Sheet <span class="nowrap">GI-052</span>, Direct Selling Industry - The Network Sellers Method for Network Sellers and Sales Representatives</a>.</p></details>
+</li>
+<li class="cnjnctn-col">You received from the registered network seller <strong>proof</strong> of the approval from the network seller.</li>
+<li class="cnjnctn-col">You made a <strong>joint election in writing</strong> with the registered network seller, the agreement must specify that you jointly elect with the network seller to have the NSM rules apply to network commissions at all times when an approval granted to the network seller is in effect.</li>
+<li class="cnjnctn-col">Your <strong>only</strong> supplies are:
+<ul class="list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col">Taxable service provided by a sales representative for which the sales representative receives a network commission from a network seller
+<details><summary>Example - Network commissions</summary>
+<p>A network seller that uses the NSM sells a variety of food products to consumers in Alberta. Some of the products are taxable while others such as spices and condiments are zero-rated.</p>
+<p>A sales representative receives a commission for each sale of products arranged for the network seller. The sales representative's commissions are not subject to tax regardless of whether the commissions relate to taxable or zero-rated products.</p>
+</details>
+</li>
+<li class="cnjnctn-col">Sales aids sold in Canada by a network seller or one of its sales representatives to another sales representative of the network seller
+<details><summary>Example - Sales aids</summary>
+<p>A network seller that uses the NSM sells cosmetics and beauty products to consumers. A sales representative receives a commission for each sale arranged for the network seller. The network seller sold the sales representative a demonstration kit that is a sales aid. Later, the sales representative sold the kit to a consumer.</p>
+<p>The NSM rules apply to sales aids sold by a network seller to a sales representative. Therefore, GST/HST did not apply when the network seller sold the demonstration kit to the sales representative. However, the NSM rules do not apply to sales of sales aids to consumers. Therefore, the sales representative, if a registrant, has to charge and account for the tax on that sale.</p>
+</details>
+</li>
+<li class="cnjnctn-col">Host gifts given by a network seller or a sales representative to an individual for acting as a host at an occasion that is organized for the purposes of allowing the sales representative to promote the sale of select products or to arrange for such sales 
+<details><summary>Example - Host gifts</summary>
+<p>A network seller that uses the NSM sells pet food to consumers. A sales representative arranges for the sale of the pet food through demonstrations in private houses and receives a commission for each sale he arranges for the network seller. For hosting a demonstration, an individual receives a gift. GST/HST does not apply to the host gift that the sales representative gives to the host.</p>
+</details>
+</li>
+</ul> </li>
+</ul>
+</div>
+<hr>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><p><span class="fas fa-ban text-danger fa-lg"></span> If the network seller <strong>does not</strong> have a CRA approval or you <strong>do not</strong> have a written joint election, you may have to register for a GST/HST account number if you are not a small supplier.</p>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#step3most">Step 3 - Determine if you are a small supplier</a>.</p></li>
+<li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If the network seller is a <strong>registered network seller</strong> and you have a <strong>joint election in writting</strong>, continue to: <a href="#direct-selling3">Step 2b - Determine if your revenues from the activities are excluded from the calculation of the $30,000 threshold amount</a>.</p></li>
+</ul>
+</li>
+<li><h4>Determine if your revenues from the activities are excluded from the calculation of the $30,000 threshold amount</h4> 
+<div id="network-step2">
+<p>If the commission-based representative's <strong>only</strong> revenues are from the following activities, do  <strong>not</strong> include in your total worldwide <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> from all your businesses and those of your associates for the $30,000 threshold calculation: </p>
+<ul class="list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col">Your network <strong>commissions</strong></li>
+<li class="cnjnctn-col">Your revenues from sales of sales aids to other representatives</li>
+</ul>
+
+<details><summary>Example - Sales representatives engaged in other activities or other businesses</summary>
+<p>An individual proprietor works from their home for 2 direct selling businesses. The first business, a network seller that uses the NSM, sells clothing to consumers. The individual, as a sales representative, receives a commission for each sale that they arranges for the network seller.</p>
+
+<p>The second business, a direct seller that does not use the ACM, sells children's toys to purchasers. The individual, as an ISC, purchases the products from the direct seller and sells them to purchasers.</p>
+
+<p>For each activity, the individual has to determine how GST/HST applies. With respect to their activities as a sales representative, they determine that, because the network seller uses the NSM, GST/HST does not apply to the commissions that they receive from the network seller. Because GST/HST does not apply to their commissions, they do not include them in their calculation to determine if they have to register for GST/HST purposes.</p>
+
+<p>For their activity of buying and selling the children's toys, they determine that, because the direct seller does not use the ACM, the sales are subject to the normal GST/HST rules. They include the revenues from those sales to purchasers in their calculation to determine if they have to register for GST/HST purposes.</p>
+</details>
+<p class="mrgn-tp-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-126/direct-selling-industry-alternate-collection-method-independent-sales-contractors.html" target="_blank">GST/HST Info Sheet GI-126, Direct Selling Industry - The Alternate Collection Method for Independent Sales Contractors</a>.</p>
+</div>
+<hr>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col"><div data-ajax-replace="#ajax-confirm-smallyes"></div>
-<div id="ajax-itc-most"  class="mrgn-lft-xl">
-<p>You are <strong>not</strong> eligible to claim ITC if you are a small supplier.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
+</li>
+<li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <a href="#moststep4">Step 4 - Determine when to register, charge, file and remit</a>.</p>
+</li>
+</ul>
+</li>
+</ol>
 </div>
-</li></ul>
+</details>
 
-<div data-ajax-replace="#ajax-date-reg"></div>
-<ul class="list-unstyled cnjnctn-type-or">
-<li class="cnjnctn-col">
-<details class="mrgn-lft-md"><summary>$30,000 threshold over <strong>4 consecutive</strong> calendar quarter</summary>
-<div id="ajax-date-reg-most1">
-<h5>$30,000 threshold over 4 consecutive calendar quarter</h5>
-<div id="ajax-reg-most-over4" class="mrgn-lft-xl">
-<p>You <span id="estimate">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="warning_amount">30,000</span></strong> threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-<p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2">30,000</span></strong> threshold. The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
 </div>
-</div>  
 
-   <details class="mrgn-lft-xl"><summary>Example 1 – Did not exceed the $30,000 threshold amount in 4 consecutive calendar quarters</summary>
+</div>
+<h4>Examples</h4>
+  <details><summary>Example 1 – Did not exceed the $30,000 threshold over 4 consecutive calendar quarters</summary>
       
-           <p>On February 1, 2020, you started a business that sells candles. You made the following sales:</p>
+           <p>On February 1, 2023, you started a business that sells candles. You made the following sales:</p>
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation </caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
@@ -2087,11 +2215,11 @@
 </tr><tr><td><b>Total</b></td>
 <td class="text-right"><b>$29,000</b></td>
 </tr></tbody></table>
-        <p>You are a small supplier in 2020 because you did not exceed the $30,000 threshold in four consecutive calendar quarters. You are still a small supplier in the first quarter of 2021, unless you exceed the $30,000 threshold in that one quarter.</p>
+        <p>You are a small supplier in 2023 because you did not exceed the $30,000 threshold over 4 consecutive calendar quarters. You are still a small supplier in the first quarter of 2024, unless you exceed the $30,000 threshold in that one single calendar quarter.</p>
     </details>
 
- <details class="mrgn-lft-xl"><summary>Example 2 – Exceed the $30,000 threshold in two consecutive calendar quarters</summary>
-        <p>On November 1, 2019, you opened a retail store. You made the following taxable sales:</p>
+ <details ><summary>Example 2 – Exceed the $30,000 threshold over 2 consecutive calendar quarters</summary>
+        <p>On November 1, 2023, you opened a retail store. You made the following taxable sales:</p>
      <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation</caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
@@ -2104,18 +2232,18 @@
 <td class="text-right"><b>$50,000</b></td>
 </tr></tbody></table>
 
-        <p>In April 2020, your sales totaled $ 8,000.</p>
-<p>Your first sale after April was on May 1, 2020.</p>
+        <p>In April 2024, your sales totaled $ 8,000.</p>
+<p>Your first sale after April was on May 1, 2024.</p>
 <ul>
-<li>You stopped being a small supplier on April 30, 2020, because that day is the end of the month after the quarter you exceed the $30,000 threshold.</li>
-<li>Your <strong>effective date of registration</strong> is no later than May 1, 2020. That day is when you made your first supply after you stopped being a small supplier.</li>
+<li>You stopped being a small supplier on April 30, 2024, because that day is the end of the month after the quarter you exceed the $30,000 threshold.</li>
+<li>Your <strong>effective date of registration</strong> is no later than May 1, 2024. That day is when you made your first supply after you stopped being a small supplier.</li>
 <li>You have to start charging GST/HST on your date of registration.</li>
 <li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
     </details>
 
-<details class="mrgn-lft-xl"><summary>Example 3 – Exceed the $30,000 threshold amount within the previous four consecutive calendar quarters</summary>
-          <p>On June 1, 2019, you started a business selling baseball caps. You made the following sales:</p>
+<details ><summary>Example 3 – Exceed the $30,000 threshold within the previous 4 consecutive calendar quarters</summary>
+          <p>On June 1, 2023, you started a business selling baseball caps. You made the following sales:</p>
       <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation</caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
@@ -2132,43 +2260,17 @@
 <td class="text-right"><b>$32,000</b></td>
 </tr></tbody></table>
 
-  <p>In April 2020, your sales totaled $ 4,500.</p>
-<p>Your first sale after April was on May 2, 2020.</p>
+  <p>In April 2024, your sales totaled $ 4,500.</p>
+<p>Your first sale after April was on May 2, 2024.</p>
 <ul>
-<li>You stopped being a small supplier on April 30, 2020, because that day is the end of the month after the quarter you exceed the $30,000 threshold.</li>
-<li>Your <strong>effective date of registration</strong> is no later than May 1, 2020. That day is when you made your first supply after you stopped being a small supplier.</li>
+<li>You stopped being a small supplier on April 30, 2024, because that day is the end of the month after the quarter you exceed the $30,000 threshold.</li>
+<li>Your <strong>effective date of registration</strong> is no later than May 1, 2024. That day is when you made your first supply after you stopped being a small supplier.</li>
 <li>You have to start charging the GST/HST on your date of registration.</li>
 <li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
        </details>
-<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
-<div data-ajax-replace="#ajax-reg-char1a"></div>
-
-<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
-<div data-ajax-replace="#ajax-charge-char1a"></div>
-
-<div data-ajax-replace="#ajax-itc"></div>
-<div data-ajax-replace="#ajax-itc-char1a"></div>
-
-<div data-ajax-replace="#ajax-file"></div>
-<div data-ajax-replace="#ajax-file-char1a"></div>
-
-<div data-ajax-replace="#ajax-remit"></div>
-<div data-ajax-replace="#ajax-remit-char1a"></div>
-
- </details></li>
-<li class="cnjnctn-col">
-<details class="mrgn-lft-md"><summary>$30,000 threshold in a <strong>single</strong> calendar quarter</summary>
-<div id="ajax-date-reg-most2">
-<h5>$30,000 threshold in a single calendar quarter</h5>
-<div id="ajax-reg-most2b" class="mrgn-lft-xl">
-<p>You <span id="tense152">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount">30,000</span></strong> threshold in a single <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-<p>You are <strong>no longer</strong> a small supplier. The effective date of registration is <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount2">30,000</span></strong> threshold.</p>
-</div>
- </div> 
-
- <details class="mrgn-lft-xl"><summary>Example – Exceed the $30,000 threshold in 1 quarter</summary>
-        <p>On January 1, 2020, you started a consulting business. You made the following revenue from your taxable services.</p>
+ <details ><summary>Example 4 – Exceed the $30,000 threshold in one single calendar quarter</summary>
+        <p>On January 1, 2024, you started a consulting business. You made the following revenue from your taxable services.</p>
        <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation</caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
@@ -2188,39 +2290,88 @@
 <li>You will have to register within<strong> 29 days</strong> of your effective date of registration.</li>
 </ul>
     </details> 
+<hr>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><div data-ajax-replace="#ajax-confirm-smallyes"></div>
+</li>
+<li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <a href="#moststep4">Determine when to register, charge, file and remit</a>.</p>
+</li>
+</ul>
+</li>
 
-<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
-<div id="ajax-reg-most1" class="mrgn-lft-xl">
-<p>You <span id="tense152">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount">30,000</span></strong> threshold in a single <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
+<li><div data-ajax-replace="#ajax-date-reg"></div>
+<ol class="lst-stps-sub ld-zr stps-strpd">
+<li><h4>Determine the effective date of registration</h4>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm" id="moststep4">
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-most1">
+<h5 class="text-muted">$30,000 threshold <br>over 4 consecutive calendar quarters</h5>
+<div id="ajax-reg-most-over4">
+<p>You <span id="estimate">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="warning_amount">30,000</span></strong> threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>.</p>
+<p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2">30,000</span></strong> threshold. The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
+</div>
+</div>  
+ </li>
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-most2">
+<h5 class="text-muted">$30,000 threshold <br>in a single calendar quarter</h5>
+<div id="ajax-reg-most2b" >
+<p>You <span id="tense152">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount">30,000</span></strong> threshold in a single <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>.</p>
 <p>You are <strong>no longer</strong> a small supplier. The effective date of registration is <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount2">30,000</span></strong> threshold.</p>
 </div>
+ </div> </li> </ul> </li> 
 
-<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
-<div id="ajax-charge-most1" class="mrgn-lft-xl">
-<p>You must charge GST/HST on the sale that made you exceed the <span class="nowrap"><label>$</label><label id="chargeAmount4">30,000</label></span> threshold. </p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+<li>
+<div data-ajax-replace="#ajax-reg"></div>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5 class="text-muted">$30,000 threshold <br>over 4 consecutive calendar quarters</h5>
+<div data-ajax-replace="#ajax-reg-char1all"></div>
+</li> 
+<li class="cnjnctn-col"><h5 class="text-muted">$30,000 threshold <br>in a single calendar quarter</h5>
+<div id="ajax-reg-most1" >
+<p>You have to register for a GST/HST account number <strong>no later than 29 days</strong> after the day of the supply that made you exceed the <strong>$<span id="chargeAmount3">30,000</span></strong> threshold.</p>
 </div>
-
-<div data-ajax-replace="#ajax-itc"></div>
-<div data-ajax-replace="#ajax-itc-char1a"></div>
-
-<div data-ajax-replace="#ajax-file"></div>
-<div data-ajax-replace="#ajax-file-char1a"></div>
-
-<div data-ajax-replace="#ajax-remit"></div>
-<div data-ajax-replace="#ajax-remit-char1a"></div>
-
-</details>
 </li> 
 </ul>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
+</li>
+
+<li><div data-ajax-replace="#ajax-charge"></div>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5 class="text-muted">$30,000 threshold <br>over 4 consecutive calendar quarters</h5>
+<div data-ajax-replace="#ajax-charge-char1a"></div>
+</li> 
+<li class="cnjnctn-col"><h5 class="text-muted">$30,000 threshold <br>in a single calendar quarter</h5>
+<div id="ajax-charge-most1" >
+<p>You have to charge GST/HST on the sale that made you exceed the <span class="nowrap"><label>$</label><label id="chargeAmount4">30,000</label></span> threshold. </p>
+</div>
+</li> 
+</ul>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+</li>
+
+<li><div data-ajax-replace="#ajax-itc"></div>
+<div data-ajax-replace="#ajax-itc-char1a"></div>
+</li>
+
+<li><div data-ajax-replace="#ajax-file"></div>
+<div data-ajax-replace="#ajax-file-char1a"></div>
+</li>
+
+<li>
+<div data-ajax-replace="#ajax-remit"></div>
+<div data-ajax-replace="#ajax-remit-char1a"></div>
+</li>
+</ol>
+</li>
+</ol>
+
     </details>
          
     <details>
         <summary><small>Charity or public institution</small></summary>
-       
-      <h3 id="charities">Charity or public institution</h3>
-
-<div id="ajax-char-def">
+    
+<div id="ajax-char-def" class="mrgn-tp-md">
 <details><summary>What is charity or public institution</summary>
 <ul class="mrgn-tp-md list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col"><div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#registered"></div> </li>
@@ -2228,84 +2379,62 @@
 </ul></details>
  </div>
 
-<div id="ajax-confirm-branch">
-<div id="ajax-confirm2" class="mrgn-tp-lg">
-<h4><span class="fas fa-users fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Confirm if you are a branch or division</h4>
+<h2 id="charities" class="h3">Steps</h2>
+<ol class="lst-stps ld-zr stps-strpd">
+   <li><div id="ajax-confirm-branch">
+<div id="ajax-confirm2">
+<h3>Confirm if you are a branch or division</h3>
  </div>
-
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-lft-xl">
-<li class="cnjnctn-col-40"><h4>You are not a branch or a division</h4>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> a branch or a division, continue to: <strong>Determine if you are a small supplier</strong>.</p>
-</li>
-<li class="cnjnctn-col"><h4>You are a branch or a division</h4>
  <div id="ajax-char-div">
 <p><span class="fas fa-ban text-danger fa-lg"></span> If you are a branch or a division, you <strong>cannot</strong> register for a GST/HST account number separately.</p>
-<p>However, if your public service body, including a <a href="#ajax-charity" aria-controls="ajax-charity" class="overlay-lnk" role="button">charity&nbsp;<span class="far fa-question-circle"></span></a> or <a href="#ajax-public" aria-controls="ajax-public" class="overlay-lnk" role="button">public institution&nbsp;<span class="far fa-question-circle"></span></a> has branches or divisions, you may apply to have each branch or division with $50,000 or less in taxable supplies designated as a small supplier division.</p>
+<p>However, if your public service body, including a <a href="#ajax-charity" aria-controls="ajax-charity" class="overlay-lnk" role="button">charity&nbsp;<span class="far fa-question-circle"></span></a> or <a href="#ajax-public" aria-controls="ajax-public" class="overlay-lnk" role="button">public institution&nbsp;<span class="far fa-question-circle"></span></a> has branches or divisions, you may apply to have each branch or division with $50,000 or less in <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> designated as a small supplier division.</p>
 <p>A public service body (PSB), including a charity or public institution, you may apply for its branches or divisions to be designated as small supplier.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/gst31.html" target="_blank">GST31 Application by a Public Service Body to Have Branches or Divisions Treated As Eligible Small Supplier Divisions</a></p>
 </div>
-</li></ul>
+<hr>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><p><span class="fas fa-ban text-danger fa-lg"></span> If you are a branch or a division, <strong>do not</strong> continue to next step.</p>
+</li>
+<li class="cnjnctn-col">
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> a branch or a division, continue to: <a href="#ajax-confirm-small">Determine if you are a small supplier</a>.</p>
+</li>
+</ul>
  </div>
-<div id="ajax-confirm-small" class="mrgn-tp-lg">
-<h4 id="step2"><span class="fas fa-user-tie fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Determine if you are a small supplier</h4>
+</li>
+<li><div id="ajax-confirm-small">
+<h3 id="step2">Determine if you are a small supplier</h3>
  </div>
-<div id="ajax-confirm-small-char" class="mrgn-lft-xl">
-<ol class="lst-stps ld-zr stps-strpd">
-<li><h5>$250,000 gross revenue test</h5>
-<p>If you are a charity or public institution in <strong>one</strong> of the following situation, you are a small supplier under the $250,000 <a href="#ajax-include2" aria-controls="ajax-include2" class="overlay-lnk" role="button">gross revenue&nbsp;<span class="far fa-question-circle"></span></a> test:</p>
+<div id="ajax-confirm-small-char">
+<ol class="lst-stps-sub ld-zr stps-strpd">
+<li><h4>$250,000 gross revenue test</h4>
+<p>If you are a charity or public institution in <strong>one</strong> of the following situation, you are a small supplier under the $250,000 gross revenue test:</p>
+
+<details><summary>What to include and not include</summary>
+	<div id="ajax-include2">
+		<p>Include in your <strong>gross revenue</strong> amount:</p>
+			<ul>
+				<li>Income from a business, or from an adventure or concern in the nature of trade</li>
+				<li>Gifts and donations</li>
+				<li>Grants, subsidies, forgivable loans and other assistance</li>
+				<li>Property and investment income</li>
+				<li>Any amount that is a capital gain from the disposition of property for income tax purposes</li>
+				<li>Other revenue of any kind whatever during the year, including revenue from both taxable and exempt supplies</li>
+			</ul>
+			<p>You also have to include the gross revenue of your organization as a whole (the legal entity).</p>
+			<p><strong>Do not</strong> include capital loss from the disposition of property for income tax purposes.</p></div>
+</details>
+
 <ul class="list-unstyled cnjnctn-type-or">
 <li class="cnjnctn-col">You are <strong>not</strong> yet operating</li>
-<li class="cnjnctn-col">You are in your <strong>first <a href="#ajax-fiscal" aria-controls="ajax-fiscal" class="overlay-lnk" role="button">fiscal year&nbsp;<span class="far fa-question-circle"></span></a></strong> of operation</li>
-<li class="cnjnctn-col">You are in your <strong>second fiscal year</strong> of operation and your gross revenue from your first fiscal year is <strong>$250,000 or less</strong></li>
-<li class="cnjnctn-col">You are in your <strong>third fiscal year</strong> of operation and your gross revenue from either or both of your <strong>previous 2 fiscal years</strong> is <strong>$250,000 or less</strong></li>
+<li class="cnjnctn-col">You are in your <strong>first</strong> <a href="#ajax-fiscal" aria-controls="ajax-fiscal" class="overlay-lnk" role="button">fiscal year&nbsp;<span class="far fa-question-circle"></span></a> of operation</li>
+<li class="cnjnctn-col">You are in your <strong>second</strong> fiscal year of operation and your gross revenue from your first fiscal year is <strong>$250,000 or less</strong></li>
+<li class="cnjnctn-col">You are in your <strong>third</strong> fiscal year of operation and your gross revenue from either or both of your <strong>previous 2 </strong> fiscal years is <strong>$250,000 or less</strong></li>
 </ul>
 </li>
-<li><h5>$50,000 taxable supplies test</h5>
-<p>If you are no longer a supplier under the $250,000 gross revenue test, you are a small supplier under the $50,000 taxable supplies test if you <strong>do not</strong> exceed the <strong>$50,000</strong> threshold <strong>over 4 consecutive</strong> calendar quarters.</p></li></ol>
-</div>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-lft-xl">
-<li class="cnjnctn-col-40"><div id="ajax-confirm-smallno"><h4>You are no longer a small supplier</h4>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <strong>Determine your date of registration</strong>.</p>
-</div></li>
-
-<li class="cnjnctn-col"><div id="ajax-confirm-smallyes"><h4>You are small supplier</h4>
-<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
-<div id="ajax-reg-vol" class="mrgn-lft-xl">
-<p><span class="fas fa-ban text-danger fa-lg"></span> If you are a <strong>small supplier</strong>, you <strong>do not</strong> have to register for a GST/HST account number.</p>
-
-<h5>Voluntary registration</h5>
-<p>You may choose to register voluntarily. If you register voluntarily, your effective date of registration is generally the <strong>day you request</strong> your GST/HST account number or <strong>30 days before that day</strong>.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html" target="_blank">Register voluntarily for a GST/HST account number</a></p>
-</div>
-<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
-<div id="ajax-charge-no"  class="mrgn-lft-xl">
-<p><span class="fas fa-ban text-danger fa-lg"></span> You do <strong>not</strong> charge GST/HST if you are a small supplier and you do not have a GST/HST account number.</p>
-</div>
-<div data-ajax-replace="#ajax-itc" class="mrgn-tp-lg"></div>
-</div>
-<div id="ajax-itc-char"  class="mrgn-lft-xl">
-<p>You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4082/gst-hst-information-charities.html" target="_blank"> GST/HST Information for Charities</a></p>
-</div>
-</li>
-</ul>
-
-<div id="ajax-date-reg-gen">
-<div id="ajax-date-reg" class="mrgn-tp-lg">
-<h4 id="step3"><span class="fas fa-calendar-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Determine your registration date</h4>
- </div>
-<div id="ajax-date-reg-1">
-<ul class="list-unstyled cnjnctn-type-or">
-<li class="cnjnctn-col">
-<details class="mrgn-lft-md"><summary>$50,000 threshold over <strong>4 consecutive</strong> calendar quarter</summary>
-<div id="ajax-date-reg-1a">
-<h5>$50,000 threshold over 4 consecutive calendar quarter</h5>
-<div id="ajax-reg-char1a-4" class="mrgn-lft-xl">
-<p>You <span id="estimate">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="warning_amount">50,000</span></strong> threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-<p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2">50,000</span></strong> threshold. The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
-</div>
-  <details class="mrgn-lft-xl"><summary>Example 1 – Did not exceed the $50,000 threshold over 4 consecutive calendar quarter4</summary>
-            <p>On January 15, 2019, your charity started making taxable supplies of goods and made the following sales:</p>
+<li><h4>$50,000 taxable supplies test</h4>
+<p>If you are no longer a small supplier under the $250,000 gross revenue test, and your total worldwide <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> from all your businesses and those of your associates <strong>does not</strong> exceed the <strong>$50,000</strong> threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
+ <details><summary>Example 1 – Did not exceed the $50,000 threshold over 4 consecutive calendar quarters</summary>
+            <p>On January 15, 2023, your charity started making taxable supplies of goods and made the following sales:</p>
          <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for charities and public institutions </caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
@@ -2321,12 +2450,12 @@
 </tr><tr><td><b>Total</b></td>
 <td class="text-right"><b>$49,000</b></td>
 </tr></tbody></table>
-        <p>You are a small supplier in 2019 because you did not exceed the $50,000 threshold in four consecutive calendar quarters. You are also a small supplier under this test in the first quarter of 2020, unless you exceed the $50,000 threshold in that one quarter.</p>
+        <p>You are a small supplier in 2023 because you did not exceed the $50,000 threshold over 4 consecutive calendar quarters. You are also a small supplier under this test in the first quarter of 2024, unless you exceed the $50,000 threshold in that one single calendar quarter.</p>
             </details>
 
  
-  <details class="mrgn-lft-xl"><summary>Example 2 – Exceed the $50,000 threshold over 2 consecutive calendar quarters</summary>
-       <p>On November 1, 2019, your charity started making taxable supplies of goods and services and made the following sales:</p>
+  <details ><summary>Example 2 – Exceed the $50,000 threshold over 2 consecutive calendar quarters</summary>
+       <p>On November 1, 2023, your charity started making taxable supplies of goods and services and made the following sales:</p>
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for charities and public institutions</caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
@@ -2338,17 +2467,17 @@
 </tr><tr><td><b>Total</b><br></td>
 <td class="text-right">$70,000</td>
 </tr></tbody></table>
-            <p>In April 2020, your sales totaled $12,000.</p>
-<p>Your first sale after April was on May 1, 2020.</p>
+            <p>In April 2024, your sales totaled $12,000.</p>
+<p>Your first sale after April was on May 1, 2024.</p>
 <ul>
-<li>Under this test, you stop being a small supplier on April 30, 2020, because it is the last day of the month after the quarter you exceed the $50,000 threshold. Use the <a href="#grossrevenuetest">$250,000 gross revenue test</a> to see if you are a small supplier under that test.</li>
-<li>If you are no longer a small supplier under the $250,000 gross revenue test, <strong>your effective date of registration </strong>no later than May 1, 2020. That date is when you made your first supply after you stopped being a small supplier.</li>
-<li>You must start charging GST/HST on your date of registration.</li>
+<li>Under this test, you stop being a small supplier on April 30, 2024, because it is the last day of the month after the quarter you exceed the $50,000 threshold.</li>
+<li>If you are no longer a small supplier under the $250,000 gross revenue test, <strong>your effective date of registration </strong>no later than May 1, 2024. That date is when you made your first supply after you stopped being a small supplier.</li>
+<li>You have to start charging GST/HST on your date of registration.</li>
 <li>You will have to register within<strong> 29 days </strong>of your effective date of registration.</li>
 </ul>  </details>
 
- <details class="mrgn-lft-xl"><summary>Example 3 – Exceed the $50,000 threshold within the previous 4 consecutive calendar quarters</summary>
-        <p>On May 1, 2019, your charity started making taxable supplies of goods and services and made the following sales:</p>
+ <details><summary>Example 3 – Exceed the $50,000 threshold within the previous 4 consecutive calendar quarters</summary>
+        <p>On May 1, 2023, your charity started making taxable supplies of goods and services and made the following sales:</p>
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for charities and public institutions</caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
@@ -2364,59 +2493,17 @@
 </tr><tr><td><b>Total</b></td>
 <td class="text-right"><b>$52,000</b></td>
 </tr></tbody></table>
-       <p>In April 2020, your sales totaled $4,500.</p>
-<p>Your first sale after April was on May 2, 2020.</p>
+       <p>In April 2024, your sales totaled $4,500.</p>
+<p>Your first sale after April was on May 2, 2024.</p>
 <ul>
-<li>Under this test, you stopped being a small supplier on April 30, 2020, because that day is the end of the month after the quarter in which you exceeded the $50,000 threshold. Use the <a href="#grossrevenuetest">$250,000 gross revenue test</a> to see if you are a small supplier under that test.</li>
-<li><span>If you were also no longer a small supplier under the $250,000 test, your effective date of registration is <strong>no later than</strong> May 2, 2020. That date is when you made your first supply after you stopped being a small supplier under this test.</span></li>
+<li>Under this test, you stopped being a small supplier on April 30, 2024, because that day is the end of the month after the quarter in which you exceeded the $50,000 threshold.</li>
+<li><span>If you were also no longer a small supplier under the $250,000 test, your effective date of registration is <strong>no later than</strong> May 2, 2024. That date is when you made your first supply after you stopped being a small supplier under this test.</span></li>
 <li><span></span>You have to start charging the GST/HST on your date of registration.</li>
 <li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
 </details>
-
-<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
-<div id="ajax-reg-char1a" class="mrgn-lft-xl">
-<p>You must register for a GST/HST account number <strong>no later than <span id="plus29">29 days after</span> </strong> your effective date of registration. </p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
-<div id="ajax-reg-exceed1">
-<h5><span class="fas fa-exclamation-triangle fa-lg text-warning"></span>&nbsp;&nbsp; What if you exceed the threshold in a single calendar quarter</h5> 
-<p>If you exceed the threshold in a <strong>single calendar quarter</strong>, you would have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed the <strong>threshold</strong>.</p></div>
-</div>
-<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
-<div id="ajax-charge-char1a" class="mrgn-lft-xl">
-<p>You must charge GST/HST on the taxable supplies starting on your effective date of registration. </p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
-</div>
-
-<div data-ajax-replace="#ajax-itc"></div>
-<div id="ajax-itc-char1a" class="mrgn-lft-xl">
-<p>You are eligible to claim ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies you made after your registration date.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
-</div>
-
-<div data-ajax-replace="#ajax-file"></div>
-<div id="ajax-file-char1a" class="mrgn-lft-xl">
-<p>You must file GST/HST returns for your reporting periods starting on your effective date of registration. Your reporting period depends on your fiscal year, total annual sales and whether you elected to file more frequently.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business.html" target="_blank">Complete and file a GST/HST return</a></p>
-</div>
-
-<div data-ajax-replace="#ajax-remit"></div>
-<div id="ajax-remit-char1a" class="mrgn-lft-xl">
-<p>You have to calculate your net tax for each GST/HST reporting period and report the amount on your GST/HST return. If your net tax calculation shows an amount owing, you have to remit (pay) the amount by the payment due date.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html" target="_blank">Remit (pay) the tax you collected</a></p>
-</div>
-</div></details>
-</li>
-<li class="cnjnctn-col">
-<details class="mrgn-lft-md"><summary>$50,000 threshold in a <strong>single</strong> calendar quarter</summary>
-<div id="ajax-date-reg-1b">
-<h5>$50,000 threshold in a single calendar quarter</h5>
-<div id="ajax-reg-char1b-1" class="mrgn-lft-xl">
-<p>You <span id="tense152">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount">50,000</span></strong> threshold in a single <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-<p>You are <strong>no longer</strong> a small supplier. The effective date of registration is <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount2">50,000</span></strong> threshold.</p>
-</div>
-<details class="mrgn-lft-xl"><summary>Example – Exceed the $50,000 threshold in a single calendar quarter</summary>
-     <p>On July 1, 2019, your charity started making taxable supplies of goods and services and made the following sales:</p>
+<details><summary>Example 4 – Exceed the $50,000 threshold in one single calendar quarter</summary>
+     <p>On July 1, 2024, your charity started making taxable supplies of goods and services and made the following sales:</p>
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for charities and public institutions</caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
@@ -2429,74 +2516,146 @@
 <td class="text-right">$58,000</td>
 </tr></tbody></table>
          <ul>
-<li>Under this test, you stop being a small supplier the day you exceed the $50,000 threshold in one calendar quarter. Use the <a href="#grossrevenuetest">$250,000 gross revenue test</a> to see if you are a small supplier under that test.</li>
+<li>Under this test, you stop being a small supplier the day you exceed the $50,000 threshold in one calendar quarter.</li>
 <li>If you are no longer a small supplier under the $250,000 gross revenue test, your <strong>effective date of registration</strong> is no later than the day you exceed the $50,000 threshold in that quarter.</li>
 <li>You have to start charging GST/HST on your date of registration, including on the sale that made you exceed the $50,000 threshold.</li>
 <li>You will have to register within <strong>29 days </strong>of your effective date of registration.</li>
 </ul>
     </details>
 
-<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
-<div id="ajax-reg-char1b" class="mrgn-lft-xl">
-<p>You must register for a GST/HST account number <strong>no later than 29 days</strong> after the day of the supply that made you exceed the <strong>$<span id="chargeAmount3">50,000</span></strong> threshold.</p>
+</li></ol>
+</div>
+
+
+<hr>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+
+<li class="cnjnctn-col"><div id="ajax-confirm-smallyes">
+<div id="ajax-reg-vol">
+<p><span class="fas fa-ban text-danger fa-lg"></span> If you are a <strong>small supplier</strong>, you <strong>do not</strong> have to register for a GST/HST account number.</p>
+<div id="ajax-reg-vol2" class="mrgn-tp-lg">
+<h4>Voluntary registration</h4>
+<p>You may choose to register voluntarily. If you register voluntarily, your effective date of registration is generally the <strong>day you request</strong> your GST/HST account number or <strong>30 days before that day</strong>.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html" target="_blank">Register voluntarily for a GST/HST account number</a></p>
+</div>
+</div>
+</div>
+<div id="ajax-itc-char" class="mrgn-tp-lg">
+<h4>Claiming input tax credits (ITC)</h4>
+<p>You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4082/gst-hst-information-charities.html" target="_blank"> GST/HST Information for Charities</a></p>
+</div>
+</li>
+<li class="cnjnctn-col"><div id="ajax-confirm-smallno"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <a href="#charstep3">Determine when to register, charge, file and remit</a>.</p></div>
+</li>
+</ul>
+</li>
+
+
+
+<li><div id="ajax-date-reg"><h3>Determine when to register, charge, file and remit</h3> </div>
+<ol class="lst-stps-sub ld-zr stps-strpd">
+<li><h4>Determine the effective date of registration</h4>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm" id="psbstep4">
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-1a">
+<h5 class="text-muted">$50,000 threshold <br>over 4 consecutive calendar quarters</h5>
+<div id="ajax-reg-char1a-4" >
+<p>You <span id="estimate">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="warning_amount">50,000</span></strong> threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>.</p>
+<p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2">50,000</span></strong> threshold. The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
+</div>
+</div>
+ </li>
+<li class="cnjnctn-col">
+<div id="ajax-date-char-1">
+<h5 class="text-muted">$50,000 threshold <br>in a single calendar quarter</h5>
+<div id="ajax-reg-char1b-1" >
+<p>You <span id="tense152">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount">50,000</span></strong> threshold in a single <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
+<p>You are <strong>no longer</strong> a small supplier. The effective date of registration is <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount2">50,000</span></strong> threshold.</p>
+</div>
+ </div> </li> </ul> </li> 
+
+<li>
+<div data-ajax-replace="#ajax-reg"></div>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5 class="text-muted">$50,000 threshold <br>over 4 consecutive calendar quarters</h5>
+<div id="ajax-reg-char1all">
+<p>You have to register for a GST/HST account number <strong>no later than <span id="plus29">29 days after</span> </strong> your effective date of registration. </p>
+</div>
+</li> 
+<li class="cnjnctn-col"><h5 class="text-muted">$50,000 threshold <br>in a single calendar quarter</h5>
+<div id="ajax-reg-char1b">
+<p>You have to register for a GST/HST account number <strong>no later than 29 days</strong> after the day of the supply that made you exceed the <strong>$<span id="chargeAmount3">50,000</span></strong> threshold.</p>
+</div>
+</li> 
+</ul>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
-</div>
+</li>
 
-<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
-<div id="ajax-charge-char1b" class="mrgn-lft-xl">
-<p>You must charge GST/HST on the sale that made you exceed the <span class="nowrap"><label>$</label><label id="chargeAmount4">50,000</label></span> threshold. </p>
+<li><div data-ajax-replace="#ajax-charge"></div>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5 class="text-muted">$50,000 threshold <br>over 4 consecutive calendar quarters</h5>
+<<div id="ajax-charge-char1a">
+<p>You have to charge GST/HST on the taxable supplies starting on your effective date of registration. </p>
+</div>
+</li> 
+<li class="cnjnctn-col"><h5 class="text-muted">$50,000 threshold <br>in a single calendar quarter</h5>
+<div id="ajax-charge-char1b">
+<p>You have to charge GST/HST on the sale that made you exceed the <span class="nowrap"><label>$</label><label id="chargeAmount4">50,000</label></span> threshold. </p>
+</div>
+</li> 
+</ul>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+</li>
+
+<li><div data-ajax-replace="#ajax-itc"></div>
+<div id="ajax-itc-char1a">
+<p>You are eligible to claim ITCs for the GST/HST paid on purchases and expenses that relate to taxable supplies you made after your registration date.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
 </div>
+</li>
 
-<div data-ajax-replace="#ajax-itc"></div>
-<div data-ajax-replace="#ajax-itc-char1a"></div>
+<li><div data-ajax-replace="#ajax-file"></div>
+<div id="ajax-file-char1a">
+<p>You have to file GST/HST returns for your reporting periods starting on your effective date of registration. Your reporting period depends on your fiscal year, total annual sales and whether you elected to file more frequently.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business.html" target="_blank">Complete and file a GST/HST return</a></p>
+</div>
+</li>
 
-<div data-ajax-replace="#ajax-file"></div>
-<div data-ajax-replace="#ajax-file-char1a"></div>
-
+<li>
 <div data-ajax-replace="#ajax-remit"></div>
-<div data-ajax-replace="#ajax-remit-char1a"></div>
-
-</div> </details> 
-</li></ul>
-</div>   </div>
+<div id="ajax-remit-char1a" >
+<p>You have to calculate your net tax for each GST/HST reporting period and report the amount on your GST/HST return. If your net tax calculation shows an amount owing, you have to remit (pay) the amount by the payment due date.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html" target="_blank">Remit (pay) the tax you collected</a></p>
+</div>
+</li>
+</ol>
+</li>
+ </ol>
    </details>
               
     <details>
         <summary><small>Public service bodies</small></summary>
-           <h3 id="psb">Public service body that is not a charity or public institution</h3>
-
-<div id="ajax-pub-def">
+          
+<div id="ajax-pub-def" class="mrgn-tp-md">
 <details><summary>What is a public service body</summary>
 <div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#service"></div> 
 </details>
  </div>
 
-<div data-ajax-replace="#ajax-confirm-branch"></div>
-
-<div data-ajax-replace="#ajax-confirm-small"></div>
-<div id="ajax-confirm-small-psb" class="mrgn-lft-xl">
-<p>If you are a public service body and you <strong>do not</strong> exceed the <a href="#ajax-include1" aria-controls="ajax-include1" class="overlay-lnk" role="button">$50,000&nbsp;<span class="far fa-question-circle"></span></a> threshold <strong>over 4 consecutive</strong> calendar quarters, you are a small supplier.</p>
-<p> You must continue to monitor your sales to determine when you exceed the <strong>$50,000</strong> threshold.</p> 
-</div>
-
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-lft-xl">
-<li class="cnjnctn-col-40"><h4>You are no longer a small supplier</h4>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <strong>Determine your date of registration</strong>.</p>
+<h2 id="psb" class="h3">Steps</h2>
+<ol class="lst-stps ld-zr stps-strpd">
+   <li><div data-ajax-replace="#ajax-confirm-branch"></div>
 </li>
-<li class="cnjnctn-col"><div data-ajax-replace="#ajax-confirm-smallyes"></div>
-<div data-ajax-replace="#ajax-itc-most"></div>
-</li></ul>
-<div data-ajax-replace="#ajax-date-reg"></div>
-<ul class="list-unstyled cnjnctn-type-or">
-<li class="cnjnctn-col">
-<details class="mrgn-lft-md"><summary>$50,000 threshold over <strong>4 consecutive</strong> calendar quarter</summary>
-<div id="ajax-date-reg-2a">
-<h5>$50,000 threshold over 4 consecutive calendar quarter</h5>
-<div data-ajax-replace="#ajax-reg-char1a-4"></div>
+<li><div data-ajax-replace="#ajax-confirm-small"></div>
+<div id="ajax-confirm-small-psb">
+<p>If you are a public service body and your total worldwide <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> from all your businesses and those of your associates <strong>does not</strong> exceed the <strong>$50,000</strong> threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
+<div data-ajax-replace="#ajax-include1"></div>
+
+<p> You have to continue to monitor your sales to determine when you exceed the <strong>$50,000</strong> threshold.</p> 
 </div>
-    <details class="mrgn-lft-xl"><summary>Example 1 – Did not exceed the $50,000 threshold amount in 4 consecutive calendar quarters</summary>
-        <p>On January 1, 2019, your public service body started making taxable supplies of goods and services. You made the following sales:</p>
+ <details><summary>Example 1 – Did not exceed the $50,000 threshold over 4 consecutive calendar quarters</summary>
+        <p>On January 1, 2023, your public service body started making taxable supplies of goods and services. You made the following sales:</p>
 <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for public service bodies</caption>
 <thead><tr class="active"><th scope="col">Quarter</th>
@@ -2512,11 +2671,11 @@
 </tr><tr><td><b>Total</b></td>
 <td class="text-right"><b>$49,000</b></td>
 </tr></tbody></table>
-   <p>You are a small supplier in 2019 because you did not exceed the $50,000 threshold in four consecutive calendar quarters. You are also a small supplier in the first quarter of 2020, unless you exceed the $50,000 threshold in that one quarter.</p>
+   <p>You are a small supplier in 2023 because you did not exceed the $50,000 threshold over 4 consecutive calendar quarters. You are also a small supplier in the first quarter of 2024, unless you exceed the $50,000 threshold in that one single quarter.</p>
   </details>
 
- <details class="mrgn-lft-xl"><summary>Example 2 – Exceed the $50,000 threshold amount in 2 consecutive calendar quarters</summary>
-           <p>On October 1, 2019, your public service body started making taxable supplies of goods and services and made the following sales:</p>
+ <details><summary>Example 2 – Exceed the $50,000 threshold over 2 consecutive calendar quarters</summary>
+           <p>On October 1, 2023, your public service body started making taxable supplies of goods and services and made the following sales:</p>
 
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for public service bodies </caption>
@@ -2529,20 +2688,20 @@
 </tr><tr><td><strong>Total</strong></td>
 <td class="text-right"><strong>$70,000</strong></td>
 </tr></tbody></table>
-        <p>In April 2020, your sales totaled $8,000.</p>
-<p>Your first sale after April was on May 1, 2020.</p>
+        <p>In April 2024, your sales totaled $8,000.</p>
+<p>Your first sale after April was on May 1, 2024.</p>
 <ul>
-<li>You stopped being a small supplier on April 30, 2020, because that day is the end of the month after the quarter you exceed $50,000 threshold.</li>
-<li>Your <strong>effective date of registration </strong>is no later than May 1, 2020. That date is when you made your first supply after you stopped being a small supplier.<strong></strong></li>
+<li>You stopped being a small supplier on April 30, 2024, because that day is the end of the month after the quarter you exceed $50,000 threshold.</li>
+<li>Your <strong>effective date of registration </strong>is no later than May 1, 2024. That date is when you made your first supply after you stopped being a small supplier.<strong></strong></li>
 <li>You have to start charging GST/HST on your date of registration.</li>
 <li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
        
     </details>
 
- <details class="mrgn-lft-xl"><summary>Example 3 - Exceed the $50,000 threshold within the previous 4 consecutive calendar quarters</summary>
+ <details><summary>Example 3 – Exceed the $50,000 threshold within the previous 4 consecutive calendar quarters</summary>
              
-        <p>On April 1, 2019, your public service body started making taxable supplies of goods and services and made the following sales:</p>
+        <p>On April 1, 2023, your public service body started making taxable supplies of goods and services and made the following sales:</p>
 
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for public service bodies</caption>
@@ -2560,42 +2719,17 @@
 <td class="text-right"><b>$52,000</b></td>
 </tr></tbody></table>
 
-        <p>In April 2020, your sales totaled $4,500.</p>
-<p>Your first sale after April was on May 2, 2020.</p>
+        <p>In April 2024, your sales totaled $4,500.</p>
+<p>Your first sale after April was on May 2, 2024.</p>
 <ul>
-<li>You stopped being a small supplier on April 30, 2020 because that day is the end of the month after the quarter you exceed the $50,000 threshold.</li>
-<li>Your <strong>effective date of registration </strong>is no later than May 2, 2020. That date is when you made your fist supply after you stopped being a small supplier.</li>
+<li>You stopped being a small supplier on April 30, 2024 because that day is the end of the month after the quarter you exceed the $50,000 threshold.</li>
+<li>Your <strong>effective date of registration </strong>is no later than May 2, 2024. That date is when you made your fist supply after you stopped being a small supplier.</li>
 <li>You have to start charging GST/HST on your date of registration.</li>
 <li>You'll have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
      </details>
-
-<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
-<div data-ajax-replace="#ajax-reg-char1a"></div>
-
-<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
-<div data-ajax-replace="#ajax-charge-char1a"></div>
-
-<div data-ajax-replace="#ajax-itc"></div>
-<div data-ajax-replace="#ajax-itc-char1a"></div>
-
-<div data-ajax-replace="#ajax-file"></div>
-<div data-ajax-replace="#ajax-file-char1a"></div>
-
-<div data-ajax-replace="#ajax-remit"></div>
-<div data-ajax-replace="#ajax-remit-char1a"></div>
-
-</details>
-</li>
-<li class="cnjnctn-col">
-<details class="mrgn-lft-md"><summary>$50,000 threshold in a <strong>single</strong> calendar quarter</summary>
-<div id="ajax-date-reg-2b">
-<h5>$50,000 threshold in a single calendar quarter</h5>
-<div data-ajax-replace="#ajax-reg-char1b-1"></div>
-</div>
-
- <details class="mrgn-lft-xl"><summary>Example 1 - Exceed the $50,000 threshold amount in one single calendar quarter</summary>
-           <p>On January 1, 2019, your public service body that started making taxable supplies of goods and services and made the following sales:</p>
+ <details><summary>Example 4 – Exceed the $50,000 threshold in one single calendar quarter</summary>
+           <p>On January 1, 2024, your public service body that started making taxable supplies of goods and services and made the following sales:</p>
 
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for public service bodies</caption>
@@ -2615,36 +2749,77 @@
 <li>You have to start charging GST/HST on your date of registration (including the sale that made you exceed the $50,000 threshold).</li>
 <li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
-
         </details>
-
-<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
-<div data-ajax-replace="#ajax-reg-char1b"></div>
-
-<div data-ajax-replace="#ajax-charge" class="mrgn-tp-lg"></div>
-<div data-ajax-replace="#ajax-charge-char1b"></div>
-
-<div data-ajax-replace="#ajax-itc"></div>
-<div data-ajax-replace="#ajax-itc-char1a"></div>
-
-<div data-ajax-replace="#ajax-file"></div>
-<div data-ajax-replace="#ajax-file-char1a"></div>
-
-<div data-ajax-replace="#ajax-remit"></div>
-<div data-ajax-replace="#ajax-remit-char1a"></div>
-
-</details>
+<hr>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><div data-ajax-replace="#ajax-confirm-smallyes"></div>
+</li>
+<li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <a href="#ajax-date-reg-2a">Determine when to register, charge, file and remit</a>.</p>
 </li>
 </ul>
-	    
-    </details>
-                
+</li>
+
+<li><div data-ajax-replace="#ajax-date-reg"></div>
+<ol class="lst-stps-sub ld-zr stps-strpd">
+<li><h4>Determine the effective date of registration</h4>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm" id="psbstep4">
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-2a">
+<h5 class="text-muted">$50,000 threshold <br>over 4 consecutive calendar quarter</h5>
+<div data-ajax-replace="#ajax-reg-char1a-4"></div>
+</div>
+ </li>
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-most2">
+<h5 class="text-muted">$50,000 threshold <br>in a single calendar quarter</h5>
+<div data-ajax-replace="#ajax-reg-char1b-1"></div>
+ </div> </li> </ul> </li> 
+
+<li>
+<div data-ajax-replace="#ajax-reg"></div>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5 class="text-muted">$50,000 threshold <br>over 4 consecutive calendar quarter</h5>
+<div data-ajax-replace="#ajax-reg-char1all"></div>
+</li> 
+<li class="cnjnctn-col"><h5 class="text-muted">$50,000 threshold <br>in a single calendar quarter</h5>
+<div data-ajax-replace="#ajax-reg-char1b"></div>
+</li> 
+</ul>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
+</li>
+
+<li><div data-ajax-replace="#ajax-charge"></div>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><h5 class="text-muted">$50,000 threshold <br>over 4 consecutive calendar quarter</h5>
+<div data-ajax-replace="#ajax-charge-char1a"></div>
+</li> 
+<li class="cnjnctn-col"><h5 class="text-muted">$50,000 threshold <br>in a single calendar quarter</h5>
+<div data-ajax-replace="#ajax-charge-char1b"></div>
+</li> 
+</ul>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+</li>
+
+<li><div data-ajax-replace="#ajax-itc"></div>
+<div data-ajax-replace="#ajax-itc-char1a"></div>
+</li>
+
+<li><div data-ajax-replace="#ajax-file"></div>
+<div data-ajax-replace="#ajax-file-char1a"></div>
+</li>
+
+<li>
+<div data-ajax-replace="#ajax-remit"></div>
+<div data-ajax-replace="#ajax-remit-char1a"></div>
+</li>
+</ol>
+</li>
+</ol></details>
+                  
                   
     <details>
         <summary><small>Taxi operator or commercial ride-sharing driver</small></summary>
-
-   <h3 id="taxi">Taxi operator or a commercial ride-sharing driver</h3>
-  <div id="ajax-taxi">
+  <div id="ajax-taxi" class="mrgn-tp-md">
  <details><summary>What is a taxi operator or commercial ride-sharing driver</summary>
 <p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
 
@@ -2655,90 +2830,71 @@
 <li class="cnjnctn-col">You lease the taxicab/motor vehicle from an owner for a percentage of fares</li>
 </ul></details>
 </div>
-<div id="ajax-confirm" class="mrgn-tp-lg">
-<h4><span class="fas fa-user-check fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Determine if you are self-employed</h4>
- </div>
-
- <div id="ajax-confirm1" class="mrgn-lft-xl">	
+<h3 id="taxi" class="h3">Steps</h3>
+<ol class="lst-stps ld-zr stps-strpd">
+   <li><div id="ajax-confirm"><h3>Determine if you are self-employed</h3> </div>
+<div id="ajax-confirm1">	
 <p>You can ask the CRA for ruling if you are not sure whether you are self-employed or an employee.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained/canada-pension-plan-employment-insurance-explained-11.html">How to get a CPP/EI ruling</a>.</p>
 </div>
-
-<p class="mrgn-lft-xl"><span class="fas fa-ban text-danger fa-lg"></span> If you are an <strong>employee</strong>, <strong>do not</strong> use this webpage.</p>
-
-<div id="ajax-reg" class="mrgn-tp-lg">
-<h4><span class="fas fa-id-card fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Registering</h4>
- </div>
-<div id="ajax-taxi-reg" class="mrgn-lft-xl">
+<p><span class="fas fa-ban text-danger fa-lg"></span> If you are an <strong>employee</strong>, <strong>do not</strong> continue to next step.</p> 
+ </li>
+  <li><div id="ajax-reg"><h4>Registering</h4> </div>
+<div id="ajax-taxi-reg">
 <p>If you are a self-employed taxi operator or a commercial ride-sharing driver, you have to register for the GST/HST even if you are not a small supplier.</p>
 <p>You have to register for a GST/HST account number as of the date your business began as a taxi operator or a commercial ride-sharing driver.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
-</div>
+</div>  </li>
 
-<div id="ajax-charge" class="mrgn-tp-lg">
-<h4><span class="fas fa-hand-holding-usd fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Charging</h4>  
- </div>
-
-<div id="ajax-taxi-charge" class="mrgn-lft-xl">
+  <li><div id="ajax-charge"><h4>Charging</h4></div>
+<div id="ajax-taxi-charge">
  <p>You have to charge the GST/HST as of the date your business began.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
 </div>
-
-<div id="ajax-itc" class="mrgn-tp-lg">
-<h4><span class="fas fa-funnel-dollar fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Claiming input tax credits (ITC)</h4>  
- </div>
-
-<div id="ajax-taxi-itc" class="mrgn-lft-xl">
+  </li>
+  <li><div id="ajax-itc"><h4>Claiming input tax credits (ITC)</h4>   </div> 
+<div id="ajax-taxi-itc">
 <p>You may be eligible for to claim input tax credits for the GST/HST you pay on your purchase and expenses.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-input-tax-credit.html" target="_blank">Input tax credits</a></p>
 </div>
-
-<div id="ajax-file" class="mrgn-tp-lg">
-<h4><span class="fas fa-file-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Filing </h4> </div>
-
-<div id="ajax-taxi-file" class="mrgn-lft-xl">
-<p>You must file GST/HST returns.</p>
+ </li>
+  <li><div id="ajax-file"><h4>Filing </h4> </div>
+<div id="ajax-taxi-file">
+<p>You have to file GST/HST returns.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/complete-file-return-business.html" target="_blank">Complete and file a GST/HST return</a></p>
 </div>
-
-<div id="ajax-remit" class="mrgn-tp-lg">
-<h4><span class="fas fa-money-check-alt fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Remitting (paying)</h4> </div>
-
-<div id="ajax-taxi-remit" class="mrgn-lft-xl">
-<p>You must remit (pay) the net GST/HST payable.</p>
+  </li>	
+ <li><div id="ajax-remit"><h4>Remitting (paying)</h4> </div>
+<div id="ajax-taxi-remit">
+<p>You have to remit (pay) the net GST/HST payable.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/pay-when.html" target="_blank">Remit (pay) the tax you collected</a></p>
 </div>
+  </li>
+ </ol>
 
-<div id="ajax-more" class="mrgn-tp-lg">
-<h4><span class="fas fa-folder-plus fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Resources</h4> </div>
-
-<div id="ajax-taxi-more" class="mrgn-lft-xl">
+<div id="ajax-more" class="mrgn-tp-lg"><h3>Resources</h3> </div> 
+<div id="ajax-taxi-more">
 <p><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/taxi-ride-sharing-drivers.html" target="_blank">GST/HST information for taxi operators and commercial ride-sharing drivers</a></p>
 </div>
+
     </details>
     <details>
         <summary><small>Non-resident</small></summary>
-             <h3>Non-resident</h3>
-
-<div id="ajax-nonres-def">
+     
+<div id="ajax-nonres-def" class="mrgn-tp-md">
 <details><summary>What is a non-resident business</summary>
 <div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#nonresident"></div> </details>
  </div>
 
-<h4><span class="fas fa-user-tag fa-lg text-info"></span>&nbsp;&nbsp;&nbsp;Determine if you are in a special situation</h4>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-lft-xl">
-<li class="cnjnctn-col-50"><h4>You are not in a special situation</h4>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> in a special situation, continue to: <strong>Determine if you are a small supplier</strong>.</p>
-</li>
-<li class="cnjnctn-col"><h4>You are in a special situation</h4>
-<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
-<div id="ajax-nonres-special" class="mrgn-lft-xl">
+<h2 class="h3">Steps</h2>
+<ol class="lst-stps ld-zr stps-strpd">
+   <li><h3>Determine if you are in a special situation</h3>
+<div id="ajax-nonres-special">
 <p>If you are in one of the following special situation, you have to register for a GST/HST account number even if you are not a small supplier:</p>
 <ul class="list-unstyled cnjnctn-type-or">
 <li class="cnjnctn-col">You sponsor (host) a <a href="#ajax-convention" aria-controls="ajax-convention" class="overlay-lnk" role="button">convention&nbsp;<span class="far fa-question-circle"></span></a> in Canada and more than <strong>25% of the attendees are residents of Canada</strong></li>
 <li class="cnjnctn-col">You make <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable&nbsp;<span class="far fa-question-circle"></span></a> sales, leases, or other supplies (including <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">zero-rated&nbsp;<span class="far fa-question-circle"></span></a> supplies) of <strong>admissions in Canada for a place of amusement, a seminar, an activity, or an event held in Canada</strong></li>
 </ul>
-
 <div id="ajax-nonres-security">
 <details> <summary>Security deposit for a non-resident business</summary>
    <p>Generally, you have to provide a security deposit if you register for a GST/HST account number and <strong>one</strong> of the following applies:</p>
@@ -2746,7 +2902,6 @@
 <li class="cnjnctn-col-50">You do not have a <a href="#ajax-permanent" aria-controls="ajax-permanent" class="overlay-lnk" role="button">permanent establishment&nbsp;<span class="far fa-question-circle"></span></a> in Canada</li>
 <li class="cnjnctn-col-50">You make supplies in Canada only through another person's fixed place of business</li>
 </ul>
-
 <section class="alert alert-info">
 	<h3>Exception</h3>
 	<p>You have to estimate the amount of your taxable sales, leases or other supplies in Canada. Security is <strong>not</strong> required if your estimate is $100,000 annually or less and your annual net tax will be between $3,000 remittable and $3,000 refundable.</p>
@@ -2768,23 +2923,30 @@
 <p>Cash or cash equivalents (such as a certified cheque or a money order) may be used to pay other outstanding debts to the CRA at the time the security is released. CRA does not accept non-transferable bonds such as Canada Savings Bonds.</p>
     </details>  </div>
 
-<p>Learn more on how to open a GST/HST account: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Open or manage an account – Register</a></p>
-
-<p>Learn more on how to make an enquiry if you are a non-resident business: <a href="/en/revenue-agency/corporate/contact-information/non-resident-gst-hst-enquiries.html">Non-resident GST/HST enquiries</a></p>
  </div>
-</li></ul>
-
-<div data-ajax-replace="#ajax-confirm-small"></div>
+<hr>
+ <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><p><span class="fas fa-check text-success fa-lg"></span> If you are in a special situation, you have to register for a GST/HST account number. <strong>Do not</strong> continue to next step.</p>
+<p>Learn more: </p>
+<ul>
+<li>How to register and what you need before you register: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Open or manage an account – Register</a></li>
+<li>How to make an enquiry if you are a non-resident business: <a href="/en/revenue-agency/corporate/contact-information/non-resident-gst-hst-enquiries.html">Non-resident GST/HST enquiries</a></li>
+</ul>
+</li>
+<li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> in a special situation, continue to: <a href="#ajax-nonres-small">Determine if you are carrying on business in Canada</a></p></li>
+</ul>
+ </li>
+ <li><h3>Determine if you are carrying on business in Canada</h3>
 <div id="ajax-nonres-small">
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-lft-xl">
-<li class="cnjnctn-col-50"><h4>You are not carrying on business in Canada</h4>
+<ul class="list-unstyled cnjnctn-type-or">
+<li class="cnjnctn-col">
 <p><span class="fas fa-ban text-danger fa-lg"></span> If you are a non-resident business and you <strong>do not</strong> <a href="/en/revenue-agency/services/forms-publications/publications/p-051r2/p-051r2-carrying-on-business-canada.html#P80_9177">carry on business in Canada</a> (except if you are in a special situation), you <strong>cannot</strong> register for a GST/HST account number.</p>
 </li>
-<li class="cnjnctn-col"><h4>You are carrying on business in Canada</h4>
-<div data-ajax-replace="#ajax-reg" class="mrgn-tp-lg"></div>
-<div id="ajax-nonres-smallyes" class="mrgn-lft-xl">
+<li class="cnjnctn-col">
+<div id="ajax-nonres-smallyes">
 <p>If you are a non-resident business and you make <strong>taxable</strong> sales, leases, or other supplies (including zero-rated supplies) in <strong>Canada</strong> in the course of <strong>carrying on business activity in Canada</strong>, you have to register for a GST/HST account number if you are not a small supplier.</p>
-<p>To determine if you are a small supplier (as you would for any Canadian businesses), continue to:</p>
+<h5>Determine if you are a small supplier</h5>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span>To determine if you are a small supplier (as you would for any Canadian businesses), continue to:</p>
 <ul>
 <li><a href="mostbus">Sole proprietor, partnership or corporation</a></li>
 <li><a href="#charities">Charity or public institution</a></li>
@@ -2799,8 +2961,9 @@
 </div>
 </li></ul>
 </div>
-           
-      
+ </li>
+ </ol>
+
    </details>
  
   
@@ -2834,6 +2997,15 @@
 	</div>
 </section>
 
+<section id="ajax-direct-selling-acm" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
+	<header class="modal-header">
+		<h2 class="modal-title">What is the alternate collection method (ACM)</h2>
+	</header>
+	<div class="modal-body">
+	<div data-ajax-replace="#direct-selling-acm"></div>	
+</div>
+</section>
+
 <section id="Ex-TaxableSupplies0" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
 	<header class="modal-header">
 		<h2 class="modal-title">Meaning of the term zero-rated supplies (taxable at the rate of 0%)</h2>
@@ -2852,28 +3024,6 @@
 			<li>Exports (most goods and services for which you charge and collect the GST/HST in Canada, are zero-rated when exported)</li>
 			
 		</ul>
-	</div>
-</section>
-
-<section id="direct-selling" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
-	<header class="modal-header">
-		<h2 class="modal-title">Meaning of the terms: Direct seller or a network seller</h2>
-	</header>
-	<div class="modal-body">
-	<p>Businesses in the direct selling industry sell their products directly to consumers through sales representatives or to independent sales contractors who, in turn, sell the products to purchasers. Their business structure is usually based on the following models:</p>
-<ul class="list-unstyled cnjnctn-type-and">
-	<li class="cnjnctn-col"><h3>Direct sellers</h3>
-<p>Direct sellers sell their products to distributors and independent sales contractors who, in turn, sell them to purchasers.</p>
-<p>Direct sellers may apply for approval to use the alternate collection method (ACM), another method for accounting for the GST/HST on their sales of exclusive products.</p>
-<p>Under the ACM, direct sellers charge and account for the GST/HST on the suggested retail price of the exclusive products as if they had made the sales directly to purchasers. </p>
-<p>For more information, including how to apply for approval to use the ACM, see <a href="/en/revenue-agency/services/forms-publications/publications/gi-125.html">GST/HST Info Sheet GI-125, Direct Selling Industry - The Alternate Collection Method for Approved Direct Sellers and Approved Distributors</a>.</p>
-</li>
-<li class="cnjnctn-col"><h3>Network sellers</h3>
-<p>Network sellers sell their products directly to consumers through sales representatives who receive commissions for arranging the sales.</p>
-<p>Network sellers who meet certain conditions may apply for approval to use the network sellers method.</p>
-<p>For more information, including how to apply for approval to use the network sellers method, see <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-052/direct-selling-industry-network-sellers-method-network-sellers-sales-representatives.html">GST/HST Info Sheet <span class="nowrap">GI-052</span>, Direct Selling Industry - The Network Sellers Method for Network Sellers and Sales Representatives</a>.</p>
-</li>
-</ul>
 	</div>
 </section>
 
@@ -2925,6 +3075,15 @@
 	</header>
 	<div class="modal-body">
 		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#permanent"></div>
+	</div>
+</section>
+
+<section id="ajax-exempt" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
+	<header class="modal-header">
+		<h2 class="modal-title">Meaning of exempt supplies</h2>
+	</header>
+	<div class="modal-body">
+		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#exempt"></div>
 	</div>
 </section>
 
@@ -3012,39 +3171,6 @@
 </section>	
 
 
-<section id="ajax-include1" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
-	<header class="modal-header">
-		<h2 class="modal-title">What to include and not include</h2>
-	</header>
-	<div class="modal-body">
-		<p>Include the total of all revenues from worldwide taxable supplies from all your businesses and those of your associates.</p>
-			<p><strong>Do not</strong> include:</p>
-<ul>
-<li>Supplies of financial services</li>
-<li>Sales of capital property</li>
-<li>Goodwill from the sale of a business</li>
-</ul>
-	</div>
-</section>
-
-<section id="ajax-include2" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
-	<header class="modal-header">
-		<h2 class="modal-title">What to include and not include</h2>
-	</header>
-	<div class="modal-body">
-		<p>Include in your <strong>gross revenue</strong> amount:</p>
-			<ul>
-				<li>Income from a business, or from an adventure or concern in the nature of trade</li>
-				<li>Gifts and donations</li>
-				<li>Grants, subsidies, forgivable loans and other assistance</li>
-				<li>Property and investment income</li>
-				<li>Any amount that is a capital gain from the disposition of property for income tax purposes</li>
-				<li>Other revenue of any kind whatever during the year, including revenue from both taxable and exempt supplies</li>
-			</ul>
-			<p>You also have to include the gross revenue of your organization as a whole (the legal entity).</p>
-			<p><strong>Do not</strong> include capital loss from the disposition of property for income tax purposes.</p></div>
-</section>
-
 
 <div id="ajax-branch" class=" hidden gc-font-2019">
 
@@ -3066,6 +3192,7 @@
 <dt><a href="">ETA: 148(2)</a></dt><dd> Cease to be a small supplier </dd>
 <dt><a href="">ETA: 148.1</a></dt><dd> Gross revenue small suppliers</dd>
 <dt><a href="">ETA: 169(1)</a></dt><dd> Input tax credit allowed</dd>
+<dt><a href="">ETA: 178.1</a></dt><dd> Definition of a direct and network seller</dd>
 <dt><a href="">ETA: 221(1)</a></dt><dd> Requirement to charge GST/HST on taxable supply </dd>
 <dt><a href="">ETA: 228(2)</a></dt><dd> Requirement to remit net tax payable from GST/HST return by due date</dd>
 <dt><a href="">ETA: 238(1)</a></dt><dd> Requirement to file a return for each reporting period</dd>
