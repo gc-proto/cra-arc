@@ -164,12 +164,13 @@
                                                           	
 	
 	<!--QUESTION 2-->
-<fieldset name="quest" id="question2" class="hidden">	
+<fieldset name="quest" id="question2" class="hidden gc-chckbxrdio">	
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You supply taxable goods or services</big></p>
 		<label class="mrgn-tp-md" for="q2">Which option best describes your situation?</label>
 <p class="small">Meaning of the terms: <a href="#direct-selling" aria-controls="direct-selling" class="overlay-lnk" role="button">direct seller&nbsp;<span class="far fa-question-circle"></span></a> and <a href="#network-selling" aria-controls="network-selling" class="overlay-lnk" role="button">network seller&nbsp;<span class="far fa-question-circle"></span></a></p>
 
-		<select class="form-control required" id="q2" onchange="
+   <ul class="form-control required list-unstyled lst-spcd-2" value="5" id="q2" onchange="
+
 			var q = getElementsByName('quest') ;
 			for (i=3; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -191,39 +192,18 @@
 				document.getElementById('age').value = 'Old'
 				document.getElementById('numOfQuarters').value = 8 ;
 			}
-			else if (q2 == 2) {
-				document.getElementById('R6').classList.remove('hidden');
-			}
-			else if (q2 == 3) {
-				document.getElementById('R12').classList.remove('hidden');
-			}
-			else if (q2 == 4) {
-				document.getElementById('R13').classList.remove('hidden');	
-			}
-			else if (q2 == 6) {
-				document.getElementById('R14').classList.remove('hidden');	
-			}
-			else if (q2 == 7) {
-				document.getElementById('R15').classList.remove('hidden');	
-			}
-			else if (q2 == 8) {
-				document.getElementById('R16').classList.remove('hidden');	
-			}
+			
 		">
-			<option value="5" selected>Make your selection...</option>
-		 <optgroup label="Special situations">	
-			<option value="4">You supply products for a direct seller</option>
-			<option value="6">You supply products for a network seller </option>
-			<option value="2">Your only commercial activity is the sale of real property, other than in the course of a business</option>
-			<option value="7">You are a digital economy business that is not a resident of Canada</option> 	
-			<option value="8">You are a listed financial institution (including a selected listed financial institution)</option> 
-			<option value="3">You are a non-resident business</option>
-			</optgroup>
-			 <optgroup label="Most businesses">
-			<option value="1">Your business has already received revenues - You want to know if you need to register and what is your registration date</option>
-			 <option value="0">Your business has not already received revenues - You want to create scenarios to understand the conditions to register</option>
-			</optgroup>
-		</select>
+
+
+	 <li class="radio"><input type="radio" name="q2" id="q2-true" value="1" data-q2="true" data-rule-required="true"><label for="q1-true">Your business has already received revenues - You want to know if you need to register and what is your registration date</label>
+                                    </li>
+	  
+	    <li class="radio"><input type="radio" name="q2" id="q2-false" value="0" data-q2="false" data-rule-required="true"><label for="q1-true">Your business has not already received revenues - You want to create scenarios to understand the conditions to register</label>
+                                    </li>
+	   
+ </ul>
+		
 	</fieldset>
 	
 	<!--QUESTION 3 - DROPDOWN-->
