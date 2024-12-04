@@ -31,22 +31,6 @@
 </noscript>
 <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2024-09-kejimkujik.min.css"/>
 <style>
-/* General styling */
-/*body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 20px;
-}
-header, footer {
-    text-align: center;
-    margin-bottom: 20px;
-}
-button {
-    margin: 10px 5px;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-}*/
 /* Print-specific styling */
 @media print {
 button, nav, footer, .pagedetails {
@@ -237,8 +221,8 @@ a::after {
       printContent.innerHTML = ""; // Clear previous content
 
       // Include current page content
-      // const currentPageContent = document.getElementById("mainContent").cloneNode(true);
-      // printContent.appendChild(currentPageContent);
+      const currentPageContent = document.getElementById("mainContent").cloneNode(true);
+      printContent.appendChild(currentPageContent);
 
       // Fetch and append content from other pages
       for (const page of pages) {
