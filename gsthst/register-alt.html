@@ -209,8 +209,9 @@
 	<!--QUESTION 3 - DROPDOWN-->
 <fieldset name="quest" id="question3" class="hidden gc-chckbxrdio">
  
-		<label class="mrgn-tp-md" for="q3">Which option best describes your business? </label>
-		<select class="form-control required" id="q3" onchange="
+	<label class="mrgn-tp-md" for="q3">Which option best describes your business? </label>
+	
+ <ul class="list-unstyled lst-spcd-2" onchange="
 			var q = getElementsByName('quest') ;
 			for (i=4; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -260,14 +261,22 @@
 				document.getElementById('R12').classList.remove('hidden');	
 			}	
 		">
-			<option value="5" selected>Make your selection...</option> 
-			<option value="0" name="q3">Sole proprietor, a partnership or a corporation</option>
-			<option value="2" name="q3">Charity or public institution</option>
-			<option value="1" name="q3">Public service body that is not a charity or a public institution</option>
-			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
-			<option value="6" name="q3">Your only commercial activity  is the sale of real property, other than in the course of a business</option>
-			<option value="7" name="q3">You are a non-resident business</option>
-		</select>
+
+
+ <li class="radio"><input type="radio" name="q3" id="q3-true1" value="0" data-q3="true" data-rule-required="true">
+<label for="q3-true1">Sole proprietor, a partnership or a corporation</label></li>
+ <li class="radio"><input type="radio" name="q3" id="q3-true2" value="2" data-q3="true" data-rule-required="true">
+<label for="q3-true2">Charity or public institution</label></li>
+ <li class="radio"><input type="radio" name="q3" id="q3-true3" value="1" data-q3="true" data-rule-required="true">
+<label for="q3-true3">Public service body that is not a charity or a public institution</label></li>
+ <li class="radio"><input type="radio" name="q3" id="q3-true4" value="3" data-q3="true" data-rule-required="true">
+<label for="q3-true4">Taxi operator or a commercial ride-sharing driver</label></li>	
+ <li class="radio"><input type="radio" name="q3" id="q3-true5" value="6" data-q3="true" data-rule-required="true">
+<label for="q3-true5">Sale of real property, other than in the course of a business</label></li>	<li class="radio"><input type="radio" name="q3" id="q3-true6" value="7" data-q3="true" data-rule-required="true">
+<label for="q3-true6">Non-resident business</label></li>		
+			
+	  </ul>		
+			
 	</fieldset>
 	
 	
