@@ -161,16 +161,14 @@
 		
 	</fieldset>
  
-                                                          	
-	
-	<!--QUESTION 2-->
+<!--QUESTION 2-->
 <fieldset name="quest" id="question2" class="hidden gc-chckbxrdio">	
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You supply taxable goods or services</big></p>
-		<label class="mrgn-tp-md" for="q2">Which option best describes your situation?</label>
+<label class="mrgn-tp-md" for="q2">Which option best describes your situation?</label>
 
-   <ul class="form-control required list-unstyled lst-spcd-2" id="q2" onchange="
+  	 <ul class="list-unstyled lst-spcd-2" onchange="
 
-			var q = getElementsByName('quest') ;
+	var q = getElementsByName('quest') ;
 			for (i=3; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
 			
@@ -181,34 +179,34 @@
 			document.getElementById('q3').value = 5;
 		
 			var q2 = document.getElementById('q2').value;
-		//If yes
-			if (q2[0].checked) {	
-	   		
+
+
+	var q2 = getElementsByName('q2') ;
+			if (q2[0].checked){
 				document.getElementById('question3').classList.remove('hidden');
 				document.getElementById('age').value = 'New'
 				document.getElementById('numOfQuarters').value = 4 ;
-			q2[i].checked = false ;			
 			}
 			else if (q2 == 1) {
 				document.getElementById('question3').classList.remove('hidden');
 				document.getElementById('age').value = 'Old'
 				document.getElementById('numOfQuarters').value = 8 ;
-			q2[i].checked = false ;			
 			}
-			
 		">
 
 
-	 <li class="radio"><input type="radio" name="q2" id="q2-true" value="1" data-q2="true" data-rule-required="true"><label for="q2-true">Your business has already received revenues - You want to know if you need to register and what is your registration date</label>
+			 <li class="radio">
+                                        <input type="radio" name="q2" id="q2-true" value="1" data-q2="true" data-rule-required="true">
+                                        <label for="q2-true">Your business has already received revenues</label>
                                     </li>
-	  
-	    <li class="radio"><input type="radio" name="q2" id="q2-false" value="0" data-q2="false" data-rule-required="true"><label for="q2-false">Your business has not already received revenues - You want to create scenarios to understand the conditions to register</label>
+			 <li class="radio">
+                                        <input type="radio" name="q2" id="q2-false" value="0" data-q2="false" data-rule-required="true">
+                                        <label for="q2-false">Your business has not already received revenues</label>
                                     </li>
-	   
- </ul>
-		
+			  </ul>
 	</fieldset>
-	
+
+        
 	<!--QUESTION 3 - DROPDOWN-->
 <fieldset name="quest" id="question3" class="hidden">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your business is not part of the special situations - Most businesses</big></p>
