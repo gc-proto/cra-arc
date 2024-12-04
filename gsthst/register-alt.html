@@ -170,7 +170,8 @@
 <li class="cnjnctn-col"> If your business has <strong>not</strong> already received revenues, continue to create scenarios to understand the conditions to register for a GST/HST program account.</li>
 </ul>
 
-		<select class="form-control required" id="q2" onchange="
+ <ul class="list-unstyled lst-spcd-2" onchange="
+		
 			var q = getElementsByName('quest') ;
 			for (i=3; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
@@ -194,11 +195,19 @@
 							
 			}
 		">
-			<option value="5" selected>Make your selection...</option>
-			<option value="1">Your business has already received revenues</option>
-			 <option value="0">Your business has not already received revenues</option>
+
+			 <li class="radio">
+                                        <input type="radio" name="q2" id="q2-true" value="1" data-q2="true" data-rule-required="true">
+                                        <label for="q2-true">Your business has already received revenues</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="q2" id="q2-false" value="0" data-q2="false" data-rule-required="true">
+                                        <label for="q2-false">Your business has not already received revenues</label>
+                                    </li>
+			  </ul>
+
 			
-		</select>
+		
 	</fieldset>
 	
 	<!--QUESTION 3 - DROPDOWN-->
