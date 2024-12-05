@@ -162,108 +162,96 @@
                                                           	
 	
 	<!--QUESTION 2-->
-<fieldset name="quest" id="question2" class="hidden">	
-  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You supply taxable goods or services</big></p>
-		<label class="mrgn-tp-sm" for="q2">Which option best describes your situation?</label>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm small">
-<li class="cnjnctn-col"> If your business has <strong>already received revenues</strong>, continue to find out if you need to register for a GST/HST account, what is your registration date and when to charge the GST/HST.</li>
-<li class="cnjnctn-col"> If your business has <strong>not</strong> already received revenues, continue to create scenarios to understand the conditions to register for a GST/HST account.</li>
+<fieldset name="quest" id="question2" class="hidden">
+<p class="h5 mrgn-tp-md text-info"><span class="text-muted">You indicated that </span><br><big>You supply taxable goods or services</big></p>
+<label class="mrgn-tp-sm">Which option best describes your situation?</label>
+<ul class="list-unstyled lst-spcd-2" onchange="
+       var q = document.getElementsByName('quest');
+       for (i = 3; i <= q.length; i++)
+           document.getElementById('question' + i).classList.add('hidden');
+       var results = document.getElementsByName('results');
+       for (i = 1; i <= results.length; i++)
+           document.getElementById('R' + i).classList.add('hidden');
+       var q2 = document.querySelector('input[name=\"q2\"]:checked').value;
+       if (q2 == '0') {
+           document.getElementById('question3').classList.remove('hidden');
+           document.getElementById('age').value = 'New';
+           document.getElementById('numOfQuarters').value = 4;
+       } else if (q2 == '1') {
+           document.getElementById('question3').classList.remove('hidden');
+           document.getElementById('age').value = 'Old';
+           document.getElementById('numOfQuarters').value = 8;
+       }
+   ">
+<li class="radio">
+<input type="radio" name="q2" id="q2-received" value="1">
+<label for="q2-received">Your business has already received revenues</label>
+</li>
+<li class="radio">
+<input type="radio" name="q2" id="q2-not-received" value="0">
+<label for="q2-not-received">Your business has not already received revenues</label>
+</li>
 </ul>
+</fieldset>
 
-		<select class="form-control required" id="q2" onchange="
-			var q = getElementsByName('quest') ;
-			for (i=3; i<=q.length; i++)
-				document.getElementById('question'+i).classList.add('hidden');
-			
-			var results = getElementsByName('results');
-			for (i=1; i<=results.length; i++)
-				document.getElementById('R'+i).classList.add('hidden');			
-			
-			document.getElementById('q3').value = 5;
-			
-			var q2 = document.getElementById('q2').value;
-			if (q2 == 0) {
-				document.getElementById('question3').classList.remove('hidden');
-				document.getElementById('age').value = 'New'
-				document.getElementById('numOfQuarters').value = 4 ;
-			}
-			else if (q2 == 1) {
-				document.getElementById('question3').classList.remove('hidden');
-				document.getElementById('age').value = 'Old'
-				document.getElementById('numOfQuarters').value = 8 ;
-							
-			}
-		">
-			<option value="5" selected>Make your selection...</option>
-			<option value="1">Your business has already received revenues</option>
-			 <option value="0">Your business has not already received revenues</option>
-			
-		</select>
-	</fieldset>
+
+
 	
-	<!--QUESTION 3 - DROPDOWN-->
+	<!-- QUESTION 3 -->
 <fieldset name="quest" id="question3" class="hidden">
- 
-		<label class="mrgn-tp-md" for="q3">Which option best describes your business? </label>
-		<select class="form-control required" id="q3" onchange="
-			var q = getElementsByName('quest') ;
-			for (i=4; i<=q.length; i++)
-				document.getElementById('question'+i).classList.add('hidden');
-			
-			var results = getElementsByName('results');
-			for (i=1; i<=results.length; i++)
-				document.getElementById('R'+i).classList.add('hidden');
-			
-			var q3 = document.getElementById('q3').value ;
-			if (q3 == 0) {
-				
-				for (i=0; i<q4.length; i++)
-				
-				document.getElementById('amountString').value = '30,000' ;
-				document.getElementById('amount').value = 30000;
-				document.getElementById('showFields').click() ;	
-							
-			}
-			
-			else if (q3 == 1) {
-				document.getElementById('question5').classList.remove('hidden');
-				var q5 = document.getElementsByName('q5');
-				for (i=0; i<q5.length; i++)
-					q5[i].checked = false ;	
-				document.getElementById('amountString').value = '50,000' ;				
-			}	
-			
-			else if (q3 == 2) {
-				document.getElementById('question6').classList.remove('hidden');
-				var q6 = document.getElementsByName('q6');
-				for (i=0; i<q6.length; i++)
-					q6[i].checked = false ;
-				document.getElementById('amountString').value = '50,000' ;
-			}
-			
-			else if (q3 == 3) {
-				document.getElementById('question11').classList.remove('hidden');
-				var q11 = document.getElementsByName('q11');
-				for (i=0; i<q11.length; i++)
-					q11[i].checked = false ;
-
-			}
-			else if (q3 == 6) {
-				document.getElementById('R6').classList.remove('hidden');
-			}
-			else if (q3 == 7) {
-				document.getElementById('R12').classList.remove('hidden');	
-			}	
-		">
-			<option value="5" selected>Make your selection...</option> 
-			<option value="0" name="q3">Sole proprietor, a partnership or a corporation</option>
-			<option value="2" name="q3">Charity or public institution</option>
-			<option value="1" name="q3">Public service body that is not a charity or a public institution</option>
-			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
-			<option value="6" name="q3">Your only commercial activity  is the sale of real property, other than in the course of a business</option>
-			<option value="7" name="q3">You are a non-resident business</option>
-		</select>
-	</fieldset>
+<label class="mrgn-tp-md">Which option best describes your business?</label>
+<ul class="list-unstyled lst-spcd-2" onchange="
+       var q = document.getElementsByName('quest');
+       for (i = 4; i <= q.length; i++)
+           document.getElementById('question' + i).classList.add('hidden');
+       var results = document.getElementsByName('results');
+       for (i = 1; i <= results.length; i++)
+           document.getElementById('R' + i).classList.add('hidden');
+       var q3 = document.querySelector('input[name=\"q3\"]:checked').value;
+       if (q3 == '0') {
+           document.getElementById('amountString').value = '30,000';
+           document.getElementById('amount').value = 30000;
+           document.getElementById('showFields').click();
+       } else if (q3 == '1') {
+           document.getElementById('question5').classList.remove('hidden');
+           document.getElementById('amountString').value = '50,000';
+       } else if (q3 == '2') {
+           document.getElementById('question6').classList.remove('hidden');
+           document.getElementById('amountString').value = '50,000';
+       } else if (q3 == '3') {
+           document.getElementById('question11').classList.remove('hidden');
+       } else if (q3 == '6') {
+           document.getElementById('R6').classList.remove('hidden');
+       } else if (q3 == '7') {
+           document.getElementById('R12').classList.remove('hidden');
+       }
+   ">
+<li class="radio">
+<input type="radio" name="q3" id="q3-sole" value="0">
+<label for="q3-sole">Sole proprietor, a partnership or a corporation</label>
+</li>
+<li class="radio">
+<input type="radio" name="q3" id="q3-public-service" value="1">
+<label for="q3-public-service">Public service body that is not a charity or a public institution</label>
+</li>
+<li class="radio">
+<input type="radio" name="q3" id="q3-charity" value="2">
+<label for="q3-charity">Charity or public institution</label>
+</li>
+<li class="radio">
+<input type="radio" name="q3" id="q3-taxi" value="3">
+<label for="q3-taxi">Taxi operator or a commercial ride-sharing driver</label>
+</li>
+<li class="radio">
+<input type="radio" name="q3" id="q3-real-property" value="6">
+<label for="q3-real-property">Sale of real property is the only commercial activity, other than in the course of a business</label>
+</li>
+<li class="radio">
+<input type="radio" name="q3" id="q3-non-resident" value="7">
+<label for="q3-non-resident">Non-resident business</label>
+</li>
+</ul>
+</fieldset>
 	
 	
 	<!--QUESTION 4 -->
