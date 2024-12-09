@@ -4064,7 +4064,7 @@ function startChatSession() {
 
 </SCRIPT>
 <!-- chatbot javascript ends -->
-	<script>
+	<!--<script>
 $('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
          
 
@@ -4080,6 +4080,31 @@ $('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
             
             
 	});
-</script>
+</script>//-->
+	      <script>
+$('span[data-json-replace]').on("wb-contentupdated", function (event, data) {
+ let obj;
+    switch (wb.lang) {
+    case "en":
+    obj = {
+        "--": ["#waittime-lbx", "Not available (JSON)"],
+        "queueFull": ["#queuefull-lbx", "Calls re-routed"],
+        "lineClosed": ["#lineclosed-lbx", "Line closed"]
+      };
+      break;
+    case "fr":
+      obj = {
+        "--": ["#waittime-lbx", "Not available (JSON) - FR"],
+        "queueFull": ["#queuefull-lbx", "Calls re-routed - FR"],
+        "lineClosed": ["#lineclosed-lbx", "Line closed - FR"]
+      };
+  }
+  const key = $(this).text();
+  if (key in obj) {
+    $(this).replaceWith('<a href="' + obj[key][0] + '" class="wb-lbx">' + obj[key][1] + '</a>');
+    $(".wb-lbx").trigger("wb-init.wb-lbx");
+  }
+});
+	   </script>
    </body>
 </html>
