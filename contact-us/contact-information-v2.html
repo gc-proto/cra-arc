@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html class="no-js" dir="ltr" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html class="no-js" dir="ltr" lang="fr" xmlns="http://www.w3.org/1999/xhtml">
    <head>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta charset="utf-8"/>
@@ -4039,7 +4039,14 @@ $('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
 </script>//-->
 	   <script>
 $('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
-const obj = {"--" : ["#waittime-lbx", "Not available (JSON)"], "Queue full": ["#queuefull-lblx", "Calls re-routed"], "Closed": ["#lineclosed-lbx", "Line closed"]};   
+    switch (wb.lang){
+        case "en": 
+          const obj = {"--" : ["#waittime-lbx", "Not available (JSON)"], "Queue full": ["#queuefull-lblx", "Calls re-routed"], "Closed": ["#lineclosed-lbx", "Line closed"]};   
+            break;
+        case "fr":
+       const obj = {"--" : ["#waittime-lbx", "Not available (JSON) - FR"], "Queue full": ["#queuefull-lblx", "Calls re-routed -FR"], "Closed": ["#lineclosed-lbx", "Line closed -FR"]};   
+    }     
+	
 
 const key = $(this).text();
 	
