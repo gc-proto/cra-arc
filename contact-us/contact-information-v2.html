@@ -4038,26 +4038,29 @@ $('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
         
 </script>//-->
 	   <script>
-$('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
-    switch (wb.lang){
-        case "en": 
-          var obj = {"--" : ["#waittime-lbx", "Not available (JSON)"], "Queue full": ["#queuefull-lblx", "Calls re-routed"], "Closed": ["#lineclosed-lbx", "Line closed"]};   
-            break;
-        case "fr":
-       var obj = {"--" : ["#waittime-lbx", "Not available (JSON) - FR"], "Queue full": ["#queuefull-lblx", "Calls re-routed -FR"], "Closed": ["#lineclosed-lbx", "Line closed -FR"]};   
-    }     
-	
-
-const key = $(this).text();
-	
-	if (key in obj) { $(this).replaceWith('<a href="' + obj[key][0] + '" class="wb-lbx">' + obj[key][1] + '</a>');
-					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
-					       };
-
-          
-            
-            
-	});	   
+$('span[data-json-replace]').on("wb-contentupdated", function (event, data) {
+ let obj;
+    switch (wb.lang) {
+    case "en":
+    obj = {
+        "--": ["#waittime-lbx", "Not available (JSON)"],
+        "Queue full": ["#queuefull-lblx", "Calls re-routed"],
+        "Closed": ["#lineclosed-lbx", "Line closed"]
+      };
+      break;
+    case "fr":
+      obj = {
+        "--": ["#waittime-lbx", "Not available (JSON) - FR"],
+        "Queue full": ["#queuefull-lblx", "Calls re-routed -FR"],
+        "Closed": ["#lineclosed-lbx", "Line closed -FR"]
+      };
+  }
+  const key = $(this).text();
+  if (key in obj) {
+    $(this).replaceWith('<a href="' + obj[key][0] + '" class="wb-lbx">' + obj[key][1] + '</a>');
+    $(".wb-lbx").trigger("wb-init.wb-lbx");
+  }
+});
 	   </script>
    </body>
 </html>
