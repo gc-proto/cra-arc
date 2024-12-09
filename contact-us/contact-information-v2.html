@@ -4039,17 +4039,14 @@ $('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
 </script>//-->
 	   <script>
 $('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
-         
-
-	if ($(this).text() == '--') { $(this).replaceWith('<a href="#waittime-lbx" class="wb-lbx">Not available (JSON)</a>');
+const obj = {"--" : ["#waittime-lbx", "Not available (JSON)"], "Queue full": ["#queuefull-lblx", "Calls re-routed"], "Closed": ["#lineclosed-lbx", "Line closed"]};   
+function getValueFromKey()  {
+const key = $(this).text();
+	
+	if (key in obj) { $(this).replaceWith('<a href="' + obj.key[0] + '" class="wb-lbx">' + obj.key[1] + '</a>');
 					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
 					       } 
-           if ($(this).text() == 'Queue full') { $(this).replaceWith('<a href="#queuefull-lbx" class="wb-lbx">Calls re-routed</a>');
-					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
-					       } 
-            if ($(this).text() == 'Closed') { $(this).replaceWith('<a href="#lineclosed-lbx" class="wb-lbx">Calls re-routed</a>');
-					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
-					       } 
+          
             
             
 	});	   
