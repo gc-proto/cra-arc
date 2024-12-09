@@ -3533,6 +3533,10 @@ background-color: #26384a !important
         </dl>
         <p>If you use any other operator-assisted relay service, call our regular telephone numbers on this page instead of the TTY or Canada VRS numbers.</p>
     </details>
+	<h2>Test wait time</h2>
+<p><div class="small nowrap"><strong>Wait time: </strong><span data-json-replace="#[waittime]/test_en/value"><a class="wb-lbx" role="button" href="#waittime-lbx"><span class="wb-inv">Wait times are</span> Not available</a></span></span></div></p>
+<p><div class="small nowrap"><strong>Wait time: </strong><span data-json-replace="#[waittime]/test_fr/value"><a class="wb-lbx" role="button" href="#waittime-lbx"><span class="wb-inv">Wait times are</span> Not available</a></span></span></div></p>
+	
     <h2 class="h3">Special circumstances</h2>
     <ul>
         <li><a href="/en/revenue-agency/services/tax/representative-authorization.html">Contacting us on someone else's behalf</a></li>
@@ -3610,21 +3614,39 @@ background-color: #26384a !important
 
 </div>
 <!--Wait time modal//-->
-	   <section id="waittime-lbx" class="mfp-hide modal-dialog modal-content overlay-def">
-<header class="modal-header">
-<h2 class="modal-title">Wait times are not available</h2>
-</header>
-<div class="modal-body">
-<p>Estimated wait times are temporarily unavailable due to one of these reasons: </p>
-<ul>
-  <li>All of our representatives are busy and calls are being redirected to automated services</li>
-  <li>Technical difficulties</li>
-  <li>Phone lines are closed</li>
-</ul>
-<p class="nojs-show">To see the wait times, JavaScript must be enabled on your computer. If you see this message during regular operating hours, the phone lines may be open. </p>
-</div>
-</section>   
-
+	 <section id="waittime-lbx" class="mfp-hide modal-dialog modal-content overlay-def">
+    <header class="modal-header">
+        <h2 class="modal-title">Wait times are not available</h2>
+    </header>
+    <div class="modal-body">
+        <p>Estimated wait times are temporarily unavailable due to one of these reasons:</p>
+        <ul>
+            <li>Technical difficulties</li>
+            <li>Phone lines are closed</li>
+        </ul>
+        <p class="nojs-show mrgn-tp-md">To see the wait times, <strong>JavaScript must be enabled</strong> on your computer. If you see this message during regular operating hours, the phone lines may be open.</p>
+    </div>
+</section>
+<section id="queuefull-lbx" class="mfp-hide modal-dialog modal-content overlay-def">
+    <header class="modal-header">
+        <h2 class="modal-title">Calls are being re-directed</h2>
+    </header>
+    <div class="modal-body">
+        <p>Estimated wait times are temporarily unavailable due to all of our representatives are busy.</p>
+	    <p>Calls are being redirected to automated services.</p>
+       
+    </div>
+</section>	      
+<section id="lineclosed-lbx" class="mfp-hide modal-dialog modal-content overlay-def">
+    <header class="modal-header">
+        <h2 class="modal-title">This call line is closed</h2>
+    </header>
+    <div class="modal-body">
+        <p>Estimated wait times are unavailable because the phone line is closed.</p>
+	    <p>Please call back during regular hours.</p>
+       
+    </div>
+</section>
 	      
 <div class="mwsgeneric-base-html parbase section">
 
@@ -4042,7 +4064,21 @@ function startChatSession() {
 
 </SCRIPT>
 <!-- chatbot javascript ends -->
+$('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
+         
 
+	if ($(this).text() == '--') { $(this).replaceWith('<a href="#waittime-lbx" class="wb-lbx">Not available (JSON)</a>');
+					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
+					       } 
+           if ($(this).text() == 'Queue full') { $(this).replaceWith('<a href="#queuefull-lbx" class="wb-lbx">Calls re-routed</a>');
+					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
+					       } 
+            if ($(this).text() == 'Closed') { $(this).replaceWith('<a href="#lineclosed-lbx" class="wb-lbx">Calls re-routed</a>');
+					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
+					       } 
+            
+            
+	});
 
    </body>
 </html>
