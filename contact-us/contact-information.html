@@ -3630,7 +3630,7 @@ background-color: #26384a !important
         <p class="nojs-show mrgn-tp-md">To see the wait times, <strong>JavaScript must be enabled</strong> on your computer. If you see this message during regular operating hours, the phone lines may be open.</p>
     </div>
 </section>
-<section id="queuefull-lbx" class="mfp-hide modal-dialog modal-content overlay-def">
+<section id="softemergency-lbx" class="mfp-hide modal-dialog modal-content overlay-def">
     <header class="modal-header">
         <h2 class="modal-title">Calls are being re-directed</h2>
     </header>
@@ -4074,7 +4074,7 @@ $('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
 	if ($(this).text() == '--') { $(this).replaceWith('<a href="#waittime-lbx" class="wb-lbx">Not available (JSON)</a>');
 					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
 					       } 
-           if ($(this).text() == 'Queue full') { $(this).replaceWith('<a href="#queuefull-lbx" class="wb-lbx">Calls re-routed</a>');
+           if ($(this).text() == 'Queue full') { $(this).replaceWith('<a href="#softemergency-lbx" class="wb-lbx">Calls re-routed</a>');
 					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
 					       } 
             if ($(this).text() == 'Closed') { $(this).replaceWith('<a href="#lineclosed-lbx" class="wb-lbx">Line Closed</a>');
@@ -4091,14 +4091,14 @@ $('span[data-json-replace]').on("wb-contentupdated", function (event, data) {
     case "en":
     obj = {
         "--": ["#waittime-lbx", "Not available (JSON)"],
-        "queueFull": ["#queuefull-lbx", "Calls re-routed"],
+        "softEmergency": ["#softemergency-lbx", "Calls re-routed"],
         "lineClosed": ["#lineclosed-lbx", "Line closed"]
       };
       break;
     case "fr":
       obj = {
         "--": ["#waittime-lbx", "Not available (JSON) - FR"],
-        "queueFull": ["#queuefull-lbx", "Calls re-routed - FR"],
+        "softEmergency": ["#softemergency-lbx", "Calls re-routed - FR"],
         "lineClosed": ["#lineclosed-lbx", "Line closed - FR"]
       };
   }
