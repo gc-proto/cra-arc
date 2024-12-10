@@ -6,7 +6,7 @@ Project to optimize the content related to filing GST/HST returns.
 
 ## Important links
 
-- [\[GST COP\] Scoped inventory page \(github\)](https://test.canada.ca/cops/gst-hst-business/index.html)
+- [\[GST COP\] Scoped inventory page \(github\)](https://test.canada.ca/cra-arc/cops/gst-hst-business/index.html)
 - [Github.dev](https://github.dev/cra-proto/gst-hst-business/blob/main/)
 - [Github Canada.ca page template \(Jekyll\)](https://github.com/cra-proto/gst-hst-business/blob/main/templates/page_template_jekyll-en.html)
 - [Github Canada.ca page template \(CDTS\)](https://github.com/cra-proto/gst-hst-business/blob/main/templates/page_template-e.html)
