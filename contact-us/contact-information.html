@@ -4065,37 +4065,22 @@ function startChatSession() {
 
 </SCRIPT>
 <!-- chatbot javascript ends -->
-	<!--<script>
-$('span[data-json-replace]').on( "wb-contentupdated", function( event, data ){
-         
 
-	if ($(this).text() == '--') { $(this).replaceWith('<a href="#waittime-lbx" class="wb-lbx">Not available (JSON)</a>');
-					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
-					       } 
-           if ($(this).text() == 'Queue full') { $(this).replaceWith('<a href="#softemergency-lbx" class="wb-lbx">Calls re-routed</a>');
-					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
-					       } 
-            if ($(this).text() == 'Closed') { $(this).replaceWith('<a href="#lineclosed-lbx" class="wb-lbx">Line Closed</a>');
-					       $( ".wb-lbx" ).trigger( "wb-init.wb-lbx" );
-					       } 
-            
-            
-	});
-</script>//-->
+	<!--Custom wait time lightboxes script starts-->
 	      <script>
 $('span[data-json-replace]').on("wb-contentupdated", function (event, data) {
  let obj;
     switch (wb.lang) {
     case "en":
     obj = {
-        "--": ["#waittime-lbx", "Not available (JSON)"],
+        "--": ["#waittime-lbx", "Not available"],
         "softEmergency": ["#softemergency-lbx", "Calls re-routed"],
         "lineClosed": ["#lineclosed-lbx", "Line closed"]
       };
       break;
     case "fr":
       obj = {
-        "--": ["#waittime-lbx", "Not available (JSON) - FR"],
+        "--": ["#waittime-lbx", "Temps d’attente"],
         "softEmergency": ["#softemergency-lbx", "Calls re-routed - FR"],
         "lineClosed": ["#lineclosed-lbx", "Line closed - FR"]
       };
@@ -4107,5 +4092,6 @@ $('span[data-json-replace]').on("wb-contentupdated", function (event, data) {
   }
 });
 	   </script>
+<!--Custom wait time lightboxes script ends-->	   
    </body>
 </html>
