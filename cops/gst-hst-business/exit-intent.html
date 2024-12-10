@@ -1,0 +1,43 @@
+---
+title: "This page is outside the test site"
+description: ""
+subject: ""
+dateModified: 2024-10-31
+dateIssued: 2024-10-31
+nositesearch: true
+nomenu: true
+breadcrumbs: false
+feedback: false
+share: false
+noFooterContextual: true
+noFooterCorporate: true
+noFooterMain: true
+---
+
+<!-- <p>This page is outside the test site</p> -->
+<p>Please press the back button to return to the previous page.</p>
+<ul class="list-inline">
+    <li><button id="back" class="btn btn-call-to-action btn-lg" type="button">Go Back!</button></li>
+    <li><button id="leave" class="wb-inv btn btn-link btn-lg" type="button">Leave the test site</button></li>
+</ul>
+<script>
+    let getURI = function getURI() {
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        return params.uri;
+    };
+    document.getElementById("back").addEventListener("click", () => {
+        history.back();
+    });
+    document.getElementById("leave").addEventListener("click", () => {
+        let destinationURI = getURI();
+        
+        if (destinationURI) {
+            window.location = destinationURI;
+        }
+    });
+    if (getURI()) {
+        document.getElementById("leave").classList.remove("wb-inv");
+    }
+</script>
