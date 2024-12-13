@@ -88,7 +88,7 @@
 <div class="wb-tabs mrgn-tp-lg ignore-session">
     <div class="tabpanels">
       <details><summary> Answer interactive questions</summary>
- <p id="tab1">Use this interactive content to <strong>estimate</strong> if: </p>
+ <p id="tab1">Use the interactive content to find out if: </p>
 <ol>
 <li>You have to register and when to register</li>
 <li>When to start charging the GST/HST</li>
@@ -350,8 +350,9 @@
 	<p>You can <strong>create scenarios</strong> based on your <strong>estimated amounts</strong>. The results provided will help you understand when you may need to register.</p>
 </div>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters </label>	<br>
+<details><summary>Amounts to include and exclude</summary>
 <div data-ajax-replace="#ajax-include1" class="small mrgn-lft-xl"></div>
-<div data-ajax-replace="#ajax-include3" class="small mrgn-lft-xl"></div>
+</details>
 		<br>
 			<div class="row mrgn-bttm-sm">
 				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_New" name="q12_date_New" id="q12_date0_New"></label>
@@ -557,9 +558,10 @@
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are on your second fiscal year of operation</big></p>
 <p>You need to determine if you are a small supplier under <strong>either</strong> the $250,000 gross revenue test or the $50,000 taxable supplies test.</p>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span> Enter your gross revenue from your first fiscal year of operation (if more than $250,000, you will need use the $50,000 taxable supplies test) </label>
-		
+
+<details><summary>Amounts to include and exclude</summary>
 <div data-ajax-replace="#ajax-include2" class="small mrgn-lft-xl"></div>
-		
+</details>		
 		
 		<div class="row mrgn-bttm-md mrgn-lft-md">
 			<label class="col-sm-12 mrgn-tp-sm text-left hidden-xs" for="q9">First fiscal year</label>
@@ -617,7 +619,9 @@
 <p>You need to determine if you are a small supplier under <strong>either</strong> the $250,000 gross revenue test or the $50,000 taxable supplies test.</p>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span>  Enter your gross revenue for each of your two previous fiscal years</label>
 		
-	<div data-ajax-replace="#ajax-include2" class="small mrgn-lft-xl"></div>
+	<details><summary>Amounts to include and exclude</summary>
+<div data-ajax-replace="#ajax-include2" class="small mrgn-lft-xl"></div>
+</details>		
 
 		
 		<div class="row mrgn-bttm-md mrgn-lft-md">
@@ -747,8 +751,9 @@
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span> Enter your actual revenue from your taxable sales, leases and other supplies for these 8 recent quarters </label>
 <label class="wb-inv">Enter your the revenue from your taxable sales, leases and other supplies for recent 8 quarters. Navigate forward through the following fields by using Tab or backward using Shift + Tab.</label>		
 
+<details><summary>Amounts to include and exclude</summary>
 <div data-ajax-replace="#ajax-include1" class="small mrgn-lft-xl"></div>
-<div data-ajax-replace="#ajax-include3" class="small mrgn-lft-xl"></div>
+</details>
 <br>
 		<div class="row mrgn-bttm-sm">
 			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_Old" name="q12_date_Old" id="q12_date0_Old"></label>
@@ -1463,10 +1468,10 @@
 			}
 			document.getElementById('R8').classList.remove('hidden');	
 			document.getElementById('chargeDate1').innerHTML = midDate ;
-			document.getElementById('plus29').innerHTML = '29 days after' ;
-			document.getElementById('plus291').innerHTML = 'If your actual sales match the amounts you entered,' ;
-			document.getElementById('plus2911').innerHTML = 'If your actual sales match the amounts you entered,' ;
-			document.getElementById('plus29111').innerHTML = 'If your actual sales match the amounts you entered,' ;
+			document.getElementById('plus29').innerHTML = '' ;
+			document.getElementById('plus291').innerHTML = 'If your actual sales match the amounts you entered:' ;
+			document.getElementById('plus2911').innerHTML = 'If your actual sales match the amounts you entered:' ;
+			document.getElementById('plus29111').innerHTML = 'If your actual sales match the amounts you entered:' ;
 			
 			
 			
@@ -1542,7 +1547,7 @@
 				}
 				document.getElementById('R8').classList.remove('hidden');	
 				document.getElementById('chargeDate1').innerHTML = midDate ;
-				document.getElementById('plus29').innerHTML = ' 29 days after' ;
+				document.getElementById('plus29').innerHTML = ' ' ;
 				document.getElementById('plus291').innerHTML = ' 29 days after' ;
 				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
 				document.getElementById('chargeDate11').innerHTML = end;
@@ -1675,7 +1680,7 @@
 </li>
 <li>
 <div data-ajax-replace="#ajax-reg"></div>
-<div data-ajax-replace="#ajax-reg-vol"></div>
+<div data-ajax-replace="#ajax-confirm-smallyes"></div>
 </li>
 <li>
 <div data-ajax-replace="#ajax-charge"></div>
@@ -1731,22 +1736,20 @@
 	<h3><small>Based on the information you entered</small><br>R7 You may not have to register for a GST/HST account number</h3>
 <hr>
 <ol class="lst-stps ld-zr stps-strpd">
-<li><h3>Conditions of a small supplier</h3>
+<li><h3>Conditions for a a small supplier</h3>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-confirm-small-most"></div>
+<div data-ajax-replace="#ajax-confirm-smallyes" class="mrgn-tp-md"></div>
 </li>
 <li class="cnjnctn-col">
-<p><strong>If your actual sales match your estimates</strong>, you <strong>may not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed the <strong>$30,000</strong> small supplier threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p> 
-<div id="ajax-reg-exceed1">
-<h5 class="mrgn-tp-lg"><span class="fas fa-exclamation-triangle fa-lg text-info"></span>&nbsp;&nbsp; What if you exceed the small supplier threshold in a single calendar quarter</h5> 
+<p><strong>If your actual sales match your estimates</strong>:</p> 
+<p>You <strong>may not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed the <strong>$30,000</strong> small supplier threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p> 
+<div id="ajax-reg-exceed1" class="mrgn-tp-lg">
+<h4 class="mrgn-tp-lg"><span class="fas fa-exclamation-triangle fa-lg text-info"></span>&nbsp; What if you exceed the small supplier threshold in a single calendar quarter</h4> 
 <p>If you exceed the small supplier threshold in a <strong>single calendar quarter</strong>, you would have to register and you have to charge the GST/HST starting on the date of the taxable supply that made you exceed the small supplier <strong>threshold</strong>.</p></div>
 </li>
 </ul>
-</li>
-<li>	
-<div data-ajax-replace="#ajax-reg"></div>
-<div data-ajax-replace="#ajax-reg-vol"></div>
 </li>
 <li>
 <div data-ajax-replace="#ajax-charge"></div>
@@ -1760,38 +1763,42 @@
 <hr>
 <ol class="lst-stps ld-zr stps-strpd">
 <li><div id="ajax-date-result">
-<h3>Conditions of a small supplier</h3>
+<h3>Mandatory registration if you are no longer a small supplier</h3>
  </div>
-<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-reg-char1a-4"></div>
-</li>
-<li class="cnjnctn-col-50">
-<p><label id="plus291"></label> the effective date of registration <span id="have1"></span> <strong>no later than</strong> <label id="chargeDate1">.</label>.</p>
-</li>
-</ul>
 </li>
 <li>
 <div data-ajax-replace="#ajax-reg"></div>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
-<div data-ajax-replace="#ajax-reg-char1all"></div>
+<div data-ajax-replace="#ajax-reg-most-effective"></div>
 </li>
-<li class="cnjnctn-col-50">
-<p><label id="plus2911"></label> you <span id="have2"></span> to register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate11"></label>.</p>
+<li class="cnjnctn-col">
+<p class="mrgn-tp-lg"><label id="plus291"></label> The effective date of registration <span id="have1"></span> <strong>no later than</strong> <label id="chargeDate1">.</label>.</p>
+</li>
+
+</ul>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm mrgn-tp-lg">
+<li class="cnjnctn-col">
+<div data-ajax-replace="#ajax-reg-most-application"></div>
+</li>
+<li class="cnjnctn-col">
+<p class="mrgn-tp-lg"><label id="plus2911"></label> You <span id="have2"></span> to register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate11"></label>.</p>
 </li>
 </ul>
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
 </li>
 <li>
 <div data-ajax-replace="#ajax-charge"></div> 
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
-<div data-ajax-replace="#ajax-charge-char1a"></div>
+<div data-ajax-replace="#ajax-charge-gen"></div>
 </li>
-<li class="cnjnctn-col-50">
-<p><label id="plus29111"></label> you <span id="have3"></span> charge the GST/HST <span id="differenceAB"></span> <strong>no later than</strong> <label id="chargeDate111"></label>.</p>
+<li class="cnjnctn-col">
+<p><label id="plus29111"></label> You <span id="have3"></span> charge the GST/HST <span id="differenceAB"></span> <strong>no later than</strong> <label id="chargeDate111"></label>.</p>
 </li>
 </ul>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
 </li>
 </ol>
 </section>
@@ -1800,37 +1807,47 @@
 	<h3><small>Based on the information you entered</small><br>R9 You <span id="tense151"></span> to register for a GST/HST account number</h3>
 <hr>
 <ol class="lst-stps ld-zr stps-strpd">
-<li>
-<div data-ajax-replace="#ajax-date-result"></div>
-<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col">
+<li><div data-ajax-replace="#ajax-date-result"></div>
 <div data-ajax-replace="#ajax-reg-char1b-1"></div>
 </li>
-<li class="cnjnctn-col-50">
-<p><strong>If your actual sales match the amounts you entered</strong>, the effective date of registration <span id="tense153"></span> <label id="chargeDate0"></label>. </p>
-</li>
-</ul>
-</li>
+
 <li>
 <div data-ajax-replace="#ajax-reg"></div>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
-<div data-ajax-replace="#ajax-reg-char1b"></div>
+<div data-ajax-replace="#ajax-reg-most-effective"></div>
 </li>
-<li class="cnjnctn-col-50">
-<p><strong>If your actual sales match the amounts you entered</strong>, you <span id="tense154"></span> to register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate01"></label>.</p>
+<li class="cnjnctn-col">
+<p class="mrgn-tp-lg"><strong>If your actual sales match the amounts you entered</strong>: </p>
+<p>Your effective date of registration <span id="tense153"></span> <label id="chargeDate0"></label>. </p>
 </li>
-</ul></li>
+
+</ul>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm mrgn-tp-lg">
+<li class="cnjnctn-col">
+<div data-ajax-replace="#ajax-reg-most-application"></div>
+</li>
+<li class="cnjnctn-col">
+<p  class="mrgn-tp-lg"><strong>If your actual sales match the amounts you entered</strong>: </p>
+<p>You <span id="tense154"></span> to register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate01"></label>.</p>
+</li>
+</ul>
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
+</li>
+
 <li>
 <div data-ajax-replace="#ajax-charge"></div> 
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
-<div data-ajax-replace="#ajax-charge-char1b"></div>
+<div data-ajax-replace="#ajax-charge-gen"></div>
 </li>
-<li class="cnjnctn-col-50">
-<p><strong>If your actual sales match the amounts you entered</strong>, you <span id="tense155"></span> to charge the GST/HST <span id="differenceAB"></span> starting <label id="chargeDate011"></label>, including on the sale that made you exceed the small supplier threshold.</p>
+<li class="cnjnctn-col">
+<p><strong>If your actual sales match the amounts you entered</strong>: </p>
+<p>You <span id="tense155"></span> to charge the GST/HST on taxable supplies starting <span id="differenceAB"></span> <label id="chargeDate011"></label>, including on the <strong>sale that made you exceed</strong> the small supplier threshold.</p>
 </li>
-</ul></li>
+</ul>
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+</li>
 </ol>
  <strong><span id="plus29"></span><label id="plus291"></label></strong> 
 </section>
@@ -1847,14 +1864,11 @@
 <div data-ajax-replace="#ajax-confirm-small-psb"></div>
 </li>
 <li class="cnjnctn-col">
-<p><strong>If your actual sales match your estimates</strong>, you <strong>may not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed <strong>$50,000</strong> over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p> 
+<p><strong>If your actual sales match your estimates</strong>:</p>
+<p>You <strong>may not</strong> have to register for a GST/HST account number because you <strong>do not</strong> exceed the <strong>$50,000</strong> small supplier threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p> 
 <div data-ajax-replace="#ajax-reg-exceed1"></div>
 </li>
 </ul></li>
-<li>
-<div data-ajax-replace="#ajax-reg"></div>
-<div data-ajax-replace="#ajax-reg-vol"></div>
-</li>
 <li>
 <div data-ajax-replace="#ajax-charge"></div>
 <div data-ajax-replace="#ajax-charge-no"></div>
@@ -1947,17 +1961,50 @@
 <h2 id="mostbus" class="h3">Steps</h2>
 <ol class="lst-stps ld-zr stps-strpd">
 
-<li><h3>Determine if you are a small supplier</h3>
-<div id="ajax-confirm-small-most">
-<p id="step3most"><p>If the revenue from your total <a href="#ajax-exampleworld" aria-controls="ajax-exampletax" class="overlay-lnk" role="button">worldwide&nbsp;<span class="far fa-question-circle"></span></a> <a href="#ajax-exampletax" aria-controls="ajax-exampletax" class="overlay-lnk" role="button">taxable&nbsp;<span class="far fa-question-circle"></span></a> supplies, including <a href="#ajax-examplezer" aria-controls="ajax-examplezer" class="overlay-lnk" role="button">zero-rated (taxable at 0%)&nbsp;<span class="far fa-question-circle"></span></a> supplies from all your businesses and those of your <a href="#ajax-exampleass" aria-controls="ajax-exampleass" class="overlay-lnk" role="button">associates&nbsp;<span class="far fa-question-circle"></span></a> <strong>does not</strong> exceed the <strong>$30,000</strong> small supplier threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
+<li><div data-ajax-replace="#ajax-confirm-small"></div>
+<p id="step3most">If you <strong>do not</strong> exceed the <strong>$30,000</strong> small supplier threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
+<details><summary>Example – Did not exceed the $30,000 threshold over 4 consecutive calendar quarters</summary>
+      
+           <p>On February 1, 2023, you started a business that sells candles. You made the following sales:</p>
+        <table class="small table table-bordered table-condensed table-responsive">
+<caption>Calculation </caption>
+<thead><tr class="active"><th scope="col">Quarter</th>
+<th scope="col" class="text-right">Amount</th>
+</tr></thead><tbody><tr><td>First quarter (January 1 to March 31)</td>
+<td class="text-right">$2,000</td>
+</tr><tr><td>Second&nbsp;quarter (April 1 to June 30)</td>
+<td class="text-right">$10,000</td>
+</tr><tr><td>Third quarter (July 1 to September 30)</td>
+<td class="text-right">$12,000</td>
+</tr><tr><td>Fourth quarter (October 1 to December 31)</td>
+<td class="text-right">$5,000</td>
+</tr><tr><td><b>Total</b></td>
+<td class="text-right"><b>$29,000</b></td>
+</tr></tbody></table>
+        <p>You are a small supplier in 2023 because you did not exceed the $30,000 threshold over 4 consecutive calendar quarters. You are still a small supplier in the first quarter of 2024, unless you exceed the $30,000 threshold in that one single calendar quarter.</p>
+    </details>
+
+<h4>How to calculate your $30,000 small supplier threshold</h4> 
 <div id="ajax-include1" class="mrgn-lft-md">
-<h4>Amounts to exclude from your calculation</h4>
+
 <ul class="fa-ul lst-spcd mrgn-bttm-md mrgn-lft-lg">
                                     <li><span class="fa-stack text-success">
                                        <span class="far fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                       </span><span class="mrgn-tp-0 text-muted h5"><a href="#ajax-exampleexe" aria-controls="ajax-exampleexe" class="overlay-lnk" role="button">Exempt&nbsp;<span class="far fa-question-circle"></span></a> supplies
-</span> <div id="ajax-include3">
+                                       </span><span class="mrgn-tp-0 text-muted h5">  Revenues from <a href="#ajax-exampleworld" aria-controls="ajax-exampletax" class="overlay-lnk" role="button">worldwide&nbsp;<span class="far fa-question-circle"></span></a> <a href="#ajax-exampletax" aria-controls="ajax-exampletax" class="overlay-lnk" role="button">taxable&nbsp;<span class="far fa-question-circle"></span></a> supplies, including <a href="#ajax-examplezer" aria-controls="ajax-examplezer" class="overlay-lnk" role="button">zero-rated (taxable at 0%)&nbsp;<span class="far fa-question-circle"></span></a> supplies from all your businesses</span> 
+                                    </li>
+
+				
+			<li >
+                                 <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5"> Revenues from worldwide taxable supplies made by all <a href="#ajax-exampleass" aria-controls="ajax-exampleass" class="overlay-lnk" role="button">associated&nbsp;<span class="far fa-question-circle"></span></a> businesses </span>
+                              </li>
+<li class="brdr-bttm"><div id="ajax-include3" class="mrgn-lft-lg"><details class="mrgn-lft-md small"><summary>Amounts to <strong>exclude</strong> </summary>
+<ul class="fa-ul">
+      <li><span class="fas fa-check fa-li fa-lg text-success"></span> <a href="#ajax-exampleexe" aria-controls="ajax-exampleexe" class="overlay-lnk" role="button">Exempt&nbsp;<span class="far fa-question-circle"></span></a> supplies
+
 <details class="mrgn-lft-xl mrgn-tp-md"><summary><strong>Exception</strong> - Independent sales contractor (ISC) of a direct seller</summary>
 <details class="mrgn-tp-md"><summary>What is a direct seller</summary>
 <div id="direct-selling">
@@ -1992,19 +2039,19 @@
 </details>
 
 <details><summary>Example - ISCs engaged in other activities or other businesses</summary>
-<p>Diane is not registered for the GST/HST. She works from her home selling products for 2 direct selling businesses(Toys Inc and Fashion Inc). Toys Inc has an approved ACM election. As an ISC, Diane purchases toys from Toys Inc and sells them to consumers. Diane also receives bonus payments from Toys Inc and provides training to other ISCs for which she charges a fee to Toys Inc. The ACM rules apply to Diane sales of Toys Inc products and to the bonus payments she received from Toys Inc, but not to the training services that she provides. </p>
+<p>Diane is not registered for the GST/HST. She works from her home selling products for 2 direct selling businesses (Toys Inc and Fashion Inc). Toys Inc has an approved ACM election. As an ISC, Diane purchases toys from Toys Inc and sells them to consumers. Diane also receives bonus payments from Toys Inc and provides training to other ISCs for which she charges a fee to Toys Inc. The ACM rules apply to Diane’s sales of Toys Inc products and to the bonus payments she received from Toys Inc, but not to the training services that she provides. </p>
 
 <p>Fashion Inc has not provided Diane with an approved election to use the ACM.</p>
 
 <p>When determining if she has exceeded the $30,000 small supplier threshold calculation, Diane: </p>
 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><h4><span class="fas fa-check fa-lg text-success"></span> Includes earnings</h4>
+<li class="cnjnctn-col"><h4><span class="fas fa-check fa-lg text-success"></span> Includes earnings from</h4>
 <ul>
 <li>Training provided to Toys Inc</li>
 <li>Sales of Fashion Inc products </li>	
 </ul></li>
-<li class="cnjnctn-col"><h4><span class="fas fa-ban text-danger fa-lg"></span> Does not include earnings</h4>
+<li class="cnjnctn-col"><h4><span class="fas fa-ban text-danger fa-lg"></span> Does not include earnings from</h4>
 <ul>
 <li>Sales of Toys Inc products </li>
 <li>Bonus payments from Toys Inc. </li>	
@@ -2062,80 +2109,62 @@
 <li class="cnjnctn-col">Their network commissions from the sales of cosmetics and beauty products.</li>
 <li class="cnjnctn-col">Their revenues from their sales of the demonstration kits to other representatives.</li>
 </ul>	
-<p>If the network seller had sold the demonstration kit to a consumer, if the sales representative has a GST/HST account, they would charge GST/HST since the NSM rules do not apply to sales of sales aids to consumers. </p>
+<p>If the sales representative had sold the demonstration kit to a consumer and is registered for the GST/HST, they would charge GST/HST since the NSM rules do not apply to sales of sales aids to consumers. </p>
 </details>
 
 <p class="mrgn-tp-lg">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-126/direct-selling-industry-alternate-collection-method-independent-sales-contractors.html" target="_blank">GST/HST Info Sheet GI-126, Direct Selling Industry - The Alternate Collection Method for Independent Sales Contractors</a>.</p>
 </div>
-</details>
-</div> 
-                                    </li>
+</details>                          </li>
 	
-				<li>
-                                 <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
-                                 <span class="far fa-circle fa-stack-2x"></span>
-                                 <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                 </span>  <span class="mrgn-tp-0 text-muted h5"> Sales of <a href="#ajax-exampleprop" aria-controls="ajax-exampleprop" class="overlay-lnk" role="button">capital property&nbsp;<span class="far fa-question-circle"></span></a> </span>
+				<li><span class="fas fa-check fa-li fa-lg text-success"></span> 
+                                 Sales of <a href="#ajax-exampleprop" aria-controls="ajax-exampleprop" class="overlay-lnk" role="button">capital property&nbsp;<span class="far fa-question-circle"></span></a> 
+          </li>
 
-                                 <div class="mrgn-tp-md"></div>
+	<li><span class="fas fa-check fa-li fa-lg text-success"></span> 
+                    Supplies of financial services
                               </li>
 
-	<li>
-                                 <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
-                                 <span class="far fa-circle fa-stack-2x"></span>
-                                 <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                 </span>  <span class="mrgn-tp-0 text-muted h5"> Supplies of <a href="#ajax-examplefin" aria-controls="ajax-examplefin" class="overlay-lnk" role="button">financial services&nbsp;<span class="far fa-question-circle"></span></a> </span>
-
-                                 <div class="mrgn-tp-md"></div>
+<li><span class="fas fa-check fa-li fa-lg text-success"></span> <a href="#ajax-examplegoodwill" aria-controls="ajax-examplegoodwill" class="overlay-lnk" role="button">Goodwill&nbsp;<span class="far fa-question-circle"></span></a> from the sale of a business 
+                              </li>
+                  </ul> </details></div>
+                               <div class="mrgn-tp-md"></div>   
                               </li>
 
-<li class="brdr-bttm">
-                                 <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
-                                 <span class="far fa-circle fa-stack-2x"></span>
-                                 <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                 </span>  <span class="mrgn-tp-0 text-muted h5"> Goodwill from the sale of a business </span>
-
-                                 <div class="mrgn-tp-md"></div>
-                              </li>
-
+		
                      	 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
                                        <span class="fas fa-circle fa-stack-2x"></span>
                                        <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                       </span> <span class="mrgn-tp-0 text-muted h5">Total amount to exclude from your calculation</span></span> 
+                                       </span> <span class="mrgn-tp-0 text-muted h5">Total small supplier threshold</span></span> 
                                     </li>
-                  </ul>
-</div>
+                  </ul></div>
+
 <hr>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col" class="mrgn-lft-md">  <span class="fas fa-less-than-equal text-success fa-lg"> </span> If the amount <strong>does not</strong> exceed $30,000 over 4 consecutive calendar quarters, you are a <strong>small supplier</strong>.
-<p class="mrgn-tp-md"> You have to continue to monitor your sales to determine when you exceed the <strong>$30,000</strong> small supplier threshold.</p>
- <details><summary>Example – Did not exceed the $30,000 threshold over 4 consecutive calendar quarters</summary>
-      
-           <p>On February 1, 2023, you started a business that sells candles. You made the following sales:</p>
-        <table class="small table table-bordered table-condensed table-responsive">
-<caption>Calculation </caption>
-<thead><tr class="active"><th scope="col">Quarter</th>
-<th scope="col" class="text-right">Amount</th>
-</tr></thead><tbody><tr><td>First quarter (January 1 to March 31)</td>
-<td class="text-right">$2,000</td>
-</tr><tr><td>Second&nbsp;quarter (April 1 to June 30)</td>
-<td class="text-right">$10,000</td>
-</tr><tr><td>Third quarter (July 1 to September 30)</td>
-<td class="text-right">$12,000</td>
-</tr><tr><td>Fourth quarter (October 1 to December 31)</td>
-<td class="text-right">$5,000</td>
-</tr><tr><td><b>Total</b></td>
-<td class="text-right"><b>$29,000</b></td>
-</tr></tbody></table>
-        <p>You are a small supplier in 2023 because you did not exceed the $30,000 threshold over 4 consecutive calendar quarters. You are still a small supplier in the first quarter of 2024, unless you exceed the $30,000 threshold in that one single calendar quarter.</p>
-    </details> 
-<div data-ajax-replace="#ajax-confirm-smallyes" class="mrgn-tp-md"></div>
+<li class="cnjnctn-col" class="mrgn-lft-md"><div id="ajax-confirm-small-most">  <span class="fas fa-less-than-equal text-success fa-lg"> </span> If the threshold amount <strong>does not</strong> exceed $<span id="chargeAmount3">30,000</span> over 4 consecutive calendar quarters, you are a <strong>small supplier</strong>.
 	
-
+</div> 
+<div data-ajax-replace="#ajax-confirm-smallyes" class="mrgn-tp-md"></div>
 </li>
-<li class="cnjnctn-col">  <span class="fas fa-greater-than text-success fa-lg"> </span> If the amount <strong>exceeds</strong> $30,000 over either a <strong>single quarter</strong> or over <strong>4 consecutive calendar quarters</strong>, you are <strong>no longer</strong> a small supplier.
+<li class="cnjnctn-col">  <span class="fas fa-greater-than text-success fa-lg"> </span> If the threshold amount <strong>exceeds</strong> $30,000 over either a <strong>single quarter</strong> or over <strong>4 consecutive calendar quarters</strong>, you are <strong>no longer</strong> a small supplier.
+
 <p class="mrgn-tp-md"> <span class="fas fa-check fa-lg text-success"></span>  If you are <strong>no longer</strong> a small supplier, you have to register for a GST/HST account.</p> 
- <details ><summary>Example 1 – Exceed the $30,000 threshold over 2 consecutive calendar quarters</summary>
+
+<p class="mrgn-tp-md"><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#step2-most">Mandatory registration if you are no longer a small supplier</a>.</p>
+</li>
+</ul>
+</li>
+
+<li><h3 id="step2-most">Mandatory registration if you are no longer a small supplier</h3>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-most1">
+<h4 class="text-muted">$30,000 threshold <br>over 4 consecutive calendar quarters</h4>
+<div id="ajax-reg-most-over4">
+<p>You <span id="estimate">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="warning_amount">30,000</span></strong> small supplier threshold <strong>over 4 consecutive</strong> <span class="nowrap"><a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>.</span></p>
+<p>You are <strong>no longer</strong> a small supplier at the <strong>end of the month following the quarter</strong> in which you exceeded the <strong>$<span id="warning_amount2">30,000</span></strong> small supplier threshold.</p>
+</div>
+</div>  
+ <details class="mrgn-tp-md"><summary>Example – Exceed the $30,000 threshold over 2 consecutive calendar quarters</summary>
         <p>On November 1, 2023, you opened a retail store. You made the following taxable sales:</p>
      <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation</caption>
@@ -2152,14 +2181,14 @@
         <p>In April 2024, your sales totaled $ 8,000.</p>
 <p>Your first sale after April was on May 1, 2024.</p>
 <ul>
-<li>You stopped being a small supplier on April 30, 2024, because that day is the end of the month after the quarter you exceed the $30,000 threshold.</li>
+<li>You stopped being a small supplier on April 30, 2024, because that day is the end of the month after the quarter you exceeded the $30,000 threshold.</li>
 <li>Your <strong>effective date of registration</strong> is no later than May 1, 2024. That day is when you made your first supply after you stopped being a small supplier.</li>
-<li>You have to start charging the GST/HST on your date of registration.</li>
-<li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
+<li>You have to start charging the GST/HST on all your taxable supplies beginning May  1, 2024 (your effective date of registration).</li>
+<li>You will have to apply for registration no later than May 30, 2024 (within <strong>29 days</strong> of your effective date of registration).</li>
 </ul>
     </details>
 
-<details ><summary>Example 2 – Exceed the $30,000 threshold within the previous 4 consecutive calendar quarters</summary>
+<details ><summary>Example – Exceed the $30,000 threshold within the previous 4 consecutive calendar quarters</summary>
           <p>On June 1, 2023, you started a business selling baseball caps. You made the following sales:</p>
       <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation</caption>
@@ -2180,13 +2209,23 @@
   <p>In April 2024, your sales totaled $ 4,500.</p>
 <p>Your first sale after April was on May 2, 2024.</p>
 <ul>
-<li>You stopped being a small supplier on April 30, 2024, because that day is the end of the month after the quarter you exceed the $30,000 threshold.</li>
-<li>Your <strong>effective date of registration</strong> is no later than May 1, 2024. That day is when you made your first supply after you stopped being a small supplier.</li>
-<li>You have to start charging the GST/HST on your date of registration.</li>
-<li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
+<li>You stopped being a small supplier on April 30, 2024, because that day is the end of the month after the quarter you exceeded the $30,000 threshold.</li>
+<li>Your <strong>effective date of registration</strong> is no later than May 2, 2024. That day is when you made your first supply after you stopped being a small supplier.</li>
+<li>You have to start charging the GST/HST all your taxable supplies beginning May 2, 2024 (your effective date of registration).</li>
+<li>You will have to apply for registration no later than May 31, 2024 (within <strong>29 days</strong> of your effective date of registration).</li>
 </ul>
        </details>
- <details ><summary>Example 3 – Exceed the $30,000 threshold in one single calendar quarter</summary>
+ </li>
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-most2">
+<h4 class="text-muted">$30,000 threshold <br>in a single calendar quarter</h4>
+<div id="ajax-reg-most2b" >
+<p>You <span id="tense152">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount">30,000</span></strong> small supplier threshold <strong>in a single</strong> <span class="nowrap"><a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</span>.</p>
+
+<p>You are <strong>no longer</strong> a small supplier the <strong>day of the supply</strong> that made you exceed the <strong>$<span id="chargeAmount2">30,000</span></strong> small supplier threshold.</p>
+</div>
+ </div>
+ <details ><summary>Example – Exceed the $30,000 threshold in one single calendar quarter</summary>
         <p>On January 1, 2024, you started a consulting business. You made the following revenue from your taxable services.</p>
        <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation</caption>
@@ -2201,72 +2240,52 @@
 </tr></tbody></table>
 
         <ul>
-<li>You stopped being a small supplier the day you exceed the $30,000 threshold in one calendar quarter.</li>
-<li>Your <strong>effective date of registration</strong> is no later than<strong> </strong>the day of the supply that made you exceed the $30,000 threshold in the quarter.</li>
-<li>You have to start charging the GST/HST on your date of registration, including on the sale that made you exceed the $30,000 threshold.</li>
-<li>You will have to register within<strong> 29 days</strong> of your effective date of registration.</li>
+<li>On September 10, 2024 your sales exceeded $30,000 for the July 1 to September 30 quarter.  </li>
+<li>You stopped being a small supplier on September 10, 2024 (the day you exceed the $30,000 threshold in one calendar quarter).</li>
+<li>Your <strong>effective date of registration</strong> is no later than September 10, 2024 (the day of the supply you exceeded the $30,000 threshold in the quarter).</li>
+<li>You have to start charging the GST/HST on all your taxable supplies beginning September 10, 2024 (your effective date of registration).</li>
+<li>You will have to apply for registration no later than October 9, 2024 (within <strong>29 days</strong> of your effective date of registration).</li>
 </ul>
     </details> 
-<p class="mrgn-tp-md"><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#moststep4">Determine when to register and charge the GST/HST</a>.</p>
-</li>
-</ul>
-</li>
-
-<li><div data-ajax-replace="#ajax-date-reg"></div>
-<ol class="lst-stps-sub ld-zr stps-strpd">
-<li><h3>Conditions of a small supplier</h3>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm" id="moststep4">
-<li class="cnjnctn-col">
-<div id="ajax-date-reg-most1">
-<h5 class="text-muted">$30,000 threshold <br>over 4 consecutive calendar quarters</h5>
-<div id="ajax-reg-most-over4">
-<p>You <span id="estimate">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="warning_amount">30,000</span></strong> threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-<p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2">30,000</span></strong> threshold.</p>
-<h4>Effective date of registration</h4>
-<p>The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
-</div>
-</div>  
- </li>
-<li class="cnjnctn-col">
-<div id="ajax-date-reg-most2">
-<h5 class="text-muted">$30,000 threshold <br>in a single calendar quarter</h5>
-<div id="ajax-reg-most2b" >
-<p>You <span id="tense152">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount">30,000</span></strong> threshold in a single <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-<h4>Effective date of registration</h4>
-<p>The effective date of registration is <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount2">30,000</span></strong> threshold.</p>
-</div>
- </div> </li> </ul> </li> 
-
-<li>
-<div data-ajax-replace="#ajax-reg"></div>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><h5 class="text-muted">$30,000 threshold <br>over 4 consecutive calendar quarters</h5>
-<div data-ajax-replace="#ajax-reg-char1all"></div>
-</li> 
-<li class="cnjnctn-col"><h5 class="text-muted">$30,000 threshold <br>in a single calendar quarter</h5>
-<div id="ajax-reg-most1" >
-<p>You have to register for a GST/HST account number <strong>no later than 29 days</strong> after the day of the supply that made you exceed the <strong>$<span id="chargeAmount3">30,000</span></strong> threshold.</p>
+ </li> </ul></li>
+<li><div id="ajax-reg-most1"><h3>Registering for the GST/HST</h3>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><div id="ajax-reg-most-effective"><h4 class="text-muted ">Effective date of registration</h4>
+<p>Your effective date of registration is no later than the day of the <strong>first supply you make</strong> after you are <strong>no longer a small supplier</strong>. </p>
 </div>
 </li> 
+<li class="cnjnctn-col"><div id="ajax-reg-most-application"><h4 class="text-muted ">Registration application</h4>
+<p>You have to apply to register for a GST/HST account number <strong>no later than 29 days</strong> after your <strong>effective date of registration</strong>.</p></div></li> 
 </ul>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
-</li>
+<details ><summary>Example</summary>
+<p>Steve exceeded the small supplier threshold in a single calendar quarter on November 15, 2024. He is no longer a small supplier as of that date.</p>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><h4 class="text-muted">Effective date of registration</h4>
+<p>When Steve applied for registration, he entered November 15, 2024 as his effective date of registration.</p>
+</li> 
+<li class="cnjnctn-col"><h4 class="text-muted">Registration application</h4>
+<p>Steve applied for registration on December 10, 2024</strong>.</p>
+</li> 
+</ul> 
+ </details> 
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
+</div>
+ </li> 
 
 <li><div data-ajax-replace="#ajax-charge"></div>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><h5 class="text-muted">$30,000 threshold <br>over 4 consecutive calendar quarters</h5>
-<div data-ajax-replace="#ajax-charge-char1a"></div>
-</li> 
-<li class="cnjnctn-col"><h5 class="text-muted">$30,000 threshold <br>in a single calendar quarter</h5>
-<div id="ajax-charge-most1" >
-<p>You have to charge the GST/HST on the sale that made you exceed the <span class="nowrap"><label>$</label><label id="chargeAmount4">30,000</label></span> threshold. </p>
-</div>
-</li> 
-</ul>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
-</li>
+<div id="ajax-charge-char1a">
+<div id="ajax-charge-gen">
+<p>You have to charge the GST/HST on all your taxable supplies no later than the <strong>first supply you make</strong> after you are <strong>no longer a small supplier</strong>.</p></div>
+<details ><summary>Example</summary>
+<p>Steve exceeded the small supplier threshold in a single calendar quarter on November 15, 2024. </p>
 
-</ol>
+<p>He is no longer a small supplier and is required to be registered for the GST/HST as of November 15, 2024.</p>
+<p>Steve applied for registration on December 10, 2024, entering November 15, 2024 as his effective date of registration.</p>
+<p>Even though Steve did not register and receive his GST/HST account number until December 10, 2024, he still has to start charging the GST/HST on his supplies beginning November 15, 2024. </p>
+ </details> 
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+</div>
+ 
 </li>
 </ol>
 
@@ -2377,22 +2396,6 @@
 <ol class="lst-stps-sub ld-zr stps-strpd">
 <li><h4>$250,000 gross revenue test</h4>
 <p>If you are a charity or public institution in <strong>one</strong> of the following situation, you are a small supplier under the $250,000 gross revenue test:</p>
-
-<h5>Excluded from the small supplier threshold amount</h5>
-<div id="ajax-include2"><details><summary><strong>Exception</strong> - Charity or public instrutition</summary>
-	
-		<p>Include in your <strong>gross revenue</strong> amount:</p>
-			<ul>
-				<li>Income from a business, or from an adventure or concern in the nature of trade</li>
-				<li>Gifts and donations</li>
-				<li>Grants, subsidies, forgivable loans and other assistance</li>
-				<li>Property and investment income</li>
-				<li>Any amount that is a capital gain from the disposition of property for income tax purposes</li>
-				<li>Other revenue of any kind whatever during the year, including revenue from both taxable and exempt supplies</li>
-			</ul>
-			<p>You also have to include the gross revenue of your organization as a whole (the legal entity).</p>
-			<p><strong>Do not</strong> include capital loss from the disposition of property for income tax purposes.</p></details></div>
-
 <ul class="list-unstyled cnjnctn-type-or">
 <li class="cnjnctn-col">You are <strong>not</strong> yet operating</li>
 <li class="cnjnctn-col">You are in your <strong>first</strong> <a href="#ajax-fiscal" aria-controls="ajax-fiscal" class="overlay-lnk" role="button">fiscal year&nbsp;<span class="far fa-question-circle"></span></a> of operation</li>
@@ -2400,9 +2403,12 @@
 <li class="cnjnctn-col">You are in your <strong>third</strong> fiscal year of operation and your gross revenue from either or both of your <strong>previous 2 </strong> fiscal years is <strong>$250,000 or less</strong></li>
 </ul>
 </li>
-<li><h4>$50,000 taxable supplies test</h4>
-<p>If you are no longer a small supplier under the $250,000 gross revenue test, and your total worldwide <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> from all your businesses and those of your associates <strong>does not</strong> exceed the <strong>$50,000</strong> small supplier threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
- <details><summary>Example 1 – Did not exceed the $50,000 threshold over 4 consecutive calendar quarters</summary>
+<li><h4>$50,000 small supplier threshold</h4>
+<p> If you are no longer a small supplier under the $250,000 gross revenue test, you need to determine if you are a small supplier under the $50,000 small supplier threshold. </p>
+
+<p>If you <strong>do not</strong> exceed the <strong>$50,000</strong> small supplier threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
+
+<details><summary>Example – Did not exceed the $50,000 threshold over 4 consecutive calendar quarters</summary>
             <p>On January 15, 2023, your charity started making taxable supplies of goods and made the following sales:</p>
          <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for charities and public institutions </caption>
@@ -2422,8 +2428,105 @@
         <p>You are a small supplier in 2023 because you did not exceed the $50,000 threshold over 4 consecutive calendar quarters. You are also a small supplier under this test in the first quarter of 2024, unless you exceed the $50,000 threshold in that one single calendar quarter.</p>
             </details>
 
- 
-  <details ><summary>Example 2 – Exceed the $50,000 threshold over 2 consecutive calendar quarters</summary>
+<h4>How to calculate your $50,000 small supplier threshold</h4>
+<div id="ajax-include2" class="mrgn-lft-md">
+
+<ul class="fa-ul lst-spcd mrgn-bttm-md mrgn-lft-lg">
+                                    <li><span class="fa-stack text-success">
+                                       <span class="far fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                       </span><span class="mrgn-tp-0 text-muted h5">  Revenues from <a href="#ajax-exampleworld" aria-controls="ajax-exampletax" class="overlay-lnk" role="button">worldwide&nbsp;<span class="far fa-question-circle"></span></a> <a href="#ajax-exampletax" aria-controls="ajax-exampletax" class="overlay-lnk" role="button">taxable&nbsp;<span class="far fa-question-circle"></span></a> supplies, including <a href="#ajax-examplezer" aria-controls="ajax-examplezer" class="overlay-lnk" role="button">zero-rated (taxable at 0%)&nbsp;<span class="far fa-question-circle"></span></a> supplies from all your businesses</span> 
+                                    </li>
+
+				
+			<li >
+                                 <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5"> Revenues from worldwide taxable supplies made by all <a href="#ajax-exampleass" aria-controls="ajax-exampleass" class="overlay-lnk" role="button">associated&nbsp;<span class="far fa-question-circle"></span></a> businesses </span>
+                              </li>
+<li class="brdr-bttm"><details class="mrgn-lft-md small"><summary>Amounts to <strong>exclude</strong> </summary>
+<ul class="fa-ul">
+      <li><span class="fas fa-check fa-li fa-lg text-success"></span> <a href="#ajax-exampleexe" aria-controls="ajax-exampleexe" class="overlay-lnk" role="button">Exempt&nbsp;<span class="far fa-question-circle"></span></a> supplies
+<details><summary><strong>Exception</strong> - Charity or public instrutition</summary>
+	
+		<p>Include in your <strong>gross revenue</strong> amount:</p>
+			<ul>
+				<li>Income from a business, or from an adventure or concern in the nature of trade</li>
+				<li>Gifts and donations</li>
+				<li>Grants, subsidies, forgivable loans and other assistance</li>
+				<li>Property and investment income</li>
+				<li>Any amount that is a capital gain from the disposition of property for income tax purposes</li>
+				<li>Other revenue of any kind whatever during the year, including revenue from both taxable and exempt supplies</li>
+			</ul>
+			<p>You also have to include the gross revenue of your organization as a whole (the legal entity).</p>
+			<p><strong>Do not</strong> include capital loss from the disposition of property for income tax purposes.</p></details>
+                        </li>
+	
+				<li><span class="fas fa-check fa-li fa-lg text-success"></span> 
+                                 Sales of <a href="#ajax-exampleprop" aria-controls="ajax-exampleprop" class="overlay-lnk" role="button">capital property&nbsp;<span class="far fa-question-circle"></span></a> 
+          </li>
+
+	<li><span class="fas fa-check fa-li fa-lg text-success"></span> 
+                    Supplies of financial services
+                              </li>
+
+<li><span class="fas fa-check fa-li fa-lg text-success"></span> <a href="#ajax-examplegoodwill" aria-controls="ajax-examplegoodwill" class="overlay-lnk" role="button">Goodwill&nbsp;<span class="far fa-question-circle"></span></a> from the sale of a business 
+                              </li>
+                  </ul> </details>
+                               <div class="mrgn-tp-md"></div>   
+                              </li>
+
+		
+                     	 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                       <span class="fas fa-circle fa-stack-2x"></span>
+                                       <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
+                                       </span> <span class="mrgn-tp-0 text-muted h5">Total small supplier threshold</span></span> 
+                                    </li>
+                  </ul></div>
+<hr>
+
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col" class="mrgn-lft-md">
+<div data-ajax-replace="#ajax-confirm-small-psb"></div>
+<div id="ajax-confirm-smallyes" class="mrgn-tp-lg">
+<p><span class="fas fa-ban text-danger fa-lg"></span> If you are a <strong>small supplier</strong>, you <strong>do not</strong> have to register for a GST/HST account number.</p>
+<p class="mrgn-tp-md"> You have to continue to monitor your sales to determine when you exceed the small supplier threshold.</p> 
+<div id="ajax-reg-vol2" class="mrgn-tp-lg">
+<h4>Voluntary registration</h4>
+<p>You can choose to register voluntarily. </p>
+<p>If you register voluntarily, your <strong>effective date of registration</strong> is generally the <strong>day you request</strong> your GST/HST account number.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html" target="_blank">Register voluntarily for a GST/HST account number</a></p>
+</div>
+</div>
+<div id="ajax-itc-char" class="mrgn-tp-lg">
+<h4>Claiming input tax credits (ITC)</h4>
+<p>You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses.</p>
+<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4082/gst-hst-information-charities.html" target="_blank"> GST/HST Information for Charities</a></p>
+</div>
+
+
+</li>
+<li class="cnjnctn-col">  <span class="fas fa-greater-than text-success fa-lg"> </span> If the threshold amount <strong>exceeds</strong> $50,000 over either a <strong>single quarter</strong> or over <strong>4 consecutive calendar quarters</strong>, you are <strong>no longer</strong> a small supplier.
+
+<p class="mrgn-tp-md"> <span class="fas fa-check fa-lg text-success"></span>  If you are <strong>no longer</strong> a small supplier, you have to register for a GST/HST account.</p> 
+
+<p class="mrgn-tp-md"><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#char-step3">Mandatory registration if you are no longer a small supplier</a>.</p>
+
+</li>
+</ul></li>
+</ol></div></li>
+
+<li><h3 id="char-step3">Mandatory registration if you are no longer a small supplier</h3>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-1a">
+<h4 class="text-muted">$50,000 threshold <br>over 4 consecutive calendar quarters</h4>
+<div id="ajax-reg-char1a-4" >
+<p>You <span id="estimate">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="warning_amount">50,000</span></strong> small supplier threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>.</p>
+<p>You are <strong>no longer</strong> a small supplier at the <strong>end of the month following the quarter</strong> in which you exceeded the <strong>$<span id="warning_amount2">50,000</span></strong> small supplier threshold. </p>
+</div>
+  <details ><summary>Example – Exceed the $50,000 threshold over 2 consecutive calendar quarters</summary>
        <p>On November 1, 2023, your charity started making taxable supplies of goods and services and made the following sales:</p>
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for charities and public institutions</caption>
@@ -2445,7 +2548,7 @@
 <li>You will have to register within<strong> 29 days </strong>of your effective date of registration.</li>
 </ul>  </details>
 
- <details><summary>Example 3 – Exceed the $50,000 threshold within the previous 4 consecutive calendar quarters</summary>
+ <details><summary>Example – Exceed the $50,000 threshold within the previous 4 consecutive calendar quarters</summary>
         <p>On May 1, 2023, your charity started making taxable supplies of goods and services and made the following sales:</p>
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for charities and public institutions</caption>
@@ -2471,7 +2574,16 @@
 <li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
 </details>
-<details><summary>Example 4 – Exceed the $50,000 threshold in one single calendar quarter</summary>
+</div>
+ </li>
+<li class="cnjnctn-col">
+<div id="ajax-date-char-1">
+<h4 class="text-muted">$50,000 threshold <br>in a single calendar quarter</h4>
+<div id="ajax-reg-char1b-1" >
+<p>You <span id="tense152">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount">50,000</span></strong> small supplier threshold <strong>in a single</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
+<p>You are <strong>no longer</strong> a small supplier the <strong>day of the supply</strong> that made you exceed the <strong>$<span id="chargeAmount2">50,000</span></strong> small supplier threshold.</p>
+</div>
+<details><summary>Example – Exceed the $50,000 threshold in one single calendar quarter</summary>
      <p>On July 1, 2024, your charity started making taxable supplies of goods and services and made the following sales:</p>
         <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for charities and public institutions</caption>
@@ -2491,94 +2603,13 @@
 <li>You will have to register within <strong>29 days </strong>of your effective date of registration.</li>
 </ul>
     </details>
-
-</li></ol>
-</div>
-
-
-<hr>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-
-<li class="cnjnctn-col"><div id="ajax-confirm-smallyes">
-<div id="ajax-reg-vol">
-<p><span class="fas fa-ban text-danger fa-lg"></span> If you are a <strong>small supplier</strong>, you <strong>do not</strong> have to register for a GST/HST account number.</p>
-<div id="ajax-reg-vol2" class="mrgn-tp-lg">
-<h4>Voluntary registration</h4>
-<p>You can choose to register voluntarily. </p>
-<p>If you register voluntarily, your <strong>effective date of registration</strong> is generally the <strong>day you request</strong> your GST/HST account number.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register-voluntarily.html" target="_blank">Register voluntarily for a GST/HST account number</a></p>
-</div>
-</div>
-</div>
-<div id="ajax-itc-char" class="mrgn-tp-lg">
-<h4>Claiming input tax credits (ITC)</h4>
-<p>You may be eligible for GST/HST rebates that allow charities to recover a percentage of the GST/HST they pay on their purchases and expenses.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4082/gst-hst-information-charities.html" target="_blank"> GST/HST Information for Charities</a></p>
-</div>
-</li>
-<li class="cnjnctn-col"><div id="ajax-confirm-smallno"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <a href="#charstep3">Determine when to register, charge, file and remit</a>.</p></div>
-</li>
-</ul>
-</li>
-
-<li><div id="ajax-date-reg"><h3>Determine when to register and charge</h3> </div>
-<ol class="lst-stps-sub ld-zr stps-strpd">
-<li><h3>Conditions of a small supplier</h3>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm" id="psbstep4">
-<li class="cnjnctn-col">
-<div id="ajax-date-reg-1a">
-<h5 class="text-muted">$50,000 small supplier threshold <br>over 4 consecutive calendar quarters</h5>
-<div id="ajax-reg-char1a-4" >
-<p>You <span id="estimate">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="warning_amount">50,000</span></strong> small supplier threshold over 4 consecutive <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-<p>You are <strong>no longer</strong> a small supplier at the end of the month following the quarter in which you exceeded the <strong>$<span id="warning_amount2">50,000</span></strong> small supplier threshold. </p>
-<h4>Effective date of registration</h4>
-<p>The effective date of registration is <strong>no later than</strong> the beginning of the month after you are no longer a small supplier. </p>
-</div>
-</div>
- </li>
-<li class="cnjnctn-col">
-<div id="ajax-date-char-1">
-<h5 class="text-muted">$50,000 small supplier threshold <br>in a single calendar quarter</h5>
-<div id="ajax-reg-char1b-1" >
-<p>You <span id="tense152">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount">50,000</span></strong> small supplier threshold in a single <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</p>
-<h4>Effective date of registration</h4>
-<p>The effective date of registration is <strong>no later than</strong> the day of the supply that made you exceed the <strong>$<span id="chargeAmount2">50,000</span></strong> small supplier threshold.</p>
-</div>
  </div> </li> </ul> </li> 
 
-<li>
-<div data-ajax-replace="#ajax-reg"></div>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><h5 class="text-muted">$50,000 small supplier threshold <br>over 4 consecutive calendar quarters</h5>
-<div id="ajax-reg-char1all">
-<p>You have to register for a GST/HST account number <strong>no later than <span id="plus29">29 days after</span> </strong> your effective date of registration. </p>
-</div>
-</li> 
-<li class="cnjnctn-col"><h5 class="text-muted">$50,000 small supplier threshold <br>in a single calendar quarter</h5>
-<div id="ajax-reg-char1b">
-<p>You have to register for a GST/HST account number <strong>no later than 29 days</strong> after the day of the supply that made you exceed the <strong>$<span id="chargeAmount3">50,000</span></strong> small supplier threshold.</p>
-</div>
-</li> 
-</ul>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
+<li><div data-ajax-replace="#ajax-reg-most1"></div>
 </li>
 
 <li><div data-ajax-replace="#ajax-charge"></div>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><h5 class="text-muted">$50,000 small supplier threshold <br>over 4 consecutive calendar quarters</h5>
-<div id="ajax-charge-char1a">
-<p>You have to charge the GST/HST on the taxable supplies starting on your effective date of registration. </p>
-</div>
-</li> 
-<li class="cnjnctn-col"><h5 class="text-muted">$50,000 small supplier threshold <br>in a single calendar quarter</h5>
-<div id="ajax-charge-char1b">
-<p>You have to charge the GST/HST on the sale that made you exceed the <span class="nowrap"><label>$</label><label id="chargeAmount4">50,000</label></span> small supplier threshold. </p>
-</div>
-</li> 
-</ul>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
-</li>
-</ol>
+<div data-ajax-replace="#ajax-charge-char1a"></div>
 </li>
  </ol>
    </details>
@@ -2597,14 +2628,9 @@
    <li><div data-ajax-replace="#ajax-confirm-branch"></div>
 </li>
 <li><div data-ajax-replace="#ajax-confirm-small"></div>
-<div id="ajax-confirm-small-psb">
-<p>If you are a public service body and your total worldwide <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> from all your businesses and those of your associates <strong>does not</strong> exceed the <strong>$50,000</strong> small supplier threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
 
-<p> You have to continue to monitor your sales to determine when you exceed the <strong>$50,000</strong> small supplier threshold.</p> 
-</div>
-<div data-ajax-replace="#ajax-include1"></div>
-<h4>Examples</h4>
- <details><summary>Example 1 – Did not exceed the $50,000 threshold over 4 consecutive calendar quarters</summary>
+<p>If you <strong>do not</strong> exceed the <strong>$50,000</strong> small supplier threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
+ <details><summary>Example – Did not exceed the $50,000 threshold over 4 consecutive calendar quarters</summary>
         <p>On January 1, 2023, your public service body started making taxable supplies of goods and services. You made the following sales:</p>
 <table class="small table table-bordered table-condensed table-responsive">
 <caption>Calculation for public service bodies</caption>
@@ -2623,8 +2649,32 @@
 </tr></tbody></table>
    <p>You are a small supplier in 2023 because you did not exceed the $50,000 threshold over 4 consecutive calendar quarters. You are also a small supplier in the first quarter of 2024, unless you exceed the $50,000 threshold in that one single quarter.</p>
   </details>
+<h4>How to calculate your $50,000 small supplier threshold</h4> 
 
- <details><summary>Example 2 – Exceed the $50,000 threshold over 2 consecutive calendar quarters</summary>
+<div data-ajax-replace="#ajax-include1"></div>
+<hr>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col" class="mrgn-lft-md"><div id="ajax-confirm-small-psb">  <span class="fas fa-less-than-equal text-success fa-lg"> </span> If the threshold amount <strong>does not</strong> exceed $50,000 over 4 consecutive calendar quarters, you are a <strong>small supplier</strong>.
+</div>	 
+<div data-ajax-replace="#ajax-confirm-smallyes" class="mrgn-tp-md"></div>
+ 
+</li>
+<li class="cnjnctn-col">  <span class="fas fa-greater-than text-success fa-lg"> </span> If the threshold amount <strong>exceeds</strong> $50,000 over either a <strong>single quarter</strong> or over <strong>4 consecutive calendar quarters</strong>, you are <strong>no longer</strong> a small supplier.
+<p class="mrgn-tp-md"> <span class="fas fa-check fa-lg text-success"></span>  If you are <strong>no longer</strong> a small supplier, you have to register for a GST/HST account.</p> 
+<p class="mrgn-tp-md"><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#psb-step3">Mandatory registration if you are no longer a small supplier</a>.</p>
+
+</li>
+</ul>
+</li>
+
+<li><h3 id="psb-step3">Mandatory registration if you are no longer a small supplier</h3>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-2a">
+<h4 class="text-muted">$50,000 threshold <br>over 4 consecutive calendar quarter</h4>
+<div data-ajax-replace="#ajax-reg-char1a-4"></div>
+</div>
+ <details><summary>Example – Exceed the $50,000 threshold over 2 consecutive calendar quarters</summary>
            <p>On October 1, 2023, your public service body started making taxable supplies of goods and services and made the following sales:</p>
 
         <table class="small table table-bordered table-condensed table-responsive">
@@ -2649,7 +2699,7 @@
        
     </details>
 
- <details><summary>Example 3 – Exceed the $50,000 threshold within the previous 4 consecutive calendar quarters</summary>
+ <details><summary>Example – Exceed the $50,000 threshold within the previous 4 consecutive calendar quarters</summary>
              
         <p>On April 1, 2023, your public service body started making taxable supplies of goods and services and made the following sales:</p>
 
@@ -2678,7 +2728,13 @@
 <li>You'll have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
      </details>
- <details><summary>Example 4 – Exceed the $50,000 threshold in one single calendar quarter</summary>
+ </li>
+<li class="cnjnctn-col">
+<div id="ajax-date-reg-most2">
+<h4 class="text-muted">$50,000 threshold <br>in a single calendar quarter</h4>
+<div data-ajax-replace="#ajax-reg-char1b-1"></div>
+ </div> 
+<details><summary>Example – Exceed the $50,000 threshold in one single calendar quarter</summary>
            <p>On January 1, 2024, your public service body that started making taxable supplies of goods and services and made the following sales:</p>
 
         <table class="small table table-bordered table-condensed table-responsive">
@@ -2699,57 +2755,15 @@
 <li>You have to start charging the GST/HST on your date of registration (including the sale that made you exceed the $50,000 threshold).</li>
 <li>You will have to register within <strong>29 days</strong> of your effective date of registration.</li>
 </ul>
-        </details>
-<hr>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><div data-ajax-replace="#ajax-confirm-smallyes"></div>
+        </details> 
 </li>
-<li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>no longer</strong> a small supplier, continue to: <a href="#ajax-date-reg-2a">Determine when to register, charge, file and remit</a>.</p>
-</li>
-</ul>
-</li>
+</ul></li>
 
-<li><div data-ajax-replace="#ajax-date-reg"></div>
-<ol class="lst-stps-sub ld-zr stps-strpd">
-<li><h3>Conditions of a small supplier</h3>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm" id="psbstep4">
-<li class="cnjnctn-col">
-<div id="ajax-date-reg-2a">
-<h5 class="text-muted">$50,000 small supplier threshold <br>over 4 consecutive calendar quarter</h5>
-<div data-ajax-replace="#ajax-reg-char1a-4"></div>
-</div>
- </li>
-<li class="cnjnctn-col">
-<div id="ajax-date-reg-most2">
-<h5 class="text-muted">$50,000 small supplier threshold <br>in a single calendar quarter</h5>
-<div data-ajax-replace="#ajax-reg-char1b-1"></div>
- </div> </li> </ul> </li> 
-
-<li>
-<div data-ajax-replace="#ajax-reg"></div>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><h5 class="text-muted">$50,000 small supplier threshold <br>over 4 consecutive calendar quarter</h5>
-<div data-ajax-replace="#ajax-reg-char1all"></div>
-</li> 
-<li class="cnjnctn-col"><h5 class="text-muted">$50,000 small supplier threshold <br>in a single calendar quarter</h5>
-<div data-ajax-replace="#ajax-reg-char1b"></div>
-</li> 
-</ul>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
+<li><div data-ajax-replace="#ajax-reg-most1"></div>
 </li>
 
 <li><div data-ajax-replace="#ajax-charge"></div>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><h5 class="text-muted">$50,000 small supplier threshold <br>over 4 consecutive calendar quarter</h5>
 <div data-ajax-replace="#ajax-charge-char1a"></div>
-</li> 
-<li class="cnjnctn-col"><h5 class="text-muted">$50,000 small supplier threshold <br>in a single calendar quarter</h5>
-<div data-ajax-replace="#ajax-charge-char1b"></div>
-</li> 
-</ul>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
-</li>
-</ol>
 </li>
 </ol></details>
                   
@@ -2787,7 +2801,7 @@
   <li><div id="ajax-charge"><h3>Charging the GST/HST</h3></div>
 <div id="ajax-taxi-charge">
  <p>You have to charge the GST/HST as of the date your business began.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
+<p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
 </div>
   </li>
      </ol>
@@ -2940,7 +2954,7 @@
 
 <section id="ajax-exempt" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
 	<header class="modal-header">
-		<h2 class="modal-title">Meaning of exempt supplies</h2>
+		<h2 class="modal-title">Meaning of the term exempt supplies</h2>
 	</header>
 	<div class="modal-body">
 		<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#exempt"></div>
@@ -2972,9 +2986,11 @@
 
 <section id="ajax-exampletax" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
 			<header class="modal-header">
-			<h2 class="modal-title">Example – Taxable supplies (other than zero-rated)</h2>
+			<h2 class="modal-title">Meaning of the term taxable supplies</h2>
 			</header>
 			<div class="modal-body">
+
+<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#taxablesupply"></div>
 
 <p>Example of taxable supplies (other than zero-rated) includes:</p>
 <ul>
@@ -2996,9 +3012,10 @@
 
 <section id="ajax-examplezer" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
 			<header class="modal-header">
-			<h2 class="modal-title">Example – Supplies taxable at 0%</h2>
+			<h2 class="modal-title">Meaning of the term zero-rated supplies (taxable at the rate of 0%)</h2>
 			</header>
 			<div class="modal-body">
+<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#zero"></div>
 <p>Example of supplies taxable at 0% includes:</p>
 
 <ul>
@@ -3018,9 +3035,11 @@
 
 <section id="ajax-exampleexe" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
 			<header class="modal-header">
-			<h2 class="modal-title">Example – Exempt supplies</h2>
+			<h2 class="modal-title">Meaning of the term exempt supplies</h2>
 			</header>
 			<div class="modal-body">
+<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#exempt"></div>
+
 <p>Example of exempt supplies includes:</p>
 <ul>
 				<li>A sale of housing that was last used by an individual as a place of residence</li>
@@ -3047,10 +3066,12 @@
 
 <section id="ajax-exampleprop" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
 			<header class="modal-header">
-			<h2 class="modal-title">Example – Sales of capital property</h2>
+			<h2 class="modal-title">Meaning of the term capital property</h2>
 			</header>
 			<div class="modal-body">
-<p>Capital property includes depreciable property used to earn income. Examples of capital property include:</p>
+
+<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#capital"></div>
+<p>Examples of capital property include:</p>
 <ul>
 <li>Real property such as:
 <ul>
@@ -3073,6 +3094,16 @@
 </ul>
 </li>
 </ul>
+</div>
+			</section>
+
+<section id="ajax-examplegoodwill" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
+			<header class="modal-header">
+			<h2 class="modal-title">Meaning of the term goodwill</h2>
+			</header>
+			<div class="modal-body">
+
+<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#goodwill"></div>
 </div>
 			</section>
 
@@ -3322,7 +3353,7 @@
 <li><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html">Definitions for GST/HST</a></li>
 </ul>
 
-<h3 id="h_7_3">Legislation</h3>  
+<h3 id="h_7_2">Legislation</h3>  
 <div class="row">
 <div class="col-xs-12">
 <dl class="dl-horizontal">
