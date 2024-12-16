@@ -1167,26 +1167,8 @@
  				
  				temp += fieldsInt[(j+i)] ;
 
-				//if amount has been reached by addition of quarters 
-  				if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
-  					capPeriod.value = j+i ;
-  					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
-  					
-					if (i+j < 8 &amp;&amp; age == 'Old') {
-						document.getElementById('question14.2').classList.add('hidden') ;
-						for (i=8; i<12; i++)
-							fields[i].value = (0).toFixed(2) ;
-						document.getElementById('numOfQuarters').value = 8 ;
-					}
-  					
-					calcReturn.value = 1;
-					document.getElementById('showResults').click() ;
-  					return ;
-
-  				}
-
-				//if amount has been reached by a single quarter
-  				else if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
+			//if amount has been reached by a single quarter
+  				if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
   					
   					calcReturn.value = 0 ;
   					capPeriod.value = j+i ;
@@ -1225,6 +1207,26 @@
 
   					return ;
   				}
+
+				//if amount has been reached by addition of quarters 
+  				else if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
+  					capPeriod.value = j+i ;
+  					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
+  					
+					if (i+j < 8 &amp;&amp; age == 'Old') {
+						document.getElementById('question14.2').classList.add('hidden') ;
+						for (i=8; i<12; i++)
+							fields[i].value = (0).toFixed(2) ;
+						document.getElementById('numOfQuarters').value = 8 ;
+					}
+  					
+					calcReturn.value = 1;
+					document.getElementById('showResults').click() ;
+  					return ;
+
+  				}
+
+				
  			}			
   	}
 	
