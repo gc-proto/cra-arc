@@ -3,7 +3,7 @@
 <html class="no-js lt-ie9" lang="en" dir="ltr">
    <![endif]-->
    <!--[if gt IE 8]><!-->
-   <html class="no-js" lang="en" dir="ltr">
+   <html class="no-js" lang="en" dir="ltr"> 
       <!--<![endif]-->
       <head>
          <meta charset="utf-8">
@@ -344,7 +344,79 @@
 		
 	</fieldset>
 	
+	<!--QUESTION 12-->
+	<fieldset name="quest" id="question12" class="hidden">
+  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You want to create scenarios to understand the conditions to register for a GST/HST account</big></p>
+<div class="alert alert-warning mrgn-tp-md">
+	<p>You can <strong>create scenarios</strong> based on your <strong>estimated amounts</strong>. The results provided will help you understand when you may need to register.</p>
+</div>
+<label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters </label>	<br>
+<details><summary>Amounts to include and exclude</summary>
+<div data-ajax-replace="#ajax-include1" class="small mrgn-lft-xl"></div>
+</details>
+		<br>
+			<div class="row mrgn-bttm-sm">
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_New" name="q12_date_New" id="q12_date0_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
+				<div class="col-lg-3 col-sm-4 col-xs-12">
+			    		<div class="input-group">
+			    		<span class="input-group-addon">$</span>
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter1_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
+					</div>
+				</div>
+			</div>
+			<div class="row mrgn-bttm-sm">
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter2_New" name="q12_date_New" id="q12_date1_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
+				<div class="col-lg-3 col-sm-4 col-xs-12">
+			    		<div class="input-group">
+			    		<span class="input-group-addon">$</span>
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter2_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
+					</div>
+				</div>
+			</div>
+			<div class="row mrgn-bttm-sm">
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter3_New" name="q12_date_New" id="q12_date2_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
+				<div class="col-lg-3 col-sm-4 col-xs-12">
+			    		<div class="input-group">
+			    		<span class="input-group-addon">$</span>
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter3_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
+					</div>
+				</div>
+			</div>
+			<div class="row mrgn-bttm-sm">
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter4_New" name="q12_date_New" id="q12_date3_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
+				<div class="col-lg-3 col-sm-4 col-xs-12">
+			    		<div class="input-group">
+			    		<span class="input-group-addon">$</span>
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter4_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
+					</div>
+				</div>
+			</div>
 
+		<button class="btn btn-primary btn-lg required" type="button" onclick="
+			document.getElementById('calc').click() ;
+			document.getElementById('reached').click();
+			var tempMaxDate = new Date(document.getElementById('maxDate').value);
+			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
+			document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })  ;
+		">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</button>
+
+		<br>
+		<br>
+		<div class="alert alert-danger hidden" id="error_New">
+			<p>Only digits are permitted for these fields. Enter a positive value with no currency symbol.</p>
+		</div>
+		
+
+	</fieldset>
 	
 	
 	
@@ -946,7 +1018,6 @@
 ">
 
 
-
 <!--Assigns proper quarters in order for input fields of question 12/14-->
 <input class="hidden" id="showFields" type="button" onclick="
 	
@@ -1095,26 +1166,8 @@
  				
  				temp += fieldsInt[(j+i)] ;
 
-				//if amount has been reached by addition of quarters 
-  				if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
-  					capPeriod.value = j+i ;
-  					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
-  					
-					if (i+j < 8 &amp;&amp; age == 'Old') {
-						document.getElementById('question14.2').classList.add('hidden') ;
-						for (i=8; i<12; i++)
-							fields[i].value = (0).toFixed(2) ;
-						document.getElementById('numOfQuarters').value = 8 ;
-					}
-  					
-					calcReturn.value = 1;
-					document.getElementById('showResults').click() ;
-  					return ;
-
-  				}
-
-				//if amount has been reached by a single quarter
-  				else if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
+			//if amount has been reached by a single quarter
+  				if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
   					
   					calcReturn.value = 0 ;
   					capPeriod.value = j+i ;
@@ -1153,6 +1206,26 @@
 
   					return ;
   				}
+
+				//if amount has been reached by addition of quarters 
+  				else if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
+  					capPeriod.value = j+i ;
+  					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
+  					
+					if (i+j < 8 &amp;&amp; age == 'Old') {
+						document.getElementById('question14.2').classList.add('hidden') ;
+						for (i=8; i<12; i++)
+							fields[i].value = (0).toFixed(2) ;
+						document.getElementById('numOfQuarters').value = 8 ;
+					}
+  					
+					calcReturn.value = 1;
+					document.getElementById('showResults').click() ;
+  					return ;
+
+  				}
+
+				
  			}			
   	}
 	
@@ -1240,9 +1313,13 @@
 					tot += fieldsInt[j+i];
 					//if amount was reached before the single quarter capped it (the single quarter is immediately following the added quarters)
 					if (tot > amount &amp;&amp; (j+i) == temp-1) {
+				
+				var results = getElementsByName('results');
+				for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');
 						
 						//Applies necessary changes to the result
-
+						
 						document.getElementById('q13_text_amountString').innerHTML = amountString
 						document.getElementById('q13_text_quarter').innerHTML = document.getElementById('q12_date'+(parseInt(capPeriod.value, 10)+1)+'_'+age).innerHTML ;
 						
@@ -1442,19 +1519,17 @@
 				
 				
 
-				document.getElementById('R8').classList.remove('hidden');	
-				document.getElementById('chargeDate1').innerHTML = midDate ;
-				document.getElementById('plus29').innerHTML = ' until ' ;
-				document.getElementById('plus291').innerHTML = datePicked30 ;
-				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
-				document.getElementById('chargeDate11').innerHTML = end ;
-				document.getElementById('chargeDate111').innerHTML = midDate ;
-				document.getElementById('warning_amount').innerHTML = amountString ;
-				document.getElementById('warning_amount2').innerHTML = amountString ;
+				document.getElementById('R9').classList.remove('hidden');
+				document.getElementById('chargeDate0').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+				document.getElementById('chargeDate01').innerHTML = datePicked30 ;
+				document.getElementById('chargeDate011').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+		
+				document.getElementById('chargeAmount').innerHTML = amountString ;
+				document.getElementById('chargeAmount2').innerHTML = amountString ;
+				document.getElementById('chargeAmount3').innerHTML = amountString ;
+				document.getElementById('chargeAmount4').innerHTML = amountString ;
+	
 				
-				
-				
-
 			}
 			else {
 				if (capPeriod >= 8 || numOfQuarters == 4){
@@ -1478,7 +1553,7 @@
 				document.getElementById('R8').classList.remove('hidden');	
 				document.getElementById('chargeDate1').innerHTML = midDate ;
 				document.getElementById('plus29').innerHTML = ' ' ;
-				document.getElementById('plus291').innerHTML = ' 29 days after' ;
+				document.getElementById('plus291').innerHTML = ' ' ;
 				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
 				document.getElementById('chargeDate11').innerHTML = end;
 				document.getElementById('chargeDate111').innerHTML = midDate ;
@@ -1696,6 +1771,7 @@
 <h3>Mandatory registration if you are no longer a small supplier</h3>
  </div>
 <div data-ajax-replace="#ajax-reg-char1a-4"></div>
+<div data-ajax-replace="#ajax-reg-exceed1"></div>
 </li>
 <li>
 <div data-ajax-replace="#ajax-reg"></div>
