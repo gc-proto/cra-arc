@@ -267,7 +267,7 @@
 	</fieldset>
 	
 	
-	<!--QUESTION 4 -->
+	<!--NOT USED - QUESTION 4 -->
 <fieldset name="quest" id="question4" class="hidden gc-chckbxrdio">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are a sole proprietor, a partnership or a corporation</big></p>
 <label class="mrgn-tp-sm">Do you know for sure whether you are an employee or self-employed?</label>
@@ -344,7 +344,7 @@
 		
 	</fieldset>
 	
-	<!--QUESTION 12-->
+	<!--NOT USED - QUESTION 12-->
 	<fieldset name="quest" id="question12" class="hidden">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You want to create scenarios to understand the conditions to register for a GST/HST account</big></p>
 <div class="alert alert-warning mrgn-tp-md">
@@ -880,6 +880,7 @@
 		">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		</button>
 		
+		
 
 		<div id="question14.2" class="hidden ">
 <hr>
@@ -1167,26 +1168,8 @@
  				
  				temp += fieldsInt[(j+i)] ;
 
-				//if amount has been reached by addition of quarters 
-  				if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
-  					capPeriod.value = j+i ;
-  					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
-  					
-					if (i+j < 8 &amp;&amp; age == 'Old') {
-						document.getElementById('question14.2').classList.add('hidden') ;
-						for (i=8; i<12; i++)
-							fields[i].value = (0).toFixed(2) ;
-						document.getElementById('numOfQuarters').value = 8 ;
-					}
-  					
-					calcReturn.value = 1;
-					document.getElementById('showResults').click() ;
-  					return ;
-
-  				}
-
 				//if amount has been reached by a single quarter
-  				else if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
+  				if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
   					
   					calcReturn.value = 0 ;
   					capPeriod.value = j+i ;
@@ -1225,6 +1208,27 @@
 
   					return ;
   				}
+
+
+				//if amount has been reached by addition of quarters 
+  				else if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
+  					capPeriod.value = j+i ;
+  					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
+  					
+					if (i+j < 8 &amp;&amp; age == 'Old') {
+						document.getElementById('question14.2').classList.add('hidden') ;
+						for (i=8; i<12; i++)
+							fields[i].value = (0).toFixed(2) ;
+						document.getElementById('numOfQuarters').value = 8 ;
+					}
+  					
+					calcReturn.value = 1;
+					document.getElementById('showResults').click() ;
+  					return ;
+
+  				}
+
+				
  			}			
   	}
 	
