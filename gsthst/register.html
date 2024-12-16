@@ -3,7 +3,7 @@
 <html class="no-js lt-ie9" lang="en" dir="ltr">
    <![endif]-->
    <!--[if gt IE 8]><!-->
-   <html class="no-js" lang="en" dir="ltr">
+   <html class="no-js" lang="en" dir="ltr"> 
       <!--<![endif]-->
       <head>
          <meta charset="utf-8">
@@ -94,7 +94,7 @@
 <li>When to start charging the GST/HST</li>
 	 </ol>
 <div class="alert alert-warning">
-	<p>You can use this interactive content <strong>only</strong> if your business began operating within the last 8 <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a> (including the current one).</p>
+	<p>You can use the interactive content <strong>only</strong> if your business began operating within the last 8 <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a> (before the current one).</p>
 </div>
 <p>The accuracy of your results depends on the accuracy of the information you enter. Later dates calculations made by the CRA may be different. The results from this interactive content are <strong>not</strong> binding on the CRA.</p>
 
@@ -129,17 +129,18 @@
 			var results = getElementsByName('results');
 			for (i=1; i<=results.length; i++)
 				document.getElementById('R'+i).classList.add('hidden');
+	   		
+			document.getElementById('q3').value = 5;
 
-			document.getElementById('q2').value = 5 ;
 			
 			var q1 = document.getElementsByName('q1') ;			
 
 			//If yes
 			if (q1[0].checked) {
-				document.getElementById('question2').classList.remove('hidden');	
-				var q2 = document.getElementsByName('q2');
-				for (i=0; i<q2.length; i++)
-					q2[i].checked = false ;		
+				document.getElementById('question3').classList.remove('hidden');	
+				document.getElementById('age').value = 'Old'
+				document.getElementById('numOfQuarters').value = 8 ;
+			
 			}
 			
 			//No
@@ -203,7 +204,7 @@
 	
 	<!--QUESTION 3 - DROPDOWN-->
 <fieldset name="quest" id="question3" class="hidden mrgn-bttm-md">
- 
+  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You supply taxable goods or services</big></p>
 		<label class="mrgn-tp-md" for="q3">Which option best describes your business? </label>
 		<select class="form-control required" id="q3" onchange="
 			var q = getElementsByName('quest') ;
@@ -260,7 +261,7 @@
 			<option value="2" name="q3">Charity or public institution</option>
 			<option value="1" name="q3">Public service body that is not a charity or a public institution</option>
 			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
-			<option value="6" name="q3">Sale of property is the only commercial activity, other than in the course of a business</option>
+			<option value="6" name="q3">Sale of property, other than in the course of a business</option>
 			<option value="7" name="q3">Non-resident business</option>
 		</select>
 	</fieldset>
@@ -556,12 +557,13 @@
 	<!--QUESTION 9-->
 	<fieldset name="quest" id="question9" class="hidden">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are on your second fiscal year of operation</big></p>
-<p>You need to determine if you are a small supplier under <strong>either</strong> the $250,000 gross revenue test or the $50,000 taxable supplies test.</p>
+<p class="small">You need to determine if you are a small supplier under <strong>either</strong> the $250,000 gross revenue test or the $50,000 taxable supplies test.</p>
+<details class="small"><summary>Amounts to include and exclude</summary>
+<div data-ajax-replace="#ajax-include2"></div>
+</details>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span> Enter your gross revenue from your first fiscal year of operation (if more than $250,000, you will need use the $50,000 taxable supplies test) </label>
 
-<details><summary>Amounts to include and exclude</summary>
-<div data-ajax-replace="#ajax-include2" class="small mrgn-lft-xl"></div>
-</details>		
+		
 		
 		<div class="row mrgn-bttm-md mrgn-lft-md">
 			<label class="col-sm-12 mrgn-tp-sm text-left hidden-xs" for="q9">First fiscal year</label>
@@ -616,13 +618,11 @@
 	<!--QUESTION 10-->
 	<fieldset name="quest" id="question10" class="hidden">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are on your third fiscal year of operation</big></p>
-<p>You need to determine if you are a small supplier under <strong>either</strong> the $250,000 gross revenue test or the $50,000 taxable supplies test.</p>
+<p class="small">You need to determine if you are a small supplier under <strong>either</strong> the $250,000 gross revenue test or the $50,000 taxable supplies test.</p>
+<details class="small"><summary>Amounts to include and exclude</summary>
+<div data-ajax-replace="#ajax-include2"></div>
+</details>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span>  Enter your gross revenue for each of your two previous fiscal years</label>
-		
-	<details><summary>Amounts to include and exclude</summary>
-<div data-ajax-replace="#ajax-include2" class="small mrgn-lft-xl"></div>
-</details>		
-
 		
 		<div class="row mrgn-bttm-md mrgn-lft-md">
 			<label class="col-sm-12 mrgn-tp-sm text-left hidden-xs" for="fpfy">First previous fiscal year</label>
@@ -747,17 +747,19 @@
 
 	<!--QUESTION 14-->
 	<fieldset name="quest" id="question14" class="hidden">
-  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You want to find out if you need to register for a GST/HST account, what is your registration date and when to charge the GST/HST</big></p>
-<label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span> Enter your actual revenue from your taxable sales, leases and other supplies for these 8 recent quarters </label>
+  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You need to </span><br><big>Calculate your small supplier threshold</big></p>
+
+<details class="small"><summary>Amounts to <strong>include and exclude</strong></summary>
+<div data-ajax-replace="#ajax-include1"></div>
+</details>
+
+<label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span> Enter your actual revenue from your taxable sales, leases and other supplies for the following quarters: </label>
 <label class="wb-inv">Enter your the revenue from your taxable sales, leases and other supplies for recent 8 quarters. Navigate forward through the following fields by using Tab or backward using Shift + Tab.</label>		
 
-<details><summary>Amounts to include and exclude</summary>
-<div data-ajax-replace="#ajax-include1" class="small mrgn-lft-xl"></div>
-</details>
 <br>
 		<div class="row mrgn-bttm-sm">
 			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_Old" name="q12_date_Old" id="q12_date0_Old"></label>
-			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
+			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs">Q1 </label>
 		    	<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
 			    		<span class="input-group-addon">$</span>
@@ -768,7 +770,7 @@
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter2_Old" name="q12_date_Old" id="q12_date1_Old"></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter2_Old" name="q12_date_Old" id="q12_date1_Old">Q1</label>
 		    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
@@ -780,7 +782,7 @@
 			</div>
 		</div>
 		<div class="row mrgn-bttm-sm">
-			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter3_Old" name="q12_date_Old" id="q12_date2_Old"></label>
+			<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter3_Old" name="q12_date_Old" id="q12_date2_Old">Q2</label>
 			<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Oldxs"></label>
 			<div class="col-lg-3 col-sm-4 col-xs-12">
 		    		<div class="input-group">
@@ -886,8 +888,8 @@
 <div class="alert alert-warning mrgn-tp-md">
 	<p>You can <strong>create scenarios</strong> based on your <strong>estimated amounts</strong>. The results provided will help you understand when you may need to register. Depending on your actual sales, you may have to register earlier.</p>
 </div>
-			<label class="h4 mrgn-tp-0"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters </label>
 
+<label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter your revenue estimates for the following quarters: </label>
 		
 			<div class="row mrgn-bttm-sm">
 				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter9_Old" name="q12_date_Old" id="q12_date8_Old"></label>
@@ -1014,7 +1016,6 @@
 		document.getElementById('R'+i).classList.add('hidden');
 	document.getElementById('question13').classList.add('hidden');
 ">
-
 
 
 <!--Assigns proper quarters in order for input fields of question 12/14-->
@@ -1165,26 +1166,8 @@
  				
  				temp += fieldsInt[(j+i)] ;
 
-				//if amount has been reached by addition of quarters 
-  				if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
-  					capPeriod.value = j+i ;
-  					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
-  					
-					if (i+j < 8 &amp;&amp; age == 'Old') {
-						document.getElementById('question14.2').classList.add('hidden') ;
-						for (i=8; i<12; i++)
-							fields[i].value = (0).toFixed(2) ;
-						document.getElementById('numOfQuarters').value = 8 ;
-					}
-  					
-					calcReturn.value = 1;
-					document.getElementById('showResults').click() ;
-  					return ;
-
-  				}
-
-				//if amount has been reached by a single quarter
-  				else if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
+			//if amount has been reached by a single quarter
+  				if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
   					
   					calcReturn.value = 0 ;
   					capPeriod.value = j+i ;
@@ -1223,6 +1206,26 @@
 
   					return ;
   				}
+
+				//if amount has been reached by addition of quarters 
+  				else if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
+  					capPeriod.value = j+i ;
+  					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
+  					
+					if (i+j < 8 &amp;&amp; age == 'Old') {
+						document.getElementById('question14.2').classList.add('hidden') ;
+						for (i=8; i<12; i++)
+							fields[i].value = (0).toFixed(2) ;
+						document.getElementById('numOfQuarters').value = 8 ;
+					}
+  					
+					calcReturn.value = 1;
+					document.getElementById('showResults').click() ;
+  					return ;
+
+  				}
+
+				
  			}			
   	}
 	
@@ -1310,9 +1313,13 @@
 					tot += fieldsInt[j+i];
 					//if amount was reached before the single quarter capped it (the single quarter is immediately following the added quarters)
 					if (tot > amount &amp;&amp; (j+i) == temp-1) {
+				
+				var results = getElementsByName('results');
+				for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');
 						
 						//Applies necessary changes to the result
-
+						
 						document.getElementById('q13_text_amountString').innerHTML = amountString
 						document.getElementById('q13_text_quarter').innerHTML = document.getElementById('q12_date'+(parseInt(capPeriod.value, 10)+1)+'_'+age).innerHTML ;
 						
@@ -1512,19 +1519,17 @@
 				
 				
 
-				document.getElementById('R8').classList.remove('hidden');	
-				document.getElementById('chargeDate1').innerHTML = midDate ;
-				document.getElementById('plus29').innerHTML = ' until ' ;
-				document.getElementById('plus291').innerHTML = datePicked30 ;
-				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
-				document.getElementById('chargeDate11').innerHTML = end ;
-				document.getElementById('chargeDate111').innerHTML = midDate ;
-				document.getElementById('warning_amount').innerHTML = amountString ;
-				document.getElementById('warning_amount2').innerHTML = amountString ;
+				document.getElementById('R9').classList.remove('hidden');
+				document.getElementById('chargeDate0').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+				document.getElementById('chargeDate01').innerHTML = datePicked30 ;
+				document.getElementById('chargeDate011').innerHTML = datePicked.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) ;
+		
+				document.getElementById('chargeAmount').innerHTML = amountString ;
+				document.getElementById('chargeAmount2').innerHTML = amountString ;
+				document.getElementById('chargeAmount3').innerHTML = amountString ;
+				document.getElementById('chargeAmount4').innerHTML = amountString ;
+	
 				
-				
-				
-
 			}
 			else {
 				if (capPeriod >= 8 || numOfQuarters == 4){
@@ -1548,7 +1553,7 @@
 				document.getElementById('R8').classList.remove('hidden');	
 				document.getElementById('chargeDate1').innerHTML = midDate ;
 				document.getElementById('plus29').innerHTML = ' ' ;
-				document.getElementById('plus291').innerHTML = ' 29 days after' ;
+				document.getElementById('plus291').innerHTML = ' ' ;
 				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
 				document.getElementById('chargeDate11').innerHTML = end;
 				document.getElementById('chargeDate111').innerHTML = midDate ;
@@ -1766,6 +1771,7 @@
 <h3>Mandatory registration if you are no longer a small supplier</h3>
  </div>
 <div data-ajax-replace="#ajax-reg-char1a-4"></div>
+<div data-ajax-replace="#ajax-reg-exceed1"></div>
 </li>
 <li>
 <div data-ajax-replace="#ajax-reg"></div>
