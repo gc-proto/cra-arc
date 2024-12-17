@@ -1018,7 +1018,6 @@
 ">
 
 
-
 <!--Assigns proper quarters in order for input fields of question 12/14-->
 <input class="hidden" id="showFields" type="button" onclick="
 	
@@ -1167,26 +1166,8 @@
  				
  				temp += fieldsInt[(j+i)] ;
 
-				//if amount has been reached by addition of quarters 
-  				if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
-  					capPeriod.value = j+i ;
-  					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
-  					
-					if (i+j < 8 &amp;&amp; age == 'Old') {
-						document.getElementById('question14.2').classList.add('hidden') ;
-						for (i=8; i<12; i++)
-							fields[i].value = (0).toFixed(2) ;
-						document.getElementById('numOfQuarters').value = 8 ;
-					}
-  					
-					calcReturn.value = 1;
-					document.getElementById('showResults').click() ;
-  					return ;
-
-  				}
-
-				//if amount has been reached by a single quarter
-  				else if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
+			//if amount has been reached by a single quarter
+  				if (temp > amount &amp;&amp; fieldsInt[j+i] > amount) {
   					
   					calcReturn.value = 0 ;
   					capPeriod.value = j+i ;
@@ -1225,6 +1206,26 @@
 
   					return ;
   				}
+
+				//if amount has been reached by addition of quarters 
+  				else if (temp > amount &amp;&amp; fieldsInt[j+i] <= amount) {
+  					capPeriod.value = j+i ;
+  					minDate.value = document.getElementById('q'+capPeriod.value+'_monthStart_'+age).value ;
+  					
+					if (i+j < 8 &amp;&amp; age == 'Old') {
+						document.getElementById('question14.2').classList.add('hidden') ;
+						for (i=8; i<12; i++)
+							fields[i].value = (0).toFixed(2) ;
+						document.getElementById('numOfQuarters').value = 8 ;
+					}
+  					
+					calcReturn.value = 1;
+					document.getElementById('showResults').click() ;
+  					return ;
+
+  				}
+
+				
  			}			
   	}
 	
@@ -1312,9 +1313,13 @@
 					tot += fieldsInt[j+i];
 					//if amount was reached before the single quarter capped it (the single quarter is immediately following the added quarters)
 					if (tot > amount &amp;&amp; (j+i) == temp-1) {
+				
+				var results = getElementsByName('results');
+				for (i=1; i<=results.length; i++)
+				document.getElementById('R'+i).classList.add('hidden');
 						
 						//Applies necessary changes to the result
-
+						
 						document.getElementById('q13_text_amountString').innerHTML = amountString
 						document.getElementById('q13_text_quarter').innerHTML = document.getElementById('q12_date'+(parseInt(capPeriod.value, 10)+1)+'_'+age).innerHTML ;
 						
@@ -1496,19 +1501,24 @@
 				if (capPeriod >= 8 || numOfQuarters == 4){
 					document.getElementById('estimate').innerHTML = 'would have' ;
 					document.getElementById('have0').innerHTML = 'would have' ;
+					
 					document.getElementById('have1').innerHTML = 'have' ;
 				}else{
-					document.getElementById('estimate').innerHTML = '' ;
+					document.getElementById('estimate').innerHTML = 'have' ;
 					if(n>m){
+						document.getElementById('tense151').innerHTML = 'have';
+						document.getElementById('tense153').innerHTML = 'is';
 						document.getElementById('have0').innerHTML = 'would have' ;
+						
 						if (n<l){
+							
 							document.getElementById('have1').innerHTML = 'have' ;
 						}else{
 							document.getElementById('have1').innerHTML = 'have' ;
 						}
 					}else{
 						document.getElementById('have0').innerHTML = 'would have' ;
-						document.getElementById('have1').innerHTML = 'have' ;
+						document.getElementById('have1').innerHTML = 'would have' ;
 					}
 				}
 				
@@ -1532,13 +1542,13 @@
 					document.getElementById('have0').innerHTML = 'would have' ;
 					document.getElementById('have1').innerHTML = 'have' ;
 				}else{
-					document.getElementById('estimate').innerHTML = 'received' ;
+					document.getElementById('estimate').innerHTML = 'have' ;
 					if(n>m){
-						document.getElementById('have0').innerHTML = 'would have' ;
+						document.getElementById('have0').innerHTML = 'have' ;
 						if (n<l){
 							document.getElementById('have1').innerHTML = 'have' ;
 						}else{
-							document.getElementById('have1').innerHTML = 'have' ;
+							document.getElementById('have1').innerHTML = 'is' ;
 						}
 					}else{
 						document.getElementById('have0').innerHTML = 'would have' ;
@@ -1548,7 +1558,7 @@
 				document.getElementById('R8').classList.remove('hidden');	
 				document.getElementById('chargeDate1').innerHTML = midDate ;
 				document.getElementById('plus29').innerHTML = ' ' ;
-				document.getElementById('plus291').innerHTML = ' ' ;
+				document.getElementById('plus291').innerHTML = ' If your actual sales match the amounts you entered:' ;
 				document.getElementById('differenceAB').innerHTML = ' on taxable supplies starting ' ;
 				document.getElementById('chargeDate11').innerHTML = end;
 				document.getElementById('chargeDate111').innerHTML = midDate ;
@@ -1766,6 +1776,7 @@
 <h3>Mandatory registration if you are no longer a small supplier</h3>
  </div>
 <div data-ajax-replace="#ajax-reg-char1a-4"></div>
+<div data-ajax-replace="#ajax-reg-exceed1"></div>
 </li>
 <li>
 <div data-ajax-replace="#ajax-reg"></div>
@@ -1774,7 +1785,7 @@
 <div data-ajax-replace="#ajax-reg-most-effective"></div>
 </li>
 <li class="cnjnctn-col">
-<p class="mrgn-tp-lg"><label id="plus291"></label> The effective date of registration <span id="have1"></span> <strong>no later than</strong> <label id="chargeDate1">.</label>.</p>
+<p class="mrgn-tp-lg"><label id="plus291"></label> Your effective date of registration <span id="have1"></span> <strong>no later than</strong> <span class="nowrap"><label id="chargeDate1"></label>.</span></p>
 </li>
 
 </ul>
@@ -1783,7 +1794,7 @@
 <div data-ajax-replace="#ajax-reg-most-application"></div>
 </li>
 <li class="cnjnctn-col">
-<p class="mrgn-tp-lg"><label id="plus2911"></label> You <span id="have2"></span> to register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate11"></label>.</p>
+<p class="mrgn-tp-lg"><label id="plus2911"></label> You <span id="have2"></span> to register for a GST/HST account number <strong>no later than</strong> <span class="nowrap"><label id="chargeDate11"></label>.</span></p>
 </li>
 </ul>
 <p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
@@ -1795,7 +1806,7 @@
 <div data-ajax-replace="#ajax-charge-gen"></div>
 </li>
 <li class="cnjnctn-col">
-<p><label id="plus29111"></label> You <span id="have3"></span> charge the GST/HST <span id="differenceAB"></span> <strong>no later than</strong> <label id="chargeDate111"></label>.</p>
+<p><label id="plus29111"></label> You <span id="have3"></span> charge the GST/HST <span id="differenceAB"></span> <strong>no later than</strong> <span class="nowrap"><label id="chargeDate111"></label>.</span></p>
 </li>
 </ul>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
@@ -1819,7 +1830,7 @@
 </li>
 <li class="cnjnctn-col">
 <p class="mrgn-tp-lg"><strong>If your actual sales match the amounts you entered</strong>: </p>
-<p>Your effective date of registration <span id="tense153"></span> <label id="chargeDate0"></label>. </p>
+<p>Your effective date of registration <span id="tense153"></span> <span class="nowrap"><label id="chargeDate0"></label>.</span> </p>
 </li>
 
 </ul>
@@ -1829,7 +1840,7 @@
 </li>
 <li class="cnjnctn-col">
 <p  class="mrgn-tp-lg"><strong>If your actual sales match the amounts you entered</strong>: </p>
-<p>You <span id="tense154"></span> to register for a GST/HST account number <strong>no later than</strong> <label id="chargeDate01"></label>.</p>
+<p>You <span id="tense154"></span> to register for a GST/HST account number <strong>no later than</strong> <span class="nowrap"><label id="chargeDate01"></label>.</span></p>
 </li>
 </ul>
 <p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
@@ -1843,7 +1854,7 @@
 </li>
 <li class="cnjnctn-col">
 <p><strong>If your actual sales match the amounts you entered</strong>: </p>
-<p>You <span id="tense155"></span> to charge the GST/HST on taxable supplies starting <span id="differenceAB"></span> <label id="chargeDate011"></label>, including on the <strong>sale that made you exceed</strong> the small supplier threshold.</p>
+<p>You <span id="tense155"></span> to charge the GST/HST on taxable supplies starting <span id="differenceAB"></span> <span class="nowrap"><label id="chargeDate011"></label>,</span> including on the <strong>sale that made you exceed</strong> the small supplier threshold.</p>
 </li>
 </ul>
 <p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
@@ -3357,32 +3368,23 @@
 <div class="row">
 <div class="col-xs-12">
 <dl class="dl-horizontal">
-<dt><a href="">ETA: 123(1)</a></dt><dd> Definition of "commercial activity"</dd>
-<dt><a href="">ETA: 129(3)</a></dt><dd> Designated small supplier divisions</dd>
-<dt><a href="">ETA: 141.1(3)</a></dt><dd> Even if the only commercial activity is the sale of real property, registration is required if the property is taxable</dd>
-<dt><a href="">ETA: 142(1)(d)</a></dt><dd> A supply by way of sale of real property is deemed to be made in Canada if the property is located in Canada</dd>
-<dt><a href="">ETA: 148</a></dt><dd> Definition of "small supplier"</dd>
-<dt><a href="">ETA: 148(1)</a></dt><dd> A person is not required to register if their revenue from taxable supplies (including associates) does not exceed threshold in a single calendar quarter or over the past four consecutive quarters </dd>
-<dt><a href="">ETA: 148(2)</a></dt><dd> Cease to be a small supplier </dd>
-<dt><a href="">ETA: 148.1</a></dt><dd> Gross revenue small suppliers</dd>
-<dt><a href="">ETA: 165(1)</a></dt><dd> GST/HST charged depending on the province on taxable supplies, including real property</dd>
-<dt><a href="">ETA: 169(1)</a></dt><dd> Input tax credit allowed</dd>
-<dt><a href="">ETA: 178.1</a></dt><dd> Definition of a direct and network seller</dd>
-<dt><a href="">ETA: 221(1)</a></dt><dd> Requirement to charge GST/HST on taxable supply </dd>
-<dt><a href="">ETA: 221(2)(d)</a></dt><dd> Add description</dd>
-<dt><a href="">ETA: 228(2)</a></dt><dd> Requirement to remit net tax payable from GST/HST return by due date</dd>
-<dt><a href="">ETA: 228(4)</a></dt><dd> Buyer must remit the GST/HST directly to the CRA</dd>
-<dt><a href="">ETA: 238(1)</a></dt><dd> Requirement to file a return for each reporting period</dd>
-<dt><a href="">ETA: 238(2)</a></dt><dd> Returns must be filed within one month after the end of the reporting period</dd>
-<dt><a href="">ETA: 240(1)</a></dt><dd> Requirement to register for GST/HST</dd>
-<dt><a href="">ETA: 240(1)(b)</a></dt><dd> Exception to registration for sales of real property not made in the course of a business</dd>
-<dt><a href="">ETA: 240(1.1)</a></dt><dd> Non-residents must register for GST/HST if they carry on business in Canada and make taxable supplies</dd>	
-<dt><a href="">ETA: 240(2.1)</a></dt><dd> Application for registration within 29 days of mandatory registration</dd>
-<dt><a href="">ETA: 240(3)</a></dt><dd> Voluntary registration</dd>
-<dt><a href="">ETA: 259(5)</a></dt><dd> Public Service Body rebate</dd>
-<dt><a href="">ETA: Schedule V, Part 1</a></dt><dd> Section 2: Sales of real property exempt - Used residential property</dd>
-<dt><a href="">ETA: Schedule V, Part 1</a></dt><dd> Section 6: Sales of real property exempt - Farmland sold to a related individual for personal use</dd>
-<dt><a href="">ETA: Schedule V, Part 1</a></dt><dd> Section 9: Sales of real property exempt - Long-term leases of land</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-28.html#h-188832:~:text=commercial%20activity%E2%80%82of%20a%20person%20means">ETA: 123(1)</a></dt><dd> Definition of "commercial activity"</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-29.html#h-189381:~:text=Designation%20by%20Minister">ETA: 129(3)</a></dt><dd> Designated small supplier divisions </dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-34.html#h-190092:~:text=Marginal%20note%3A-,Small%20suppliers,-148%C2%A0(1">ETA: 148</a></dt><dd> Small suppliers</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-34.html#h-190092:~:text=of%20gross%20revenue-,148.1%C2%A0(1),-In%20this%20section">ETA: 148.1</a></dt><dd> Gross revenue small suppliers  </dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-45.html#docCont:~:text=Definitions-,178.1%C2%A0In,-this%20section%20and">ETA: 178.1</a></dt><dd> Direct sellers</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-66.html#h-194089:~:text=Collection%20of%20tax-,221%C2%A0(1)%C2%A0,-Every%20person%20who">ETA: 221(1)</a></dt><dd> Requirement to charge GST/HST on taxable supply</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-66.html#h-194089:~:text=subsection%20132(2)%3B-,(b)%C2%A0the,-recipient%20is%20registered">ETA: 221(2)(b)</a></dt><dd> Exception to collecting GST/HST for one-time sales of real property </dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-70.html#docCont:~:text=Real%20property%20and%20emission%20allowance">ETA: 228(4)</a></dt><dd> Buyer must remit the GST/HST directly to the CRA</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-75.html#h-195286:~:text=Idem-,(2)%C2%A0Every,-person%20who%20is">ETA: 238(2)</a></dt><dd> Returns must be filed within one month after the end of the reporting period</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-76.html#docCont:~:text=Registration%20required-,240%C2%A0(1)%C2%A0,-Every%20person%20who">ETA: 240(1)</a></dt><dd> Requirement to register for GST/HST</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-76.html#docCont:~:text=a%20small%20supplier%3B-,(b)%C2%A0the,-only%20commercial%20activity">ETA: 240(1)(b)</a></dt><dd> Exception to registration for sales of real property not made in the course of a business</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-76.html#docCont:~:text=a%20business%3B%20or-,(c)%C2%A0the,-person%20is%20a">ETA: 240(1)(c)</a></dt><dd> Exception to registration for non-resident not carrying on  a business in Canada</dd>	
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-76.html#docCont:~:text=Taxi%20business-,(1.1)%C2%A0,-Notwithstanding%20subsection%20(1">ETA: 240(1.1)</a></dt><dd> Taxi drivers must register for GST/HST if they carry on a taxi business, even if they are small suppliers </dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-76.html#docCont:~:text=Marginal%20note%3A-,Taxi%20business,-(1.1)%C2%A0Notwithstanding">ETA: 240(2)</a></dt><dd> Requirement for non-resident performers and suppliers of admissions to register</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-76.html#docCont:~:text=Application-,(2.1)%C2%A0,-A%20person%20required">ETA: 240(2.1)</a></dt><dd> Application for registration within 29 days of mandatory registration</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-76.html#docCont:~:text=Marginal%20note%3A-,Registration%20permitted,-(3)%C2%A0An">ETA: 240(3)</a></dt><dd> Voluntary registration</dd>
+<dt><a href="https://laws-lois.justice.gc.ca/eng/acts/E-15/page-88.html#docCont:~:text=Marginal%20note%3A-,Application%20for%20rebate,-(5)%C2%A0A">ETA: 259(5)</a></dt><dd> Public service body rebate </dd>
 </dl>
 </div>
 </div>
