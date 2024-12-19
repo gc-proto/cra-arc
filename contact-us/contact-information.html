@@ -3962,21 +3962,21 @@ $('span[data-json-replace]').on("wb-contentupdated", function (event, data) {
     switch (wb.lang) {
     case "en":
     obj = {
-        "--": ["#waittime-lbx", "Not available"],
-        "softEmergency": ["#softemergency-lbx", "Calls re-routed"],
-        "lineClosed": ["#lineclosed-lbx", "Line closed"]
+        "--": ["#waittime-lbx", "Not available", "Unknown issue"],
+        "softEmergency": ["#softemergency-lbx", "Agents are busy"],
+        "lineClosed": ["#lineclosed-lbx", "Not available", "This line is closed"]
       };
       break;
     case "fr":
       obj = {
-        "--": ["#waittime-lbx", "Temps d’attente"],
-        "softEmergency": ["#softemergency-lbx", "Calls re-routed - FR"],
-        "lineClosed": ["#lineclosed-lbx", "Line closed - FR"]
+        "--": ["#waittime-lbx", "Temps d’attente", "Unknown isssue - FR"],
+        "softEmergency": ["#softemergency-lbx", "Temps d’attente", "Agents are busy - FR"],
+        "lineClosed": ["#lineclosed-lbx", "Temps d’attente", "This line is close - FR"]
       };
   }
   const key = $(this).text();
   if (key in obj) {
-    $(this).replaceWith('<a href="' + obj[key][0] + '" class="wb-lbx">' + obj[key][1] + '</a>');
+    $(this).replaceWith('<a href="' + obj[key][0] + '" class="wb-lbx">' + obj[key][1] + '<span class="wb-inv"> - ' + obj[key][2] + '</span></a>');
     $(".wb-lbx").trigger("wb-init.wb-lbx");
   }
 });
