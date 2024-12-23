@@ -439,16 +439,27 @@
 				document.getElementById('R'+i).classList.add('hidden');
 				
 			var q6 = document.getElementsByName('q6');
-
-			if (q6[0].checked)
-				document.getElementById('R3').classList.remove('hidden');
+			var q2 = document.getElementById('q2').value;
 			
+			if (q2 == 0) {
+				if (q6[0].checked) {
+					document.getElementById('R3').classList.remove('hidden');
+				}
+				else {
+					document.getElementById('R4').classList.remove('hidden');
+				}
+			}
 			else {
+				if (q6[0].checked) {
+					document.getElementById('R3').classList.remove('hidden');
+				}
+				else {
 					var q7 = document.getElementsByName('q7');
 					for (i=0; i<q7.length; i++)
 						q7[i].checked = false ;
 					document.getElementById('question7').classList.remove('hidden');
 				}
+			}
 			
 		">
 		 <li class="radio">
@@ -476,19 +487,17 @@
 			var results = getElementsByName('results');
 			for (i=1; i<=results.length; i++)
 				document.getElementById('R'+i).classList.add('hidden');
-
-			var q7 = document.getElementsByName('q7');
-
-			if (q7[0].checked)
-				document.getElementById('R11').classList.remove('hidden');
 			
+			var q7 = document.getElementsByName('q7');
+			if (q7[0].checked) {
+				document.getElementById('R4').classList.remove('hidden');
+			}	
 			else {
-					var q8 = document.getElementsByName('q8');
-					for (i=0; i<q8.length; i++)
-						q8[i].checked = false ;
-					document.getElementById('question8').classList.remove('hidden');
-				}
-
+				var q8 = document.getElementsByName('q8');
+				for (i=0; i<q8.length; i++)
+					q8[i].checked = false ;
+				document.getElementById('question8').classList.remove('hidden');
+			}
 		">
 			 <li class="radio">
                                         <input type="radio" name="q7" id="q7-true" value="0" data-q7="true" data-rule-required="true">
@@ -595,7 +604,7 @@
 							document.getElementById('showFields').click() ;
 						}
 						else if (document.getElementById('q9').value != 0) {
-							document.getElementById('R11').classList.remove('hidden');
+							document.getElementById('R4').classList.remove('hidden');
 						}
 			">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</button>
@@ -1573,10 +1582,8 @@
 	else {	
 		if (document.getElementById('q3').value == 2) {
 			document.getElementById('R4').classList.remove('hidden') ;
-			document.getElementById('R20').classList.remove('hidden') ;
 
 		}
-	     			
 		else {
 			if (numOfQuarters == 8) {
 				document.getElementById('numOfQuarters').value = 12 ;
@@ -1689,22 +1696,6 @@
 </li>
 </ol>
 </section>
-
-<section class="alert alert-info hidden" id="R20" name="results">
-	<h3><small>Based on the information you entered</small><br>R20 You may not have to register for a GST/HST account number</h3>
-<hr>
-<ol class="lst-stps ld-zr stps-strpd">
-<li><h3>Conditions for a a small supplier</h3>
-<div data-ajax-replace="#ajax-confirm-small-char1"></div>
-</li>
-<li><div data-ajax-replace="#ajax-confirm-small-char2"></div>
-<div data-ajax-replace="#ajax-confirm-small-psb"></div>
-<div data-ajax-replace="#ajax-confirm-smallyes" class="mrgn-tp-md"></div>
-</li>
-</ol>
-</section>
-
-
 
 <section class="alert alert-info hidden" id="R5" name="results">
 	<h3><small>Based on the information you entered</small><br> R5 You have to register for a GST/HST account number</h3>
@@ -1888,6 +1879,9 @@
 </section>
 
 
+
+<section class="hidden  mrgn-lft-lg" id="R11" name="results">
+</section>
 
 <section class="alert alert-warning hidden" id="R12" name="results">
 	<h3><small>Based on the information you entered</small><br>  R12 You may have to register for a GST/HST account number</h3>
@@ -2396,6 +2390,7 @@
 <h4>$250,000 gross revenue test</h4>
 <p>If you are a charity or public institution in <strong>one</strong> of the following situation, you are a small supplier under the $250,000 gross revenue test:</p>
 <ul class="list-unstyled cnjnctn-type-or">
+<li class="cnjnctn-col">You are <strong>not</strong> yet operating</li>
 <li class="cnjnctn-col">You are in your <strong>first</strong> <a href="#ajax-fiscal" aria-controls="ajax-fiscal" class="overlay-lnk" role="button">fiscal year&nbsp;<span class="far fa-question-circle"></span></a> of operation</li>
 <li class="cnjnctn-col">You are in your <strong>second</strong> fiscal year of operation and your gross revenue from your first fiscal year is <strong>$250,000 or less</strong></li>
 <li class="cnjnctn-col">You are in your <strong>third</strong> fiscal year of operation and your gross revenue from either or both of your <strong>previous 2 </strong> fiscal years is <strong>$250,000 or less</strong></li>
