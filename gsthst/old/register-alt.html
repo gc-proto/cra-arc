@@ -439,27 +439,16 @@
 				document.getElementById('R'+i).classList.add('hidden');
 				
 			var q6 = document.getElementsByName('q6');
-			var q3 = document.getElementById('q3').value;
+
+			if (q6[0].checked)
+				document.getElementById('R3').classList.remove('hidden');
 			
-			if (q3 == 0) {
-				if (q6[0].checked) {
-					document.getElementById('R3').classList.remove('hidden');
-				}
-				else {
-					document.getElementById('R20').classList.remove('hidden');
-				}
-			}
 			else {
-				if (q6[0].checked) {
-					document.getElementById('R3').classList.remove('hidden');
-				}
-				else {
 					var q7 = document.getElementsByName('q7');
 					for (i=0; i<q7.length; i++)
 						q7[i].checked = false ;
 					document.getElementById('question7').classList.remove('hidden');
 				}
-			}
 			
 		">
 		 <li class="radio">
