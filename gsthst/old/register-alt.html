@@ -476,17 +476,19 @@
 			var results = getElementsByName('results');
 			for (i=1; i<=results.length; i++)
 				document.getElementById('R'+i).classList.add('hidden');
-			
+
 			var q7 = document.getElementsByName('q7');
-			if (q7[0].checked) {
-				document.getElementById('R4').classList.remove('hidden');
-			}	
+
+			if (q7[0].checked)
+				document.getElementById('R20').classList.remove('hidden');
+			
 			else {
-				var q8 = document.getElementsByName('q8');
-				for (i=0; i<q8.length; i++)
-					q8[i].checked = false ;
-				document.getElementById('question8').classList.remove('hidden');
-			}
+					var q8 = document.getElementsByName('q8');
+					for (i=0; i<q8.length; i++)
+						q8[i].checked = false ;
+					document.getElementById('question8').classList.remove('hidden');
+				}
+
 		">
 			 <li class="radio">
                                         <input type="radio" name="q7" id="q7-true" value="0" data-q7="true" data-rule-required="true">
@@ -1674,6 +1676,20 @@
 
 <section class="alert alert-info hidden" id="R4" name="results">
 	<h3><small>Based on the information you entered</small><br>R4 You may not have to register for a GST/HST account number</h3>
+<hr>
+<ol class="lst-stps ld-zr stps-strpd">
+<li><h3>Conditions for a a small supplier</h3>
+<div data-ajax-replace="#ajax-confirm-small-char1"></div>
+</li>
+<li><div data-ajax-replace="#ajax-confirm-small-char2"></div>
+<div data-ajax-replace="#ajax-confirm-small-psb"></div>
+<div data-ajax-replace="#ajax-confirm-smallyes" class="mrgn-tp-md"></div>
+</li>
+</ol>
+</section>
+
+<section class="alert alert-info hidden" id="R20" name="results">
+	<h3><small>Based on the information you entered</small><br>R20 You may not have to register for a GST/HST account number</h3>
 <hr>
 <ol class="lst-stps ld-zr stps-strpd">
 <li><h3>Conditions for a a small supplier</h3>
