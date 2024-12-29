@@ -136,15 +136,9 @@
 			var q1 = document.getElementsByName('q1') ;			
 
 			//If yes
-			if (q1[0].checked) {
-				document.getElementById('question3').classList.remove('hidden');	
-				document.getElementById('age').value = 'Old'
-				document.getElementById('numOfQuarters').value = 8 ;
-			
-			}
 			
 			//No taxable
-			else if (q1[1].checked){
+			if (q1[1].checked){
 				document.getElementById('R1').classList.remove('hidden');
 			}
 			//No taxable
@@ -154,7 +148,15 @@
 		   //No taxable
 			else if (q1[3].checked) {
 				document.getElementById('R12').classList.remove('hidden');	
-			}	
+			}
+				
+		   else if (q1[0].checked) {
+				document.getElementById('question3').classList.remove('hidden');	
+				document.getElementById('age').value = 'Old'
+				document.getElementById('numOfQuarters').value = 8 ;
+			
+			}
+			
 		">
 			 <li class="radio">
                                         <input type="radio" name="q1" id="q1-falsea" value="1" data-q1a="false" data-rule-required="true">
