@@ -143,10 +143,18 @@
 			
 			}
 			
-			//No
-			else {
+			//No taxable
+			if (q1 == 1){
 				document.getElementById('R1').classList.remove('hidden');
 			}
+			//No taxable
+		   else if (q3 == 2) {
+				document.getElementById('R6').classList.remove('hidden');
+			}
+		   //No taxable
+			else if (q1 == 3) {
+				document.getElementById('R12').classList.remove('hidden');	
+			}	
 		">
 		 <li class="radio">
                                         <input type="radio" name="q1" id="q1-true" value="0" data-q1="true" data-rule-required="true">
@@ -156,7 +164,17 @@
                                         <input type="radio" name="q1" id="q1-false" value="1" data-q1="false" data-rule-required="true">
                                         <label for="q1-false">No</label>
                                     </li>
-			  </ul>
+
+						 <li class="radio">
+                                        <input type="radio" name="q1" id="q1-false" value="2" data-q1="false" data-rule-required="true">
+                                        <label for="q1-false">Sales of real property not made in the course of a business</label>
+                                    </li>
+
+	   			 <li class="radio">
+                                        <input type="radio" name="q1" id="q1-false" value="3" data-q1="false" data-rule-required="true">
+                                        <label for="q1-false">Non-resident business</label>
+                                    </li>
+</ul>
 		
 	</fieldset>
  
@@ -249,20 +267,14 @@
 					q11[i].checked = false ;
 
 			}
-			else if (q3 == 6) {
-				document.getElementById('R6').classList.remove('hidden');
-			}
-			else if (q3 == 7) {
-				document.getElementById('R12').classList.remove('hidden');	
-			}	
+			
 		">
 			<option value="5" selected>Make your selection...</option> 
 			<option value="0" name="q3">Sole proprietor, a partnership or a corporation</option>
 			<option value="2" name="q3">Charity or public institution</option>
 			<option value="1" name="q3">Public service body that is not a charity or a public institution</option>
 			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
-			<option value="6" name="q3">Sale of property, other than in the course of a business</option>
-			<option value="7" name="q3">Non-resident business</option>
+			
 		</select>
 	</fieldset>
 	
