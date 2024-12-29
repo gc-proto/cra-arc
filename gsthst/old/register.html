@@ -149,6 +149,15 @@
 			else if (q1[3].checked) {
 				document.getElementById('R12').classList.remove('hidden');	
 			}
+
+			else if (q1[4].checked) {
+				document.getElementById('question11').classList.remove('hidden');
+				var q11 = document.getElementsByName('q11');
+				for (i=0; i<q11.length; i++)
+					q11[i].checked = false ;
+
+			}
+		
 				
 		   else if (q1[0].checked) {
 				document.getElementById('question3').classList.remove('hidden');	
@@ -172,6 +181,12 @@
                                         <input type="radio" name="q1" id="q1-falsec" value="3" data-q1c="false" data-rule-required="true">
                                         <label for="q1-falsec">You are a non-resident business</label>
                                     </li>
+
+	   		 <li class="radio">
+                                        <input type="radio" name="q1" id="q1-falsed" value="4" data-q1d="false" data-rule-required="true">
+                                        <label for="q1-falsed">You are taxi operator or a commercial ride-sharing driver</label>
+                                    </li>
+	   
 		 <li class="radio">
                                         <input type="radio" name="q1" id="q1-true" value="0" data-q1="true" data-rule-required="true">
                                         <label for="q1-true">Your business is not in the above situations</label>
@@ -263,20 +278,12 @@
 				document.getElementById('amountString').value = '50,000' ;
 			}
 			
-			else if (q3 == 3) {
-				document.getElementById('question11').classList.remove('hidden');
-				var q11 = document.getElementsByName('q11');
-				for (i=0; i<q11.length; i++)
-					q11[i].checked = false ;
-
-			}
-			
+					
 		">
 			<option value="5" selected>Make your selection...</option> 
 			<option value="0" name="q3">Sole proprietor, a partnership or a corporation</option>
 			<option value="2" name="q3">Charity or public institution</option>
 			<option value="1" name="q3">Public service body that is not a charity or a public institution</option>
-			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
 			
 		</select>
 	</fieldset>
