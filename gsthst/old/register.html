@@ -239,11 +239,14 @@
 	</fieldset>
 	
 	<!--QUESTION 3 - DROPDOWN-->
+
 <fieldset name="quest" id="question3" class="hidden mrgn-bttm-md">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your business is not in the situations identified</big></p>
 		<label class="mrgn-tp-md" for="q3">Which option best describes your business? </label>
-		<select class="form-control required" id="q3" onchange="
-			var q = getElementsByName('quest') ;
+
+ <ul class="list-unstyled lst-spcd-2" onchange="
+
+			var q   = getElementsByName('quest') ;
 			for (i=4; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
 			
@@ -252,7 +255,7 @@
 				document.getElementById('R'+i).classList.add('hidden');
 			
 			var q3 = document.getElementById('q3').value ;
-			if (q3 == 0) {
+			if (q3[0].checked) {
 				
 				for (i=0; i<q4.length; i++)
 				
@@ -262,7 +265,7 @@
 							
 			}
 			
-			else if (q3 == 1) {
+			else if (q3[1].checked) {
 				document.getElementById('question5').classList.remove('hidden');
 				var q5 = document.getElementsByName('q5');
 				for (i=0; i<q5.length; i++)
@@ -270,7 +273,7 @@
 				document.getElementById('amountString').value = '50,000' ;				
 			}	
 			
-			else if (q3 == 2) {
+			else if (q3[2].checked) {
 				document.getElementById('question6').classList.remove('hidden');
 				var q6 = document.getElementsByName('q6');
 				for (i=0; i<q6.length; i++)
@@ -280,12 +283,24 @@
 			
 					
 		">
-			<option value="5" selected>Make your selection...</option> 
-			<option value="0" name="q3">Sole proprietor, a partnership or a corporation</option>
-			<option value="2" name="q3">Charity or public institution</option>
-			<option value="1" name="q3">Public service body that is not a charity or a public institution</option>
-			
-		</select>
+	   		 <li class="radio">
+                                        <input type="radio" name="q3" id="q3-truea" value="0" data-q3a="true" data-rule-required="true">
+                                        <label for="q3-truea">Sole proprietor, a partnership or a corporation</label>
+                                    </li>
+
+	   		 <li class="radio">
+                                        <input type="radio" name="q3" id="q3-trueb" value="2" data-q3b="true" data-rule-required="true">
+                                        <label for="q3-trueb">Charity or public institution</label>
+                                    </li>
+
+	   
+		 <li class="radio">
+                                        <input type="radio" name="q3" id="q3-truec" value="1" data-q3c="true" data-rule-required="true">
+                                        <label for="q3-truec">Public service body that is not a charity or a public institution</label>
+                                    </li>
+
+</ul>
+
 	</fieldset>
 	
 	
