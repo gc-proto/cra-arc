@@ -122,7 +122,7 @@
 			//Each question has name attribute 'quest' and id 'question'+number, loops through all questions and hides them accordingly
 			//Every question has this loop, 'i' starting value is the only thing that changes (goes up so it doesn't hide previously asked questions)
 			var q = getElementsByName('quest') ;
-			for (i=2; i<=q.length; i++)
+			for (i=3; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
 			
 			//Similar to loop above but hides results and warnings instead of questions
@@ -167,22 +167,22 @@
 			
 		">
 			 <li class="radio">
-                                        <input type="radio" name="q1" id="q1-falsea" value="0" data-q1="true" data-rule-required="true">
+                                        <input type="radio" name="q1" id="q1-falsea" value="0" data-q1="false" data-rule-required="true">
                                         <label for="q1-falsea">Your business does not supply taxable goods or services</label>
                                     </li>
 
 						 <li class="radio">
-                                        <input type="radio" name="q1" id="q1-falseb" value="1" data-q1="true" data-rule-required="true">
+                                        <input type="radio" name="q1" id="q1-falseb" value="1" data-q1="false" data-rule-required="true">
                                         <label for="q1-falseb">Your business sales real property not in the course of a business</label>
                                     </li>
 
 	   			 <li class="radio">
-                                        <input type="radio" name="q1" id="q1-falsec" value="2" data-q1="true" data-rule-required="true">
+                                        <input type="radio" name="q1" id="q1-falsec" value="2" data-q1="false" data-rule-required="true">
                                         <label for="q1-falsec">You are a non-resident business</label>
                                     </li>
 
 	   		 <li class="radio">
-                                        <input type="radio" name="q1" id="q1-falsed" value="3" data-q1="true" data-rule-required="true">
+                                        <input type="radio" name="q1" id="q1-falsed" value="3" data-q1="false" data-rule-required="true">
                                         <label for="q1-falsed">You are taxi operator or a commercial ride-sharing driver</label>
                                     </li>
 	   
@@ -257,7 +257,7 @@
 			var q3 = document.getElementsByName('q3') ;			
 			
 			
-			else if (q3[0].checked) {
+			if (q3[0].checked) {
 				
 				for (i=0; i<q4.length; i++)
 				
