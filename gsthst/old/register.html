@@ -122,7 +122,7 @@
 			//Each question has name attribute 'quest' and id 'question'+number, loops through all questions and hides them accordingly
 			//Every question has this loop, 'i' starting value is the only thing that changes (goes up so it doesn't hide previously asked questions)
 			var q = getElementsByName('quest') ;
-			for (i=3; i<=q.length; i++)
+			for (i=2; i<=q.length; i++)
 				document.getElementById('question'+i).classList.add('hidden');
 			
 			//Similar to loop above but hides results and warnings instead of questions
@@ -254,6 +254,8 @@
 			for (i=1; i<=results.length; i++)
 				document.getElementById('R'+i).classList.add('hidden');
 
+	 			document.getElementsByName('q4');
+
 			var q3 = document.getElementsByName('q3') ;			
 			
 			
@@ -267,7 +269,7 @@
 							
 			}
 
-			else if (q3[1].checked) {
+			else if (q3[2].checked) {
 				document.getElementById('question6').classList.remove('hidden');
 				var q6 = document.getElementsByName('q6');
 				for (i=0; i<q6.length; i++)
@@ -276,7 +278,7 @@
 			}
 
 				
-			else if (q3[2].checked) {
+			else if (q3[1].checked) {
 				document.getElementById('question5').classList.remove('hidden');
 				var q5 = document.getElementsByName('q5');
 				for (i=0; i<q5.length; i++)
