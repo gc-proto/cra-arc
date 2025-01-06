@@ -144,8 +144,12 @@
 			}
 			
 			//No
-			else {
+			else if (q1[1].checked) {
 				document.getElementById('R1').classList.remove('hidden');
+			}
+
+	   		else if (q1[6].checked) {
+				document.getElementById('R6').classList.remove('hidden');
 			}
 		">
 		 <li class="radio">
@@ -153,8 +157,12 @@
                                         <label for="q1-true">Yes</label>
                                     </li>
 			 <li class="radio">
-                                        <input type="radio" name="q1" id="q1-false" value="1" data-q1="false" data-rule-required="true">
-                                        <label for="q1-false">No</label>
+                                        <input type="radio" name="q1" id="q1-falsea" value="1" data-q1="false" data-rule-required="true">
+                                        <label for="q1-falsea">No</label>
+                                    </li>
+	  		 <li class="radio">
+                                        <input type="radio" name="q1" id="q1-falseb" value="6" data-q1="false" data-rule-required="true">
+                                        <label for="q1-falseb">Sale of property, other than in the course of a business</label>
                                     </li>
 			  </ul>
 		
@@ -249,9 +257,7 @@
 					q11[i].checked = false ;
 
 			}
-			else if (q3 == 6) {
-				document.getElementById('R6').classList.remove('hidden');
-			}
+			
 			else if (q3 == 7) {
 				document.getElementById('R12').classList.remove('hidden');	
 			}	
@@ -261,7 +267,6 @@
 			<option value="2" name="q3">Charity or public institution</option>
 			<option value="1" name="q3">Public service body that is not a charity or a public institution</option>
 			<option value="3" name="q3">Taxi operator or a commercial ride-sharing driver</option>
-			<option value="6" name="q3">Sale of property, other than in the course of a business</option>
 			<option value="7" name="q3">Non-resident business</option>
 		</select>
 	</fieldset>
