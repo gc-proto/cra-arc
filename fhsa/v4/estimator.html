@@ -2188,8 +2188,8 @@
                             let yearRateArrLen, evalYear;
 
                             if (Object.prototype.hasOwnProperty.call(juristictionArr, "timeframe") === true) {
-                                for (yearRateArrLen = juristictionArr.timeframe.length - 1; yearRateArrLen >= 0; yearRateArrLen = yearRateArrLen - 1) {
-                                    for (evalYear = rateYear; evalYear >= startYear; evalYear = evalYear - 1) {
+                                for (evalYear = rateYear; evalYear >= startYear; evalYear = evalYear - 1) {
+                                    for (yearRateArrLen = juristictionArr.timeframe.length - 1; yearRateArrLen >= 0; yearRateArrLen = yearRateArrLen - 1) {
                                         if (juristictionArr.timeframe[yearRateArrLen].year === evalYear) {
                                             return juristictionArr.timeframe[yearRateArrLen];
                                         }
@@ -2203,8 +2203,8 @@
                             let yearRateArrLen, evalYear, abate;
 
                             if (hasAbatement !== "undefined" && Object.prototype.hasOwnProperty.call(juristictionArr, "regionaladjust") === true) {
-                                for (yearRateArrLen = juristictionArr.regionaladjust.length - 1; yearRateArrLen >= 0; yearRateArrLen = yearRateArrLen - 1) {
-                                    for (evalYear = rateYear; evalYear >= startYear; evalYear = evalYear - 1) {
+                                for (evalYear = rateYear; evalYear >= startYear; evalYear = evalYear - 1) {
+                                    for (yearRateArrLen = juristictionArr.regionaladjust.length - 1; yearRateArrLen >= 0; yearRateArrLen = yearRateArrLen - 1) {
                                         if (juristictionArr.regionaladjust[yearRateArrLen].year === evalYear && Object.prototype.hasOwnProperty.call(juristictionArr.regionaladjust[yearRateArrLen], "abatement")) {
                                             abate = juristictionArr.regionaladjust[yearRateArrLen].abatement.find(function findLoc(abateVal) {
                                                 return Object.keys(abateVal)[0] === area;
