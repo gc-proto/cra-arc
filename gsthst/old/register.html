@@ -137,11 +137,8 @@
 				document.getElementById('R1').classList.remove('hidden');
 			}
 			//No taxable
-		        else if (q1[1].checked) {
-				document.getElementById('question2a').classList.remove('hidden');
-				var q2a = document.getElementsByName('q2a');
-				for (i=1; i<q2a.length; i++)
-					q2a[i].checked = false ;
+		   else if (q1[1].checked) {
+				document.getElementById('R6').classList.remove('hidden');
 			}
 		   //No taxable
 			else if (q1[2].checked) {
@@ -235,45 +232,6 @@
 			 <option value="0">Your business has not already received revenues</option>
 			
 		</select>
-	</fieldset>
-
-<!--QUESTION 2a-->
-	<fieldset name="quest" id="question2a" class="hidden gc-chckbxrdio">
-  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your business sales real property not in the course of a business</big></p>
-<label class="mrgn-tp-sm">Is your only commercial activity the sale of real property, other than in the course of a business?</label>
-	
- <ul class="list-unstyled lst-spcd-2" onchange="	
-			var q = getElementsByName('quest') ;
-			for (i=3; i<=q.length; i++)
-				document.getElementById('question'+i).classList.add('hidden');
-			
-			var results = getElementsByName('results');
-			for (i=1; i<=results.length; i++)
-				document.getElementById('R'+i).classList.add('hidden');
-			
-			var q2a = document.getElementsByName('q2a');
-			
-			if (q2a[0].checked)
-				document.getElementById('R6').classList.remove('hidden');
-			
-			else {
-				document.getElementById('question3').classList.remove('hidden');	
-				document.getElementById('age').value = 'Old'
-				document.getElementById('numOfQuarters').value = 8 ;
-			}
-		">
-	
-			
-		 <li class="radio">
-                                        <input type="radio" name="q2a" id="q2a-true" value="0" data-q2a="true" data-rule-required="true">
-                                        <label for="q2a-true">Yes - Only commercial activity</label>
-                                    </li>
-			 <li class="radio">
-                                        <input type="radio" name="q2a" id="q2a-false" value="1" data-q2a="false" data-rule-required="true">
-                                        <label for="q2a-false">No - In the course of a business</label>
-                                    </li>
-			  </ul>
-		
 	</fieldset>
 	
 	<!--QUESTION 3 - DROPDOWN-->
@@ -1710,15 +1668,17 @@
 
 <!--RESULTS-->
 
-<section class="alert alert-danger hidden" id="R1" name="results">
-	<h3><small>Based on the information you entered</small><br> R1 You cannot register for a GST/HST account number</h3>
+<section class="alert alert-warning hidden" id="R1" name="results">
+ <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your business does not supply taxable goods or services</big></p>
+
+<h3><small>Based on the information you entered</small><br> R1 You cannot register for a GST/HST account number</h3>
 <hr>
 <ol class="lst-stps ld-zr stps-strpd">
 <li>
 <div id="ajax-reg"><h3>Registering for the GST/HST</h3> </div>
 <p><span class="fas fa-ban text-danger fa-lg"></span> You <strong>cannot</strong> register for a GST/HST account number because you <strong>do not</strong> supply goods or services that are taxable.</p>
 </li>
-<li><div data-ajax-replace="#ajax-charge"></div>
+<li><h3>Charging the GST/HST</h3>
 <p ><span class="fas fa-ban text-danger fa-lg"></span> You do <strong>not</strong> charge GST/HST.</p>
 </li>
 </ol>
@@ -1741,7 +1701,7 @@
 <section class="alert alert-warning hidden" id="R3" name="results">
 	<h3><small>Based on the information you entered</small><br> R3 You cannot register for a GST/HST account number separately </h3>
 <hr>
-<div data-ajax-replace="#ajax-confirm2"></div>
+<h3>Confirm if you are a branch or division</h3>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-tp-lg">
 <li class="cnjnctn-col"><div data-ajax-replace="#ajax-char-div"></div></li>
 <li class="cnjnctn-col-30">
@@ -1775,7 +1735,7 @@
 <li><div data-ajax-replace="#ajax-taxi-reg"></div>
 </li>
 <li>
-<div data-ajax-replace="#ajax-charge"></div>
+<h3>Charging the GST/HST</h3>
 <div data-ajax-replace="#ajax-taxi-charge"></div>
 </li>
 </ol>
@@ -1784,6 +1744,7 @@
 </section>
 
 <section class="alert alert-warning hidden" id="R6" name="results">
+ <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your business sales real property not in the course of a business</big></p>
 	<h3><small>Based on the information you entered</small><br> R6 You may not have to register for a GST/HST account number</h3>
 <hr>
 <ol class="lst-stps ld-zr stps-strpd">
@@ -1793,12 +1754,12 @@
 <ul class="list-unstyled cnjnctn-type-or  cnjnctn-sm">
 <li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-small-real1a"></div>
-<br>
-<h4 class="mrgn-tp-md">Determine if you are a small supplier</h4>
-<p><span class="fas fa-arrow-up text-success fa-lg"></span> To determine if you are a small supplier, change your selection above <strong>Which options best describes your business?</strong> depending on your type of business.</p>
+<h4>Determine if you are a small supplier</h4>
+<p>To determine if you are a small supplier, select <strong>Business is not in the above situations</strong>.</p>
 </li>
 <li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-small-real1b"></div>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 3 - Charging the GST/HST</strong>.</p>
 </li>
 </ul>
 </li>
@@ -1863,8 +1824,8 @@
 </ul>
 <p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
 </li>
-<li>
-<div data-ajax-replace="#ajax-charge"></div> 
+<li><h3>Charging the GST/HST</h3>
+
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-charge-gen"></div>
@@ -1911,7 +1872,7 @@
 </li>
 
 <li>
-<div data-ajax-replace="#ajax-charge"></div> 
+<h3>Charging the GST/HST</h3>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-charge-gen"></div>
@@ -1955,18 +1916,31 @@
 </section>
 
 <section class="alert alert-warning hidden" id="R12" name="results">
+ <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are a non-resident business</big></p>
+
 	<h3><small>Based on the information you entered</small><br>  R12 You may have to register for a GST/HST account number</h3>
 <hr>
-<div class="small" data-ajax-replace="#ajax-nonres-def"></div>	
 	
 <ol class="lst-stps ld-zr stps-strpd">
-<li><div data-ajax-replace="#ajax-nonres-step1"></div>
+<li><div data-ajax-replace="#ajax-nonres-step1"></div></li>
+<li><h3>Registering for the GST/HST</h3>
+<ol class="lst-stps-sub ld-zr stps-strpd">
+<li>
+<ul class="list-unstyled cnjnctn-type-or  cnjnctn-sm">
+<li class="cnjnctn-col">
+<div data-ajax-replace="#ajax-nonres-smallyes"></div>
+<br>
+<h4>Determine if you are a small supplier</h4>
+<p>To determine if you are a small supplier (as you would for any Canadian businesses), select <strong>Business is not in the above situations</strong>.</p>
 </li>
-<li><div data-ajax-replace="#ajax-nonres-step2"></div>
+<li class="cnjnctn-col">
+<div data-ajax-replace="#ajax-nonres-smallno"></div>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 2b - Determine if the exception to GST/HST registration apply if you are not carrying on a business in Canada</strong>.</p>
 </li>
-<li><h3>Determine if you are a small supplier</h3>
-<p><span class="fas fa-arrow-up text-success fa-lg"></span> To determine if you are a small supplier (as you would for any Canadian businesses), change your selection above <strong>Which options best describes your business?</strong> depending on your type of business.</p>
+</ul>
 </li>
+<li><div data-ajax-replace="#ajax-nonres-step3"></div></li>
+</ol></li>
 </ol>
 <div data-ajax-replace="#ajax-nonresident-more"></div>
 </section>
@@ -2022,7 +1996,7 @@
 <h2 id="mostbus" class="h3">Steps</h2>
 <ol class="lst-stps ld-zr stps-strpd">
 
-<li><div data-ajax-replace="#ajax-confirm-small"></div>
+<li><h3>Determine if you are a small supplier</h3>
 <p id="step3most">If you <strong>do not</strong> exceed the <strong>$30,000</strong> small supplier threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
 <details><summary>Example – Did not exceed the $30,000 threshold over 4 consecutive calendar quarters</summary>
       
@@ -2201,7 +2175,7 @@
 
 <hr>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col" class="mrgn-lft-md"><div id="ajax-confirm-small-most">  <span class="fas fa-less-than-equal text-success fa-lg"> </span> If the threshold amount <strong>does not</strong> exceed $<span id="chargeAmount3">30,000</span> over 4 consecutive calendar quarters, you are a <strong>small supplier</strong>.
+<li class="cnjnctn-col"><div id="ajax-confirm-small-most">  <span class="fas fa-less-than-equal text-success fa-lg"> </span> If the threshold amount <strong>does not</strong> exceed $<span id="chargeAmount3">30,000</span> over 4 consecutive calendar quarters, you are a <strong>small supplier</strong>.
 	
 </div> 
 <div data-ajax-replace="#ajax-confirm-smallyes" class="mrgn-tp-md"></div>
@@ -2210,7 +2184,7 @@
 
 <p class="mrgn-tp-md"> <span class="fas fa-check fa-lg text-success"></span>  If you are <strong>no longer</strong> a small supplier, you have to register for a GST/HST account.</p> 
 
-<p class="mrgn-tp-md"><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#step2-most">Mandatory registration if you are no longer a small supplier</a>.</p>
+<p class="mrgn-tp-md"><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 2 - Mandatory registration if you are no longer a small supplier</strong>.</p>
 </li>
 </ul>
 </li>
@@ -2278,14 +2252,14 @@
        </details>
  </li>
 <li class="cnjnctn-col">
-<div id="ajax-date-reg-most2">
+
 <h4 class="text-muted">$30,000 threshold <br>in a single calendar quarter</h4>
 <div id="ajax-reg-most2b" >
 <p><span class="fas fa-greater-than text-success fa-lg"> </span> You <span id="tense152">have</span> to register for a GST/HST account number because you exceeded the <strong>$<span id="chargeAmount">30,000</span></strong> small supplier threshold <strong>in a single</strong> <span class="nowrap"><a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarter&nbsp;<span class="far fa-question-circle"></span></a>.</span></p>
 
 <p>You are <strong>no longer</strong> a small supplier the <strong>day of the supply</strong> that made you exceed the <strong>$<span id="chargeAmount2">30,000</span></strong> small supplier threshold.</p>
 </div>
- </div>
+
  <details ><summary>Example – Exceed the $30,000 threshold in one single calendar quarter</summary>
         <p>On January 1, 2024, you started a consulting business. You made the following revenue from your taxable services.</p>
        <table class="small table table-bordered table-condensed table-responsive">
@@ -2326,7 +2300,7 @@
 <p>When Steve applied for registration, he entered November 15, 2024 as his effective date of registration.</p>
 </li> 
 <li class="cnjnctn-col"><h4 class="text-muted">Registration application</h4>
-<p>Steve applied for registration on December 10, 2024</strong>.</p>
+<p>Steve applied for registration on <strong>December 10, 2024</strong>.</p>
 </li> 
 </ul> 
  </details> 
@@ -2334,7 +2308,7 @@
 </div>
  </li> 
 
-<li><div data-ajax-replace="#ajax-charge"></div>
+<li><h3>Charging the GST/HST</h3>
 <div id="ajax-charge-char1a">
 <div id="ajax-charge-gen">
 <p>You have to charge the GST/HST on all your taxable supplies no later than the <strong>first supply you make</strong> after you are <strong>no longer a small supplier</strong>.</p></div>
@@ -2385,13 +2359,13 @@
 <p><span class="fas fa-ban text-danger fa-lg"></span> If your sale of real property is <strong>not</strong> in the course of a business (a one-time sale), you <strong>do not</strong> have to register for a GST/HST account. </p>
 <br>
 <div data-ajax-replace="#ajax-reg-vol2"></div>
-
-	<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 3 - Charging the GST/HST</strong>.</p></div>
+</div>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 3 - Charging the GST/HST</strong>.</p>
 </li>
 </ul>
 </li>
 
-<li><div id="ajax-small-real2"><div data-ajax-replace="#ajax-charge"></div>
+<li><div id="ajax-small-real2"><h3>Charging the GST/HST</h3>
  <p >You have to charge the GST/HST on your taxable sale of real property, even if you are not registered for the GST/HST. However, if the purchaser is registered for the GST/HST, the purchaser has to remit the tax you charged on the sale directly to the CRA instead of paying it to you. </p>
 <details><summary >Example</summary>
 <p >Continuing with the example in step 1, the doctor sold the commercial property in Ontario for $2,000,000 to a purchaser that is registered for the GST/HST. Since the sale of the commercial real property is taxable, $26,000 HST applies to the sale. </p>
@@ -2434,9 +2408,7 @@
 <h2 id="charities" class="h3">Steps</h2>
 <ol class="lst-stps ld-zr stps-strpd">
    <li><div id="ajax-confirm-branch">
-<div id="ajax-confirm2">
 <h3>Confirm if you are a branch or division</h3>
- </div>
  <div id="ajax-char-div">
 <p><span class="fas fa-ban text-danger fa-lg"></span> If you are a branch or a division, you <strong>cannot</strong> register for a GST/HST account number separately.</p>
 <p>However, a public service body, including a <a href="#ajax-charity" aria-controls="ajax-charity" class="overlay-lnk" role="button">charity&nbsp;<span class="far fa-question-circle"></span></a> or <a href="#ajax-public" aria-controls="ajax-public" class="overlay-lnk" role="button">public institution&nbsp;<span class="far fa-question-circle"></span></a> may apply to have each branch or division with $50,000 or less in <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> designated as a small supplier division.</p>
@@ -2448,14 +2420,12 @@
 <li class="cnjnctn-col"><p><span class="fas fa-ban text-danger fa-lg"></span> If you are a branch or a division, <strong>do not</strong> continue to next step.</p>
 </li>
 <li class="cnjnctn-col">
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> a branch or a division, continue to: <a href="#ajax-confirm-small">Determine if you are a small supplier</a>.</p>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> If you are <strong>not</strong> a branch or a division, continue to: <strong>Step 2 - Determine if you are a small supplier</strong>.</p>
 </li>
 </ul>
  </div>
 </li>
-<li><div id="ajax-confirm-small">
-<h3 id="step2">Determine if you are a small supplier</h3>
- </div>
+<li><h3 id="step2-char">Determine if you are a small supplier</h3>
 <ol class="lst-stps-sub ld-zr stps-strpd">
 <li><div id="ajax-confirm-small-char0"><h4>First fiscal year of operation</h4>
 <p>If you are in your <strong>first</strong> fiscal year of operation, you are a small supplier.</p>
@@ -2574,7 +2544,7 @@
 <hr>
 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col" class="mrgn-lft-md">
+<li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-confirm-small-psb"></div>
 </li>
 <li class="cnjnctn-col">  <span class="fas fa-greater-than text-success fa-lg"> </span> If the threshold amount <strong>exceeds</strong> $50,000 over either a <strong>single quarter</strong> or over <strong>4 consecutive calendar quarters</strong>, you are <strong>no longer</strong> a small supplier.</li></ul>
@@ -2583,7 +2553,7 @@
 <hr>
 
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col" class="mrgn-lft-md">
+<li class="cnjnctn-col">
 <div id="ajax-confirm-small-char3">
 <div id="ajax-confirm-smallyes">
 <p><span class="fas fa-ban text-danger fa-lg"></span> If you are a <strong>small supplier</strong>, you <strong>do not</strong> have to register for a GST/HST account number.</p>
@@ -2601,7 +2571,7 @@
 </li>
 <li class="cnjnctn-col"> <p class="mrgn-tp-md"> <span class="fas fa-check fa-lg text-success"></span>  If you are <strong>no longer</strong> a small supplier, you have to register for a GST/HST account.</p> 
 
-<p class="mrgn-tp-md"><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#char-step3">Mandatory registration if you are no longer a small supplier</a>.</p>
+<p class="mrgn-tp-md"><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 3 - Mandatory registration if you are no longer a small supplier</strong>.</p>
 
 </li>
 </ul></li>
@@ -2697,7 +2667,7 @@
 <li><div data-ajax-replace="#ajax-reg-most1"></div>
 </li>
 
-<li><div data-ajax-replace="#ajax-charge"></div>
+<li><h3>Charging the GST/HST</h3>
 <div data-ajax-replace="#ajax-charge-char1a"></div>
 </li>
  </ol>
@@ -2719,7 +2689,7 @@
 <ol class="lst-stps ld-zr stps-strpd">
    <li><div data-ajax-replace="#ajax-confirm-branch"></div>
 </li>
-<li><div data-ajax-replace="#ajax-confirm-small"></div>
+<li><h3 id="step2-psb">Determine if you are a small supplier</h3>
 
 <p>If you <strong>do not</strong> exceed the <strong>$50,000</strong> small supplier threshold <strong>over 4 consecutive</strong> <a href="#ajax-quarter" aria-controls="ajax-quarter" class="overlay-lnk" role="button">calendar quarters&nbsp;<span class="far fa-question-circle"></span></a>, you are a small supplier.</p>
  <details><summary>Example – Did not exceed the $50,000 threshold over 4 consecutive calendar quarters</summary>
@@ -2746,14 +2716,14 @@
 <div data-ajax-replace="#ajax-include1"></div>
 <hr>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col" class="mrgn-lft-md"><div id="ajax-confirm-small-psb">  <span class="fas fa-less-than-equal text-success fa-lg"> </span> If the threshold amount <strong>does not</strong> exceed $50,000 over 4 consecutive calendar quarters, you are a <strong>small supplier</strong>.
+<li class="cnjnctn-col"><div id="ajax-confirm-small-psb">  <span class="fas fa-less-than-equal text-success fa-lg"> </span> If the threshold amount <strong>does not</strong> exceed $50,000 over 4 consecutive calendar quarters, you are a <strong>small supplier</strong>.
 </div>	 
 <div data-ajax-replace="#ajax-confirm-smallyes" class="mrgn-tp-md"></div>
  
 </li>
 <li class="cnjnctn-col">  <span class="fas fa-greater-than text-success fa-lg"> </span> If the threshold amount <strong>exceeds</strong> $50,000 over either a <strong>single quarter</strong> or over <strong>4 consecutive calendar quarters</strong>, you are <strong>no longer</strong> a small supplier.
 <p class="mrgn-tp-md"> <span class="fas fa-check fa-lg text-success"></span>  If you are <strong>no longer</strong> a small supplier, you have to register for a GST/HST account.</p> 
-<p class="mrgn-tp-md"><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#psb-step3">Mandatory registration if you are no longer a small supplier</a>.</p>
+<p class="mrgn-tp-md"><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 3 - Mandatory registration if you are no longer a small supplier</strong>.</p>
 
 </li>
 </ul>
@@ -2822,10 +2792,9 @@
      </details>
  </li>
 <li class="cnjnctn-col">
-<div id="ajax-date-reg-most2">
+
 <h4 class="text-muted">$50,000 threshold <br>in a single calendar quarter</h4>
 <div data-ajax-replace="#ajax-reg-char1b-1"></div>
- </div> 
 <details><summary>Example – Exceed the $50,000 threshold in one single calendar quarter</summary>
            <p>On January 1, 2024, your public service body that started making taxable supplies of goods and services and made the following sales:</p>
 
@@ -2854,7 +2823,7 @@
 <li><div data-ajax-replace="#ajax-reg-most1"></div>
 </li>
 
-<li><div data-ajax-replace="#ajax-charge"></div>
+<li><h3>Charging the GST/HST</h3>
 <div data-ajax-replace="#ajax-charge-char1a"></div>
 </li>
 </ol></details>
@@ -2882,16 +2851,16 @@
 </div>
 <p><span class="fas fa-ban text-danger fa-lg"></span> If you are an <strong>employee</strong>, <strong>do not</strong> continue to next step.</p> 
  </li>
-  <li><div id="ajax-reg"><h3>Mandatory registration if you are a taxi operator or a commercial ride-sharing driver</h3> </div>
-<div id="ajax-taxi-reg">
-<p>If you are a self-employed taxi operator or a commercial ride-sharing driver, you have to register for a GST/HST account number even if you are not a small supplier.</p>
+  <li><div id="ajax-taxi-reg"><h3>Mandatory registration if you are a taxi operator or a commercial ride-sharing driver</h3>
+
+<p >If you are a self-employed taxi operator or a commercial ride-sharing driver, you have to register for a GST/HST account number even if you are not a small supplier.</p>
 <br>
 <h4>Effective date of registration</h4>
 <p>You have to register for a GST/HST account number as of the date your business began as a taxi operator or a commercial ride-sharing driver.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
 </div>  </li>
 
-  <li><div id="ajax-charge"><h3>Charging the GST/HST</h3></div>
+  <li><h3>Charging the GST/HST</h3>
 <div id="ajax-taxi-charge">
  <p>You have to charge the GST/HST as of the date your business began.</p>
 <p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
@@ -2917,20 +2886,21 @@
  <li><div id="ajax-nonres-step1"> <h3 id="step1-non-res">Determine if you are carrying on a business in Canada</h3>
 
 <p>You are considered to be carrying on a <a href="#ajax-business" aria-controls="ajax-business" class="overlay-lnk" role="button">business&nbsp;<span class="far fa-question-circle"></span></a> in Canada if you are a <a href="#nonres-def" aria-controls="nonres-def" class="overlay-lnk" role="button">non-resident&nbsp;<span class="far fa-question-circle"></span></a> business and you carry on activities through a <a href="#ajax-permanent" aria-controls="ajax-permanent" class="overlay-lnk" role="button">permanent establishment&nbsp;<span class="far fa-question-circle"></span></a> in Canada. </p>
-<p class="mrgn-tp-md"><strong>If you are carrying on a business in Canada</strong>, you <strong>may</strong> have to register for a GST/HST account if you are not a small supplier.</p>
 <p>Learn more: </p>
 <ul>
 <li><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/p-051r2/p-051r2-carrying-on-business-canada.html" target="_blank">GST/HST Policy Statement P-051R2 - Carrying on business in Canada</a></li>
 <li><a href="/en/revenue-agency/corporate/contact-information/non-resident-gst-hst-enquiries.html">Non-resident GST/HST enquiries</a></li>
-</ul>
-
-<hr>
+</ul></div>
+</li>
+<li><h3>Registering for the GST/HST</h3>
+<ol class="lst-stps-sub ld-zr stps-strpd">
+<li>
 <ul class="list-unstyled cnjnctn-type-or  cnjnctn-sm">
 <li class="cnjnctn-col">
 <div id="ajax-nonres-smallyes">
-<p><span class="fas fa-check fa-lg text-success"></span> If you are <strong>carrying on a business in Canada</strong>, you have to register for a GST/HST account number, unless you are <strong>not</strong> a small supplier.</p>
+<span class="fas fa-check fa-lg text-success"></span> If you are <strong>carrying on a business in Canada</strong>, you have to register for a GST/HST account number, unless you are <strong>not</strong> a small supplier.
 </div>
-<div id="ajax-nonres-smallyes2">
+<div id="ajax-nonres-smallyes2" class="mrgn-tp-lg">
 <h4>Determine if you are a small supplier</h4>
 <p>To determine if you are a small supplier (as you would for any Canadian businesses), continue to one of the following depending on your type of business:</p>
 <ul>
@@ -2941,15 +2911,13 @@
 </li>
 <li class="cnjnctn-col">
 <div id="ajax-nonres-smallno">
-<p>If you are <strong>not</strong> carrying on a business in Canada, you may have to register for a GST/HST account number.</p>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 2 - Determine if the exception to GST/HST registration apply if you are not carrying on a business in Canada</strong>.</p>
+<span class="fas fa-ban text-danger fa-lg"></span> If you are <strong>not</strong> carrying on a business in Canada, you may still have to register for a GST/HST account number.
 </div>
-
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 2b - Determine if the exception to GST/HST registration apply if you are not carrying on a business in Canada</strong>.</p>
 </li>
-</ul></div>
+</ul>
 </li>
-
-  <li><div id="ajax-nonres-step3"><h3>Determine if the exception to GST/HST registration apply if you are not carrying on a business in Canada</h3>
+<li><div id="ajax-nonres-step3"><h4>Determine if the exception to GST/HST registration apply if you are not carrying on a business in Canada</h4>
 <p><strong>If you are not carrying on a business in Canada</strong>, you may have to register for a GST/HST account number if you are one of the following type of business:</p>
 <ul class="list-unstyled cnjnctn-type-or">
 <li class="cnjnctn-col"><details><summary>Supplier of publications</summary>
@@ -2997,15 +2965,17 @@
 </ul>
 <hr>
 <p><span class="fas fa-ban text-danger fa-lg"></span> If you are <strong>not</strong> carrying on a business in Canada and you are <strong>not</strong> in one of the above type of businesses, you <strong>do not</strong> have to register for a GST/HST account number.</p>
-
+<br>
 <h4>Voluntary registration</h4>
 <p>You can choose to register voluntarily. </p>
 <p>If you register voluntarily, your <strong>effective date of registration</strong> is generally the <strong>day you request</strong> your GST/HST account number.</p>
 <p class="mrgn-bttm-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/terms-conditions.html" target="_blank">Register using the non-resident registration web form</a></p>
 </div>
 </li>
- </ol>
-<div id="ajax-nonresident-more" class="mrgn-tp-lg"><h3>Resources</h3> 
+</ol></li>
+</ol>
+
+<div id="ajax-nonresident-more"><h3>Resources</h3> 
 <p><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027/doing-business-canada-gst-hst-information-non-residents.html" target="_blank"> Doing Business in Canada – GST/HST Information for Non-Residents</a></p>
 <p><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/suppliers-publications.html" target="_blank"> GST/HST information for suppliers of publications</a></p>
 </div>
