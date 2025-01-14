@@ -383,6 +383,81 @@
 		
 	</fieldset>
 	
+	<!--QUESTION 12-->
+	<fieldset name="quest" id="question12" class="hidden">
+  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You want to create scenarios to understand the conditions to register for a GST/HST account</big></p>
+<div class="alert alert-warning mrgn-tp-md">
+	<p>You can <strong>create scenarios</strong> based on your <strong>estimated amounts</strong>. The results provided will help you understand when you may need to register.</p>
+</div>
+<label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters </label>	<br>
+<details><summary>Amounts to include and exclude</summary>
+<div data-ajax-replace="#ajax-include1" class="small mrgn-lft-xl"></div>
+</details>
+		<br>
+			<div class="row mrgn-bttm-sm">
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_New" name="q12_date_New" id="q12_date0_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
+				<div class="col-lg-3 col-sm-4 col-xs-12">
+			    		<div class="input-group">
+			    		<span class="input-group-addon">$</span>
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter1_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
+					</div>
+				</div>
+			</div>
+			<div class="row mrgn-bttm-sm">
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter2_New" name="q12_date_New" id="q12_date1_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
+				<div class="col-lg-3 col-sm-4 col-xs-12">
+			    		<div class="input-group">
+			    		<span class="input-group-addon">$</span>
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter2_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
+					</div>
+				</div>
+			</div>
+			<div class="row mrgn-bttm-sm">
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter3_New" name="q12_date_New" id="q12_date2_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
+				<div class="col-lg-3 col-sm-4 col-xs-12">
+			    		<div class="input-group">
+			    		<span class="input-group-addon">$</span>
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter3_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
+					</div>
+				</div>
+			</div>
+			<div class="row mrgn-bttm-sm">
+				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter4_New" name="q12_date_New" id="q12_date3_New"></label>
+			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
+				<div class="col-lg-3 col-sm-4 col-xs-12">
+			    		<div class="input-group">
+			    		<span class="input-group-addon">$</span>
+			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter4_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
+					
+					</div>
+				</div>
+			</div>
+
+		<button class="btn btn-primary btn-lg required" type="button" onclick="
+			document.getElementById('calc').click() ;
+			document.getElementById('reached').click();
+			var tempMaxDate = new Date(document.getElementById('maxDate').value);
+			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
+			document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })  ;
+		">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</button>
+
+		<br>
+		<br>
+		<div class="alert alert-danger hidden" id="error_New">
+			<p>Only digits are permitted for these fields. Enter a positive value with no currency symbol.</p>
+		</div>
+		
+
+	</fieldset>
+	
+	
 	
 
 	<!--QUESTION 6-->
@@ -415,7 +490,7 @@
 					document.getElementById('R3').classList.remove('hidden');
 				}
 				else {
-					document.getElementById('R11').classList.remove('hidden');
+					document.getElementById('R4').classList.remove('hidden');
 				}
 			}
 			else {
@@ -459,7 +534,7 @@
 			
 			var q7 = document.getElementsByName('q7');
 			if (q7[0].checked) {
-				document.getElementById('R11').classList.remove('hidden');
+				document.getElementById('R4').classList.remove('hidden');
 			}	
 			else {
 				var q8 = document.getElementsByName('q8');
@@ -496,7 +571,7 @@
 			document.getElementById('error_first').classList.add('hidden');
 			document.getElementById('error_second').classList.add('hidden');
 				
-			var q8 = document.getElementsByName('q8');
+			var q8 = getElementsByName('q8') ;
 			if (q8[0].checked){
 				var q9 = document.getElementsByName('q9');
 				q9[0].value = (0).toFixed(2);
@@ -526,7 +601,7 @@
 	<fieldset name="quest" id="question9" class="hidden">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are on your second fiscal year or later of operation</big></p>
 <p class="small">You need to determine if you are a small supplier under <strong>either</strong> the $250,000 gross revenue test or the $50,000 taxable supplies test.</p>
-<details class="small"><summary>How to calculate your $250,000 gross revenue</summary>
+<details class="small"><summary>Amounts to include and exclude</summary>
 <div data-ajax-replace="#ajax-include4"></div>
 </details>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span> Enter your gross revenue from your first fiscal year of operation (if more than $250,000, you will need use the $50,000 taxable supplies test) </label>
@@ -573,7 +648,7 @@
 							document.getElementById('showFields').click() ;
 						}
 						else if (document.getElementById('q9').value != 0) {
-							document.getElementById('R11').classList.remove('hidden');
+							document.getElementById('R4').classList.remove('hidden');
 						}
 			">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</button>
@@ -587,7 +662,7 @@
 	<fieldset name="quest" id="question10" class="hidden">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are on your third fiscal year or later of operation</big></p>
 <p class="small">You need to determine if you are a small supplier under <strong>either</strong> the $250,000 gross revenue test or the $50,000 taxable supplies test.</p>
-<details class="small"><summary>How to calculate your $250,000 gross revenue</summary>
+<details class="small"><summary>Amounts to include and exclude</summary>
 <div data-ajax-replace="#ajax-include4"></div>
 </details>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span>  Enter your gross revenue for each of your two previous fiscal years</label>
@@ -675,7 +750,7 @@
 							document.getElementById('showFields').click() ;
 						}
 						else if (empty[0] == false || empty[1] == false)
-							document.getElementById('R11').classList.remove('hidden');
+							document.getElementById('R4').classList.remove('hidden');
 		">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		</button>
 
@@ -717,7 +792,7 @@
 	<fieldset name="quest" id="question14" class="hidden">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You need to </span><br><big>Calculate your small supplier threshold</big></p>
 
-<details class="small"><summary>How to calculate your $50,000 small supplier threshold</summary>
+<details class="small"><summary>Amounts to include and exclude</summary>
 <div data-ajax-replace="#ajax-include1"></div>
 </details>
 
@@ -916,80 +991,6 @@
 			<p>Only digits are permitted for these fields. Enter a positive value with no currency symbol.</p>
 		</div>
 	
-	</fieldset>
-
-<!--QUESTION 12-->
-	<fieldset name="quest" id="question12" class="hidden">
-  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You want to create scenarios to understand the conditions to register for a GST/HST account</big></p>
-<div class="alert alert-warning mrgn-tp-md">
-	<p>You can <strong>create scenarios</strong> based on your <strong>estimated amounts</strong>. The results provided will help you understand when you may need to register.</p>
-</div>
-<label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters </label>	<br>
-<details><summary>How to calculate your $50,000 small supplier threshold</summary>
-<div data-ajax-replace="#ajax-include1" class="small mrgn-lft-xl"></div>
-</details>
-		<br>
-			<div class="row mrgn-bttm-sm">
-				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter1_New" name="q12_date_New" id="q12_date0_New"></label>
-			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
-				<div class="col-lg-3 col-sm-4 col-xs-12">
-			    		<div class="input-group">
-			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter1_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
-					
-					</div>
-				</div>
-			</div>
-			<div class="row mrgn-bttm-sm">
-				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter2_New" name="q12_date_New" id="q12_date1_New"></label>
-			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
-				<div class="col-lg-3 col-sm-4 col-xs-12">
-			    		<div class="input-group">
-			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter2_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
-					
-					</div>
-				</div>
-			</div>
-			<div class="row mrgn-bttm-sm">
-				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter3_New" name="q12_date_New" id="q12_date2_New"></label>
-			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
-				<div class="col-lg-3 col-sm-4 col-xs-12">
-			    		<div class="input-group">
-			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter3_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
-					
-					</div>
-				</div>
-			</div>
-			<div class="row mrgn-bttm-sm">
-				<label class="col-md-6 col-sm-7 mrgn-tp-sm text-right hidden-xs" for="quarter4_New" name="q12_date_New" id="q12_date3_New"></label>
-			    	<label class="col-xs-12 mrgn-tp-sm text-center visible-xs" name="q12_date_Newxs"></label>
-				<div class="col-lg-3 col-sm-4 col-xs-12">
-			    		<div class="input-group">
-			    		<span class="input-group-addon">$</span>
-			    		<input class="form-control input-lg text-right mrgn-bttm-sm" name="q12_New" id="quarter4_New" required onfocus="this.select()" onblur="document.getElementById('validNumber').click();" onchange="document.getElementById('hideResults').click();">
-					
-					</div>
-				</div>
-			</div>
-
-		<button class="btn btn-primary btn-lg required" type="button" onclick="
-			document.getElementById('calc').click() ;
-			document.getElementById('reached').click();
-			var tempMaxDate = new Date(document.getElementById('maxDate').value);
-			var maxDate = new Date(tempMaxDate.getUTCFullYear(), tempMaxDate.getUTCMonth(), tempMaxDate.getUTCDate());
-			document.getElementById('datePick').value = maxDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })  ;
-		">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		</button>
-
-		<br>
-		<br>
-		<div class="alert alert-danger hidden" id="error_New">
-			<p>Only digits are permitted for these fields. Enter a positive value with no currency symbol.</p>
-		</div>
-		
-
 	</fieldset>
 	
 	<fieldset name="quest" id="question13" class="mrgn-bttm-md hidden">
@@ -1614,7 +1615,6 @@
 	else {	
 		if (document.getElementById('question3').value == 1) {
 			document.getElementById('R4').classList.remove('hidden') ;
-			document.getElementById('R11').classList.remove('hidden') ;
 
 		}
 		else {
