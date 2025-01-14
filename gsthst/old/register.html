@@ -112,7 +112,7 @@
 <div class="form-group mrgn-lft-md gc-font-2019">
 	
 	<fieldset name="quest" id="question1" class="gc-chckbxrdio">
-	<label class="mrgn-tp-sm">What is your business situation?</label>
+	<label class="mrgn-tp-sm">What is your situation?</label>
 		
 		<p class="small">Meaning of the terms: <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">Taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> and <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">Zero-rated supplies (taxable at the rate of 0%)&nbsp;<span class="far fa-question-circle"></span></a></p>
 	
@@ -151,7 +151,7 @@
 				for (i=1; i<q11.length; i++)
 					q11[i].checked = false ;
 			}
-		
+		 
 		   else if (q1[4].checked) {
 				document.getElementById('question3').classList.remove('hidden');	
 				document.getElementById('age').value = 'Old'
@@ -165,27 +165,27 @@
 		">
 			 <li class="radio">
                                         <input type="radio" name="q1" id="q1-falsea" value="0" data-q1="false" data-rule-required="true">
-                                        <label for="q1-falsea">Business does not supply taxable goods or services</label>
+                                        <label for="q1-falsea">You do not supply taxable goods or services</label>
                                     </li>
 
 						 <li class="radio">
                                         <input type="radio" name="q1" id="q1-falseb" value="1" data-q1="false" data-rule-required="true">
-                                        <label for="q1-falseb">Business sales real property not in the course of a business</label>
+                                        <label for="q1-falseb">Your only commercial activity is the sale of real property</label>
                                     </li>
 
 	   			 <li class="radio">
                                         <input type="radio" name="q1" id="q1-falsec" value="2" data-q1="false" data-rule-required="true">
-                                        <label for="q1-falsec">Non-resident business</label>
+                                        <label for="q1-falsec">You are a non-resident business</label>
                                     </li>
 
 	   		 <li class="radio">
                                         <input type="radio" name="q1" id="q1-falsed" value="3" data-q1="false" data-rule-required="true">
-                                        <label for="q1-falsed">Taxi operator or a commercial ride-sharing driver</label>
+                                        <label for="q1-falsed">You are a taxi operator or a commercial ride-sharing driver</label>
                                     </li>
 	   
 		 <li class="radio">
                                         <input type="radio" name="q1" id="q1-true" value="4" data-q1="true" data-rule-required="true">
-                                        <label for="q1-true">Business is not in the above situations</label>
+                                        <label for="q1-true">You are a business in any other situation</label>
                                     </li>
 
 </ul>
@@ -237,7 +237,7 @@
 	<!--QUESTION 3 - DROPDOWN-->
 
 <fieldset name="quest" id="question3" class="gc-chckbxrdio hidden mrgn-bttm-md" >
-  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your business is not in the situations identified</big></p>
+  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are a business in any other situation</big></p>
 		<label class="mrgn-tp-md" for="q3">Which option best describes your business? </label>
 
  <ul class="list-unstyled lst-spcd-2" onchange="
@@ -344,9 +344,13 @@
 <fieldset name="quest" id="question5" class="hidden gc-chckbxrdio">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are a public service body that is not a charity or a public institution</big></p>
 <label class="mrgn-tp-sm">Are you a branch or division of the public service body? </label>
-	
-<div class="small" data-ajax-replace="#ajax-pub-def"></div>	
-			
+
+<div id="ajax-pub-def" class="mrgn-tp-md small">
+<details><summary>What is a public service body</summary>
+<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#service"></div> 
+</details>
+ </div>
+		
  <ul class="list-unstyled lst-spcd-2" onchange="	
 			var q = getElementsByName('quest') ;
 			for (i=6; i<=q.length; i++)
@@ -386,7 +390,7 @@
 	<p>You can <strong>create scenarios</strong> based on your <strong>estimated amounts</strong>. The results provided will help you understand when you may need to register.</p>
 </div>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-search-dollar fa-stack-1x"></span></span></span> Enter revenue estimates for the next 4 quarters </label>	<br>
-<details><summary>Amounts to include and exclude</summary>
+<details><summary>How to calculate your $50,000 small supplier threshold</summary>
 <div data-ajax-replace="#ajax-include1" class="small mrgn-lft-xl"></div>
 </details>
 		<br>
@@ -461,8 +465,13 @@
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are a charity or public institution</big></p>
 <label >Are you a branch or division of the charity or public institution? </label>
 
-<div class="small" data-ajax-replace="#ajax-char-def"></div>
-	
+<div id="ajax-char-def" class="mrgn-tp-md small">
+<details><summary>What is a charity or a public institution</summary>
+<ul class="mrgn-tp-md list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col"><div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#registered"></div> </li>
+<li class="cnjnctn-col"> <div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#public"></div></li>
+</ul></details>
+ </div>
 		
 		<ul class="list-unstyled lst-spcd-2" onchange="	
 			var q = getElementsByName('quest') ;
@@ -590,10 +599,10 @@
 	
 	<!--QUESTION 9-->
 	<fieldset name="quest" id="question9" class="hidden">
-  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are on your second fiscal year of operation</big></p>
+  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are on your second fiscal year or later of operation</big></p>
 <p class="small">You need to determine if you are a small supplier under <strong>either</strong> the $250,000 gross revenue test or the $50,000 taxable supplies test.</p>
-<details class="small"><summary>Amounts to include and exclude</summary>
-<div data-ajax-replace="#ajax-include2"></div>
+<details class="small"><summary>How to calculate your $250,000 gross revenue</summary>
+<div data-ajax-replace="#ajax-include4"></div>
 </details>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span> Enter your gross revenue from your first fiscal year of operation (if more than $250,000, you will need use the $50,000 taxable supplies test) </label>
 
@@ -651,10 +660,10 @@
 	
 	<!--QUESTION 10-->
 	<fieldset name="quest" id="question10" class="hidden">
-  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are on your third fiscal year of operation</big></p>
+  <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are on your third fiscal year or later of operation</big></p>
 <p class="small">You need to determine if you are a small supplier under <strong>either</strong> the $250,000 gross revenue test or the $50,000 taxable supplies test.</p>
-<details class="small"><summary>Amounts to include and exclude</summary>
-<div data-ajax-replace="#ajax-include2"></div>
+<details class="small"><summary>How to calculate your $250,000 gross revenue</summary>
+<div data-ajax-replace="#ajax-include4"></div>
 </details>
 <label class="mrgn-tp-sm"><span class="fa-stack fa-fw text-info"> <span class="fas fa-square fa-stack-2x fa-inverse"></span> <span class="fa-stack fa-fw pull-left"><span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x"></span></span></span>  Enter your gross revenue for each of your two previous fiscal years</label>
 		
@@ -754,7 +763,7 @@
 	<fieldset name="quest" id="question11" class="hidden gc-chckbxrdio">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You are a taxi operator or a commercial ride-sharing driver</big></p>
 <label class="mrgn-tp-sm">Are you considered a self-employed taxi operator or a commercial ride-sharing driver?</label>
-	<div class="small" data-ajax-replace="#ajax-taxi"></div>	
+		
 
 		<ul class="list-unstyled lst-spcd-2" onchange="
 			var results = getElementsByName('results');
@@ -783,7 +792,7 @@
 	<fieldset name="quest" id="question14" class="hidden">
   <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You need to </span><br><big>Calculate your small supplier threshold</big></p>
 
-<details class="small"><summary>Amounts to <strong>include and exclude</strong></summary>
+<details class="small"><summary>How to calculate your $50,000 small supplier threshold</summary>
 <div data-ajax-replace="#ajax-include1"></div>
 </details>
 
@@ -1664,19 +1673,50 @@
 	
 ">
 
+<!--Hidden fields (data storage)-->
+
+<div id="data" class="hidden">
+<label>Age</label><input id="age" type="text"><br>
+<label>Number of quarters</label><input id="numOfQuarters" type="number"><br>
+<label>Amount</label><input id="amount" type="number"><br>
+<label>AmountString</label><input id="amountString"><br>
+<label>Calc Return</label><input id="calcReturn" type="number"><br>
+<label>Min Date <input id="minDate"></label><br>
+<label>Max Date <input id="maxDate"></label><br>
+<label>Min Date String <input id="minDateS"></label><br>
+<label>Max Date String <input id="maxDateS"></label><br>
+<label>Cap Period</label><input id="capPeriod" type="number"><br>
+<label>Quarter1 <input id="q0_monthStart_New"><input id="q0_monthEnd_New"><input id="q0_year_New"></label><br>
+<label>Quarter2 <input id="q1_monthStart_New"><input id="q1_monthEnd_New"><input id="q1_year_New"></label><br>
+<label>Quarter3 <input id="q2_monthStart_New"><input id="q2_monthEnd_New"><input id="q2_year_New"></label><br>
+<label>Quarter4 <input id="q3_monthStart_New"><input id="q3_monthEnd_New"><input id="q3_year_New"></label><br>
+<label>Test</label><input id="test"><br>
+<label>Quarter1 <input id="q0_monthStart_Old"><input id="q0_monthEnd_Old"><input id="q0_year_Old"></label><br>
+<label>Quarter2 <input id="q1_monthStart_Old"><input id="q1_monthEnd_Old"><input id="q1_year_Old"></label><br>
+<label>Quarter3 <input id="q2_monthStart_Old"><input id="q2_monthEnd_Old"><input id="q2_year_Old"></label><br>
+<label>Quarter4 <input id="q3_monthStart_Old"><input id="q3_monthEnd_Old"><input id="q3_year_Old"></label><br>
+<label>Quarter5 <input id="q4_monthStart_Old"><input id="q4_monthEnd_Old"><input id="q4_year_Old"></label><br>
+<label>Quarter6 <input id="q5_monthStart_Old"><input id="q5_monthEnd_Old"><input id="q5_year_Old"></label><br>
+<label>Quarter7 <input id="q6_monthStart_Old"><input id="q6_monthEnd_Old"><input id="q6_year_Old"></label><br>
+<label>Quarter8 <input id="q7_monthStart_Old"><input id="q7_monthEnd_Old"><input id="q7_year_Old"></label><br>
+<label>Quarter9 <input id="q8_monthStart_Old"><input id="q8_monthEnd_Old"><input id="q8_year_Old"></label><br>
+<label>Quarter10 <input id="q9_monthStart_Old"><input id="q9_monthEnd_Old"><input id="q9_year_Old"></label><br>
+<label>Quarter11 <input id="q10_monthStart_Old"><input id="q10_monthEnd_Old"><input id="q10_year_Old"></label><br>
+<label>Quarter12 <input id="q11_monthStart_Old"><input id="q11_monthEnd_Old"><input id="q11_year_Old"></label><br>
+</div>
 
 
 <!--RESULTS-->
 
 <section class="alert alert-warning hidden" id="R1" name="results">
- <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your business does not supply taxable goods or services</big></p>
+ <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>You do not supply taxable goods or services</big></p>
 
 <h3><small>Based on the information you entered</small><br> R1 You cannot register for a GST/HST account number</h3>
 <hr>
 <ol class="lst-stps ld-zr stps-strpd">
 <li>
 <div id="ajax-reg"><h3>Registering for the GST/HST</h3> </div>
-<p><span class="fas fa-ban text-danger fa-lg"></span> You <strong>cannot</strong> register for a GST/HST account number because you <strong>do not</strong> supply goods or services that are taxable.</p>
+<p><span class="fas fa-ban text-danger fa-lg"></span> You <strong>cannot</strong> register for a GST/HST account number because you <strong>do not</strong> supply taxable goods or services.</p>
 </li>
 <li><h3>Charging the GST/HST</h3>
 <p ><span class="fas fa-ban text-danger fa-lg"></span> You do <strong>not</strong> charge GST/HST.</p>
@@ -1701,7 +1741,7 @@
 <section class="alert alert-warning hidden" id="R3" name="results">
 	<h3><small>Based on the information you entered</small><br> R3 You cannot register for a GST/HST account number separately </h3>
 <hr>
-<h3>Confirm if you are a branch or division</h3>
+<h3>Confirm if you are a branch or division of a public service body</h3>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm mrgn-tp-lg">
 <li class="cnjnctn-col"><div data-ajax-replace="#ajax-char-div"></div></li>
 <li class="cnjnctn-col-30">
@@ -1710,11 +1750,11 @@
 </section>
 
 <section class="alert alert-info hidden" id="R4" name="results">
-	<h3><small>Based on the information you entered</small><br>R4 You may not have to register for a GST/HST account number</h3>
+	<h3><small>Based on the information you entered</small><br>R4 You do not have to register for a GST/HST account number</h3>
 <hr>
 
 <ol class="lst-stps ld-zr stps-strpd">
-<li><h3>Conditions for a a small supplier</h3>
+<li><h3>Conditions for a small supplier</h3>
 <ol class="lst-stps-sub ld-zr stps-strpd">
 <li>
 <div data-ajax-replace="#ajax-confirm-small-char0"></div>
@@ -1744,8 +1784,8 @@
 </section>
 
 <section class="alert alert-warning hidden" id="R6" name="results">
- <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your business sales real property not in the course of a business</big></p>
-	<h3><small>Based on the information you entered</small><br> R6 You may not have to register for a GST/HST account number</h3>
+ <p class="h5 mrgn-tp-md text-info "><span class="text-muted">You indicated that </span><br><big>Your only commercial activity is the sale of real property</big></p>
+	<h3><small>Based on the information you entered</small><br> R6 You do not have to register for a GST/HST account number</h3>
 <hr>
 <ol class="lst-stps ld-zr stps-strpd">
 <li><div data-ajax-replace="#ajax-small-real1"></div>
@@ -1922,25 +1962,30 @@
 <hr>
 	
 <ol class="lst-stps ld-zr stps-strpd">
-<li><div data-ajax-replace="#ajax-nonres-step1"></div></li>
-<li><h3>Registering for the GST/HST</h3>
-<ol class="lst-stps-sub ld-zr stps-strpd">
 <li>
+<h4>Determine if you are carrying on a business in Canada</h4>
+<div data-ajax-replace="#ajax-nonres-step1"></div>
+
 <ul class="list-unstyled cnjnctn-type-or  cnjnctn-sm">
 <li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-nonres-smallyes"></div>
-<br>
-<h4>Determine if you are a small supplier</h4>
 <p>To determine if you are a small supplier (as you would for any Canadian businesses), select <strong>Business is not in the above situations</strong>.</p>
 </li>
 <li class="cnjnctn-col">
 <div data-ajax-replace="#ajax-nonres-smallno"></div>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 2b - Determine if the exception to GST/HST registration apply if you are not carrying on a business in Canada</strong>.</p>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 2 - Determine if you have to register for the GST/HST even if you are not carrying on a business in Canada</strong>.</p>
 </li>
 </ul>
 </li>
-<li><div data-ajax-replace="#ajax-nonres-step3"></div></li>
-</ol></li>
+<li><h3>Determine if you have to register for the GST/HST even if you are not carrying on a business in Canada</h3>
+<div data-ajax-replace="#ajax-nonres-step2"></div>
+</li>
+<li><h3>Determine if you can register voluntarily for the GST/HST</h3>
+<div data-ajax-replace="#ajax-nonres-step3"></div>
+</li>
+<li><h3>Determine if you have to provide a security deposit</h3>
+<div data-ajax-replace="#ajax-nonres-step4"></div>
+</li>
 </ol>
 <div data-ajax-replace="#ajax-nonresident-more"></div>
 </section>
@@ -2332,7 +2377,7 @@
 <h2 id="realproperty" class="h3">Steps</h2>
 
 <ol class="lst-stps ld-zr stps-strpd">
-<li><div id="ajax-small-real1"><h3>Determine if the exception to GST/HST registration for sales of real property not made in the course of a business applies</h3> 
+<li><div id="ajax-small-real1"><h3>Determine if the exception to GST/HST registration  applies</h3> 
 <p ><span class="fas fa-ban text-danger fa-lg"></span> If your <strong>only</strong> <a href="#ajax-commercial" aria-controls="ajax-commercial" class="overlay-lnk" role="button">commercial activity&nbsp;<span class="far fa-question-circle"></span></a> is the sale of  <a href="#ajax-property" aria-controls="ajax-property" class="overlay-lnk" role="button">real property&nbsp;<span class="far fa-question-circle"></span></a>, other than in the course of a <a href="#ajax-business" aria-controls="ajax-business" class="overlay-lnk" role="button">business&nbsp;<span class="far fa-question-circle"></span></a>, you <strong>do not</strong> have to register for a GST/HST account number.</p> 
 <details><summary >Example</summary>
 <p >A doctor's practice consists of making exempt supplies of health care services. The doctor decides on a one-time basis to buy a commercial building. Several months later, the doctor sells the building for a profit.</p>
@@ -2345,12 +2390,12 @@
  <li><h3>Registering for the GST/HST</h3> 
 <ul class="list-unstyled cnjnctn-type-or  cnjnctn-sm">
 <li class="cnjnctn-col"><div id="ajax-small-real1a">
-<p><span class="fas fa-check fa-lg text-success"></span> If you sell taxable real property in the <strong>course of a business</strong>, you have to register for a GST/HST account number, unless you are <strong>not</strong> a small supplier.</p>
+<p><span class="fas fa-check fa-lg text-success"></span> If you sell taxable real property in the <strong>course of a business</strong> and you are <strong>not</strong> a small supplier, you have to register for a GST/HST account number.</p>
 </div>
 <h4>Determine if you are a small supplier</h4>
 <p>To determine if you are a small supplier, continue to one of the following depending on your type of business:</p>
 <ul>
-<li><a href="mostbus">Sole proprietor, partnership or corporation</a></li>
+<li><a href="#mostbus">Sole proprietor, partnership or corporation</a></li>
 <li><a href="#charities">Charity or public institution</a></li>
 <li><a href="#psb">Public service body that is not a charity or public institution</a></li>
 </ul>
@@ -2397,21 +2442,13 @@
     <details>
         <summary>Charity or public institution</summary>
     
-<div id="ajax-char-def" class="mrgn-tp-md">
-<details><summary>What is charity or public institution</summary>
-<ul class="mrgn-tp-md list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#registered"></div> </li>
-<li class="cnjnctn-col"> <div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#public"></div></li>
-</ul></details>
- </div>
-
 <h2 id="charities" class="h3">Steps</h2>
 <ol class="lst-stps ld-zr stps-strpd">
    <li><div id="ajax-confirm-branch">
-<h3>Confirm if you are a branch or division</h3>
+<h3>Confirm if you are a branch or division of a public service body</h3>
  <div id="ajax-char-div">
-<p><span class="fas fa-ban text-danger fa-lg"></span> If you are a branch or a division, you <strong>cannot</strong> register for a GST/HST account number separately.</p>
-<p>However, a public service body, including a <a href="#ajax-charity" aria-controls="ajax-charity" class="overlay-lnk" role="button">charity&nbsp;<span class="far fa-question-circle"></span></a> or <a href="#ajax-public" aria-controls="ajax-public" class="overlay-lnk" role="button">public institution&nbsp;<span class="far fa-question-circle"></span></a> may apply to have each branch or division with $50,000 or less in <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> designated as a small supplier division.</p>
+<p><span class="fas fa-ban text-danger fa-lg"></span> If you are a branch or a division, you <strong>cannot</strong> register for a GST/HST account number separately. This is because your branch or division is part of the public service body which is one legal entity.</p>
+<p>However, a <a href="#ajax-service" aria-controls="ajax-service" class="overlay-lnk" role="button">public service body&nbsp;<span class="far fa-question-circle"></span></a>, including a <a href="#ajax-charity" aria-controls="ajax-charity" class="overlay-lnk" role="button">charity&nbsp;<span class="far fa-question-circle"></span></a> or <a href="#ajax-public" aria-controls="ajax-public" class="overlay-lnk" role="button">public institution&nbsp;<span class="far fa-question-circle"></span></a> may apply to have each branch or division with $50,000 or less in <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> designated as a small supplier division.</p>
 
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/gst31.html" target="_blank">GST31 Application by a Public Service Body to Have Branches or Divisions Treated As Eligible Small Supplier Divisions</a></p>
 </div>
@@ -2679,12 +2716,6 @@
     <details>
         <summary>Public service bodies</summary>
           
-<div id="ajax-pub-def" class="mrgn-tp-md">
-<details><summary>What is a public service body</summary>
-<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/definitions-gst-hst.html#service"></div> 
-</details>
- </div>
-
 <h2 id="psb" class="h3">Steps</h2>
 <ol class="lst-stps ld-zr stps-strpd">
    <li><div data-ajax-replace="#ajax-confirm-branch"></div>
@@ -2831,30 +2862,27 @@
                   
     <details>
         <summary>Taxi operator or commercial ride-sharing driver</summary>
-  <div id="ajax-taxi" class="mrgn-tp-md">
- <details><summary>What is a taxi operator or commercial ride-sharing driver</summary>
-<p>A taxi business means a business carried on in Canada of transporting passengers by taxi for fares that are regulated under the laws of Canada or a province. A driver who supplies taxable commercial ride-sharing services on or after July 1, 2017, is considered to be a taxi business for GST/HST purposes.</p>
-
-<p>You are usually self-employed if you are in <strong>one </strong>of the following situations:</p>
+ 
+<h2 id="taxi" class="h3">Steps</h2>
+<ol class="lst-stps ld-zr stps-strpd">
+   <li><div id="ajax-confirm"><h3>Determine if you are self-employed</h3> </div>
+<div id="ajax-confirm1">
+<p>You are usually self-employed if you are in <strong>one</strong> of the following situations:</p>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col">You own your taxicab/motor vehicle</li>
 <li class="cnjnctn-col">You lease a taxicab/motor vehicle from an owner for a flat fee, either on a daily, weekly, or monthly basis</li>
 <li class="cnjnctn-col">You lease the taxicab/motor vehicle from an owner for a percentage of fares</li>
-</ul></details>
-</div>
-<h2 id="taxi" class="h3">Steps</h2>
-<ol class="lst-stps ld-zr stps-strpd">
-   <li><div id="ajax-confirm"><h3>Determine if you are self-employed</h3> </div>
-<div id="ajax-confirm1">	
+</ul>	
 <p>You can ask the CRA for ruling if you are not sure whether you are self-employed or an employee.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained/canada-pension-plan-employment-insurance-explained-11.html">How to get a CPP/EI ruling</a>.</p>
 </div>
+<hr>
 <p><span class="fas fa-ban text-danger fa-lg"></span> If you are an <strong>employee</strong>, <strong>do not</strong> continue to next step.</p> 
  </li>
   <li><div id="ajax-taxi-reg"><h3>Mandatory registration if you are a taxi operator or a commercial ride-sharing driver</h3>
 
-<p >If you are a self-employed taxi operator or a commercial ride-sharing driver, you have to register for a GST/HST account number even if you are not a small supplier.</p>
-<br>
+<p class="mrgn-bttm-lg">If you are a self-employed taxi operator or a commercial ride-sharing driver, you have to register for a GST/HST account number, even if you are a small supplier.</p>
+
 <h4>Effective date of registration</h4>
 <p>You have to register for a GST/HST account number as of the date your business began as a taxi operator or a commercial ride-sharing driver.</p>
 <p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/account-register.html" target="_blank">Register for a GST/HST account number</a></p>
@@ -2863,6 +2891,21 @@
   <li><h3>Charging the GST/HST</h3>
 <div id="ajax-taxi-charge">
  <p>You have to charge the GST/HST as of the date your business began.</p>
+<details><summary>What if you have another business (other than as a taxi operator or a commercial ride sharing driver)</summary>
+<p>If you have another business (other than as a taxi operator or a commercial ride-sharing driver) and you are a small supplier, you do not have to charge GST/HST on your supplies you make from your other business.</p>
+<h4>Example</h4>
+<p>You have a delivery business and you are a ride-sharing driver. Since you are a ride-sharing driver, you are required to be registered for the GST/HST and charge GST/HST on your ride-sharing fares. </p>
+<p>Over the last four calendar quarters, you have made the following taxable supplies:</p>
+
+<ul>
+<li>$10,000 in ride-sharing fares </li>
+<li>$16,000 from your delivery business </li>
+</ul>
+<p>Your taxable supplies for determining the small supplier threshold are $26,000, which is below the $30,000 small supplier threshold. Unless you request otherwise, your GST/HST registration does not apply to your delivery business and you do not have to charge GST/HST on your delivery supplies. You also cannot claim input tax credits in relation to those supplies. </p>
+<p>If, in the future, your combined supplies as a ride-sharing driver and from your delivery business exceed the $30,000 threshold, your registration will apply to the delivery business and you will have to charge GST/HST on all your taxable supplies.</p>
+</details>
+
+
 <p class="mrgn-tp-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
 </div>
   </li>
@@ -2876,108 +2919,130 @@
     </details>
     <details>
         <summary>Non-resident</summary>
-<div id="ajax-nonres-def" class="mrgn-tp-md">     
-<details><summary>What is a non-resident business</summary>
-<p><strong>Non-resident</strong> means a person who does not reside in Canada. However, if a non-resident person carries on activities through a permanent establishment in Canada, the person is considered to be resident in Canada in respect of, and only in respect of, the activities of the person carried on through that permanent establishment.</p> 
-</details>
-</div>
+
 <h2 class="h3">Steps</h2>
 <ol class="lst-stps ld-zr stps-strpd">
- <li><div id="ajax-nonres-step1"> <h3 id="step1-non-res">Determine if you are carrying on a business in Canada</h3>
-
+ <li><h3 id="step1-non-res">Determine if you are carrying on a business in Canada</h3>
+<div id="ajax-nonres-step1">
 <p>You are considered to be carrying on a <a href="#ajax-business" aria-controls="ajax-business" class="overlay-lnk" role="button">business&nbsp;<span class="far fa-question-circle"></span></a> in Canada if you are a <a href="#nonres-def" aria-controls="nonres-def" class="overlay-lnk" role="button">non-resident&nbsp;<span class="far fa-question-circle"></span></a> business and you carry on activities through a <a href="#ajax-permanent" aria-controls="ajax-permanent" class="overlay-lnk" role="button">permanent establishment&nbsp;<span class="far fa-question-circle"></span></a> in Canada. </p>
+<p><strong>If you supply publications</strong>, you are deemed to be carrying on a business in Canada if <strong>both</strong> of the following apply:</p>
+<ul class="list-unstyled cnjnctn-type-and  cnjnctn-sm">
+<li class="cnjnctn-col">You <a href="#ajax-sollicit" aria-controls="ajax-sollicit" class="overlay-lnk" role="button">solicit orders&nbsp;<span class="far fa-question-circle"></span></a> for, or offer to sell <a href="#ajax-prespub" aria-controls="prespub" class="overlay-lnk" role="button">prescribed publications&nbsp;<span class="far fa-question-circle"></span></a>, whether through an employee or agent or by means of advertising directed at the Canadian market</li>
+<li class="cnjnctn-col">The prescribed publication will be sent by mail or <a href="#ajax-courier" aria-controls="ajax-courier" class="overlay-lnk" role="button">courier&nbsp;<span class="far fa-question-circle"></span></a> to the <a href="#ajax-recipient" aria-controls="ajax-recipient" class="overlay-lnk" role="button">recipient&nbsp;<span class="far fa-question-circle"></span></a> at an address in Canada</li>
+</ul>
 <p>Learn more: </p>
 <ul>
 <li><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/p-051r2/p-051r2-carrying-on-business-canada.html" target="_blank">GST/HST Policy Statement P-051R2 - Carrying on business in Canada</a></li>
-<li><a href="/en/revenue-agency/corporate/contact-information/non-resident-gst-hst-enquiries.html">Non-resident GST/HST enquiries</a></li>
-</ul></div>
-</li>
-<li><h3>Registering for the GST/HST</h3>
-<ol class="lst-stps-sub ld-zr stps-strpd">
-<li>
+<li><a href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/non-resident-gst-hst-enquiries/make-non-resident-gst-hst-enquiry.html">Non-resident GST/HST enquiries</a></li>
+<li><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/suppliers-publications.html" target="_blank">GST/HST information for suppliers of publications</a></li>
+</ul>
+<hr></div>
 <ul class="list-unstyled cnjnctn-type-or  cnjnctn-sm">
 <li class="cnjnctn-col">
-<div id="ajax-nonres-smallyes">
-<span class="fas fa-check fa-lg text-success"></span> If you are <strong>carrying on a business in Canada</strong>, you have to register for a GST/HST account number, unless you are <strong>not</strong> a small supplier.
+<div id="ajax-nonres-smallyes"><p>
+<span class="fas fa-check fa-lg text-success"></span> If you are <strong>carrying on a business in Canada</strong> and you are <strong>not</strong> a small supplier, you have to register for a GST/HST account number.</p>
 </div>
 <div id="ajax-nonres-smallyes2" class="mrgn-tp-lg">
 <h4>Determine if you are a small supplier</h4>
 <p>To determine if you are a small supplier (as you would for any Canadian businesses), continue to one of the following depending on your type of business:</p>
 <ul>
-<li><a href="mostbus">Sole proprietor, partnership or corporation</a></li>
-<li><a href="#charities">Charity or public institution</a></li>
-<li><a href="#psb">Public service body that is not a charity or public institution</a></li>
+<li><a href="#mostbus">Sole proprietor, partnership or corporation</a></li>
+<li><a href="#psb">Public service body</a></li>
 </ul></div>
 </li>
 <li class="cnjnctn-col">
-<div id="ajax-nonres-smallno">
+<div id="ajax-nonres-smallno"><p>
 <span class="fas fa-ban text-danger fa-lg"></span> If you are <strong>not</strong> carrying on a business in Canada, you may still have to register for a GST/HST account number.
-</div>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 2b - Determine if the exception to GST/HST registration apply if you are not carrying on a business in Canada</strong>.</p>
+</p></div>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <strong>Step 2 - Determine if you have to register for the GST/HST even if you are not carrying on a business in Canada</strong>.</p>
 </li>
 </ul>
 </li>
-<li><div id="ajax-nonres-step3"><h4>Determine if the exception to GST/HST registration apply if you are not carrying on a business in Canada</h4>
-<p><strong>If you are not carrying on a business in Canada</strong>, you may have to register for a GST/HST account number if you are one of the following type of business:</p>
-<ul class="list-unstyled cnjnctn-type-or">
-<li class="cnjnctn-col"><details><summary>Supplier of publications</summary>
-<p><strong>If you are a supplier of publications</strong> and you are not carrying on a business in Canada, you <strong>may</strong> have to register for a GST/HST account if you are not a small supplier, and all of the following applies:</p>
-<ul class="list-unstyled cnjnctn-type-and  cnjnctn-sm">
-<li class="cnjnctn-col">You <a href="#ajax-sollicit" aria-controls="ajax-sollicit" class="overlay-lnk" role="button">solicit orders&nbsp;<span class="far fa-question-circle"></span></a> for, or offers to sell <a href="#ajax-prespub" aria-controls="prespub" class="overlay-lnk" role="button">prescribed publications&nbsp;<span class="far fa-question-circle"></span></a>, whether through an employee or agent or by means of advertising directed at the Canadian market</li>
-<li class="cnjnctn-col">The prescribed publication will be sent by mail or <a href="#ajax-courier" aria-controls="ajax-courier" class="overlay-lnk" role="button">courier&nbsp;<span class="far fa-question-circle"></span></a> to the <a href="#ajax-recipient" aria-controls="ajax-recipient" class="overlay-lnk" role="button">recipient&nbsp;<span class="far fa-question-circle"></span></a> at an address in Canada</li>
-</ul>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/suppliers-publications.html" target="_blank">GST/HST information for suppliers of publications</a></p>
-<br>
-<div data-ajax-replace="#ajax-nonres-smallyes2"></div>
-</details></li>
-<li class="cnjnctn-col"><details><summary>Digital economy business</summary>
-<p><strong>If you are a digital economy business</strong> and you are not carrying on a business in Canada, you <strong>may</strong> have to register for a GST/HST account if you are not a small supplier, and all of the following applies:</p>
-<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/find-out-need-register/cross-border-threshold-amounts.html">Cross-border digital products and services</a></li>
-<li class="cnjnctn-col"><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/find-out-need-register/sales-goods-threshold-amounts.html">Supply of qualifying goods</a></li>
-<li class="cnjnctn-col"><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/find-out-need-register/platform-based-threshold-amount.html">Platform-based short-term accommodation</a></li>
-</ul>
-<p>Learn more : <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst.html" target="_blank">GST/HST for digital economy businesses</a></p>
-<br>
-<div data-ajax-replace="#ajax-nonres-smallyes2"></div>
-
-</details></li>
-<li class="cnjnctn-col"><details><summary>Non-resident performer or a supplier of admission</summary>
+<li><h3>Determine if you have to register for the GST/HST even if you are not carrying on a business in Canada</h3>
 <div id="ajax-nonres-step2"> 
-<p>If you are a in <strong>one</strong> of the following situation, you have to register for a GST/HST account number:</p>
+<p>You may have to register <strong>even if you are not carrying on a business in Canada</strong> if you are one of the following type of businesses:</p>
 <ul class="list-unstyled cnjnctn-type-or  cnjnctn-sm">
-<li class="cnjnctn-col">You sponsor (host) a <a href="#ajax-convention" aria-controls="ajax-convention" class="overlay-lnk" role="button">convention&nbsp;<span class="far fa-question-circle"></span></a> in Canada and more than <strong>25% of the attendees are residents of Canada</strong></li>
-<li class="cnjnctn-col">You make <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable&nbsp;<span class="far fa-question-circle"></span></a> sales, leases, or other supplies (including <a href="#Ex-TaxableSupplies0" aria-controls="Ex-TaxableSupplies0" class="overlay-lnk" role="button">zero-rated&nbsp;<span class="far fa-question-circle"></span></a> supplies) of <strong>admissions in Canada for a place of amusement, a seminar, an activity, or an event held in Canada</strong></li>
+<li class="cnjnctn-col"><h4>Digital economy business</h4>
+<p><span class="fas fa-check fa-lg text-success"></span> You <strong>may</strong> have to register for a GST/HST account number if you are a <strong>digital economy business</strong> and your business activities are  <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/find-out-need-register/cross-border-threshold-amounts.html">cross-border digital products and services</a>, <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/find-out-need-register/sales-goods-threshold-amounts.html">supply of qualifying goods</a> or <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/find-out-need-register/platform-based-threshold-amount.html">platform-based short-term accommodation</a>. </p>
+<p>Learn more to determine if you have to register and how to register: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst.html" target="_blank">GST/HST for digital economy businesses</a></p>
+</li>
+
+<li class="cnjnctn-col"><h4>Non-resident person supplying admissions</h4>
+<p class="mrgn-bttm-md"><span class="fas fa-check fa-lg text-success"></span> You <strong>have</strong> to register for a GST/HST account number <strong>before making any supplies</strong> if you are a <strong>non-resident person supplying admissions</strong> in <strong>one</strong> of the following situations:</p>
+<ul class="list-unstyled cnjnctn-type-or">
+<li class="cnjnctn-col">You sponsor (host) a <a href="#ajax-convention" aria-controls="ajax-convention" class="overlay-lnk" role="button">convention&nbsp;<span class="far fa-question-circle"></span></a> in Canada and more than <strong>25%</strong> of the attendees are <strong>residents of Canada</strong> 
+
+<p class="mrgn-tp-md">If you are the sponsor of a foreign convention, you do not have to register for a GST/HST account number. Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/gst-hst-rebates/foreign-convention-tour.html">Foreign Convention and Tour Incentive Program</a>.</p></li>
+<li class="cnjnctn-col">You make <a href="#Ex-TaxableSupplies" aria-controls="Ex-TaxableSupplies" class="overlay-lnk" role="button">taxable supplies&nbsp;<span class="far fa-question-circle"></span></a> of <strong>admissions</strong> in Canada for a place of amusement, a seminar, an activity, or an event held in Canada</li>
+</ul>
+
+<h5>Charging the GST/HST</h5>
+ <p>You have to charge the GST/HST on all your supplies of admissions.</p>
+
+<p class="mrgn-bttm-md">Learn more on how to register: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/terms-conditions.html" target="_blank">Register using the non-resident registration web form</a></p>
+
+</li>
 </ul>
 <hr>
-<h4>Mandatory registration if you are a non-resident performer or a supplier of admission</h4>
-<p class="mrgn-bttm-md"><span class="fas fa-check fa-lg text-success"></span> If you are a <strong>non-resident performer or a supplier of admission</strong>, you have to register for a GST/HST account number even if you are not a small supplier.</p>
-
-<h5>Effective date of registration</h5>
-<p>You have to register for a GST/HST account number as of the date your business make taxable sales, leases, or other supplies.</p>
-<p class="mrgn-bttm-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/terms-conditions.html" target="_blank">Register using the non-resident registration web form</a></p>
-
-<h4>Charging the GST/HST</h4>
- <p>You have to charge the GST/HST as of the date your business your business make taxable sales, leases, or other supplies.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html" target="_blank">Charge and collect the tax</a></p>
-</div>
-</details></li>
-</ul>
-<hr>
-<p><span class="fas fa-ban text-danger fa-lg"></span> If you are <strong>not</strong> carrying on a business in Canada and you are <strong>not</strong> in one of the above type of businesses, you <strong>do not</strong> have to register for a GST/HST account number.</p>
-<br>
-<h4>Voluntary registration</h4>
-<p>You can choose to register voluntarily. </p>
-<p>If you register voluntarily, your <strong>effective date of registration</strong> is generally the <strong>day you request</strong> your GST/HST account number.</p>
-<p class="mrgn-bttm-md">Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/terms-conditions.html" target="_blank">Register using the non-resident registration web form</a></p>
+<p><span class="fas fa-ban text-danger fa-lg"></span> If you are <strong>not</strong> carrying on a business in Canada and you are <strong>not</strong> one of the above type of businesses, you <strong>do not</strong> have to register for a GST/HST account number.</p>
 </div>
 </li>
-</ol></li>
+<li><h3>Determine if you can register voluntarily for the GST/HST</h3>
+<div id="ajax-nonres-step3"> 
+<p>You can choose to register voluntarily if you meet <strong>one</strong> of the following conditions:</p>
+<ul class="list-unstyled cnjnctn-type-or  cnjnctn-sm mrgn-bttm-lg">
+<li class="cnjnctn-col">You regularly solicit orders for the supply of property in Canada</li>
+<li class="cnjnctn-col">You enter into an agreement to supply services in Canada</li>
+<li class="cnjnctn-col">You enter into an agreement to supply intangible property to be used in Canada</li>
+</ul>
+
+<h4>Effective date of registration</h4>	
+<p>If you register voluntarily, your <strong>effective date of registration</strong> is generally the <strong>day you request</strong> your GST/HST account number.</p>
+<p class="mrgn-bttm-lg">Learn more on how to register: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy-gsthst/terms-conditions.html" target="_blank">Register using the non-resident registration web form</a></p>
+</div>
+</li>
+<li><h3>Determine if you have to provide a security deposit</h3>
+<div id="ajax-nonres-step4"> 
+<p>Generally, you have to provide a security deposit if you apply for a GST/HST account number and <strong>one</strong> of the following applies:</p>
+<ul class="list-unstyled cnjnctn-type-or  cnjnctn-sm mrgn-bttm-lg">
+<li class="cnjnctn-col">You do not have a <a href="#ajax-permanent" aria-controls="ajax-permanent" class="overlay-lnk" role="button">permanent establishment&nbsp;<span class="far fa-question-circle"></span></a> in Canada</li>
+<li class="cnjnctn-col">You make supplies in Canada only through another person's fixed place of business</li>
+</ul>
+
+<h4>Exceptions</h4>
+<p>A security is <strong>not</strong> required if you estimate that both:</p>
+<ul class="list-unstyled cnjnctn-type-and  cnjnctn-sm mrgn-bttm-lg">
+<li class="cnjnctn-col">Your annual taxable supplies will be $100,000 or less</li>
+<li class="cnjnctn-col">Your annual net tax will be between $3,000 remittable and $3,000 refundable</li>
+</ul>
+
+<h4>Amount of security required</h4>
+<p class="mrgn-bttm-lg">Your initial security deposit is 50% of your <strong>estimated</strong> net tax, whether positive or negative, during the 12-month period after you register. For later years, the amount of security is based on your <strong>actual</strong> net tax.</p>
+<h4>Thresholds amount</h4>
+<p class="mrgn-bttm-lg">The minimum amount of security required is $5,000 and the maximum amount is $1,000,000. These threshold amounts apply to the entire legal entity, including all GST/HST division account numbers.</p>
+
+<h4>Acceptable forms of security deposits</h4>
+<p>Your security may be in the form of <strong>one</strong> of the following:</p>
+<ul class="fa-ul mrgn-bttm-lg">
+      <li><span class="fas fa-check fa-li fa-lg text-success"></span> Cash</li>
+<li><span class="fas fa-check fa-li fa-lg text-success"></span> Certified cheque</li>
+<li><span class="fas fa-check fa-li fa-lg text-success"></span> Money order</li>
+<li><span class="fas fa-check fa-li fa-lg text-success"></span> A qualifying bond</li>
+</ul>
+<p>The CRA does not accept non-transferable bonds such as Canada Savings Bonds.</p>
+
+<p>Learn more: </p>
+<ul>
+<li><a href="https://www.canada.ca/en/revenue-agency/corporate/contact-information/non-resident-gst-hst-enquiries/make-non-resident-gst-hst-enquiry.html">Non-resident GST/HST enquiries</a></li>
+<li><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/2-6/security-requirements-non-residents.html">GST/HST Memorandum 2.6 Security requirements for non-residents</a></li>
+</ul>
+</div>
+
+</li>
 </ol>
 
 <div id="ajax-nonresident-more"><h3>Resources</h3> 
 <p><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4027/doing-business-canada-gst-hst-information-non-residents.html" target="_blank"> Doing Business in Canada – GST/HST Information for Non-Residents</a></p>
-<p><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-specific-situations/suppliers-publications.html" target="_blank"> GST/HST information for suppliers of publications</a></p>
 </div>
    </details>
  
@@ -3261,37 +3326,6 @@
 </div>
 </section>
 
-<!--Hidden fields (data storage)-->
-
-<div id="data" class="hidden">
-<label>Age</label><input id="age" type="text"><br>
-<label>Number of quarters</label><input id="numOfQuarters" type="number"><br>
-<label>Amount</label><input id="amount" type="number"><br>
-<label>AmountString</label><input id="amountString"><br>
-<label>Calc Return</label><input id="calcReturn" type="number"><br>
-<label>Min Date <input id="minDate"></label><br>
-<label>Max Date <input id="maxDate"></label><br>
-<label>Min Date String <input id="minDateS"></label><br>
-<label>Max Date String <input id="maxDateS"></label><br>
-<label>Cap Period</label><input id="capPeriod" type="number"><br>
-<label>Quarter1 <input id="q0_monthStart_New"><input id="q0_monthEnd_New"><input id="q0_year_New"></label><br>
-<label>Quarter2 <input id="q1_monthStart_New"><input id="q1_monthEnd_New"><input id="q1_year_New"></label><br>
-<label>Quarter3 <input id="q2_monthStart_New"><input id="q2_monthEnd_New"><input id="q2_year_New"></label><br>
-<label>Quarter4 <input id="q3_monthStart_New"><input id="q3_monthEnd_New"><input id="q3_year_New"></label><br>
-<label>Test</label><input id="test"><br>
-<label>Quarter1 <input id="q0_monthStart_Old"><input id="q0_monthEnd_Old"><input id="q0_year_Old"></label><br>
-<label>Quarter2 <input id="q1_monthStart_Old"><input id="q1_monthEnd_Old"><input id="q1_year_Old"></label><br>
-<label>Quarter3 <input id="q2_monthStart_Old"><input id="q2_monthEnd_Old"><input id="q2_year_Old"></label><br>
-<label>Quarter4 <input id="q3_monthStart_Old"><input id="q3_monthEnd_Old"><input id="q3_year_Old"></label><br>
-<label>Quarter5 <input id="q4_monthStart_Old"><input id="q4_monthEnd_Old"><input id="q4_year_Old"></label><br>
-<label>Quarter6 <input id="q5_monthStart_Old"><input id="q5_monthEnd_Old"><input id="q5_year_Old"></label><br>
-<label>Quarter7 <input id="q6_monthStart_Old"><input id="q6_monthEnd_Old"><input id="q6_year_Old"></label><br>
-<label>Quarter8 <input id="q7_monthStart_Old"><input id="q7_monthEnd_Old"><input id="q7_year_Old"></label><br>
-<label>Quarter9 <input id="q8_monthStart_Old"><input id="q8_monthEnd_Old"><input id="q8_year_Old"></label><br>
-<label>Quarter10 <input id="q9_monthStart_Old"><input id="q9_monthEnd_Old"><input id="q9_year_Old"></label><br>
-<label>Quarter11 <input id="q10_monthStart_Old"><input id="q10_monthEnd_Old"><input id="q10_year_Old"></label><br>
-<label>Quarter12 <input id="q11_monthStart_Old"><input id="q11_monthEnd_Old"><input id="q11_year_Old"></label><br>
-</div>
 
 <section id="ajax-charity" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg gc-font-2019">
 	<header class="modal-header">
@@ -3307,7 +3341,7 @@
 		<h2 class="modal-title">Meaning of the term non-resident business</h2>
 	</header>
 	<div class="modal-body">
-		<div data-ajax-replace="https://test.canada.ca/cra-arc/gsthst/register.html#ajax-nonres-def"></div>
+		<p><strong>Non-resident</strong> means a person who does not reside in Canada. However, if a non-resident person carries on activities through a permanent establishment in Canada, the person is considered to be resident in Canada in respect of, and only in respect of, the activities of the person carried on through that permanent establishment.</p> 
 	</div>
 </section>
 
