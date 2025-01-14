@@ -3562,30 +3562,34 @@ background-color: #26384a !important
     <h2 class="modal-title">Wait times are not available</h2>
   </header>
   <div class="modal-body">
-    <p>Estimated wait times are temporarily unavailable due to one of these reasons:</p>
-    <ul>
-      <li>Technical difficulties</li>
-      <li>Phone lines are closed</li>
-    </ul>
+   <p>Estimated wait  times are temporarily unavailable due to one of these reasons:</p>
+<ul>
+  <li>All of our representatives are busy and calls are being redirected to  automated services</li>
+  <li>Technical difficulties</li>
+  <li>Phone lines are closed</li>
+</ul>
     <p class="nojs-show mrgn-tp-md">To see the wait times, <strong>JavaScript must be enabled</strong> on your computer. If you see this message during regular operating hours, the phone lines may be open.</p>
   </div>
 </section>
 <section id="linefull-lbx" class="mfp-hide modal-dialog modal-content overlay-def">
   <header class="modal-header">
-    <h2 class="modal-title">Calls are being re-directed</h2>
+    <h2 class="modal-title">Wait times are not available</h2>
   </header>
   <div class="modal-body">
-    <p>Estimated wait times are temporarily unavailable due to all of our representatives are busy.</p>
-    <p>Calls are being redirected to automated services.</p>
+	  <h3 class="mrgn-tp-0 h4">Calls are being directed  to the automated service</h3>
+    <p>Due to the current volume of calls, your call  will be directed to the automated service line.</p>
+<p>If you&rsquo;re not able to address your concerns  using the automated service line, try calling at a different time.</p>
   </div>
 </section>
 <section id="lineclosed-lbx" class="mfp-hide modal-dialog modal-content overlay-def">
   <header class="modal-header">
-    <h2 class="modal-title">This call line is closed</h2>
+    <h2 class="modal-title">Wait time are not available</h2>
   </header>
   <div class="modal-body">
-    <p>Estimated wait times are unavailable because the phone line is closed.</p>
-    <p>Please call back during regular hours.</p>
+  <h3 class="mrgn-tp-0 h4">Outside service hours</h3>	  
+    <p>It is currently outside our regular hours of  service. Your call will be directed to the automated service line.</p>
+    <p>If you're not able to address your concerns  using the automated service line, try calling again during our regular hours of  service.</p>
+    <p>The automated service line is closed for daily  maintenance from 3 am to 6 am ET.</p>
   </div>
 </section>
 	      
@@ -3963,16 +3967,16 @@ $('span[data-json-replace]').on("wb-contentupdated", function (event, data) {
     switch (wb.lang) {
     case "en":
     obj = {
-        "--": ["#waittime-lbx", "Not available", "Unknown issue"],
-        "lineFull": ["#linefull-lbx", "Not available", "Agents are busy"],
-        "lineClosed": ["#lineclosed-lbx", "Not available", "This line is closed"]
+        "--": ["#waittime-lbx", "Not available", ""],
+        "lineFull": ["#linefull-lbx", "Not available", "Directing calls to automated service"],
+        "lineClosed": ["#lineclosed-lbx", "Not available", "Outside service hours"]
       };
       break;
     case "fr":
       obj = {
-        "--": ["#waittime-lbx", "Temps d’attente", "Unknown isssue - FR"],
-        "lineFull": ["#linefull-lbx", "Temps d’attente", "Agents are busy - FR"],
-        "lineClosed": ["#lineclosed-lbx", "Temps d’attente", "This line is close - FR"]
+        "--": ["#waittime-lbx", "Temps d’attente", ""],
+        "lineFull": ["#linefull-lbx", "Temps d’attente", "Directing calls to automated service - FR"],
+        "lineClosed": ["#lineclosed-lbx", "Temps d’attente", "Outside service hours - FR"]
       };
   }
   const key = $(this).text();
