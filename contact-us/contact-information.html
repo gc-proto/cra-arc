@@ -3967,6 +3967,8 @@ $('span[data-json-replace]').on("wb-contentupdated", function (event, data) {
     switch (wb.lang) {
     case "en":
     obj = {
+        "wt": "Wait times are",
+	 "na": "Not available",   
         "--": ["#waittime-lbx", "Not available", ""],
         "lineFull": ["#linefull-lbx", "Not available", "Directing calls to automated service"],
         "lineClosed": ["#lineclosed-lbx", "Not available", "Outside service hours"]
@@ -3974,6 +3976,8 @@ $('span[data-json-replace]').on("wb-contentupdated", function (event, data) {
       break;
     case "fr":
       obj = {
+	 "wt": "Wait times are",
+	 "na": "Not available",         
         "--": ["#waittime-lbx", "Temps d’attente", ""],
         "lineFull": ["#linefull-lbx", "Temps d’attente", "Directing calls to automated service - FR"],
         "lineClosed": ["#lineclosed-lbx", "Temps d’attente", "Outside service hours - FR"]
@@ -3981,7 +3985,7 @@ $('span[data-json-replace]').on("wb-contentupdated", function (event, data) {
   }
   const key = $(this).text();
   if (key in obj) {
-    $(this).replaceWith('<a href="' + obj[key][0] + '" class="wb-lbx">' + obj[key][1] + '<span class="wb-inv"> - ' + obj[key][2] + '</span></a>');
+    $(this).replaceWith('<a href="' + obj[key][0] + '" class="wb-lbx"><span class="wb-inv">'+ obj.wt + ' </span>' + obj.na + '<span class="wb-inv"> - ' + obj[key][2] + '</span></a>');
     $(".wb-lbx").trigger("wb-init.wb-lbx");
   }
 });
