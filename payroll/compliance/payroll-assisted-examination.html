@@ -92,7 +92,86 @@
 </figure> 
   </div>
 </div>
-
+<section id="modal_date_calc" class="wb-overlay modal-content overlay-def wb-popup-mid">
+  <header class="modal-header">
+    <h2 class="modal-title"><i class="fa fa-calculator"></i>&emsp; Date calculator</h2>
+  </header>
+  <div class="modal-body">
+    <div class="wb-tabs ignore-session">
+      <div class="tabpanels">
+        <details id="date_calc_opt1" open="open">
+          <summary>Date after amount of time</summary>
+          <form id="form_date_calc_opt1">
+            <div class="container-fluid">
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label for="date_calc_from1">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                  <input class="form-control" type="date" id="date_calc_from1" name="date_calc_from" min="1900-01-01" max="2050-01-01" required/>
+                </div>
+                <div class="col-md-10">
+                  <label for="date_calc_elapsed">Elapsed time</label>
+                  <div class="input-group">
+                    <input type="number" id="date_calc_elapsed" class="form-control input-lg brdr-rds-2 num" placeholder="Enter the amount of time" min="1" max="3653" required>
+                    <span class="input-group-btn">
+                    <select id="date_calc_unit" class="btn btn-lg btn-default" title="Temporal unit" required>
+                      <option value="days" selected>Days</option>
+                      <option value="work">Business days</option>
+                      <option value="weeks">Weeks</option>
+                      <option value="months">Months</option>
+                      <option value="years">Years</option>
+                    </select>
+                    </span> <span class="input-group-btn">
+                    <select id="date_calc_dir" class="btn btn-lg btn-default" title="Temporal direction" required>
+                      <option value="true" selected>In the future</option>
+                      <option value="false">In the past</option>
+                    </select>
+                    </span> </div>
+                </div>
+              </div>
+              <div id="date_calc_opt1_result" class="alert alert-info row hidden">
+                <div class="col-md-11 mrgn-lft-sm">
+                  <h3>Your result - The calculated date is:</h3>
+                  <p></p>
+                </div>
+              </div>
+              <div class="mrgn-tp-lg mrgn-bttm-md">
+                <button type="button" class="btn btn-lg btn-primary mrgn-rght-sm" onclick="calculateDate()">Calculate</button>
+                <button type="button" class="btn btn-lg btn-default" onclick="clearForm('form_date_calc_opt1')">Clear</button>
+              </div>
+            </div>
+          </form>
+        </details>
+        <details id="date_calc_opt2">
+          <summary>Elapsed time between 2 dates</summary>
+          <form id="form_date_calc_opt2">
+            <div class="container-fluid">
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label for="date_calc_from2">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                  <input class="form-control" type="date" id="date_calc_from2" name="date_calc_from" min="1900-01-01" max="2050-01-01" required>
+                </div>
+                <div class="col-md-10">
+                  <label for="date_calc_to2">End date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                  <input class="form-control" type="date" id="date_calc_to2" name="date_calc_to" min="1900-01-01" max="2050-01-01" required>
+                </div>
+              </div>
+              <div id="date_calc_opt2_result" class="alert alert-info row hidden">
+                <div class="col-md-11 mrgn-lft-sm">
+                  <h3>Your result - Elapsed number of business days:</h3>
+                  <p id="resultText"> </p>
+                </div>
+              </div>
+              <div class="mrgn-tp-lg mrgn-bttm-md">
+                <button type="button" class="btn btn-lg btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
+                <button type="button" class="btn btn-lg btn-default" onclick="clearForm('form_date_calc_opt2')">Clear</button>
+              </div>
+            </div>
+          </form>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
 <ol class="lst-stps ld-zr stps-strpd">
   <li >
     <h3>Your account is being reviewed by a Trust Accounts Examination Officer</h3>
@@ -470,85 +549,6 @@ $('#modal_date_calc').on('hidden.bs.modal', function () {
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script> 
 
 
-<section id="modal_date_calc" class="wb-overlay modal-content overlay-def wb-popup-mid">
-  <header class="modal-header">
-    <h2 class="modal-title"><i class="fa fa-calculator"></i>&emsp; Date calculator</h2>
-  </header>
-  <div class="modal-body">
-    <div class="wb-tabs ignore-session">
-      <div class="tabpanels">
-        <details id="date_calc_opt1" open="open">
-          <summary>Date after amount of time</summary>
-          <form id="form_date_calc_opt1">
-            <div class="container-fluid">
-              <div class="form-group row">
-                <div class="col-md-2">
-                  <label for="date_calc_from1">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-                  <input class="form-control" type="date" id="date_calc_from1" name="date_calc_from" min="1900-01-01" max="2050-01-01" required/>
-                </div>
-                <div class="col-md-10">
-                  <label for="date_calc_elapsed">Elapsed time</label>
-                  <div class="input-group">
-                    <input type="number" id="date_calc_elapsed" class="form-control input-lg brdr-rds-2 num" placeholder="Enter the amount of time" min="1" max="3653" required>
-                    <span class="input-group-btn">
-                    <select id="date_calc_unit" class="btn btn-lg btn-default" title="Temporal unit" required>
-                      <option value="days" selected>Days</option>
-                      <option value="work">Business days</option>
-                      <option value="weeks">Weeks</option>
-                      <option value="months">Months</option>
-                      <option value="years">Years</option>
-                    </select>
-                    </span> <span class="input-group-btn">
-                    <select id="date_calc_dir" class="btn btn-lg btn-default" title="Temporal direction" required>
-                      <option value="true" selected>In the future</option>
-                      <option value="false">In the past</option>
-                    </select>
-                    </span> </div>
-                </div>
-              </div>
-              <div id="date_calc_opt1_result" class="alert alert-info row hidden">
-                <div class="col-md-11 mrgn-lft-sm">
-                  <h3>Your result - The calculated date is:</h3>
-                  <p></p>
-                </div>
-              </div>
-              <div class="mrgn-tp-lg mrgn-bttm-md">
-                <button type="button" class="btn btn-lg btn-primary mrgn-rght-sm" onclick="calculateDate()">Calculate</button>
-                <button type="button" class="btn btn-lg btn-default" onclick="clearForm('form_date_calc_opt1')">Clear</button>
-              </div>
-            </div>
-          </form>
-        </details>
-        <details id="date_calc_opt2">
-          <summary>Elapsed time between 2 dates</summary>
-          <form id="form_date_calc_opt2">
-            <div class="container-fluid">
-              <div class="form-group row">
-                <div class="col-md-2">
-                  <label for="date_calc_from2">Start date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-                  <input class="form-control" type="date" id="date_calc_from2" name="date_calc_from" min="1900-01-01" max="2050-01-01" required>
-                </div>
-                <div class="col-md-10">
-                  <label for="date_calc_to2">End date <span class="datepicker-format">(<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-                  <input class="form-control" type="date" id="date_calc_to2" name="date_calc_to" min="1900-01-01" max="2050-01-01" required>
-                </div>
-              </div>
-              <div id="date_calc_opt2_result" class="alert alert-info row hidden">
-                <div class="col-md-11 mrgn-lft-sm">
-                  <h3>Your result - Elapsed number of business days:</h3>
-                  <p id="resultText"> </p>
-                </div>
-              </div>
-              <div class="mrgn-tp-lg mrgn-bttm-md">
-                <button type="button" class="btn btn-lg btn-primary mrgn-rght-sm" onclick="calculateBusinessDays()">Calculate</button>
-                <button type="button" class="btn btn-lg btn-default" onclick="clearForm('form_date_calc_opt2')">Clear</button>
-              </div>
-            </div>
-          </form>
-        </details>
-      </div>
-    </div>
-  </div>
-</section>
+
 </body>
 </html>
