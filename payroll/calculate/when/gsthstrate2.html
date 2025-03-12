@@ -100,11 +100,25 @@
   <h1 property="name" id="wb-cont" class="gc-thickline">GST/HST rates on benefits</h1>
 <form id="pswd">
     <input type="password"  class="input-lg" id="validate" 
-           placeholder="Enter password to view content">
+           placeholder="Enter password">
     <button type="button" class="btn btn-primary btn-lg" onclick="fun()">Submit</button>
 </form>  
-
-
+<script>
+    function fun() {
+        let inputPswd = document.getElementById("validate")
+                                .value;
+        let correctPswd = "PLS2025GST";
+        if (inputPswd === correctPswd) {
+            document.getElementById("container")
+                .style.display = "block";
+            document.getElementById("pswd")
+                .style.display = "none";
+        } else {
+            alert("Incorrect password!");
+        }
+    }
+</script>
+ <div id="container" >
  <div id="ajax-exp">
 <p id="detrate">The GST/HST rates to use depend on:</p>
 
@@ -125,26 +139,6 @@
 
 
 
-
-
-<script>
-    function fun() {
-        let inputPswd = document.getElementById("validate")
-                                .value;
-        let correctPswd = "PLS2025GST";
-        if (inputPswd === correctPswd) {
-            document.getElementById("container")
-                .style.display = "block";
-            document.getElementById("pswd")
-                .style.display = "none";
-        } else {
-            alert("Incorrect password!");
-        }
-    }
-</script>
-	
-  
- <div id="container" >
   <h2 id="h_1">GST/HST rates on benefits (do not use these rates for automobile operating expenses)</h2>
 <div id="ajax-gststand">
 <div class="table-responsive">
@@ -384,7 +378,7 @@
       </dl>
     </div>
   </div>
- </div> 
+</div> 
 
   <nav class="mrgn-bttm-lg mrgn-tp-lg">
     <h3 class="wb-inv">Document navigation</h3>
