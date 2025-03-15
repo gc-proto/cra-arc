@@ -26,6 +26,199 @@
             document.write(wet.builder.refTop({
             }));
          </script>
+
+
+<style>
+
+        /* Basic Reset */
+
+        body, h1, h2, p {
+
+            margin: 0;
+
+            padding: 0;
+
+            font-family: Arial, sans-serif;
+
+        }
+
+        /* General Page Layout */
+
+        body {
+
+            background-color: #f4f7fa;
+
+            color: #333;
+
+            padding: 20px;
+
+            line-height: 1.6;
+
+        }
+
+        section {
+
+            background-color: #fff;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            margin: 20px 0;
+
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+        h1 {
+
+            font-size: 2rem;
+
+            text-align: center;
+
+            margin-bottom: 10px;
+
+        }
+
+        h2 {
+
+            font-size: 1.5rem;
+
+            margin-bottom: 15px;
+
+        }
+
+        p {
+
+            margin-bottom: 20px;
+
+            font-size: 1rem;
+
+            color: #555;
+
+        }
+
+        .flowchart-container {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 15px;
+
+        }
+
+        .flowchart-box {
+
+            background-color: #ffffff;
+
+            border-radius: 8px;
+
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+            padding: 15px;
+
+            width: 200px;
+
+            text-align: center;
+
+            transition: transform 0.3s ease;
+
+        }
+
+        .flowchart-box:hover {
+
+            transform: scale(1.05);
+
+            background-color: #f1f1f1;
+
+        }
+
+        .flowchart-box i {
+
+            font-size: 3rem;
+
+            color: #00aaff;
+
+            margin-bottom: 10px;
+
+        }
+
+        .flowchart-box p {
+
+            font-size: 0.9rem;
+
+            color: #333;
+
+        }
+
+        .interactive-section {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-top: 30px;
+
+        }
+
+        .flowchart-img {
+
+            max-width: 100%;
+
+            border-radius: 8px;
+
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .toggle-info {
+
+            background-color: #00aaff;
+
+            color: #fff;
+
+            border: none;
+
+            padding: 10px 20px;
+
+            margin-top: 20px;
+
+            cursor: pointer;
+
+            border-radius: 5px;
+
+            transition: background-color 0.3s ease;
+
+        }
+
+        .toggle-info:hover {
+
+            background-color: #0088cc;
+
+        }
+
+        /* Responsiveness */
+
+        @media (max-width: 768px) {
+
+            .flowchart-container {
+
+                flex-direction: column;
+
+                align-items: center;
+
+            }
+
+        }
+</style>
+
       </head>
       <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
          <div id="def-top">
@@ -63,7 +256,71 @@
 
 <h1 property="name" id="wb-cont">Reassessment of a T1 return following a payroll compliance review, examination or audit</h1>
 
- 
+<p>Understand the process from the initial employer audit to when the CRA reassesses the employee’s T1 return based on corrected T4 slips.</p>
+
+<section>
+<h2><i class="fas fa-project-diagram"></i> Steps of CRA reassessment process</h2>
+<p>This process starts when the CRA audits the employer's T4 slips and may lead to a reassessment of your T1 return. Here’s how it works:</p>
+<!-- Interactive Flowchart Sections -->
+<div class="flowchart-container">
+<div class="flowchart-box">
+<i class="fas fa-clipboard-check"></i>
+<p><strong>Step 1: Employer Compliance Audit</strong></p>
+<p>The CRA initiates an audit to check the accuracy of the employer's T4 slips.</p>
+</div>
+<div class="flowchart-box">
+<i class="fas fa-search"></i>
+<p><strong>Step 2: CRA Identifies Errors</strong></p>
+<p>The CRA identifies errors in the T4 slips, which may trigger a reassessment.</p>
+</div>
+<div class="flowchart-box">
+<i class="fas fa-pen-alt"></i>
+<p><strong>Step 3: Corrections Made</strong></p>
+<p>The CRA may either correct the T4 slips themselves or request the employer to do so.</p>
+</div>
+<div class="flowchart-box">
+<i class="fas fa-user-check"></i>
+<p><strong>Step 4: Employee Receives Corrected T4</strong></p>
+<p>The employee receives corrected T4 slips based on the updates made.</p>
+</div>
+<div class="flowchart-box">
+<i class="fas fa-file-invoice"></i>
+<p><strong>Step 5: CRA Issues Reassessment</strong></p>
+<p>The CRA reassesses the employee's T1 return based on the corrected T4 slips.</p>
+</div>
+</div>
+</section>
+<section class="interactive-section">
+<h2><i class="fas fa-sync-alt"></i> Interactive Flowchart</h2>
+<p>Click below to view the full interactive flowchart that shows each step in detail.</p>
+<img class="flowchart-img" src="path/to/your-flowchart-image.png" alt="CRA Reassessment Process Flowchart">
+<button class="toggle-info" onclick="toggleInfo()">Click for More Details</button>
+<div id="additional-info" style="display:none;">
+<p>Once the CRA identifies errors in the T4 slips, they may correct them themselves or ask the employer to do so. The corrected slips will then be compared to the employee's T1 return, and a reassessment may be triggered. This process is critical for ensuring accurate tax reporting.</p>
+</div>
+</section>
+<script>
+
+        // Toggle additional information when the button is clicked
+
+        function toggleInfo() {
+
+            var info = document.getElementById("additional-info");
+
+            if (info.style.display === "none") {
+
+                info.style.display = "block";
+
+            } else {
+
+                info.style.display = "none";
+
+            }
+
+        } 
+</script>
+
+
 <h2 id="h_1_1">Why were changes made to your T4 or T4A Slip</h2>
 <p>Following a payroll review, examination or audit, your T4 or T4A slip may have been revised to reflect accurate income, deductions, or other tax-related information. This makes sure that your employer or payer is in full compliance with the CRA requirements. Depending on the situation, this results in necessary corrections to previously filed slips.</p>
 <p>The changes could include:</p>
