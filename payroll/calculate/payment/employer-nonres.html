@@ -431,8 +431,8 @@
 <div id="quaemployee"><ul class="list-unstyled cnjnctn-type-and">
 <li class="cnjnctn-col">Your employee is resident in a country which Canada has a <strong>tax treaty</strong></li>
 <li class="cnjnctn-col">Your employee must:
-<ul class="list-unstyled cnjnctn-type-or">
-<li>Be present in Canada for <strong>less than 45 days in the calendar year</strong> that includes the time of payment</li>
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
+<li class="cnjnctn-col">Be present in Canada for <strong>less than 45 days in the calendar year</strong> that includes the time of payment</li>
 <li class="cnjnctn-col">Your employee must be present in Canada for <strong>less than 90 days in a 12-month period</strong> that includes the time of the payment</li>
 </ul></li>
 <li class="cnjnctn-col">Your employee must be exempt from Canadian tax under the <strong>tax treaty</strong></li>
@@ -449,26 +449,23 @@
  <p>A non-resident employer certification is valid for up to 2 calendar years.</p> 
 <p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#step7">Step 7 - Report the payment on a slip</a>.</p>
 </li>
-<li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If you <strong>do not</strong> have a valid non-resident employer certification from the CRA or the employee is no longer a qualifying non-resident employee, continue to: <a href="#step6c">Step 6c - Determine if Canada has an international social security agreement </a>.</p></li>
+<li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If you <strong>do not</strong> have a valid non-resident employer certification from the CRA or the employee is no longer a qualifying non-resident employee, continue to: <a href="#step6c">Step 6c - Determine if your employee is exempt from Canadian tax under a tax treaty</a>.</p></li>
 </ul>
 </details>
 </li>
-<li><details><summary>Determine if Canada has an international social security agreement </summary>
-<p id="step6c">Canada has international social security agreements with more than 50 countries that offer pension programs that are comparable to the <abbr title="Canada Pension Plan">CPP</abbr>. </p>
+<li><details><summary>Determine if your employee is exempt from Canadian tax under a tax treaty</summary>
+<p id="step6c">Canada has tax treaties with more than 90 countries. These treaties help prevent double taxation and determine how employment income, business profits, pensions, and other types of income are taxed when someone has ties to both Canada and another country.</p>
 
-<h4>Confirm if the country has an agreement with Canada</h4>
-<p>If the country is on the list of <a href="#ajax-social-agreement" aria-controls="ajax-social-agreement" class="overlay-lnk" role="button">countries that have an agreement with Canada<span class="far fa-question-circle"></span></a> (except Australia and New Zealand), this means that the agreement allows for employment in that country to be pensionable. The list provides the names of the countries that Canada has agreements with, their effective dates, the related CPT form numbers to apply for a certificate of coverage, and the maximum periods of initial detachment.</p>
+<h4>Confirm if the country has a tax treaty with Canada</h4>
+<p>If the country is on the list of <a href="#ajax-tax-treaty" aria-controls="ajax-tax-treaty" class="overlay-lnk" role="button">countries that have a tax treaty in force with Canada<span class="far fa-question-circle"></span></a>, this means that the treaty allows for employment in that country to be taxable. The list provides the names of the countries that Canada has treaties with, the dates it was signed, and more.</p>
 
-<h4>Certificate of coverage</h4>
-<p>If the country has an agreement with Canada, fill out the CPT form for that country to apply for a <strong>certificate of coverage</strong> for your employee and send it to the CPP/EI Rulings Division. Once approved, the certificate of coverage will make sure your employee contributes only to the <abbr title="Canada Pension Plan">CPP</abbr> and be exempt from contributing to the pension plan of the other country.</p>
-<p>You <strong>must</strong> keep the certificate of coverage to confirm the employment is pensionable in Canada and is not subject to social insurance contributions in the other country.</p>
-<p>Learn more: <a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/international-social-security-agreements-canada-pension-plan/certificate-coverage/apply-a-certificate-coverage.html">How to apply for a certificate of coverage</a></p>
 <hr>
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
-<li class="cnjnctn-col"><p><span class="fas fa-check fa-lg text-success"></span>  If the country is on the list of <a href="#ajax-social-agreement" aria-controls="ajax-social-agreement" class="overlay-lnk" role="button">countries that have an agreement with Canada<span class="far fa-question-circle"></span></a> (except Australia and New Zealand), you <strong>must</strong> deduct <abbr title="Canada Pension Plan">CPP</abbr> contributions. </p>
-<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#step3">Step ? - ???.</p>
+<li class="cnjnctn-col"><p><span class="fas fa-check fa-lg text-success"></span> If Canada <strong>does not</strong> have a tax treaty in force with Canada,  you <strong>must</strong> deduct income tax. </p>
+<p><span class="fas fa-arrow-down text-success fa-lg"></span> Continue to: <a href="#step7">Step 7 - Report the payment on a slip.</a></p> </li>
+
+<li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If the country is on the list of <a href="#ajax-tax-treaty" aria-controls="ajax-tax-treaty" class="overlay-lnk" role="button">countries that have a tax treaty in force with Canada<span class="far fa-question-circle"></span></a>, continue to: <a href="#step6d">Step 6d - Determine if you can apply for a R102 waiver certification.</a>.</p>
 </li>
-<li class="cnjnctn-col"><p><span class="fas fa-arrow-down text-success fa-lg"></span> If Canada <strong>does not</strong> have an international social security agreement with the other country, continue to: <a href="#step6d">Step 6d - Determine if you can apply for a R102 waiver certification.</a></p></li>
 </ul></details>
 </li>
 
@@ -622,6 +619,39 @@
 
 </div></section>
 
+<section id="ajax-social-agreement" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">	<header class="modal-header"><h2 class="modal-title">Countries that have an agreement with Canada</h2>
+	</header>
+	<div class="modal-body">		
+<h3>Countries that have an agreement with Canada</h3>	
+<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/international-social-security-agreements-canada-pension-plan/what-purpose-international-social-security-agreements.html"></div>
+
+</div></section>
+
+<section id="ajax-tax-treaty" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">	<header class="modal-header"><h2 class="modal-title">Countries that have tax treaties in force with Canada</h2>
+	</header>
+	<div class="modal-body">		
+<h3>Countries that have tax treaties in force with Canada</h3>	
+<div data-ajax-replace="https://www.canada.ca/en/department-finance/programs/tax-policy/tax-treaties/in-force.html"></div>
+
+</div></section>
+
+<section id="factualresident" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">Determine if your employee is a factual resident (temporarily outside of Canada)</h2>
+	</header>	<div class="modal-body">		
+	<p>An individual who is absent from Canada, but resident in Canada includes: </p>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col">An individual considered resident in Canada because the individual maintained residential ties with Canada while abroad (factual resident) </li>
+<li class="cnjnctn-col">An individual deemed by subsection 250(1) to be a resident of Canada </li>
+ </ul>		
+<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/international-non-residents/individuals-leaving-entering-canada-non-residents/factual-residents-temporarily-outside-canada.html#ajax-factualresident"></div>
+
+	</div></section>
+
+<section id="ajax-resident-ties" class="mfp-hide modal-dialog modal-content overlay-def">	<header class="modal-header"><h2 class="modal-title">Determine if you have residential ties with Canada</h2>
+	</header>	<div class="modal-body">		
+	
+<div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/international-non-residents/information-been-moved/determining-your-residency-status.html#ajax-resident-ties"></div>
+
+	</div></section>
 	 
 <nav class="mrgn-bttm-lg mrgn-tp-lg">
   <h3 class="wb-inv">Document navigation</h3>
