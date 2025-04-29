@@ -206,13 +206,21 @@
 <label for="q10"><span class="field-name">11. Province listed for legal jurisdiction in employment contract:</span></label>
 <input id="q10" name="q10" type="text">
 </div>
+
 <div class="form-group">
-<label for="q11"><span class="field-name">12. Has a CRA ruling been requested for this case?</span></label>
-<select id="q11" name="q11">
-<option value="">Select</option>
-<option value="Yes">Yes</option>
-<option value="No">No</option>
-</select>
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"radio", "inline":true, "gcChckbxrdio":true}'>
+		<p>12. Has a CRA ruling been requested for this case?</p>
+		<ul>
+				<li data-wb-fieldflow='[
+					{ "action": "query", "name": "q11", "value": "" }
+				]'>Custom: Make your selection...</li>
+				<li data-wb-fieldflow='[
+					{ "action": "query", "name": "q11", "value": "yes" }
+				]'>Yes</li>
+				<li data-wb-fieldflow='[
+					{ "action": "query", "name": "q11", "value": "no" }
+				]'>No</li>
+			</ul>
 </div>
 <div class="form-group">
 <label for="q12"><span class="field-name">13. Additional comments:</span></label>
@@ -222,6 +230,7 @@
 <button type="button" id="nextEmployee" class="btn btn-primary">Add Next Employee</button>
 </div>
 </div>
+<hr>	
 <div class="form-group">
 <button type="submit" class="btn btn-primary">Generate PDFs</button>
 </div>
