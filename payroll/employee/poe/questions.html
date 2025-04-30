@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Remote Worker Province of Employment (PoE) Questionnaire</title>
+<!-- Canada.ca GCWeb Theme CSS -->
+<link rel="stylesheet" href="https://wet-boew.github.io/themes-dist/GCWeb/css/theme.min.css">
+<!-- Web Experience Toolkit (WET) JS -->
+<script src="https://wet-boew.github.io/themes-dist/GCWeb/js/wet-boew.min.js"></script>
+<script src="https://wet-boew.github.io/themes-dist/GCWeb/js/theme.min.js"></script>
+<!-- jsPDF for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body vocab="https://schema.org/" typeof="WebPage">
+<header role="banner" id="wb-bnr" class="container">
+<h1 id="wb-cont">Remote Worker Province of Employment (PoE) Questionnaire</h1>
+</header>
+<main role="main" property="mainContentOfPage" class="container">
+<p>This questionnaire helps determine the correct province of employment for employees working 100% remotely in Canada. Please fill in the details for each employee.</p>
+<form id="poeForm" class="wb-frmvld" method="post">
+<!-- Employee Entry -->
+<div id="employeeEntry" class="employee-entry">
+<h2>Employee #<span id="employeeCounter">1</span></h2>
+<div class="form-group">
+<label for="employeeName" class="required"><span class="field-name">1. Employee's full name:</span></label>
+<input id="employeeName" name="employeeName" type="text" required>
+</div>
+<div class="form-group">
+<label for="q1" class="required"><span class="field-name">2. Employee’s full residential address:</span></label>
+<textarea id="q1" name="q1" required></textarea>
+</div>
+<div class="form-group">
+<label for="q2" class="required"><span class="field-name">3. Is this address the same as the address at the time of hire?</span></label>
+<select id="q2" name="q2" required>
+<option value="">Select</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+</div>
+<div class="form-group">
+<label for="q3" class="required"><span class="field-name">4. Nature of remote work (Permanent, Temporary, Pilot, etc.):</span></label>
+<input id="q3" name="q3" type="text" required>
+</div>
+<!-- Province selection using radio buttons -->
+<div class="form-group">
+<label><span class="field-name">5. Province where the employee is currently residing:</span></label>
+<div>
+<input type="radio" id="ontario" name="provinceResiding" value="Ontario" required>
+<label for="ontario">Ontario</label><br>
+<input type="radio" id="quebec" name="provinceResiding" value="Quebec" required>
+<label for="quebec">Quebec</label><br>
+<input type="radio" id="novaScotia" name="provinceResiding" value="Nova Scotia" required>
+<label for="novaScotia">Nova Scotia</label><br>
+<input type="radio" id="newBrunswick" name="provinceResiding" value="New Brunswick" required>
+<label for="newBrunswick">New Brunswick</label><br>
+<input type="radio" id="manitoba" name="provinceResiding" value="Manitoba" required>
+<label for="manitoba">Manitoba</label><br>
+<input type="radio" id="britishColumbia" name="provinceResiding" value="British Columbia" required>
+<label for="britishColumbia">British Columbia</label><br>
+<input type="radio" id="princeEdwardIsland" name="provinceResiding" value="Prince Edward Island" required>
+<label for="princeEdwardIsland">Prince Edward Island</label><br>
+<input type="radio" id="saskatchewan" name="provinceResiding" value="Saskatchewan" required>
+<label for="saskatchewan">Saskatchewan</label><br>
+<input type="radio" id="alberta" name="provinceResiding" value="Alberta" required>
+<label for="alberta">Alberta</label><br>
+<input type="radio" id="newfoundlandLabrador" name="provinceResiding" value="Newfoundland and Labrador" required>
+<label for="newfoundlandLabrador">Newfoundland and Labrador</label><br>
+<input type="radio" id="northwestTerritories" name="provinceResiding" value="Northwest Territories" required>
+<label for="northwestTerritories">Northwest Territories</label><br>
+<input type="radio" id="yukon" name="provinceResiding" value="Yukon" required>
+<label for="yukon">Yukon</label><br>
+<input type="radio" id="nunavut" name="provinceResiding" value="Nunavut" required>
+<label for="nunavut">Nunavut</label><br>
+</div>
+</div>
+<div class="form-group">
+<label for="q5" class="required"><span class="field-name">6. Province where the supervisor is located:</span></label>
+<input id="q5" name="q5" type="text" required>
+</div>
+<div class="form-group">
+<label for="q6" class="required"><span class="field-name">7. Province responsible for performance, salary, and promotion decisions:</span></label>
+<input id="q6" name="q6" type="text" required>
+</div>
+<h2>B. Employer Connection and Supervision</h2>
+<div class="form-group">
+<label for="q7" class="required"><span class="field-name">8. Province used for payroll tax withholdings:</span></label>
+<input id="q7" name="q7" type="text" required>
+</div>
+<div class="form-group">
+<label for="q8" class="required"><span class="field-name">9. Province indicated on employee’s T4:</span></label>
+<input id="q8" name="q8" type="text" required>
+</div>
+<div class="form-group">
+<label for="q9" class="required"><span class="field-name">10. Province of Workers’ Compensation registration (WSIB, CNESST, WCB, etc.):</span></label>
+<input id="q9" name="q9" type="text" required>
+</div>
+<h2>C. Legal and Contractual Details</h2>
+<div class="form-group">
+<label for="q10"><span class="field-name">11. Province listed for legal jurisdiction in employment contract:</span></label>
+<input id="q10" name="q10" type="text">
+</div>
+<div class="form-group">
+<label for="q11"><span class="field-name">12. Has a CRA ruling been requested for this case?</span></label>
+<select id="q11" name="q11">
+<option value="">Select</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+</div>
+<div class="form-group">
+<label for="q12"><span class="field-name">13. Additional comments:</span></label>
+<textarea id="q12" name="q12"></textarea>
+</div>
+<div class="form-group">
+<button type="button" id="nextEmployee" class="btn btn-primary">Add Next Employee</button>
+</div>
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-primary">Generate PDFs</button>
+</div>
+</form>
+</main>
+<!-- PDF + Email Script -->
+<script>
+ let employeeCount = 1;
+ document.getElementById('nextEmployee').addEventListener('click', function() {
+   // Save the current employee details to a PDF
+   generatePDF(employeeCount);
+   // Increment the employee count
+   employeeCount++;
+   // Update the employee counter and reset the form for the next employee
+   document.getElementById('employeeCounter').innerText = employeeCount;
+   document.getElementById('poeForm').reset();
+ });
+ document.getElementById("poeForm").addEventListener("submit", async function (e) {
+   e.preventDefault();
+   // Create and save PDF for the final employee
+   generatePDF(employeeCount);
+   alert("PDFs for all employees have been generated.");
+ });
+ // Function to generate PDF
+ function generatePDF(employeeNumber) {
+   const { jsPDF } = window.jspdf;
+   const doc = new jsPDF();
+   let y = 10;
+   // Add employee name to the PDF filename
+   const employeeName = document.getElementById("employeeName").value || "Employee " + employeeNumber;
+   doc.setFontSize(14);
+   doc.text("Remote Worker PoE Questionnaire - " + employeeName, 10, y);
+   y += 10;
+   // Fields to capture
+   const fields = [
+     "q1", "q2", "q3", "q5", "q6", "q7", "q8", "q9", "q10", "q11", "q12", "provinceResiding"
+   ];
+   fields.forEach((id, i) => {
+     const el = document.getElementById(id);
+     if (el) {
+       let text = '';
+       if (el.type === 'radio' && el.checked) {
+         text = `${el.labels[0].innerText}: ${el.value}`;
+       } else if (el.type !== 'radio') {
+         text = `${el.labels ? el.labels[0].innerText : `Question ${i + 1}`}: ${el.value.trim()}`;
+       }
+       if (text) {
+         const wrapped = doc.splitTextToSize(text, 180);
+         if (y + wrapped.length * 6 > 280) {
+           doc.addPage();
+           y = 10;
+         }
+         doc.setFontSize(11);
+         doc.text(wrapped, 10, y);
+         y += wrapped.length * 6;
+       }
+     }
+   });
+   const pdfName = `Remote_Worker_PoE_${employeeName}.pdf`;
+   doc.save(pdfName);
+ }
+</script>
+</body>
+</html>
