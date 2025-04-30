@@ -8,7 +8,7 @@
       <head>
          <meta charset="utf-8">
          <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-         <title>Remote worker province of employment (POE) questionnaire - Determine the province of employment (POE) – Canada.ca</title>
+         <title>Questionnaire to determine the province of employment (POE) for a remote employee - Determine the province of employment (POE) – Canada.ca</title>
          <meta content="width=device-width,initial-scale=1" name="viewport">
          <meta name="robots" content="noindex, follow">
          <!-- Meta data -->
@@ -65,18 +65,101 @@
 
          <main role="main" property="mainContentOfPage" class="container">
 
-<h1 property="name" id="wb-cont" class="gc-thickline">Remote worker province of employment (POE) questionnaire</h1>
+<h1 property="name" id="wb-cont" class="gc-thickline">Questionnaire to determine the province of employment (POE) for a remote employee</h1>
 
-<div class="col-md-8 row">    
+<p>Select all of the conditions that apply to your situation:</p>
+ <div class="wb-frmvld gc-font-2019">
+            
+<div class="form-group">
+  <fieldset class="gc-chckbxrdio gc-font-2019">
+   
+  <ul class="checkbox-lg checkbox-zebra gc-chckbxrdio">
+	 
 
-<p>Use the Remote work online questionnaire to send a request for the CRA to determine the province of employment.</p>
+         <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg1" name="action-checkbox">
+            <label for="eg1">The Income is from employment </label> 
+ </li>
+   
 
+ <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg2" name="action-checkbox" aria-describedby="cond2-details">
+            <label for="eg2">Your employee is a resident of Canada, including if your employee was a resident of Canada for part of the year </label> 
+	 <div id="cond2" class="mrgn-lft-xl">
+<details id="cond2a-details"><summary>What if you don't know the residency status</summary>	
+<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/employee/poe.html#ajax-residency"></div>
+ </details> 
+</div>
+	 </li>   
 
-	<!--start xh-->
+ <li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg3" name="action-checkbox" aria-describedby="cond2-details">
+            <label for="eg3">You (as the employer) have an establishment in Canada</label> 
+	 <div id="cond2" class="mrgn-lft-xl">
+<details id="cond2a-details"><summary>What is considered the establishment of the employer</summary>	
+<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/employee/poe.html#ajax-establishment"></div>
+ </details> 
+</div>
+	 </li>   
+
+<li class="checkbox mrgn-bttm-lg">
+            <input type="checkbox" id="eg4" name="action-checkbox" aria-describedby="cond3-details">
+            <label for="eg5">The employee never reports physically at an establishment of the employer</label> 
+ <div id="cond3" class="mrgn-lft-xl">
+<details id="cond3-details"><summary>What is a full-time employee</summary>
+<p>An employee who works a full business day on each working day of the year, subject to normal absences due to illness or vacation.</p>
+	</details> </div>
+	 </li>    	
+
+</ul>
+
+   <div class="alert alert-info provisional mrgn-tp-lg" id="action-default-msg">
+                    <h3>The business carried on by the corporation must meet all of the conditions above to be considered a <abbr title="Personal service business">PSB</abbr></h3>
+	  <hr>
+ <div data-ajax-replace="#ajax-no-psb"></div>
+          
+</div>
+                  <div class="alert alert-warning hidden provisional" id="action-not-qualify-msg">
+                   <h3><small>Your result </small><br> The business carried on by the corporation must meet all of the 5 conditions above to be considered a <abbr title="Personal service business">PSB</abbr></h3>
+			 <hr>  
+<div id="ajax-no-psb">
+               <p>If the business carried on by the worker’s corporation <strong>does not</strong> meet all 5 conditions above, the worker’s corporation is <strong>not</strong> carrying on a <abbr title="Personal service business">PSB</abbr>.</p>
+ 
+<ul class="list-unstyled cnjnctn-type-or">
+<li class="cnjnctn-col"><h4>Condition 1 met</h4> <p>If the worker performs their services through a corporation (condition 1) but <strong>does not</strong> meet all other 4 conditions above, the worker’s corporation is <strong>not</strong> carrying on a <abbr title="Personal service business">PSB</abbr>. The same tax obligations apply to the corporation as to any other corporation.</p>
+
+<p>Continue to: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/corporations/corporation-income-tax-return.html">Corporation income tax return</a></p></li>
+
+<li class="cnjnctn-col"> <h4>Condition 1 not met</h4> <p>If the worker <strong>does not</strong> perform their services through a corporation (condition 1), there is <strong>no</strong> <abbr title="Personal service business">PSB</abbr>.</p>
+	<p>If you are not sure about the worker’s employment status, continue to: <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4110/employee-self-employed.html">Determine if the worker is an employee or a self-employed worker</a> </p>
+</li>
+</ul> 
+      </div>            </div>
+
+                  <div class="alert alert-success hidden provisional" id="action-qualify-msg">
+                   
+              <h3><small>Your result </small><br> The business carried on by the corporation meets all of the 5 conditions above to be considered a <abbr title="Personal service business">PSB</abbr></h3>
+			  <hr>
+  <p>If the worker’s corporation <strong>meets</strong> all 5 conditions above, the worker's corporation is likely considered carrying on a <strong><abbr title="Personal service business">PSB</abbr></strong>.</p>
+
+  <br>     
+<h4><abbr title="Personal service business">PSB</abbr>’s have different tax obligations</h4>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"> Continue to: <a href="https://test.canada.ca/cra-arc/payroll/emp-status/obligations-psb.html">Understand your obligations as a PSB or the payer of a PSB</a>
+</li>
+
+<li class="cnjnctn-col">
+<p><img src="../images/flag-qc.png" class="mrgn-rght-sm" alt=""> If the business carries on in the province of Quebec, the <abbr title="Personal service business">PSB</abbr> may have provincial requirements and obligations. </p>
+<p>Learn more: <a href="https://www.revenuquebec.ca/en/businesses/sector-specific-measures/corporations-carrying-on-a-personal-services-business/conditions-for-a-corporation-to-be-carrying-on-a-personal-services-business/">Conditions for a Corporation to Be Carrying on a Personal Services Business | Revenu Québec</a></p>
+</li>
+</ul> 
+                  </div>
+
+                     </div>
+     
+
+ </div>
 	
-	
-
-	<!--end xh-->
 	
 <p>The online questionnaire cannot accept additional supporting documents. If we need any additional information, we will ask for it when we contact you.</p>
 	<p>Older browser versions  may not be supported. </p>
@@ -91,10 +174,9 @@
 <p>Personal information (including the SIN) is collected and used to administer or enforce the Income Tax Act and related programs and activities including administering tax, benefits, audit, compliance, and collection. The information collected may be disclosed to other federal, provincial, territorial, aboriginal or foreign government institutions to the extent authorized by law. Failure to provide this information may result in paying interest or penalties, or in other actions. Under the Privacy Act, individuals have a right of protection, access to and correction of their personal information, and to file a complaint with the Privacy Commissioner of Canada regarding the handling of their personal information. Refer to Personal Information Bank <a target="_blank" href="https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra/access-information-privacy-canada-revenue-agency/info-source-appendix.html#PPU120">Employer Compliance (CRA PPU 120) <span aria-hidden="true" title="external link icon" class="fas fa-external-link-alt"><span class="wb-inv"> (Note: this link will load in another window or tab)</span></span></a> in the Info Source Appendix – Personal Information Banks.</p> 	
  </details>
 
-	<!--end 2xh-->
-
 	
-</div>
+	
+
 
 <div class="clearfix"></div>
             
@@ -108,9 +190,9 @@
 </div>
 
 <div class="clearfix"></div>
+  </main>
 
-
-         </main>
+       
          <div id="def-footer">
          </div>
          <!-- Write closure template -->
@@ -128,5 +210,33 @@
          </script>
 
          <script src="https://gc-proto-cra.github.io/js/alpha-banner.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
+<script defer>
+    "use strict";
+    
+    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
+        if (chkbxChecked.length === 0) {
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + defaultID).removeClass("hidden").addClass("visible");
+        } else if (chkbxGroup.length === chkbxChecked.length) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).removeClass("hidden").addClass("visible");
+        } else {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).removeClass("hidden").addClass("visible");
+        }
+    }, 
+    updateChkbxList = function () {
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
+    };
+   
+    window.onload = updateChkbxList;
+
+    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
+</script>
+
       </body>
    </html>
