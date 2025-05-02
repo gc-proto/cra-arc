@@ -85,9 +85,10 @@
 <p>All of the facts relevant to your employee's situation will be considered to determine if your employee can be reasonably considered "attached to an establishment of the employer.</p>
  
 <div class="wb-frmvld wb-fdbck nojs-hide wb-init wb-frmvld-inited" data-wb-frmvld="{&quot;hdLvl&quot;:&quot;h2&quot;}" id="wb-auto-4">
-                <form id="form" novalidate="novalidate">
+               
                     <section class="well">
-                        <h2 class="mrgn-tp-0" id="a1">Section 1 - Employer information</h2>
+ <form id="form" novalidate="novalidate">               
+         <h2 class="mrgn-tp-0" id="a1">Section 1 - Employer information</h2>
                         <div class="mrgn-lft-md">
 
   <h3 class="mrgn-tp-0" id="a1_1">Employer establishments</h3>
@@ -238,30 +239,21 @@
 
 <script>
 document.getElementById("fbsbmt11").addEventListener("click", function(event) {
- event.preventDefault();
+ event.preventDefault(); // prevent form submission if needed
  const currentSection = this.closest("section");
- const requiredFields = currentSection.querySelectorAll("[required]");
- let isValid = true;
- requiredFields.forEach(field => {
-   if (!field.checkValidity()) {
-     field.reportValidity();
-     isValid = false;
-   }
- });
- if (isValid) {
-   const nextSection = currentSection.nextElementSibling;
-   if (nextSection && nextSection.classList.contains("hidden")) {
-     nextSection.classList.remove("hidden");
-     nextSection.scrollIntoView({ behavior: "smooth" });
-   }
+ const nextSection = currentSection.nextElementSibling;
+ if (nextSection && nextSection.classList.contains("hidden")) {
+   nextSection.classList.remove("hidden");
  }
 });
 </script>
                    
+</form>
+                    </section>  
 
-                    </section>
                     <section class="page well hidden">
-                        <h2 class="mrgn-tp-0" id="a2">Section 2 - Primary indicator</h2>
+ <form id="form2" novalidate="novalidate">     
+                   <h2 class="mrgn-tp-0" id="a2">Section 2 - Primary indicator</h2>
                                            
                         <h2>Primary indicator to consider</h2>      
 <p>Under the new CRA administrative policy on remote work, if an employee can reasonably be considered "attached to an establishment of the employer" is whether the employee would physically come to work to carry out the functions related to their employment duties at that establishment, if it was not for the full-time remote work agreement.</p>
@@ -320,29 +312,20 @@ document.getElementById("fbsbmt11").addEventListener("click", function(event) {
 
 <script>
 document.getElementById("fbsbmt12").addEventListener("click", function(event) {
- event.preventDefault();
+ event.preventDefault(); // prevent form submission if needed
  const currentSection = this.closest("section");
- const requiredFields = currentSection.querySelectorAll("[required]");
- let isValid = true;
- requiredFields.forEach(field => {
-   if (!field.checkValidity()) {
-     field.reportValidity();
-     isValid = false;
-   }
- });
- if (isValid) {
-   const nextSection = currentSection.nextElementSibling;
-   if (nextSection && nextSection.classList.contains("hidden")) {
-     nextSection.classList.remove("hidden");
-     nextSection.scrollIntoView({ behavior: "smooth" });
-   }
+ const nextSection = currentSection.nextElementSibling;
+ if (nextSection && nextSection.classList.contains("hidden")) {
+   nextSection.classList.remove("hidden");
  }
 });
 </script>
  
-        
+        </form>
                     </section>
+
                     <section class="page well hidden">
+ <form id="form3" novalidate="novalidate">
                         <h2 class="mrgn-tp-0" id="a3">Section 3 - Secondary indicator</h2>
                         <div class="mrgn-lft-md">
                             <div class="form-group checkbox">
@@ -355,11 +338,12 @@ document.getElementById("fbsbmt12").addEventListener("click", function(event) {
                     <div class="form-inline hidden-print">
                         <input type="submit" name="Print" id="printButton" value="Print" class="btn btn-primary">
                         <input type="button" value="Reset" class="btn btn-danger" onclick="clearJqValidErrors()">
-                   </div>         
+                   </div>    
+  </form>     
                     </section>
 
                
-                </form>
+              
             <div aria-relevant="all" aria-live="polite" class="arialive wb-inv"></div></div>
 
 
