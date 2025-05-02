@@ -235,16 +235,29 @@
 <input type="submit" name="fbsbmt11" id="fbsbmt11" value="Next" class="btn btn-primary btn-lg">
 </div>
 
+
 <script>
 document.getElementById("fbsbmt11").addEventListener("click", function(event) {
- event.preventDefault(); // prevent form submission if needed
+ event.preventDefault();
  const currentSection = this.closest("section");
- const nextSection = currentSection.nextElementSibling;
- if (nextSection && nextSection.classList.contains("hidden")) {
-   nextSection.classList.remove("hidden");
+ const requiredFields = currentSection.querySelectorAll("[required]");
+ let isValid = true;
+ requiredFields.forEach(field => {
+   if (!field.checkValidity()) {
+     field.reportValidity();
+     isValid = false;
+   }
+ });
+ if (isValid) {
+   const nextSection = currentSection.nextElementSibling;
+   if (nextSection && nextSection.classList.contains("hidden")) {
+     nextSection.classList.remove("hidden");
+     nextSection.scrollIntoView({ behavior: "smooth" });
+   }
  }
 });
-</script>                      
+</script>
+                   
 
                     </section>
                     <section class="page well hidden">
@@ -304,16 +317,29 @@ document.getElementById("fbsbmt11").addEventListener("click", function(event) {
 <input type="submit" name="fbsbmt12" id="fbsbmt12" value="Next" class="btn btn-primary btn-lg">
 </div>
 
+
 <script>
 document.getElementById("fbsbmt12").addEventListener("click", function(event) {
- event.preventDefault(); // prevent form submission if needed
+ event.preventDefault();
  const currentSection = this.closest("section");
- const nextSection = currentSection.nextElementSibling;
- if (nextSection && nextSection.classList.contains("hidden")) {
-   nextSection.classList.remove("hidden");
+ const requiredFields = currentSection.querySelectorAll("[required]");
+ let isValid = true;
+ requiredFields.forEach(field => {
+   if (!field.checkValidity()) {
+     field.reportValidity();
+     isValid = false;
+   }
+ });
+ if (isValid) {
+   const nextSection = currentSection.nextElementSibling;
+   if (nextSection && nextSection.classList.contains("hidden")) {
+     nextSection.classList.remove("hidden");
+     nextSection.scrollIntoView({ behavior: "smooth" });
+   }
  }
 });
-</script>    
+</script>
+ 
         
                     </section>
                     <section class="page well hidden">
