@@ -77,9 +77,9 @@
 <form action="step-2.html" method="GET" id="validation-example">
 <rccr-error-aggregator _nghost-ng-c536871899=""><!----></rccr-error-aggregator>
     <section class="well">
-<h2>Primary indicator</h2>
  <div class="wb-frmvld fieldflow-lg gc-font-2019">
   <form>
+<h2>Primary indicator</h2>
 	<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true, "renderas":"radio", "gcChckbxrdio":true, "reset": {"action": "addClass", "source": ".alert1", "class": "hidden"}}'>
 	  <p class="wb-fieldflow-label mrgn-tp-md">Did your employee physically report to one of your establishments in Canada immediately before entering the full-time remote work agreement?</p>
 	  <ul>
@@ -607,6 +607,78 @@
 
 	
 </form>   </section>
+
+<section class="well">
+<hr class="brdr-bttm">  
+<h2 class="h2 mrgn-tp-0">Employer contact information</h2>
+
+
+<div class="form-group mrgn-tp-lg">
+<label for="fbnm" class="required"><span class="field-name">First name</span></label>
+<input class="form-control gc-font-2019" required="required" type="text" id="fbnm" name="fbnm" size="45" maxlength="45" data-rule-minlength="1" required="required" data-rule-lettersonly="true">
+</div>
+
+<div class="form-group">
+<label for="lstnm" class="required"><span class="field-name">Last name</span></label>
+<input class="form-control gc-font-2019" required="required" type="text" id="lstnm" name="lstnm" size="45" maxlength="45" data-rule-minlength="1" required="required" data-rule-lettersonly="true">
+</div>
+
+
+<!--div class="form-group mrgn-tp-lg">
+<label for="numbers-only" class="required"><span class="field-name">Telephone number</span></label>
+<p><span class="">(numbers only)</span></p>
+<input class="form-control" id="numbers-only" name="numbers-only" type="text" size="15" maxlength="15" required="required" pattern="\d{1,}" onkeyup="this.value = this.value.replace(/[^0-9]/g, '')" />
+</div-->
+
+<div class="form-group mrgn-tp-lg">
+<label for="phn100" class="required"><span class="field-name">Telephone number (999-999-9999)</span></label>
+<input class="form-control gc-font-2019" id="phn100" name="phn100" type="text" size="15" maxlength="15" required="required" pattern="^[0-9()-\s]+$" data-rule-phoneUS="true" />
+</div>
+
+   <div class="form-group mrgn-tp-lg">
+                                                <label id="contactContactEmailAddressLabel" for="contactContactEmailAddress" class="required"><span class="field-name"><span id="contactContactEmailAddressSpanText">Email</span></span> (yourname@domain.com) <strong class="hidden-print required" aria-hidden="true"></strong> </label>
+                                                <input type="email" class="form-control gc-font-2019" name="contactContactEmailAddress" id="contactContactEmailAddress" required="required" size="50">
+                                            </div>
+
+<!--div class="form-group mrgn-tp-lg">
+<label for="fbhphn" class="required fbhphn"><span class="field-name">Telephone number</span></label>
+<div id="errorbox"></div>
+<p><span class="">(brackets, spaces or dashes not accepted)</span></p>
+<input class="form-control" id="fbhphn" name="fbhphn" type="tel" autocomplete="tel" size="15" maxlength="15" required="required" pattern="^[0-9]+$" data-rule-phoneUS="true" />
+
+</div-->
+
+
+<!--div class="form-group grouped">
+   <label for="tel1" class="required"><span class="field-name">Telephone number</span> </label>
+   <div class="form-inline">
+     <span class="h3">(</span> <input id="tel1" name="tel1" type="text" required="required" data-rule-digits="true" size="3" maxlength="3" data-rule-minlength="3" data-rule-require_from_group='[3,".group"]' class="group"> <span class="h3"> )</span>
+     <input id="tel2" name="tel2" type="text" required="required" data-rule-digits="true" size="3" maxlength="3" data-rule-minlength="3" data-rule-require_from_group='[3,".group"]' class="group"> <span class="h3"> - </span> 
+     <input id="tel3" name="tel3" type="text" required="required" data-rule-digits="true" size="4" maxlength="4" data-rule-minlength="4" data-rule-require_from_group='[3,".group"]' class="group">
+   </div>
+</div-->
+
+<!--script>
+var container = document.getElementsByClassName("grouped")[0];
+container.onkeyup = function(e) {
+    var target = e.srcElement;
+    var maxLength = parseInt(target.attributes["maxlength"].value, 10);
+    var myLength = target.value.length;
+    if (myLength >= maxLength) {
+        var next = target;
+        while (next = next.nextElementSibling) {
+            if (next == null)
+                break;
+            if (next.tagName.toLowerCase() == "input") {
+                next.focus();
+                break;
+            }
+        }
+    }
+}
+</script-->
+
+</section>
 
 <script type="text/javascript">
 $('#textarea').keyup(function() {
