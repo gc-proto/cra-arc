@@ -426,11 +426,12 @@
 </script>	
 </form>  
 
-<hr> 
+
 <form id="form5" role="form" method="get" action="#" class="gc-font-2019">
 
 <h3>From which of your establishments does your employee receive or would your employee receive work-related material, equipment or associated instructions and assistance?</h3>
-
+<div id="addressSections2">
+<div class="address-block">
  <div class="row">
    <div class="col-xs-5">
 
@@ -468,7 +469,53 @@
 	<input type="text" name="cy5" size="40" maxlength="40" value="" id="cy5" class="form-control gc-font-2019" placeholder="Enter city, town or village" required="required"/>
 	
 </div></div></div>
+<button type="button" class="btn btn-danger delete-btn" onclick="deleteBlock(this)" style="display: none; margin-top: 5px;">Delete</button>
 	
+	</div> </div>
+
+
+<!-- Add another block -->
+<button type="button" class="btn btn-default mrgn-tp-md btn-lg" onclick="addAddressBlock()">Add another establishment</button>
+ <hr>
+<script>
+ const maxBlocks = 20;
+ function addAddressBlock() {
+   const container = document.getElementById('addressSections2');
+   const currentCount = container.querySelectorAll('.address-block').length;
+   if (currentCount >= maxBlocks) {
+     alert("You can only add up to 20 establishments.");
+     return;
+   }
+   const original = container.querySelector('.address-block');
+   const clone = original.cloneNode(true);
+   // Clear values in the clone
+   clone.querySelector('select').selectedIndex = 0;
+   clone.querySelector('input').value = '';
+   // Show delete button on clone
+   const deleteBtn = clone.querySelector('.delete-btn');
+   deleteBtn.style.display = 'inline-block';
+   container.appendChild(clone);
+ }
+ function deleteBlock(button) {
+   const block = button.closest('.address-block');
+   block.remove();
+ }
+</script>
+
+<script>
+ fetch('https://geonames.nrcan.gc.ca/service/api?featureType=populatedPlace&outputFormat=json')
+   .then(response => response.json())
+   .then(data => {
+     const dropdown = document.getElementById('cityDropdown');
+     data.items.forEach(item => {
+       const option = document.createElement('option');
+       option.value = item.name;
+       option.text = item.name;
+       dropdown.appendChild(option);
+     });
+   })
+   .catch(error => console.error('Error fetching city data:', error));
+</script>	
 </form>  
 
 <hr> 
