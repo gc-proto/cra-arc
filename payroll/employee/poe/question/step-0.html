@@ -9,7 +9,7 @@
       <head>
          <meta charset="utf-8">
          <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-         <title>Request to obtain guidance to determine the province of employment for your remote employee</title>
+         <title>General information - Step 1</title>
          <meta content="width=device-width,initial-scale=1" name="viewport">
          <meta name="robots" content="noindex, follow">
          <!-- Meta data -->
@@ -55,6 +55,9 @@
               },{
                 title: "Determine the province of employment (POE)",
                 href: "https://test.canada.ca/cra-arc/payroll/employee/poe.html"
+              },{
+                title: "Remote worker province of employment (POE) questionnaire",
+                href: "https://test.canada.ca/cra-arc/payroll/employee/poe/question/index.html"
               }
                             
               ],
@@ -66,302 +69,255 @@
 
          <main role="main" property="mainContentOfPage" class="container">
 
-<h1 property="name" id="wb-cont" class="gc-thickline">Request to obtain guidance to determine the province of employment for your remote employee</h1>
+<h1 property="name" id="wb-cont" class="gc-thickline">General information - Step 1</h1>
 
-            <div class="well hidden-print">
-                <h2 class="mrgn-tp-0">Instructions</h2>
-                <ol>
-                    <li>After filling in all the required fields, click on the “Print” button at the bottom of the form.</li>
-                    <li>In the following pop-up window, click the dropdown menu name “Destination” or “Printer” and select the “Save as <abbr title="Portable Document Format">PDF</abbr>” or “Print as <abbr title="Portable Document Format">PDF</abbr>” option.</li>
-                    <li>Click on the “Save” button at the bottom of the window.</li>
-                    <li>The “Save As” window will appear, allowing you to name the file and choose the file save destination on your device.</li>
-                    <li>Submit your request by email to: <a href="mailto:PLS-SPL@cra-arc.gc.ca">PLS-SPL@cra-arc.gc.ca</a>, do not include protected information.</li>
-                    </ol>
-            </div>
+<div class="wb-frmvld">
+<form action="step-1.html" method="GET" id="validation-example">
 
+<p class="mrgn-tp-lg"><strong>Fields marked with an asterisk (<span class="text-danger">*</span>) are required.</strong></p>
 
-<p>Where a full-time remote work agreement was made, answer a few questions to help the CRA determine if your employee working envirely remotely can reasonably be considered "attached to an establishment of the employer" under the new CRA administrative policy.</p>
+<script type="text/javascript">
+    window.onload = function() {
+    document.getElementById('validation-example').reset()
+    }
+</script>   
 
-<p>All of the facts relevant to your employee's situation will be considered to determine if your employee can be reasonably considered “attached to an establishment of the employer”.</p>
- 
-<p>The CRA may ask for more information later if your situation is complex.</p>
-
-<div class="wb-frmvld wb-fdbck nojs-hide wb-init wb-frmvld-inited" data-wb-frmvld="{&quot;hdLvl&quot;:&quot;h2&quot;}" id="wb-auto-4">
-               
-                    <section class="well">
- <form id="form" novalidate="novalidate">               
-         <h2 class="mrgn-tp-0" id="a1">Section 1 - Employer information</h2>
-                        <div class="mrgn-lft-md">
-
-  <h3 id="a1_1">Employer establishments</h3>
-
-<div id="addressSections">
-<div class="address-block">
- 
- <hr>
-				<label for="pr" class="required"> 
-					<span class="field-name">Province or territory</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
-                    <span class="display-block"></span>
-                </label>
-
-<select name="province[]" id="pr" class="form-control" required="required">
-  <option value="">Select the province or territory</option>	
-    <option value="Alberta">Alberta</option>
-    <option value="British Columbia">British Columbia</option>
-    <option value="Manitoba">Manitoba</option>
-    <option value="New Brunswick">New Brunswick</option>
-    <option value="Newfoundland/Labrad.">Newfoundland/Labrad.</option>
-    <option value="Northwest Territory">Northwest Territory</option>
-    <option value="Nova Scotia">Nova Scotia</option>
-    <option value="Nunavut">Nunavut</option>
-    <option value="Ontario">Ontario</option>
-    <option value="Prince Edward Island">Prince Edward Island</option>
-    <option value="Quebec">Quebec</option>
-    <option value="Saskatchewan">Saskatchewan</option>
-    <option value="Yukon Territory">Yukon Territory</option>
-</select>
-
- 
-			<label for="cy" class="required  mrgn-tp-md"> 
-				<span class="field-name">City, town or village</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
-                <span class="display-block"></span>
-			</label>
-			<input type="text" name="cy" size="40" maxlength="40" value="" id="cy" class="form-control" placeholder="Enter city, town or village" required="required"/>
-	
-
-			
- 
-			<input type="text" name="address[]" placeholder="Enter address" size="60" maxlength="60" value="" id="r1" class="form-control" required="required"/> 
-		
-<button type="button" class="btn btn-danger delete-btn" onclick="deleteBlock(this)" style="display: none; margin-top: 5px;">Delete</button>
-	
-	</div></div>
+<script type="text/javascript">
+    function valueChanged()
+    {
+        if($('.feedback-1').is(":checked"))   
+            $(".complaint-1").show();
+        else
+            $(".complaint-1").hide();
+    }
+</script>
 
 
-<!-- Add another block -->
-<button type="button" class="btn btn-default mrgn-tp-md btn-lg" onclick="addAddressBlock()">Add another establishment</button>
- <hr>
-<script>
- const maxBlocks = 20;
- function addAddressBlock() {
-   const container = document.getElementById('addressSections');
-   const currentCount = container.querySelectorAll('.address-block').length;
-   if (currentCount >= maxBlocks) {
-     alert("You can only add up to 20 establishments.");
-     return;
+
+<script type="text/javascript">
+   function inline1() {
+   var x = document.getElementById("inline-help");
+   if (x.style.display === "none") {
+      x.style.display = "inherit";
+   } 
+   else {
+   x.style.display = "none";
    }
-   const original = container.querySelector('.address-block');
-   const clone = original.cloneNode(true);
-   // Clear values in the clone
-   clone.querySelector('select').selectedIndex = 0;
-   clone.querySelector('input').value = '';
-   // Show delete button on clone
-   const deleteBtn = clone.querySelector('.delete-btn');
-   deleteBtn.style.display = 'inline-block';
-   container.appendChild(clone);
- }
- function deleteBlock(button) {
-   const block = button.closest('.address-block');
-   block.remove();
- }
+}
 </script>
 
-<script>
- fetch('https://geonames.nrcan.gc.ca/service/api?featureType=populatedPlace&outputFormat=json')
-   .then(response => response.json())
-   .then(data => {
-     const dropdown = document.getElementById('cityDropdown');
-     data.items.forEach(item => {
-       const option = document.createElement('option');
-       option.value = item.name;
-       option.text = item.name;
-       dropdown.appendChild(option);
-     });
-   })
-   .catch(error => console.error('Error fetching city data:', error));
+<script type="text/javascript">
+    function valueChanged2()
+    {
+        if($('.radio4').is(":checked"))   
+            $(".sincls").show();
+            $(".otheracc").hide();
+    }
 </script>
 
-                          
-	
-	
-		
- <h3 class="mrgn-tp-0" id="a1_2">Employer contact information</h3>		
-		
-		
-					
+<script type="text/javascript">
+    function valueChanged3()
+    {
+        if($('.radio5').is(":checked"))   
+            $(".otheracc").show();
+            $(".sincls").hide();
+    }
+</script>
 
-		
 
-                            <div>
-                                <section class="Contact ContactMaster">
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <div class="form-group">
-                                                <label id="contactContactNameLabel" for="contactContactName" class="required"><span class="field-name"><span id="contactContactNameSpanText">Contact name</span></span> <strong class="hidden-print required" aria-hidden="true"></strong></label>
-                                                <input type="text" class="form-control full-width" name="contactContactName" id="contactContactName" required="required" size="50">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="form-group">
-                                                <label id="contactContactPhoneNumberLabel" for="contactContactPhoneNumber" class="required"><span class="field-name"><span id="contactContactPhoneNumberSpanText">Telephone number</span></span> (999-999-9999) <strong class="hidden-print required" aria-hidden="true"></strong> </label>
-                                                <input class="form-control full-width" id="contactContactPhoneNumber" name="contactContactPhoneNumber" type="tel" autocomplete="tel" required="required" data-rule-phoneus="true">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <div class="form-group">
-                                                <label id="contactContactEmailAddressLabel" for="contactContactEmailAddress" class="required"><span class="field-name"><span id="contactContactEmailAddressSpanText">Email</span></span> (yourname@domain.com) <strong class="hidden-print required" aria-hidden="true"></strong> </label>
-                                                <input type="email" class="form-control full-width" name="contactContactEmailAddress" id="contactContactEmailAddress" required="required" size="50">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="form-group">
-                                                <label id="contactContactPhoneNumberExtensionLabel" for="contactContactPhoneNumberExtension"><span class="field-name"><span id="contactContactPhoneNumberExtensionSpanText">Extension</span></span>  </label>
-                                                <input type="number" data-rule-digits="true" class="form-control full-width" name="contactContactPhoneNumberExtension" id="contactContactPhoneNumberExtension" min="1">
-                                            </div>
-                                        </div>
-                                    </div>
-                                  
-                                </section>
-                                <!-- DO NOT REMOVE PLACEHOLDER DIV START -->
-                                <div id="newContact"></div>
-                                <!-- DO NOT REMOVE PLACEHOLDER DIV END --> 
-                            </div>
-                            
-                        </div>
+
+<section class="complaint-1">
+
+<script type="text/javascript">
+    function valueChangedd()
+    {
+        if($('.submitting-1').is(":checked"))   
+            $(".complaint-2").show();
+        
+            $(".complaint-3").hide();
+    }
+</script>
+
+<script type="text/javascript">
+    function valueChangeddd()
+    {
+        if($('.submitting-2').is(":checked"))   
+            $(".complaint-3").show();
+        
+            $(".complaint-2").hide();
+    }
+</script>
+
+<script type="text/javascript">
+    function valueChangedddd()
+    {
+        if($('.submitting-3').is(":checked"))   
+            $(".complaint-3").show();
+        
+            $(".complaint-2").hide();
+    }
+</script>
+
+</fieldset>
+
+  
+<div class="clearfix"></div>
+
+<section class="complaint-2">
+
+<hr class="brdr-bttm">  
+<h2 class="h3 mrgn-tp-0">Individual's information</h2>
+
+
+<div class="form-group mrgn-tp-lg">
+<label for="fbnm" class="required"><span class="field-name">First name</span></label>
+<input class="form-control" required="required" type="text" id="fbnm" name="fbnm" size="45" maxlength="45" data-rule-minlength="1" required="required" data-rule-lettersonly="true">
+</div>
+
+<div class="form-group">
+<label for="lstnm" class="required"><span class="field-name">Last name</span></label>
+<input class="form-control" required="required" type="text" id="lstnm" name="lstnm" size="45" maxlength="45" data-rule-minlength="1" required="required" data-rule-lettersonly="true">
+</div>
+
+
+<div class="form-group mrgn-tp-lg">
+<label for="fbeml" class="required"><span class="field-name">Select the identification you want to provide</span></label>
+
+<div class="radio">
+   <label for="radio4"><input id="radio4" type="radio" name="optradio1" class="radio4" onchange="valueChanged2()" />Social Insurance Number (or ITN, TTN)</label>
+</div>
+<div class="radio">   
+   <label for="radio5"><input id="radio5" type="radio" name="optradio1" class="radio5" onchange="valueChanged3()" />Other account number (e.g. Trust account number, Non-resident number)</label>   
+</div>
+
+
+
+<div class="form-group mrgn-tp-lg sincls" style="display:none">
+<label for="sin" class="required"><span class="field-name">Social Insurance Number (or ITN, TTN)</span></label>
+<input type="text" required="required" class="form-control" id="sin" name="sin" size="9" maxlength="9" data-rule-digits="true" data-rule-minlength="9">
+</div>
+
+<div class="form-group mrgn-tp-lg otheracc" style="display:none">
+<label for="othacc" class="required"><span class="field-name">Other account number </span></label>
+<input type="text" required="required" class="form-control" id="othacc" name="othacc" size="15" maxlength="15" data-rule-maxlength="15">
+</div>
+
+</div>
+
+<div class="form-group mrgn-tp-lg">
+<label for="fbem2" class="required"><span class="field-name">Select country of residence </span></label>
+
+<div class="radio">
+   <label for="radio6"><input id="radio6" type="radio" name="optradio2">Canada</label>
+</div>
+<div class="radio">   
+   <label for="radio7"><input id="radio7" type="radio" name="optradio2">Outside of Canada</label>   
+</div>
+
+
+</div>
+
+<div class="form-group mrgn-tp-lg">
+<label for="address" class="required"><span class="field-name">Mailing address </span></label>
+<input class="form-control" type="text" id="address" name="address" size="45" maxlength="100">
+</div>
+
+<div class="form-group mrgn-tp-lg">
+<label for="city" class="required"><span class="field-name">City</span></label>
+<input class="form-control" type="text" id="city" name="city" size="45" maxlength="50" data-rule-letterswithbasicpunc="true">
+</div>
+
+<div class="form-group mrgn-tp-lg">
+<label for="province" class="required"><span class="field-name">Province or territory</span></label>
+<select class="form-control" id="province" name="province" required="required">
+   <option label="Select a province or territory"></option>
+   <option value="Alberta">Alberta</option>
+   <option value="British">British Columbia</option>
+   <option value="Manitoba">Manitoba</option>
+   <option value="Brunswick">New Brunswick</option>
+   <option value="Newfoundland">Newfoundland and Labrador</option>
+   <option value="Northwest">Northwest Territories</option>
+   <option value="Nunavut">Nunavut</option>
+   <option value="Ontario">Ontario</option>
+   <option value="Prince">Prince Edward Island</option>
+   <option value="Quebec">Quebec</option>
+   <option value="Saskatchewan">Saskatchewan</option>
+   <option value="Yukon">Yukon</option>
+</select>
+</div>
+
+<div class="form-group mrgn-tp-lg">
+   <label for="pcodeca1" class="required"><span class="field-name">Postal code</span> (e.g. A1A 1A1)</label>
+   <input class="form-control" id="pcodeca1" name="pcodeca1" type="text" autocomplete="postal-code" size="7" maxlength="7" required="required" data-rule-postalCodeCA="true" />
+</div>
+
+
+<!--div class="form-group mrgn-tp-lg">
+<label for="numbers-only" class="required"><span class="field-name">Telephone number</span></label>
+<p><span class="">(numbers only)</span></p>
+<input class="form-control" id="numbers-only" name="numbers-only" type="text" size="15" maxlength="15" required="required" pattern="\d{1,}" onkeyup="this.value = this.value.replace(/[^0-9]/g, '')" />
+</div-->
+
+<div class="form-group mrgn-tp-lg">
+<label for="phn100" class="required"><span class="field-name">Telephone number</span></label>
+<input class="form-control" id="phn100" name="phn100" type="text" size="15" maxlength="15" required="required" pattern="^[0-9()-\s]+$" data-rule-phoneUS="true" />
+</div>
+
+<!--div class="form-group mrgn-tp-lg">
+<label for="fbhphn" class="required fbhphn"><span class="field-name">Telephone number</span></label>
+<div id="errorbox"></div>
+<p><span class="">(brackets, spaces or dashes not accepted)</span></p>
+<input class="form-control" id="fbhphn" name="fbhphn" type="tel" autocomplete="tel" size="15" maxlength="15" required="required" pattern="^[0-9]+$" data-rule-phoneUS="true" />
+
+</div-->
+
+
+<!--div class="form-group grouped">
+   <label for="tel1" class="required"><span class="field-name">Telephone number</span> </label>
+   <div class="form-inline">
+     <span class="h3">(</span> <input id="tel1" name="tel1" type="text" required="required" data-rule-digits="true" size="3" maxlength="3" data-rule-minlength="3" data-rule-require_from_group='[3,".group"]' class="group"> <span class="h3"> )</span>
+     <input id="tel2" name="tel2" type="text" required="required" data-rule-digits="true" size="3" maxlength="3" data-rule-minlength="3" data-rule-require_from_group='[3,".group"]' class="group"> <span class="h3"> - </span> 
+     <input id="tel3" name="tel3" type="text" required="required" data-rule-digits="true" size="4" maxlength="4" data-rule-minlength="4" data-rule-require_from_group='[3,".group"]' class="group">
+   </div>
+</div-->
+
+<!--script>
+var container = document.getElementsByClassName("grouped")[0];
+container.onkeyup = function(e) {
+    var target = e.srcElement;
+    var maxLength = parseInt(target.attributes["maxlength"].value, 10);
+    var myLength = target.value.length;
+    if (myLength >= maxLength) {
+        var next = target;
+        while (next = next.nextElementSibling) {
+            if (next == null)
+                break;
+            if (next.tagName.toLowerCase() == "input") {
+                next.focus();
+                break;
+            }
+        }
+    }
+}
+</script-->
+
+<div class="form-group mrgn-tp-lg">
+<label for="fbhphn5"><span class="field-name">Alternate phone number</span></label>
+<p><span class="">(brackets, spaces or dashes not accepted)</span></p>
+<input class="form-control" type="tel" id="fbhphn5" name="fbhphn5" size="12" maxlength="12" data-rule-phoneUS="true" >
+</div>
+
+
+
+
+</section>
+</section>
+
 
 <div class="mrgn-tp-lg">
-
+<a href="index.html" type="submit" name="fbsbmt10" id="fbsbmt10" value="Previous" class="btn btn-default btn-lg">Previous</a>
 <input type="submit" name="fbsbmt11" id="fbsbmt11" value="Next" class="btn btn-primary btn-lg">
 </div>
-
-
-<script>
-document.getElementById("fbsbmt11").addEventListener("click", function(event) {
- event.preventDefault(); // prevent form submission if needed
- const currentSection = this.closest("section");
- const nextSection = currentSection.nextElementSibling;
- if (nextSection && nextSection.classList.contains("hidden")) {
-   nextSection.classList.remove("hidden");
- }
-});
-</script>
-                   
-</form>
-                    </section>  
-
-                    <section class="page well hidden">
- <form id="form2" novalidate="novalidate">     
-                   <h2 class="mrgn-tp-0" id="a2">Section 2 - Primary indicator</h2>
-                                             
-<p>Under the new CRA administrative policy on remote work, if an employee can reasonably be considered "attached to an establishment of the employer" is whether the employee would physically come to work to carry out the functions related to their employment duties at that establishment, if it was not for the full-time remote work agreement.</p>
-		 
- <div class="wb-frmvld fieldflow-lg gc-font-2019">
-  <form>
-	<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true, "isoptional": true, "renderas":"radio", "gcChckbxrdio":true, "reset": {"action": "addClass", "source": ".alert1", "class": "hidden"}}'>
-	  <p class="wb-fieldflow-label mrgn-tp-md">Q1. Did your employee physically report to one of your establishments in Canada immediately before entering the full-time remote work agreement?</p>
-	  <ul>
-		<li> Yes
-		  <div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas": "radio", "isoptional": true, "gcChckbxrdio":true, "reset": {"action": "addClass", "source": ".alert1", "class": "hidden"}}'>
-			<p class="wb-fieldflow-label mrgn-tp-md">Q1a. Did your employee's circumstances or the nature of their duties change after the full-time remote work agreement was entered into?</p>
-			<ul>
-			  <li data-wb-fieldflow='{"action": "removeClass", "source": "#answer1-2", "class": "hidden", "live": true}'>Yes</li>
-			  <li data-wb-fieldflow='{"action": "removeClass", "source": "#answer1-1", "class": "hidden", "live": true}'>No</li>
-			</ul>
-		  </div>
-		</li>
-		<li data-wb-fieldflow='{"action": "removeClass", "source": "#answer1-1", "class": "hidden", "live": true}'>No</li>
-	  </ul>
-	</div>
-  </form>
-</div>
-<div id="answers1">
-  <div id="answer1-1" class="hidden alert1 provisional mrgn-tp-lg">
-
-
-
- </div>
-
- 
- <div class="hidden alert1 provisional mrgn-tp-lg" id="answer1-2">
-
-<div class="col-xs-12">
-  <div class="form-group">
-       <label for="primary1"><span class="field-name">Q1a_Yes. Describe how the duties have changed</span> </label>
-   <textarea class="form-control full-width" rows="5" name="primary1" id="primary1"></textarea>
-      </div>
-   <div id="primary1b" class="print-only"></div>
-                                </div>
-  <hr>	 
-
-
-	
-  </div>
- 
-
- 
-</div>                    
-               
-<div class="mrgn-tp-lg">
-
-<input type="submit" name="fbsbmt12" id="fbsbmt12" value="Next" class="btn btn-primary btn-lg">
-</div>
-
-
-<script>
-document.getElementById("fbsbmt12").addEventListener("click", function(event) {
- event.preventDefault(); // prevent form submission if needed
- const currentSection = this.closest("section");
- const nextSection = currentSection.nextElementSibling;
- if (nextSection && nextSection.classList.contains("hidden")) {
-   nextSection.classList.remove("hidden");
- }
-});
-</script>
- 
-        </form>
-                    </section>
-
-                    <section class="page well hidden">
- <form id="form3" novalidate="novalidate">
-                        <h2 class="mrgn-tp-0" id="a3">Section 3 - Secondary indicator</h2>
-                        <div class="mrgn-lft-md">
-                            <div class="form-group checkbox">
-                                <label for="SameAsClientInformation">
-                                    <input type="checkbox" name="SameAsClientInformation" id="SameAsClientInformation" value="yes">
-                                    &nbsp;Same as location of establishment</label>
-                            </div>
-                            
-                                                           </div>
-                    <div class="form-inline hidden-print">
-                        <input type="submit" name="Print" id="printButton" value="Print" class="btn btn-primary">
-                        <input type="button" value="Reset" class="btn btn-danger" onclick="clearJqValidErrors()">
-                   </div>    
-  </form>     
-                    </section>
-
-               
-              
-            <div aria-relevant="all" aria-live="polite" class="arialive wb-inv"></div></div>
-
-
-
-
-
-
-
-
-	
-<details><summary>Privacy notice - CRA PPU 120</summary>
-<p><small>Personal information is collected and used to administer or enforce the Income Tax Act and related programs and activities including administering tax, benefits, audit, compliance, and collection. The information collected may be disclosed to other federal, provincial, territorial, aboriginal or foreign government institutions to the extent authorized by law. Failure to provide this information may result in paying interest or penalties, or in other actions. Under the Privacy Act, individuals have a right of protection, access to and correction of their personal information, and to file a complaint with the Privacy Commissioner of Canada regarding the handling of their personal information. Refer to Personal Information Bank <a target="_blank" href="https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra/access-information-privacy-canada-revenue-agency/info-source-appendix.html#PPU120">Employer Compliance (CRA PPU 120) <span aria-hidden="true" title="external link icon" class="fas fa-external-link-alt"><span class="wb-inv"> (Note: this link will load in another window or tab)</span></span></a> in the Info Source Appendix – Personal Information Banks.</small></p> 	
-</details>
-
-</section>
-</section>
-
-
-
 
 </form>
 </div>
