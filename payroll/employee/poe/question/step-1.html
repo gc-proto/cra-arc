@@ -469,49 +469,63 @@
 	<input type="text" name="cy5" size="40" maxlength="40" value="" id="cy5" class="form-control gc-font-2019" placeholder="Enter city, town or village" required="required"/>
 	
 </div></div></div>
-<button type="button" class="btn btn-danger delete-btn" onclick="deleteBlock2(this)" style="display: none; margin-top: 5px;">Delete</button>
+<button type="button" class="btn btn-danger delete-btn"
+       onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
+       style="display: none; margin-top: 5px;">
+   Delete
+</button>
 	
 	</div> </div>
 
 
 <!-- Add another block -->
-<button type="button" class="btn btn-default mrgn-tp-md btn-lg" onclick="addAddressBlock2()">Add another establishment</button>
+<!-- For form5 -->
+<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+       onclick="addAddressBlockGeneric('addressSections2', 'address-block2', 'form5')">
+   Add another establishment
+</button>
+
  <hr>
 <script>
-let block2Counter = 1;
 const maxBlocks = 20;
-function addAddressBlock2() {
-   const container = document.getElementById('addressSections2');
-   const currentCount = container.querySelectorAll('.address-block2').length;
-   if (currentCount >= maxBlocks) {
+const blockCounters = {};
+function addAddressBlockGeneric(containerId, blockClass, idPrefix) {
+   const container = document.getElementById(containerId);
+   const blocks = container.querySelectorAll(`.${blockClass}`);
+   if (!blockCounters[containerId]) blockCounters[containerId] = blocks.length;
+   if (blocks.length >= maxBlocks) {
        alert("You can only add up to 20 establishments.");
        return;
    }
-   const original = container.querySelector('.address-block2');
+   const original = blocks[0];
    const clone = original.cloneNode(true);
-   // Clear input values
+   // Clear values
    const select = clone.querySelector('select');
    const input = clone.querySelector('input');
    select.selectedIndex = 0;
    input.value = '';
-   // Update IDs and labels (optional for accessibility)
-   block2Counter++;
-   const newSelectId = 'pr5_' + block2Counter;
-   const newInputId = 'cy5_' + block2Counter;
+   // Generate unique IDs
+   blockCounters[containerId]++;
+   const newSelectId = `${idPrefix}-pr-${blockCounters[containerId]}`;
+   const newInputId = `${idPrefix}-cy-${blockCounters[containerId]}`;
 select.id = newSelectId;
 input.id = newInputId;
-   // Also update the label `for` attributes
-   clone.querySelector('label[for="pr5"]').setAttribute('for', newSelectId);
-   clone.querySelector('label[for="cy5"]').setAttribute('for', newInputId);
+   // Update labels
+   const labelSelect = clone.querySelector(`label[for^="${idPrefix}-pr"]`);
+   const labelInput = clone.querySelector(`label[for^="${idPrefix}-cy"]`);
+   if (labelSelect) labelSelect.setAttribute('for', newSelectId);
+   if (labelInput) labelInput.setAttribute('for', newInputId);
    // Show delete button
    const deleteBtn = clone.querySelector('.delete-btn');
    deleteBtn.style.display = 'inline-block';
+   deleteBtn.setAttribute('onclick', `deleteBlockGeneric(this, '${blockClass}', '${containerId}')`);
    container.appendChild(clone);
 }
-function deleteBlock2(button) {
-   const container = document.getElementById('addressSections2');
-   if (container.querySelectorAll('.address-block2').length > 1) {
-       const block = button.closest('.address-block2');
+function deleteBlockGeneric(button, blockClass, containerId) {
+   const container = document.getElementById(containerId);
+   const blocks = container.querySelectorAll(`.${blockClass}`);
+   if (blocks.length > 1) {
+       const block = button.closest(`.${blockClass}`);
        block.remove();
    }
 }
