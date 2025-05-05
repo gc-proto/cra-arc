@@ -478,28 +478,43 @@
 <button type="button" class="btn btn-default mrgn-tp-md btn-lg" onclick="addAddressBlock2()">Add another establishment</button>
  <hr>
 <script>
- const maxBlocks = 20;
- function addAddressBlock2() {
+let block2Counter = 1;
+const maxBlocks = 20;
+function addAddressBlock2() {
    const container = document.getElementById('addressSections2');
    const currentCount = container.querySelectorAll('.address-block2').length;
    if (currentCount >= maxBlocks) {
-     alert("You can only add up to 20 establishments.");
-     return;
+       alert("You can only add up to 20 establishments.");
+       return;
    }
    const original = container.querySelector('.address-block2');
    const clone = original.cloneNode(true);
-   // Clear values in the clone
-   clone.querySelector('select').selectedIndex = 0;
-   clone.querySelector('input').value = '';
-   // Show delete button on clone
+   // Clear input values
+   const select = clone.querySelector('select');
+   const input = clone.querySelector('input');
+   select.selectedIndex = 0;
+   input.value = '';
+   // Update IDs and labels (optional for accessibility)
+   block2Counter++;
+   const newSelectId = 'pr5_' + block2Counter;
+   const newInputId = 'cy5_' + block2Counter;
+select.id = newSelectId;
+input.id = newInputId;
+   // Also update the label `for` attributes
+   clone.querySelector('label[for="pr5"]').setAttribute('for', newSelectId);
+   clone.querySelector('label[for="cy5"]').setAttribute('for', newInputId);
+   // Show delete button
    const deleteBtn = clone.querySelector('.delete-btn');
    deleteBtn.style.display = 'inline-block';
    container.appendChild(clone);
- }
- function deleteBlock2(button) {
-   const block = button.closest('.address-block2');
-   block.remove();
- }
+}
+function deleteBlock2(button) {
+   const container = document.getElementById('addressSections2');
+   if (container.querySelectorAll('.address-block2').length > 1) {
+       const block = button.closest('.address-block2');
+       block.remove();
+   }
+}
 </script>
 
 <script>
