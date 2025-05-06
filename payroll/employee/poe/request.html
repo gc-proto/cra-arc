@@ -359,48 +359,475 @@
 	
 </form>  
 
+
       </div>
     </fieldset>
 
 <fieldset id="step3" class="panel-default p-0">
   <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">Secondary indicators</span></legend>
                         <div class="panel-body">
-        <p><small>For each of the following examples, indicate whether or not you feel that there is an ethical issue.</small></p>
-        <fieldset class="subfields">
-          <legend><span class="field-name">Ethics 1</span>: You pay $10.00 bucks for a purchase, but receive change for $20.00 bucks. Would you keep the extra money?</legend>
-          <div class="radio">
-            <label for="defNot-1"><input type="radio" name="ethics1" value="defNot-1" id="defNot-1"> Definitely Not</label> 
-            <label for="probNot-1"><input type="radio" name="ethics1" value="probNot-1" id="probNot-1"> Probably Not</label> 
-            <label for="maybe-1"><input type="radio" name="ethics1" value="maybe-1" id="maybe-1"> Maybe (Not Sure)</label> 
-            <label for="probably-1"><input type="radio" name="ethics1" value="probably-1" id="probably-1"> Probably</label> 
-            <label for="definitely-1"><input type="radio" name="ethics1" value="definitely-1" id="definitely-1"> Definitely</label>
-          </div>
-        </fieldset>
+      <form id="form4" role="form" method="get" action="#" class="gc-font-2019">
 
-        <fieldset class="subfields">
-          <legend><span class="field-name">Ethics 2</span>: You need a software, but can't wait for office to make a decision. Against license restrictions would you download it?</legend>
-          <div class="radio">
-            <label for="defNot-2"><input type="radio" name="ethics2" value="defNot-2" id="defNot-2"> Definitely Not</label> 
-            <label for="probNot-2"><input type="radio" name="ethics2" value="probNot-2" id="probNot-2"> Probably Not</label> 
-            <label for="maybe-2"><input type="radio" name="ethics2" value="maybe-2" id="maybe-2"> Maybe (Not Sure)</label> 
-            <label for="probably-2"><input type="radio" name="ethics2" value="probably-2" id="probably-2"> Probably</label> 
-            <label for="definitely-2"><input type="radio" name="ethics2" value="definitely-2" id="definitely-2"> Definitely</label>
-          </div>
-        </fieldset>
+<h3>From which of your establishments would your employee attend in-person meetings, through any type of communication?</h3>
+<div id="addressSections4">
+<div class="address-block4">
+ <div class="row">
+   <div class="col-xs-5">
+  <div class="form-group gc-font-2019">
+	<label for="pr4" class="required"> 
+					<span class="field-name">Province or territory of this establishment</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
+                    <span class="display-block"></span>
+                </label>
+
+<select name="province[]" id="pr4" class="form-control" required="required">
+  <option value="">Select the province or territory</option>	
+    <option value="Alberta">Alberta</option>
+    <option value="British Columbia">British Columbia</option>
+    <option value="Manitoba">Manitoba</option>
+    <option value="New Brunswick">New Brunswick</option>
+    <option value="Newfoundland/Labrador">Newfoundland/Labrador</option>
+    <option value="Northwest Territory">Northwest Territory</option>
+    <option value="Nova Scotia">Nova Scotia</option>
+    <option value="Nunavut">Nunavut</option>
+    <option value="Ontario">Ontario</option>
+    <option value="Prince Edward Island">Prince Edward Island</option>
+    <option value="Quebec">Quebec</option>
+    <option value="Saskatchewan">Saskatchewan</option>
+    <option value="Yukon Territory">Yukon Territory</option>
+</select>
+ </div>
+</div>
+  <div class="col-xs-7">
+
+  <div class="form-group gc-font-2019">
+	<label for="cy4" class="required provisional "> 
+	<span class="field-name">City, town or village of this establishment</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
+         <span class="display-block"></span>
+	</label>
+	<input type="text" name="cy4" size="40" maxlength="40" value="" id="cy4" class="form-control gc-font-2019" placeholder="Enter city, town or village" required="required"/>
+	
+</div> </div>
+</div>
+		
+		
+<button type="button" class="btn btn-danger delete-btn"
+       onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
+       style="display: none; margin-top: 5px;">
+   Delete
+</button>
+	
+	</div></div>
+
+
+<!-- Add another block -->
+<!-- For form4 -->
+<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+       onclick="addAddressBlockGeneric('addressSections4', 'address-block4', 'form4')">
+   Add another establishment
+</button>
+ <hr>
+<script>
+const maxBlocks = 10;
+const blockCounters = {};
+function addAddressBlockGeneric(containerId, blockClass, idPrefix) {
+   const container = document.getElementById(containerId);
+   const blocks = container.querySelectorAll(`.${blockClass}`);
+   if (!blockCounters[containerId]) blockCounters[containerId] = blocks.length;
+   if (blocks.length >= maxBlocks) {
+       alert("You can only add up to 10 establishments.");
+       return;
+   }
+   const original = blocks[0];
+   const clone = original.cloneNode(true);
+   // Clear values
+   const select = clone.querySelector('select');
+   const input = clone.querySelector('input');
+   select.selectedIndex = 0;
+   input.value = '';
+   // Generate unique IDs
+   blockCounters[containerId]++;
+   const newSelectId = `${idPrefix}-pr-${blockCounters[containerId]}`;
+   const newInputId = `${idPrefix}-cy-${blockCounters[containerId]}`;
+select.id = newSelectId;
+input.id = newInputId;
+   // Update labels
+   const labelSelect = clone.querySelector(`label[for^="${idPrefix}-pr"]`);
+   const labelInput = clone.querySelector(`label[for^="${idPrefix}-cy"]`);
+   if (labelSelect) labelSelect.setAttribute('for', newSelectId);
+   if (labelInput) labelInput.setAttribute('for', newInputId);
+   // Show delete button
+   const deleteBtn = clone.querySelector('.delete-btn');
+   deleteBtn.style.display = 'inline-block';
+   deleteBtn.setAttribute('onclick', `deleteBlockGeneric(this, '${blockClass}', '${containerId}')`);
+   container.appendChild(clone);
+}
+function deleteBlockGeneric(button, blockClass, containerId) {
+   const container = document.getElementById(containerId);
+   const blocks = container.querySelectorAll(`.${blockClass}`);
+   if (blocks.length > 1) {
+       const block = button.closest(`.${blockClass}`);
+       block.remove();
+   }
+}
+</script>
+
+<script>
+ fetch('https://geonames.nrcan.gc.ca/service/api?featureType=populatedPlace&outputFormat=json')
+   .then(response => response.json())
+   .then(data => {
+     const dropdown = document.getElementById('cityDropdown');
+     data.items.forEach(item => {
+       const option = document.createElement('option');
+       option.value = item.name;
+       option.text = item.name;
+       dropdown.appendChild(option);
+     });
+   })
+   .catch(error => console.error('Error fetching city data:', error));
+</script>	
+</form>  
+
+
+<form id="form5" role="form" method="get" action="#" class="gc-font-2019">
+
+<h3>From which of your establishments does your employee receive or would your employee receive work-related material, equipment or associated instructions and assistance?</h3>
+<div id="addressSections5">
+<div class="address-block5">
+ <div class="row">
+   <div class="col-xs-5">
+
+  <div class="form-group gc-font-2019">
+	<label for="pr5" class="required"> 
+					<span class="field-name">Province or territory of this establishment</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
+                    <span class="display-block"></span>
+                </label>
+
+<select name="province[]" id="pr5" class="form-control" required="required">
+  <option value="">Select the province or territory</option>	
+    <option value="Alberta">Alberta</option>
+    <option value="British Columbia">British Columbia</option>
+    <option value="Manitoba">Manitoba</option>
+    <option value="New Brunswick">New Brunswick</option>
+    <option value="Newfoundland/Labrador">Newfoundland/Labrador</option>
+    <option value="Northwest Territory">Northwest Territory</option>
+    <option value="Nova Scotia">Nova Scotia</option>
+    <option value="Nunavut">Nunavut</option>
+    <option value="Ontario">Ontario</option>
+    <option value="Prince Edward Island">Prince Edward Island</option>
+    <option value="Quebec">Quebec</option>
+    <option value="Saskatchewan">Saskatchewan</option>
+    <option value="Yukon Territory">Yukon Territory</option>
+</select>
+ </div>
+</div>
+
+  <div class="col-xs-7">
+  <div class="form-group gc-font-2019">
+	<label for="cy5" class="required provisional "> 
+	<span class="field-name">City, town or village of this establishment</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
+         <span class="display-block"></span>
+	</label>
+	<input type="text" name="cy5" size="40" maxlength="40" value="" id="cy5" class="form-control gc-font-2019" placeholder="Enter city, town or village" required="required"/>
+	
+</div></div></div>
+<button type="button" class="btn btn-danger delete-btn"
+       onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
+       style="display: none; margin-top: 5px;">
+   Delete
+</button>
+	
+	</div> </div>
+
+
+<!-- Add another block -->
+<!-- For form5 -->
+<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+       onclick="addAddressBlockGeneric('addressSections5', 'address-block5', 'form5')">
+   Add another establishment
+</button>
+<hr>
+
+</form>  
+
+<form id="form6" role="form" method="get" action="#" class="gc-font-2019">
+
+<h3>From which of your establishments does your employee come or would come to receive instructions in-person from you regarding their employment duties, through any type of communication?</h3>
+<div id="addressSections6">
+<div class="address-block6">
+<div class="row">
+   <div class="col-xs-5">
+
+  <div class="form-group gc-font-2019">
+	<label for="pr6" class="required"> 
+					<span class="field-name">Province or territory of this establishment</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
+                    <span class="display-block"></span>
+                </label>
+
+<select name="province[]" id="pr6" class="form-control" required="required">
+  <option value="">Select the province or territory</option>	
+    <option value="Alberta">Alberta</option>
+    <option value="British Columbia">British Columbia</option>
+    <option value="Manitoba">Manitoba</option>
+    <option value="New Brunswick">New Brunswick</option>
+    <option value="Newfoundland/Labrador">Newfoundland/Labrador</option>
+    <option value="Northwest Territory">Northwest Territory</option>
+    <option value="Nova Scotia">Nova Scotia</option>
+    <option value="Nunavut">Nunavut</option>
+    <option value="Ontario">Ontario</option>
+    <option value="Prince Edward Island">Prince Edward Island</option>
+    <option value="Quebec">Quebec</option>
+    <option value="Saskatchewan">Saskatchewan</option>
+    <option value="Yukon Territory">Yukon Territory</option>
+</select>
+ </div>
+</div>
+
+<div class="col-xs-7">
+  <div class="form-group gc-font-2019">
+	<label for="cy5" class="required provisional "> 
+	<span class="field-name">City, town or village of this establishment</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
+         <span class="display-block"></span>
+	</label>
+	<input type="text" name="cy6" size="40" maxlength="40" value="" id="cy6" class="form-control gc-font-2019" placeholder="Enter city, town or village" required="required"/>
+	
+</div></div></div>
+
+
+<button type="button" class="btn btn-danger delete-btn"
+       onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
+       style="display: none; margin-top: 5px;">
+   Delete
+</button>
+	
+	</div> </div>
+
+
+<!-- Add another block -->
+<!-- For form6 -->
+<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+       onclick="addAddressBlockGeneric('addressSections6', 'address-block6', 'form6')">
+   Add another establishment
+</button>
+<hr>	
+</form>  
+
+
+<form id="form7" role="form" method="get" action="#" class="gc-font-2019">
+
+<h3>Which of your establishments is responsible for or supervises the employee, as indicated in the contractual agreements between you and the employee?</h3>
+<div id="addressSections7">
+<div class="address-block7">
+<div class="row">
+   <div class="col-xs-5">
+  <div class="form-group gc-font-2019">
+	<label for="pr7" class="required"> 
+					<span class="field-name">Province or territory of this establishment</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
+                    <span class="display-block"></span>
+                </label>
+
+<select name="province[]" id="pr7" class="form-control" required="required">
+  <option value="">Select the province or territory</option>	
+    <option value="Alberta">Alberta</option>
+    <option value="British Columbia">British Columbia</option>
+    <option value="Manitoba">Manitoba</option>
+    <option value="New Brunswick">New Brunswick</option>
+    <option value="Newfoundland/Labrador">Newfoundland/Labrador</option>
+    <option value="Northwest Territory">Northwest Territory</option>
+    <option value="Nova Scotia">Nova Scotia</option>
+    <option value="Nunavut">Nunavut</option>
+    <option value="Ontario">Ontario</option>
+    <option value="Prince Edward Island">Prince Edward Island</option>
+    <option value="Quebec">Quebec</option>
+    <option value="Saskatchewan">Saskatchewan</option>
+    <option value="Yukon Territory">Yukon Territory</option>
+</select>
+ </div>
+</div>
+   <div class="col-xs-7">
+
+  <div class="form-group gc-font-2019">
+	<label for="cy7" class="required provisional "> 
+	<span class="field-name">City, town or village of this establishment</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
+         <span class="display-block"></span>
+	</label>
+	<input type="text" name="cy7" size="40" maxlength="40" value="" id="cy7" class="form-control gc-font-2019" placeholder="Enter city, town or village" required="required"/>
+	
+</div></div></div>
+
+<button type="button" class="btn btn-danger delete-btn"
+       onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
+       style="display: none; margin-top: 5px;">
+   Delete
+</button>
+	
+	</div> </div>
+
+
+<!-- Add another block -->
+<!-- For form7 -->
+<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+       onclick="addAddressBlockGeneric('addressSections7', 'address-block7', 'form7')">
+   Add another establishment
+</button>
+<hr>	
+	
+</form>  
+
+ 
+<form id="form8" role="form" method="get" action="#" class="gc-font-2019">
+
+<h3>From which of your establishment does your employee would report based on the nature of the duties performed by the employee?</h3>
+<div id="addressSections8">
+<div class="address-block8">
+ <div class="row">
+   <div class="col-xs-5">
+
+  <div class="form-group gc-font-2019">
+	<label for="pr8" class="required"> 
+					<span class="field-name">Province or territory of this establishment</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
+                    <span class="display-block"></span>
+                </label>
+
+<select name="province[]" id="pr8" class="form-control" required="required">
+  <option value="">Select the province or territory</option>	
+    <option value="Alberta">Alberta</option>
+    <option value="British Columbia">British Columbia</option>
+    <option value="Manitoba">Manitoba</option>
+    <option value="New Brunswick">New Brunswick</option>
+    <option value="Newfoundland/Labrador">Newfoundland/Labrador</option>
+    <option value="Northwest Territory">Northwest Territory</option>
+    <option value="Nova Scotia">Nova Scotia</option>
+    <option value="Nunavut">Nunavut</option>
+    <option value="Ontario">Ontario</option>
+    <option value="Prince Edward Island">Prince Edward Island</option>
+    <option value="Quebec">Quebec</option>
+    <option value="Saskatchewan">Saskatchewan</option>
+    <option value="Yukon Territory">Yukon Territory</option>
+</select>
+ </div>
+ </div>
+
+<div class="col-xs-7">
+
+  <div class="form-group gc-font-2019">
+	<label for="cy8" class="required provisional "> 
+	<span class="field-name">City, town or village</span> <span class="required" lang="en"> <span class="wb-invisible"> required field.</span></span>
+         <span class="display-block"></span>
+	</label>
+	<input type="text" name="cy8" size="40" maxlength="40" value="" id="cy8" class="form-control gc-font-2019" placeholder="Enter city, town or village" required="required"/>
+	
+</div> </div> </div>
+
+<button type="button" class="btn btn-danger delete-btn"
+       onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
+       style="display: none; margin-top: 5px;">
+   Delete
+</button>
+	
+	</div> </div>
+
+
+<!-- Add another block -->
+<!-- For form8 -->
+<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+       onclick="addAddressBlockGeneric('addressSections8', 'address-block8', 'form8')">
+   Add another establishment
+</button>
+<hr>	
+
+	
+</form> 
       </div>
     </fieldset>
 
 <fieldset id="step4" class="panel-default p-0">
   <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">Employer contact information</span></legend>
                         <div class="panel-body">
-        <div class="form-group">
-          <label for="preferredNumber4">Preferred: <span class="field-name">Phone Number</span></label>
-          <input class="form-control" id="preferredNumber4" name="preferredNumber4" type="tel" data-rule-phoneus="true">
-        </div>
-        <div class="form-group">
-          <label for="secondaryNumber4">Secondary: <span class="field-name">Phone Number</span></label>
-          <input class="form-control" id="secondaryNumber4" name="secondaryNumber4" type="tel" data-rule-phoneus="true">
-        </div>
+       <div class="row">
+   <div class="col-xs-6">
+
+<div class="form-group mrgn-tp-md">
+<label for="fbnm" class="required"><span class="field-name">First name</span></label>
+<input class="form-control gc-font-2019" required="required" type="text" id="fbnm" name="fbnm" size="45" maxlength="45" data-rule-minlength="1" required="required" data-rule-lettersonly="true">
+</div>
+</div>
+ <div class="col-xs-6">
+
+<div class="form-group mrgn-tp-md">
+<label for="lstnm" class="required"><span class="field-name">Last name</span></label>
+<input class="form-control gc-font-2019" required="required" type="text" id="lstnm" name="lstnm" size="45" maxlength="45" data-rule-minlength="1" required="required" data-rule-lettersonly="true">
+</div>
+</div></div>
+
+<!--div class="form-group mrgn-tp-lg">
+<label for="numbers-only" class="required"><span class="field-name">Telephone number</span></label>
+<p><span class="">(numbers only)</span></p>
+<input class="form-control" id="numbers-only" name="numbers-only" type="text" size="15" maxlength="15" required="required" pattern="\d{1,}" onkeyup="this.value = this.value.replace(/[^0-9]/g, '')" />
+</div-->
+ <div class="row">
+   <div class="col-xs-6">
+  <div class="form-group mrgn-tp-md">
+                                                <label id="contactContactEmailAddressLabel" for="contactContactEmailAddress" class="required"><span class="field-name"><span id="contactContactEmailAddressSpanText">Email</span></span> (yourname@domain.com) <strong class="hidden-print required" aria-hidden="true"></strong> </label>
+                                                <input type="email" class="form-control gc-font-2019" name="contactContactEmailAddress" id="contactContactEmailAddress" required="required" size="50">
+                                            </div>
+   </div>
+
+  <div class="col-xs-6">
+<div class="form-group mrgn-tp-md">
+<label for="phn100" class="required"><span class="field-name">Telephone number (999-999-9999)</span></label>
+<input class="form-control gc-font-2019" id="phn100" name="phn100" type="text" size="45" maxlength="45" required="required" pattern="^[0-9()-\s]+$" data-rule-phoneUS="true" />
+</div>   </div>
+
+    </div>
+
+  <fieldset class="provisional gc-chckbxrdio">
+<legend class="required"> <span class="field-name">Confirmation &nbsp;<span class="wb-inv">(required)</span></span></legend>
+ <ul class="checkbox-lg checkbox-zebra gc-chckbxrdio">
+
+   <li class="checkbox">
+            <input type="checkbox" id="certifyBox" name="certifyBox" value="yes" required="required"> <label for="certifyBox">I certify that the information given on this form is correct and complete.</label> 
+ </li>
+
+</ul>   
+</fieldset>
+
+<!--div class="form-group mrgn-tp-lg">
+<label for="fbhphn" class="required fbhphn"><span class="field-name">Telephone number</span></label>
+<div id="errorbox"></div>
+<p><span class="">(brackets, spaces or dashes not accepted)</span></p>
+<input class="form-control" id="fbhphn" name="fbhphn" type="tel" autocomplete="tel" size="15" maxlength="15" required="required" pattern="^[0-9]+$" data-rule-phoneUS="true" />
+
+</div-->
+
+
+<!--div class="form-group grouped">
+   <label for="tel1" class="required"><span class="field-name">Telephone number</span> </label>
+   <div class="form-inline">
+     <span class="h3">(</span> <input id="tel1" name="tel1" type="text" required="required" data-rule-digits="true" size="3" maxlength="3" data-rule-minlength="3" data-rule-require_from_group='[3,".group"]' class="group"> <span class="h3"> )</span>
+     <input id="tel2" name="tel2" type="text" required="required" data-rule-digits="true" size="3" maxlength="3" data-rule-minlength="3" data-rule-require_from_group='[3,".group"]' class="group"> <span class="h3"> - </span> 
+     <input id="tel3" name="tel3" type="text" required="required" data-rule-digits="true" size="4" maxlength="4" data-rule-minlength="4" data-rule-require_from_group='[3,".group"]' class="group">
+   </div>
+</div-->
+
+<!--script>
+var container = document.getElementsByClassName("grouped")[0];
+container.onkeyup = function(e) {
+    var target = e.srcElement;
+    var maxLength = parseInt(target.attributes["maxlength"].value, 10);
+    var myLength = target.value.length;
+    if (myLength >= maxLength) {
+        var next = target;
+        while (next = next.nextElementSibling) {
+            if (next == null)
+                break;
+            if (next.tagName.toLowerCase() == "input") {
+                next.focus();
+                break;
+            }
+        }
+    }
+}
+</script-->
         </div>
     </fieldset>
 
