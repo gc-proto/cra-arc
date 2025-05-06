@@ -200,9 +200,28 @@
 
  </div>
  
-</div>     </section> 
+</div>  
+
+<div class="mrgn-tp-lg">
+
+<input type="submit" name="sec2" id="sec2" value="Next" class="btn btn-primary btn-lg">
+</div>
+
+
+<script>
+document.getElementById("sec2").addEventListener("click", function(event) {
+ event.preventDefault(); // prevent form submission if needed
+ const currentSection = this.closest("section");
+ const nextSection = currentSection.nextElementSibling;
+ if (nextSection && nextSection.classList.contains("hidden")) {
+   nextSection.classList.remove("hidden");
+ }
+});
+</script>
+
+   </section> 
  
- <section class="well">
+ <section class="well hidden" id="sec2">
 <h2 class="h2 mrgn-tp-0">Payroll and corporate tax processing</h2>
 
 <form id="form3" role="form" method="get" action="#" class="gc-font-2019">
