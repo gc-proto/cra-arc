@@ -1250,19 +1250,19 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 <fieldset id="step4" class="panel-default p-0">
   <legend class="panel-heading mrgn-bttm-lg"><span class="panel-title">Employer contact information</span></legend>
                         <div class="panel-body">
-       <div class="row">
+       <div class="row" id="ajax-step4a">
    <div class="col-xs-6">
 
 <div class="form-group gc-font-2019">
-<label for="fbnm" class="required"><span class="field-name">First name</span></label>
-<input class="form-control gc-font-2019" type="text" id="fbnm" name="fbnm" placeholder="Enter your first name"  size="45" maxlength="45" data-rule-minlength="1" required="required" data-rule-lettersonly="true">
+<label for="step4a" class="required"><span class="field-name">First name</span></label>
+<input class="form-control gc-font-2019" type="text" id="step4a" name="step4a" placeholder="Enter your first name"  size="45" maxlength="45" data-rule-minlength="1" required="required" data-rule-lettersonly="true">
 </div>
 </div>
  <div class="col-xs-6">
 
 <div class="form-group gc-font-2019">
-<label for="lstnm" class="required"><span class="field-name">Last name</span></label>
-<input class="form-control gc-font-2019" type="text" id="lstnm" name="lstnm" placeholder="Enter your last name"  size="45" maxlength="45" data-rule-minlength="1" required="required" data-rule-lettersonly="true">
+<label for="step4b" class="required"><span class="field-name">Last name</span></label>
+<input class="form-control gc-font-2019" type="text" id="step4b" name="step4b" placeholder="Enter your last name"  size="45" maxlength="45" data-rule-minlength="1" required="required" data-rule-lettersonly="true">
 </div>
 </div></div>
 
@@ -1271,29 +1271,29 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 <p><span class="">(numbers only)</span></p>
 <input class="form-control" id="numbers-only" name="numbers-only" type="text" size="15" maxlength="15" required="required" pattern="\d{1,}" onkeyup="this.value = this.value.replace(/[^0-9]/g, '')" />
 </div-->
- <div class="row">
+ <div class="row" id="ajax-step4b">
    <div class="col-xs-6">
   <div class="form-group mrgn-tp-md gc-font-2019">
-                                                <label id="contactContactEmailAddressLabel" for="contactContactEmailAddress" class="required"><span class="field-name"><span id="contactContactEmailAddressSpanText">Email</span></span> <strong class="hidden-print required" aria-hidden="true"></strong> </label>
-                                                <input type="email" class="form-control gc-font-2019" name="contactContactEmailAddress" placeholder="Enter your email, yourname@domain.com"  id="contactContactEmailAddress" required="required" size="50">
+                                                <label id="step4c" for="step4c" class="required"><span class="field-name"><span id="contactContactEmailAddressSpanText">Email</span></span> <strong class="hidden-print required" aria-hidden="true"></strong> </label>
+                                                <input type="email" class="form-control gc-font-2019" name="step4c" placeholder="Enter your email, yourname@domain.com"  id="contactContactEmailAddress" required="required" size="50">
                                             </div>
    </div>
 
   <div class="col-xs-6">
 <div class="form-group mrgn-tp-md gc-font-2019">
-<label for="phn100" class="required"><span class="field-name">Telephone number</span></label>
-<input class="form-control gc-font-2019" id="phn100" name="phn100" placeholder="Enter your telephone number, 999-999-9999" type="text" size="45" maxlength="45" required="required" pattern="^[0-9()-\s]+$" data-rule-phoneus="true" />
+<label for="step4d" class="required"><span class="field-name">Telephone number</span></label>
+<input class="form-control gc-font-2019" id="step4d" name="step4d" placeholder="Enter your telephone number, 999-999-9999" type="text" size="45" maxlength="45" required="required" pattern="^[0-9()-\s]+$" data-rule-phoneus="true" />
 </div>   </div>
 
     </div>
 
-<div class="form-group mrgn-tp-md gc-font-2019">
+<div class="form-group mrgn-tp-md gc-font-2019" id="ajax-step5c">
   <fieldset class="gc-chckbxrdio">
 <legend class="required"> <span class="field-name">Confirmation &nbsp;<span class="wb-inv">(required)</span></span></legend>
  <ul class="checkbox-lg checkbox-zebra gc-chckbxrdio">
 
    <li class="checkbox">
-            <input type="checkbox" id="certifyBox" name="certifyBox" value="yes" required="required"> <label for="certifyBox">I certify that the information given on this form is <strong>correct and complete</strong>.</label> 
+            <input type="checkbox" id="step4e" name="step4e" value="yes" required="required"> <label for="step4e">I certify that the information given on this form is <strong>correct and complete</strong>.</label> 
  </li>
 
 </ul>   
@@ -1344,13 +1344,13 @@ container.onkeyup = function(e) {
    
     <div class="panel-body">
 
-<div class="alert alert-info mrgn-tp-xl">
+<div class="alert alert-success mrgn-tp-xl">
  <p>You are now ready to create and save a <abbr title="Portable Document Format">PDF</abbr> of your request. The CRA will <strong>not</strong> keep the details of this <abbr title="Portable Document Format">PDF</abbr> and information is not saved on this page. If you leave this page without saving/printing you will need to enter your information again.</p>
 <p>The CRA may ask for more information later if your situation is complex.</p>
   </div>
 
 <div class="form-group gc-font-2019" id="ajax-preview">
-<section class="panel panel-default panel-info">
+<section class="panel panel-default panel-success">
 <header class="panel-heading">
 <h3 class="panel-title">Primary indicator</h3>
 </header>
@@ -1359,7 +1359,7 @@ container.onkeyup = function(e) {
   </div>  
 </section>
 
-<section class="panel panel-default panel-info">
+<section class="panel panel-default panel-success">
 <header class="panel-heading">
 <h3 class="panel-title">Payroll and corporate tax processing</h3>
 </header>
@@ -1368,7 +1368,7 @@ container.onkeyup = function(e) {
   </div>  
 </section>
 
-<section class="panel panel-default panel-info">
+<section class="panel panel-default panel-success">
 <header class="panel-heading">
 <h3 class="panel-title">Secondary indicators</h3>
 </header>
@@ -1377,12 +1377,17 @@ container.onkeyup = function(e) {
   </div>  
 </section>
 
-<section class="panel panel-default panel-info">
+<section class="panel panel-default panel-success">
 <header class="panel-heading">
 <h3 class="panel-title">Employer contact information</h3>
 </header>
   <div class="panel-body">
-    <p>Your text ...</p>
+ <p>Testing: <span id="step4a">???</span> </p>
+ <p>Testing: <span id="step4b">???</span> </p>
+ <p>Testing: <span id="step4c">???</span> </p>
+ <p>Testing: <span id="step4d">???</span> </p>
+ <p>Testing: <span id="step4e">???</span> </p>
+
   </div>  
 </section>
 
