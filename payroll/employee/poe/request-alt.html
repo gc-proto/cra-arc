@@ -545,10 +545,7 @@ input:focus::placeholder {
          <main role="main" property="mainContentOfPage" class="container">
 
 <h1 property="name" id="wb-cont" class="gc-thickline">Request to obtain guidance to determine the province of employment for your employee working entirely remotely</h1>
-<p>You (as the employer) can send a request to the CRA to obtain guidance to determine if your employee working entirely remotely can reasonably be considered "attached to an establishment of the employer" under the new CRA administrative policy.</p>
 
-<p>All of the facts relevant to your employee's situation will be considered to determine if your employee can be reasonably considered “attached to an establishment of the employer”. <strong>The response to you request will not be an official decision made by the CRA.</strong></p>
- 
 <div class="alert alert-warning">
  <p class="crhp-fyi">Once you filled out all required fields, you can <strong>print your request</strong>. Information is not saved on this page. If you leave this page without printing you will need to enter your information again.</p>
 <p>The CRA may ask for more information later if your situation is complex.</p>
@@ -561,10 +558,11 @@ input:focus::placeholder {
  <fieldset id="before" class="panel-default p-0">
   <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">Before you begin</span></legend>
                         <div class="panel-body">
+<p>You (as the employer) can send a request to the CRA to obtain guidance to determine if your employee working entirely remotely can reasonably be considered "attached to an establishment of the employer" under the <strong>new CRA administrative policy</strong>.</p>
 
-<h2>Determine if the new CRA administrative policy on remote work applies </h2>
-		 
-<p>Select all the conditions that apply to your situation:</p>
+<p>All of the facts relevant to your employee's situation will be considered to determine if your employee can be reasonably considered “attached to an establishment of the employer”. <strong>The response to you request will not be an official decision made by the CRA.</strong></p>
+
+<p>Select all the conditions that apply to your situation to determine if the new CRA administrative policy on remote work applies:</p>
  <div class="wb-frmvld gc-font-2019">
             
 <div class="form-group">
@@ -1442,7 +1440,34 @@ container.onkeyup = function(e) {
 	<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/employee/poe.html#ajax-establishment"></div>
 	</div></section>
 
+      <script src="https://gc-proto-cra.github.io/js/alpha-banner.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
+<script defer>
+    "use strict";
+    
+    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
+        if (chkbxChecked.length === 0) {
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + defaultID).removeClass("hidden").addClass("visible");
+        } else if (chkbxGroup.length === chkbxChecked.length) {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).addClass("hidden").removeClass("visible");
+            $("#" + validID).removeClass("hidden").addClass("visible");
+        } else {
+            $("#" + defaultID).addClass("hidden").removeClass("visible");
+            $("#" + validID).addClass("hidden").removeClass("visible");
+            $("#" + invalidID).removeClass("hidden").addClass("visible");
+        }
+    }, 
+    updateChkbxList = function () {
+        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
+    };
+   
+    window.onload = updateChkbxList;
 
+    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
+</script>
 
 <div class="clearfix"></div>
 
