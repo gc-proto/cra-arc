@@ -556,7 +556,7 @@ input:focus::placeholder {
   <form action="#" method="get" id="steps-example">
 
  <fieldset id="before" class="panel-default p-0">
-  <legend class="panel-heading mrgn-bttm-0"><span class="panel-title">Before you begin</span></legend>
+  <legend class="panel-heading mrgn-bttm-lg"><span class="panel-title">Before you begin</span></legend>
                         <div class="panel-body">
 <p>You (as the employer) can send a request to the CRA to obtain guidance to determine if your employee working entirely remotely can reasonably be considered "attached to an establishment of the employer" under the <strong>new CRA administrative policy</strong>.</p>
 
@@ -644,7 +644,7 @@ input:focus::placeholder {
 	<p><a href="request.html" class="btn btn-primary mrgn-tp-md mrgn-bttm-md">Send your request</a></p>
 
   </div>
- 
+ </fieldset>
 </div>
 
 	
@@ -1442,32 +1442,7 @@ container.onkeyup = function(e) {
 
       <script src="https://gc-proto-cra.github.io/js/alpha-banner.js"></script>
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
-<script defer>
-    "use strict";
-    
-    let updateChkbx = function(chkbxGroup, chkbxChecked, defaultID, validID, invalidID) {
-        if (chkbxChecked.length === 0) {
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + defaultID).removeClass("hidden").addClass("visible");
-        } else if (chkbxGroup.length === chkbxChecked.length) {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).addClass("hidden").removeClass("visible");
-            $("#" + validID).removeClass("hidden").addClass("visible");
-        } else {
-            $("#" + defaultID).addClass("hidden").removeClass("visible");
-            $("#" + validID).addClass("hidden").removeClass("visible");
-            $("#" + invalidID).removeClass("hidden").addClass("visible");
-        }
-    }, 
-    updateChkbxList = function () {
-        updateChkbx($(":input[type=checkbox][name=action-checkbox]"), $(":input[type=checkbox][name=action-checkbox]:checked"), "action-default-msg", "action-qualify-msg", "action-not-qualify-msg");
-    };
-   
-    window.onload = updateChkbxList;
 
-    $(":input[type=checkbox][name=action-checkbox]").change(updateChkbxList);
-</script>
 
 <div class="clearfix"></div>
 
