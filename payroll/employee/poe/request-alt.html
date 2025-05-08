@@ -1727,14 +1727,10 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 <h3 class="panel-title">Employer contact information</h3>
 </header>
   <div class="panel-body">
-   <ul>
-
- <li><strong>First name:</strong> <output class="h4 wb-calc nowrap step4a"></output> Add output</li>	
- <li><strong>Last name:</strong><output class="h4 wb-calc nowrap step4b"></output>  Add output</li>	
- <li><strong>Email:</strong> Add output</li>	
- <li><strong>Telephone number:</strong> <strong id="step4d">Add output</strong> </li>	
- <li><strong>Confirmation:</strong> Add output	</li>	
- </ul>	  
+  <p><strong>First Name:</strong> <span id="summary-firstname"></span></p>
+<p><strong>Last Name:</strong> <span id="summary-lastname"></span></p>
+<p><strong>Email:</strong> <span id="summary-email"></span></p>
+<p><strong>Telephone Number:</strong> <span id="summary-phone"></span></p>  
   </div>  
 </section>
 
@@ -1773,6 +1769,12 @@ $(document).on("click", ".steps-wrapper button", function (event) {
 	$("legend.wb-steps-active").parents().prevAll().find("legend.panel-heading").wrapInner("<button class='btn-link p-0 btn-lgnd' type='button'></button>");
 	$("fieldset legend.wb-steps-active").nextAll().addBack().find('.btn-lgnd').contents().unwrap();
 	$(".btn-lgnd .btn-lgnd").contents().unwrap(); 
+
+ $("#summary-firstname").text($("#step4a").val());
+ $("#summary-lastname").text($("#step4b").val());
+ $("#summary-email").text($("#contactContactEmailAddress").val());
+ $("#summary-phone").text($("#step4d").val());
+	
 });
 $(document).on("click", ".prev-wb-step", function (event) { 
 	$(this).addClass("wb-steps-active").removeClass("prev-wb-step");
@@ -1787,6 +1789,8 @@ $(document).on("click", ".prev-wb-step", function (event) {
   
 });		
 </script>
+
+
 
 <section id="province" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg"><header class="modal-header"><h2 class="modal-title">What is considered the establishment of the employer</h2>
 	</header>	<div class="modal-body">		
