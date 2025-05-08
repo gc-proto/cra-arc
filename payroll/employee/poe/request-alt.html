@@ -1662,7 +1662,7 @@ function deleteBlockGeneric(button, blockClass, containerId) {
         </div>
     </fieldset>
 
-<fieldset id="step5" class="panel-default p-0">
+<fieldset id="summary-output" class="panel-default p-0">
   <legend class="panel-heading mrgn-bttm-lg"><span class="panel-title">Review, create a <abbr title="Portable Document Format">PDF</abbr> and send request</span></legend>
    
    <div class="panel-body gc-font-2019">
@@ -1796,6 +1796,36 @@ $(document).on("click", ".wb-steps", function (event, data) {
   });
   
 });		
+</script>
+
+<script>
+$(document).on("wb-ready.wb", function () {
+ // Hook into step change
+ $(document).on("wb-stepchange", ".wb-steps", function (event, data) {
+   var $currentStep = $(data.currentStep);
+   // Detect if we're in the summary step
+   if ($currentStep.find("legend").text().trim().toLowerCase().includes("summary")) {
+     // Empty existing summary content
+     $("#summary-output").empty();
+     // Clone relevant fields (e.g., from step 4)
+     var $source = $("#step4 .panel-body").clone();
+     // Remove actual input fields and replace with static text
+     $source.find("input, select, textarea").each(function () {
+       var $input = $(this);
+       var label = $input.closest(".form-group").find("label").clone();
+       var value = $input.val();
+       if (!value) return; // Skip empty
+       var outputHTML = `
+<div class="form-group">
+           ${label.prop('outerHTML')}
+<p class="form-control-static">${value}</p>
+</div>
+       `;
+       $("#summary-output").append(outputHTML);
+     });
+   }
+ });
+});
 </script>
 
 
