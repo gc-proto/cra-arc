@@ -1654,7 +1654,7 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 
 <fieldset id="summary-output" class="panel-default p-0">
   <legend class="panel-heading mrgn-bttm-lg"><span class="panel-title">Review, create a <abbr title="Portable Document Format">PDF</abbr> and send request</span></legend>
-   <!-- Cloned read-only content will go here -->
+   
    <div class="panel-body gc-font-2019">
 
 <div class="alert alert-success mrgn-tp-xl">
@@ -1740,13 +1740,20 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 </header>
   <div class="panel-body mrgn-lft-md">
 <dl class="dl-horizontal brdr-0 dl-col-5 nopadding">
-<dt>First name</dt><dd><span id="summary-firstname">John</span></dd>
+<dt>First name</dt><dd><p id="summary-firstname">John</p></dd>
 <dt>Last name</dt><dd><span id="summary-lastname">Smith</span></dd>
 <dt>Email</dt><dd><span id="summary-email">g@mail.com</span></dd>
 <dt>Telephone number</dt><dd><span id="summary-phone">(705) 555-5555</span></dd>
 </dl>
 
  </div>  
+<script>
+$(document).ready(function() {
+  var myText = $("#step4a").text();
+  $("#summary-firstname").text(myText); 
+});
+</script>
+
 </section>
 
  <div class="form-group mrgn-tp-md gc-font-2019" id="ajax-step5c">
@@ -1776,36 +1783,6 @@ function deleteBlockGeneric(button, blockClass, containerId) {
       </div>
     </fieldset>
 
-<script>
-$(document).on("wb-ready.wb", function () {
- // Hook into step change
- $(document).on("wb-stepchange", ".wb-steps", function (event, data) {
-   var $currentStep = $(data.currentStep);
-   // Detect if we're in the summary step
-   if ($currentStep.find("legend").text().trim().toLowerCase().includes("summary")) {
-     // Empty existing summary content
-     $("#summary-output").empty();
-     // Clone relevant fields (e.g., from step 4)
-     var $source = $("#step4 .panel-body").clone();
-     // Remove actual input fields and replace with static text
-     $source.find("input, select, textarea").each(function () {
-       var $input = $(this);
-       var label = $input.closest(".form-group").find("label").clone();
-       var value = $input.val();
-       if (!value) return; // Skip empty
-       var outputHTML = `
-<div class="form-group">
-           ${label.prop('outerHTML')}
-<p class="form-control-static">${value}</p>
-</div>
-       `;
-       $("#summary-output").append(outputHTML);
-     });
-   }
- });
-});
-</script>
-
     <input type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary hidden">
   </form>
 </div>
@@ -1829,7 +1806,7 @@ $(document).on("click", ".prev-wb-step", function (event) {
 	$(this).addClass("wb-steps-active").removeClass("prev-wb-step");
 	$(this).parent().parent().find("legend + div.panel-body.hidden, .buttons").removeClass("hidden");
 	$("legend.wb-steps-active").parents().nextAll().find(".wb-steps-active, legend.prev-wb-step").removeClass("wb-steps-active prev-wb-step");	
-	$("legend.wb-steps-active").parents().nextAll().find("legend + div.panel-body, .buttons").removeClass("hidden");	
+	$("legend.wb-steps-active").parents().nextAll().find("legend + div.panel-body, .buttons").addClass("hidden");	
 
 $(document).on("click", ".wb-steps", function (event, data) {
      // Check if the current step is the summary step
@@ -1919,7 +1896,7 @@ $(document).on("wb-ready.wb", function () {
       <script src="https://gc-proto-cra.github.io/js/alpha-banner.js"></script>
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
 <script src="https://cdn.canada.ca/gcweb/wet-boew/js/jquery.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <div class="clearfix"></div>
 
          </main>
