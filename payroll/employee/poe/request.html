@@ -13,20 +13,24 @@
          <meta content="width=device-width,initial-scale=1" name="viewport">
          <meta name="robots" content="noindex, follow">
          <!-- Meta data -->
-         <!-- Meta data-->
-         <!-- Load closure template scripts -->
-         
-         <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_46/cdts/compiled/soyutils.js"></script>
-         <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_46/cdts/compiled/wet-en.js"></script>
+    
+   <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_47/cdts/compiled/soyutils.js"></script>
+         <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_47/cdts/compiled/wet-en.js"></script>
          <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+         
+		  <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
-         <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">  
-         <link href="https://cra-arc.gc.ca/wet-boew/css/custom/steps.css" rel="stylesheet">  
          <!-- Write closure template -->
          <script type="text/javascript">
             document.write(wet.builder.refTop({
             }));
          </script>
+
+      <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
+      <link rel="stylesheet" href="../../../css/provisional-topic.css"/>
+      <link rel="stylesheet" href="../../../css/wsm.css"/>
+      <link rel="stylesheet" href="../../../css/step-list.css"/>
+      <link rel="stylesheet" href="../../../css/stacked-header.css"/>
 <style>
 @charset "utf-8";
 /* CSS Document */
@@ -502,7 +506,359 @@ input:focus::placeholder {
 	flex: 1 1 auto;
 }
 </style>
-     
+
+<style>
+        .provisional.wb-steps .wb-tggle-fildst > legend:before {
+          background-color: #fff;
+          padding: 4px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          border: 3px solid #6f6f6f;
+          height: 1.2em;
+          width: 1.2em;
+          box-sizing: content-box;
+          margin-right: 10px;
+          display: inline-block;
+          text-align: center;
+          line-height: 1.2;
+          content: counter(fieldset_counter);
+        }
+        .panel-default > .panel-heading.wb-steps-active {
+          background-color: #fff;
+        }
+        .provisional.wb-steps .wb-tggle-fildst > legend.wb-steps-active:before {
+          background-color: #1c578a;
+          border-color: #1c578a;
+          color: #fff;
+        }
+        .provisional.wb-steps .wb-tggle-fildst > legend:not(.wb-steps-active) {
+          font-size: 18px;
+        }
+        .provisional.wb-steps .wb-tggle-fildst > legend.wb-steps-active {
+          font-weight: bold;
+        }
+        fieldset +.buttons {
+          margin-left: 15px;
+        }
+        .wb-steps-active .panel-title {
+          font-size: 1.3em;
+        }
+          fieldset fieldset {min-width: 1px;}
+        .ds-example {
+          margin-top: 15px;
+          border: 1px solid #e3e3e3;
+          box-shadow: 0px 0px 8px #e3e3e3;
+        }
+        .ds-example>.wb-tabs>.tabpanels {
+          background: #f9f9f9;
+        }
+        .ds-example>.wb-tabs>.tabpanels legend {
+          font-size: 80%;
+          font-weight: 700;
+          margin: 0 0 5px;
+        }
+        .ds-example>.wb-tabs>.tabpanels fieldset {
+          padding-top: 0;
+        }
+        .ds-example>.wb-tabs>.tabpanels>details>summary {
+          background: #fff;
+          border-radius: 0;
+        }
+        .ds-example>.wb-tabs [role=tablist]>li:focus, .ds-example>.wb-tabs [role=tablist]>li:hover {
+          background: #ddd;
+        }
+        .ds-example>.wb-tabs {
+          margin-bottom: 0;
+        }
+        .ds-example>.wb-tabs>.tabpanels>details {
+          margin-bottom: 0;
+        }
+        .ds-example .panel-body {
+          box-shadow: none;
+        }
+
+        @media screen and (max-width: 991px) {
+        .ds-example>.wb-tabs .tgl-panel {
+          margin-top: 15px;
+        }
+        }
+
+        @media screen and (min-width: 992px) {
+        .ds-example>.wb-tabs>.tabpanels>details {
+          border: none;
+          padding: 15px;
+        }
+        .ds-example>.wb-tabs [role=tablist]>li {
+          border: none;
+          background: none;
+        }
+        .ds-example>.wb-tabs [role=tablist]>li.active a {
+          border-width: 0 0 4px;
+        }
+        .ds-example>.wb-tabs>.tabpanels>details {
+          padding: 30px;
+        }
+        .ds-example>.wb-tabs>.tabpanels>details {
+          background: #f9f9f9;
+          padding: 30px;
+          margin-bottom: 0;
+        }
+        }
+        .prev-wb-step .btn-lgnd
+          { margin: 1px; text-decoration-line: underline;}
+        .prev-wb-step:focus, .prev-wb-step:hover
+          {color: #0535d2;}	
+        .prev-wb-step:focus 
+          {outline: 5px auto; outline-offset: -2px;}	
+      </style>
+<style>
+[class*=cnjnctn-type-] {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	margin-bottom: 15px;
+	margin-left: 5px;
+	margin-right: 0px;
+	margin-top: 15px;
+	position: relative;
+	min-height: 60px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child):after {
+	background-image: linear-gradient(to bottom, #6f6f6f, #6f6f6f);
+	background-size: 3px;
+	content: ' ';
+	height: 100%;
+	margin-left: -15px;
+	position: absolute;
+	top: 0;
+	width: 3px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col] {
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 100%;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]> :first-child:not([class*=mrgn-tp-]) {
+	margin-top: 0px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]> :last-child:not([class*=mrgn-bttm-]) {
+	margin-bottom: 0px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:last-child) {
+	margin-bottom: 30px;
+	margin-right: 30px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child) {
+	margin-top: 30px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child):before {
+	border-color: #6f6f6f;
+	border-style: solid;
+	box-sizing: content-box;
+	font-size: 16px;
+	font-weight: 600;
+	height: 30px;
+	line-height: 28px;
+	margin-top: -53px;
+	padding: 4px;
+	position: absolute;
+	text-align: center;
+	width: 30px;
+}
+.cnjnctn-type-or [class*=cnjnctn-col]:not(:first-child):before {
+	border-radius: 50%;
+	border-width: 3px;
+}
+.cnjnctn-type-and [class*=cnjnctn-col]:not(:first-child):before {
+	border-width: 0px 3px 0px 3px;
+}
+html:lang(en) .cnjnctn-type-and [class*=cnjnctn-col]:not(:first-child):before {
+	content: "and";
+}
+html:lang(fr) .cnjnctn-type-and [class*=cnjnctn-col]:not(:first-child):before {
+	content: "et";
+}
+html:lang(en) .cnjnctn-type-or [class*=cnjnctn-col]:not(:first-child):before {
+	content: "or";
+}
+html:lang(fr) .cnjnctn-type-or [class*=cnjnctn-col]:not(:first-child):before {
+	content: "ou";
+}
+[class*=cnjnctn-type-] .cnjnctn-col-90 {
+	flex-basis: 90%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-80 {
+	flex-basis: 80%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-75 {
+	flex-basis: 75%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-70 {
+	flex-basis: 70%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-60 {
+	flex-basis: 60%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-50 {
+	flex-basis: 50%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-40 {
+	flex-basis: 40%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-30 {
+	flex-basis: 30%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-25 {
+	flex-basis: 25%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-20 {
+	flex-basis: 20%
+}
+[class*=cnjnctn-type-].cnjnctn-xs {
+	flex-direction: row;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):after {
+	background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child) {
+	margin-left: 30px;
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):after {
+	margin-left: -46px;
+}
+.cnjnctn-type-or.cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -67px;
+}
+.cnjnctn-type-and.cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -65.5px;
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+	margin-top: 4px;
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:last-child) {
+	margin-bottom: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child) {
+	margin-top: 0px;
+}
+.cnjnctn-type-and.cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+	border-width: 3px 0px 3px 0px;
+}
+
+@media all and (min-width: 768px) {
+[class*=cnjnctn-type-].cnjnctn-sm {
+	border-left: 0px solid transparent;
+	flex-direction: row;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child) {
+	margin-left: 30px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):after {
+	margin-left: -46px;
+}
+.cnjnctn-type-or.cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -67px;
+}
+.cnjnctn-type-and.cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -65.5px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+	margin-top: 4px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:last-child) {
+	margin-bottom: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child) {
+	margin-top: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):after {
+	background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+}
+.cnjnctn-type-and.cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+	border-width: 3px 0px 3px 0px;
+}
+}
+
+@media all and (min-width: 992px) {
+[class*=cnjnctn-type-].cnjnctn-md {
+	border-left: 0px solid transparent;
+	flex-direction: row;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child) {
+	margin-left: 30px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child):after {
+	margin-left: -46px;
+}
+.cnjnctn-type-or.cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -67px;
+}
+.cnjnctn-type-and.cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -65.5px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+	margin-top: 4px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:last-child) {
+	margin-bottom: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child) {
+	margin-top: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child):after {
+	background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+}
+.cnjnctn-type-and.cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+	border-width: 3px 0px 3px 0px;
+}
+}
+
+@media all and (min-width: 1200px) {
+[class*=cnjnctn-type-].cnjnctn-lg {
+	border-left: 0px solid transparent;
+	flex-direction: row;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child) {
+	margin-left: 30px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):after {
+	margin-left: -46px;
+}
+.cnjnctn-type-or.cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -67px;
+}
+.cnjnctn-type-and.cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -65.5px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+	margin-top: 4px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:last-child) {
+	margin-bottom: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child) {
+	margin-top: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):after {
+	background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+}
+.cnjnctn-type-and.cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+	border-width: 3px 0px 3px 0px;
+}
+}
+</style>
+
+      <link href="/etc/designs/canada/wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon"/>
+	      
       </head>
       <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
          <div id="def-top">
@@ -551,11 +907,11 @@ input:focus::placeholder {
 
 
 <div class="wb-steps wb-frmvld provisional">
-  <form action="#" method="get" id="steps-example">
+  <form action="#" method="get" id="steps-example" class="gc-font-2019">
 
  <fieldset id="before" class="panel-default p-0">
   <legend class="panel-heading"><span class="panel-title">Before you begin</span></legend>
-                        <div class="panel-body">
+                        <div class="panel-body gc-font-2019">
 <p>You (as the employer) can send a request to the CRA to obtain guidance to determine if your employee working entirely remotely can reasonably be considered "attached to an establishment of the employer" under the <strong>new CRA administrative policy</strong>.</p>
 
 <p>If you <strong>do not</strong> meet all of the below conditions, the new CRA administrative policy on remote work <strong>does not</strong> apply to your situation. In this situation, continue to: <a href="https://test.canada.ca/cra-arc/payroll/employee/poe.html">Determine the province of employment (POE)</a>.</p>
@@ -590,13 +946,14 @@ input:focus::placeholder {
  
  <fieldset id="primary" class="panel-default p-0">
   <legend class="panel-heading"><span class="panel-title">Primary indicator</span></legend>
-                        <div class="panel-body">
+                       <div class="panel-body gc-font-2019">
 
 <p>All of the facts relevant to your employee's situation will be considered to determine if your employee can be reasonably considered “attached to an establishment of the employer” under the new CRA administrative policy on remote work. <strong>The response to you request will not be an official decision made by the CRA and it is not a CRA ruling on determining the POE.</strong></p>
 
+<div class="form-group gc-font-2019">
  <div class="row">
   <div class="col-xs-12">     
- <div class="wb-frmvld fieldflow-lg gc-font-2019">
+ <div class="wb-frmvld fieldflow-lg">
 	<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true, "renderas":"radio", "gcChckbxrdio":true, "reset": {"action": "addClass", "source": ".alert1", "class": "hidden"}}'>
 	  <p class="wb-fieldflow-label mrgn-tp-md">Did your employee physically report to one of your establishments in Canada immediately before entering the full-time remote work agreement?</p>
 	  <ul>
@@ -612,10 +969,10 @@ input:focus::placeholder {
 		<li data-wb-fieldflow='{"action": "removeClass", "source": "#answer1-3", "class": "hidden", "live": true}'>No</li>
 	  </ul>
 	</div>
-</div></div></div>
+</div></div></div></div>
 <div id="answers1">
 
-  <div id="answer1-3" class="hidden alert1 provisional">
+  <div id="answer1-3" class="hidden alert1 provisional gc-font-2019"">
 
  </div>
 
@@ -714,7 +1071,7 @@ input:focus::placeholder {
 
 <fieldset id="step2" class="panel-default p-0">
   <legend class="panel-heading mrgn-bttm-lg"><span class="panel-title">Payroll and corporate tax processing</span></legend>
-                        <div class="panel-body">
+                     <div class="panel-body gc-font-2019">
      
 <section id="form3" class="gc-font-2019">
 
@@ -758,10 +1115,10 @@ input:focus::placeholder {
 	
 </div></div></div>
 
-<button type="button" class="btn btn-danger delete-btn"
+<button type="button" class="btn btn-warning delete-btn"
        onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
        style="display: none; margin-top: 5px;">
-   Delete
+ <span class="fas fa-trash-alt"></span>  Delete
 </button>
 	
 	</div> </div>
@@ -769,9 +1126,9 @@ input:focus::placeholder {
 
 <!-- Add another block -->
 <!-- For section3 -->
-<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+<button type="button" class="btn btn-default mrgn-tp-md "
        onclick="addAddressBlockGeneric('addressSections3', 'address-block3', 'form3')">
-   Add another establishment
+ <span class="fa fa-plus"></span> Add another establishment
 </button>
 <hr>
 	
@@ -871,7 +1228,7 @@ input:focus::placeholder {
 
 <fieldset id="step3" class="panel-default p-0">
   <legend class="panel-heading mrgn-bttm-lg"><span class="panel-title">Secondary indicators</span></legend>
-                        <div class="panel-body">
+                       <div class="panel-body gc-font-2019">
 
    <section id="form4" class="gc-font-2019 mrgn-tp-md">
 
@@ -917,10 +1274,10 @@ input:focus::placeholder {
 </div>
 		
 		
-<button type="button" class="btn btn-danger delete-btn"
+<button type="button" class="btn btn-warning delete-btn"
        onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
        style="display: none; margin-top: 5px;">
-   Delete
+ <span class="fas fa-trash-alt"></span>  Delete
 </button>
 	
 	</div></div>
@@ -928,9 +1285,9 @@ input:focus::placeholder {
 
 <!-- Add another block -->
 <!-- For section4 -->
-<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+<button type="button" class="btn btn-default mrgn-tp-md "
        onclick="addAddressBlockGeneric('addressSections4', 'address-block4', 'form4')">
-   Add another establishment
+ <span class="fa fa-plus"></span>  Add another establishment
 </button>
  <hr>
 <script>
@@ -1037,10 +1394,10 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 	<input type="text" name="cy5" size="40" maxlength="40" value="" id="cy5" class="form-control gc-font-2019" placeholder="Enter city, town or village" required="required"/>
 	
 </div></div></div>
-<button type="button" class="btn btn-danger delete-btn"
+<button type="button" class="btn btn-warning delete-btn"
        onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
        style="display: none; margin-top: 5px;">
-   Delete
+ <span class="fas fa-trash-alt"></span>  Delete
 </button>
 	
 	</div> </div>
@@ -1048,9 +1405,9 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 
 <!-- Add another block -->
 <!-- For section5 -->
-<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+<button type="button" class="btn btn-default mrgn-tp-md "
        onclick="addAddressBlockGeneric('addressSections5', 'address-block5', 'form5')">
-   Add another establishment
+ <span class="fa fa-plus"></span>  Add another establishment
 </button>
 <hr>
 
@@ -1100,10 +1457,10 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 </div></div></div>
 
 
-<button type="button" class="btn btn-danger delete-btn"
+<button type="button" class="btn btn-warning delete-btn"
        onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
        style="display: none; margin-top: 5px;">
-   Delete
+ <span class="fas fa-trash-alt"></span>  Delete
 </button>
 	
 	</div> </div>
@@ -1111,9 +1468,9 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 
 <!-- Add another block -->
 <!-- For section6 -->
-<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+<button type="button" class="btn btn-default mrgn-tp-md "
        onclick="addAddressBlockGeneric('addressSections6', 'address-block6', 'form6')">
-   Add another establishment
+ <span class="fa fa-plus"></span>  Add another establishment
 </button>
 <hr>	
 </section>  
@@ -1161,10 +1518,10 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 	
 </div></div></div>
 
-<button type="button" class="btn btn-danger delete-btn"
+<button type="button" class="btn btn-warning delete-btn"
        onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
        style="display: none; margin-top: 5px;">
-   Delete
+ <span class="fas fa-trash-alt"></span>  Delete
 </button>
 	
 	</div> </div>
@@ -1172,9 +1529,9 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 
 <!-- Add another block -->
 <!-- For section7 -->
-<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+<button type="button" class="btn btn-default mrgn-tp-md "
        onclick="addAddressBlockGeneric('addressSections7', 'address-block7', 'form7')">
-   Add another establishment
+ <span class="fa fa-plus"></span>  Add another establishment
 </button>
 <hr>	
 	
@@ -1225,10 +1582,10 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 	
 </div> </div> </div>
 
-<button type="button" class="btn btn-danger delete-btn"
+<button type="button" class="btn btn-warning delete-btn"
        onclick="deleteBlockGeneric(this, 'address-block', 'addressSections')"
        style="display: none; margin-top: 5px;">
-   Delete
+ <span class="fas fa-trash-alt"></span>  Delete
 </button>
 	
 	</div> </div>
@@ -1236,9 +1593,9 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 
 <!-- Add another block -->
 <!-- For section8 -->
-<button type="button" class="btn btn-default mrgn-tp-md btn-lg"
+<button type="button" class="btn btn-default mrgn-tp-md "
        onclick="addAddressBlockGeneric('addressSections8', 'address-block8', 'form8')">
-   Add another establishment
+  <span class="fa fa-plus"></span> Add another establishment
 </button>
 <hr>	
 
@@ -1249,7 +1606,7 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 
 <fieldset id="step4" class="panel-default p-0">
   <legend class="panel-heading mrgn-bttm-lg"><span class="panel-title">Employer contact information</span></legend>
-                        <div class="panel-body">
+                       <div class="panel-body gc-font-2019">
        <div class="row" id="ajax-step4a">
    <div class="col-xs-6">
 
@@ -1287,6 +1644,7 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 
     </div>
 
+
 <div class="form-group mrgn-tp-md gc-font-2019" id="ajax-step5c">
   <fieldset class="gc-chckbxrdio">
 <legend class="required"> <span class="field-name">Confirmation &nbsp;<span class="wb-inv">(required)</span></span></legend>
@@ -1299,23 +1657,6 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 </ul>   
 </fieldset>  </div>
 
-<!--div class="form-group mrgn-tp-lg">
-<label for="fbhphn" class="required fbhphn"><span class="field-name">Telephone number</span></label>
-<div id="errorbox"></div>
-<p><span class="">(brackets, spaces or dashes not accepted)</span></p>
-<input class="form-control" id="fbhphn" name="fbhphn" type="tel" autocomplete="tel" size="15" maxlength="15" required="required" pattern="^[0-9]+$" data-rule-phoneUS="true" />
-
-</div-->
-
-
-<!--div class="form-group grouped">
-   <label for="tel1" class="required"><span class="field-name">Telephone number</span> </label>
-   <div class="form-inline">
-     <span class="h3">(</span> <input id="tel1" name="tel1" type="text" required="required" data-rule-digits="true" size="3" maxlength="3" data-rule-minlength="3" data-rule-require_from_group='[3,".group"]' class="group"> <span class="h3"> )</span>
-     <input id="tel2" name="tel2" type="text" required="required" data-rule-digits="true" size="3" maxlength="3" data-rule-minlength="3" data-rule-require_from_group='[3,".group"]' class="group"> <span class="h3"> - </span> 
-     <input id="tel3" name="tel3" type="text" required="required" data-rule-digits="true" size="4" maxlength="4" data-rule-minlength="4" data-rule-require_from_group='[3,".group"]' class="group">
-   </div>
-</div-->
 
 <!--script>
 var container = document.getElementsByClassName("grouped")[0];
@@ -1342,7 +1683,7 @@ container.onkeyup = function(e) {
 <fieldset id="step5" class="panel-default p-0">
   <legend class="panel-heading mrgn-bttm-lg"><span class="panel-title">Review, create a <abbr title="Portable Document Format">PDF</abbr> and send request</span></legend>
    
-    <div class="panel-body">
+   <div class="panel-body gc-font-2019">
 
 <div class="alert alert-success mrgn-tp-xl">
  <p>You are now ready to create and save a <abbr title="Portable Document Format">PDF</abbr> of your request. The CRA will <strong>not</strong> keep the details of this <abbr title="Portable Document Format">PDF</abbr> and information is not saved on this page. If you leave this page without saving/printing you will need to enter your information again.</p>
@@ -1382,11 +1723,14 @@ container.onkeyup = function(e) {
 <h3 class="panel-title">Employer contact information</h3>
 </header>
   <div class="panel-body">
-<p><strong>First name:</strong> Add output</p>	
-<p><strong>Last name:</strong> Add output</p>	
-<p><strong>Email:</strong> Add output</p>	
-<p><strong>Telephone number:</strong> Add output</p>	
-<p><strong>Confirmation:</strong> Add output</p>		  
+   <ul class="list-unstyled">
+
+ <li><strong>First name:</strong> <output class="h4 wb-calc nowrap step4a"></output> Add output</li>	
+ <li><strong>Last name:</strong><output class="h4 wb-calc nowrap step4b"></output>  Add output</li>	
+ <li><strong>Email:</strong> <output class="h4 wb-calc nowrap step4c"></output>  Add output</li>	
+ <li><strong>Telephone number:</strong><output class="h4 wb-calc nowrap step4d"></output>  Add output</li>	
+ <li><strong>Confirmation:</strong> <output class="h4 wb-calc nowrap step4f"></output>  Add output</li>	
+ </ul>	  
   </div>  
 </section>
 
@@ -1400,20 +1744,44 @@ container.onkeyup = function(e) {
 <hr>
   </div>
 
- <p class="hidden-print"><a href="#previewrequest" class="wb-lbx btn btn-default btn-lg" aria-controls="previewrequest" role="button"><span class="h3"><span class="glyphicon glyphicon-print"></span> Print preview <span class="wb-inv"> <span class="preview">Print preview</span> </span></span></a></p>
+ <p class="hidden-print"><a href="#previewrequest" class="wb-lbx btn btn-default " aria-controls="previewrequest" role="button"><span class="h3"><span class="glyphicon glyphicon-print"></span> Print preview <span class="wb-inv"> <span class="preview">Print preview</span> </span></span></a></p>
 <h3>Send your request</h3>
 <p>Once you have printed and saved your PDF, you can send your request by email to: <a href="mailto:PLS-SPL@cra-arc.gc.ca">PLS-SPL@cra-arc.gc.ca</a>, do not include protected information.</p>
 <p>A CRA officer should respond within <strong>30 business days</strong> from the date the request is sent. They may contact you by phone as part of the review process.</p>	
       </div>
     </fieldset>
 
-    <input type="submit" name="submit" value="Submit" class="btn btn-primary hidden">
+    <input type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary hidden">
   </form>
 </div>
 
 
             <div aria-relevant="all" aria-live="polite" class="arialive wb-inv"></div>
 
+<script>
+$(document).on("click", ".steps-wrapper button", function (event) {
+	$("legend.wb-steps-active").parents().prevAll().find("legend.panel-heading").addClass("prev-wb-step");			
+	$("legend.wb-steps-active").parents().nextAll().find("legend.panel-heading").removeClass("prev-wb-step");	
+	$("legend.wb-steps-active").removeClass("prev-wb-step").attr("tabindex", "0");
+	$("legend:not(.wb-steps-active)").attr("tabindex", "-1");
+	//wrap with button
+	$("legend.wb-steps-active").parents().prevAll().find("legend.panel-heading").wrapInner("<button class='btn-link p-0 btn-lgnd' type='button'></button>");
+	$("fieldset legend.wb-steps-active").nextAll().addBack().find('.btn-lgnd').contents().unwrap();
+	$(".btn-lgnd .btn-lgnd").contents().unwrap(); 
+});
+$(document).on("click", ".prev-wb-step", function (event) { 
+	$(this).addClass("wb-steps-active").removeClass("prev-wb-step");
+	$(this).parent().parent().find("legend + div.panel-body.hidden, .buttons").removeClass("hidden");
+	$("legend.wb-steps-active").parents().nextAll().find(".wb-steps-active, legend.prev-wb-step").removeClass("wb-steps-active prev-wb-step");	
+	$("legend.wb-steps-active").parents().nextAll().find("legend + div.panel-body, .buttons").addClass("hidden");	
+  
+  $("legend.wb-steps-active").parents().nextAll().each(function( index ) {
+    // const wrapperNode = document.querySelector('h1')
+    // wrapperNode.replaceWith(...wrapperNode.childNodes)
+  });
+  
+});		
+</script>
 
 <section id="province" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg"><header class="modal-header"><h2 class="modal-title">What is considered the establishment of the employer</h2>
 	</header>	<div class="modal-body">		
