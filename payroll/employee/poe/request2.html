@@ -1740,13 +1740,20 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 </header>
   <div class="panel-body mrgn-lft-md">
 <dl class="dl-horizontal brdr-0 dl-col-5 nopadding">
-<dt>First name</dt><dd>John</dd>
-<dt>Last name</dt><dd>Smith</dd>
-<dt>Email</dt><dd>123 Anywhere Street</dd>
-<dt>Telephone number</dt><dd>(705) 555-5555</dd>
+<dt>First name</dt><dd><p id="summary-firstname">John</p></dd>
+<dt>Last name</dt><dd><span id="summary-lastname">Smith</span></dd>
+<dt>Email</dt><dd><span id="summary-email">g@mail.com</span></dd>
+<dt>Telephone number</dt><dd><span id="summary-phone">(705) 555-5555</span></dd>
 </dl>
 
  </div>  
+<script>
+$(document).ready(function() {
+  var myText = $("#step4a").text();
+  $("#summary-firstname").text(myText); 
+});
+</script>
+
 </section>
 
  <div class="form-group mrgn-tp-md gc-font-2019" id="ajax-step5c">
@@ -1889,7 +1896,7 @@ $(document).on("wb-ready.wb", function () {
       <script src="https://gc-proto-cra.github.io/js/alpha-banner.js"></script>
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.js"></script>
 <script src="https://cdn.canada.ca/gcweb/wet-boew/js/jquery.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <div class="clearfix"></div>
 
          </main>
