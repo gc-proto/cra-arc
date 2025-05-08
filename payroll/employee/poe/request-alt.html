@@ -31,7 +31,6 @@
       <link rel="stylesheet" href="../../../css/wsm.css"/>
       <link rel="stylesheet" href="../../../css/step-list.css"/>
       <link rel="stylesheet" href="../../../css/stacked-header.css"/>
-
 <style>
 @charset "utf-8";
 /* CSS Document */
@@ -506,7 +505,360 @@ input:focus::placeholder {
 .wb-eqht-css .hght-inhrt-css .eqht-trgt-css {
 	flex: 1 1 auto;
 }
-</style>	      
+</style>
+
+<style>
+        .provisional.wb-steps .wb-tggle-fildst > legend:before {
+          background-color: #fff;
+          padding: 4px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          border: 3px solid #6f6f6f;
+          height: 1.2em;
+          width: 1.2em;
+          box-sizing: content-box;
+          margin-right: 10px;
+          display: inline-block;
+          text-align: center;
+          line-height: 1.2;
+          content: counter(fieldset_counter);
+        }
+        .panel-default > .panel-heading.wb-steps-active {
+          background-color: #fff;
+        }
+        .provisional.wb-steps .wb-tggle-fildst > legend.wb-steps-active:before {
+          background-color: #1c578a;
+          border-color: #1c578a;
+          color: #fff;
+        }
+        .provisional.wb-steps .wb-tggle-fildst > legend:not(.wb-steps-active) {
+          font-size: 18px;
+        }
+        .provisional.wb-steps .wb-tggle-fildst > legend.wb-steps-active {
+          font-weight: bold;
+        }
+        fieldset +.buttons {
+          margin-left: 15px;
+        }
+        .wb-steps-active .panel-title {
+          font-size: 1.3em;
+        }
+          fieldset fieldset {min-width: 1px;}
+        .ds-example {
+          margin-top: 15px;
+          border: 1px solid #e3e3e3;
+          box-shadow: 0px 0px 8px #e3e3e3;
+        }
+        .ds-example>.wb-tabs>.tabpanels {
+          background: #f9f9f9;
+        }
+        .ds-example>.wb-tabs>.tabpanels legend {
+          font-size: 80%;
+          font-weight: 700;
+          margin: 0 0 5px;
+        }
+        .ds-example>.wb-tabs>.tabpanels fieldset {
+          padding-top: 0;
+        }
+        .ds-example>.wb-tabs>.tabpanels>details>summary {
+          background: #fff;
+          border-radius: 0;
+        }
+        .ds-example>.wb-tabs [role=tablist]>li:focus, .ds-example>.wb-tabs [role=tablist]>li:hover {
+          background: #ddd;
+        }
+        .ds-example>.wb-tabs {
+          margin-bottom: 0;
+        }
+        .ds-example>.wb-tabs>.tabpanels>details {
+          margin-bottom: 0;
+        }
+        .ds-example .panel-body {
+          box-shadow: none;
+        }
+
+        @media screen and (max-width: 991px) {
+        .ds-example>.wb-tabs .tgl-panel {
+          margin-top: 15px;
+        }
+        }
+
+        @media screen and (min-width: 992px) {
+        .ds-example>.wb-tabs>.tabpanels>details {
+          border: none;
+          padding: 15px;
+        }
+        .ds-example>.wb-tabs [role=tablist]>li {
+          border: none;
+          background: none;
+        }
+        .ds-example>.wb-tabs [role=tablist]>li.active a {
+          border-width: 0 0 4px;
+        }
+        .ds-example>.wb-tabs>.tabpanels>details {
+          padding: 30px;
+        }
+        .ds-example>.wb-tabs>.tabpanels>details {
+          background: #f9f9f9;
+          padding: 30px;
+          margin-bottom: 0;
+        }
+        }
+        .prev-wb-step .btn-lgnd
+          { margin: 1px; text-decoration-line: underline;}
+        .prev-wb-step:focus, .prev-wb-step:hover
+          {color: #0535d2;}	
+        .prev-wb-step:focus 
+          {outline: 5px auto; outline-offset: -2px;}	
+      </style>
+<style>
+[class*=cnjnctn-type-] {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	margin-bottom: 15px;
+	margin-left: 5px;
+	margin-right: 0px;
+	margin-top: 15px;
+	position: relative;
+	min-height: 60px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child):after {
+	background-image: linear-gradient(to bottom, #6f6f6f, #6f6f6f);
+	background-size: 3px;
+	content: ' ';
+	height: 100%;
+	margin-left: -15px;
+	position: absolute;
+	top: 0;
+	width: 3px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col] {
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 100%;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]> :first-child:not([class*=mrgn-tp-]) {
+	margin-top: 0px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]> :last-child:not([class*=mrgn-bttm-]) {
+	margin-bottom: 0px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:last-child) {
+	margin-bottom: 30px;
+	margin-right: 30px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child) {
+	margin-top: 30px;
+}
+[class*=cnjnctn-type-] [class*=cnjnctn-col]:not(:first-child):before {
+	border-color: #6f6f6f;
+	border-style: solid;
+	box-sizing: content-box;
+	font-size: 16px;
+	font-weight: 600;
+	height: 30px;
+	line-height: 28px;
+	margin-top: -53px;
+	padding: 4px;
+	position: absolute;
+	text-align: center;
+	width: 30px;
+}
+.cnjnctn-type-or [class*=cnjnctn-col]:not(:first-child):before {
+	border-radius: 50%;
+	border-width: 3px;
+}
+.cnjnctn-type-and [class*=cnjnctn-col]:not(:first-child):before {
+	border-width: 0px 3px 0px 3px;
+}
+html:lang(en) .cnjnctn-type-and [class*=cnjnctn-col]:not(:first-child):before {
+	content: "and";
+}
+html:lang(fr) .cnjnctn-type-and [class*=cnjnctn-col]:not(:first-child):before {
+	content: "et";
+}
+html:lang(en) .cnjnctn-type-or [class*=cnjnctn-col]:not(:first-child):before {
+	content: "or";
+}
+html:lang(fr) .cnjnctn-type-or [class*=cnjnctn-col]:not(:first-child):before {
+	content: "ou";
+}
+[class*=cnjnctn-type-] .cnjnctn-col-90 {
+	flex-basis: 90%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-80 {
+	flex-basis: 80%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-75 {
+	flex-basis: 75%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-70 {
+	flex-basis: 70%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-60 {
+	flex-basis: 60%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-50 {
+	flex-basis: 50%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-40 {
+	flex-basis: 40%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-30 {
+	flex-basis: 30%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-25 {
+	flex-basis: 25%
+}
+[class*=cnjnctn-type-] .cnjnctn-col-20 {
+	flex-basis: 20%
+}
+[class*=cnjnctn-type-].cnjnctn-xs {
+	flex-direction: row;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):after {
+	background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child) {
+	margin-left: 30px;
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):after {
+	margin-left: -46px;
+}
+.cnjnctn-type-or.cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -67px;
+}
+.cnjnctn-type-and.cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -65.5px;
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+	margin-top: 4px;
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:last-child) {
+	margin-bottom: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-xs [class*=cnjnctn-col]:not(:first-child) {
+	margin-top: 0px;
+}
+.cnjnctn-type-and.cnjnctn-xs [class*=cnjnctn-col]:not(:first-child):before {
+	border-width: 3px 0px 3px 0px;
+}
+
+@media all and (min-width: 768px) {
+[class*=cnjnctn-type-].cnjnctn-sm {
+	border-left: 0px solid transparent;
+	flex-direction: row;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child) {
+	margin-left: 30px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):after {
+	margin-left: -46px;
+}
+.cnjnctn-type-or.cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -67px;
+}
+.cnjnctn-type-and.cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -65.5px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+	margin-top: 4px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:last-child) {
+	margin-bottom: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child) {
+	margin-top: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):after {
+	background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+}
+.cnjnctn-type-and.cnjnctn-sm [class*=cnjnctn-col]:not(:first-child):before {
+	border-width: 3px 0px 3px 0px;
+}
+}
+
+@media all and (min-width: 992px) {
+[class*=cnjnctn-type-].cnjnctn-md {
+	border-left: 0px solid transparent;
+	flex-direction: row;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child) {
+	margin-left: 30px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child):after {
+	margin-left: -46px;
+}
+.cnjnctn-type-or.cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -67px;
+}
+.cnjnctn-type-and.cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -65.5px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+	margin-top: 4px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:last-child) {
+	margin-bottom: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child) {
+	margin-top: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-md [class*=cnjnctn-col]:not(:first-child):after {
+	background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+}
+.cnjnctn-type-and.cnjnctn-md [class*=cnjnctn-col]:not(:first-child):before {
+	border-width: 3px 0px 3px 0px;
+}
+}
+
+@media all and (min-width: 1200px) {
+[class*=cnjnctn-type-].cnjnctn-lg {
+	border-left: 0px solid transparent;
+	flex-direction: row;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child) {
+	margin-left: 30px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):after {
+	margin-left: -46px;
+}
+.cnjnctn-type-or.cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -67px;
+}
+.cnjnctn-type-and.cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+	margin-left: -65.5px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+	margin-top: 4px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:last-child) {
+	margin-bottom: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child) {
+	margin-top: 0px;
+}
+[class*=cnjnctn-type-].cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):after {
+	background-image: linear-gradient(to bottom, #6f6f6f 6px, #6f6f6f 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) 46px, #6f6f6f 46px, #6f6f6f 46px);
+}
+.cnjnctn-type-and.cnjnctn-lg [class*=cnjnctn-col]:not(:first-child):before {
+	border-width: 3px 0px 3px 0px;
+}
+}
+</style>
+
+      <link href="/etc/designs/canada/wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon"/>
+	      
       </head>
       <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
          <div id="def-top">
