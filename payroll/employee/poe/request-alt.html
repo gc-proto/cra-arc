@@ -1758,38 +1758,34 @@ function deleteBlockGeneric(button, blockClass, containerId) {
 
             <div aria-relevant="all" aria-live="polite" class="arialive wb-inv"></div>
 
-
 <script>
- $(document).on("wb-ready.wb", function () {
-   $(document).on("click", ".steps-wrapper button", function (event) {
-     // Step activation visual logic
-     $("legend.panel-heading").removeClass("prev-wb-step");
-     $("legend.wb-steps-active").removeClass("prev-wb-step").attr("tabindex", "0");
-     $("legend:not(.wb-steps-active)").attr("tabindex", "-1");
-     // Wrap previous step legends in buttons
-     $("legend.wb-steps-active")
-       .closest("fieldset")
-       .prevAll("fieldset")
-       .find("legend.panel-heading:not(:has(button))")
-       .wrapInner("<button class='btn-link p-0 btn-lgnd' type='button'></button>");
-     // Unwrap current and following legends if needed
-     $("fieldset legend.wb-steps-active").nextAll().addBack().find(".btn-lgnd").contents().unwrap();
-     $(".btn-lgnd .btn-lgnd").contents().unwrap();
-     // Clone user inputs into summary
+$(document).on("click", ".steps-wrapper button", function (event) {
+	$("legend.wb-steps-active").parents().prevAll().find("legend.panel-heading").addClass("prev-wb-step");			
+	$("legend.wb-steps-active").parents().nextAll().find("legend.panel-heading").removeClass("prev-wb-step");	
+	$("legend.wb-steps-active").removeClass("prev-wb-step").attr("tabindex", "0");
+	$("legend:not(.wb-steps-active)").attr("tabindex", "-1");
+	//wrap with button
+	$("legend.wb-steps-active").parents().prevAll().find("legend.panel-heading").wrapInner("<button class='btn-link p-0 btn-lgnd' type='button'></button>");
+	$("fieldset legend.wb-steps-active").nextAll().addBack().find('.btn-lgnd').contents().unwrap();
+	$(".btn-lgnd .btn-lgnd").contents().unwrap(); 
+	  // Clone user inputs into summary
      $("#summary-firstname").text($("#step4a").val() || "");
      $("#summary-lastname").text($("#step4b").val() || "");
      $("#summary-email").text($("#contactContactEmailAddress").val() || "");
      $("#summary-phone").text($("#step4d").val() || "");
-   });
-   $(document).on("click", ".prev-wb-step", function (event) {
-     const $legend = $(this);
-     $legend.addClass("wb-steps-active").removeClass("prev-wb-step");
-     $legend.closest("fieldset").find(".panel-body.hidden, .buttons").removeClass("hidden");
-     // Hide later steps
-     $legend.closest("fieldset").nextAll().find(".wb-steps-active, .prev-wb-step").removeClass("wb-steps-active prev-wb-step");
-     $legend.closest("fieldset").nextAll().find("legend + div.panel-body, .buttons").addClass("hidden");
-   });
- });
+});
+$(document).on("click", ".prev-wb-step", function (event) { 
+	$(this).addClass("wb-steps-active").removeClass("prev-wb-step");
+	$(this).parent().parent().find("legend + div.panel-body.hidden, .buttons").removeClass("hidden");
+	$("legend.wb-steps-active").parents().nextAll().find(".wb-steps-active, legend.prev-wb-step").removeClass("wb-steps-active prev-wb-step");	
+	$("legend.wb-steps-active").parents().nextAll().find("legend + div.panel-body, .buttons").addClass("hidden");	
+  
+  $("legend.wb-steps-active").parents().nextAll().each(function( index ) {
+    // const wrapperNode = document.querySelector('h1')
+    // wrapperNode.replaceWith(...wrapperNode.childNodes)
+  });
+  
+});		
 </script>
 
 
