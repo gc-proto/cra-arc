@@ -1414,6 +1414,23 @@ container.onkeyup = function(e) {
 
             <div aria-relevant="all" aria-live="polite" class="arialive wb-inv"></div>
 
+<script>
+ function showSummary() {
+   const inputs = [
+     document.getElementById('step4a').value,
+     document.getElementById('step4b').value,
+     document.getElementById('step4c').value,
+     document.getElementById('step4d').value,
+     document.getElementById('step4e').value
+   ];
+   inputs.forEach((val, index) => {
+     document.getElementById(`out${index + 1}`).textContent = val || 'Not provided';
+   });
+   document.getElementById('step5').classList.remove('active');
+   document.getElementById('step6').classList.add('active');
+ }
+</script>
+
 
 <section id="province" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg"><header class="modal-header"><h2 class="modal-title">What is considered the establishment of the employer</h2>
 	</header>	<div class="modal-body">		
