@@ -1767,12 +1767,7 @@ $(document).on("click", ".steps-wrapper button", function (event) {
 	$("legend.wb-steps-active").parents().prevAll().find("legend.panel-heading").wrapInner("<button class='btn-link p-0 btn-lgnd' type='button'></button>");
 	$("fieldset legend.wb-steps-active").nextAll().addBack().find('.btn-lgnd').contents().unwrap();
 	$(".btn-lgnd .btn-lgnd").contents().unwrap(); 
-	  // Clone user inputs into summary
-     $("#summary-firstname").text($("#step4a").val() || "");
-     $("#summary-lastname").text($("#step4b").val() || "");
-     $("#summary-email").text($("#contactContactEmailAddress").val() || "");
-     $("#summary-phone").text($("#step4d").val() || "");
-});
+	});
 $(document).on("click", ".prev-wb-step", function (event) { 
 	$(this).addClass("wb-steps-active").removeClass("prev-wb-step");
 	$(this).parent().parent().find("legend + div.panel-body.hidden, .buttons").removeClass("hidden");
@@ -1787,6 +1782,22 @@ $(document).on("click", ".prev-wb-step", function (event) {
 });		
 </script>
 
+<script>
+ $(document).on("wb-ready.wb", function () {
+   // Listen for step changes
+   $(document).on("wb-stepchange", ".wb-steps", function (event, data) {
+     // Check if the current step is the summary step
+     var $currentStep = $(data.currentStep);
+     if ($currentStep.find("legend").text().trim() === "Summary") {
+       // Populate summary fields
+       $("#summary-firstname").text($("#step4a").val());
+       $("#summary-lastname").text($("#step4b").val());
+       $("#summary-email").text($("#contactContactEmailAddress").val());
+       $("#summary-phone").text($("#step4d").val());
+     }
+   });
+ });
+</script>
 
 
 <section id="province" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg"><header class="modal-header"><h2 class="modal-title">What is considered the establishment of the employer</h2>
