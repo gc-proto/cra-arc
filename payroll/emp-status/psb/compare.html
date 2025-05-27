@@ -5,17 +5,16 @@
 <title>Questionnaire Comparison Tool</title>
 <meta content="width=device-width,initial-scale=1" name="viewport">
 <meta name="robots" content="noindex, follow">
-<!-- Styling -->
 <style>
    body { font-family: Arial, sans-serif; padding: 20px; }
    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; font-size: 14px; }
    th { background-color: #f4f4f4; }
-   .mismatch { background-color: #ffdddd; }
-   .missing { background-color: #fdf5d9; }
+   .match { background-color: #d6f5d6; }      /* Light green */
+   .mismatch { background-color: #fff3cd; }   /* Light yellow */
+   .missing { background-color: #f8d7da; }    /* Light red */
    #pdfButton { margin-top: 20px; }
 </style>
-<!-- PDF Export (optional) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
@@ -49,8 +48,7 @@
            const pTitle = p?.titleEn || '[Missing]';
            const wChoices = w?.choices?.map(c => c.en).join(', ') || '[None]';
            const pChoices = p?.choices?.map(c => c.en).join(', ') || '[None]';
-           const titleMatch = wTitle === pTitle;
-           const choiceMatch = wChoices === pChoices;
+           const match = wChoices === pChoices;
            const existsInBoth = !!w && !!p;
            tableData.push({
              id,
@@ -58,8 +56,7 @@
              pTitle,
              wChoices,
              pChoices,
-             titleMatch,
-             choiceMatch,
+             match,
              existsInBoth
            });
          });
@@ -84,27 +81,27 @@
 <thead>
 <tr>
 <th>Question ID</th>
-<th>Worker Title</th>
-<th>Payer Title</th>
-<th>Title Match</th>
+<th>Worker Question</th>
+<th>Payer Question</th>
 <th>Worker Choices</th>
 <th>Payer Choices</th>
-<th>Choices Match</th>
+<th>Match</th>
+<th>Mismatch</th>
 </tr>
 </thead>
 <tbody>`;
      tableData.forEach(row => {
        const rowClass = row.existsInBoth
-         ? (!row.titleMatch || !row.choiceMatch ? "mismatch" : "")
+         ? (row.match ? "match" : "mismatch")
          : "missing";
        html += `<tr class="${rowClass}">
 <td>${row.id}</td>
 <td>${row.wTitle}</td>
 <td>${row.pTitle}</td>
-<td>${row.titleMatch ? "Yes" : "No"}</td>
 <td>${row.wChoices}</td>
 <td>${row.pChoices}</td>
-<td>${row.choiceMatch ? "Yes" : "No"}</td>
+<td>${row.match ? "Yes" : ""}</td>
+<td>${!row.match && row.existsInBoth ? "Yes" : ""}</td>
 </tr>`;
      });
      html += '</tbody></table>';
@@ -118,13 +115,13 @@
      doc.text("Questionnaire Comparison Report", 40, 30);
      doc.setFontSize(10);
      let y = 50;
-     const lineHeight = 14;
+     const lineHeight = 16;
      tableData.forEach(row => {
        if (y > 550) {
          doc.addPage();
          y = 50;
        }
-       doc.setTextColor(row.titleMatch && row.choiceMatch ? 0 : [200, 0, 0]);
+       doc.setTextColor(row.match ? [0, 150, 0] : [200, 150, 0]);
        doc.text(`ID: ${row.id}`, 40, y);
        doc.text(`W: ${row.wTitle}`, 100, y);
        doc.text(`P: ${row.pTitle}`, 300, y);
