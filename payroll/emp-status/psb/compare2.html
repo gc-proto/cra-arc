@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="robots" content="noindex, follow">
+<!-- WET Assets -->
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
+<link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
+         
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
+<!-- JS Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- Styles -->
+<style>
+   body { font-family: Arial, sans-serif; padding: 20px; }
+   .match { background-color: #d6f5d6; }
+   .mismatch { background-color: #fff3cd; }
+   .missing { background-color: #f8d7da; }
+   .section-header { background-color: #e0e0e0; font-weight: bold; font-size: 16px; }
+   .hidden { display: none !important; }
+</style>
+<script>
+   document.write(wet.builder.refTop({}));
+</script>
+</head>
+<body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+<div id="def-top"></div>
+<main role="main" property="mainContentOfPage" class="container">
+<div class="gc-font-2019">
+<h1>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</h1>
+<p>To use the comparison tool:</p>
+<ol>
+<li>Save the file worker and the file payer on your computer</li>
+<li>Upload the response files (JSON) for the worker and the payer</li>
+<li>Click compare to view side-by-side results (if the results do not match, they are highlighted)</li>
+</ol>
+<hr>
+<h3>Upload the response files (JSON)</h3>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><label>Worker's response: <input type="file" id="workerFile" accept=".json"></label></li>
+<li class="cnjnctn-col"><label>Payer's response: <input type="file" id="payerFile" accept=".json"></label></li>
+</ul>
+<br>
+<button class="btn btn-primary btn-lg" onclick="compare()">Compare</button>
+
+<div id="filters" class="hidden">
+<h3 class="mrgn-tp-lg"><span class="fas fa-lg fa-filter"></span> Filter results by:</h3>
+<hr>
+<div class="btn-group mrgn-bttm-md" role="group">
+<button class="btn btn-default" onclick="filterTable('all')">All</button>
+<button class="btn btn-success" onclick="filterTable('match')">Matches</button>
+<button class="btn btn-warning" onclick="filterTable('mismatch')">Mismatches</button>
+</div>
+<div class="checkbox">
+<label><input type="checkbox" id="toggleIdCol" onchange="toggleIdColumn()"> Show question ID column</label>
+</div>
+</div>
+<!-- Output -->
+<div id="output" class="mrgn-tp-md"></div>
+<script>
+     let tableData = [];
+     const section7GroupId = "c0e4f6bf-af04-4971-8edb-1af56333e341";
+     function compare() {
+       const workerFile = document.getElementById('workerFile').files[0];
+       const payerFile = document.getElementById('payerFile').files[0];
+       if (!workerFile || !payerFile) {
+         alert("Please select both JSON files.");
+         return;
+       }
+       Promise.all([workerFile.text(), payerFile.text()])
+         .then(([wText, pText]) => {
+           const worker = JSON.parse(wText);
+           const payer = JSON.parse(pText);
+           const workerMap = buildAnswerMap(worker.elements);
+           const payerMap = buildAnswerMap(payer.elements);
+           const questionMap = buildQuestionMap(payer.elements);
+           const sectionElements = payer.groups[section7GroupId]?.elements || [];
+           tableData = sectionElements.map(elId => {
+             const el = payer.elements.find(e => e.id == elId);
+             const qid = el?.properties?.questionId;
+             const label = el?.properties?.titleEn || '[No Label]';
+             const workerAnswer = workerMap[qid] || '[Missing]';
+             const payerAnswer = payerMap[qid] || '[Missing]';
+             return {
+               id: qid,
+               label,
+               worker: workerAnswer,
+               payer: payerAnswer,
+               match: workerAnswer === payerAnswer,
+               existsInBoth: qid in workerMap && qid in payerMap
+             };
+           });
+           renderTable();
+         });
+     }
+     function buildAnswerMap(elements) {
+       const map = {};
+       elements.forEach(el => {
+         const qid = el?.properties?.questionId;
+         if (qid && el.properties?.value !== undefined) {
+           map[qid] = el.properties.value;
+         }
+       });
+       return map;
+     }
+     function buildQuestionMap(elements) {
+       const map = {};
+       elements.forEach(el => {
+         const qid = el?.properties?.questionId;
+         if (qid) {
+           map[qid] = el.properties.titleEn;
+         }
+       });
+       return map;
+     }
+     function renderTable() {
+       document.getElementById('filters').classList.remove('hidden');
+       let html = `<table id="comparisonTable" class="wb-tables table small table-hover" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
+<thead>
+<tr>
+<th class="id-col hidden">Question ID</th>
+<th>Question</th>
+<th>Worker response</th>
+<th>Payer response</th>
+<th>Match</th>
+</tr>
+</thead>
+<tbody>`;
+       tableData.forEach(row => {
+         const rowClass = !row.existsInBoth ? "missing" : (row.match ? "match" : "mismatch");
+         html += `<tr class="${rowClass}">
+<td class="id-col hidden">${row.id}</td>
+<td>${row.label}</td>
+<td>${row.worker}</td>
+<td>${row.payer}</td>
+<td>${row.match ? "Yes" : "No"}</td>
+</tr>`;
+       });
+       html += '</tbody></table>';
+       document.getElementById('output').innerHTML = html;
+       window.wb?.init(document.getElementById('output'));
+     }
+     function filterTable(type) {
+       const rows = document.querySelectorAll("#comparisonTable tbody tr");
+       rows.forEach(row => {
+         row.style.display = (type === 'all') ||
+           (type === 'match' && row.classList.contains('match')) ||
+           (type === 'mismatch' && row.classList.contains('mismatch'))
+           ? '' : 'none';
+       });
+     }
+     function toggleIdColumn() {
+       const show = document.getElementById("toggleIdCol").checked;
+       const cells = document.querySelectorAll(".id-col");
+       cells.forEach(cell => cell.classList.toggle("hidden", !show));
+     }
+</script>
+
+<script>
+     var defPreFooter = document.getElementById("def-preFooter");
+     defPreFooter.outerHTML = wet.builder.preFooter({
+       dateModified: "2025-05-27",
+       showPostContent: true,
+       showFeedback: true,
+       showShare: true
+     });
+</script>
+</main>
+</body>
+</html>
