@@ -55,7 +55,7 @@
 <div class="btn-group mrgn-bttm-md" role="group" aria-label="Filter options">
 <button class="btn btn-default" onclick="filterTable('all')">All</button>
 <button class="btn btn-success" onclick="filterTable('match')">Match</button>
-<button class="btn btn-warning" onclick="filterTable('mismatch')">Does not match</button>
+<button class="btn btn-warning" onclick="filterTable('mismatch')">Mismatch</button>
 </div>
 <div class="checkbox">
 <label><input type="checkbox" id="toggleIdCol" onchange="toggleIdColumn()"> Show question ID column</label>
@@ -112,16 +112,18 @@
      function renderTable() {
        document.getElementById('filters').classList.remove('hidden');
        document.getElementById('pdfButton').classList.remove('hidden');
-       let html = `<table id="comparisonTable" class="wb-tables table table-hover" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
+       let html = ` <table id="comparisonTable" class="wb-tables table table-hover table-bordered small " data-wb-tables='{"columnDefs": [ { "visible": true, "targets": [ 0 ] } ], "paging": false, "oLanguage": {
+                     "sSearch": "Filter by keyword"
+                     } }'>
 <thead>
 <tr>
-<th class="id-col hidden">Question ID</th>
-<th>Worker question</th>
-<th>Payer question</th>
-<th>Worker responses</th>
-<th>Payer responses</th>
-<th>Match</th>
-<th>Does not match</th>
+<th scope="col" class="toggle-column id-col hidden">Question ID</th>
+<th scope="col" class="toggle-column">Worker question</th>
+<th scope="col" class="toggle-column">Payer question</th>
+<th scope="col" class="toggle-column">Worker responses</th>
+<th scope="col" class="toggle-column">Payer responses</th>
+<th scope="col" class="toggle-column">Match</th>
+<th scope="col" class="toggle-column">Mismatch</th>
 </tr>
 </thead>
 <tbody>`;
