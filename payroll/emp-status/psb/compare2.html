@@ -22,10 +22,10 @@
    .match { background-color: #d6f5d6; }
    .mismatch { background-color: #fff3cd; }
    .missing { background-color: #f8d7da; }
-   .section-header { background-color: #e0e0e0; font-weight: bold; font-size: 16px; }
    .hidden { display: none !important; }
+   #pdfButton { margin-top: 20px; }
 </style>
-<script>
+<script type="text/javascript">
    document.write(wet.builder.refTop({}));
 </script>
 </head>
@@ -48,14 +48,14 @@
 </ul>
 <br>
 <button class="btn btn-primary btn-lg" onclick="compare()">Compare</button>
-
+<!-- Filters and Toggle (initially hidden) -->
 <div id="filters" class="hidden">
-<h3 class="mrgn-tp-lg"><span class="fas fa-lg fa-filter"></span> Filter results by:</h3>
 <hr>
-<div class="btn-group mrgn-bttm-md" role="group">
+<h3 class="mrgn-tp-lg"><span class="fas fa-lg fa-filter"></span> Filter results by:</h3>
+<div class="btn-group mrgn-bttm-md" role="group" aria-label="Filter options">
 <button class="btn btn-default" onclick="filterTable('all')">All</button>
-<button class="btn btn-success" onclick="filterTable('match')">Matches</button>
-<button class="btn btn-warning" onclick="filterTable('mismatch')">Mismatches</button>
+<button class="btn btn-success" onclick="filterTable('match')">Match</button>
+<button class="btn btn-warning" onclick="filterTable('mismatch')">Mismatch</button>
 </div>
 <div class="checkbox">
 <label><input type="checkbox" id="toggleIdCol" onchange="toggleIdColumn()"> Show question ID column</label>
@@ -63,76 +63,93 @@
 </div>
 <!-- Output -->
 <div id="output" class="mrgn-tp-md"></div>
+<button id="pdfButton" onclick="downloadPDF()" class="btn btn-secondary hidden">Download PDF</button>
+</div>
+
 <script>
      let tableData = [];
-     const section7GroupId = "c0e4f6bf-af04-4971-8edb-1af56333e341";
+     let questionMap = {}; // Will hold question metadata from either form
      function compare() {
        const workerFile = document.getElementById('workerFile').files[0];
        const payerFile = document.getElementById('payerFile').files[0];
        if (!workerFile || !payerFile) {
-         alert("Please select both JSON files.");
+         alert("You must select both JSON files.");
          return;
        }
        Promise.all([workerFile.text(), payerFile.text()])
          .then(([wText, pText]) => {
            const worker = JSON.parse(wText);
            const payer = JSON.parse(pText);
-           const workerMap = buildAnswerMap(worker.elements);
-           const payerMap = buildAnswerMap(payer.elements);
-           const questionMap = buildQuestionMap(payer.elements);
-           const sectionElements = payer.groups[section7GroupId]?.elements || [];
-           tableData = sectionElements.map(elId => {
-             const el = payer.elements.find(e => e.id == elId);
-             const qid = el?.properties?.questionId;
-             const label = el?.properties?.titleEn || '[No Label]';
-             const workerAnswer = workerMap[qid] || '[Missing]';
-             const payerAnswer = payerMap[qid] || '[Missing]';
-             return {
+           // Save question metadata from one of the files (groups + layout + elements)
+           const layout = payer.layout;
+           const groups = payer.groups;
+           const elements = {};
+           payer.elements.forEach(e => {
+             const qid = e?.properties?.questionId;
+             if (qid) elements[qid] = {
+               title: e.properties.titleEn || '',
+               choices: e.properties.choices?.map(c => c.en).join(', ') || ''
+             };
+           });
+           questionMap = elements;
+           // Create maps of answers
+           const wMap = buildMap(worker.elements);
+           const pMap = buildMap(payer.elements);
+           // Compose table rows based on layout
+           tableData = [];
+           layout.forEach(id => {
+             const qid = payer.elements.find(e => e.id === id)?.properties?.questionId;
+             if (!qid) return;
+             const w = wMap[qid];
+             const p = pMap[qid];
+             const label = questionMap[qid]?.title || '';
+             const sectionId = Object.entries(groups).find(([, g]) => g.elements?.includes(id))?.[0] || "unknown";
+             const sectionTitle = groups[sectionId]?.titleEn || "Unknown Section";
+             tableData.push({
                id: qid,
                label,
-               worker: workerAnswer,
-               payer: payerAnswer,
-               match: workerAnswer === payerAnswer,
-               existsInBoth: qid in workerMap && qid in payerMap
-             };
+               section: sectionTitle,
+               worker: w?.answer || '[Missing]',
+               payer: p?.answer || '[Missing]',
+               match: w?.answer === p?.answer,
+               existsInBoth: !!w && !!p
+             });
            });
            renderTable();
          });
      }
-     function buildAnswerMap(elements) {
+     function buildMap(elements) {
        const map = {};
-       elements.forEach(el => {
-         const qid = el?.properties?.questionId;
-         if (qid && el.properties?.value !== undefined) {
-           map[qid] = el.properties.value;
-         }
-       });
-       return map;
-     }
-     function buildQuestionMap(elements) {
-       const map = {};
-       elements.forEach(el => {
-         const qid = el?.properties?.questionId;
+       elements.forEach(e => {
+         const qid = e?.properties?.questionId;
          if (qid) {
-           map[qid] = el.properties.titleEn;
+           map[qid] = {
+             answer: e.properties?.value || ''
+           };
          }
        });
        return map;
      }
      function renderTable() {
        document.getElementById('filters').classList.remove('hidden');
-       let html = `<table id="comparisonTable" class="wb-tables table small table-hover" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
+       document.getElementById('pdfButton').classList.remove('hidden');
+       let html = `<table id="comparisonTable" class="wb-tables table table-hover small" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
 <thead>
 <tr>
 <th class="id-col hidden">Question ID</th>
 <th>Question</th>
-<th>Worker response</th>
-<th>Payer response</th>
+<th>Worker answer</th>
+<th>Payer answer</th>
 <th>Match</th>
 </tr>
 </thead>
 <tbody>`;
+       let currentSection = '';
        tableData.forEach(row => {
+         if (row.section !== currentSection) {
+           html += `<tr class="section-header"><td colspan="5">${row.section}</td></tr>`;
+           currentSection = row.section;
+         }
          const rowClass = !row.existsInBoth ? "missing" : (row.match ? "match" : "mismatch");
          html += `<tr class="${rowClass}">
 <td class="id-col hidden">${row.id}</td>
@@ -149,6 +166,7 @@
      function filterTable(type) {
        const rows = document.querySelectorAll("#comparisonTable tbody tr");
        rows.forEach(row => {
+         if (row.classList.contains("section-header")) return row.style.display = '';
          row.style.display = (type === 'all') ||
            (type === 'match' && row.classList.contains('match')) ||
            (type === 'mismatch' && row.classList.contains('mismatch'))
@@ -159,6 +177,24 @@
        const show = document.getElementById("toggleIdCol").checked;
        const cells = document.querySelectorAll(".id-col");
        cells.forEach(cell => cell.classList.toggle("hidden", !show));
+     }
+     function downloadPDF() {
+       const { jsPDF } = window.jspdf;
+       const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
+       doc.setFontSize(14);
+       doc.text("Questionnaire Comparison Report", 40, 30);
+       doc.setFontSize(10);
+       let y = 50;
+       const lineHeight = 16;
+       tableData.forEach(row => {
+         if (y > 550) { doc.addPage(); y = 50; }
+         doc.setTextColor(row.match ? [0, 150, 0] : [200, 150, 0]);
+         doc.text(`Q: ${row.label}`, 40, y);
+         doc.text(`W: ${row.worker}`, 250, y);
+         doc.text(`P: ${row.payer}`, 400, y);
+         y += lineHeight;
+       });
+       doc.save("questionnaire-comparison.pdf");
      }
 </script>
 
