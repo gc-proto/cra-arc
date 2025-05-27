@@ -1,178 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-      <head>
-         <meta charset="utf-8">
-         <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-         <title>Questionnaire comparison tool</title>
-         <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-         <meta content="width=device-width,initial-scale=1" name="viewport">
-         <meta name="robots" content="noindex, follow">
-               <!-- Meta data-->
-         <!-- Load closure template scripts -->
-         <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
-         <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
-         <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
-         <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
-		 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
-         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
-         <!-- Write closure template -->
-         <script type="text/javascript">
-            document.write(wet.builder.refTop({
-            }));
-         </script>
+<head>
+<meta charset="utf-8">
+<title>Questionnaire Comparison Tool</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="robots" content="noindex, follow">
+<!-- Styling -->
 <style>
    body { font-family: Arial, sans-serif; padding: 20px; }
    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; font-size: 14px; }
    th { background-color: #f4f4f4; }
    .mismatch { background-color: #ffdddd; }
-   .section-header { background-color: #e0e0e0; font-weight: bold; }
+   .missing { background-color: #fdf5d9; }
    #pdfButton { margin-top: 20px; }
 </style>
-      </head>
-      <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
-        <div id="def-top">         </div>
-    <main role="main" property="mainContentOfPage" class="container">
-<h1 property="name" id="wb-cont" class="gc-thickline">Questionnaire comparison tool</h1>
-
-<label>Worker CSV: <input type="file" id="workerFile" accept=".csv"></label><br><br>
-<label>Payer CSV: <input type="file" id="payerFile" accept=".csv"></label><br><br>
+<!-- PDF Export (optional) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<h1>Questionnaire Comparison Tool</h1>
+<label>Worker JSON: <input type="file" id="workerFile" accept=".json"></label><br><br>
+<label>Payer JSON: <input type="file" id="payerFile" accept=".json"></label><br><br>
 <button onclick="compare()">Compare</button>
 <button id="pdfButton" onclick="downloadPDF()" style="display:none;">Download PDF</button>
 <div id="output"></div>
 <script>
- let tableData = [];
- function parseCSV(file, callback) {
-   Papa.parse(file, {
-     header: true,
-     skipEmptyLines: true,
-     complete: results => callback(results.data)
-   });
- }
- function compare() {
-   const workerFile = document.getElementById('workerFile').files[0];
-   const payerFile = document.getElementById('payerFile').files[0];
-   if (!workerFile || !payerFile) {
-     alert("Please select both CSV files.");
-     return;
+   let tableData = [];
+   function compare() {
+     const workerFile = document.getElementById('workerFile').files[0];
+     const payerFile = document.getElementById('payerFile').files[0];
+     if (!workerFile || !payerFile) {
+       alert("Please select both JSON files.");
+       return;
+     }
+     Promise.all([workerFile.text(), payerFile.text()])
+       .then(([workerText, payerText]) => {
+         const workerJSON = JSON.parse(workerText);
+         const payerJSON = JSON.parse(payerText);
+         const workerMap = buildQuestionMap(workerJSON.elements);
+         const payerMap = buildQuestionMap(payerJSON.elements);
+         const allIds = Array.from(new Set([...Object.keys(workerMap), ...Object.keys(payerMap)]));
+         tableData = [];
+         allIds.forEach(id => {
+           const w = workerMap[id];
+           const p = payerMap[id];
+           const wTitle = w?.titleEn || '[Missing]';
+           const pTitle = p?.titleEn || '[Missing]';
+           const wChoices = w?.choices?.map(c => c.en).join(', ') || '[None]';
+           const pChoices = p?.choices?.map(c => c.en).join(', ') || '[None]';
+           const titleMatch = wTitle === pTitle;
+           const choiceMatch = wChoices === pChoices;
+           const existsInBoth = !!w && !!p;
+           tableData.push({
+             id,
+             wTitle,
+             pTitle,
+             wChoices,
+             pChoices,
+             titleMatch,
+             choiceMatch,
+             existsInBoth
+           });
+         });
+         renderTable();
+       });
    }
-   parseCSV(workerFile, workerData => {
-     parseCSV(payerFile, payerData => {
-       const mapResponses = data => {
-         const map = {};
-         data.forEach(row => {
-           map[row["Question ID"]] = {
-             section: row["Section"],
-             label: row["Label"],
-             answer: row["Answer"]
-           };
-         });
-         return map;
-       };
-       const workerMap = mapResponses(workerData);
-       const payerMap = mapResponses(payerData);
-       const allKeys = Array.from(new Set([
-         ...Object.keys(workerMap),
-         ...Object.keys(payerMap)
-       ]));
-       tableData = [];
-       allKeys.forEach(id => {
-         const w = workerMap[id] || {};
-         const p = payerMap[id] || {};
-         tableData.push({
-           id: id,
-           section: w.section || p.section || '',
-           label: w.label || p.label || '',
-           worker: w.answer || '',
-           payer: p.answer || '',
-           match: w.answer === p.answer
-         });
-       });
-       tableData.sort((a, b) => {
-         if (a.section !== b.section) return a.section.localeCompare(b.section);
-         return a.id.localeCompare(b.id);
-       });
-       let currentSection = null;
-       let html = `<table><thead><tr>
-<th>Section</th>
-<th>Question ID</th>
-<th>Label</th>
-<th>Worker Answer</th>
-<th>Payer Answer</th>
-<th>Match</th>
-</tr></thead><tbody>`;
-       tableData.forEach(row => {
-         if (row.section !== currentSection) {
-           html += `<tr class="section-header"><td colspan="6">${row.section}</td></tr>`;
-           currentSection = row.section;
-         }
-         const rowClass = row.match ? "" : "mismatch";
-         html += `<tr class="${rowClass}">
-<td>${row.section}</td>
-<td>${row.id}</td>
-<td>${row.label}</td>
-<td>${row.worker}</td>
-<td>${row.payer}</td>
-<td>${row.match ? "Yes" : "No"}</td>
-</tr>`;
-       });
-       html += '</tbody></table>';
-       document.getElementById('output').innerHTML = html;
-       document.getElementById('pdfButton').style.display = 'inline-block';
+   function buildQuestionMap(elements) {
+     const map = {};
+     elements.forEach(el => {
+       const qid = el?.properties?.questionId;
+       if (qid) {
+         map[qid] = {
+           titleEn: el.properties.titleEn,
+           choices: el.properties.choices || []
+         };
+       }
      });
-   });
- }
- function downloadPDF() {
-   const { jsPDF } = window.jspdf;
-   const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
-   const colWidths = [80, 70, 220, 100, 100, 50];
-   const startY = 50;
-   const lineHeight = 18;
-   let y = startY;
-   doc.setFontSize(14);
-   doc.text("Questionnaire Comparison", 40, 30);
-   let currentSection = null;
-   doc.setFontSize(10);
-   tableData.forEach(row => {
-     if (y > 530) {
-       doc.addPage();
-       y = startY;
-     }
-     if (row.section !== currentSection) {
-       doc.setFont("helvetica", "bold");
-       doc.setTextColor(80);
-       doc.text(row.section, 40, y);
+     return map;
+   }
+   function renderTable() {
+     let html = `<table>
+<thead>
+<tr>
+<th>Question ID</th>
+<th>Worker Title</th>
+<th>Payer Title</th>
+<th>Title Match</th>
+<th>Worker Choices</th>
+<th>Payer Choices</th>
+<th>Choices Match</th>
+</tr>
+</thead>
+<tbody>`;
+     tableData.forEach(row => {
+       const rowClass = row.existsInBoth
+         ? (!row.titleMatch || !row.choiceMatch ? "mismatch" : "")
+         : "missing";
+       html += `<tr class="${rowClass}">
+<td>${row.id}</td>
+<td>${row.wTitle}</td>
+<td>${row.pTitle}</td>
+<td>${row.titleMatch ? "Yes" : "No"}</td>
+<td>${row.wChoices}</td>
+<td>${row.pChoices}</td>
+<td>${row.choiceMatch ? "Yes" : "No"}</td>
+</tr>`;
+     });
+     html += '</tbody></table>';
+     document.getElementById('output').innerHTML = html;
+     document.getElementById('pdfButton').style.display = 'inline-block';
+   }
+   function downloadPDF() {
+     const { jsPDF } = window.jspdf;
+     const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
+     doc.setFontSize(14);
+     doc.text("Questionnaire Comparison Report", 40, 30);
+     doc.setFontSize(10);
+     let y = 50;
+     const lineHeight = 14;
+     tableData.forEach(row => {
+       if (y > 550) {
+         doc.addPage();
+         y = 50;
+       }
+       doc.setTextColor(row.titleMatch && row.choiceMatch ? 0 : [200, 0, 0]);
+       doc.text(`ID: ${row.id}`, 40, y);
+       doc.text(`W: ${row.wTitle}`, 100, y);
+       doc.text(`P: ${row.pTitle}`, 300, y);
        y += lineHeight;
-       currentSection = row.section;
-     }
-     doc.setFont("helvetica", "normal");
-     doc.setTextColor(row.match ? 0 : [200, 0, 0]);
-     doc.text(row.id, 40, y);
-     doc.text(doc.splitTextToSize(row.label, colWidths[2]), 120, y);
-     doc.text(row.worker, 350, y);
-     doc.text(row.payer, 450, y);
-     doc.text(row.match ? "Yes" : "No", 550, y);
-     y += lineHeight;
-   });
-   doc.save("questionnaire-comparison.pdf");
- }
+     });
+     doc.save("questionnaire-comparison.pdf");
+   }
 </script>
-  
-         <div id="def-footer">
-         </div>
- <div id="def-preFooter"></div>
-            <!-- Write closure template -->
-            <script type="text/javascript">
-               var defPreFooter = document.getElementById("def-preFooter");
-               defPreFooter.outerHTML = wet.builder.preFooter({
-               dateModified: "2020-03-13",
-               showPostContent: true,
-               showFeedback: true,
-               showShare: true
-               });
-            </script>
-         </main>
 </body>
 </html>
