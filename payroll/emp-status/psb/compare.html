@@ -31,6 +31,7 @@
    .mismatch { background-color: #fff3cd; }   /* Light yellow */
    .missing { background-color: #f8d7da; }    /* Light red */
    #pdfButton { margin-top: 20px; }
+   .hidden { display: none; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -113,10 +114,10 @@
      return map;
    }
    function renderTable() {
-     let html = `<table>
+ let html = `<table class="wb-tables table table-striped table-hover" data-wb-tables='{"paging": true, "searching": true}'>
 <thead>
 <tr>
-<th>Question ID</th>
+<th class="hidden">Question ID</th>
 <th>Worker question</th>
 <th>Payer question</th>
 <th>Worker choices</th>
@@ -126,12 +127,12 @@
 </tr>
 </thead>
 <tbody>`;
-     tableData.forEach(row => {
-       const rowClass = row.existsInBoth
-         ? (row.match ? "match" : "mismatch")
-         : "missing";
-       html += `<tr class="${rowClass}">
-<td>${row.id}</td>
+ tableData.forEach(row => {
+   const rowClass = row.existsInBoth
+     ? (row.match ? "match" : "mismatch")
+     : "missing";
+   html += `<tr class="${rowClass}">
+<td class="hidden">${row.id}</td>
 <td>${row.wTitle}</td>
 <td>${row.pTitle}</td>
 <td>${row.wChoices}</td>
@@ -139,11 +140,13 @@
 <td>${row.match ? "Yes" : ""}</td>
 <td>${!row.match && row.existsInBoth ? "Yes" : ""}</td>
 </tr>`;
-     });
-     html += '</tbody></table>';
-     document.getElementById('output').innerHTML = html;
-     document.getElementById('pdfButton').style.display = 'inline-block';
-   }
+ });
+ html += '</tbody></table>';
+ document.getElementById('output').innerHTML = html;
+ // Trigger WET reinitialization to activate filtering
+ window.wb?.init(document.getElementById('output'));
+ document.getElementById('pdfButton')?.style?.setProperty('display', 'inline-block');
+}
    function downloadPDF() {
      const { jsPDF } = window.jspdf;
      const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
