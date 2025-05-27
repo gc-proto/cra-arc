@@ -68,7 +68,6 @@
 <button id="pdfButton" onclick="downloadPDF()" class="btn btn-secondary hidden">Download PDF</button>
 <script>
      let tableData = [];
-     let questionMap = {}; // Will hold question metadata from either form
      function compare() {
        const workerFile = document.getElementById('workerFile').files[0];
        const payerFile = document.getElementById('payerFile').files[0];
@@ -77,54 +76,35 @@
          return;
        }
        Promise.all([workerFile.text(), payerFile.text()])
-         .then(([wText, pText]) => {
-           const worker = JSON.parse(wText);
-           const payer = JSON.parse(pText);
-           // Save question metadata from one of the files (groups + layout + elements)
-           const layout = payer.layout;
-           const groups = payer.groups;
-           const elements = {};
-           payer.elements.forEach(e => {
-             const qid = e?.properties?.questionId;
-             if (qid) elements[qid] = {
-               title: e.properties.titleEn || '',
-               choices: e.properties.choices?.map(c => c.en).join(', ') || ''
-             };
-           });
-           questionMap = elements;
-           // Create maps of answers
-           const wMap = buildMap(worker.elements);
-           const pMap = buildMap(payer.elements);
-           // Compose table rows based on layout
+         .then(([workerText, payerText]) => {
+           const workerJSON = JSON.parse(workerText);
+           const payerJSON = JSON.parse(payerText);
+           const workerMap = buildQuestionMap(workerJSON.elements);
+           const payerMap = buildQuestionMap(payerJSON.elements);
+           const allIds = Array.from(new Set([...Object.keys(workerMap), ...Object.keys(payerMap)]));
            tableData = [];
-           layout.forEach(id => {
-             const qid = payer.elements.find(e => e.id === id)?.properties?.questionId;
-             if (!qid) return;
-             const w = wMap[qid];
-             const p = pMap[qid];
-             const label = questionMap[qid]?.title || '';
-             const sectionId = Object.entries(groups).find(([, g]) => g.elements?.includes(id))?.[0] || "unknown";
-             const sectionTitle = groups[sectionId]?.titleEn || "Unknown Section";
-             tableData.push({
-               id: qid,
-               label,
-               section: sectionTitle,
-               worker: w?.answer || '[Missing]',
-               payer: p?.answer || '[Missing]',
-               match: w?.answer === p?.answer,
-               existsInBoth: !!w && !!p
-             });
+           allIds.forEach(id => {
+             const w = workerMap[id];
+             const p = payerMap[id];
+             const wTitle = w?.titleEn || '[Missing]';
+             const pTitle = p?.titleEn || '[Missing]';
+             const wChoices = w?.choices?.map(c => c.en).join(', ') || '[None]';
+             const pChoices = p?.choices?.map(c => c.en).join(', ') || '[None]';
+             const match = wChoices === pChoices;
+             const existsInBoth = !!w && !!p;
+             tableData.push({ id, wTitle, pTitle, wChoices, pChoices, match, existsInBoth });
            });
            renderTable();
          });
      }
-     function buildMap(elements) {
+     function buildQuestionMap(elements) {
        const map = {};
-       elements.forEach(e => {
-         const qid = e?.properties?.questionId;
+       elements.forEach(el => {
+         const qid = el?.properties?.questionId;
          if (qid) {
            map[qid] = {
-             answer: e.properties?.value || ''
+             titleEn: el.properties.titleEn,
+             choices: el.properties.choices || []
            };
          }
        });
@@ -133,7 +113,7 @@
      function renderTable() {
        document.getElementById('filters').classList.remove('hidden');
        document.getElementById('pdfButton').classList.remove('hidden');
-       let html = `<table id="comparisonTable" class="wb-tables table table-hover small" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
+       let html = `<table id="comparisonTable" class="wb-tables table small table-hover" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
 <thead>
 <tr>
 <th class="id-col hidden">Question ID</th>
@@ -144,14 +124,13 @@
 </tr>
 </thead>
 <tbody>`;
-       let currentSection = '';
+ 
        tableData.forEach(row => {
-         if (row.section !== currentSection) {
-           html += `<tr class="section-header"><td colspan="5">${row.section}</td></tr>`;
-           currentSection = row.section;
-         }
-         const rowClass = !row.existsInBoth ? "missing" : (row.match ? "match" : "mismatch");
+         const rowClass = row.existsInBoth
+           ? (row.match ? "match" : "mismatch")
+           : "missing";
          html += `<tr class="${rowClass}">
+
 <td class="id-col hidden">${row.id}</td>
 <td>${row.label}</td>
 <td>${row.worker}</td>
