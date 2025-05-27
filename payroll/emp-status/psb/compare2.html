@@ -70,27 +70,27 @@
    }
    parseCSV(workerFile, workerData => {
      parseCSV(payerFile, payerData => {
-       const wMap = Object.fromEntries(workerData.map(row => [row["Question ID"], row]));
-       const pMap = Object.fromEntries(payerData.map(row => [row["Question ID"], row]));
+       const wMap = Object.fromEntries(workerData.map(row => [row["questionId"], row]));
+       const pMap = Object.fromEntries(payerData.map(row => [row["questionId"], row]));
        const allIds = Array.from(new Set([...Object.keys(wMap), ...Object.keys(pMap)]));
        const rows = [];
        allIds.forEach(id => {
          const w = wMap[id] || {};
          const p = pMap[id] || {};
-         const section = w["Section name"] || p["Section name"] || "Unknown";
+       
          const label = w["Label"] || p["Label"] || "[Missing]";
-         const wAns = w["Answer"] || "";
-         const pAns = p["Answer"] || "";
+         const wAns = w["answer"] || "";
+         const pAns = p["answer"] || "";
          const match = wAns === pAns;
          const status = !wAns && !pAns ? "missing" : match ? "match" : "mismatch";
-         rows.push({ id, section, label, wAns, pAns, match, status });
+         rows.push({ id, label, wAns, pAns, match, status });
        });
        rows.sort((a, b) =>
          a.section.localeCompare(b.section) || a.id.localeCompare(b.id)
        );
        let html = `<table>
 <thead><tr>
-<th>Section</th>
+
 <th>Question ID</th>
 <th>Label</th>
 <th>Worker Answer</th>
@@ -104,7 +104,7 @@
            currentSection = row.section;
          }
          html += `<tr class="${row.status}">
-<td>${row.section}</td>
+
 <td>${row.id}</td>
 <td>${row.label}</td>
 <td>${row.wAns}</td>
