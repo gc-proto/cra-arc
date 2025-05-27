@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>PSB CSV Comparison Tool</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="robots" content="noindex, follow">
+<!-- WET Assets -->
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
+<link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
+         
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
+<!-- JS Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- Styles -->
 <style>
    body {
      font-family: Arial, sans-serif;
@@ -33,12 +45,29 @@
      background-color: #f8d7da; /* light red */
    }
 </style>
+<script type="text/javascript">
+   document.write(wet.builder.refTop({}));
+</script>
 </head>
-<body>
-<h1>PSB Questionnaire Comparison Tool (CSV)</h1>
-<label>Worker CSV: <input type="file" id="workerFile" accept=".csv"></label><br><br>
-<label>Payer CSV: <input type="file" id="payerFile" accept=".csv"></label><br><br>
-<button onclick="compare()">Compare</button>
+<body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+<div id="def-top"></div>
+<main role="main" property="mainContentOfPage" class="container">
+<div class="gc-font-2019">
+<h1>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</h1>
+<p>To use the comparison tool:</p>
+<ol>
+<li>Save the file worker and the file payer on your computer</li>
+<li>Upload the response files (CSV) for the worker and the payer</li>
+<li>Click compare to view side-by-side results (if the results do not match, they are highlighted)</li>
+</ol>
+<hr>
+<h3>Upload the response files (CSV)</h3>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><label>Worker's response: <input type="file" id="workerFile" accept=".csv"></label></li>
+<li class="cnjnctn-col"><label>Payer's response: <input type="file" id="payerFile" accept=".csv"></label></li>
+</ul>
+
+<button class="btn btn-primary btn-lg" onclick="compare()">Compare</button>
 <div id="output"></div>
 <script>
    function parseCSV(file, callback) {
@@ -52,7 +81,7 @@
      const workerFile = document.getElementById('workerFile').files[0];
      const payerFile = document.getElementById('payerFile').files[0];
      if (!workerFile || !payerFile) {
-       alert('Please select both CSV files.');
+       alert("Please select both CSV files.");
        return;
      }
      parseCSV(workerFile, workerData => {
@@ -69,38 +98,57 @@
            ...Object.keys(workerMap),
            ...Object.keys(payerMap)
          ]));
-         let html = `<table>
-<thead>
-<tr>
-<th>Section</th>
-<th>Question ID</th>
-<th>Question</th>
-<th>Worker Answer</th>
-<th>Payer Answer</th>
-<th>Match</th>
-</tr>
-</thead>
-<tbody>`;
+         let tableRows = [];
          allIds.forEach(id => {
            const w = workerMap[id] || {};
            const p = payerMap[id] || {};
-           const section = w.Section || p.Section || '';
-           const label = w.Label || p.Label || '';
-           const wAns = w.Answer || '';
-           const pAns = p.Answer || '';
+           const section = w["Section name"] || p["Section name"] || "Unknown";
+           const label = w["Label"] || p["Label"] || "[Missing]";
+           const wAns = w["Answer"] || "";
+           const pAns = p["Answer"] || "";
            const match = wAns === pAns;
            const exists = wAns || pAns;
-           const rowClass = !exists ? "missing" : match ? "match" : "mismatch";
-           html += `<tr class="${rowClass}">
-<td>${section}</td>
-<td>${id}</td>
-<td>${label}</td>
-<td>${wAns}</td>
-<td>${pAns}</td>
-<td>${match ? "Yes" : "No"}</td>
+           const statusClass = !exists ? "missing" : match ? "match" : "mismatch";
+           tableRows.push({
+             section,
+             id,
+             label,
+             wAns,
+             pAns,
+             match,
+             rowClass: statusClass
+           });
+         });
+         // Sort by Section name then Question ID
+         tableRows.sort((a, b) => {
+           if (a.section !== b.section) return a.section.localeCompare(b.section);
+           return a.id.localeCompare(b.id);
+         });
+         let html = `<table><thead>
+<tr>
+<th>Section</th>
+<th>Question ID</th>
+<th>Label</th>
+<th>Worker Answer</th>
+<th>Payer Answer</th>
+<th>Match</th>
+</tr></thead><tbody>`;
+         let currentSection = null;
+         tableRows.forEach(row => {
+           if (row.section !== currentSection) {
+             html += `<tr class="section-header"><td colspan="6">${row.section}</td></tr>`;
+             currentSection = row.section;
+           }
+           html += `<tr class="${row.rowClass}">
+<td>${row.section}</td>
+<td>${row.id}</td>
+<td>${row.label}</td>
+<td>${row.wAns}</td>
+<td>${row.pAns}</td>
+<td>${row.match ? "Yes" : "No"}</td>
 </tr>`;
          });
-         html += `</tbody></table>`;
+         html += '</tbody></table>';
          document.getElementById("output").innerHTML = html;
        });
      });
