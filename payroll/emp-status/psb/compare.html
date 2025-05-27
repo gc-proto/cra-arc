@@ -18,11 +18,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
+<div class="gc-font-2019">
 <h1>Questionnaire Comparison Tool</h1>
 <label>Worker JSON: <input type="file" id="workerFile" accept=".json"></label><br><br>
 <label>Payer JSON: <input type="file" id="payerFile" accept=".json"></label><br><br>
-<button onclick="compare()">Compare</button>
-<button id="pdfButton" onclick="downloadPDF()" style="display:none;">Download PDF</button>
+<button class="btn btn-primary btn-lg" onclick="compare()">Compare</button>
+<button id="pdfButton" class="btn btn-default btn-lg" onclick="downloadPDF()" style="display:none;">Download PDF</button>
 <div id="output"></div>
 <script>
    let tableData = [];
@@ -129,6 +130,6 @@
      });
      doc.save("questionnaire-comparison.pdf");
    }
-</script>
+</script></div>
 </body>
 </html>
