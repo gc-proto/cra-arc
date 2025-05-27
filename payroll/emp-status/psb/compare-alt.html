@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Comparison tool - PSB Questionnaire</title>
+<title>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</title>
+
 <meta content="width=device-width,initial-scale=1" name="viewport">
 <meta name="robots" content="noindex, follow">
 <!-- WET-BOEW -->
@@ -31,26 +32,38 @@
 <body class="experimental">
 <div id="def-top"></div>
 <main role="main" property="mainContentOfPage" class="container">
-<h1>Comparison tool - PSB Questionnaire</h1>
+<div class="gc-font-2019">
+<h1>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</h1>
+<p>To use the comparison tool:</p>
 <ol>
-<li>Select a <strong>worker</strong> and <strong>payer</strong> JSON file.</li>
-<li>Click <strong>Compare</strong> to view results.</li>
+<li>Save the file worker and the file payer on your computer</li>
+<li>Upload the response files (JSON) for the worker and the payer</li>
+<li>Click compare to view side-by-side results (if the results do not match, they are highlighted)</li>
 </ol>
-<label>Worker JSON: <input type="file" id="workerFile" accept=".json"></label><br>
-<label>Payer JSON: <input type="file" id="payerFile" accept=".json"></label><br><br>
-<button class="btn btn-primary" onclick="compare()">Compare</button>
-<!-- Filters & Toggle -->
+<hr>
+<h3>Upload the response files (JSON)</h3>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><label>Worker's response: <input type="file" id="workerFile" accept=".json"></label></li>
+<li class="cnjnctn-col"><label>Payer's response: <input type="file" id="payerFile" accept=".json"></label></li>
+</ul>
+<br>
+
+<button class="btn btn-primary btn-lg" onclick="compare()">Compare</button>
+<!-- Filters and Toggle (initially hidden) -->
 <div id="filters" class="hidden">
-<h2 class="mrgn-tp-lg">Comparison Results</h2>
-<div class="btn-group mrgn-bttm-md" role="group">
-<button class="btn btn-default" onclick="filterTable('all')">Show All</button>
-<button class="btn btn-warning" onclick="filterTable('mismatch')">Show Mismatches</button>
-<button class="btn btn-success" onclick="filterTable('match')">Show Matches</button>
+<hr>
+<h3 class="mrgn-tp-lg"><span class="fas fa-lg fa-filter"></span> Filter results by:</h3>
+<div class="btn-group mrgn-bttm-md" role="group" aria-label="Filter options">
+<button class="btn btn-default" onclick="filterTable('all')">All</button>
+<button class="btn btn-success" onclick="filterTable('match')">Match</button>
+<button class="btn btn-warning" onclick="filterTable('mismatch')">Mismatch</button>
 </div>
+<hr>
 <div class="checkbox">
-<label><input type="checkbox" id="toggleIdCol" onchange="toggleIdColumn()"> Show Question ID column</label>
+<label><input type="checkbox" id="toggleIdCol" onchange="toggleIdColumn()"> Show question ID column</label>
 </div>
 </div>
+
 <div id="output" class="mrgn-tp-md"></div>
 <button id="pdfButton" onclick="downloadPDF()" class="btn btn-secondary hidden">Download PDF</button>
 <script>
@@ -120,7 +133,7 @@
      function renderTable() {
        document.getElementById('filters').classList.remove('hidden');
        document.getElementById('pdfButton').classList.remove('hidden');
-       let html = `<table id="comparisonTable" class="wb-tables table table-striped table-hover" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
+       let html = `<table id="comparisonTable" class="wb-tables table table-hover small" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
 <thead>
 <tr>
 <th class="id-col hidden">Question ID</th>
