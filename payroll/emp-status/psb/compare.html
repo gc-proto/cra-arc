@@ -40,14 +40,24 @@
 
 <div class="gc-font-2019">
 <h1>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</h1>
+<p>To use the comparison tool:</p>
+<ol>
+<li>Save the file worker and the file payer on your computer</li>
+<li>Upload the response files (JSON) for the worker and the payer</li>
+<li>Click compare to view side-by-side results (if the results do not match, they are highlighted in red)</li>
+</ol>
+<hr>
+<h2>Upload the response files (JSON)</h2>
  <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
    <li class="cnjnctn-col"><h3>Worker</h3>
-<label>Enter the worker questionnaire: <input type="file" id="workerFile" accept=".json"></label></li>
+<label>Worker' response: <input type="file" id="workerFile" accept=".json"></label></li>
 <li class="cnjnctn-col"><h3>Payer</h3>
-<label>Enter the payer questionnaire: <input type="file" id="payerFile" accept=".json"></label></li>
+<label>Payer's response: <input type="file" id="payerFile" accept=".json"></label></li>
 </ul>
 
 <button class="btn btn-primary btn-lg" onclick="compare()">Compare</button>
+
+
 <button id="pdfButton" class="btn btn-default btn-lg" onclick="downloadPDF()" style="display:none;">Download PDF</button>
 <div id="output"></div>
 <script>
@@ -107,10 +117,10 @@
 <thead>
 <tr>
 <th>Question ID</th>
-<th>Worker Question</th>
-<th>Payer Question</th>
-<th>Worker Choices</th>
-<th>Payer Choices</th>
+<th>Worker question</th>
+<th>Payer question</th>
+<th>Worker choices</th>
+<th>Payer choices</th>
 <th>Match</th>
 <th>Mismatch</th>
 </tr>
