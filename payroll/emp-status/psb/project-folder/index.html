@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nested Editable JSON Viewer</title>
+<style>
+   body {
+     font-family: Arial, sans-serif;
+     padding: 20px;
+   }
+   section, .nested {
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     padding: 1em;
+     margin: 1em 0;
+   }
+   h2 {
+     margin-top: 0;
+   }
+   .key {
+     font-weight: bold;
+     margin-right: 5px;
+   }
+   .editable {
+     display: inline-block;
+     padding: 2px 4px;
+     border: 1px dashed transparent;
+     min-width: 50px;
+   }
+   .editable:hover {
+     border-color: #aaa;
+     background-color: #f9f9f9;
+     cursor: text;
+   }
+   .buttons {
+     margin-top: 20px;
+   }
+   button {
+     padding: 8px 16px;
+     margin-right: 10px;
+   }
+   pre {
+     background: #f4f4f4;
+     padding: 10px;
+     border-radius: 5px;
+   }
+   ul {
+     list-style-type: none;
+     padding-left: 20px;
+   }
+</style>
+</head>
+<body>
+<h1>Upload and Edit Nested JSON</h1>
+<input type="file" id="jsonFileInput" accept=".json" />
+<div id="content"></div>
+<div class="buttons">
+<button onclick="exportEditedJSON()">Export Edited JSON</button>
+</div>
+<h2>Exported JSON Output:</h2>
+<pre id="jsonOutput"></pre>
+<script>
+   let originalData = {};
+   document.getElementById('jsonFileInput').addEventListener('change', function(event) {
+     const file = event.target.files[0];
+     if (!file) return;
+     const reader = new FileReader();
+     reader.onload = function(e) {
+       try {
+         originalData = JSON.parse(e.target.result);
+         const container = document.getElementById('content');
+         container.innerHTML = '';
+         container.appendChild(renderJSON(originalData));
+       } catch (err) {
+         document.getElementById('content').innerHTML = '<p style="color:red;">Invalid JSON file.</p>';
+       }
+     };
+     reader.readAsText(file);
+   });
+   function renderJSON(data, path = '') {
+     const container = document.createElement('div');
+     container.className = path === '' ? '' : 'nested';
+     if (Array.isArray(data)) {
+       const ul = document.createElement('ul');
+       data.forEach((item, index) => {
+         const li = document.createElement('li');
+         const currentPath = `${path}[${index}]`;
+         if (typeof item === 'object' && item !== null) {
+           li.appendChild(renderJSON(item, currentPath));
+         } else {
+           li.innerHTML = `<span class="key">${index}:</span> <span class="editable" contenteditable="true" data-path="${currentPath}">${item}</span>`;
+         }
+         ul.appendChild(li);
+       });
+       container.appendChild(ul);
+     } else if (typeof data === 'object' && data !== null) {
+       const ul = document.createElement('ul');
+       for (const key in data) {
+         const li = document.createElement('li');
+         const currentPath = path ? `${path}.${key}` : key;
+         if (typeof data[key] === 'object' && data[key] !== null) {
+           li.innerHTML = `<span class="key">${key}:</span>`;
+           li.appendChild(renderJSON(data[key], currentPath));
+         } else {
+           li.innerHTML = `<span class="key">${key}:</span> <span class="editable" contenteditable="true" data-path="${currentPath}">${data[key]}</span>`;
+         }
+         ul.appendChild(li);
+       }
+       container.appendChild(ul);
+     }
+     return container;
+   }
+   function exportEditedJSON() {
+     const editedData = JSON.parse(JSON.stringify(originalData)); // deep clone
+     document.querySelectorAll('.editable').forEach(el => {
+       const path = el.getAttribute('data-path');
+       const value = parseValue(el.textContent.trim());
+       setValueByPath(editedData, path, value);
+     });
+     document.getElementById('jsonOutput').textContent = JSON.stringify(editedData, null, 2);
+   }
+   function parseValue(val) {
+     if (val === 'true') return true;
+     if (val === 'false') return false;
+     if (val === 'null') return null;
+     if (!isNaN(val) && val.trim() !== '') return parseFloat(val);
+     return val;
+   }
+   function setValueByPath(obj, path, value) {
+     const keys = path
+       .replace(/\[(\d+)\]/g, '.$1') // convert [0] to .0
+       .split('.');
+     let temp = obj;
+     for (let i = 0; i < keys.length - 1; i++) {
+       const key = keys[i];
+       if (!(key in temp)) return;
+       temp = temp[key];
+     }
+     temp[keys[keys.length - 1]] = value;
+   }
+</script>
+</body>
+</html>
