@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PSB Questionnaire Viewer (Grouped by Section)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<!-- WET Assets -->
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
+<style>
+   body {
+     font-family: Arial, sans-serif;
+     padding: 20px;
+   }
+   h2.section-title {
+     margin-top: 2em;
+     background-color: #e1f5fe;
+     padding: 10px;
+     border-left: 5px solid #0288d1;
+   }
+   table {
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 1em;
+   }
+   th, td {
+     border: 1px solid #ccc;
+     padding: 8px;
+     vertical-align: top;
+   }
+   th {
+     background-color: #f2f2f2;
+   }
+   .editable {
+     display: inline-block;
+     padding: 2px 4px;
+     border: 1px dashed transparent;
+     min-width: 50px;
+   }
+   .editable:hover {
+     border-color: #aaa;
+     background-color: #f9f9f9;
+     cursor: text;
+   }
+   .buttons {
+     margin-top: 20px;
+   }
+   button {
+     padding: 8px 16px;
+     margin-right: 10px;
+   }
+   pre {
+     background: #f4f4f4;
+     padding: 10px;
+     border-radius: 5px;
+   }
+</style>
+<script type="text/javascript">
+   document.write(wet.builder.refTop({}));
+</script>
+</head>
+<body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+<div id="def-top"></div>
+<main role="main" property="mainContentOfPage" class="container">
+<div class="gc-font-2019">
+<h1>Comparison Tool - PSB Questionnaire (Grouped View)</h1>
+<input type="file" id="jsonFileInput" accept=".json" />
+<div id="content"></div>
+<div class="buttons">
+<button class="btn btn-primary btn-lg" onclick="exportEditedJSON()">Export Edited JSON</button>
+</div>
+<h2>Exported JSON Output:</h2>
+<pre id="jsonOutput"></pre>
+</div>
+</main>
+<div id="def-footer"></div>
+<div id="def-preFooter"></div>
+<script>
+   let originalData = {};
+   document.getElementById('jsonFileInput').addEventListener('change', function(event) {
+     const file = event.target.files[0];
+     if (!file) return;
+     const reader = new FileReader();
+     reader.onload = function(e) {
+       try {
+         originalData = JSON.parse(e.target.result);
+         const container = document.getElementById('content');
+         container.innerHTML = '';
+         container.appendChild(renderGroupedSections(originalData));
+       } catch (err) {
+         document.getElementById('content').innerHTML = '<p style="color:red;">Invalid JSON file.</p>';
+       }
+     };
+     reader.readAsText(file);
+   });
+   function renderGroupedSections(data) {
+     const wrapper = document.createElement('div');
+     const elementsMap = {};
+     // Index elements by ID for fast lookup
+     if (Array.isArray(data.elements)) {
+       data.elements.forEach(el => {
+         elementsMap[el.id] = el;
+       });
+     }
+     const groups = data.groups || {};
+     for (const groupKey in groups) {
+       const group = groups[groupKey];
+       const title = group.titleEn || groupKey;
+       const questionIds = Array.isArray(group.elements) ? group.elements : [];
+       // Filter elements in this group that have non-empty answers
+       const filteredElements = questionIds
+         .map(id => elementsMap[id])
+         .filter(el => el && el.answer !== undefined && el.answer !== null && el.answer !== '');
+       if (filteredElements.length > 0) {
+         const sectionTitle = document.createElement('h2');
+         sectionTitle.className = 'section-title';
+         sectionTitle.textContent = title;
+         wrapper.appendChild(sectionTitle);
+         const table = document.createElement('table');
+         table.innerHTML = `<thead><tr><th>Question</th><th>Answer</th></tr></thead>`;
+         const tbody = document.createElement('tbody');
+         filteredElements.forEach((el, i) => {
+           const questionText = el.properties?.titleEn || '';
+           const answer = el.answer;
+           const path = `elements[${data.elements.indexOf(el)}].answer`; // data-path for export
+           const tr = document.createElement('tr');
+           tr.innerHTML = `
+<td>${questionText}</td>
+<td><span class="editable" contenteditable="true" data-path="${path}">${answer}</span></td>
+           `;
+           tbody.appendChild(tr);
+         });
+         table.appendChild(tbody);
+         wrapper.appendChild(table);
+       }
+     }
+     return wrapper;
+   }
+   function exportEditedJSON() {
+     const editedData = JSON.parse(JSON.stringify(originalData));
+     document.querySelectorAll('.editable').forEach(el => {
+       const path = el.getAttribute('data-path');
+       const value = parseValue(el.textContent.trim());
+       setValueByPath(editedData, path, value);
+     });
+     document.getElementById('jsonOutput').textContent = JSON.stringify(editedData, null, 2);
+   }
+   function parseValue(val) {
+     if (val === 'true') return true;
+     if (val === 'false') return false;
+     if (val === 'null') return null;
+     if (!isNaN(val) && val.trim() !== '') return parseFloat(val);
+     return val;
+   }
+   function setValueByPath(obj, path, value) {
+     const keys = path.replace(/\[(\d+)\]/g, '.$1').split('.');
+     let temp = obj;
+     for (let i = 0; i < keys.length - 1; i++) {
+       const key = keys[i];
+       if (!(key in temp)) return;
+       temp = temp[key];
+     }
+     temp[keys[keys.length - 1]] = value;
+   }
+   var defPreFooter = document.getElementById("def-preFooter");
+   defPreFooter.outerHTML = wet.builder.preFooter({
+     dateModified: "2025-05-27",
+     showPostContent: true,
+     showFeedback: true,
+     showShare: true
+   });
+</script>
+</body>
+</html>
