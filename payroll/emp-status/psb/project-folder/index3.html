@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Worker vs. payer questionnaire comparison - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="robots" content="noindex, follow">
+<!-- WET Assets -->
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
+<link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
+
+<!-- JS Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Styles -->
+<style>
+   body {
+     font-family: Arial, sans-serif;
+     padding: 20px;
+   }
+   table {
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 1em;
+   }
+   th, td {
+     border: 1px solid #ccc;
+     padding: 8px;
+     text-align: left;
+     vertical-align: top;
+   }
+   th {
+     background-color: #f2f2f2;
+   }
+   pre {
+     background: #f4f4f4;
+     padding: 10px;
+     border-radius: 5px;
+   }
+</style>
+<script type="text/javascript">
+   document.write(wet.builder.refTop({}));
+</script>
+</head>
+<body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+<div id="def-top"></div>
+<main role="main" property="mainContentOfPage" class="container">
+<div class="gc-font-2019">
+<h1>Worker vs. payer questionnaire comparison <br>
+<small>- Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small></h1>
+  <p>To use the comparison tool:</p>
+<ol>
+<li>Save the file worker and the file payer on your computer</li>
+<li>Upload the response files (JSON) for the worker and the payer</li>
+<li>Click compare to view side-by-side results (if the results do not match, they are highlighted)</li>
+</ol>
+<hr> 
+<h3>Upload the response files (JSON)</h3>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><label>Worker's response: <input type="file" id="jsonWorkerInput" accept=".json" /></label></li>
+<li class="cnjnctn-col"><label>Payer's response: <input type="file" id="jsonPayerInput" accept=".json" /></label></li>
+</ul>
+<div id="content"></div>
+
+  <script>
+ const sectionMap = {
+   341: "Section 1: Case Details",
+   161: "Section 2: PSB Periods",
+   241: "Section 3: CRA Officer Info",
+   243: "Section 3: CRA Officer Info",
+   81:  "Section 4: Corporation Info",
+   315: "Section 5: Sector",
+   318: "Section 5: Sector"
+   // Add more mappings as needed
+ };
+ let workerData = null;
+ let payerData = null;
+ document.getElementById('jsonWorkerInput').addEventListener('change', function(event) {
+   const file = event.target.files[0];
+   if (!file) return;
+   const reader = new FileReader();
+   reader.onload = function(e) {
+     try {
+       workerData = JSON.parse(e.target.result);
+       tryRenderBoth();
+     } catch (err) {
+       alert("Invalid Worker JSON.");
+     }
+   };
+   reader.readAsText(file);
+ });
+ document.getElementById('jsonPayerInput').addEventListener('change', function(event) {
+   const file = event.target.files[0];
+   if (!file) return;
+   const reader = new FileReader();
+   reader.onload = function(e) {
+     try {
+       payerData = JSON.parse(e.target.result);
+       tryRenderBoth();
+     } catch (err) {
+       alert("Invalid Payer JSON.");
+     }
+   };
+   reader.readAsText(file);
+ });
+ function tryRenderBoth() {
+   if (workerData && payerData) {
+     const container = document.getElementById('content');
+     container.innerHTML = '';
+     container.appendChild(renderJSON(workerData, payerData));
+   }
+ }
+ function renderJSON(workerData, payerData) {
+   const sectioned = {};
+   function addToSection(ans, isPayer = false) {
+     const section = sectionMap[ans.questionId] || "Other";
+     if (!sectioned[section]) sectioned[section] = {};
+     if (!sectioned[section][ans.questionEn]) {
+       sectioned[section][ans.questionEn] = { worker: "", payer: "" };
+     }
+     const formatted = formatAnswer(ans.answer);
+     if (isPayer) {
+       sectioned[section][ans.questionEn].payer = formatted;
+     } else {
+       sectioned[section][ans.questionEn].worker = formatted;
+     }
+   }
+   function formatAnswer(answer) {
+     if (Array.isArray(answer)) {
+       return answer.map(group =>
+         group.map(sub =>
+           `${sub.questionEn}: ${sub.answer}`
+         ).join("<br>")
+       ).join("<hr>");
+     }
+     return answer || "";
+   }
+   workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
+   payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
+   const container = document.createElement('div');
+   for (const [section, questions] of Object.entries(sectioned)) {
+     const sectionHeader = document.createElement('h2');
+     sectionHeader.textContent = section;
+     container.appendChild(sectionHeader);
+     const table = document.createElement('table');
+     table.innerHTML = `<thead><tr><th>Question</th><th>Worker</th><th>Payer</th></tr></thead>`;
+     const tbody = document.createElement('tbody');
+     for (const [question, { worker, payer }] of Object.entries(questions)) {
+       if (!worker && !payer) continue;
+       const row = document.createElement('tr');
+       row.innerHTML = `
+<td>${question}</td>
+<td>${worker}</td>
+<td>${payer}</td>
+       `;
+       tbody.appendChild(row);
+     }
+     table.appendChild(tbody);
+     container.appendChild(table);
+   }
+   return container;
+ }
+ // Optional: WET preFooter
+ var defPreFooter = document.getElementById("def-preFooter");
+ defPreFooter.outerHTML = wet.builder.preFooter({
+   dateModified: "2025-06-02",
+   showPostContent: true,
+   showFeedback: true,
+   showShare: true
+ });
+</script></div>
+</body>
+</html>
