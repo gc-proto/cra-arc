@@ -123,11 +123,11 @@
 <tr>
 <th scope="col" class="toggle-column id-col hidden">Question ID</th>
 <th scope="col" class="toggle-column">Questions</th>
-<th scope="col" class="toggle-column hidden">Payer questions</th>
+<th scope="col" class="toggle-column id-col hidden">Payer questions</th>
 <th scope="col" class="toggle-column">Worker responses</th>
 <th scope="col" class="toggle-column">Payer responses</th>
 <th scope="col" class="toggle-column">Match</th>
-<th scope="col" class="toggle-column hidden">Mismatch</th>
+<th scope="col" class="toggle-column id-col hidden">Mismatch</th>
 </tr>
 </thead>
 <tbody>`;
@@ -138,11 +138,11 @@
          html += `<tr class="${rowClass}">
 <td class="id-col hidden">${row.id}</td>
 <td>${row.wTitle}</td>
-<td>${row.pTitle}</td>
+<td class="id-col hidden">${row.pTitle}</td>
 <td>${row.wChoices}</td>
 <td>${row.pChoices}</td>
 <td>${row.match ? "Yes" : ""}</td>
-<td>${!row.match && row.existsInBoth ? "Yes" : ""}</td>
+<td class="id-col hidden">${!row.match && row.existsInBoth ? "Yes" : ""}</td>
 </tr>`;
        });
        html += '</tbody></table>';
