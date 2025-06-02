@@ -9,9 +9,8 @@
 <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
 <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
 <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
-<link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
-         
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous"/>
 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
 <!-- JS Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
@@ -22,18 +21,19 @@
      font-family: Arial, sans-serif;
      padding: 20px;
    }
-   section, .nested {
+   table {
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 1em;
+   }
+   th, td {
      border: 1px solid #ccc;
-     border-radius: 5px;
-     padding: 1em;
-     margin: 1em 0;
+     padding: 8px;
+     text-align: left;
+     vertical-align: top;
    }
-   h2 {
-     margin-top: 0;
-   }
-   .key {
-     font-weight: bold;
-     margin-right: 5px;
+   th {
+     background-color: #f2f2f2;
    }
    .editable {
      display: inline-block;
@@ -58,10 +58,6 @@
      padding: 10px;
      border-radius: 5px;
    }
-   ul {
-     list-style-type: none;
-     padding-left: 20px;
-   }
 </style>
 <script type="text/javascript">
    document.write(wet.builder.refTop({}));
@@ -79,6 +75,10 @@
 </div>
 <h2>Exported JSON Output:</h2>
 <pre id="jsonOutput"></pre>
+</div>
+</main>
+<div id="def-footer"></div>
+<div id="def-preFooter"></div>
 <script>
    let originalData = {};
    document.getElementById('jsonFileInput').addEventListener('change', function(event) {
@@ -97,38 +97,42 @@
      };
      reader.readAsText(file);
    });
-   function renderJSON(data, path = '') {
-     const container = document.createElement('div');
-     container.className = path === '' ? '' : 'nested';
-     if (Array.isArray(data)) {
-       const ul = document.createElement('ul');
-       data.forEach((item, index) => {
-         const li = document.createElement('li');
-         const currentPath = `${path}[${index}]`;
-         if (typeof item === 'object' && item !== null) {
-           li.appendChild(renderJSON(item, currentPath));
-         } else {
-           li.innerHTML = `<span class="key">${index}:</span> <span class="editable" contenteditable="true" data-path="${currentPath}">${item}</span>`;
-         }
-         ul.appendChild(li);
-       });
-       container.appendChild(ul);
-     } else if (typeof data === 'object' && data !== null) {
-       const ul = document.createElement('ul');
-       for (const key in data) {
-         const li = document.createElement('li');
-         const currentPath = path ? `${path}.${key}` : key;
-         if (typeof data[key] === 'object' && data[key] !== null) {
-           li.innerHTML = `<span class="key">${key}:</span>`;
-           li.appendChild(renderJSON(data[key], currentPath));
-         } else {
-           li.innerHTML = `<span class="key">${key}:</span> <span class="editable" contenteditable="true" data-path="${currentPath}">${data[key]}</span>`;
-         }
-         ul.appendChild(li);
+   function renderJSON(data) {
+     const flatData = flattenJSON(data);
+     const table = document.createElement('table');
+     const thead = document.createElement('thead');
+     const tbody = document.createElement('tbody');
+     thead.innerHTML = `<tr><th>Path</th><th>Value</th></tr>`;
+     table.appendChild(thead);
+     Object.entries(flatData).forEach(([key, value]) => {
+       const row = document.createElement('tr');
+       row.innerHTML = `
+<td>${key}</td>
+<td><span class="editable" contenteditable="true" data-path="${key}">${value}</span></td>
+       `;
+       tbody.appendChild(row);
+     });
+     table.appendChild(tbody);
+     return table;
+   }
+   function flattenJSON(obj, parent = '', res = {}) {
+     for (let key in obj) {
+       const propName = parent ? `${parent}.${key}` : key;
+       if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
+         flattenJSON(obj[key], propName, res);
+       } else if (Array.isArray(obj[key])) {
+         obj[key].forEach((item, i) => {
+           if (typeof item === 'object' && item !== null) {
+             flattenJSON(item, `${propName}[${i}]`, res);
+           } else {
+             res[`${propName}[${i}]`] = item;
+           }
+         });
+       } else {
+         res[propName] = obj[key];
        }
-       container.appendChild(ul);
      }
-     return container;
+     return res;
    }
    function exportEditedJSON() {
      const editedData = JSON.parse(JSON.stringify(originalData)); // deep clone
@@ -147,9 +151,7 @@
      return val;
    }
    function setValueByPath(obj, path, value) {
-     const keys = path
-       .replace(/\[(\d+)\]/g, '.$1') // convert [0] to .0
-       .split('.');
+     const keys = path.replace(/\[(\d+)\]/g, '.$1').split('.');
      let temp = obj;
      for (let i = 0; i < keys.length - 1; i++) {
        const key = keys[i];
@@ -158,18 +160,13 @@
      }
      temp[keys[keys.length - 1]] = value;
    }
+   var defPreFooter = document.getElementById("def-preFooter");
+   defPreFooter.outerHTML = wet.builder.preFooter({
+     dateModified: "2025-05-27",
+     showPostContent: true,
+     showFeedback: true,
+     showShare: true
+   });
 </script>
-<div id="def-footer"></div>
-<div id="def-preFooter"></div>
-<script type="text/javascript">
-     var defPreFooter = document.getElementById("def-preFooter");
-     defPreFooter.outerHTML = wet.builder.preFooter({
-       dateModified: "2025-05-27",
-       showPostContent: true,
-       showFeedback: true,
-       showShare: true
-     });
-</script>
-</main>
 </body>
 </html>
