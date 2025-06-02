@@ -21,7 +21,7 @@
    .match { background-color: #d6f5d6; }
    .mismatch { background-color: #fff3cd; }
    .missing { background-color: #f8d7da; }
-   .section-header { background-color: #e0e0e0; font-weight: bold; font-size: 16px; }
+   .name-header { background-color: #e0e0e0; font-weight: bold; font-size: 16px; }
    .hidden { display: none !important; }
    #pdfButton { margin-top: 20px; }
 </style>
@@ -103,12 +103,12 @@
              const w = wMap[qid];
              const p = pMap[qid];
              const label = questionMap[qid]?.title || '';
-             const sectionId = Object.entries(groups).find(([, g]) => g.elements?.includes(id))?.[0] || "unknown";
-             const sectionTitle = groups[sectionId]?.titleEn || "Unknown Section";
+             const nameId = Object.entries(groups).find(([, g]) => g.elements?.includes(id))?.[0] || "unknown";
+             const nameTitle = groups[nameId]?.titleEn || "Unknown name";
              tableData.push({
                id: qid,
                label,
-               section: sectionTitle,
+               name: nameTitle,
                worker: w?.answer || '[Missing]',
                payer: p?.answer || '[Missing]',
                match: w?.answer === p?.answer,
@@ -144,11 +144,11 @@
 </tr>
 </thead>
 <tbody>`;
-       let currentSection = '';
+       let currentName = '';
        tableData.forEach(row => {
-         if (row.section !== currentSection) {
-           html += `<tr class="section-header"><td colspan="5">${row.section}</td></tr>`;
-           currentSection = row.section;
+         if (row.name !== currentName) {
+           html += `<tr class="name-header"><td colspan="5">${row.name}</td></tr>`;
+           currentName = row.name;
          }
          const rowClass = !row.existsInBoth ? "missing" : (row.match ? "match" : "mismatch");
          html += `<tr class="${rowClass}">
@@ -166,7 +166,7 @@
      function filterTable(type) {
        const rows = document.querySelectorAll("#comparisonTable tbody tr");
        rows.forEach(row => {
-         if (row.classList.contains("section-header")) return row.style.display = '';
+         if (row.classList.contains("name-header")) return row.style.display = '';
          row.style.display = (type === 'all') ||
            (type === 'match' && row.classList.contains('match')) ||
            (type === 'mismatch' && row.classList.contains('mismatch'))
