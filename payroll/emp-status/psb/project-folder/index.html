@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Comparison tool - PSB Questionnaire</title>
-<meta content="width=device-width,initial-scale=1" name="viewport">
+<title>PSB Questionnaire Viewer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, follow">
 <!-- WET Assets -->
 <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
@@ -22,7 +22,6 @@
    th, td {
      border: 1px solid #ccc;
      padding: 8px;
-     text-align: left;
      vertical-align: top;
    }
    th {
@@ -60,7 +59,7 @@
 <div id="def-top"></div>
 <main role="main" property="mainContentOfPage" class="container">
 <div class="gc-font-2019">
-<h1>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</h1>
+<h1>Comparison Tool - PSB Questionnaire</h1>
 <input type="file" id="jsonFileInput" accept=".json" />
 <div id="content"></div>
 <div class="buttons">
@@ -70,10 +69,10 @@
 <pre id="jsonOutput"></pre>
 </div>
 </main>
-
+<div id="def-footer"></div>
+<div id="def-preFooter"></div>
 <script>
    let originalData = {};
-   const hideKeys = ['questionId', 'questionFR', 'type'];
    document.getElementById('jsonFileInput').addEventListener('change', function(event) {
      const file = event.target.files[0];
      if (!file) return;
@@ -83,52 +82,46 @@
          originalData = JSON.parse(e.target.result);
          const container = document.getElementById('content');
          container.innerHTML = '';
-         container.appendChild(renderJSON(originalData));
+         container.appendChild(renderTable(originalData));
        } catch (err) {
          document.getElementById('content').innerHTML = '<p style="color:red;">Invalid JSON file.</p>';
        }
      };
      reader.readAsText(file);
    });
-   function renderJSON(data) {
-     const flatData = flattenJSON(data);
+   function renderTable(data) {
      const table = document.createElement('table');
      const thead = document.createElement('thead');
-     const tbody = document.createElement('tbody');
-     thead.innerHTML = `<tr><th>Path</th><th>Value</th></tr>`;
+     thead.innerHTML = `<tr><th>Question (EN)</th><th>Answer</th></tr>`;
      table.appendChild(thead);
-     Object.entries(flatData).forEach(([key, value]) => {
-       const lastKey = key.split('.').pop();
-       if (hideKeys.includes(lastKey)) return;
-       if (value === '' || value === null || value === undefined) return;
+     const tbody = document.createElement('tbody');
+     const flatArray = flattenToArray(data);
+     flatArray.forEach(entry => {
+       const { questionEN, answer } = entry;
+       if (!answer || answer === '') return; // Skip empty answers
        const row = document.createElement('tr');
        row.innerHTML = `
-<td>${key}</td>
-<td><span class="editable" contenteditable="true" data-path="${key}">${value}</span></td>
+<td>${questionEN}</td>
+<td><span class="editable" contenteditable="true" data-path="${entry._path}.answer">${answer}</span></td>
        `;
        tbody.appendChild(row);
      });
      table.appendChild(tbody);
      return table;
    }
-   function flattenJSON(obj, parent = '', res = {}) {
-     for (let key in obj) {
-       const propName = parent ? `${parent}.${key}` : key;
-       if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
-         flattenJSON(obj[key], propName, res);
-       } else if (Array.isArray(obj[key])) {
-         obj[key].forEach((item, i) => {
-           if (typeof item === 'object' && item !== null) {
-             flattenJSON(item, `${propName}[${i}]`, res);
-           } else {
-             res[`${propName}[${i}]`] = item;
-           }
-         });
+   function flattenToArray(obj, path = '', out = []) {
+     if (Array.isArray(obj)) {
+       obj.forEach((item, i) => flattenToArray(item, `${path}[${i}]`, out));
+     } else if (typeof obj === 'object' && obj !== null) {
+       if ('questionEN' in obj && 'answer' in obj) {
+         out.push({ questionEN: obj.questionEN, answer: obj.answer, _path: path });
        } else {
-         res[propName] = obj[key];
+         for (const key in obj) {
+           flattenToArray(obj[key], path ? `${path}.${key}` : key, out);
+         }
        }
      }
-     return res;
+     return out;
    }
    function exportEditedJSON() {
      const editedData = JSON.parse(JSON.stringify(originalData));
