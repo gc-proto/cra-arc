@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Worker vs. payer questionnaire comparison - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="robots" content="noindex, follow">
+<!-- WET Assets -->
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
+<link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
+
+<!-- JS Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Styles -->
+<style>
+   body {
+     font-family: Arial, sans-serif;
+     padding: 20px;
+   }
+   table {
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 1em;
+   }
+   th, td {
+     border: 1px solid #ccc;
+     padding: 8px;
+     text-align: left;
+     vertical-align: top;
+   }
+   th {
+     background-color: #f2f2f2;
+   }
+   pre {
+     background: #f4f4f4;
+     padding: 10px;
+     border-radius: 5px;
+   }
+</style>
+<script type="text/javascript">
+   document.write(wet.builder.refTop({}));
+</script>
+</head>
+<body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+<div id="def-top"></div>
+<main role="main" property="mainContentOfPage" class="container">
+<div class="gc-font-2019">
+<h1>Worker vs. payer questionnaire comparison <br>
+<small>- Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small></h1>
+  <p>To use the comparison tool:</p>
+<ol>
+<li>Save the file worker and the file payer on your computer</li>
+<li>Upload the response files (JSON) for the worker and the payer</li>
+<li>Click compare to view side-by-side results (if the results do not match, they are highlighted)</li>
+</ol>
+<hr> 
+<h3>Upload the response files (JSON)</h3>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><label>Worker's response: <input type="file" id="jsonWorkerInput" accept=".json" /></label></li>
+<li class="cnjnctn-col"><label>Payer's response: <input type="file" id="jsonPayerInput" accept=".json" /></label></li>
+</ul>
+<div id="content"></div>
+
+  <script>
+ const sectionMap = {
+    340: "Section 1: General information", 
+   341: "Section 1: General information",
+   335: "Section 1: General information",
+    161: "Section 1: General information",
+   240: "Section 1: General information",
+    241: "Section 1: General information",
+   243: "Section 1: General information",
+
+    441:  "Section 2: General information about your business", 
+   81:  "Section 2: General information about your business",
+    443:  "Section 2: General information about your business", 
+   315: "Section 2: General information about your business",
+    317: "Section 2: General information about your business",
+    318: "Section 2: General information about your business",
+    319: "Section 2: General information about your business",
+    320: "Section 2: General information about your business", 
+    321: "Section 2: General information about your business",
+    322: "Section 2: General information about your business",
+     323: "Section 2: General information about your business",
+    324: "Section 2: General information about your business",
+    325: "Section 2: General information about your business",
+    326: "Section 2: General information about your business", 
+    327: "Section 2: General information about your business",
+    328: "Section 2: General information about your business",
+    329: "Section 2: General information about your business",
+    330: "Section 2: General information about your business",
+    331: "Section 2: General information about your business", 
+    332: "Section 2: General information about your business",
+    333: "Section 2: General information about your business",
+    334: "Section 2: General information about your business",
+    316: "Section 2: General information about your business",
+   
+ 339: "Section 2a - Employee information",
+    170: "Section 2a - Employee information",
+ 356: "Section 2a - Employee information",   
+
+   342: "Section 2b - Specified shareholder information",     
+ 245: "Section 2b - Specified shareholder information",   
+ 352: "Section 2b - Specified shareholder information",  
+ 
+    358: "Section 3 - Payer information",  
+    314: "Section 3 - Payer information",   
+
+      444: "Section 3 - Payee information",   
+       445: "Section 3 - Payee information",   
+       446: "Section 3 - Payee information",   
+       447: "Section 3 - Payee information",   
+       448: "Section 3 - Payee information",   
+       449: "Section 3 - Payee information",   
+       450: "Section 3 - Payee information",   
+       451: "Section 3 - Payee information",   
+       452: "Section 3 - Payee information",   
+       
+
+ 350: "Section 4 - Contract or agreement information with the primary payer (client)",    
+ 236: "Section 4 - Contract or agreement information with the primary payer (client)",    
+ 207: "Section 4 - Contract or agreement information with the primary payer (client)",    
+ 206: "Section 4 - Contract or agreement information with the primary payer (client)",   
+ 351: "Section 4 - Contract or agreement information with the primary payer (client)",   
+ 379: "Section 4 - Contract or agreement information with the primary payer (client)",  
+ 347: "Section 4 - Contract or agreement information with the primary payer (client)", 
+ 348: "Section 4 - Contract or agreement information with the primary payer (client)", 
+ 380: "Section 4 - Contract or agreement information with the primary payer (client)", 
+ 382: "Section 4 - Contract or agreement information with the primary payer (client)", 
+ 423: "Section 4 - Contract or agreement information with the primary payer (client)", 
+ 349: "Section 4 - Contract or agreement information with the primary payer (client)", 
+ 
+ 453: "Section 4 - Contract or agreement information with the payee",   
+ 455: "Section 4 - Contract or agreement information with the payee",   
+ 454: "Section 4 - Contract or agreement information with the payee",   
+ 456: "Section 4 - Contract or agreement information with the payee",   
+ 457: "Section 4 - Contract or agreement information with the payee",   
+ 458: "Section 4 - Contract or agreement information with the payee",      
+
+189: "Section 5 - Working relationship information",     
+389: "Section 5 - Working relationship information",         
+    
+ 390: "Section 5 - Working relationship information - Contract formed in a province or territory other than Quebec",  
+ 391: "Section 5 - Working relationship information - Contract formed in the province of Quebec",      
+
+
+   
+ 192: "Subsection 5a - Control - Duties (1 of 8)", 
+ 383: "Subsection 5a - Control - Duties (1 of 8)", 
+ 424: "Subsection 5a - Control - Duties (1 of 8)",  
+ 258: "Subsection 5a - Control - Duties (1 of 8)",  
+ 257: "Subsection 5a - Control - Duties (1 of 8)",   
+
+     259: "Subsection 5a - Control - Work schedule (2 of 8)", 
+   261: "Subsection 5a - Control - Work schedule (2 of 8)",   
+     262: "Subsection 5a - Control - Work schedule (2 of 8)",   
+      263: "Subsection 5a - Control - Work schedule (2 of 8)",   
+      264: "Subsection 5a - Control - Work schedule (2 of 8)",   
+      265: "Subsection 5a - Control - Work schedule (2 of 8)",   
+
+     191: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+         267: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+     268: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+         312: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+
+    
+
+    
+ 297: "Subsection 5a - Control - Remuneration (4 of 8)",  
+    298: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     299: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     384: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     271: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     300: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     385: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     301: "Subsection 5a - Control - Remuneration (4 of 8)",  
+    270: "Subsection 5a - Control - Remuneration (4 of 8)",
+     302: "Subsection 5a - Control - Remuneration (4 of 8)",
+    303: "Subsection 5a - Control - Remuneration (4 of 8)",
+    304: "Subsection 5a - Control - Remuneration (4 of 8)",
+    306: "Subsection 5a - Control - Remuneration (4 of 8)",
+    386: "Subsection 5a - Control - Remuneration (4 of 8)",
+
+ 195: "Subsection 5a - Control - Location of services (5 of 8)",    
+   296: "Subsection 5a - Control - Location of services (5 of 8)",    
+     426: "Subsection 5a - Control - Location of services (5 of 8)",  
+
+     274: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       275: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       428: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       276: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       388: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+     429: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+
+      278: "Subsection 5a - Control - How the work is done (7 of 8)", 
+          280: "Subsection 5a - Control - How the work is done (7 of 8)", 
+         309: "Subsection 5a - Control - How the work is done (7 of 8)", 
+          310: "Subsection 5a - Control - How the work is done (7 of 8)", 
+      311: "Subsection 5a - Control - How the work is done (7 of 8)", 
+
+      198: "Subsection 5a - Control - Training (8 of 8)", 
+          281: "Subsection 5a - Control - Training (8 of 8)", 
+          282: "Subsection 5a - Control - Training (8 of 8)", 
+          283: "Subsection 5a - Control - Training (8 of 8)", 
+
+
+    
+ 290: "Subsection 5b - Ownership of tools or equipment", 
+ 208: "Subsection 5b - Ownership of tools or equipment", 
+ 210: "Subsection 5b - Ownership of tools or equipment",  
+ 284: "Subsection 5b - Ownership of tools or equipment",  
+ 285: "Subsection 5b - Ownership of tools or equipment", 
+ 286: "Subsection 5b - Ownership of tools or equipment",  
+
+   430: "Subsection 5c - Financial information",  
+     211: "Subsection 5c - Financial information",  
+     214: "Subsection 5c - Financial information",  
+     216: "Subsection 5c - Financial information",  
+     218: "Subsection 5c - Financial information",  
+     217: "Subsection 5c - Financial information",  
+     215: "Subsection 5c - Financial information",  
+     219: "Subsection 5c - Financial information",  
+     233: "Subsection 5c - Financial information",  
+    234: "Subsection 5c - Financial information",  
+     
+    
+   431: "Subsection 5a - Carrying out the work",   
+  397: "Subsection 5a - Carrying out the work", 
+     398: "Subsection 5a - Carrying out the work", 
+     433: "Subsection 5a - Carrying out the work", 
+     399: "Subsection 5a - Carrying out the work", 
+     432: "Subsection 5a - Carrying out the work", 
+     393: "Subsection 5a - Carrying out the work", 
+     394: "Subsection 5a - Carrying out the work", 
+     
+
+   400: "Subsection 5b - Remuneration",   
+  402: "Subsection 5b - Remuneration", 
+  403: "Subsection 5b - Remuneration", 
+      434: "Subsection 5b - Remuneration", 
+      404: "Subsection 5b - Remuneration", 
+      435: "Subsection 5b - Remuneration", 
+      405: "Subsection 5b - Remuneration", 
+      406: "Subsection 5b - Remuneration", 
+      407: "Subsection 5b - Remuneration", 
+      408: "Subsection 5b - Remuneration", 
+      410: "Subsection 5b - Remuneration", 
+      436: "Subsection 5b - Remuneration", 
+      411: "Subsection 5b - Remuneration", 
+
+     
+   41: "Subsection 5c - Relationship of subordination",  
+     413: "Subsection 5c - Relationship of subordination",  
+    414: "Subsection 5c - Relationship of subordination",  
+    415: "Subsection 5c - Relationship of subordination",  
+    416: "Subsection 5c - Relationship of subordination",  
+    417: "Subsection 5c - Relationship of subordination",  
+    418: "Subsection 5c - Relationship of subordination",  
+    419: "Subsection 5c - Relationship of subordination",  
+    420: "Subsection 5c - Relationship of subordination",  
+    421: "Subsection 5c - Relationship of subordination",  
+   422: "Subsection 5c - Relationship of subordination",  
+   438: "Subsection 5c - Relationship of subordination",  
+   439: "Subsection 5c - Relationship of subordination",   
+
+ 360: "Section 6 - Certification", 
+ 363: "Section 6 - Certification", 
+  376: "Section 6 - Certification", 
+     364: "Section 6 - Certification", 
+     366: "Section 6 - Certification", 
+     373: "Section 6 - Certification", 
+    375: "Section 6 - Certification", 
+     362: "Section 6 - Certification", 
+   // Add more mappings as needed
+ };
+ let workerData = null;
+ let payerData = null;
+ document.getElementById('jsonWorkerInput').addEventListener('change', function(event) {
+   const file = event.target.files[0];
+   if (!file) return;
+   const reader = new FileReader();
+   reader.onload = function(e) {
+     try {
+       workerData = JSON.parse(e.target.result);
+       tryRenderBoth();
+     } catch (err) {
+       alert("Invalid Worker JSON.");
+     }
+   };
+   reader.readAsText(file);
+ });
+ document.getElementById('jsonPayerInput').addEventListener('change', function(event) {
+   const file = event.target.files[0];
+   if (!file) return;
+   const reader = new FileReader();
+   reader.onload = function(e) {
+     try {
+       payerData = JSON.parse(e.target.result);
+       tryRenderBoth();
+     } catch (err) {
+       alert("Invalid Payer JSON.");
+     }
+   };
+   reader.readAsText(file);
+ });
+ function tryRenderBoth() {
+   if (workerData && payerData) {
+     const container = document.getElementById('content');
+     container.innerHTML = '';
+     container.appendChild(renderJSON(workerData, payerData));
+   }
+ }
+ function renderJSON(workerData, payerData) {
+   const sectioned = {};
+   function addToSection(ans, isPayer = false) {
+     const section = sectionMap[ans.questionId] || "Other";
+     if (!sectioned[section]) sectioned[section] = {};
+     if (!sectioned[section][ans.questionEn]) {
+       sectioned[section][ans.questionEn] = { worker: "", payer: "" };
+     }
+     const formatted = formatAnswer(ans.answer);
+     if (isPayer) {
+       sectioned[section][ans.questionEn].payer = formatted;
+     } else {
+       sectioned[section][ans.questionEn].worker = formatted;
+     }
+   }
+   function formatAnswer(answer) {
+     if (Array.isArray(answer)) {
+       return answer.map(group =>
+         group.map(sub =>
+           `${sub.questionEn}: ${sub.answer}`
+         ).join("<br>")
+       ).join("<hr>");
+     }
+     return answer || "";
+   }
+   workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
+   payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
+   const container = document.createElement('div');
+   for (const [section, questions] of Object.entries(sectioned)) {
+     const sectionHeader = document.createElement('h3');
+     sectionHeader.textContent = section;
+     container.appendChild(sectionHeader);
+     const table = document.createElement('table');
+     table.innerHTML = `<thead><tr><th>Question</th><th>Worker</th><th>Payer</th></tr></thead>`;
+     const tbody = document.createElement('tbody');
+     for (const [question, { worker, payer }] of Object.entries(questions)) {
+       if (!worker && !payer) continue;
+       const row = document.createElement('tr');
+       row.innerHTML = `
+<td>${question}</td>
+<td>${worker}</td>
+<td>${payer}</td>
+       `;
+       tbody.appendChild(row);
+     }
+     table.appendChild(tbody);
+     container.appendChild(table);
+   }
+   return container;
+ }
+ // Optional: WET preFooter
+ var defPreFooter = document.getElementById("def-preFooter");
+ defPreFooter.outerHTML = wet.builder.preFooter({
+   dateModified: "2025-06-02",
+   showPostContent: true,
+   showFeedback: true,
+   showShare: true
+ });
+</script></div>
+</body>
+</html>
