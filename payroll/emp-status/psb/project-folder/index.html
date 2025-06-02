@@ -1,61 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Nested Editable JSON Viewer</title>
+<meta charset="utf-8">
+<title>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="robots" content="noindex, follow">
+<!-- WET Assets -->
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
+<link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
+         
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
+<!-- JS Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- Styles -->
 <style>
-   body {
-     font-family: Arial, sans-serif;
-     padding: 20px;
-   }
-   section, .nested {
-     border: 1px solid #ccc;
-     border-radius: 5px;
-     padding: 1em;
-     margin: 1em 0;
-   }
-   h2 {
-     margin-top: 0;
-   }
-   .key {
-     font-weight: bold;
-     margin-right: 5px;
-   }
-   .editable {
-     display: inline-block;
-     padding: 2px 4px;
-     border: 1px dashed transparent;
-     min-width: 50px;
-   }
-   .editable:hover {
-     border-color: #aaa;
-     background-color: #f9f9f9;
-     cursor: text;
-   }
-   .buttons {
-     margin-top: 20px;
-   }
-   button {
-     padding: 8px 16px;
-     margin-right: 10px;
-   }
-   pre {
-     background: #f4f4f4;
-     padding: 10px;
-     border-radius: 5px;
-   }
-   ul {
-     list-style-type: none;
-     padding-left: 20px;
-   }
+   body { font-family: Arial, sans-serif; padding: 20px; }
+   .match { background-color: #d6f5d6; }
+   .mismatch { background-color: #fff3cd; }
+   .missing { background-color: #f8d7da; }
+   .hidden { display: none !important; }
+   #pdfButton { margin-top: 20px; }
 </style>
+<script type="text/javascript">
+   document.write(wet.builder.refTop({}));
+</script>
 </head>
-<body>
-<h1>Upload and Edit Nested JSON</h1>
+<body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+<div id="def-top"></div>
+<main role="main" property="mainContentOfPage" class="container">
+<div class="gc-font-2019">
+<h1>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</h1>
 <input type="file" id="jsonFileInput" accept=".json" />
 <div id="content"></div>
 <div class="buttons">
-<button onclick="exportEditedJSON()">Export Edited JSON</button>
+<button class="btn btn-primary btn-lg" onclick="exportEditedJSON()">Export Edited JSON</button>
 </div>
 <h2>Exported JSON Output:</h2>
 <pre id="jsonOutput"></pre>
@@ -139,5 +121,17 @@
      temp[keys[keys.length - 1]] = value;
    }
 </script>
+<div id="def-footer"></div>
+<div id="def-preFooter"></div>
+<script type="text/javascript">
+     var defPreFooter = document.getElementById("def-preFooter");
+     defPreFooter.outerHTML = wet.builder.preFooter({
+       dateModified: "2025-05-27",
+       showPostContent: true,
+       showFeedback: true,
+       showShare: true
+     });
+</script>
+</main>
 </body>
 </html>
