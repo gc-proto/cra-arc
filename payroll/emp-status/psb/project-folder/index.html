@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>PSB Questionnaire Viewer (Grouped by Section)</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comparison tool - PSB Questionnaire</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
 <meta name="robots" content="noindex, follow">
 <!-- WET Assets -->
 <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
@@ -14,12 +14,6 @@
      font-family: Arial, sans-serif;
      padding: 20px;
    }
-   h2.section-title {
-     margin-top: 2em;
-     background-color: #e1f5fe;
-     padding: 10px;
-     border-left: 5px solid #0288d1;
-   }
    table {
      width: 100%;
      border-collapse: collapse;
@@ -28,6 +22,7 @@
    th, td {
      border: 1px solid #ccc;
      padding: 8px;
+     text-align: left;
      vertical-align: top;
    }
    th {
@@ -65,7 +60,7 @@
 <div id="def-top"></div>
 <main role="main" property="mainContentOfPage" class="container">
 <div class="gc-font-2019">
-<h1>Comparison Tool - PSB Questionnaire (Grouped View)</h1>
+<h1>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</h1>
 <input type="file" id="jsonFileInput" accept=".json" />
 <div id="content"></div>
 <div class="buttons">
@@ -79,6 +74,7 @@
 <div id="def-preFooter"></div>
 <script>
    let originalData = {};
+   const hideKeys = ['questionId', 'questionFR', 'type'];
    document.getElementById('jsonFileInput').addEventListener('change', function(event) {
      const file = event.target.files[0];
      if (!file) return;
@@ -88,41 +84,52 @@
          originalData = JSON.parse(e.target.result);
          const container = document.getElementById('content');
          container.innerHTML = '';
-         container.appendChild(renderGroupedSections(originalData));
+         container.appendChild(renderJSON(originalData));
        } catch (err) {
          document.getElementById('content').innerHTML = '<p style="color:red;">Invalid JSON file.</p>';
        }
      };
      reader.readAsText(file);
    });
-   function renderGroupedSections(data) {
-     const wrapper = document.createElement('div');
-     for (const sectionKey in data) {
-       const section = data[sectionKey];
-       const title = section.titleEN || sectionKey;
-       const questions = Array.isArray(section.questions) ? section.questions : [];
-       const filtered = questions.filter(q => q.answer && q.answer !== '');
-       if (filtered.length > 0) {
-         const sectionTitle = document.createElement('h2');
-         sectionTitle.className = 'section-title';
-         sectionTitle.textContent = title;
-         wrapper.appendChild(sectionTitle);
-         const table = document.createElement('table');
-         table.innerHTML = `<thead><tr><th>Question (EN)</th><th>Answer</th></tr></thead>`;
-         const tbody = document.createElement('tbody');
-         filtered.forEach((q, i) => {
-           const tr = document.createElement('tr');
-           tr.innerHTML = `
-<td>${q.questionEN || ''}</td>
-<td><span class="editable" contenteditable="true" data-path="${sectionKey}.questions[${i}].answer">${q.answer}</span></td>
-           `;
-           tbody.appendChild(tr);
+   function renderJSON(data) {
+     const flatData = flattenJSON(data);
+     const table = document.createElement('table');
+     const thead = document.createElement('thead');
+     const tbody = document.createElement('tbody');
+     thead.innerHTML = `<tr><th>Path</th><th>Value</th></tr>`;
+     table.appendChild(thead);
+     Object.entries(flatData).forEach(([key, value]) => {
+       const lastKey = key.split('.').pop();
+       if (hideKeys.includes(lastKey)) return;
+       if (value === '' || value === null || value === undefined) return;
+       const row = document.createElement('tr');
+       row.innerHTML = `
+<td>${key}</td>
+<td><span class="editable" contenteditable="true" data-path="${key}">${value}</span></td>
+       `;
+       tbody.appendChild(row);
+     });
+     table.appendChild(tbody);
+     return table;
+   }
+   function flattenJSON(obj, parent = '', res = {}) {
+     for (let key in obj) {
+       const propName = parent ? `${parent}.${key}` : key;
+       if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
+         flattenJSON(obj[key], propName, res);
+       } else if (Array.isArray(obj[key])) {
+         obj[key].forEach((item, i) => {
+           if (typeof item === 'object' && item !== null) {
+             flattenJSON(item, `${propName}[${i}]`, res);
+           } else {
+             res[`${propName}[${i}]`] = item;
+           }
          });
-         table.appendChild(tbody);
-         wrapper.appendChild(table);
+       } else {
+         res[propName] = obj[key];
        }
      }
-     return wrapper;
+     return res;
    }
    function exportEditedJSON() {
      const editedData = JSON.parse(JSON.stringify(originalData));
