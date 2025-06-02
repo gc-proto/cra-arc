@@ -103,12 +103,12 @@
              const w = wMap[qid];
              const p = pMap[qid];
              const label = questionMap[qid]?.title || '';
-             const groupsId = Object.entries(groups).find(([, g]) => g.elements?.includes(id))?.[0] || "unknown";
-             const groupsTitle = groups[groupsId]?.titleEn || "Unknown groups";
+             const sectionId = Object.entries(groups).find(([, g]) => g.elements?.includes(id))?.[0] || "unknown";
+             const sectionTitle = groups[sectionId]?.titleEn || "Unknown Section";
              tableData.push({
                id: qid,
                label,
-               groups: groupsTitle,
+               section: sectionTitle,
                worker: w?.answer || '[Missing]',
                payer: p?.answer || '[Missing]',
                match: w?.answer === p?.answer,
@@ -144,11 +144,11 @@
 </tr>
 </thead>
 <tbody>`;
-       let currentGroups = '';
+       let currentSection = '';
        tableData.forEach(row => {
-         if (row.groups !== currentGroups) {
-           html += `<tr class="groups-header"><td colspan="5">${row.groups}</td></tr>`;
-           currentGroups = row.groups;
+         if (row.section !== currentSection) {
+           html += `<tr class="section-header"><td colspan="5">${row.section}</td></tr>`;
+           currentSection = row.section;
          }
          const rowClass = !row.existsInBoth ? "missing" : (row.match ? "match" : "mismatch");
          html += `<tr class="${rowClass}">
@@ -166,7 +166,7 @@
      function filterTable(type) {
        const rows = document.querySelectorAll("#comparisonTable tbody tr");
        rows.forEach(row => {
-         if (row.classList.contains("groups-header")) return row.style.display = '';
+         if (row.classList.contains("section-header")) return row.style.display = '';
          row.style.display = (type === 'all') ||
            (type === 'match' && row.classList.contains('match')) ||
            (type === 'mismatch' && row.classList.contains('mismatch'))
