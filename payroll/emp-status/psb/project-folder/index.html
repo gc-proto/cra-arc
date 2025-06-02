@@ -28,20 +28,6 @@
    th {
      background-color: #f2f2f2;
    }
-   .editable {
-     display: inline-block;
-     padding: 2px 4px;
-     border: 1px dashed transparent;
-     min-width: 50px;
-   }
-  
-   .buttons {
-     margin-top: 20px;
-   }
-   button {
-     padding: 8px 16px;
-     margin-right: 10px;
-   }
    pre {
      background: #f4f4f4;
      padding: 10px;
@@ -59,28 +45,21 @@
 <h1>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</h1>
 <input type="file" id="jsonFileInput" accept=".json" />
 <div id="content"></div>
-<div class="buttons">
-<button class="btn btn-primary btn-lg" onclick="exportEditedJSON()">Export Edited JSON</button>
-</div>
-<h2>Exported JSON Output:</h2>
-<pre id="jsonOutput"></pre>
 </div>
 </main>
 <div id="def-footer"></div>
 <div id="def-preFooter"></div>
 <script>
-   let originalData = {};
-   const hideKeys = ['questionId', 'questionFr', 'type', 'createdAt', 'id'];
    document.getElementById('jsonFileInput').addEventListener('change', function(event) {
      const file = event.target.files[0];
      if (!file) return;
      const reader = new FileReader();
      reader.onload = function(e) {
        try {
-         originalData = JSON.parse(e.target.result);
+         const data = JSON.parse(e.target.result);
          const container = document.getElementById('content');
          container.innerHTML = '';
-         container.appendChild(renderJSON(originalData));
+         container.appendChild(renderJSON(data));
        } catch (err) {
          document.getElementById('content').innerHTML = '<p style="color:red;">Invalid JSON file.</p>';
        }
@@ -88,71 +67,43 @@
      reader.readAsText(file);
    });
    function renderJSON(data) {
-     const flatData = flattenJSON(data);
      const table = document.createElement('table');
      const thead = document.createElement('thead');
      const tbody = document.createElement('tbody');
-     thead.innerHTML = `<tr><th>Path</th><th>Value</th></tr>`;
+     thead.innerHTML = `<tr><th>Question</th><th>Answer</th></tr>`;
      table.appendChild(thead);
-     Object.entries(flatData).forEach(([key, value]) => {
-       const lastKey = key.split('.').pop();
-       if (hideKeys.includes(lastKey)) return;
-       if (value === '' || value === null || value === undefined) return;
-       const row = document.createElement('tr');
-       row.innerHTML = `
-<td>${key}</td>
-<td><span class="editable" contenteditable="true" data-path="${key}">${value}</span></td>
-       `;
-       tbody.appendChild(row);
+     data.forEach((entry) => {
+       entry.answers.forEach((ans) => {
+         // Regular answer
+         if (typeof ans.answer === 'string' || typeof ans.answer === 'number') {
+           const row = document.createElement('tr');
+           row.innerHTML = `
+<td>${ans.questionEn}</td>
+<td>${ans.answer}</td>
+           `;
+           tbody.appendChild(row);
+         }
+         // Nested answer (dynamicRow)
+         else if (Array.isArray(ans.answer)) {
+           ans.answer.forEach((group) => {
+             if (Array.isArray(group)) {
+               group.forEach((subAns) => {
+                 const row = document.createElement('tr');
+                 row.innerHTML = `
+<td>${subAns.questionEn}</td>
+<td>${subAns.answer}</td>
+                 `;
+                 tbody.appendChild(row);
+               });
+             }
+           });
+         }
+       });
      });
      table.appendChild(tbody);
      return table;
    }
-   function flattenJSON(obj, parent = '', res = {}) {
-     for (let key in obj) {
-       const propName = parent ? `${parent}.${key}` : key;
-       if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
-         flattenJSON(obj[key], propName, res);
-       } else if (Array.isArray(obj[key])) {
-         obj[key].forEach((item, i) => {
-           if (typeof item === 'object' && item !== null) {
-             flattenJSON(item, `${propName}[${i}]`, res);
-           } else {
-             res[`${propName}[${i}]`] = item;
-           }
-         });
-       } else {
-         res[propName] = obj[key];
-       }
-     }
-     return res;
-   }
-   function exportEditedJSON() {
-     const editedData = JSON.parse(JSON.stringify(originalData));
-     document.querySelectorAll('.editable').forEach(el => {
-       const path = el.getAttribute('data-path');
-       const value = parseValue(el.textContent.trim());
-       setValueByPath(editedData, path, value);
-     });
-     document.getElementById('jsonOutput').textContent = JSON.stringify(editedData, null, 2);
-   }
-   function parseValue(val) {
-     if (val === 'true') return true;
-     if (val === 'false') return false;
-     if (val === 'null') return null;
-     if (!isNaN(val) && val.trim() !== '') return parseFloat(val);
-     return val;
-   }
-   function setValueByPath(obj, path, value) {
-     const keys = path.replace(/\[(\d+)\]/g, '.$1').split('.');
-     let temp = obj;
-     for (let i = 0; i < keys.length - 1; i++) {
-       const key = keys[i];
-       if (!(key in temp)) return;
-       temp = temp[key];
-     }
-     temp[keys[keys.length - 1]] = value;
-   }
+   // Optional: WET preFooter
    var defPreFooter = document.getElementById("def-preFooter");
    defPreFooter.outerHTML = wet.builder.preFooter({
      dateModified: "2025-05-27",
