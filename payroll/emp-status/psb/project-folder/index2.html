@@ -2,137 +2,99 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Comparison tool - PSB Questionnaire</title>
+<title>Worker vs. Payer Comparison</title>
 <meta content="width=device-width,initial-scale=1" name="viewport">
-<meta name="robots" content="noindex, follow">
-<!-- WET Assets -->
-<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
-<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
 <style>
-   body {
-     font-family: Arial, sans-serif;
-     padding: 20px;
-   }
-   table {
-     width: 100%;
-     border-collapse: collapse;
-     margin-top: 1em;
-   }
-   th, td {
-     border: 1px solid #ccc;
-     padding: 8px;
-     text-align: left;
-     vertical-align: top;
-   }
-   th {
-     background-color: #f2f2f2;
-   }
-   .editable {
-     display: inline-block;
-     padding: 2px 4px;
-     border: 1px dashed transparent;
-     min-width: 50px;
-   }
-   .editable:hover {
-     border-color: #aaa;
-     background-color: #f9f9f9;
-     cursor: text;
-   }
-   .buttons {
-     margin-top: 20px;
-   }
-   button {
-     padding: 8px 16px;
-     margin-right: 10px;
-   }
-   pre {
-     background: #f4f4f4;
-     padding: 10px;
-     border-radius: 5px;
-   }
+   body { font-family: Arial, sans-serif; padding: 20px; }
+   table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+   th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
+   th { background-color: #f2f2f2; }
 </style>
-<script type="text/javascript">
-   document.write(wet.builder.refTop({}));
-</script>
 </head>
-<body vocab="http://schema.org/" typeof="WebPage" class="experimental">
-<div id="def-top"></div>
-<main role="main" property="mainContentOfPage" class="container">
-<div class="gc-font-2019">
-<h1>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</h1>
-<input type="file" id="jsonFileInput" accept=".json" />
+<body>
+<h1>Worker vs. Payer Questionnaire Comparison</h1>
+<label>Upload Worker JSON: <input type="file" id="workerJson" accept=".json" /></label><br><br>
+<label>Upload Payer JSON: <input type="file" id="payerJson" accept=".json" /></label>
 <div id="content"></div>
-<div class="buttons">
-<button class="btn btn-primary btn-lg" onclick="exportEditedJSON()">Export Edited JSON</button>
-</div>
-<h2>Exported JSON Output:</h2>
-<pre id="jsonOutput"></pre>
-</div>
-</main>
-<div id="def-footer"></div>
-<div id="def-preFooter"></div>
 <script>
- let originalData = {};
- document.getElementById('jsonFileInput').addEventListener('change', function (event) {
-   const file = event.target.files[0];
-   if (!file) return;
-   const reader = new FileReader();
-   reader.onload = function (e) {
-     try {
-       originalData = JSON.parse(e.target.result);
-       const container = document.getElementById('content');
-       container.innerHTML = '';
-       container.appendChild(renderPSBTable(originalData));
-     } catch (err) {
-       document.getElementById('content').innerHTML = '<p style="color:red;">Invalid JSON file.</p>';
-     }
-   };
-   reader.readAsText(file);
- });
- function renderPSBTable(data) {
-   const table = document.createElement('table');
-   const thead = document.createElement('thead');
-   const tbody = document.createElement('tbody');
-   thead.innerHTML = `<tr><th>Question</th><th>Answer</th></tr>`;
-   table.appendChild(thead);
-   // Build an ID map of elements for quick lookup
-   const elementsMap = {};
-   (data.elements || []).forEach(el => {
-     elementsMap[el.id] = el;
-   });
-   const groups = data.groups || {};
-   for (const groupKey in groups) {
-     const group = groups[groupKey];
-     const questionIds = group.elements || [];
-     questionIds.forEach(id => {
-       const element = elementsMap[id];
-       if (!element) return;
-       const question = element.properties?.titleEn || '';
-       const answer = element.answer;
-       if (!answer || answer === '') return; // Skip empty answers
-       const tr = document.createElement('tr');
-       tr.innerHTML = `
-<td>${question}</td>
-<td>${answer}</td>
-       `;
-       tbody.appendChild(tr);
+   let workerData = null;
+   let payerData = null;
+   document.getElementById('workerJson').addEventListener('change', function(e) {
+     readJSONFile(e.target.files[0], data => {
+       workerData = data;
+       if (payerData) renderComparison();
      });
+   });
+   document.getElementById('payerJson').addEventListener('change', function(e) {
+     readJSONFile(e.target.files[0], data => {
+       payerData = data;
+       if (workerData) renderComparison();
+     });
+   });
+   function readJSONFile(file, callback) {
+     if (!file) return;
+     const reader = new FileReader();
+     reader.onload = function(e) {
+       try {
+         const data = JSON.parse(e.target.result);
+         callback(data);
+       } catch {
+         alert("Invalid JSON");
+       }
+     };
+     reader.readAsText(file);
    }
-   table.appendChild(tbody);
-   return table;
- }
- function exportEditedJSON() {
-   // No editing, just export original
-   document.getElementById('jsonOutput').textContent = JSON.stringify(originalData, null, 2);
- }
- var defPreFooter = document.getElementById("def-preFooter");
- defPreFooter.outerHTML = wet.builder.preFooter({
-   dateModified: "2025-05-27",
-   showPostContent: true,
-   showFeedback: true,
-   showShare: true
- });
+   function renderComparison() {
+     const container = document.getElementById('content');
+     container.innerHTML = '';
+     const table = document.createElement('table');
+     const thead = document.createElement('thead');
+     const tbody = document.createElement('tbody');
+     thead.innerHTML = `<tr><th>Question</th><th>Worker Answer</th><th>Payer Answer</th></tr>`;
+     table.appendChild(thead);
+     const payerAnswersById = {};
+     payerData.forEach(entry => {
+       entry.answers.forEach(ans => {
+         if (typeof ans.answer === 'string' || typeof ans.answer === 'number') {
+           payerAnswersById[ans.questionId] = ans.answer;
+         } else if (Array.isArray(ans.answer)) {
+           ans.answer.flat().forEach(subAns => {
+             payerAnswersById[subAns.questionId] = subAns.answer;
+           });
+         }
+       });
+     });
+     workerData.forEach(entry => {
+       entry.answers.forEach(ans => {
+         if (typeof ans.answer === 'string' || typeof ans.answer === 'number') {
+           if (!ans.answer) return;
+           const row = document.createElement('tr');
+           row.innerHTML = `
+<td>${ans.questionEn}</td>
+<td>${ans.answer}</td>
+<td>${payerAnswersById[ans.questionId] || ''}</td>
+           `;
+           tbody.appendChild(row);
+         } else if (Array.isArray(ans.answer)) {
+           ans.answer.forEach(group => {
+             group.forEach(subAns => {
+               if (!subAns.answer) return;
+               const row = document.createElement('tr');
+               row.innerHTML = `
+<td>${subAns.questionEn}</td>
+<td>${subAns.answer}</td>
+<td>${payerAnswersById[subAns.questionId] || ''}</td>
+               `;
+               tbody.appendChild(row);
+             });
+           });
+         }
+       });
+     });
+     table.appendChild(tbody);
+     container.appendChild(table);
+   }
 </script>
 </body>
 </html>
