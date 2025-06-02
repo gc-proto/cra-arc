@@ -70,8 +70,8 @@
      let tableData = [];
      let questionMap = {}; // Will hold question metadata from either form
      function compare() {
-       const workerFile = document.getElementById('workerFile').files[0];
-       const payerFile = document.getElementById('payerFile').files[0];
+       const workerFile = document.getAnswersById('workerFile').files[0];
+       const payerFile = document.getAnswersById('payerFile').files[0];
        if (!workerFile || !payerFile) {
          alert("Please select both JSON files.");
          return;
@@ -80,30 +80,30 @@
          .then(([wText, pText]) => {
            const worker = JSON.parse(wText);
            const payer = JSON.parse(pText);
-           // Save question metadata from one of the files (groups + layout + elements)
+           // Save question metadata from one of the files (groups + layout + answers)
            const layout = payer.layout;
            const groups = payer.groups;
-           const elements = {};
-           payer.elements.forEach(e => {
+           const answers = {};
+           payer.answers.forEach(e => {
              const qid = e?.properties?.questionId;
-             if (qid) elements[qid] = {
+             if (qid) answers[qid] = {
                title: e.properties.titleEn || '',
                choices: e.properties.choices?.map(c => c.en).join(', ') || ''
              };
            });
-           questionMap = elements;
+           questionMap = answers;
            // Create maps of answers
-           const wMap = buildMap(worker.elements);
-           const pMap = buildMap(payer.elements);
+           const wMap = buildMap(worker.answers);
+           const pMap = buildMap(payer.answers);
            // Compose table rows based on layout
            tableData = [];
            layout.forEach(id => {
-             const qid = payer.elements.find(e => e.id === id)?.properties?.questionId;
+             const qid = payer.answers.find(e => e.id === id)?.properties?.questionId;
              if (!qid) return;
              const w = wMap[qid];
              const p = pMap[qid];
              const label = questionMap[qid]?.title || '';
-             const nameId = Object.entries(groups).find(([, g]) => g.elements?.includes(id))?.[0] || "unknown";
+             const nameId = Object.entries(groups).find(([, g]) => g.answers?.includes(id))?.[0] || "unknown";
              const nameTitle = groups[nameId]?.titleEn || "Unknown name";
              tableData.push({
                id: qid,
@@ -118,9 +118,9 @@
            renderTable();
          });
      }
-     function buildMap(elements) {
+     function buildMap(answers) {
        const map = {};
-       elements.forEach(e => {
+       answers.forEach(e => {
          const qid = e?.properties?.questionId;
          if (qid) {
            map[qid] = {
@@ -131,8 +131,8 @@
        return map;
      }
      function renderTable() {
-       document.getElementById('filters').classList.remove('hidden');
-       document.getElementById('pdfButton').classList.remove('hidden');
+       document.getAnswersById('filters').classList.remove('hidden');
+       document.getAnswersById('pdfButton').classList.remove('hidden');
        let html = `<table id="comparisonTable" class="wb-tables table table-hover small" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
 <thead>
 <tr>
@@ -160,8 +160,8 @@
 </tr>`;
        });
        html += '</tbody></table>';
-       document.getElementById('output').innerHTML = html;
-       window.wb?.init(document.getElementById('output'));
+       document.getAnswersById('output').innerHTML = html;
+       window.wb?.init(document.getAnswersById('output'));
      }
      function filterTable(type) {
        const rows = document.querySelectorAll("#comparisonTable tbody tr");
@@ -174,7 +174,7 @@
        });
      }
      function toggleIdColumn() {
-       const show = document.getElementById("toggleIdCol").checked;
+       const show = document.getAnswersById("toggleIdCol").checked;
        const cells = document.querySelectorAll(".id-col");
        cells.forEach(cell => cell.classList.toggle("hidden", !show));
      }
@@ -199,7 +199,7 @@
 </script>
 
 <script type="text/javascript">
-     var defPreFooter = document.getElementById("def-preFooter");
+     var defPreFooter = document.getAnswersById("def-preFooter");
      defPreFooter.outerHTML = wet.builder.preFooter({
        dateModified: "2025-05-27",
        showPostContent: true,
