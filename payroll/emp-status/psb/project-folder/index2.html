@@ -83,53 +83,52 @@
        originalData = JSON.parse(e.target.result);
        const container = document.getElementById('content');
        container.innerHTML = '';
-       container.appendChild(renderJSON(originalData));
+       container.appendChild(renderPSBTable(originalData));
      } catch (err) {
        document.getElementById('content').innerHTML = '<p style="color:red;">Invalid JSON file.</p>';
      }
    };
    reader.readAsText(file);
  });
- function renderJSON(data) {
+ function renderPSBTable(data) {
    const table = document.createElement('table');
    const thead = document.createElement('thead');
    const tbody = document.createElement('tbody');
    thead.innerHTML = `<tr><th>Question</th><th>Answer</th></tr>`;
    table.appendChild(thead);
-   // Build a map of elements by ID for fast lookup
+   // Build an ID map of elements for quick lookup
    const elementsMap = {};
-   if (Array.isArray(data.elements)) {
-     data.elements.forEach(el => {
-       elementsMap[el.id] = el;
-     });
-   }
+   (data.elements || []).forEach(el => {
+     elementsMap[el.id] = el;
+   });
    const groups = data.groups || {};
    for (const groupKey in groups) {
      const group = groups[groupKey];
-     const questionIds = Array.isArray(group.elements) ? group.elements : [];
+     const questionIds = group.elements || [];
      questionIds.forEach(id => {
-       const el = elementsMap[id];
-       if (!el || !el.answer || el.answer === '') return;
-       const questionText = el.properties?.titleEn || '';
-       const answerText = el.answer;
-       const row = document.createElement('tr');
-       row.innerHTML = `
-<td>${questionText}</td>
-<td>${answerText}</td>
+       const element = elementsMap[id];
+       if (!element) return;
+       const question = element.properties?.titleEn || '';
+       const answer = element.answer;
+       if (!answer || answer === '') return; // Skip empty answers
+       const tr = document.createElement('tr');
+       tr.innerHTML = `
+<td>${question}</td>
+<td>${answer}</td>
        `;
-       tbody.appendChild(row);
+       tbody.appendChild(tr);
      });
    }
    table.appendChild(tbody);
    return table;
  }
  function exportEditedJSON() {
-   // No editing allowed; just export original
+   // No editing, just export original
    document.getElementById('jsonOutput').textContent = JSON.stringify(originalData, null, 2);
  }
  var defPreFooter = document.getElementById("def-preFooter");
  defPreFooter.outerHTML = wet.builder.preFooter({
-   dateModified: "2025-06-02",
+   dateModified: "2025-05-27",
    showPostContent: true,
    showFeedback: true,
    showShare: true
