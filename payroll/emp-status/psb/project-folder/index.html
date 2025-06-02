@@ -66,43 +66,51 @@
      };
      reader.readAsText(file);
    });
-   function renderJSON(data) {
-     const table = document.createElement('table');
-     const thead = document.createElement('thead');
-     const tbody = document.createElement('tbody');
-     thead.innerHTML = `<tr><th>Question</th><th>Answer</th></tr>`;
-     table.appendChild(thead);
-     data.forEach((entry) => {
-       entry.answers.forEach((ans) => {
-         // Regular answer
-         if (typeof ans.answer === 'string' || typeof ans.answer === 'number') {
-           const row = document.createElement('tr');
-           row.innerHTML = `
+  function renderJSON(data) {
+ const table = document.createElement('table');
+ const thead = document.createElement('thead');
+ const tbody = document.createElement('tbody');
+ thead.innerHTML = `<tr><th>Question</th><th>Answer</th></tr>`;
+ table.appendChild(thead);
+ data.forEach((entry) => {
+   entry.answers.forEach((ans) => {
+     const isEmpty = (val) => {
+       if (val === null || val === undefined) return true;
+       if (typeof val === 'string') return val.trim() === '';
+       if (Array.isArray(val)) return val.length === 0;
+       return false;
+     };
+     // Regular answer
+     if (typeof ans.answer === 'string' || typeof ans.answer === 'number') {
+       if (isEmpty(ans.answer)) return; // Skip empty
+       const row = document.createElement('tr');
+       row.innerHTML = `
 <td>${ans.questionEn}</td>
 <td>${ans.answer}</td>
-           `;
-           tbody.appendChild(row);
-         }
-         // Nested answer (dynamicRow)
-         else if (Array.isArray(ans.answer)) {
-           ans.answer.forEach((group) => {
-             if (Array.isArray(group)) {
-               group.forEach((subAns) => {
-                 const row = document.createElement('tr');
-                 row.innerHTML = `
+       `;
+       tbody.appendChild(row);
+     }
+     // Nested answer (e.g. dynamicRow)
+     else if (Array.isArray(ans.answer)) {
+       ans.answer.forEach((group) => {
+         if (Array.isArray(group)) {
+           group.forEach((subAns) => {
+             if (isEmpty(subAns.answer)) return; // Skip empty nested answers
+             const row = document.createElement('tr');
+             row.innerHTML = `
 <td>${subAns.questionEn}</td>
 <td>${subAns.answer}</td>
-                 `;
-                 tbody.appendChild(row);
-               });
-             }
+             `;
+             tbody.appendChild(row);
            });
          }
        });
-     });
-     table.appendChild(tbody);
-     return table;
-   }
+     }
+   });
+ });
+ table.appendChild(tbody);
+ return table;
+}
    // Optional: WET preFooter
    var defPreFooter = document.getElementById("def-preFooter");
    defPreFooter.outerHTML = wet.builder.preFooter({
