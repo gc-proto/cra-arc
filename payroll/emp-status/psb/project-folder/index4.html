@@ -345,21 +345,36 @@
    payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
    const container = document.createElement('div');
    for (const [section, questions] of Object.entries(sectioned)) {
-     const sectionHeader = document.createElement('h3');
+     const sectionHeader = document.createElement('h2');
      sectionHeader.textContent = section;
      container.appendChild(sectionHeader);
-     const table = document.createElement('table');
-     table.innerHTML = `<thead><tr><th>Question</th><th>Worker</th><th>Payer</th></tr></thead>`;
-     const tbody = document.createElement('tbody');
+   const table = document.createElement('table');
+// Decide which columns to show
+const showWorker = ![
+ "Section 3 - Payee information"
+].includes(section);
+const showPayer = ![
+ "Section 1: General information",
+ "Section 2a - Employee information",
+ "Section 2b - Specified shareholder information",
+ "Section 3 - Payer information"
+].includes(section);
+// Build table header dynamically
+let theadHTML = '<thead><tr><th>Question</th>';
+if (showWorker) theadHTML += '<th>Worker</th>';
+if (showPayer) theadHTML += '<th>Payer</th>';
+theadHTML += '</tr></thead>';
+table.innerHTML = theadHTML;
+      
+      const tbody = document.createElement('tbody');
      for (const [question, { worker, payer }] of Object.entries(questions)) {
        if (!worker && !payer) continue;
-       const row = document.createElement('tr');
-       row.innerHTML = `
-<td>${question}</td>
-<td>${worker}</td>
-<td>${payer}</td>
-       `;
-       tbody.appendChild(row);
+      const row = document.createElement('tr');
+let rowHTML = `<td>${question}</td>`;
+if (showWorker) rowHTML += `<td>${worker}</td>`;
+if (showPayer) rowHTML += `<td>${payer}</td>`;
+row.innerHTML = rowHTML;
+tbody.appendChild(row);
      }
      table.appendChild(tbody);
      container.appendChild(table);
