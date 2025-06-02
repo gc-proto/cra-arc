@@ -349,7 +349,8 @@
      sectionHeader.textContent = section;
      container.appendChild(sectionHeader);
    const table = document.createElement('table');
-// Decide which columns to show
+
+      // Determine which columns to show
 const showWorker = ![
  "Section 3 - Payee information"
 ].includes(section);
@@ -359,6 +360,9 @@ const showPayer = ![
  "Section 2b - Specified shareholder information",
  "Section 3 - Payer information"
 ].includes(section);
+// Skip section entirely if both columns are hidden
+if (!showWorker && !showPayer) continue;
+      
 // Build table header dynamically
 let theadHTML = '<thead><tr><th>Question</th>';
 if (showWorker) theadHTML += '<th>Worker</th>';
