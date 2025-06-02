@@ -93,8 +93,12 @@
              const existsInBoth = !!w && !!p;
              tableData.push({ id, wTitle, pTitle, wChoices, pChoices, match, existsInBoth });
            });
-           renderTable();
-         });
+             // Sort by question ID
+         tableData.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+         // Hide questions that are not in both files
+         tableData = tableData.filter(row => row.existsInBoth);
+         renderTable();     
+            });
      }
      function buildQuestionMap(elements) {
        const map = {};
