@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>PSB Questionnaire Viewer</title>
+<title>PSB Questionnaire Viewer (Grouped by Section)</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, follow">
 <!-- WET Assets -->
@@ -13,6 +13,12 @@
    body {
      font-family: Arial, sans-serif;
      padding: 20px;
+   }
+   h2.section-title {
+     margin-top: 2em;
+     background-color: #e1f5fe;
+     padding: 10px;
+     border-left: 5px solid #0288d1;
    }
    table {
      width: 100%;
@@ -59,7 +65,7 @@
 <div id="def-top"></div>
 <main role="main" property="mainContentOfPage" class="container">
 <div class="gc-font-2019">
-<h1>Comparison Tool - PSB Questionnaire</h1>
+<h1>Comparison Tool - PSB Questionnaire (Grouped View)</h1>
 <input type="file" id="jsonFileInput" accept=".json" />
 <div id="content"></div>
 <div class="buttons">
@@ -82,46 +88,41 @@
          originalData = JSON.parse(e.target.result);
          const container = document.getElementById('content');
          container.innerHTML = '';
-         container.appendChild(renderTable(originalData));
+         container.appendChild(renderGroupedSections(originalData));
        } catch (err) {
          document.getElementById('content').innerHTML = '<p style="color:red;">Invalid JSON file.</p>';
        }
      };
      reader.readAsText(file);
    });
-   function renderTable(data) {
-     const table = document.createElement('table');
-     const thead = document.createElement('thead');
-     thead.innerHTML = `<tr><th>Question (EN)</th><th>Answer</th></tr>`;
-     table.appendChild(thead);
-     const tbody = document.createElement('tbody');
-     const flatArray = flattenToArray(data);
-     flatArray.forEach(entry => {
-       const { questionEN, answer } = entry;
-       if (!answer || answer === '') return; // Skip empty answers
-       const row = document.createElement('tr');
-       row.innerHTML = `
-<td>${questionEN}</td>
-<td><span class="editable" contenteditable="true" data-path="${entry._path}.answer">${answer}</span></td>
-       `;
-       tbody.appendChild(row);
-     });
-     table.appendChild(tbody);
-     return table;
-   }
-   function flattenToArray(obj, path = '', out = []) {
-     if (Array.isArray(obj)) {
-       obj.forEach((item, i) => flattenToArray(item, `${path}[${i}]`, out));
-     } else if (typeof obj === 'object' && obj !== null) {
-       if ('questionEN' in obj && 'answer' in obj) {
-         out.push({ questionEN: obj.questionEN, answer: obj.answer, _path: path });
-       } else {
-         for (const key in obj) {
-           flattenToArray(obj[key], path ? `${path}.${key}` : key, out);
-         }
+   function renderGroupedSections(data) {
+     const wrapper = document.createElement('div');
+     for (const sectionKey in data) {
+       const section = data[sectionKey];
+       const title = section.titleEN || sectionKey;
+       const questions = Array.isArray(section.questions) ? section.questions : [];
+       const filtered = questions.filter(q => q.answer && q.answer !== '');
+       if (filtered.length > 0) {
+         const sectionTitle = document.createElement('h2');
+         sectionTitle.className = 'section-title';
+         sectionTitle.textContent = title;
+         wrapper.appendChild(sectionTitle);
+         const table = document.createElement('table');
+         table.innerHTML = `<thead><tr><th>Question (EN)</th><th>Answer</th></tr></thead>`;
+         const tbody = document.createElement('tbody');
+         filtered.forEach((q, i) => {
+           const tr = document.createElement('tr');
+           tr.innerHTML = `
+<td>${q.questionEN || ''}</td>
+<td><span class="editable" contenteditable="true" data-path="${sectionKey}.questions[${i}].answer">${q.answer}</span></td>
+           `;
+           tbody.appendChild(tr);
+         });
+         table.appendChild(tbody);
+         wrapper.appendChild(table);
        }
      }
-     return out;
+     return wrapper;
    }
    function exportEditedJSON() {
      const editedData = JSON.parse(JSON.stringify(originalData));
