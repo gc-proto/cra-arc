@@ -340,7 +340,7 @@
    payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
    const container = document.createElement('div');
    for (const [section, questions] of Object.entries(sectioned)) {
-     const sectionHeader = document.createElement('h2');
+     const sectionHeader = document.createElement('h3');
      sectionHeader.textContent = section;
      container.appendChild(sectionHeader);
    const table = document.createElement('table');
@@ -351,8 +351,8 @@ const showWorker = ![
 ].includes(section);
 const showPayer = ![
  "Section 1: General information",
- "Section 2a - Employee information",
- "Section 2b - Specified shareholder information",
+ "Worker - Section 2a - Employee information",
+ "Worker - Section 2b - Specified shareholder information",
  "Section 3 - Payer information"
 ].includes(section);
 // Skip section entirely if both columns are hidden
