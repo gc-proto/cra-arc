@@ -42,12 +42,6 @@
      padding: 10px;
      border-radius: 5px;
    }
-    .match {
-   background-color: #d4edda; /* light green */
- }
- .mismatch {
-   background-color: #fff3cd; /* light yellow */
- }
 </style>
 <script type="text/javascript">
    document.write(wet.builder.refTop({}));
@@ -374,24 +368,12 @@ table.innerHTML = theadHTML;
       const tbody = document.createElement('tbody');
      for (const [question, { worker, payer }] of Object.entries(questions)) {
        if (!worker && !payer) continue;
-     const row = document.createElement("tr");
-      row.className = rowClass;
+      const row = document.createElement('tr');
 let rowHTML = `<td>${question}</td>`;
 if (showWorker) rowHTML += `<td>${worker}</td>`;
 if (showPayer) rowHTML += `<td>${payer}</td>`;
 row.innerHTML = rowHTML;
 tbody.appendChild(row);
-        
-// Compare answers to determine row highlight color
-let rowClass = '';        
-if (showWorker && showPayer) {
- if (workerAnswer === payerAnswer) {
-   rowClass = 'match';
- } else {
-   rowClass = 'mismatch';
- }
-}
-        
      }
      table.appendChild(tbody);
      container.appendChild(table);
