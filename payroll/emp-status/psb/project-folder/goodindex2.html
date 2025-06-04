@@ -81,33 +81,40 @@
 <div id="content"></div>
 <div id="probability"></div>
 
- <script>
+<script>
 let workerData = null;
 let payerData = null;
-document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
+const scoringRules = {
+ "s2a_q1": { weight: 1, yes: 1, no: 0 },
+ "q5a_q8_1": { weight: 2, yes: 1, no: -1 },
+ "q5a_q8_2": { weight: 1, yes: 0.5, no: 0 },
+ "q5a_q8_3": { weight: 3, yes: 1, no: 0 },
+ // Add your actual questionId keys here
+};
+document.getElementById('jsonWorkerInput').addEventListener('change', function(event) {
  const file = event.target.files[0];
  if (!file) return;
  const reader = new FileReader();
- reader.onload = function (e) {
+ reader.onload = function(e) {
    try {
      workerData = JSON.parse(e.target.result);
      tryRenderBoth();
-   } catch {
-     alert("Invalid Worker JSON file.");
+   } catch (err) {
+     alert("Invalid Worker JSON.");
    }
  };
  reader.readAsText(file);
 });
-document.getElementById('jsonPayerInput').addEventListener('change', function (event) {
+document.getElementById('jsonPayerInput').addEventListener('change', function(event) {
  const file = event.target.files[0];
  if (!file) return;
  const reader = new FileReader();
- reader.onload = function (e) {
+ reader.onload = function(e) {
    try {
      payerData = JSON.parse(e.target.result);
      tryRenderBoth();
-   } catch {
-     alert("Invalid Payer JSON file.");
+   } catch (err) {
+     alert("Invalid Payer JSON.");
    }
  };
  reader.readAsText(file);
@@ -116,13 +123,11 @@ function tryRenderBoth() {
  if (workerData && payerData) {
    const container = document.getElementById('content');
    container.innerHTML = '';
-   container.appendChild(renderComparison(workerData, payerData));
+   container.appendChild(renderJSON(workerData, payerData));
    renderProbabilityScore(workerData, payerData);
  }
 }
-// Example section mapping — you can expand this
-const sectionMap = {}; // Add custom section mapping if needed
-function renderComparison(workerData, payerData) {
+function renderJSON(workerData, payerData) {
  const sectioned = {};
  function addToSection(ans, isPayer = false) {
    const section = sectionMap[ans.questionId] || "Other";
@@ -154,14 +159,30 @@ function renderComparison(workerData, payerData) {
    const sectionHeader = document.createElement('h3');
    sectionHeader.textContent = section;
    container.appendChild(sectionHeader);
-   const table = document.createElement('table');
-   let theadHTML = '<thead><tr><th>Question</th><th>Worker</th><th>Payer</th></tr></thead>';
+   const showWorker = ![
+     "Payee - Section 3 - Payee (worker) information"
+   ].includes(section);
+   const showPayer = ![
+     "Section 1: General information",
+     "Worker - Section 2a - Employee information",
+     "Worker - Section 2b - Specified shareholder information",
+     "Worker - Section 3 - Payers (clients) information"
+   ].includes(section);
+   if (!showWorker && !showPayer) continue;
+   let table = document.createElement('table');
+   let theadHTML = '<thead><tr><th>Question</th>';
+   if (showWorker) theadHTML += '<th>Worker</th>';
+   if (showPayer) theadHTML += '<th>Payer</th>';
+   theadHTML += '</tr></thead>';
    table.innerHTML = theadHTML;
    const tbody = document.createElement('tbody');
    for (const [question, { worker, payer }] of Object.entries(questions)) {
      if (!worker && !payer) continue;
      const row = document.createElement('tr');
-     row.innerHTML = `<td>${question}</td><td>${worker}</td><td>${payer}</td>`;
+     let rowHTML = `<td>${question}</td>`;
+     if (showWorker) rowHTML += `<td>${worker}</td>`;
+     if (showPayer) rowHTML += `<td>${payer}</td>`;
+     row.innerHTML = rowHTML;
      tbody.appendChild(row);
    }
    table.appendChild(tbody);
@@ -169,77 +190,52 @@ function renderComparison(workerData, payerData) {
  }
  return container;
 }
+function scoreAnswerById(questionId, answer) {
+ const rule = scoringRules[questionId];
+ if (!rule) return { score: 0, weight: 0 };
+ const normalized = (answer || "").trim().toLowerCase();
+ let value = 0;
+ if (normalized === "yes") value = rule.yes;
+ else if (normalized === "no") value = rule.no;
+ return { score: value * rule.weight, weight: rule.weight };
+}
 function renderProbabilityScore(workerData, payerData) {
- let totalQuestions = 0;
- let workerScore = 0;
- let payerScore = 0;
- function scoreAnswer(answer) {
-   if (typeof answer === 'string') {
-     return answer.trim().toLowerCase() === 'yes' ? 1 : 0;
-   }
-   return 0;
+ let worker = { totalScore: 0, totalWeight: 0 };
+ let payer = { totalScore: 0, totalWeight: 0 };
+ function accumulate(data, person) {
+   data.forEach(entry => {
+     entry.answers.forEach(ans => {
+       const { score, weight } = scoreAnswerById(ans.questionId, ans.answer);
+       person.totalScore += score;
+       person.totalWeight += weight;
+     });
+   });
  }
- workerData.forEach(entry => {
-   entry.answers.forEach(ans => {
-     totalQuestions++;
-     workerScore += scoreAnswer(ans.answer);
-   });
- });
- payerData.forEach(entry => {
-   entry.answers.forEach(ans => {
-     payerScore += scoreAnswer(ans.answer);
-   });
- });
- const workerPercent = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
- const payerPercent = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
+ accumulate(workerData, worker);
+ accumulate(payerData, payer);
+ const workerPercent = worker.totalWeight ? Math.round((worker.totalScore / worker.totalWeight) * 100) : 0;
+ const payerPercent = payer.totalWeight ? Math.round((payer.totalScore / payer.totalWeight) * 100) : 0;
  const probabilityDiv = document.getElementById('probability');
  probabilityDiv.innerHTML = `
-<h3>Probability Assessment</h3>
-<p><strong>Based on "Yes" answers indicating high PSB risk</strong></p>
+<h3>Probability Assessment (Weighted)</h3>
    ${generateBar("Worker", workerPercent)}
    ${generateBar("Payer", payerPercent)}
  `;
 }
 function generateBar(label, percent) {
- let color = "#28a745"; // green
- if (percent < 75) color = "#ffc107"; // yellow
- if (percent < 50) color = "#fd7e14"; // orange
- if (percent < 25) color = "#dc3545"; // red
+ let color;
+ if (percent >= 75) color = "#d9534f";       // Red = High PSB risk
+ else if (percent >= 50) color = "#f0ad4e";   // Orange = Moderate
+ else color = "#5cb85c";                      // Green = Low PSB risk
  return `
-<div style="margin-bottom:1em">
-<label>${label}: ${percent}% (${describeProbability(percent)})</label>
-<div class="probability-bar">
-<div class="probability-fill" style="width: ${percent}%; background-color: ${color};">
-         ${percent}%
-</div>
+<div style="margin-bottom: 1em;">
+<strong>${label} Probability: ${percent}%</strong>
+<div style="width: 100%; background: #eee; height: 24px; border-radius: 4px;">
+<div style="width: ${percent}%; background: ${color}; height: 100%; border-radius: 4px;"></div>
 </div>
 </div>
  `;
 }
-function describeProbability(percent) {
- if (percent >= 80) return "Highly Probable";
- if (percent >= 60) return "Probable";
- if (percent >= 40) return "Neutral";
- if (percent >= 20) return "Unlikely";
- return "Highly Unlikely";
-}
-</script>
-  <!-- Probability bar container -->
-<div id="probability" style="margin-top: 2em;"></div>
-<!-- WET PreFooter -->
-<script>
- var defPreFooter = document.getElementById("def-preFooter");
- if (!defPreFooter) {
-   defPreFooter = document.createElement('div');
-defPreFooter.id = "def-preFooter";
-   document.body.appendChild(defPreFooter);
- }
- defPreFooter.outerHTML = wet.builder.preFooter({
-   dateModified: "2025-06-02",
-   showPostContent: true,
-   showFeedback: true,
-   showShare: true
- });
 </script>
 <!-- Close GCWeb WET wrapper -->
 <div id="def-footer"></div>
