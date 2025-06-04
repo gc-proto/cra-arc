@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Worker vs. payer questionnaire comparison - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</title>
+<title>Worker vs. payer questionnaire comparison - PSB Determination</title>
 <meta content="width=device-width,initial-scale=1" name="viewport">
 <meta name="robots" content="noindex, follow">
 <!-- WET Assets -->
@@ -10,122 +10,104 @@
 <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
 <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous"/>
 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
-<!-- JS Libraries -->
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <!-- Styles -->
 <style>
- body {
-   font-family: Arial, sans-serif;
-   padding: 20px;
- }
- table {
-   width: 100%;
-   border-collapse: collapse;
-   margin-top: 1em;
- }
- th, td {
-   border: 1px solid #ccc;
-   padding: 8px;
-   text-align: left;
-   vertical-align: top;
- }
- th {
-   background-color: #f2f2f2;
- }
- pre {
-   background: #f4f4f4;
-   padding: 10px;
-   border-radius: 5px;
- }
- /* Probability bar style */
- #probabilityScore {
-   margin-top: 2em;
- }
- #probabilityBarContainer {
-   position: relative;
-   width: 100%;
-   height: 30px;
-   background-color: #eee;
-   border-radius: 5px;
- }
- #probabilityBar {
-   height: 100%;
-   width: 0%;
-   background-color: #007bff;
-   border-radius: 5px;
-   transition: width 0.5s ease-in-out;
- }
- #probabilityLabel {
-   position: absolute;
-   top: 0;
-   left: 50%;
-   transform: translateX(-50%);
-   font-weight: bold;
-   color: #000;
- }
+   body {
+     font-family: Arial, sans-serif;
+     padding: 20px;
+   }
+   table {
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 1em;
+   }
+   th, td {
+     border: 1px solid #ccc;
+     padding: 8px;
+     vertical-align: top;
+   }
+   th {
+     background-color: #f2f2f2;
+   }
+   .probability-bar {
+     margin-top: 2em;
+     background: #eee;
+     border-radius: 5px;
+     height: 30px;
+     position: relative;
+     width: 100%;
+   }
+   .probability-fill {
+     height: 100%;
+     border-radius: 5px;
+     text-align: center;
+     line-height: 30px;
+     color: white;
+     font-weight: bold;
+   }
 </style>
 <script type="text/javascript">
- document.write(wet.builder.refTop({}));
+   document.write(wet.builder.refTop({}));
 </script>
 </head>
 <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
 <div id="def-top"></div>
 <main role="main" property="mainContentOfPage" class="container">
 <div class="gc-font-2019">
-<h1>Worker vs. payer questionnaire comparison <br>
-<small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small></h1>
+<h1>Worker vs. payer questionnaire comparison<br>
+<small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small>
+</h1>
 <p>To use the comparison tool:</p>
 <ol>
-<li>Save the file worker and the file payer on your computer</li>
-<li>Upload the response files (JSON) for the worker and the payer</li>
-<li>Click compare to view side-by-side results (if the results do not match, they are highlighted)</li>
+<li>Save the worker and payer JSON files on your computer.</li>
+<li>Upload both files below.</li>
+<li>Click compare to view side-by-side results and risk score.</li>
 </ol>
-<hr>
 <h3>Upload the response files (JSON)</h3>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col"><label>Worker's response: <input type="file" id="jsonWorkerInput" accept=".json" /></label></li>
-<li class="cnjnctn-col"><label>Payer's response: <input type="file" id="jsonPayerInput" accept=".json" /></label></li>
+<li class="cnjnctn-col">
+<label>Worker's response:
+<input type="file" id="jsonWorkerInput" accept=".json" />
+</label>
+</li>
+<li class="cnjnctn-col">
+<label>Payer's response:
+<input type="file" id="jsonPayerInput" accept=".json" />
+</label>
+</li>
 </ul>
 <div id="content"></div>
-<!-- Probability Score Display -->
-<div id="probabilityScore" style="display: none;">
-<h3>Overall PSB Probability</h3>
-<div id="probabilityBarContainer">
-<div id="probabilityBar"></div>
-<div id="probabilityLabel">0%</div>
-</div>
-<p id="probabilityDescription" style="margin-top: 0.5em;"></p>
-</div>
-<script>
+<div id="probability"></div>
+
+ <script>
 let workerData = null;
 let payerData = null;
-document.getElementById('jsonWorkerInput').addEventListener('change', function(event) {
+document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
  const file = event.target.files[0];
  if (!file) return;
  const reader = new FileReader();
- reader.onload = function(e) {
+ reader.onload = function (e) {
    try {
      workerData = JSON.parse(e.target.result);
      tryRenderBoth();
-   } catch (err) {
-     alert("Invalid Worker JSON.");
+   } catch {
+     alert("Invalid Worker JSON file.");
    }
  };
  reader.readAsText(file);
 });
-document.getElementById('jsonPayerInput').addEventListener('change', function(event) {
+document.getElementById('jsonPayerInput').addEventListener('change', function (event) {
  const file = event.target.files[0];
  if (!file) return;
  const reader = new FileReader();
- reader.onload = function(e) {
+ reader.onload = function (e) {
    try {
      payerData = JSON.parse(e.target.result);
      tryRenderBoth();
-   } catch (err) {
-     alert("Invalid Payer JSON.");
+   } catch {
+     alert("Invalid Payer JSON file.");
    }
  };
  reader.readAsText(file);
@@ -134,13 +116,13 @@ function tryRenderBoth() {
  if (workerData && payerData) {
    const container = document.getElementById('content');
    container.innerHTML = '';
-   container.appendChild(renderJSON(workerData, payerData));
-   // New: Calculate and show probability score
-   const score = calculateProbability(workerData);
-   updateProbabilityBar(score);
+   container.appendChild(renderComparison(workerData, payerData));
+   renderProbabilityScore(workerData, payerData);
  }
 }
-function renderJSON(workerData, payerData) {
+// Example section mapping — you can expand this
+const sectionMap = {}; // Add custom section mapping if needed
+function renderComparison(workerData, payerData) {
  const sectioned = {};
  function addToSection(ans, isPayer = false) {
    const section = sectionMap[ans.questionId] || "Other";
@@ -173,30 +155,13 @@ function renderJSON(workerData, payerData) {
    sectionHeader.textContent = section;
    container.appendChild(sectionHeader);
    const table = document.createElement('table');
-   // Determine which columns to show
-   const showWorker = ![
-     "Payee - Section 3 - Payee (worker) information"
-   ].includes(section);
-   const showPayer = ![
-     "Section 1: General information",
-     "Worker - Section 2a - Employee information",
-     "Worker - Section 2b - Specified shareholder information",
-     "Worker - Section 3 - Payers (clients) information"
-   ].includes(section);
-   if (!showWorker && !showPayer) continue;
-   let theadHTML = '<thead><tr><th>Question</th>';
-   if (showWorker) theadHTML += '<th>Worker</th>';
-   if (showPayer) theadHTML += '<th>Payer</th>';
-   theadHTML += '</tr></thead>';
+   let theadHTML = '<thead><tr><th>Question</th><th>Worker</th><th>Payer</th></tr></thead>';
    table.innerHTML = theadHTML;
    const tbody = document.createElement('tbody');
    for (const [question, { worker, payer }] of Object.entries(questions)) {
      if (!worker && !payer) continue;
      const row = document.createElement('tr');
-     let rowHTML = `<td>${question}</td>`;
-     if (showWorker) rowHTML += `<td>${worker}</td>`;
-     if (showPayer) rowHTML += `<td>${payer}</td>`;
-     row.innerHTML = rowHTML;
+     row.innerHTML = `<td>${question}</td><td>${worker}</td><td>${payer}</td>`;
      tbody.appendChild(row);
    }
    table.appendChild(tbody);
@@ -204,56 +169,84 @@ function renderJSON(workerData, payerData) {
  }
  return container;
 }
-// New: Calculate probability score from worker answers
-function calculateProbability(data) {
- let total = 0;
- let positives = 0;
- data.forEach(entry => {
+function renderProbabilityScore(workerData, payerData) {
+ let totalQuestions = 0;
+ let workerScore = 0;
+ let payerScore = 0;
+ function scoreAnswer(answer) {
+   if (typeof answer === 'string') {
+     return answer.trim().toLowerCase() === 'yes' ? 1 : 0;
+   }
+   return 0;
+ }
+ workerData.forEach(entry => {
    entry.answers.forEach(ans => {
-     const answer = (typeof ans.answer === 'string') ? ans.answer.toLowerCase() : '';
-     if (answer.trim() !== "") {
-       total++;
-       if (["yes", "always", "often", "regularly"].includes(answer)) {
-         positives++;
-       }
-     }
+     totalQuestions++;
+     workerScore += scoreAnswer(ans.answer);
    });
  });
- if (total === 0) return 0;
- return Math.round((positives / total) * 100);
+ payerData.forEach(entry => {
+   entry.answers.forEach(ans => {
+     payerScore += scoreAnswer(ans.answer);
+   });
+ });
+ const workerPercent = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
+ const payerPercent = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
+ const probabilityDiv = document.getElementById('probability');
+ probabilityDiv.innerHTML = `
+<h3>Probability Assessment</h3>
+<p><strong>Based on "Yes" answers indicating high PSB risk</strong></p>
+   ${generateBar("Worker", workerPercent)}
+   ${generateBar("Payer", payerPercent)}
+ `;
 }
-// New: Update probability bar
-function updateProbabilityBar(score) {
- const bar = document.getElementById("probabilityBar");
- const label = document.getElementById("probabilityLabel");
- const desc = document.getElementById("probabilityDescription");
- const container = document.getElementById("probabilityScore");
- bar.style.width = `${score}%`;
- label.textContent = `${score}%`;
- container.style.display = "block";
- if (score >= 80) {
-   bar.style.backgroundColor = "#dc3545"; // Red
-   desc.textContent = "Highly Probable the corporation is a PSB.";
- } else if (score >= 60) {
-   bar.style.backgroundColor = "#fd7e14"; // Orange
-   desc.textContent = "Moderately Probable the corporation is a PSB.";
- } else if (score >= 40) {
-   bar.style.backgroundColor = "#ffc107"; // Yellow
-   desc.textContent = "Somewhat Unlikely the corporation is a PSB.";
- } else {
-   bar.style.backgroundColor = "#28a745"; // Green
-   desc.textContent = "Highly Unlikely the corporation is a PSB.";
- }
+function generateBar(label, percent) {
+ let color = "#28a745"; // green
+ if (percent < 75) color = "#ffc107"; // yellow
+ if (percent < 50) color = "#fd7e14"; // orange
+ if (percent < 25) color = "#dc3545"; // red
+ return `
+<div style="margin-bottom:1em">
+<label>${label}: ${percent}% (${describeProbability(percent)})</label>
+<div class="probability-bar">
+<div class="probability-fill" style="width: ${percent}%; background-color: ${color};">
+         ${percent}%
+</div>
+</div>
+</div>
+ `;
 }
-// Optional: WET preFooter
-var defPreFooter = document.getElementById("def-preFooter");
-defPreFooter.outerHTML = wet.builder.preFooter({
- dateModified: "2025-06-02",
- showPostContent: true,
- showFeedback: true,
- showShare: true
-});
+function describeProbability(percent) {
+ if (percent >= 80) return "Highly Probable";
+ if (percent >= 60) return "Probable";
+ if (percent >= 40) return "Neutral";
+ if (percent >= 20) return "Unlikely";
+ return "Highly Unlikely";
+}
 </script>
+  <!-- Probability bar container -->
+<div id="probability" style="margin-top: 2em;"></div>
+<!-- WET PreFooter -->
+<script>
+ var defPreFooter = document.getElementById("def-preFooter");
+ if (!defPreFooter) {
+   defPreFooter = document.createElement('div');
+defPreFooter.id = "def-preFooter";
+   document.body.appendChild(defPreFooter);
+ }
+ defPreFooter.outerHTML = wet.builder.preFooter({
+   dateModified: "2025-06-02",
+   showPostContent: true,
+   showFeedback: true,
+   showShare: true
+ });
+</script>
+<!-- Close GCWeb WET wrapper -->
+<div id="def-footer"></div>
+<script>
+ document.write(wet.builder.refFooter({}));
+</script>
+</main>
 </div>
 </body>
 </html>
