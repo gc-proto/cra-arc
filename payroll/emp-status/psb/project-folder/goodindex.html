@@ -66,14 +66,6 @@
 <li class="cnjnctn-col"><label>Payer's response: <input type="file" id="jsonPayerInput" accept=".json" /></label></li>
 </ul>
 <div id="content"></div>
-<div id="probabilityScore" style="margin-top: 2em;">
-<h3>Overall PSB Probability</h3>
-<div style="position: relative; width: 100%; height: 30px; background-color: #eee; border-radius: 5px;">
-<div id="probabilityBar" style="height: 100%; width: 0%; background-color: #007bff; border-radius: 5px;"></div>
-<div id="probabilityLabel" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-weight: bold; color: #000;">0%</div>
-</div>
-<p id="probabilityDescription" style="margin-top: 0.5em;"></p>
-</div>
 
   <script>
  const sectionMap = {
@@ -320,15 +312,12 @@
    reader.readAsText(file);
  });
  function tryRenderBoth() {
- if (workerData && payerData) {
-   const container = document.getElementById('content');
-   container.innerHTML = '';
-   container.appendChild(renderJSON(workerData, payerData));
-   // Score calculation and update visual
-   const score = calculateProbability(workerData);
-   updateProbabilityBar(score);
+   if (workerData && payerData) {
+     const container = document.getElementById('content');
+     container.innerHTML = '';
+     container.appendChild(renderJSON(workerData, payerData));
+   }
  }
-}
  function renderJSON(workerData, payerData) {
    const sectioned = {};
    function addToSection(ans, isPayer = false) {
@@ -397,45 +386,6 @@ tbody.appendChild(row);
      container.appendChild(table);
    }
    return container;
-
-   function calculateProbability(workerData) {
- let totalQuestions = 0;
- let positiveAnswers = 0;
- workerData.forEach(entry => {
-   entry.answers.forEach(ans => {
-     totalQuestions++;
-     const answer = typeof ans.answer === 'string' ? ans.answer.toLowerCase() : '';
-     // Define what counts as a "positive" (indicating a PSB) answer
-     if (["yes", "always", "often", "regularly"].includes(answer)) {
-       positiveAnswers++;
-     }
-   });
- });
- // Avoid divide-by-zero
- if (totalQuestions === 0) return 0;
- const probability = Math.round((positiveAnswers / totalQuestions) * 100);
- return probability;
-}
-function updateProbabilityBar(score) {
- const bar = document.getElementById("probabilityBar");
- const label = document.getElementById("probabilityLabel");
- const desc = document.getElementById("probabilityDescription");
- bar.style.width = `${score}%`;
- label.textContent = `${score}%`;
- if (score >= 80) {
-   bar.style.backgroundColor = "#dc3545"; // Red
-   desc.textContent = "Highly Probable the corporation is a PSB.";
- } else if (score >= 60) {
-   bar.style.backgroundColor = "#fd7e14"; // Orange
-   desc.textContent = "Moderately Probable the corporation is a PSB.";
- } else if (score >= 40) {
-   bar.style.backgroundColor = "#ffc107"; // Yellow
-   desc.textContent = "Somewhat Unlikely the corporation is a PSB.";
- } else {
-   bar.style.backgroundColor = "#28a745"; // Green
-   desc.textContent = "Highly Unlikely the corporation is a PSB.";
- }
-} 
  }
  // Optional: WET preFooter
  var defPreFooter = document.getElementById("def-preFooter");
