@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Worker vs. payer questionnaire comparison - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="robots" content="noindex, follow">
+<!-- WET Assets -->
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
+<link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
+<!-- JS Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- Styles -->
+<style>
+ body {
+   font-family: Arial, sans-serif;
+   padding: 20px;
+ }
+ table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 1em;
+ }
+ th, td {
+   border: 1px solid #ccc;
+   padding: 8px;
+   text-align: left;
+   vertical-align: top;
+ }
+ th {
+   background-color: #f2f2f2;
+ }
+ pre {
+   background: #f4f4f4;
+   padding: 10px;
+   border-radius: 5px;
+ }
+ /* Probability bar style */
+ #probabilityScore {
+   margin-top: 2em;
+ }
+ #probabilityBarContainer {
+   position: relative;
+   width: 100%;
+   height: 30px;
+   background-color: #eee;
+   border-radius: 5px;
+ }
+ #probabilityBar {
+   height: 100%;
+   width: 0%;
+   background-color: #007bff;
+   border-radius: 5px;
+   transition: width 0.5s ease-in-out;
+ }
+ #probabilityLabel {
+   position: absolute;
+   top: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   font-weight: bold;
+   color: #000;
+ }
+</style>
+<script type="text/javascript">
+ document.write(wet.builder.refTop({}));
+</script>
+</head>
+<body vocab="http://schema.org/" typeof="WebPage" class="experimental">
+<div id="def-top"></div>
+<main role="main" property="mainContentOfPage" class="container">
+<div class="gc-font-2019">
+<h1>Worker vs. payer questionnaire comparison <br>
+<small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small></h1>
+<p>To use the comparison tool:</p>
+<ol>
+<li>Save the file worker and the file payer on your computer</li>
+<li>Upload the response files (JSON) for the worker and the payer</li>
+<li>Click compare to view side-by-side results (if the results do not match, they are highlighted)</li>
+</ol>
+<hr>
+<h3>Upload the response files (JSON)</h3>
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><label>Worker's response: <input type="file" id="jsonWorkerInput" accept=".json" /></label></li>
+<li class="cnjnctn-col"><label>Payer's response: <input type="file" id="jsonPayerInput" accept=".json" /></label></li>
+</ul>
+<div id="content"></div>
+<!-- Probability Score Display -->
+<div id="probabilityScore" style="display: none;">
+<h3>Overall PSB Probability</h3>
+<div id="probabilityBarContainer">
+<div id="probabilityBar"></div>
+<div id="probabilityLabel">0%</div>
+</div>
+<p id="probabilityDescription" style="margin-top: 0.5em;"></p>
+</div>
+<script>
+let workerData = null;
+let payerData = null;
+document.getElementById('jsonWorkerInput').addEventListener('change', function(event) {
+ const file = event.target.files[0];
+ if (!file) return;
+ const reader = new FileReader();
+ reader.onload = function(e) {
+   try {
+     workerData = JSON.parse(e.target.result);
+     tryRenderBoth();
+   } catch (err) {
+     alert("Invalid Worker JSON.");
+   }
+ };
+ reader.readAsText(file);
+});
+document.getElementById('jsonPayerInput').addEventListener('change', function(event) {
+ const file = event.target.files[0];
+ if (!file) return;
+ const reader = new FileReader();
+ reader.onload = function(e) {
+   try {
+     payerData = JSON.parse(e.target.result);
+     tryRenderBoth();
+   } catch (err) {
+     alert("Invalid Payer JSON.");
+   }
+ };
+ reader.readAsText(file);
+});
+function tryRenderBoth() {
+ if (workerData && payerData) {
+   const container = document.getElementById('content');
+   container.innerHTML = '';
+   container.appendChild(renderJSON(workerData, payerData));
+   // New: Calculate and show probability score
+   const score = calculateProbability(workerData);
+   updateProbabilityBar(score);
+ }
+}
+function renderJSON(workerData, payerData) {
+ const sectioned = {};
+ function addToSection(ans, isPayer = false) {
+   const section = sectionMap[ans.questionId] || "Other";
+   if (!sectioned[section]) sectioned[section] = {};
+   if (!sectioned[section][ans.questionEn]) {
+     sectioned[section][ans.questionEn] = { worker: "", payer: "" };
+   }
+   const formatted = formatAnswer(ans.answer);
+   if (isPayer) {
+     sectioned[section][ans.questionEn].payer = formatted;
+   } else {
+     sectioned[section][ans.questionEn].worker = formatted;
+   }
+ }
+ function formatAnswer(answer) {
+   if (Array.isArray(answer)) {
+     return answer.map(group =>
+       group.map(sub =>
+         `${sub.questionEn}: ${sub.answer}`
+       ).join("<br>")
+     ).join("<hr>");
+   }
+   return answer || "";
+ }
+ workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
+ payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
+ const container = document.createElement('div');
+ for (const [section, questions] of Object.entries(sectioned)) {
+   const sectionHeader = document.createElement('h3');
+   sectionHeader.textContent = section;
+   container.appendChild(sectionHeader);
+   const table = document.createElement('table');
+   // Determine which columns to show
+   const showWorker = ![
+     "Payee - Section 3 - Payee (worker) information"
+   ].includes(section);
+   const showPayer = ![
+     "Section 1: General information",
+     "Worker - Section 2a - Employee information",
+     "Worker - Section 2b - Specified shareholder information",
+     "Worker - Section 3 - Payers (clients) information"
+   ].includes(section);
+   if (!showWorker && !showPayer) continue;
+   let theadHTML = '<thead><tr><th>Question</th>';
+   if (showWorker) theadHTML += '<th>Worker</th>';
+   if (showPayer) theadHTML += '<th>Payer</th>';
+   theadHTML += '</tr></thead>';
+   table.innerHTML = theadHTML;
+   const tbody = document.createElement('tbody');
+   for (const [question, { worker, payer }] of Object.entries(questions)) {
+     if (!worker && !payer) continue;
+     const row = document.createElement('tr');
+     let rowHTML = `<td>${question}</td>`;
+     if (showWorker) rowHTML += `<td>${worker}</td>`;
+     if (showPayer) rowHTML += `<td>${payer}</td>`;
+     row.innerHTML = rowHTML;
+     tbody.appendChild(row);
+   }
+   table.appendChild(tbody);
+   container.appendChild(table);
+ }
+ return container;
+}
+// New: Calculate probability score from worker answers
+function calculateProbability(data) {
+ let total = 0;
+ let positives = 0;
+ data.forEach(entry => {
+   entry.answers.forEach(ans => {
+     const answer = (typeof ans.answer === 'string') ? ans.answer.toLowerCase() : '';
+     if (answer.trim() !== "") {
+       total++;
+       if (["yes", "always", "often", "regularly"].includes(answer)) {
+         positives++;
+       }
+     }
+   });
+ });
+ if (total === 0) return 0;
+ return Math.round((positives / total) * 100);
+}
+// New: Update probability bar
+function updateProbabilityBar(score) {
+ const bar = document.getElementById("probabilityBar");
+ const label = document.getElementById("probabilityLabel");
+ const desc = document.getElementById("probabilityDescription");
+ const container = document.getElementById("probabilityScore");
+ bar.style.width = `${score}%`;
+ label.textContent = `${score}%`;
+ container.style.display = "block";
+ if (score >= 80) {
+   bar.style.backgroundColor = "#dc3545"; // Red
+   desc.textContent = "Highly Probable the corporation is a PSB.";
+ } else if (score >= 60) {
+   bar.style.backgroundColor = "#fd7e14"; // Orange
+   desc.textContent = "Moderately Probable the corporation is a PSB.";
+ } else if (score >= 40) {
+   bar.style.backgroundColor = "#ffc107"; // Yellow
+   desc.textContent = "Somewhat Unlikely the corporation is a PSB.";
+ } else {
+   bar.style.backgroundColor = "#28a745"; // Green
+   desc.textContent = "Highly Unlikely the corporation is a PSB.";
+ }
+}
+// Optional: WET preFooter
+var defPreFooter = document.getElementById("def-preFooter");
+defPreFooter.outerHTML = wet.builder.preFooter({
+ dateModified: "2025-06-02",
+ showPostContent: true,
+ showFeedback: true,
+ showShare: true
+});
+</script>
+</div>
+</body>
+</html>
