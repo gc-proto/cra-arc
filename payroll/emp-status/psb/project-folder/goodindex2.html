@@ -202,9 +202,9 @@ function renderProbabilityScore(workerData, payerData) {
  const probabilityDiv = document.getElementById('probability');
  probabilityDiv.innerHTML = `
 <h3>Confidence level</h3>
-<p><strong>Based on "Yes" answers = Higher probability of a PSB</strong></p>
-   ${generateBar("Indicator of employment", workerPercent)}
-   ${generateBar("Indicator of self-employment", payerPercent)}
+<p><strong>Based on "Yes" answers = Higher indicator of employment</strong></p>
+   ${generateBar("Worker's response:", workerPercent)}
+   ${generateBar("Payer's response:", payerPercent)}
  `;
 }
 function generateBar(label, percent) {
@@ -224,11 +224,11 @@ function generateBar(label, percent) {
  `;
 }
 function describeProbability(percent) {
- if (percent >= 80) return "Highly probable";
- if (percent >= 60) return "Probable";
- if (percent >= 40) return "Neutral";
- if (percent >= 20) return "Unlikely";
- return "Highly unlikely";
+ if (percent >= 80) return "highly probable";
+ if (percent >= 60) return "probable";
+ if (percent >= 40) return "neutral";
+ if (percent >= 20) return "unlikely";
+ return "highly unlikely";
 }
 </script>
   <!-- Probability bar container -->
