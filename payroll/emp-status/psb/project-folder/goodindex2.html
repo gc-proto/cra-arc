@@ -337,13 +337,18 @@ document.getElementById('jsonPayerInput').addEventListener('change', function (e
  };
  reader.readAsText(file);
 });
- function tryRenderBoth() {
-   if (workerData && payerData) {
-     const container = document.getElementById('content');
-     container.innerHTML = '';
-     container.appendChild(renderJSON(workerData, payerData));
-   }
- }
+function tryRenderBoth() {
+  if (workerData && payerData) {
+    const container = document.getElementById('content');
+    container.innerHTML = '';
+    container.appendChild(renderJSON(workerData, payerData));
+    
+    // Add this line to render the probability score
+    renderProbabilityScore(workerData, payerData);
+  }
+}
+
+
  function renderJSON(workerData, payerData) {
    const sectioned = {};
    function addToSection(ans, isPayer = false) {
