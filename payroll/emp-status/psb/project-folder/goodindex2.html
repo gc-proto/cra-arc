@@ -337,63 +337,83 @@ document.getElementById('jsonPayerInput').addEventListener('change', function (e
  };
  reader.readAsText(file);
 });
-function tryRenderBoth() {
- if (workerData && payerData) {
-   const container = document.getElementById('content');
-   container.innerHTML = '';
-   container.appendChild(renderComparison(workerData, payerData));
-   renderProbabilityScore(workerData, payerData);
- }
-}
-// Example section mapping — you can expand this
-const sectionMap = {}; // Add custom section mapping if needed
-function renderComparison(workerData, payerData) {
- const sectioned = {};
- function addToSection(ans, isPayer = false) {
-   const section = sectionMap[ans.questionId] || "Other";
-   if (!sectioned[section]) sectioned[section] = {};
-   if (!sectioned[section][ans.questionEn]) {
-     sectioned[section][ans.questionEn] = { worker: "", payer: "" };
-   }
-   const formatted = formatAnswer(ans.answer);
-   if (isPayer) {
-     sectioned[section][ans.questionEn].payer = formatted;
-   } else {
-     sectioned[section][ans.questionEn].worker = formatted;
+ function tryRenderBoth() {
+   if (workerData && payerData) {
+     const container = document.getElementById('content');
+     container.innerHTML = '';
+     container.appendChild(renderJSON(workerData, payerData));
    }
  }
- function formatAnswer(answer) {
-   if (Array.isArray(answer)) {
-     return answer.map(group =>
-       group.map(sub =>
-         `${sub.questionEn}: ${sub.answer}`
-       ).join("<br>")
-     ).join("<hr>");
+ function renderJSON(workerData, payerData) {
+   const sectioned = {};
+   function addToSection(ans, isPayer = false) {
+     const section = sectionMap[ans.questionId] || "Other";
+     if (!sectioned[section]) sectioned[section] = {};
+     if (!sectioned[section][ans.questionEn]) {
+       sectioned[section][ans.questionEn] = { worker: "", payer: "" };
+     }
+     const formatted = formatAnswer(ans.answer);
+     if (isPayer) {
+       sectioned[section][ans.questionEn].payer = formatted;
+     } else {
+       sectioned[section][ans.questionEn].worker = formatted;
+     }
    }
-   return answer || "";
- }
- workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
- payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
- const container = document.createElement('div');
- for (const [section, questions] of Object.entries(sectioned)) {
-   const sectionHeader = document.createElement('h3');
-   sectionHeader.textContent = section;
-   container.appendChild(sectionHeader);
+   function formatAnswer(answer) {
+     if (Array.isArray(answer)) {
+       return answer.map(group =>
+         group.map(sub =>
+           `${sub.questionEn}: ${sub.answer}`
+         ).join("<br>")
+       ).join("<hr>");
+     }
+     return answer || "";
+   }
+   workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
+   payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
+   const container = document.createElement('div');
+   for (const [section, questions] of Object.entries(sectioned)) {
+     const sectionHeader = document.createElement('h3');
+     sectionHeader.textContent = section;
+     container.appendChild(sectionHeader);
    const table = document.createElement('table');
-   let theadHTML = '<thead><tr><th>Question</th><th>Worker</th><th>Payer</th></tr></thead>';
-   table.innerHTML = theadHTML;
-   const tbody = document.createElement('tbody');
-   for (const [question, { worker, payer }] of Object.entries(questions)) {
-     if (!worker && !payer) continue;
-     const row = document.createElement('tr');
-     row.innerHTML = `<td>${question}</td><td>${worker}</td><td>${payer}</td>`;
-     tbody.appendChild(row);
+
+      // Determine which columns to show
+const showWorker = ![
+ "Payee - Section 3 - Payee (worker) information"
+].includes(section);
+const showPayer = ![
+ "Section 1: General information",
+ "Worker - Section 2a - Employee information",
+ "Worker - Section 2b - Specified shareholder information",
+ "Worker - Section 3 - Payers (clients) information"
+].includes(section);
+// Skip section entirely if both columns are hidden
+if (!showWorker && !showPayer) continue;
+      
+// Build table header dynamically
+let theadHTML = '<thead><tr><th>Question</th>';
+if (showWorker) theadHTML += '<th>Worker</th>';
+if (showPayer) theadHTML += '<th>Payer</th>';
+theadHTML += '</tr></thead>';
+table.innerHTML = theadHTML;
+      
+      const tbody = document.createElement('tbody');
+     for (const [question, { worker, payer }] of Object.entries(questions)) {
+       if (!worker && !payer) continue;
+      const row = document.createElement('tr');
+let rowHTML = `<td>${question}</td>`;
+if (showWorker) rowHTML += `<td>${worker}</td>`;
+if (showPayer) rowHTML += `<td>${payer}</td>`;
+row.innerHTML = rowHTML;
+tbody.appendChild(row);
+     }
+     table.appendChild(tbody);
+     container.appendChild(table);
    }
-   table.appendChild(tbody);
-   container.appendChild(table);
+   return container;
  }
- return container;
-}
+    
 function renderProbabilityScore(workerData, payerData) {
  let totalQuestions = 0;
  let workerScore = 0;
@@ -448,26 +468,21 @@ function describeProbability(percent) {
  if (percent >= 20) return "unlikely";
  return "highly unlikely";
 }
-</script>
-  <!-- Probability bar container -->
-<div id="probability" style="margin-top: 2em;"></div>
-<!-- WET PreFooter -->
-<script>
+
+ // Optional: WET preFooter
  var defPreFooter = document.getElementById("def-preFooter");
- if (!defPreFooter) {
-   defPreFooter = document.createElement('div');
-defPreFooter.id = "def-preFooter";
-   document.body.appendChild(defPreFooter);
- }
  defPreFooter.outerHTML = wet.builder.preFooter({
-   dateModified: "2025-06-05",
+   dateModified: "2025-06-02",
    showPostContent: true,
    showFeedback: true,
    showShare: true
  });
 </script>
+  <!-- Probability bar container -->
+<div id="probability" style="margin-top: 2em;"></div>
+<!-- WET PreFooter -->
 
-</main>
+</div></main>
 
 </body>
 </html>
