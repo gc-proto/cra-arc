@@ -361,7 +361,9 @@ function tryRenderBoth() {
       };
     }
     const formatted = formatAnswer(ans.answer);
-    const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : JSON.stringify(ans.answer);
+    
+const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : JSON.stringify(ans.answer);
+  
     if (isPayer) {
       sectioned[section][ans.questionEn].payer = formatted;
       sectioned[section][ans.questionEn].rawPayer = raw;
@@ -425,7 +427,10 @@ function tryRenderBoth() {
       if (!worker && !payer) continue;
 
     
-      const isMismatch = rawWorker && rawPayer && rawWorker !== rawPayer && !skipMismatchHighlighting.includes(section);
+    
+      const isMismatch = !skipMismatchHighlighting.includes(section) &&
+                   rawWorker && rawPayer && rawWorker !== rawPayer;
+
 
 
       const row = document.createElement('tr');
