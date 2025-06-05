@@ -324,6 +324,42 @@
      362: "Section 6 - Certification"
    // Add more mappings as needed
  };
+
+    const questionWeights = {
+   431: 1,   
+   397: 1, 
+     398: 1, 
+     433: 1, 
+     399: 1, 
+     432: 1, 
+     393: 1, 
+     394: 1, 
+  
+   400: 1,   
+  402: 1, 
+  403: 1, 
+      434: 1, 
+      404: 1, 
+      435: 1, 
+      405: 1, 
+      406: 1, 
+      407: 1, 
+      408: 1, 
+      410: 1, 
+      436: 1, 
+      411: 1    
+    
+};
+
+const excludedSections = new Set([
+  "section 1: general information",
+  "section 2: information about the business",
+  "worker - section 2a - employee information",
+  "worker - section 2b - specified shareholder information",
+  "payee - section 3 - payee (worker) information",
+  "payer - section 3 - payee (worker) information",
+  "section 6 - certification"
+]);
 let workerData = null;
 let payerData = null;
 document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
@@ -474,36 +510,51 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
 
     
 function renderProbabilityScore(workerData, payerData) {
- let totalQuestions = 0;
- let workerScore = 0;
- let payerScore = 0;
- function scoreAnswer(answer) {
-   if (typeof answer === 'string') {
-     return answer.trim().toLowerCase() === 'yes' ? 1 : 0;
-   }
-   return 0;
- }
- workerData.forEach(entry => {
-   entry.answers.forEach(ans => {
-     totalQuestions++;
-     workerScore += scoreAnswer(ans.answer);
-   });
- });
- payerData.forEach(entry => {
-   entry.answers.forEach(ans => {
-     payerScore += scoreAnswer(ans.answer);
-   });
- });
- const workerPercent = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
- const payerPercent = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
- const probabilityDiv = document.getElementById('probability');
- probabilityDiv.innerHTML = `
-<h3>Confidence level</h3>
-<p><strong>Based on the answers:</strong><br> The percentage is the confidence level <strong>indicator of employment</strong></p>
-   ${generateBar("Worker's response", workerPercent)}
-   ${generateBar("Payer's response", payerPercent)}
- `;
+  let totalQuestions = 0;
+  let workerScore = 0;
+  let payerScore = 0;
+
+  function scoreAnswer(answer, questionId) {
+    if (typeof answer === 'string') {
+      return answer.trim().toLowerCase() === 'yes' ? (questionWeights[questionId] || 1) : 0;
+    }
+    return 0;
+  }
+
+  workerData.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = section.trim().toLowerCase();
+      if (!excludedSections.has(normalizedSection)) {
+        totalQuestions++;
+        workerScore += scoreAnswer(ans.answer, ans.questionId);
+      }
+    });
+  });
+
+  payerData.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = section.trim().toLowerCase();
+      if (!excludedSections.has(normalizedSection)) {
+        payerScore += scoreAnswer(ans.answer, ans.questionId);
+      }
+    });
+  });
+
+  const workerPercent = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
+  const payerPercent = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
+
+  const probabilityDiv = document.getElementById('probability');
+  probabilityDiv.innerHTML = `
+    <h3>Confidence level</h3>
+    <p><strong>Based on the answers:</strong><br> The percentage is the confidence level <strong>indicator of employment</strong></p>
+    ${generateBar("Worker's response", workerPercent)}
+    ${generateBar("Payer's response", payerPercent)}
+  `;
 }
+
+    
 function generateBar(label, percent) {
  let color = "#28a745"; // green
  if (percent < 75) color = "#ffc107"; // yellow
@@ -520,7 +571,8 @@ function generateBar(label, percent) {
 </div>
  `;
 }
-function describeProbability(percent) {
+
+   function describeProbability(percent) {
  if (percent >= 80) return "highly probable";
  if (percent >= 60) return "probable";
  if (percent >= 40) return "neutral";
