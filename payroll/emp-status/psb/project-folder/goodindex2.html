@@ -381,7 +381,15 @@ function tryRenderBoth() {
     }
     return answer || "";
   }
-   
+
+    const skipMismatchHighlighting = [
+  "Section 1: General information",
+  "Worker - Section 2a - Employee information",
+  "Worker - Section 2b - Specified shareholder information",
+  "Worker - Section 3 - Payers (clients) information",
+  "Payer - Section 3 - Payee (worker) information"
+];
+
  
 
   workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
@@ -416,7 +424,9 @@ function tryRenderBoth() {
       const { worker, payer, rawWorker, rawPayer } = data;
       if (!worker && !payer) continue;
 
-      const isMismatch = rawWorker && rawPayer && rawWorker !== rawPayer;
+    
+      const isMismatch = rawWorker && rawPayer && rawWorker !== rawPayer && !skipMismatchHighlighting.includes(section);
+
 
       const row = document.createElement('tr');
       let rowHTML = `<td>${question}</td>`;
