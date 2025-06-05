@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</title>
+<title>Worker vs. payer questionnaire comparison - PSB Determination</title>
 <meta content="width=device-width,initial-scale=1" name="viewport">
 <meta name="robots" content="noindex, follow">
 <!-- WET Assets -->
@@ -10,20 +10,43 @@
 <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
 <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet">
 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
-         
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous"/>
 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet">
-<!-- JS Libraries -->
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <!-- Styles -->
 <style>
-   body { font-family: Arial, sans-serif; padding: 20px; }
-   .match { background-color: #d6f5d6; }
-   .mismatch { background-color: #fff3cd; }
-   .missing { background-color: #f8d7da; }
-   .hidden { display: none !important; }
-   #pdfButton { margin-top: 20px; }
+   body {
+     font-family: Arial, sans-serif;
+     padding: 20px;
+   }
+   table {
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 1em;
+   }
+   th, td {
+     border: 1px solid #ccc;
+     padding: 8px;
+     vertical-align: top;
+   }
+   th {
+     background-color: #f2f2f2;
+   }
+   .probability-bar {
+     margin-top: 2em;
+     background: #eee;
+     border-radius: 5px;
+     height: 30px;
+     position: relative;
+     width: 100%;
+   }
+   .probability-fill {
+     height: 100%;
+     border-radius: 5px;
+     text-align: center;
+     line-height: 30px;
+     color: white;
+     font-weight: bold;
+   }
 </style>
 <script type="text/javascript">
    document.write(wet.builder.refTop({}));
@@ -33,178 +56,200 @@
 <div id="def-top"></div>
 <main role="main" property="mainContentOfPage" class="container">
 <div class="gc-font-2019">
-<h1>Comparison tool - Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</h1>
+<h1>Worker vs. payer questionnaire comparison<br>
+<small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small>
+</h1>
 <p>To use the comparison tool:</p>
 <ol>
-<li>Save the file worker and the file payer on your computer</li>
-<li>Upload the response files (JSON) for the worker and the payer</li>
-<li>Click compare to view side-by-side results (if the results do not match, they are highlighted)</li>
+<li>Save the worker and payer JSON files on your computer.</li>
+<li>Upload both files below.</li>
+<li>Click compare to view side-by-side results and risk score.</li>
 </ol>
-<hr>
 <h3>Upload the response files (JSON)</h3>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col"><label>Worker's response: <input type="file" id="workerFile" accept=".json"></label></li>
-<li class="cnjnctn-col"><label>Payer's response: <input type="file" id="payerFile" accept=".json"></label></li>
+<li class="cnjnctn-col">
+<label>Worker's response:
+<input type="file" id="jsonWorkerInput" accept=".json" />
+</label>
+</li>
+<li class="cnjnctn-col">
+<label>Payer's response:
+<input type="file" id="jsonPayerInput" accept=".json" />
+</label>
+</li>
 </ul>
-<br>
-<button class="btn btn-primary btn-lg" onclick="compare()">Compare</button>
-<!-- Filters and Toggle (initially hidden) -->
-<div id="filters" class="hidden">
-<hr>
-<h3 class="mrgn-tp-lg"><span class="fas fa-lg fa-filter"></span> Filter results by:</h3>
-<div class="btn-group mrgn-bttm-md" role="group" aria-label="Filter options">
-<button class="btn btn-default" onclick="filterTable('all')">All</button>
-<button class="btn btn-success" onclick="filterTable('match')">Match</button>
-<button class="btn btn-warning" onclick="filterTable('mismatch')">Mismatch</button>
+<div class="row">
+  <div class="col-md-9">
+<div id="content"></div>
 </div>
-<div class="checkbox">
-<label><input type="checkbox" id="toggleIdCol" onchange="toggleIdColumn()"> Show question ID column</label>
+   <div class="col-md-3">   
+<div id="probability"></div>
 </div>
 </div>
-<!-- Output -->
-<div id="output" class="mrgn-tp-md"></div>
-<button id="pdfButton" onclick="downloadPDF()" class="btn btn-secondary hidden">Download PDF</button>
+
+ <script>
+  
+let workerData = null;
+let payerData = null;
+document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
+ const file = event.target.files[0];
+ if (!file) return;
+ const reader = new FileReader();
+ reader.onload = function (e) {
+   try {
+     workerData = JSON.parse(e.target.result);
+     tryRenderBoth();
+   } catch {
+     alert("Invalid Worker JSON file.");
+   }
+ };
+ reader.readAsText(file);
+});
+document.getElementById('jsonPayerInput').addEventListener('change', function (event) {
+ const file = event.target.files[0];
+ if (!file) return;
+ const reader = new FileReader();
+ reader.onload = function (e) {
+   try {
+     payerData = JSON.parse(e.target.result);
+     tryRenderBoth();
+   } catch {
+     alert("Invalid Payer JSON file.");
+   }
+ };
+ reader.readAsText(file);
+});
+function tryRenderBoth() {
+ if (workerData && payerData) {
+   const container = document.getElementById('content');
+   container.innerHTML = '';
+   container.appendChild(renderComparison(workerData, payerData));
+   renderProbabilityScore(workerData, payerData);
+ }
+}
+// Example section mapping — you can expand this
+const sectionMap = {}; // Add custom section mapping if needed
+function renderComparison(workerData, payerData) {
+ const sectioned = {};
+ function addToSection(ans, isPayer = false) {
+   const section = sectionMap[ans.questionId] || "Other";
+   if (!sectioned[section]) sectioned[section] = {};
+   if (!sectioned[section][ans.questionEn]) {
+     sectioned[section][ans.questionEn] = { worker: "", payer: "" };
+   }
+   const formatted = formatAnswer(ans.answer);
+   if (isPayer) {
+     sectioned[section][ans.questionEn].payer = formatted;
+   } else {
+     sectioned[section][ans.questionEn].worker = formatted;
+   }
+ }
+ function formatAnswer(answer) {
+   if (Array.isArray(answer)) {
+     return answer.map(group =>
+       group.map(sub =>
+         `${sub.questionEn}: ${sub.answer}`
+       ).join("<br>")
+     ).join("<hr>");
+   }
+   return answer || "";
+ }
+ workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
+ payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
+ const container = document.createElement('div');
+ for (const [section, questions] of Object.entries(sectioned)) {
+   const sectionHeader = document.createElement('h3');
+   sectionHeader.textContent = section;
+   container.appendChild(sectionHeader);
+   const table = document.createElement('table');
+   let theadHTML = '<thead><tr><th>Question</th><th>Worker</th><th>Payer</th></tr></thead>';
+   table.innerHTML = theadHTML;
+   const tbody = document.createElement('tbody');
+   for (const [question, { worker, payer }] of Object.entries(questions)) {
+     if (!worker && !payer) continue;
+     const row = document.createElement('tr');
+     row.innerHTML = `<td>${question}</td><td>${worker}</td><td>${payer}</td>`;
+     tbody.appendChild(row);
+   }
+   table.appendChild(tbody);
+   container.appendChild(table);
+ }
+ return container;
+}
+function renderProbabilityScore(workerData, payerData) {
+ let totalQuestions = 0;
+ let workerScore = 0;
+ let payerScore = 0;
+ function scoreAnswer(answer) {
+   if (typeof answer === 'string') {
+     return answer.trim().toLowerCase() === 'yes' ? 1 : 0;
+   }
+   return 0;
+ }
+ workerData.forEach(entry => {
+   entry.answers.forEach(ans => {
+     totalQuestions++;
+     workerScore += scoreAnswer(ans.answer);
+   });
+ });
+ payerData.forEach(entry => {
+   entry.answers.forEach(ans => {
+     payerScore += scoreAnswer(ans.answer);
+   });
+ });
+ const workerPercent = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
+ const payerPercent = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
+ const probabilityDiv = document.getElementById('probability');
+ probabilityDiv.innerHTML = `
+<h3>Confidence level</h3>
+<p><strong>Based on "Yes" answers = Higher indicator of employment</strong></p>
+   ${generateBar("Worker's response:", workerPercent)}
+   ${generateBar("Payer's response:", payerPercent)}
+ `;
+}
+function generateBar(label, percent) {
+ let color = "#28a745"; // green
+ if (percent < 75) color = "#ffc107"; // yellow
+ if (percent < 50) color = "#fd7e14"; // orange
+ if (percent < 25) color = "#dc3545"; // red
+ return `
+<div style="margin-bottom:1em">
+<label>${label}: ${percent}% (${describeProbability(percent)})</label>
+<div class="probability-bar">
+<div class="probability-fill" style="width: ${percent}%; background-color: ${color};">
+         ${percent}%
 </div>
+</div>
+</div>
+ `;
+}
+function describeProbability(percent) {
+ if (percent >= 80) return "highly probable";
+ if (percent >= 60) return "probable";
+ if (percent >= 40) return "neutral";
+ if (percent >= 20) return "unlikely";
+ return "highly unlikely";
+}
+</script>
+  <!-- Probability bar container -->
+<div id="probability" style="margin-top: 2em;"></div>
+<!-- WET PreFooter -->
 <script>
-     let tableData = [];
-     function compare() {
-       const workerFile = document.getElementById('workerFile').files[0];
-       const payerFile = document.getElementById('payerFile').files[0];
-       if (!workerFile || !payerFile) {
-         alert("Please select both JSON files.");
-         return;
-       }
-       Promise.all([workerFile.text(), payerFile.text()])
-         .then(([workerText, payerText]) => {
-           const workerJSON = JSON.parse(workerText);
-           const payerJSON = JSON.parse(payerText);
-           const workerMap = buildQuestionMap(workerJSON.elements);
-           const payerMap = buildQuestionMap(payerJSON.elements);
-           const allIds = Array.from(new Set([...Object.keys(workerMap), ...Object.keys(payerMap)]));
-           tableData = [];
-           allIds.forEach(id => {
-             const w = workerMap[id];
-             const p = payerMap[id];
-             const wTitle = w?.titleEn || '[Missing]';
-             const pTitle = p?.titleEn || '[Missing]';
-             const wAnswer = w?.answer?.map(c => c.en).join(', ') || '[None]';
-             const pAnswer = p?.answer?.map(c => c.en).join(', ') || '[None]';
-             const match = wAnswer === pAnswer;
-             const existsInBoth = !!w && !!p;
-             tableData.push({ id, wTitle, pTitle, wAnswer, pAnswer, match, existsInBoth });
-           });
-             // Sort by question ID
-         tableData.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
-         // Hide questions that are not in both files
-         tableData = tableData.filter(row => row.existsInBoth);
-         renderTable();     
-            });
-     }
-     function buildQuestionMap(elements) {
-       const map = {};
-       elements.forEach(el => {
-         const qid = el?.properties?.questionId;
-         if (qid) {
-           map[qid] = {
-             titleEn: el.properties.titleEn,
-             answer: el.properties.answer || []
-           };
-         }
-       });
-       return map;
-     }
-     function renderTable() {
-       document.getElementById('filters').classList.remove('hidden');
-       document.getElementById('pdfButton').classList.remove('hidden');
-       let html = ` <table id="comparisonTable" class="wb-tables table table-bordered small " data-wb-tables='{"columnDefs": [ { "visible": true, "targets": [ 0 ] } ], "paging": false, "oLanguage": {
-                     "sSearch": "Filter by keyword"
-                     } }'>
-<thead>
-<tr>
-<th scope="col" class="toggle-column id-col hidden">Question ID</th>
-<th scope="col" class="toggle-column">Questions</th>
-<th scope="col" class="toggle-column id-col hidden">Payer questions</th>
-<th scope="col" class="toggle-column">Worker responses</th>
-<th scope="col" class="toggle-column">Payer responses</th>
-<th scope="col" class="toggle-column">Match</th>
-<th scope="col" class="toggle-column id-col hidden">Mismatch</th>
-</tr>
-</thead>
-<tbody>`;
-       tableData.forEach(row => {
-         const rowClass = row.existsInBoth
-           ? (row.match ? "match" : "mismatch")
-           : "missing";
-         html += `<tr class="${rowClass}">
-<td class="id-col hidden">${row.id}</td>
-<td>${row.wTitle}</td>
-<td class="id-col hidden">${row.pTitle}</td>
-<td>${row.wAnswer}</td>
-<td>${row.pAnswer}</td>
-<td>${row.match ? "Yes" : ""}</td>
-<td class="id-col hidden">${!row.match && row.existsInBoth ? "Yes" : ""}</td>
-</tr>`;
-       });
-       html += '</tbody></table>';
-       document.getElementById('output').innerHTML = html;
-       // Trigger WET reinitialization
-       window.wb?.init(document.getElementById('output'));
-     }
-     function filterTable(type) {
-       const rows = document.querySelectorAll("#comparisonTable tbody tr");
-       rows.forEach(row => {
-         row.style.display = "table-row";
-         if (type === "match" && !row.classList.contains("match")) {
-           row.style.display = "none";
-         } else if (type === "mismatch" && !row.classList.contains("mismatch")) {
-           row.style.display = "none";
-         }
-       });
-     }
-     function toggleIdColumn() {
-       const show = document.getElementById("toggleIdCol").checked;
-       const cells = document.querySelectorAll(".id-col");
-       cells.forEach(cell => {
-         if (show) {
-           cell.classList.remove("hidden");
-         } else {
-           cell.classList.add("hidden");
-         }
-       });
-     }
-     function downloadPDF() {
-       const { jsPDF } = window.jspdf;
-       const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
-       doc.setFontSize(14);
-       doc.text("Questionnaire Comparison Report", 40, 30);
-       doc.setFontSize(10);
-       let y = 50;
-       const lineHeight = 16;
-       tableData.forEach(row => {
-         if (y > 550) {
-           doc.addPage();
-           y = 50;
-         }
-         doc.setTextColor(row.match ? [0, 150, 0] : [200, 150, 0]);
-         doc.text(`ID: ${row.id}`, 40, y);
-         doc.text(`W: ${row.wTitle}`, 100, y);
-         doc.text(`P: ${row.pTitle}`, 300, y);
-         y += lineHeight;
-       });
-       doc.save("questionnaire-comparison.pdf");
-     }
+ var defPreFooter = document.getElementById("def-preFooter");
+ if (!defPreFooter) {
+   defPreFooter = document.createElement('div');
+defPreFooter.id = "def-preFooter";
+   document.body.appendChild(defPreFooter);
+ }
+ defPreFooter.outerHTML = wet.builder.preFooter({
+   dateModified: "2025-06-05",
+   showPostContent: true,
+   showFeedback: true,
+   showShare: true
+ });
 </script>
-<div id="def-footer"></div>
-<div id="def-preFooter"></div>
-<script type="text/javascript">
-     var defPreFooter = document.getElementById("def-preFooter");
-     defPreFooter.outerHTML = wet.builder.preFooter({
-       dateModified: "2025-05-27",
-       showPostContent: true,
-       showFeedback: true,
-       showShare: true
-     });
-</script>
+
 </main>
+
 </body>
 </html>
