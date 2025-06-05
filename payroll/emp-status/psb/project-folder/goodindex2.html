@@ -377,45 +377,50 @@ function tryRenderBoth() {
    workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
    payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
    const container = document.createElement('div');
-   for (const [section, questions] of Object.entries(sectioned)) {
-     const sectionHeader = document.createElement('h3');
-     sectionHeader.textContent = section;
-     container.appendChild(sectionHeader);
-   const table = document.createElement('table');
 
-      // Determine which columns to show
-const showWorker = ![
- "Payee - Section 3 - Payee (worker) information"
-].includes(section);
-const showPayer = ![
- "Section 1: General information",
- "Worker - Section 2a - Employee information",
- "Worker - Section 2b - Specified shareholder information",
- "Worker - Section 3 - Payers (clients) information"
-].includes(section);
-// Skip section entirely if both columns are hidden
-if (!showWorker && !showPayer) continue;
-      
-// Build table header dynamically
-let theadHTML = '<thead><tr><th>Question</th>';
-if (showWorker) theadHTML += '<th>Worker</th>';
-if (showPayer) theadHTML += '<th>Payer</th>';
-theadHTML += '</tr></thead>';
-table.innerHTML = theadHTML;
-      
-      const tbody = document.createElement('tbody');
-     for (const [question, { worker, payer }] of Object.entries(questions)) {
-       if (!worker && !payer) continue;
-      const row = document.createElement('tr');
-let rowHTML = `<td>${question}</td>`;
-if (showWorker) rowHTML += `<td>${worker}</td>`;
-if (showPayer) rowHTML += `<td>${payer}</td>`;
-row.innerHTML = rowHTML;
-tbody.appendChild(row);
-     }
-     table.appendChild(tbody);
-     container.appendChild(table);
-   }
+for (const [section, questions] of Object.entries(sectioned)) {
+  const table = document.createElement('table');
+
+  const showWorker = ![
+    "Payee - Section 3 - Payee (worker) information"
+  ].includes(section);
+  const showPayer = ![
+    "Section 1: General information",
+    "Worker - Section 2a - Employee information",
+    "Worker - Section 2b - Specified shareholder information",
+    "Worker - Section 3 - Payers (clients) information"
+  ].includes(section);
+
+  if (!showWorker && !showPayer) continue;
+
+  let theadHTML = '<thead><tr><th>Question</th>';
+  if (showWorker) theadHTML += '<th>Worker</th>';
+  if (showPayer) theadHTML += '<th>Payer</th>';
+  theadHTML += '</tr></thead>';
+  table.innerHTML = theadHTML;
+
+  const tbody = document.createElement('tbody');
+  let rowCount = 0;
+
+  for (const [question, { worker, payer }] of Object.entries(questions)) {
+    if (!worker && !payer) continue;
+    const row = document.createElement('tr');
+    let rowHTML = `<td>${question}</td>`;
+    if (showWorker) rowHTML += `<td>${worker}</td>`;
+    if (showPayer) rowHTML += `<td>${payer}</td>`;
+    row.innerHTML = rowHTML;
+    tbody.appendChild(row);
+    rowCount++;
+  }
+
+  if (rowCount > 0) {
+    const sectionHeader = document.createElement('h3');
+    sectionHeader.textContent = section;
+    container.appendChild(sectionHeader);
+    table.appendChild(tbody);
+    container.appendChild(table);
+  }
+}
    return container;
  }
     
