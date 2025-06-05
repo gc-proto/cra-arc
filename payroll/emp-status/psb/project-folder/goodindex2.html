@@ -31,6 +31,11 @@
    th {
      background-color: #f2f2f2;
    }
+    pre {
+     background: #f4f4f4;
+     padding: 10px;
+     border-radius: 5px;
+   }
    .probability-bar {
      margin-top: 2em;
      background: #eee;
@@ -311,12 +316,13 @@ document.getElementById('jsonWorkerInput').addEventListener('change', function (
    try {
      workerData = JSON.parse(e.target.result);
      tryRenderBoth();
-   } catch {
-     alert("Invalid Worker JSON file.");
+   } catch (err) {
+     alert("Invalid worker JSON file");
    }
  };
  reader.readAsText(file);
 });
+    
 document.getElementById('jsonPayerInput').addEventListener('change', function (event) {
  const file = event.target.files[0];
  if (!file) return;
@@ -325,8 +331,8 @@ document.getElementById('jsonPayerInput').addEventListener('change', function (e
    try {
      payerData = JSON.parse(e.target.result);
      tryRenderBoth();
-   } catch {
-     alert("Invalid Payer JSON file.");
+   } catch (err) {
+     alert("Invalid payer JSON file");
    }
  };
  reader.readAsText(file);
