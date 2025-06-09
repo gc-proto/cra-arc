@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -327,7 +328,10 @@
 
 const excludedSections = new Set([
   "Section 1: General information",
-
+  "Worker - Section 2a - Employee information",
+  "Worker - Section 2b - Specified shareholder information",
+  "Payer - Section 3 - Payee (worker) information",
+  "Worker - Section 3 - Payers (clients) information",	
   "Section 6 - Certification"
 ]);
 let workerData = null;
@@ -508,8 +512,8 @@ function renderProbabilityScore(workerData, payerData) {
     });
   });
 
-  const workerPercent = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
-  const payerPercent = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
+const workerScoreText = `${workerScore}/${totalQuestions}`;
+const payerScoreText = `${payerScore}/${totalQuestions}`;
 
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
@@ -519,7 +523,7 @@ function renderProbabilityScore(workerData, payerData) {
         <h5 class="panel-title">Worker's response</h5>
       </header>
       <div class="panel-body">
-        <p> ${generateBar("", workerPercent)}</p>
+        <p> ${generateBar("", workerScore)}</p>
       </div>
     </section>
     <section class="panel panel-primary">
@@ -527,7 +531,7 @@ function renderProbabilityScore(workerData, payerData) {
         <h5 class="panel-title">Payer's response</h5>
       </header>
       <div class="panel-body">
-        <p> ${generateBar("", payerPercent)}</p>
+        <p> ${generateBar("", payerScore)}</p>
       </div>
     </section>
     <p><small>Percentage is the confidence level based on answers</small></p>
@@ -536,31 +540,31 @@ function renderProbabilityScore(workerData, payerData) {
 
 
     
-function generateBar(label, percent) {
+function generateBar(label, score) {
  let color = "#1a2695"; // dark blue
- if (percent < 80) color = "#1a2695"; // dark blue
- if (percent < 50) color = "#ffc107"; // yellow
- if (percent < 20) color = "#1a2695"; // dark blue
+ if (score < 30) color = "#1a2695"; // dark blue
+ if (score < 15) color = "#ffc107"; // yellow
+ if (score < 5) color = "#1a2695"; // dark blue
  return `
 <div style="margin-bottom:1em">
-<label>${label} ${describeProbability(percent)}</label>
+<label>${label} ${describeProbability(score)}</label>
 <div class="probability-bar">
-<div class="probability-fill" style="width: ${percent}%; background-color: ${color};">
-         ${percent}%
+<div class="probability-fill" style="width: ${score}; background-color: ${color};">
+         ${score}%
 </div>
 </div>
 </div>
  `;
 }
 
-   function describeProbability(percent) {
- if (percent >= 90) return "Highly unlikely: Indicator of employment";	   
- if (percent >= 80) return "Highly unlikely: Indicator of employment";
- if (percent >= 60) return "Unlikely: Indicator of employment";
- if (percent >= 40) return "Neutral: Indicator of employment";
- if (percent >= 20) return "Propable: Indicator of employment";
- if (percent >= 10) return "Likely: Indicator of employment";	 
- if (percent >= 0) return "Highly likely: Indicator of employment";	   
+   function describeProbability(score) {
+ if (score >= 90) return "Highly unlikely: Indicator of employment";	   
+ if (score >= 80) return "Highly unlikely: Indicator of employment";
+ if (score >= 60) return "Unlikely: Indicator of employment";
+ if (score >= 40) return "Neutral: Indicator of employment";
+ if (score >= 20) return "Propable: Indicator of employment";
+ if (score >= 10) return "Likely: Indicator of employment";	 
+ if (score >= 0) return "Highly likely: Indicator of employment";	   
  return "Highly likely: Indicator of employment";
 }
 
@@ -581,51 +585,8 @@ function generateBar(label, percent) {
 <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
 <script>
 const customScoringRules = {
-  170: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes - 5 full-time employees or fewer": return 2;
-      default: return 0;
-    }
-  },
-  245: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 2;
-      default: return 0;
-    }
-  },
-  
-    31411: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
-    }
-  },
-  
-    31412: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
-    }
-  },
-    31406: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
-    }
-  },
-  
-    451: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
-    }
-  },
-    452: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
-    }
-  },
+   
+	
     206: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -1168,5 +1129,105 @@ function scoreAnswer(answer, questionId) {
   return 0;
 }
 </script>
+
+<script>
+function calculateSectionScores(data) {
+  const scores = {};
+  const totals = {};
+
+  data.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = section.trim();
+      if (!excludedSections.has(normalizedSection.toLowerCase())) {
+        if (!scores[normalizedSection]) {
+          scores[normalizedSection] = 0;
+          totals[normalizedSection] = 0;
+        }
+        scores[normalizedSection] += scoreAnswer(ans.answer, ans.questionId);
+        totals[normalizedSection]++;
+      }
+    });
+  });
+
+  return { scores, totals };
+}
+
+function renderProbabilityScore(workerData, payerData) {
+  let totalQuestions = 0;
+  let workerScore = 0;
+  let payerScore = 0;
+
+  workerData.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = section.trim().toLowerCase();
+      if (!excludedSections.has(normalizedSection)) {
+        totalQuestions++;
+        workerScore += scoreAnswer(ans.answer, ans.questionId);
+      }
+    });
+  });
+
+  payerData.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = section.trim().toLowerCase();
+      if (!excludedSections.has(normalizedSection)) {
+        payerScore += scoreAnswer(ans.answer, ans.questionId);
+      }
+    });
+  });
+
+const workerScoreText = `${workerScore}/${totalQuestions}`;
+const payerScoreText = `${payerScore}/${totalQuestions}`;
+
+  const probabilityDiv = document.getElementById('probability');
+  probabilityDiv.innerHTML = `
+    <h3>Overall indicator outcome</h3>
+    <section class="panel panel-primary">
+      <header class="panel-heading">
+        <h5 class="panel-title">Worker's response</h5>
+      </header>
+      <div class="panel-body">
+        <p> ${generateBar("", workerScoreText)}</p>
+      </div>
+    </section>
+    <section class="panel panel-primary">
+      <header class="panel-heading">
+        <h5 class="panel-title">Payer's response</h5>
+      </header>
+      <div class="panel-body">
+        <p> ${generateBar("", payerScoreText)}</p>
+      </div>
+    </section>
+<hr>
+    <h3>Section-based scores</h3>
+  `;
+
+  const worker = calculateSectionScores(workerData);
+  const payer = calculateSectionScores(payerData);
+
+  for (const section of Object.keys(worker.scores)) {
+    if (worker.totals[section]) {
+    
+const workerScoreText = `${workerScore}/${totalQuestions}`;
+const payerScoreText = `${payerScore}/${totalQuestions}`;
+
+
+      probabilityDiv.innerHTML += `
+        <section class="panel panel-default">
+          <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
+          <div class="panel-body">
+            <p><strong>Worker:</strong> ${workerScoreText}</p>
+            <p><strong>Payer:</strong> ${payerScoreText}</p>
+          </div>
+        </section>
+      `;
+    }
+  }
+}
+</script>
+
 </body>
 </html>
