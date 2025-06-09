@@ -548,13 +548,13 @@ function renderProbabilityScore(workerData, payerData) {
 
     
 function generateBar(label, percent) {
- let color = "#28a745"; // green
- if (percent < 75) color = "#ffc107"; // yellow
- if (percent < 50) color = "#fd7e14"; // orange
- if (percent < 25) color = "#dc3545"; // red
+ let color = "#1a2695"; // dark blue
+ if (percent < 80) color = "#1a2695"; // dark blue
+ if (percent < 50) color = "#ffc107"; // yellow
+ if (percent < 20) color = "#1a2695"; // dark blue
  return `
 <div style="margin-bottom:1em">
-<label>${label}: ${percent}% (${describeProbability(percent)})</label>
+<label>${label} - ${percent}% ${describeProbability(percent)}</label>
 <div class="probability-bar">
 <div class="probability-fill" style="width: ${percent}%; background-color: ${color};">
          ${percent}%
