@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -1168,5 +1169,103 @@ function scoreAnswer(answer, questionId) {
   return 0;
 }
 </script>
+
+<script>
+function calculateSectionScores(data) {
+  const scores = {};
+  const totals = {};
+
+  data.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = section.trim();
+      if (!excludedSections.has(normalizedSection.toLowerCase())) {
+        if (!scores[normalizedSection]) {
+          scores[normalizedSection] = 0;
+          totals[normalizedSection] = 0;
+        }
+        scores[normalizedSection] += scoreAnswer(ans.answer, ans.questionId);
+        totals[normalizedSection]++;
+      }
+    });
+  });
+
+  return { scores, totals };
+}
+
+function renderProbabilityScore(workerData, payerData) {
+  let totalQuestions = 0;
+  let workerScore = 0;
+  let payerScore = 0;
+
+  workerData.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = section.trim().toLowerCase();
+      if (!excludedSections.has(normalizedSection)) {
+        totalQuestions++;
+        workerScore += scoreAnswer(ans.answer, ans.questionId);
+      }
+    });
+  });
+
+  payerData.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = section.trim().toLowerCase();
+      if (!excludedSections.has(normalizedSection)) {
+        payerScore += scoreAnswer(ans.answer, ans.questionId);
+      }
+    });
+  });
+
+  const workerPercent = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
+  const payerPercent = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
+
+  const probabilityDiv = document.getElementById('probability');
+  probabilityDiv.innerHTML = `
+    <h3>Overall probability outcome</h3>
+    <section class="panel panel-primary">
+      <header class="panel-heading">
+        <h5 class="panel-title">Worker's response</h5>
+      </header>
+      <div class="panel-body">
+        <p> ${generateBar("", workerPercent)}</p>
+      </div>
+    </section>
+    <section class="panel panel-primary">
+      <header class="panel-heading">
+        <h5 class="panel-title">Payer's response</h5>
+      </header>
+      <div class="panel-body">
+        <p> ${generateBar("", payerPercent)}</p>
+      </div>
+    </section>
+<hr>
+    <h3>Section-based scores</h3>
+  `;
+
+  const worker = calculateSectionScores(workerData);
+  const payer = calculateSectionScores(payerData);
+
+  for (const section of Object.keys(worker.scores)) {
+    if (worker.totals[section]) {
+      const workerPercent = Math.round((worker.scores[section] / worker.totals[section]) * 100);
+      const payerPercent = payer.totals[section] ? Math.round((payer.scores[section] / payer.totals[section]) * 100) : 0;
+
+      probabilityDiv.innerHTML += `
+        <section class="panel panel-default">
+          <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
+          <div class="panel-body">
+            <p><strong>Worker:</strong> ${workerPercent}%</p>
+            <p><strong>Payer:</strong> ${payerPercent}%</p>
+          </div>
+        </section>
+      `;
+    }
+  }
+}
+</script>
+
 </body>
 </html>
