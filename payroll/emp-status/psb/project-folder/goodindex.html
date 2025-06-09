@@ -1224,7 +1224,7 @@ function renderProbabilityScore(workerData, payerData) {
 
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
-    <h3>Overall Probability Outcome</h3>
+    <h3>Overall probability outcome</h3>
     <section class="panel panel-primary">
       <header class="panel-heading">
         <h5 class="panel-title">Worker's response</h5>
@@ -1241,7 +1241,8 @@ function renderProbabilityScore(workerData, payerData) {
         <p> ${generateBar("", payerPercent)}</p>
       </div>
     </section>
-    <h3>Section-Based Scores</h3>
+<hr>
+    <h3>Section-based scores</h3>
   `;
 
   const worker = calculateSectionScores(workerData);
@@ -1253,7 +1254,7 @@ function renderProbabilityScore(workerData, payerData) {
       const payerPercent = payer.totals[section] ? Math.round((payer.scores[section] / payer.totals[section]) * 100) : 0;
 
       probabilityDiv.innerHTML += `
-        <section class="panel panel-primary">
+        <section class="panel panel-default">
           <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
           <div class="panel-body">
             <p><strong>Worker:</strong> ${workerPercent}%</p>
