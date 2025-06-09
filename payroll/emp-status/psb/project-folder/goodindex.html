@@ -536,10 +536,12 @@ function renderProbabilityScore(workerData, payerData) {
 
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
-    <h3>Confidence level</h3>
+   <h3>Probability outcome</h3>
     <p><strong>Based on the answers:</strong><br> The percentage is the confidence level <strong>indicator of employment</strong></p>
-    ${generateBar("Worker's response", workerPercent)}
-    ${generateBar("Payer's response", payerPercent)}
+     <h4>Worker's response</h4>
+    ${generateBar("", workerPercent)}
+     <h4>Payer's response</h4>
+    ${generateBar("", payerPercent)}
   `;
 }
 
