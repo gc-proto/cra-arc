@@ -537,7 +537,7 @@ function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
    <h3>Probability outcome</h3>
-    <p><strong>Based on the answers:</strong><br> The percentage is the confidence level <strong>indicator of employment</strong></p>
+   <p><small>The percentage is the confidence level based on the answers.</small></p>
      <h4>Worker's response</h4>
     ${generateBar("", workerPercent)}
      <h4>Payer's response</h4>
@@ -547,10 +547,10 @@ function renderProbabilityScore(workerData, payerData) {
 
     
 function generateBar(label, percent) {
- let color = "#28a745"; // green
- if (percent < 75) color = "#ffc107"; // yellow
- if (percent < 50) color = "#fd7e14"; // orange
- if (percent < 25) color = "#dc3545"; // red
+ let color = "#1a2695"; // dark blue
+ if (percent < 80) color = "#1a2695"; // dark blue
+ if (percent < 50) color = "#ffc107"; // yellow
+ if (percent < 20) color = "#1a2695"; // dark blue
  return `
 <div style="margin-bottom:1em">
 <label>${label}: ${percent}% (${describeProbability(percent)})</label>
