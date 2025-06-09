@@ -1248,22 +1248,26 @@ function renderProbabilityScore(workerData, payerData) {
   const worker = calculateSectionScores(workerData);
   const payer = calculateSectionScores(payerData);
 
-  for (const section of Object.keys(worker.scores)) {
-    if (worker.totals[section]) {
-      const workerPercent = Math.round((worker.scores[section] / worker.totals[section]) * 100);
-      const payerPercent = payer.totals[section] ? Math.round((payer.scores[section] / payer.totals[section]) * 100) : 0;
 
-      probabilityDiv.innerHTML += `
-        <section class="panel panel-default">
-          <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
-          <div class="panel-body">
-            <p><strong>Worker:</strong> ${workerPercent}%</p>
-            <p><strong>Payer:</strong> ${payerPercent}%</p>
-          </div>
-        </section>
-      `;
-    }
-  }
+for (const section of Object.keys(worker.scores)) {
+  if (
+    worker.totals[section] &&
+    !excludedSections.has(section.trim().toLowerCase())
+  ) {
+    const workerPercent = Math.round((worker.scores[section] / worker.totals[section]) * 100);
+    const payerPercent = payer.totals[section] ? Math.round((payer.scores[section] / payer.totals[section]) * 100) : 0;
+    probabilityDiv.innerHTML += `
+      <section class="panel panel-default">
+        <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
+        <div class="panel-body">
+          <p><strong>Worker:</strong> ${workerPercent}%</p>
+          <p><strong>Payer:</strong> ${payerPercent}%</p>
+        </div>
+      </section>
+    `;
+  }
+}
+
 }
 </script>
 
