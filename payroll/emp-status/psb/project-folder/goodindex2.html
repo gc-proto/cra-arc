@@ -39,10 +39,10 @@
      border-radius: 5px;
    }
    .probability-bar {
-     margin-top: 2em;
+     margin-top: 1em;
      background: #eee;
      border-radius: 5px;
-     height: 30px;
+     height: 20px;
      position: relative;
      width: 100%;
    }
@@ -50,7 +50,7 @@
      height: 100%;
      border-radius: 5px;
      text-align: center;
-     line-height: 30px;
+     line-height: 20px;
      color: white;
      font-weight: bold;
    }
@@ -538,10 +538,23 @@ function renderProbabilityScore(workerData, payerData) {
   probabilityDiv.innerHTML = `
    <h3>Probability outcome</h3>
    <p><small>The percentage is the confidence level based on the answers.</small></p>
-     <h4>Worker's response</h4>
-    ${generateBar("", workerPercent)}
-     <h4>Payer's response</h4>
-    ${generateBar("", payerPercent)}
+<section class="panel panel-primary">
+  <header class="panel-heading">
+   <h4 class="panel-title">Worker's response</h4>
+  </header>
+  <div class="panel-body">
+   <p> ${generateBar("", workerPercent)}</p>
+  </div>
+</section>
+<section class="panel panel-primary">
+  <header class="panel-heading">
+   <h4 class="panel-title">Payer's response</h4>
+  </header>
+  <div class="panel-body">
+   <p>   ${generateBar("", payerPercent)}</p>
+  </div>
+</section>
+
   `;
 }
 
