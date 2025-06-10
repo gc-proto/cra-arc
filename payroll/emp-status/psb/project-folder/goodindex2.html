@@ -486,60 +486,7 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
 }
 
     
-function renderProbabilityScore(workerData, payerData) {
-  let totalQuestions = 0;
-  let workerScore = 0;
-  let payerScore = 0;
-
-  workerData.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim().toLowerCase();
-      if (!excludedSections.has(normalizedSection)) {
-        totalQuestions++;
-        workerScore += scoreAnswer(ans.answer, ans.questionId);
-      }
-    });
-  });
-
-  payerData.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim().toLowerCase();
-      if (!excludedSections.has(normalizedSection)) {
-        payerScore += scoreAnswer(ans.answer, ans.questionId);
-      }
-    });
-  });
-
-const workerScoreText = `${workerScore}/${totalQuestions}`;
-const payerScoreText = `${payerScore}/${totalQuestions}`;
-
-  const probabilityDiv = document.getElementById('probability');
-  probabilityDiv.innerHTML = `
-    <h3>Probability outcome</h3>
-    <section class="panel panel-primary">
-      <header class="panel-heading">
-        <h5 class="panel-title">Worker's response</h5>
-      </header>
-      <div class="panel-body">
-        <p> ${generateBar("", workerScore)}</p>
-      </div>
-    </section>
-    <section class="panel panel-primary">
-      <header class="panel-heading">
-        <h5 class="panel-title">Payer's response</h5>
-      </header>
-      <div class="panel-body">
-        <p> ${generateBar("", payerScore)}</p>
-      </div>
-    </section>
-    <p><small>Percentage is the confidence level based on answers</small></p>
-  `;
-}
-
-
-    
+   
 function generateBar(label, score) {
  let color = "#1a2695"; // dark blue
  if (score < 30) color = "#1a2695"; // dark blue
@@ -1182,7 +1129,7 @@ function renderProbabilityScore(workerData, payerData) {
 const workerScoreText = `${workerScore}/${totalQuestions}`;
 const payerScoreText = `${payerScore}/${totalQuestions}`;
 
-  const probabilityDiv = document.getElementById('probability');
+const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
     <h3>Overall indicator outcome</h3>
     <section class="panel panel-primary">
@@ -1201,6 +1148,7 @@ const payerScoreText = `${payerScore}/${totalQuestions}`;
         <p> ${generateBar("", payerScoreText)}</p>
       </div>
     </section>
+ <p><small>Percentage is the confidence level based on answers</small></p>    
 <hr>
     <h3>Section-based scores</h3>
   `;
