@@ -485,61 +485,7 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
   return container;
 }
 
-    
-function renderProbabilityScore(workerData, payerData) {
-  let totalQuestions = 0;
-  let workerScore = 0;
-  let payerScore = 0;
-
-  workerData.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim().toLowerCase();
-      if (!excludedSections.has(normalizedSection)) {
-        totalQuestions++;
-        workerScore += scoreAnswer(ans.answer, ans.questionId);
-      }
-    });
-  });
-
-  payerData.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim().toLowerCase();
-      if (!excludedSections.has(normalizedSection)) {
-        payerScore += scoreAnswer(ans.answer, ans.questionId);
-      }
-    });
-  });
-
-  const workerPercent = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
-  const payerPercent = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
-
-  const probabilityDiv = document.getElementById('probability');
-  probabilityDiv.innerHTML = `
-    <h3>Probability outcome</h3>
-    <section class="panel panel-primary">
-      <header class="panel-heading">
-        <h5 class="panel-title">Worker's response</h5>
-      </header>
-      <div class="panel-body">
-        <p> ${generateBar("", workerPercent)}</p>
-      </div>
-    </section>
-    <section class="panel panel-primary">
-      <header class="panel-heading">
-        <h5 class="panel-title">Payer's response</h5>
-      </header>
-      <div class="panel-body">
-        <p> ${generateBar("", payerPercent)}</p>
-      </div>
-    </section>
-    <p><small>Percentage is the confidence level based on answers</small></p>
-  `;
-}
-
-
-    
+ 
 function generateBar(label, percent) {
  let color = "#1a2695"; // dark blue
  if (percent < 80) color = "#1a2695"; // dark blue
@@ -1201,6 +1147,7 @@ function renderProbabilityScore(workerData, payerData) {
         <p> ${generateBar("", payerPercent)}</p>
       </div>
     </section>
+    <p><small>Percentage is the confidence level based on answers</small></p>
 <hr>
     <h3>Section-based scores</h3>
   `;
