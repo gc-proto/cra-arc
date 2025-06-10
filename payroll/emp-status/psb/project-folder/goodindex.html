@@ -1137,10 +1137,11 @@ const payerScoreText = `${payerScore}/${totalQuestions}`;
   const worker = calculateSectionScores(workerData);
   const payer = calculateSectionScores(payerData);
 
-  for (const section of Object.keys(worker.scores)) {
+ for (const section of Object.keys(worker.scores)) {
     if (worker.totals[section]) {
-      const workerScoreText = Math.round((worker.scores[section] / worker.totals[section]) * 100);
-      const payerScoreText = payer.totals[section] ? Math.round((payer.scores[section] / payer.totals[section]) * 100) : 0;
+      const workerScoreText = $worker.totals[section]/$worker.totals[section];
+      const payerScoreText = $payer.totals[section]/$payer.totals[section];
+
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
