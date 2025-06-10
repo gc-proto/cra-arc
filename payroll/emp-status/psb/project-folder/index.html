@@ -1,6 +1,8 @@
 
 
 
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -478,31 +480,31 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
 }
 
  
-function generateBar(label, percent) {
+function generateBar(label, score) {
  let color = "#1a2695"; // dark blue
- if (percent < 80) color = "#1a2695"; // dark blue
- if (percent < 50) color = "#ffc107"; // yellow
- if (percent < 20) color = "#1a2695"; // dark blue
+ if (score < 80) color = "#1a2695"; // dark blue
+ if (score < 50) color = "#ffc107"; // yellow
+ if (score < 20) color = "#1a2695"; // dark blue
  return `
 <div style="margin-bottom:1em">
-<label>${label} ${describeProbability(percent)}</label>
+<label>${label} ${describeProbability(score)}</label>
 <div class="probability-bar">
-<div class="probability-fill" style="width: ${percent}%; background-color: ${color};">
-         ${percent}%
+<div class="probability-fill" style="width: ${score}; background-color: ${color};">
+         ${score}%
 </div>
 </div>
 </div>
  `;
 }
 
-   function describeProbability(percent) {
- if (percent >= 90) return "Highly unlikely: Indicator of employment";	   
- if (percent >= 80) return "Highly unlikely: Indicator of employment";
- if (percent >= 60) return "Unlikely: Indicator of employment";
- if (percent >= 40) return "Neutral: Indicator of employment";
- if (percent >= 20) return "Propable: Indicator of employment";
- if (percent >= 10) return "Likely: Indicator of employment";	 
- if (percent >= 0) return "Highly likely: Indicator of employment";	   
+   function describeProbability(score) {
+ if (score >= 90) return "Highly unlikely: Indicator of employment";	   
+ if (score >= 80) return "Highly unlikely: Indicator of employment";
+ if (score >= 60) return "Unlikely: Indicator of employment";
+ if (score >= 40) return "Neutral: Indicator of employment";
+ if (score >= 20) return "Propable: Indicator of employment";
+ if (score >= 10) return "Likely: Indicator of employment";	 
+ if (scoret >= 0) return "Highly likely: Indicator of employment";	   
  return "Highly likely: Indicator of employment";
 }
 
@@ -1107,8 +1109,8 @@ function renderProbabilityScore(workerData, payerData) {
     });
   });
 
-  const workerPercent = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
-  const payerPercent = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
+  const workerScoreText = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
+  const payerScoreText = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
 
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
@@ -1118,7 +1120,7 @@ function renderProbabilityScore(workerData, payerData) {
         <h5 class="panel-title">Worker's response</h5>
       </header>
       <div class="panel-body">
-        <p> ${generateBar("", workerPercent)}</p>
+        <p> ${generateBar("", workerScoreText)}</p>
       </div>
     </section>
     <section class="panel panel-primary">
@@ -1126,7 +1128,7 @@ function renderProbabilityScore(workerData, payerData) {
         <h5 class="panel-title">Payer's response</h5>
       </header>
       <div class="panel-body">
-        <p> ${generateBar("", payerPercent)}</p>
+        <p> ${generateBar("", payerScoreText)}</p>
       </div>
     </section>
     <p><small>The outcome indicator is the number of questions where the responses resulted in the indicator of employment out of the total questions responses received</small></p>
@@ -1139,15 +1141,15 @@ function renderProbabilityScore(workerData, payerData) {
 
   for (const section of Object.keys(worker.scores)) {
     if (worker.totals[section]) {
-      const workerPercent = Math.round((worker.scores[section] / worker.totals[section]) * 100);
-      const payerPercent = payer.totals[section] ? Math.round((payer.scores[section] / payer.totals[section]) * 100) : 0;
+      const workerScoreText = Math.round((worker.scores[section] / worker.totals[section]) * 100);
+      const payerScoreText = payer.totals[section] ? Math.round((payer.scores[section] / payer.totals[section]) * 100) : 0;
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
           <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
           <div class="panel-body">
-            <p><strong>Worker:</strong> ${workerPercent}%</p>
-            <p><strong>Payer:</strong> ${payerPercent}%</p>
+            <p><strong>Worker:</strong> ${workerScoreText}</p>
+            <p><strong>Payer:</strong> ${payerScoreText}</p>
           </div>
         </section>
       `;
