@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -67,11 +68,11 @@
 <h1>Worker vs. payer questionnaire comparison<br/>
 <small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small>
 </h1>
-<p>To use the comparison tool:</p>
+<p>New - To use the comparison tool:</p>
 <ol>
 <li>Save the worker and payer JSON files on your computer.</li>
 <li>Upload both files below.</li>
-<li>Click compare to view side-by-side results and risk score.</li>
+<li>Click compare to view side-by-side results. To help you quickly spot mismatches between the 2 responses, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.</li>
 </ol>
 <h3>Upload the response files (JSON)</h3>
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
@@ -86,20 +87,9 @@
 </label>
 </li>
 </ul>
-<details><summary>How to read the <strong>probability outcome</strong></summary>
-<h4>Confidence level score</h4>
-<ul>
-<li>Each question has a weight (for example: 2 points for important questions)</li>
-<li>If the answer is <strong>Yes</strong>, the weight is 1</li>
-<li>If the answer is <strong>No</strong>, the weight is 0</li>
-<li>Only questions from Sections 4 and 5 are included in the results</li>
-<li>The final percentage is based on the total weighted answers</li>
-</ul>
-<h4>Yellow highlighting</h4>
-<ul>
-<li>If the worker and payer answers are different, the row is highlighted in <span style="background-color: #fff3cd;">yellow</span></li>
-<li>This helps you quickly spot mismatches between the two responses</li>
-</ul>
+<details><summary>How to read the <strong>outcome indicator</strong></summary>
+<p>The outcome indicator populates the number of questions where the responses resulted in the indicator of employment out of the total questions responses received. Depending on the situation, the result of the response may be neutral.</p>
+
 </details>
 <div class="row">
 <div class="col-md-9">
@@ -327,12 +317,14 @@
 
 
 const excludedSections = new Set([
-  "Section 1: General information",
-  "Worker - Section 2a - Employee information",
-  "Worker - Section 2b - Specified shareholder information",
-  "Payer - Section 3 - Payee (worker) information",
-  "Worker - Section 3 - Payers (clients) information",	
-  "Section 6 - Certification"
+  "section 1: general information",
+  "section 2: information about the business",	
+  "worker - section 2a - employee information",
+  "worker - section 2b - specified shareholder information",
+  "payer - section 3 - payee (worker) information",
+  "worker - section 3 - payers (clients) information",
+  "section 5 - working relationship information",  	
+  "section 6 - certification"
 ]);
 let workerData = null;
 let payerData = null;
@@ -485,61 +477,7 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
   return container;
 }
 
-    
-function renderProbabilityScore(workerData, payerData) {
-  let totalQuestions = 0;
-  let workerScore = 0;
-  let payerScore = 0;
-
-  workerData.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim().toLowerCase();
-      if (!excludedSections.has(normalizedSection)) {
-        totalQuestions++;
-        workerScore += scoreAnswer(ans.answer, ans.questionId);
-      }
-    });
-  });
-
-  payerData.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim().toLowerCase();
-      if (!excludedSections.has(normalizedSection)) {
-        payerScore += scoreAnswer(ans.answer, ans.questionId);
-      }
-    });
-  });
-
-  const workerPercent = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
-  const payerPercent = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
-
-  const probabilityDiv = document.getElementById('probability');
-  probabilityDiv.innerHTML = `
-    <h3>Probability outcome</h3>
-    <section class="panel panel-primary">
-      <header class="panel-heading">
-        <h5 class="panel-title">Worker's response</h5>
-      </header>
-      <div class="panel-body">
-        <p> ${generateBar("", workerPercent)}</p>
-      </div>
-    </section>
-    <section class="panel panel-primary">
-      <header class="panel-heading">
-        <h5 class="panel-title">Payer's response</h5>
-      </header>
-      <div class="panel-body">
-        <p> ${generateBar("", payerPercent)}</p>
-      </div>
-    </section>
-    <p><small>Percentage is the confidence level based on answers</small></p>
-  `;
-}
-
-
-    
+ 
 function generateBar(label, percent) {
  let color = "#1a2695"; // dark blue
  if (percent < 80) color = "#1a2695"; // dark blue
@@ -568,21 +506,11 @@ function generateBar(label, percent) {
  return "Highly likely: Indicator of employment";
 }
 
- // Optional: WET preFooter
- var defPreFooter = document.getElementById("def-preFooter");
- defPreFooter.outerHTML = wet.builder.preFooter({
-   dateModified: "2025-06-02",
-   showPostContent: true,
-   showFeedback: true,
-   showShare: true
- });
 </script>
+
 <!-- Probability bar container -->
 <div id="probability" style="margin-top: 2em;"></div>
-<!-- WET PreFooter -->
-</div></main>
 
-<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
 <script>
 const customScoringRules = {
    
@@ -1184,7 +1112,7 @@ function renderProbabilityScore(workerData, payerData) {
 
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
-    <h3>Overall indicator outcome</h3>
+    <h3>Overall outcome indicator</h3>
     <section class="panel panel-primary">
       <header class="panel-heading">
         <h5 class="panel-title">Worker's response</h5>
@@ -1201,6 +1129,7 @@ function renderProbabilityScore(workerData, payerData) {
         <p> ${generateBar("", payerPercent)}</p>
       </div>
     </section>
+    <p><small>The outcome indicator is the number of questions where the responses resulted in the indicator of employment out of the total questions responses received</small></p>
 <hr>
     <h3>Section-based scores</h3>
   `;
@@ -1226,6 +1155,19 @@ function renderProbabilityScore(workerData, payerData) {
   }
 }
 </script>
+
+<script>
+
+ // Optional: WET preFooter
+ var defPreFooter = document.getElementById("def-preFooter");
+ defPreFooter.outerHTML = wet.builder.preFooter({
+   dateModified: "2025-06-02",
+   showPostContent: true,
+   showFeedback: true,
+   showShare: true
+ });
+</script>
+</div></main>
 
 </body>
 </html>
