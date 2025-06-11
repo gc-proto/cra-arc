@@ -1140,16 +1140,20 @@ function renderProbabilityScore(workerData, payerData) {
     ...Object.keys(payer.scores)
   ]);
 
-  for (const section of allSections) {
-    const workerTotal = worker.totals[section] || 0;
-    const payerTotal = payer.totals[section] || 0;
-    const workerSectionScore = worker.scores[section] || 0;
-    const payerSectionScore = payer.scores[section] || 0;
+ for (const section of allSections) {
+  const workerTotal = worker.totals[section] || 0;
+  const payerTotal = payer.totals[section] || 0;
+  const workerSectionScore = worker.scores[section] || 0;
+  const payerSectionScore = payer.scores[section] || 0;
 
-    totalQuestions += workerTotal + payerTotal;
+  // Only count this section's questions if at least one party answered
+  if (workerTotal > 0 || payerTotal > 0) {
+    totalQuestions += Math.max(workerTotal, payerTotal);  // Only count each question once
     workerScore += workerSectionScore;
     payerScore += payerSectionScore;
   }
+}
+
 
   const workerScoreText = `${workerScore} of ${totalQuestions}`;
   const payerScoreText = `${payerScore} of ${totalQuestions}`;
