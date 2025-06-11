@@ -1151,8 +1151,8 @@ payerScore += scoreAnswer(ans.answer, ans.questionId);
 
 });
 });
-const workerScoreText = `${workerScore} of ${totalQuestions}`;
-const payerScoreText = `${payerScore} of ${totalQuestions}`;
+const workerScoreText = `${workerScore} of ${totalQuestions} questions`;
+const payerScoreText = `${payerScore} of ${totalQuestions} questions`;
 
 const probabilityDiv = document.getElementById('probability');
 probabilityDiv.innerHTML = `
@@ -1187,8 +1187,8 @@ const payerTotal = payer.totals[section] || 0;
 
 // Only display sections where either worker or payer had answers
 if (workerTotal > 0 || payerTotal > 0) {
-const workerScoreText = workerTotal > 0 ? `${worker.scores[section]}/${workerTotal}` : 'N/A';
-const payerScoreText = payerTotal > 0 ? `${payer.scores[section]}/${payerTotal}` : 'N/A';
+const workerScoreText = workerTotal > 0 ? `${worker.scores[section]} of ${workerTotal} questions` : 'N/A';
+const payerScoreText = payerTotal > 0 ? `${payer.scores[section]} of ${payerTotal} questions` : 'N/A';
 
 probabilityDiv.innerHTML += `
 <section class="panel panel-default">
