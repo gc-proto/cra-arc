@@ -187,7 +187,8 @@
  390: "Section 5 - Working relationship information - Contract formed in a province or territory other than Quebec",  
    
  192: "Subsection 5a - Control - Duties (1 of 8)", 
- 383: "Subsection 5a - Control - Duties (1 of 8)", 
+ 383: "Subsection 5a - Control - Duties (1 of 8)",
+ 424: "Subsection 5a - Control - Duties (1 of 8)",  	   
  258: "Subsection 5a - Control - Duties (1 of 8)",  
  257: "Subsection 5a - Control - Duties (1 of 8)",   
 
@@ -329,7 +330,7 @@ const excludedSections = new Set([
 
 const sectionQuestionExclusions = {
 "Section 4 - Contract or agreement information": [350, 236, 207, 379, 423, 349], 	
-"Subsection 5a - Control - Duties (1 of 8)": [383],	
+"Subsection 5a - Control - Duties (1 of 8)": [424],	
 "Subsection 5a - Control - Degree of autonomy (3 of 8)": [312], 	
 "Subsection 5a - Control - Remuneration (4 of 8)": [385, 386],	
 "Subsection 5a - Control - Location of services (5 of 8)": [426],  	
@@ -1124,10 +1125,14 @@ entry.answers.forEach(ans => {
 const section = sectionMap[ans.questionId] || "Other";
 const normalizedSection = normalize(section);
 const exclusions = sectionQuestionExclusions[section] || [];
-if (!excludedSections.has(normalizedSection) && !exclusions.includes(ans.questionId)) {
+if (!excludedSections.has(normalizedSection)) {
 totalQuestions++;
+
+if (!exclusions.includes(ans.questionId)) {
 workerScore += scoreAnswer(ans.answer, ans.questionId);
 }
+}
+
 });
 });
 
@@ -1136,14 +1141,18 @@ entry.answers.forEach(ans => {
 const section = sectionMap[ans.questionId] || "Other";
 const normalizedSection = normalize(section);
 const exclusions = sectionQuestionExclusions[section] || [];
-if (!excludedSections.has(normalizedSection) && !exclusions.includes(ans.questionId)) {
+if (!excludedSections.has(normalizedSection)) {
+totalQuestions++;
+
+if (!exclusions.includes(ans.questionId)) {
 payerScore += scoreAnswer(ans.answer, ans.questionId);
 }
-});
-});
+}
 
-const workerScoreText = `${workerScore}/${totalQuestions}`;
-const payerScoreText = `${payerScore}/${totalQuestions}`;
+});
+});
+const workerScoreText = `${workerScore} of ${totalQuestions}`;
+const payerScoreText = `${payerScore} of ${totalQuestions}`;
 
 const probabilityDiv = document.getElementById('probability');
 probabilityDiv.innerHTML = `
@@ -1178,8 +1187,8 @@ const payerTotal = payer.totals[section] || 0;
 
 // Only display sections where either worker or payer had answers
 if (workerTotal > 0 || payerTotal > 0) {
-const workerScoreText = workerTotal > 0 ? `${worker.scores[section]}/${workerTotal}` : 'N/A';
-const payerScoreText = payerTotal > 0 ? `${payer.scores[section]}/${payerTotal}` : 'N/A';
+const workerScoreText = workerTotal > 0 ? `${worker.scores[section]} of ${workerTotal}` : 'N/A';
+const payerScoreText = payerTotal > 0 ? `${payer.scores[section]} of ${payerTotal}` : 'N/A';
 
 probabilityDiv.innerHTML += `
 <section class="panel panel-default">
