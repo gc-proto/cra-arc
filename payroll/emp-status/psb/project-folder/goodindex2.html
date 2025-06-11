@@ -1201,7 +1201,7 @@ function calculateSectionScores(data) {
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
-    <h3>Total - Indicator of employment</h3>
+    <h3>Total - Indicators</h3>
     <p><small>Includes employment indicators, neutral, and self-employment answers.</small></p>
   `;
 
@@ -1236,8 +1236,8 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-  const workerScoreText = `${workerScore} of ${totalQuestions}<br> Neutral: ${workerNeutral}<br> Self-employed: ${workerSelf}`;
-  const payerScoreText = `${payerScore} of ${totalQuestions}<br> Neutral: ${payerNeutral}<br> Self-employed: ${payerSelf}`;
+  const workerScoreText = `Employment: ${workerScore} of ${totalQuestions}<br> Neutral: ${workerNeutral}<br> Self-employed worker: ${workerSelf}`;
+  const payerScoreText = `Employment: ${payerScore} of ${totalQuestions}<br> Neutral: ${payerNeutral}<br> Self-employed worker: ${payerSelf}`;
 
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
@@ -1256,7 +1256,7 @@ function renderProbabilityScore(workerData, payerData) {
     </section>
     <hr>
     <h3>By section</h3>
-    <p><small>Employment indicators per section including neutrals and self-employed answers.</small></p>
+    <p><small>Indicators per section including neutrals and self-employed answers.</small></p>
   `;
 
   for (const section of allSections) {
@@ -1265,9 +1265,9 @@ function renderProbabilityScore(workerData, payerData) {
 
     if (wTotal > 0 || pTotal > 0) {
       const wScoreText = wTotal > 0
-        ? `${worker.scores[section]} of ${wTotal}<br> Neutral: ${worker.neutrals[section] || 0}<br> Self: ${worker.selfEmployment[section] || 0}` : 'N/A';
+        ? `Employment: ${worker.scores[section]} of ${wTotal}<br> Neutral: ${worker.neutrals[section] || 0}<br> Self-employed worker: ${worker.selfEmployment[section] || 0}` : 'N/A';
       const pScoreText = pTotal > 0
-        ? `${payer.scores[section]} of ${pTotal}<br> Neutral: ${payer.neutrals[section] || 0} <br>Self: ${payer.selfEmployment[section] || 0}` : 'N/A';
+        ? `Employment: ${payer.scores[section]} of ${pTotal}<br> Neutral: ${payer.neutrals[section] || 0} <br>Self-employed worker: ${payer.selfEmployment[section] || 0}` : 'N/A';
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
