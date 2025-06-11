@@ -68,7 +68,6 @@
 <small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small>
 </h1>
 <p>To use the comparison tool:</p>
-<p>To use the comparison tool:</p>
 <ol>
 <li>Save the worker and payer JSON files on your computer.</li>
 <li>Upload both files below.</li>
@@ -200,9 +199,9 @@
       265: "Subsection 5a - Control - Work schedule (2 of 8)",   
 
      191: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
-         267: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+     267: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
      268: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
-         312: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+     312: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
     
     297: "Subsection 5a - Control - Remuneration (4 of 8)",  
     298: "Subsection 5a - Control - Remuneration (4 of 8)",  
@@ -329,13 +328,13 @@ const excludedSections = new Set([
 ]);
 
 const sectionQuestionExclusions = {
-"Section 4 - Contract or agreement information": [350, 236, 207, 379, 423, 349], 	
+"Section 4 - Contract or agreement information": [206, 350, 236, 207, 379, 423, 349], 	
 "Subsection 5a - Control - Duties (1 of 8)": [424],	
 "Subsection 5a - Control - Degree of autonomy (3 of 8)": [312], 	
 "Subsection 5a - Control - Remuneration (4 of 8)": [385, 386],	
 "Subsection 5a - Control - Location of services (5 of 8)": [426],  	
 "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)": [388], 	
-"Subsection 5a - Control - How the work is done (7 of 8)": [311], 	
+"Subsection 5a - Control - How the work is done (7 of 8)": [310, 311], 	
 "Subsection 5b - Ownership of tools or equipment": [210],	
 "Subsection 5c - Financial information": [218, 215, 234],	
 "Subsection 5a - Carrying out the work": [433, 432],
@@ -515,13 +514,13 @@ return `
 
 
    function describeProbability(score) {
- if (score <= 40) return "Highly unlikely";	   
- if (score <= 35) return "Highly unlikely";
- if (score <= 30) return "Unlikely";
- if (score <= 20) return "Neutral";
- if (score <= 15) return "Propable";
- if (score <= 10) return "Likely";	 
- if (score <= 0) return "Highly likely";	   
+ if (score <= 0) return "Highly unlikely";	   
+ if (score <= 15) return "Highly unlikely";
+ if (score <= 20) return "Unlikely";
+ if (score <= 30) return "Neutral";
+ if (score <= 35) return "Propable";
+ if (score <= 40) return "Likely";	 
+ if (score <= 45) return "Highly likely";	   
  return "Highly likely";
 }
 
@@ -536,15 +535,10 @@ return `
 const customScoringRules = {
    
 	
-    206: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
-    }
-  },
+   
     351: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "employer-employee": return 1;
       default: return 0;
     }
   },
@@ -557,7 +551,7 @@ const customScoringRules = {
   },
   348: answer => {
     switch (answer.toLowerCase()) {
-      case "no": return 1;
+      case "yes": return 1;
       default: return 0;
     }
   },
@@ -569,7 +563,7 @@ const customScoringRules = {
   },
     382: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer": return 1;
       default: return 0;
     }
   },
@@ -680,7 +674,7 @@ const customScoringRules = {
   },
  300: answer => {
     switch (answer.toLowerCase()) {
-      case "hourly": return 1;
+      case "hourly/monthly": return 1;
       default: return 0;
     }
   },
@@ -716,22 +710,25 @@ const customScoringRules = {
   },
    306: answer => {
     switch (answer.toLowerCase()) {
-      case "hourly": return 1;
+      case "filing a timesheet": return 1;
       default: return 0;
     }
   },
    195: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer's location": return 1;
       default: return 0;
     }
   },
    296: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer": return 1;
       default: return 0;
     }
   },
+
+
+	
   274: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -740,7 +737,7 @@ const customScoringRules = {
   },
   275: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "yes - with cause or without cause": return 1;
       default: return 0;
     }
   },
@@ -782,12 +779,7 @@ const customScoringRules = {
       default: return 0;
     }
   },
-  310: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
-    }
-  },
+
   459: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -818,6 +810,8 @@ const customScoringRules = {
       default: return 0;
     }
   },
+
+	
   290: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -826,7 +820,7 @@ const customScoringRules = {
   },
   208: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer": return 1;
       default: return 0;
     }
   },
@@ -844,10 +838,12 @@ const customScoringRules = {
   },
   286: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer": return 1;
       default: return 0;
     }
   },
+
+	
   430: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -1133,12 +1129,10 @@ const normalizedSection = normalize(section);
 const exclusions = sectionQuestionExclusions[section] || [];
 if (!excludedSections.has(normalizedSection)) {
 totalQuestions++;
-
 if (!exclusions.includes(ans.questionId)) {
 workerScore += scoreAnswer(ans.answer, ans.questionId);
 }
 }
-
 });
 });
 
@@ -1149,12 +1143,10 @@ const normalizedSection = normalize(section);
 const exclusions = sectionQuestionExclusions[section] || [];
 if (!excludedSections.has(normalizedSection)) {
 totalQuestions++;
-
 if (!exclusions.includes(ans.questionId)) {
 payerScore += scoreAnswer(ans.answer, ans.questionId);
 }
 }
-
 });
 });
 	
@@ -1164,7 +1156,7 @@ const payerScoreText = `${payerScore} of ${totalQuestions}`;
 const probabilityDiv = document.getElementById('probability');
 probabilityDiv.innerHTML = `
 <h3>Total - Indicator of employment</h3>
-<p><small>Number of responses with indicator of employment out of the total number of responses</small></p>
+<p><small>Number of responses with indicator of employment out of the total number of responses for all sections</small></p>
 <section class="panel panel-primary">
 <header class="panel-heading">
 <h5 class="panel-title">Worker's response</h5>
@@ -1185,6 +1177,7 @@ probabilityDiv.innerHTML = `
 </section>
 <hr>
 <h3>By section - Indicator of employment</h3>
+<p><small>Number of responses with indicator of employment out of the total number of responses for each section</small></p>
 `;
 
 const worker = calculateSectionScores(workerData);
@@ -1196,6 +1189,7 @@ const payerTotal = payer.totals[section] || 0;
 
 // Only display sections where either worker or payer had answers
 if (workerTotal > 0 || payerTotal > 0) {
+
 const workerScoreText = workerTotal > 0 ? `${worker.scores[section]} of ${workerTotal}` : 'N/A';
 const payerScoreText = payerTotal > 0 ? `${payer.scores[section]} of ${payerTotal}` : 'N/A';
 
