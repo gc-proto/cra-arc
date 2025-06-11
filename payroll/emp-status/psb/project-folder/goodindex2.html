@@ -1124,10 +1124,14 @@ entry.answers.forEach(ans => {
 const section = sectionMap[ans.questionId] || "Other";
 const normalizedSection = normalize(section);
 const exclusions = sectionQuestionExclusions[section] || [];
-if (!excludedSections.has(normalizedSection) && !exclusions.includes(ans.questionId)) {
+if (!excludedSections.has(normalizedSection)) {
 totalQuestions++;
+
+if (!exclusions.includes(ans.questionId)) {
 workerScore += scoreAnswer(ans.answer, ans.questionId);
 }
+}
+
 });
 });
 
@@ -1136,14 +1140,18 @@ entry.answers.forEach(ans => {
 const section = sectionMap[ans.questionId] || "Other";
 const normalizedSection = normalize(section);
 const exclusions = sectionQuestionExclusions[section] || [];
-if (!excludedSections.has(normalizedSection) && !exclusions.includes(ans.questionId)) {
+if (!excludedSections.has(normalizedSection)) {
+totalQuestions++;
+
+if (!exclusions.includes(ans.questionId)) {
 payerScore += scoreAnswer(ans.answer, ans.questionId);
 }
-});
-});
+}
 
-const workerScoreText = `${workerScore}/${totalQuestions}`;
-const payerScoreText = `${payerScore}/${totalQuestions}`;
+});
+});
+const workerScoreText = `${workerScore} of ${totalQuestions}`;
+const payerScoreText = `${payerScore} of ${totalQuestions}`;
 
 const probabilityDiv = document.getElementById('probability');
 probabilityDiv.innerHTML = `
