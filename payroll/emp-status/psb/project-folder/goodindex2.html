@@ -1142,8 +1142,8 @@ const probabilityDiv = document.getElementById('probability');
 
   for (const section of Object.keys(worker.scores)) {
     if (worker.totals[section]) {
-      const workerScoreText = $worker.totals[section]/$worker.totals[section];
-      const payerScoreText = $payer.totals[section]/$payer.totals[section];
+       const workerScoreText = Math.round((worker.scores[section] / worker.totals[section]) * 100);
+      const payerScoreText = payer.totals[section] ? Math.round((payer.scores[section] / payer.totals[section]) * 100) : 0;
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
