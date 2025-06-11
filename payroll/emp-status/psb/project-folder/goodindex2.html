@@ -519,14 +519,14 @@ ${scoreText}
 
 
    function describeProbability(score) {
- if (score >= 90) return "Highly unlikely: Indicator of employment";	   
- if (score >= 80) return "Highly unlikely: Indicator of employment";
- if (score >= 60) return "Unlikely: Indicator of employment";
- if (score >= 40) return "Neutral: Indicator of employment";
- if (score >= 20) return "Propable: Indicator of employment";
- if (score >= 10) return "Likely: Indicator of employment";	 
- if (score >= 0) return "Highly likely: Indicator of employment";	   
- return "Highly likely: Indicator of employment";
+ if (score >= 90) return "Highly unlikely";	   
+ if (score >= 80) return "Highly unlikely";
+ if (score >= 60) return "Unlikely";
+ if (score >= 40) return "Neutral";
+ if (score >= 20) return "Propable";
+ if (score >= 10) return "Likely";	 
+ if (score >= 0) return "Highly likely";	   
+ return "Highly likely";
 }
 
 </script>
@@ -1161,7 +1161,7 @@ const payerScoreText = `${payerScore} of ${totalQuestions}`;
 
 const probabilityDiv = document.getElementById('probability');
 probabilityDiv.innerHTML = `
-<h3>Overall indicator outcome</h3>
+<h3>Total - Indicator of employment</h3>
 <section class="panel panel-primary">
 <header class="panel-heading">
 <h5 class="panel-title">Worker's response</h5>
@@ -1180,7 +1180,7 @@ probabilityDiv.innerHTML = `
 </section>
 <p><small>The outcome indicator is the number of questions where the responses resulted in the indicator of employment out of the total questions responses received</small></p>
 <hr>
-<h3>Section-based scores</h3>
+<h3>By section - Indicator of employment</h3>
 `;
 
 const worker = calculateSectionScores(workerData);
