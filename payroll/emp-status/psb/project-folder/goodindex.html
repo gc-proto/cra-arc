@@ -378,8 +378,24 @@ function tryRenderBoth() {
   if (workerData && payerData) {
     const container = document.getElementById('content');
     container.innerHTML = '';
-    container.appendChild(renderJSON(workerData, payerData));
-    
+   const legend = document.createElement('div');
+legend.innerHTML = `
+  <p><strong>Legend:</strong></p>
+  <ul style="list-style: none; padding-left: 0;">
+    <li style="margin-bottom: 0.5em;">
+      <span style="display: inline-block; width: 10px; height: 20px; background-color: #007BFF; margin-right: 8px; border-left: 6px solid #007BFF;"></span>
+      Question contributes to indicator of employment
+    </li>
+    <li style="margin-bottom: 0.5em;">
+      <span style="background-color: #fff3cd; padding: 2px 6px;">Mismatch</span>
+      Highlighted when worker and payer responses differ
+    </li>
+  </ul>
+`;
+
+container.appendChild(legend);
+container.appendChild(renderJSON(workerData, payerData));
+ 
     // Add this line to render the probability score
     renderProbabilityScore(workerData, payerData);
   }
@@ -389,26 +405,27 @@ function tryRenderBoth() {
  function renderJSON(workerData, payerData) {
    const sectioned = {};
 
-   function addToSection(ans, isPayer = false) {
-    const section = sectionMap[ans.questionId] || "Other";
-    if (!sectioned[section]) sectioned[section] = {};
-    if (!sectioned[section][ans.questionEn]) {
-      sectioned[section][ans.questionEn] = {
-        worker: "", payer: "", rawWorker: "", rawPayer: ""
-      };
-    }
-    const formatted = formatAnswer(ans.answer);
-    
-const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : JSON.stringify(ans.answer);
-  
-    if (isPayer) {
-      sectioned[section][ans.questionEn].payer = formatted;
-      sectioned[section][ans.questionEn].rawPayer = raw;
-    } else {
-      sectioned[section][ans.questionEn].worker = formatted;
-      sectioned[section][ans.questionEn].rawWorker = raw;
-    }
+function addToSection(ans, isPayer = false) {
+  const section = sectionMap[ans.questionId] || "Other";
+  if (!sectioned[section]) sectioned[section] = {};
+  if (!sectioned[section][ans.questionEn]) {
+    sectioned[section][ans.questionEn] = {
+      worker: "", payer: "", rawWorker: "", rawPayer: "", questionId: ans.questionId
+    };
   }
+
+  const formatted = formatAnswer(ans.answer);
+  const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : JSON.stringify(ans.answer);
+
+  if (isPayer) {
+    sectioned[section][ans.questionEn].payer = formatted;
+    sectioned[section][ans.questionEn].rawPayer = raw;
+  } else {
+    sectioned[section][ans.questionEn].worker = formatted;
+    sectioned[section][ans.questionEn].rawWorker = raw;
+  }
+}
+
 
   function formatAnswer(answer) {
     if (Array.isArray(answer)) {
@@ -463,7 +480,18 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
     let rowCount = 0;
 
     for (const [question, data] of Object.entries(questions)) {
-      const { worker, payer, rawWorker, rawPayer } = data;
+const { worker, payer, rawWorker, rawPayer, questionId } = data;
+const exclusions = sectionQuestionExclusions[section] || [];
+const isScored = (
+  questionId &&
+  !excludedSections.has(normalize(section)) &&
+  !exclusions.includes(questionId) &&
+  customScoringRules[questionId]
+);
+
+const borderStyle = isScored ? 'border-left: 6px solid #007BFF;' : '';
+const mismatchStyle = isMismatch ? 'background-color: #fff3cd;' : '';
+
       if (!worker && !payer) continue;
 
     
@@ -473,13 +501,13 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
 
 
 
-      const row = document.createElement('tr');
-      let rowHTML = `<td>${question}</td>`;
-      if (showWorker) rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${worker}</td>`;
-      if (showPayer) rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${payer}</td>`;
-      row.innerHTML = rowHTML;
-      tbody.appendChild(row);
-      rowCount++;
+  const row = document.createElement('tr');
+let rowHTML = `<td style="${borderStyle}">${question}</td>`;
+if (showWorker) rowHTML += `<td style="${borderStyle}${mismatchStyle}">${worker}</td>`;
+if (showPayer) rowHTML += `<td style="${borderStyle}${mismatchStyle}">${payer}</td>`;
+row.innerHTML = rowHTML;
+tbody.appendChild(row);
+    rowCount++;
     }
 
     if (rowCount > 0) {
