@@ -385,8 +385,6 @@ function tryRenderBoth() {
 	  
 	  
 	  renderProbabilityScore(workerData, payerData);
-	  const uniqueQuestionIds = new Set();
-
   }
 }
 
@@ -1148,38 +1146,7 @@ function renderProbabilityScore(workerData, payerData) {
     const workerSectionScore = worker.scores[section] || 0;
     const payerSectionScore = payer.scores[section] || 0;
 
-   // Add unique question IDs for worker
-workerData.forEach(entry => {
-  entry.answers.forEach(ans => {
-    const section = sectionMap[ans.questionId] || "Other";
-    const normalizedSection = normalize(section);
-    const exclusions = sectionQuestionExclusions[section] || [];
-
-    if (!excludedSections.has(normalizedSection) &&
-        ans.answer && ans.answer !== "" && ans.answer !== null &&
-        !exclusions.includes(ans.questionId)) {
-      uniqueQuestionIds.add(ans.questionId);
-    }
-  });
-});
-
-// Add unique question IDs for payer
-payerData.forEach(entry => {
-  entry.answers.forEach(ans => {
-    const section = sectionMap[ans.questionId] || "Other";
-    const normalizedSection = normalize(section);
-    const exclusions = sectionQuestionExclusions[section] || [];
-
-    if (!excludedSections.has(normalizedSection) &&
-        ans.answer && ans.answer !== "" && ans.answer !== null &&
-        !exclusions.includes(ans.questionId)) {
-      uniqueQuestionIds.add(ans.questionId);
-    }
-  });
-});
-
-const totalQuestions = uniqueQuestionIds.size;
-
+    totalQuestions += workerTotal + payerTotal;
     workerScore += workerSectionScore;
     payerScore += payerSectionScore;
   }
