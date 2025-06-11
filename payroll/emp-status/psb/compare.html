@@ -508,24 +508,20 @@ else if (numericScore < 15) color = "#ffc107";
 return `
 <div style="margin-bottom:1em">
 <label>${label} ${describeProbability(numericScore)}</label>
-<div class="probability-bar">
-<div class="probability-fill" style="width: ${numericScore}%; background-color: ${color};">
-${scoreText}
-</div>
-</div>
+
 </div>
 `;
 }
 
 
    function describeProbability(score) {
- if (score >= 90) return "Highly unlikely";	   
- if (score >= 80) return "Highly unlikely";
- if (score >= 60) return "Unlikely";
- if (score >= 40) return "Neutral";
- if (score >= 20) return "Propable";
- if (score >= 10) return "Likely";	 
- if (score >= 0) return "Highly likely";	   
+ if (score <= 40) return "Highly unlikely";	   
+ if (score <= 35) return "Highly unlikely";
+ if (score <= 30) return "Unlikely";
+ if (score <= 20) return "Neutral";
+ if (score <= 15) return "Propable";
+ if (score <= 10) return "Likely";	 
+ if (score <= 0) return "Highly likely";	   
  return "Highly likely";
 }
 
@@ -1161,6 +1157,7 @@ payerScore += scoreAnswer(ans.answer, ans.questionId);
 
 });
 });
+	
 const workerScoreText = `${workerScore} of ${totalQuestions}`;
 const payerScoreText = `${payerScore} of ${totalQuestions}`;
 
@@ -1174,6 +1171,7 @@ probabilityDiv.innerHTML = `
 </header>
 <div class="panel-body">
 <p> ${generateBar("", workerScoreText)}</p>
+<p><strong>Worker:</strong> ${workerScoreText}</p>
 </div>
 </section>
 <section class="panel panel-primary">
@@ -1182,6 +1180,7 @@ probabilityDiv.innerHTML = `
 </header>
 <div class="panel-body">
 <p> ${generateBar("", payerScoreText)}</p>
+<p><strong>Payer:</strong> ${payerScoreText}</p>
 </div>
 </section>
 <hr>
