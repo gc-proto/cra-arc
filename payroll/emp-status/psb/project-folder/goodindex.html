@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -60,7 +59,7 @@
 <script type="text/javascript">
    document.write(wet.builder.refTop({}));
 </script>
-</link></head>
+</head>
 <body class="experimental" typeof="WebPage" vocab="http://schema.org/">
 <div id="def-top"></div>
 <main class="container" property="mainContentOfPage" role="main">
@@ -68,7 +67,7 @@
 <h1>Worker vs. payer questionnaire comparison<br/>
 <small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small>
 </h1>
-<p>New - To use the comparison tool:</p>
+<p>To use the comparison tool:</p>
 <ol>
 <li>Save the worker and payer JSON files on your computer.</li>
 <li>Upload both files below.</li>
@@ -89,8 +88,8 @@
 </ul>
 <details><summary>How to read the <strong>outcome indicator</strong></summary>
 <p>The outcome indicator populates the number of questions where the responses resulted in the indicator of employment out of the total questions responses received. Depending on the situation, the result of the response may be neutral.</p>
-
 </details>
+	
 <div class="row">
 <div class="col-md-9">
 <div id="content"></div>
@@ -187,8 +186,8 @@
  390: "Section 5 - Working relationship information - Contract formed in a province or territory other than Quebec",  
    
  192: "Subsection 5a - Control - Duties (1 of 8)", 
- 383: "Subsection 5a - Control - Duties (1 of 8)", 
- 424: "Subsection 5a - Control - Duties (1 of 8)",  
+ 383: "Subsection 5a - Control - Duties (1 of 8)",
+ 424: "Subsection 5a - Control - Duties (1 of 8)",  	   
  258: "Subsection 5a - Control - Duties (1 of 8)",  
  257: "Subsection 5a - Control - Duties (1 of 8)",   
 
@@ -200,9 +199,9 @@
       265: "Subsection 5a - Control - Work schedule (2 of 8)",   
 
      191: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
-         267: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+     267: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
      268: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
-         312: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+     312: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
     
     297: "Subsection 5a - Control - Remuneration (4 of 8)",  
     298: "Subsection 5a - Control - Remuneration (4 of 8)",  
@@ -273,9 +272,9 @@
      394: "Subsection 5a - Carrying out the work", 
      
 
-   400: "Subsection 5b - Remuneration",   
-  402: "Subsection 5b - Remuneration", 
-  403: "Subsection 5b - Remuneration", 
+     400: "Subsection 5b - Remuneration",   
+    402: "Subsection 5b - Remuneration", 
+    403: "Subsection 5b - Remuneration", 
       434: "Subsection 5b - Remuneration", 
       404: "Subsection 5b - Remuneration", 
       435: "Subsection 5b - Remuneration", 
@@ -286,6 +285,7 @@
       410: "Subsection 5b - Remuneration", 
       436: "Subsection 5b - Remuneration", 
       411: "Subsection 5b - Remuneration", 
+
 
      
      412: "Subsection 5c - Relationship of subordination", 
@@ -301,7 +301,7 @@
    422: "Subsection 5c - Relationship of subordination",  
    438: "Subsection 5c - Relationship of subordination",  
    439: "Subsection 5c - Relationship of subordination",   
-   460: "Subsection 5c - Relationship of subordination",    
+   460: "Subsection 5c - Relationship of subordination",  
 
  360: "Section 6 - Certification", 
  363: "Section 6 - Certification", 
@@ -317,7 +317,7 @@
 
 
 const excludedSections = new Set([
-  "section 1: general information",
+    "section 1: general information",
   "section 2: information about the business",	
   "worker - section 2a - employee information",
   "worker - section 2b - specified shareholder information",
@@ -326,6 +326,23 @@ const excludedSections = new Set([
   "section 5 - working relationship information",  	
   "section 6 - certification"
 ]);
+
+const sectionQuestionExclusions = {
+"Section 4 - Contract or agreement information": [206, 350, 236, 207, 379, 423, 349], 	
+"Subsection 5a - Control - Duties (1 of 8)": [424],	
+"Subsection 5a - Control - Degree of autonomy (3 of 8)": [312], 	
+"Subsection 5a - Control - Remuneration (4 of 8)": [385, 386],	
+"Subsection 5a - Control - Location of services (5 of 8)": [426],  	
+"Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)": [388], 	
+"Subsection 5a - Control - How the work is done (7 of 8)": [310, 311], 	
+"Subsection 5b - Ownership of tools or equipment": [210],	
+"Subsection 5c - Financial information": [218, 215, 234],	
+"Subsection 5a - Carrying out the work": [433, 432],
+"Subsection 5b - Remuneration": [434, 435, 436],
+ "Subsection 5c - Relationship of subordination": [460]	
+// Add more as needed
+};
+	
 let workerData = null;
 let payerData = null;
 document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
@@ -477,53 +494,51 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
   return container;
 }
 
- 
-function generateBar(label, score) {
- let color = "#1a2695"; // dark blue
- if (score < 80) color = "#1a2695"; // dark blue
- if (score < 50) color = "#ffc107"; // yellow
- if (score < 20) color = "#1a2695"; // dark blue
- return `
+    
+   
+function generateBar(label, scoreText) {
+const match = scoreText.match(/^(\d+)/); // extract the first number (e.g., "3" from "3/5")
+const numericScore = match ? parseInt(match[1]) : 0;
+
+let color = "#1a2695"; // default
+if (numericScore < 5) color = "#1a2695";
+else if (numericScore < 15) color = "#ffc107";
+
+return `
 <div style="margin-bottom:1em">
-<label>${label} ${describeProbability(score)}</label>
-<div class="probability-bar">
-<div class="probability-fill" style="width: ${score}; background-color: ${color};">
-         ${score}%
+<label>${label} ${describeProbability(numericScore)}</label>
+
 </div>
-</div>
-</div>
- `;
+`;
 }
 
+
    function describeProbability(score) {
- if (score >= 90) return "Highly unlikely: Indicator of employment";	   
- if (score >= 80) return "Highly unlikely: Indicator of employment";
- if (score >= 60) return "Unlikely: Indicator of employment";
- if (score >= 40) return "Neutral: Indicator of employment";
- if (score >= 20) return "Propable: Indicator of employment";
- if (score >= 10) return "Likely: Indicator of employment";	 
- if (scoret >= 0) return "Highly likely: Indicator of employment";	   
- return "Highly likely: Indicator of employment";
+ if (score <= 0) return "Highly unlikely";	   
+ if (score <= 15) return "Highly unlikely";
+ if (score <= 20) return "Unlikely";
+ if (score <= 30) return "Neutral";
+ if (score <= 35) return "Propable";
+ if (score <= 40) return "Likely";	 
+ if (score <= 45) return "Highly likely";	   
+ return "Highly likely";
 }
 
 </script>
-
 <!-- Probability bar container -->
 <div id="probability" style="margin-top: 2em;"></div>
+<!-- WET PreFooter -->
+</div></main>
+
 
 <script>
 const customScoringRules = {
    
 	
-    206: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
-    }
-  },
+   
     351: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "employer-employee": return 1;
       default: return 0;
     }
   },
@@ -536,7 +551,7 @@ const customScoringRules = {
   },
   348: answer => {
     switch (answer.toLowerCase()) {
-      case "no": return 1;
+      case "yes": return 1;
       default: return 0;
     }
   },
@@ -548,7 +563,7 @@ const customScoringRules = {
   },
     382: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer": return 1;
       default: return 0;
     }
   },
@@ -659,7 +674,7 @@ const customScoringRules = {
   },
  300: answer => {
     switch (answer.toLowerCase()) {
-      case "hourly": return 1;
+      case "hourly/monthly": return 1;
       default: return 0;
     }
   },
@@ -695,22 +710,25 @@ const customScoringRules = {
   },
    306: answer => {
     switch (answer.toLowerCase()) {
-      case "hourly": return 1;
+      case "filing a timesheet": return 1;
       default: return 0;
     }
   },
    195: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer's location": return 1;
       default: return 0;
     }
   },
    296: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer": return 1;
       default: return 0;
     }
   },
+
+
+	
   274: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -719,7 +737,7 @@ const customScoringRules = {
   },
   275: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "yes - with cause or without cause": return 1;
       default: return 0;
     }
   },
@@ -761,12 +779,7 @@ const customScoringRules = {
       default: return 0;
     }
   },
-  310: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
-    }
-  },
+
   459: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -797,6 +810,8 @@ const customScoringRules = {
       default: return 0;
     }
   },
+
+	
   290: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -805,7 +820,7 @@ const customScoringRules = {
   },
   208: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer": return 1;
       default: return 0;
     }
   },
@@ -823,10 +838,12 @@ const customScoringRules = {
   },
   286: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer": return 1;
       default: return 0;
     }
   },
+
+	
   430: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -967,6 +984,9 @@ const customScoringRules = {
       default: return 0;
     }
   },
+
+
+
   412: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -1059,66 +1079,91 @@ function scoreAnswer(answer, questionId) {
 </script>
 
 <script>
+function normalize(section) {
+return (section || "").trim().toLowerCase();
+}
+	
 function calculateSectionScores(data) {
-  const scores = {};
-  const totals = {};
+const scores = {};
+const totals = {};
 
-  data.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim();
-      if (!excludedSections.has(normalizedSection.toLowerCase())) {
-        if (!scores[normalizedSection]) {
-          scores[normalizedSection] = 0;
-          totals[normalizedSection] = 0;
-        }
-        scores[normalizedSection] += scoreAnswer(ans.answer, ans.questionId);
-        totals[normalizedSection]++;
-      }
-    });
-  });
+data.forEach(entry => {
+entry.answers.forEach(ans => {
+const section = sectionMap[ans.questionId] || "Other";
+const normalizedSection = normalize(section);
+const exclusions = sectionQuestionExclusions[section] || [];
 
-  return { scores, totals };
+if (!excludedSections.has(normalizedSection)) {
+// Use original casing (section) as key
+if (!scores[section]) {
+scores[section] = 0;
+totals[section] = 0;
 }
 
+// Only count if an actual answer exists
+if (ans.answer && ans.answer !== "" && ans.answer !== null) {
+totals[section]++;
+
+// Only score if also not excluded by question
+if (!exclusions.includes(ans.questionId)) {
+scores[section] += scoreAnswer(ans.answer, ans.questionId);
+}
+}
+}
+});
+});
+
+return { scores, totals };
+}
+
+
 function renderProbabilityScore(workerData, payerData) {
+  const probabilityDiv = document.getElementById('probability');
+  probabilityDiv.innerHTML = `
+    <h3>Total - Indicator of employment</h3>
+    <p><small>Number of responses with indicator of employment out of the total number of responses for all sections<br>
+    Depending on the question, the response is not included in this calculation.</small></p>
+  `;
+
+  const worker = calculateSectionScores(workerData);
+  const payer = calculateSectionScores(payerData);
+
   let totalQuestions = 0;
   let workerScore = 0;
   let payerScore = 0;
 
-  workerData.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim().toLowerCase();
-      if (!excludedSections.has(normalizedSection)) {
-        totalQuestions++;
-        workerScore += scoreAnswer(ans.answer, ans.questionId);
-      }
-    });
-  });
+  // Union of sections from both worker and payer
+  const allSections = new Set([
+    ...Object.keys(worker.scores),
+    ...Object.keys(payer.scores)
+  ]);
 
-  payerData.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim().toLowerCase();
-      if (!excludedSections.has(normalizedSection)) {
-        payerScore += scoreAnswer(ans.answer, ans.questionId);
-      }
-    });
-  });
+  for (const section of allSections) {
+    const workerSectionTotal = worker.totals[section] || 0;
+    const payerSectionTotal = payer.totals[section] || 0;
 
-const workerScoreText = `${workerScore}/${totalQuestions}`;
-const payerScoreText = `${payerScore}/${totalQuestions}`;
+    const workerSectionScore = worker.scores[section] || 0;
+    const payerSectionScore = payer.scores[section] || 0;
 
-  const probabilityDiv = document.getElementById('probability');
-  probabilityDiv.innerHTML = `
-    <h3>Overall outcome indicator</h3>
+    // Only count the section if there is at least one answered question
+    if (workerSectionTotal > 0 || payerSectionTotal > 0) {
+      totalQuestions += workerSectionTotal + payerSectionTotal;
+      workerScore += workerSectionScore;
+      payerScore += payerSectionScore;
+    }
+  }
+
+  const workerScoreText = `${workerScore} of ${totalQuestions}`;
+  const payerScoreText = `${payerScore} of ${totalQuestions}`;
+
+  probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
       <header class="panel-heading">
         <h5 class="panel-title">Worker's response</h5>
       </header>
       <div class="panel-body">
-        <p> ${generateBar("", workerScoreText)}</p>
+        <p>${generateBar("", workerScoreText)}</p>
+        <p><strong>Worker:</strong> ${workerScoreText}</p>
       </div>
     </section>
     <section class="panel panel-primary">
@@ -1126,35 +1171,37 @@ const payerScoreText = `${payerScore}/${totalQuestions}`;
         <h5 class="panel-title">Payer's response</h5>
       </header>
       <div class="panel-body">
-        <p> ${generateBar("", payerScoreText)}</p>
+        <p>${generateBar("", payerScoreText)}</p>
+        <p><strong>Payer:</strong> ${payerScoreText}</p>
       </div>
     </section>
-    <p><small>The outcome indicator is the number of questions where the responses resulted in the indicator of employment out of the total questions responses received</small></p>
-<hr>
-    <h3>Section-based scores</h3>
+    <hr>
+    <h3>By section - Indicator of employment</h3>
+    <p><small>Number of responses with indicator of employment out of the total number of responses for each section<br>
+    Depending on the question, the response is not included in this calculation.</small></p>
   `;
 
-  const worker = calculateSectionScores(workerData);
-  const payer = calculateSectionScores(payerData);
+  for (const section of allSections) {
+    const workerTotal = worker.totals[section] || 0;
+    const payerTotal = payer.totals[section] || 0;
 
- for (const section of Object.keys(worker.scores)) {
-    if (worker.totals[section]) {
-      const workerScoreText = $worker.totals[section]/$worker.totals[section];
-      const payerScoreText = $payer.totals[section]/$payer.totals[section];
-
+    if (workerTotal > 0 || payerTotal > 0) {
+      const workerSectionScoreText = workerTotal > 0 ? `${worker.scores[section]} of ${workerTotal}` : 'N/A';
+      const payerSectionScoreText = payerTotal > 0 ? `${payer.scores[section]} of ${payerTotal}` : 'N/A';
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
           <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
           <div class="panel-body">
-            <p><strong>Worker:</strong> ${workerScoreText}</p>
-            <p><strong>Payer:</strong> ${payerScoreText}</p>
+            <p><strong>Worker:</strong> ${workerSectionScoreText}</p>
+            <p><strong>Payer:</strong> ${payerSectionScoreText}</p>
           </div>
         </section>
       `;
     }
   }
 }
+
 </script>
 
 <script>
@@ -1168,7 +1215,6 @@ const payerScoreText = `${payerScore}/${totalQuestions}`;
    showShare: true
  });
 </script>
-</div></main>
 
 </body>
 </html>
