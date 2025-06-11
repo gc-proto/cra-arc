@@ -59,7 +59,7 @@
 <script type="text/javascript">
    document.write(wet.builder.refTop({}));
 </script>
-</link></head>
+</head>
 <body class="experimental" typeof="WebPage" vocab="http://schema.org/">
 <div id="def-top"></div>
 <main class="container" property="mainContentOfPage" role="main">
@@ -273,9 +273,9 @@
      394: "Subsection 5a - Carrying out the work", 
      
 
-   400: "Subsection 5b - Remuneration",   
-  402: "Subsection 5b - Remuneration", 
-  403: "Subsection 5b - Remuneration", 
+     400: "Subsection 5b - Remuneration",   
+    402: "Subsection 5b - Remuneration", 
+    403: "Subsection 5b - Remuneration", 
       434: "Subsection 5b - Remuneration", 
       404: "Subsection 5b - Remuneration", 
       435: "Subsection 5b - Remuneration", 
@@ -286,6 +286,7 @@
       410: "Subsection 5b - Remuneration", 
       436: "Subsection 5b - Remuneration", 
       411: "Subsection 5b - Remuneration", 
+
 
      
      412: "Subsection 5c - Relationship of subordination", 
@@ -301,7 +302,7 @@
    422: "Subsection 5c - Relationship of subordination",  
    438: "Subsection 5c - Relationship of subordination",  
    439: "Subsection 5c - Relationship of subordination",   
-   460: "Subsection 5c - Relationship of subordination",    
+   460: "Subsection 5c - Relationship of subordination",  
 
  360: "Section 6 - Certification", 
  363: "Section 6 - Certification", 
@@ -480,10 +481,9 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
     
    
 function generateBar(label, score) {
- let color = "#1a2695"; // dark blue
- if (score < 30) color = "#1a2695"; // dark blue
- if (score < 15) color = "#ffc107"; // yellow
- if (score < 5) color = "#1a2695"; // dark blue
+let color = "#1a2695"; // default
+if (score < 5) color = "#1a2695";
+else if (score < 15) color = "#ffc107";
  return `
 <div style="margin-bottom:1em">
 <label>${label} ${describeProbability(score)}</label>
@@ -513,7 +513,7 @@ function generateBar(label, score) {
 <!-- WET PreFooter -->
 </div></main>
 
-<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
+
 <script>
 const customScoringRules = {
    
@@ -970,6 +970,9 @@ const customScoringRules = {
       default: return 0;
     }
   },
+
+
+
   412: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1;
@@ -1140,24 +1143,26 @@ const probabilityDiv = document.getElementById('probability');
   const worker = calculateSectionScores(workerData);
   const payer = calculateSectionScores(payerData);
 
-  for (const section of Object.keys(worker.scores)) {
-    if (worker.totals[section]) {
 
-	const workerScoreText = `${worker.scores[section]}/${worker.totals[section]}`;
-	const payerScoreText = `${payer.scores[section]}/${worker.totals[section]}`;
-	    
-    
-      probabilityDiv.innerHTML += `
-        <section class="panel panel-default">
-          <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
-          <div class="panel-body">
-            <p><strong>Worker:</strong> ${workerScoreText}</p>
-            <p><strong>Payer:</strong> ${payerScoreText}</p>
-          </div>
-        </section>
-      `;
-    }
-  }
+for (const section of Object.keys(worker.scores)) {
+const workerTotal = worker.totals[section] || 0;
+const payerTotal = payer.totals[section] || 0;
+
+if (workerTotal > 0 || payerTotal > 0) {
+const workerScoreText = workerTotal > 0 ? `${worker.scores[section]}/${workerTotal}` : 'N/A';
+const payerScoreText = payerTotal > 0 ? `${payer.scores[section]}/${payerTotal}` : 'N/A';
+
+probabilityDiv.innerHTML += `
+<section class="panel panel-default">
+<header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
+<div class="panel-body">
+<p><strong>Worker:</strong> ${workerScoreText}</p>
+<p><strong>Payer:</strong> ${payerScoreText}</p>
+</div>
+</section>
+`;
+}
+}
 }
 </script>
 
