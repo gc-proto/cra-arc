@@ -1097,7 +1097,7 @@ function calculateSectionScores(data) {
   data.forEach(entry => {
     entry.answers.forEach(ans => {
       const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim();
+     const normalizedSection = normalize(section);
     const exclusions = sectionQuestionExclusions[section] || [];
    if (!excludedSections.has(normalize(section)) && !exclusions.includes(ans.questionId)) {
 
