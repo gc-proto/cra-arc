@@ -381,7 +381,10 @@ function tryRenderBoth() {
     container.appendChild(renderJSON(workerData, payerData));
     
     // Add this line to render the probability score
-    renderProbabilityScore(workerData, payerData);
+
+	  
+	  
+	  renderProbabilityScore(workerData, payerData);
   }
 }
 
@@ -1132,25 +1135,20 @@ function renderProbabilityScore(workerData, payerData) {
   let workerScore = 0;
   let payerScore = 0;
 
-  // Union of sections from both worker and payer
   const allSections = new Set([
     ...Object.keys(worker.scores),
     ...Object.keys(payer.scores)
   ]);
 
   for (const section of allSections) {
-    const workerSectionTotal = worker.totals[section] || 0;
-    const payerSectionTotal = payer.totals[section] || 0;
-
+    const workerTotal = worker.totals[section] || 0;
+    const payerTotal = payer.totals[section] || 0;
     const workerSectionScore = worker.scores[section] || 0;
     const payerSectionScore = payer.scores[section] || 0;
 
-    // Only count the section if there is at least one answered question
-    if (workerSectionTotal > 0 || payerSectionTotal > 0) {
-      totalQuestions += workerSectionTotal + payerSectionTotal;
-      workerScore += workerSectionScore;
-      payerScore += payerSectionScore;
-    }
+    totalQuestions += workerTotal + payerTotal;
+    workerScore += workerSectionScore;
+    payerScore += payerSectionScore;
   }
 
   const workerScoreText = `${workerScore} of ${totalQuestions}`;
@@ -1186,21 +1184,22 @@ function renderProbabilityScore(workerData, payerData) {
     const payerTotal = payer.totals[section] || 0;
 
     if (workerTotal > 0 || payerTotal > 0) {
-      const workerSectionScoreText = workerTotal > 0 ? `${worker.scores[section]} of ${workerTotal}` : 'N/A';
-      const payerSectionScoreText = payerTotal > 0 ? `${payer.scores[section]} of ${payerTotal}` : 'N/A';
+      const workerScoreText = workerTotal > 0 ? `${worker.scores[section]} of ${workerTotal}` : 'N/A';
+      const payerScoreText = payerTotal > 0 ? `${payer.scores[section]} of ${payerTotal}` : 'N/A';
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
           <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
           <div class="panel-body">
-            <p><strong>Worker:</strong> ${workerSectionScoreText}</p>
-            <p><strong>Payer:</strong> ${payerSectionScoreText}</p>
+            <p><strong>Worker:</strong> ${workerScoreText}</p>
+            <p><strong>Payer:</strong> ${payerScoreText}</p>
           </div>
         </section>
       `;
     }
   }
 }
+
 
 </script>
 
