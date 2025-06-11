@@ -488,21 +488,26 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
 
     
    
-function generateBar(label, score) {
+function generateBar(label, scoreText) {
+const match = scoreText.match(/^(\d+)/); // extract the first number (e.g., "3" from "3/5")
+const numericScore = match ? parseInt(match[1]) : 0;
+
 let color = "#1a2695"; // default
-if (score < 5) color = "#1a2695";
-else if (score < 15) color = "#ffc107";
- return `
+if (numericScore < 5) color = "#1a2695";
+else if (numericScore < 15) color = "#ffc107";
+
+return `
 <div style="margin-bottom:1em">
-<label>${label} ${describeProbability(score)}</label>
+<label>${label} ${describeProbability(numericScore)}</label>
 <div class="probability-bar">
-<div class="probability-fill" style="width: ${score}; background-color: ${color};">
-         ${score}
+<div class="probability-fill" style="width: ${numericScore}%; background-color: ${color};">
+${scoreText}
 </div>
 </div>
 </div>
- `;
+`;
 }
+
 
    function describeProbability(score) {
  if (score >= 90) return "Highly unlikely: Indicator of employment";	   
@@ -1073,6 +1078,10 @@ function scoreAnswer(answer, questionId) {
 </script>
 
 <script>
+function normalize(section) {
+return (section || "").trim().toLowerCase();
+}
+	
 function calculateSectionScores(data) {
   const scores = {};
   const totals = {};
