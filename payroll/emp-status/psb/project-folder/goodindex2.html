@@ -1087,36 +1087,45 @@ return (section || "").trim().toLowerCase();
 }
 	
 function calculateSectionScores(data) {
-const scores = {};
-const totals = {};
+  const scores = {};
+  const totals = {};
+  const neutrals = {};
 
-data.forEach(entry => {
-entry.answers.forEach(ans => {
-const section = sectionMap[ans.questionId] || "Other";
-const normalizedSection = normalize(section);
-const exclusions = sectionQuestionExclusions[section] || [];
+  data.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = normalize(section);
+      const exclusions = sectionQuestionExclusions[section] || [];
 
-if (!excludedSections.has(normalizedSection)) {
-// Use original casing (section) as key
-if (!scores[section]) {
-scores[section] = 0;
-totals[section] = 0;
-}
+      if (!excludedSections.has(normalizedSection)) {
+        if (!scores[section]) {
+          scores[section] = 0;
+          totals[section] = 0;
+          neutrals[section] = 0;
+        }
 
-// Only count if an actual answer exists
-if (ans.answer && ans.answer !== "" && ans.answer !== null) {
-totals[section]++;
+        const hasAnswer = ans.answer !== "" && ans.answer !== null && ans.answer !== undefined;
 
-// Only score if also not excluded by question
-if (!exclusions.includes(ans.questionId)) {
-scores[section] += scoreAnswer(ans.answer, ans.questionId);
-}
-}
-}
-});
-});
+        if (hasAnswer) {
+          totals[section]++;
 
-return { scores, totals };
+          if (!exclusions.includes(ans.questionId)) {
+            const score = scoreAnswer(ans.answer, ans.questionId);
+            scores[section] += score;
+
+            if (score === 0) {
+              neutrals[section]++;
+            }
+          } else {
+            // Answered but excluded from scoring → count as neutral
+            neutrals[section]++;
+          }
+        }
+      }
+    });
+  });
+
+  return { scores, totals, neutrals };
 }
 
 
@@ -1125,7 +1134,7 @@ function renderProbabilityScore(workerData, payerData) {
   probabilityDiv.innerHTML = `
     <h3>Total - Indicator of employment</h3>
     <p><small>Number of responses with indicator of employment out of the total number of responses for all sections<br>
-    Depending on the question, the response is not included in this calculation.</small></p>
+    Depending on the question, the result of the response may be neutral.</small></p>
   `;
 
   const worker = calculateSectionScores(workerData);
@@ -1134,29 +1143,34 @@ function renderProbabilityScore(workerData, payerData) {
   let totalQuestions = 0;
   let workerScore = 0;
   let payerScore = 0;
+  let workerNeutral = 0;
+  let payerNeutral = 0;
 
   const allSections = new Set([
     ...Object.keys(worker.scores),
     ...Object.keys(payer.scores)
   ]);
 
- for (const section of allSections) {
-  const workerTotal = worker.totals[section] || 0;
-  const payerTotal = payer.totals[section] || 0;
-  const workerSectionScore = worker.scores[section] || 0;
-  const payerSectionScore = payer.scores[section] || 0;
+  for (const section of allSections) {
+    const workerTotal = worker.totals[section] || 0;
+    const payerTotal = payer.totals[section] || 0;
+    const workerSectionScore = worker.scores[section] || 0;
+    const payerSectionScore = payer.scores[section] || 0;
+    const workerSectionNeutral = worker.neutrals[section] || 0;
+    const payerSectionNeutral = payer.neutrals[section] || 0;
 
-  // Only count this section's questions if at least one party answered
-  if (workerTotal > 0 || payerTotal > 0) {
-    totalQuestions += Math.max(workerTotal, payerTotal);  // Only count each question once
-    workerScore += workerSectionScore;
-    payerScore += payerSectionScore;
+    // Only count sections where something was answered
+    if (workerTotal > 0 || payerTotal > 0) {
+      totalQuestions += Math.max(workerTotal, payerTotal);
+      workerScore += workerSectionScore;
+      payerScore += payerSectionScore;
+      workerNeutral += workerSectionNeutral;
+      payerNeutral += payerSectionNeutral;
+    }
   }
-}
 
-
-  const workerScoreText = `${workerScore} of ${totalQuestions}`;
-  const payerScoreText = `${payerScore} of ${totalQuestions}`;
+  const workerScoreText = `${workerScore} of ${totalQuestions} (Neutral: ${workerNeutral})`;
+  const payerScoreText = `${payerScore} of ${totalQuestions} (Neutral: ${payerNeutral})`;
 
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
@@ -1180,7 +1194,7 @@ function renderProbabilityScore(workerData, payerData) {
     <hr>
     <h3>By section - Indicator of employment</h3>
     <p><small>Number of responses with indicator of employment out of the total number of responses for each section<br>
-    Depending on the question, the response is not included in this calculation.</small></p>
+    Depending on the question, the result of the response may be neutral.</small></p>
   `;
 
   for (const section of allSections) {
@@ -1188,8 +1202,8 @@ function renderProbabilityScore(workerData, payerData) {
     const payerTotal = payer.totals[section] || 0;
 
     if (workerTotal > 0 || payerTotal > 0) {
-      const workerScoreText = workerTotal > 0 ? `${worker.scores[section]} of ${workerTotal}` : 'N/A';
-      const payerScoreText = payerTotal > 0 ? `${payer.scores[section]} of ${payerTotal}` : 'N/A';
+      const workerScoreText = workerTotal > 0 ? `${worker.scores[section]} of ${workerTotal} (Neutral: ${worker.neutrals[section] || 0})` : 'N/A';
+      const payerScoreText = payerTotal > 0 ? `${payer.scores[section]} of ${payerTotal} (Neutral: ${payer.neutrals[section] || 0})` : 'N/A';
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
