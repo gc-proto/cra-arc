@@ -329,7 +329,7 @@ const excludedSections = new Set([
 ]);
 
 const sectionQuestionExclusions = {
-"Section 4 - Contract or agreement information": [350, 236, 207, 379, 423, 349], 	
+"Section 4 - Contract or agreement information": [206, 350, 236, 207, 379, 423, 349], 	
 "Subsection 5a - Control - Duties (1 of 8)": [424],	
 "Subsection 5a - Control - Degree of autonomy (3 of 8)": [312], 	
 "Subsection 5a - Control - Remuneration (4 of 8)": [385, 386],	
@@ -536,15 +536,10 @@ return `
 const customScoringRules = {
    
 	
-    206: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
-    }
-  },
+   
     351: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "employer-employee": return 1;
       default: return 0;
     }
   },
@@ -557,7 +552,7 @@ const customScoringRules = {
   },
   348: answer => {
     switch (answer.toLowerCase()) {
-      case "no": return 1;
+      case "yes": return 1;
       default: return 0;
     }
   },
@@ -569,7 +564,7 @@ const customScoringRules = {
   },
     382: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
+      case "payer": return 1;
       default: return 0;
     }
   },
