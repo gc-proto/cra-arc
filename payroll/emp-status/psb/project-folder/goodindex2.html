@@ -1092,28 +1092,33 @@ return (section || "").trim().toLowerCase();
 }
 	
 function calculateSectionScores(data) {
-  const scores = {};
-  const totals = {};
+const scores = {};
+const totals = {};
 
-  data.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-     const normalizedSection = normalize(section);
-    const exclusions = sectionQuestionExclusions[section] || [];
-   if (!excludedSections.has(normalize(section)) && !exclusions.includes(ans.questionId)) {
+data.forEach(entry => {
+entry.answers.forEach(ans => {
+const section = sectionMap[ans.questionId] || "Other";
+const normalizedSection = normalize(section);
+const exclusions = sectionQuestionExclusions[section] || [];
 
-        if (!scores[normalizedSection]) {
-          scores[normalizedSection] = 0;
-          totals[normalizedSection] = 0;
-        }
-        scores[normalizedSection] += scoreAnswer(ans.answer, ans.questionId);
-        totals[normalizedSection]++;
-      }
-    });
-  });
-
-  return { scores, totals };
+if (!excludedSections.has(normalizedSection)) {
+// Use original casing (section) as key
+if (!scores[section]) {
+scores[section] = 0;
+totals[section] = 0;
 }
+
+totals[section]++; // always count answer
+if (!exclusions.includes(ans.questionId)) {
+scores[section] += scoreAnswer(ans.answer, ans.questionId);
+}
+}
+});
+});
+
+return { scores, totals };
+}
+
 
 function renderProbabilityScore(workerData, payerData) {
 let totalQuestions = 0;
