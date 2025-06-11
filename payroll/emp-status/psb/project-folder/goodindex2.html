@@ -1202,7 +1202,6 @@ function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
     <h3>Total - Indicators</h3>
-    <p><small>Includes employment indicators, neutral, and self-employment answers.</small></p>
   `;
 
   const worker = calculateSectionScores(workerData);
@@ -1244,19 +1243,18 @@ function renderProbabilityScore(workerData, payerData) {
       <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
       <div class="panel-body">
         <p>${generateBar("", workerScoreText)}</p>
-        <p><strong>Worker:</strong> ${workerScoreText}</p>
+        <p><strong>Worker</strong><br> ${workerScoreText}</p>
       </div>
     </section>
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
       <div class="panel-body">
         <p>${generateBar("", payerScoreText)}</p>
-        <p><strong>Payer:</strong> ${payerScoreText}</p>
+        <p><strong>Payer</strong><br> ${payerScoreText}</p>
       </div>
     </section>
     <hr>
-    <h3>By section</h3>
-    <p><small>Indicators per section including neutrals and self-employed answers.</small></p>
+    <h3>By section - Indicators</h3>
   `;
 
   for (const section of allSections) {
@@ -1273,8 +1271,8 @@ function renderProbabilityScore(workerData, payerData) {
         <section class="panel panel-default">
           <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
           <div class="panel-body">
-            <p><strong>Worker:</strong> ${wScoreText}</p>
-            <p><strong>Payer:</strong> ${pScoreText}</p>
+            <p><strong>Worker</strong><br> ${wScoreText}</p>
+            <p><strong>Payer</strong><br> ${pScoreText}</p>
           </div>
         </section>
       `;
