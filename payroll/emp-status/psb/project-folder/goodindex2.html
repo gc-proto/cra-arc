@@ -1108,9 +1108,14 @@ scores[section] = 0;
 totals[section] = 0;
 }
 
-totals[section]++; // always count answer
+// Only count if an actual answer exists
+if (ans.answer && ans.answer !== "" && ans.answer !== null) {
+totals[section]++;
+
+// Only score if also not excluded by question
 if (!exclusions.includes(ans.questionId)) {
 scores[section] += scoreAnswer(ans.answer, ans.questionId);
+}
 }
 }
 });
