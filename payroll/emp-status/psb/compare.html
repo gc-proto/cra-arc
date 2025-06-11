@@ -91,10 +91,10 @@
 </details>
 	
 <div class="row">
-<div class="col-md-9">
+<div class="col-md-8">
 <div id="content"></div>
 </div>
-<div class="col-md-3">
+<div class="col-md-4">
 <div id="probability"></div>
 </div>
 </div>
@@ -497,35 +497,29 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
   return container;
 }
 
-    
-   
+function normalize(section) {
+  return (section || "").trim().toLowerCase();
+}
+
 function generateBar(label, scoreText) {
-const match = scoreText.match(/^(\d+)/); // extract the first number (e.g., "3" from "3/5")
-const numericScore = match ? parseInt(match[1]) : 0;
+  const match = scoreText.match(/^(\d+)/);
+  const numericScore = match ? parseInt(match[1]) : 0;
 
-let color = "#1a2695"; // default
-if (numericScore < 5) color = "#1a2695";
-else if (numericScore < 15) color = "#ffc107";
-
-return `
-<div style="margin-bottom:1em">
-<label>${label} ${describeProbability(numericScore)}</label>
-
-</div>
-`;
+  return `
+    <div style="margin-bottom:1em">
+      <label>${label} ${describeProbability(numericScore)}</label>
+    </div>
+  `;
 }
 
-
-   function describeProbability(score) {
- if (score <= 0) return "Highly unlikely";	   
- if (score <= 15) return "Highly unlikely";
- if (score <= 20) return "Unlikely";
- if (score <= 30) return "Neutral";
- if (score <= 35) return "Propable";
- if (score <= 40) return "Likely";	 
- if (score <= 45) return "Highly likely";	   
- return "Highly likely";
+function describeProbability(score) {
+  if (score <= 0) return "Highly unlikely";
+  if (score <= 15) return "Unlikely";
+  if (score <= 30) return "Neutral";
+  if (score <= 40) return "Likely";
+  return "Highly likely";
 }
+
 
 </script>
 <!-- Probability bar container -->
@@ -541,192 +535,223 @@ const customScoringRules = {
    
     351: answer => {
     switch (answer.toLowerCase()) {
-      case "employer-employee": return 1;
-      default: return 0;
+      case "employer-employee": return 1; // Indicator of employment
+	case "payer-worker": return -1; // Indicator of self-employment	    
+        default: return 0;  // Neutral  
     }
   },
    
   347: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+      case "no": return -1; // Indicator of self-employment	  
+       default: return 0;  // Neutral
     }
   },
   348: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+	case "no": return -1; // Indicator of self-employment	    
+       default: return 0;  // Neutral
     }
   },
   380: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
     382: answer => {
     switch (answer.toLowerCase()) {
-      case "payer": return 1;
-      default: return 0;
+      case "payer": return 1; // Indicator of employment
+		    case "worker": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   192: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
     383: answer => {
     switch (answer.toLowerCase()) {
-      case "payer": return 1;
-      default: return 0;
+      case "payer": return 1; // Indicator of employment
+		    case "worker": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
     258: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
     257: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
 	259: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   261: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
 262: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   263: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   264: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   265: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   191: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
  267: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
 
  268: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    297: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   
    298: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   
    299: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    271: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
  300: answer => {
     switch (answer.toLowerCase()) {
-      case "hourly/monthly": return 1;
-      default: return 0;
+      case "hourly/monthly": return 1; // Indicator of employment
+		    case "weekly": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    301: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    270: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    302: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    303: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    304: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    306: answer => {
     switch (answer.toLowerCase()) {
-      case "filing a timesheet": return 1;
-      default: return 0;
+      case "filing a timesheet": return 1; // Indicator of employment
+		    case "other": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    195: answer => {
     switch (answer.toLowerCase()) {
-      case "payer's location": return 1;
-      default: return 0;
+      case "payer's location": return 1; // Indicator of employment
+		    case "worker's location": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    296: answer => {
     switch (answer.toLowerCase()) {
-      case "payer": return 1;
-      default: return 0;
+      case "payer": return 1; // Indicator of employment
+		    case "worker": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
 
@@ -734,257 +759,298 @@ const customScoringRules = {
 	
   274: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   275: answer => {
     switch (answer.toLowerCase()) {
-      case "yes - with cause or without cause": return 1;
-      default: return 0;
+      case "yes - with cause or without cause": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   428: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   276: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   429: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   
   278: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   280: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   
   309: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
 
   459: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   198: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   281: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   282: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   283: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
 
 	
   290: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   208: answer => {
     switch (answer.toLowerCase()) {
-      case "payer": return 1;
-      default: return 0;
+      case "payer": return 1; // Indicator of employment
+		    case "worker": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   284: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   285: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   286: answer => {
     switch (answer.toLowerCase()) {
-      case "payer": return 1;
-      default: return 0;
+      case "payer": return 1; // Indicator of employment
+		    case "worker": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
 
 	
   430: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   
   211: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   214: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   216: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   217: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   219: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   233: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   
     431: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   397: answer => {
     switch (answer.toLowerCase()) {
-      case "payer's location": return 1;
-      default: return 0;
+      case "payer's location": return 1; // Indicator of employment
+		    case "worker's location": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   398: answer => {
     switch (answer.toLowerCase()) {
-      case "payer": return 1;
-      default: return 0;
+      case "payer": return 1; // Indicator of employment
+		    case "worker": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   399: answer => {
     switch (answer.toLowerCase()) {
-      case "payer": return 1;
-      default: return 0;
+      case "payer": return 1; // Indicator of employment
+		    case "worker": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   393: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   394: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   400: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   402: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   403: answer => {
     switch (answer.toLowerCase()) {
-      case "yes - t4 and rl-1 slips": return 1;
-      default: return 0;
+      case "yes - t4 and rl-1 slips": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   404: answer => {
     switch (answer.toLowerCase()) {
-      case "hourly": return 1;
-      default: return 0;
+      case "hourly": return 1; // Indicator of employment
+     case "other": case "monthly":   return -1; // Indicator of self-employment	    
+      default: return 0;  // Neutral
     }
   },
   405: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   406: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   407: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   408: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   410: answer => {
     switch (answer.toLowerCase()) {
-      case "filing a timesheet": return 1;
-      default: return 0;
+      case "filing a timesheet": return 1; // Indicator of employment
+	    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   411: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
 
@@ -992,80 +1058,93 @@ const customScoringRules = {
 
   412: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   413: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   414: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   415: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   416: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   417: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   418: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   419: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   420: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   421: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   422: answer => {
     switch (answer.toLowerCase()) {
-      case "yes - with cause": return 1;
-      default: return 0;
+      case "yes - with cause": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
    438: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
   439: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1;
-      default: return 0;
+      case "yes": return 1; // Indicator of employment
+		    case "no": return -1; // Indicator of self-employment
+       default: return 0;  // Neutral
     }
   },
 };
@@ -1087,124 +1166,120 @@ return (section || "").trim().toLowerCase();
 }
 	
 function calculateSectionScores(data) {
-const scores = {};
-const totals = {};
+  const scores = {}, totals = {}, neutrals = {}, selfEmployment = {};
 
-data.forEach(entry => {
-entry.answers.forEach(ans => {
-const section = sectionMap[ans.questionId] || "Other";
-const normalizedSection = normalize(section);
-const exclusions = sectionQuestionExclusions[section] || [];
+  data.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = normalize(section);
+      const exclusions = sectionQuestionExclusions[section] || [];
 
-if (!excludedSections.has(normalizedSection)) {
-// Use original casing (section) as key
-if (!scores[section]) {
-scores[section] = 0;
-totals[section] = 0;
+      if (!excludedSections.has(normalizedSection)) {
+        if (!scores[section]) {
+          scores[section] = 0;
+          totals[section] = 0;
+          neutrals[section] = 0;
+          selfEmployment[section] = 0;
+        }
+
+        if (ans.answer && ans.answer !== "") {
+          totals[section]++;
+          if (!exclusions.includes(ans.questionId)) {
+            const score = scoreAnswer(ans.answer, ans.questionId);
+            if (score === 1) scores[section]++;
+            else if (score === 0) neutrals[section]++;
+            else if (score === -1) selfEmployment[section]++;
+          }
+        }
+      }
+    });
+  });
+
+  return { scores, totals, neutrals, selfEmployment };
 }
-
-// Only count if an actual answer exists
-if (ans.answer && ans.answer !== "" && ans.answer !== null) {
-totals[section]++;
-
-// Only score if also not excluded by question
-if (!exclusions.includes(ans.questionId)) {
-scores[section] += scoreAnswer(ans.answer, ans.questionId);
-}
-}
-}
-});
-});
-
-return { scores, totals };
-}
-
 
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
-    <h3>Total - Indicator of employment</h3>
-    <p><small>Number of responses with indicator of employment out of the total number of responses for all sections<br>
-    Depending on the question, the response is not included in this calculation.</small></p>
+    <h3>Total - Indicators</h3>
   `;
 
   const worker = calculateSectionScores(workerData);
   const payer = calculateSectionScores(payerData);
 
-  let totalQuestions = 0;
-  let workerScore = 0;
-  let payerScore = 0;
+  let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0;
 
   const allSections = new Set([
     ...Object.keys(worker.scores),
     ...Object.keys(payer.scores)
   ]);
 
- for (const section of allSections) {
-  const workerTotal = worker.totals[section] || 0;
-  const payerTotal = payer.totals[section] || 0;
-  const workerSectionScore = worker.scores[section] || 0;
-  const payerSectionScore = payer.scores[section] || 0;
+  for (const section of allSections) {
+    const wTotal = worker.totals[section] || 0;
+    const pTotal = payer.totals[section] || 0;
+    const wScore = worker.scores[section] || 0;
+    const pScore = payer.scores[section] || 0;
+    const wNeutral = worker.neutrals[section] || 0;
+    const pNeutral = payer.neutrals[section] || 0;
+    const wSelf = worker.selfEmployment[section] || 0;
+    const pSelf = payer.selfEmployment[section] || 0;
 
-  // Only count this section's questions if at least one party answered
-  if (workerTotal > 0 || payerTotal > 0) {
-    totalQuestions += Math.max(workerTotal, payerTotal);  // Only count each question once
-    workerScore += workerSectionScore;
-    payerScore += payerSectionScore;
+    if (wTotal > 0 || pTotal > 0) {
+      totalQuestions += Math.max(wTotal, pTotal);
+      workerScore += wScore;
+      payerScore += pScore;
+      workerNeutral += wNeutral;
+      payerNeutral += pNeutral;
+      workerSelf += wSelf;
+      payerSelf += pSelf;
+    }
   }
-}
 
-
-  const workerScoreText = `${workerScore} of ${totalQuestions}`;
-  const payerScoreText = `${payerScore} of ${totalQuestions}`;
+  const workerScoreText = `Employment: ${workerScore} of ${totalQuestions}<br> Neutral: ${workerNeutral}<br> Self-employed worker: ${workerSelf}`;
+  const payerScoreText = `Employment: ${payerScore} of ${totalQuestions}<br> Neutral: ${payerNeutral}<br> Self-employed worker: ${payerSelf}`;
 
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
-      <header class="panel-heading">
-        <h5 class="panel-title">Worker's response</h5>
-      </header>
+      <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
       <div class="panel-body">
         <p>${generateBar("", workerScoreText)}</p>
-        <p><strong>Worker:</strong> ${workerScoreText}</p>
+        <p>${workerScoreText}</p>
       </div>
     </section>
     <section class="panel panel-primary">
-      <header class="panel-heading">
-        <h5 class="panel-title">Payer's response</h5>
-      </header>
+      <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
       <div class="panel-body">
         <p>${generateBar("", payerScoreText)}</p>
-        <p><strong>Payer:</strong> ${payerScoreText}</p>
+        <p>${payerScoreText}</p>
       </div>
     </section>
     <hr>
-    <h3>By section - Indicator of employment</h3>
-    <p><small>Number of responses with indicator of employment out of the total number of responses for each section<br>
-    Depending on the question, the response is not included in this calculation.</small></p>
+    <h3>By section - Indicators</h3>
   `;
 
   for (const section of allSections) {
-    const workerTotal = worker.totals[section] || 0;
-    const payerTotal = payer.totals[section] || 0;
+    const wTotal = worker.totals[section] || 0;
+    const pTotal = payer.totals[section] || 0;
 
-    if (workerTotal > 0 || payerTotal > 0) {
-      const workerScoreText = workerTotal > 0 ? `${worker.scores[section]} of ${workerTotal}` : 'N/A';
-      const payerScoreText = payerTotal > 0 ? `${payer.scores[section]} of ${payerTotal}` : 'N/A';
+    if (wTotal > 0 || pTotal > 0) {
+      const wScoreText = wTotal > 0
+        ? `Employment: ${worker.scores[section]} of ${wTotal}<br> Neutral: ${worker.neutrals[section] || 0}<br> Self-employed worker: ${worker.selfEmployment[section] || 0}` : 'N/A';
+      const pScoreText = pTotal > 0
+        ? `Employment: ${payer.scores[section]} of ${pTotal}<br> Neutral: ${payer.neutrals[section] || 0} <br>Self-employed worker: ${payer.selfEmployment[section] || 0}` : 'N/A';
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
           <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
           <div class="panel-body">
-            <p><strong>Worker:</strong> ${workerScoreText}</p>
-            <p><strong>Payer:</strong> ${payerScoreText}</p>
+            <p><strong>Worker</strong><br> ${wScoreText}</p>
+	    <hr>
+            <p><strong>Payer</strong><br> ${pScoreText}</p>
           </div>
         </section>
       `;
     }
   }
 }
-
-
 </script>
 
 <script>
