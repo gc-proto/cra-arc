@@ -327,6 +327,14 @@ const excludedSections = new Set([
   "section 5 - working relationship information",  	
   "section 6 - certification"
 ]);
+
+const sectionQuestionExclusions = {
+
+"Subsection 5b - Remuneration": [434, 435, 436],
+ "Subsection 5c - Relationship of subordination": [460]	
+// Add more as needed
+};
+	
 let workerData = null;
 let payerData = null;
 document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
@@ -1073,7 +1081,9 @@ function calculateSectionScores(data) {
     entry.answers.forEach(ans => {
       const section = sectionMap[ans.questionId] || "Other";
       const normalizedSection = section.trim();
-      if (!excludedSections.has(normalizedSection.toLowerCase())) {
+    const exclusions = sectionQuestionExclusions[section] || [];
+   if (!excludedSections.has(normalize(section)) && !exclusions.includes(ans.questionId)) {
+
         if (!scores[normalizedSection]) {
           scores[normalizedSection] = 0;
           totals[normalizedSection] = 0;
@@ -1088,66 +1098,68 @@ function calculateSectionScores(data) {
 }
 
 function renderProbabilityScore(workerData, payerData) {
-  let totalQuestions = 0;
-  let workerScore = 0;
-  let payerScore = 0;
+let totalQuestions = 0;
+let workerScore = 0;
+let payerScore = 0;
 
-  workerData.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim().toLowerCase();
-      if (!excludedSections.has(normalizedSection)) {
-        totalQuestions++;
-        workerScore += scoreAnswer(ans.answer, ans.questionId);
-      }
-    });
-  });
+workerData.forEach(entry => {
+entry.answers.forEach(ans => {
+const section = sectionMap[ans.questionId] || "Other";
+const normalizedSection = normalize(section);
+const exclusions = sectionQuestionExclusions[section] || [];
+if (!excludedSections.has(normalizedSection) && !exclusions.includes(ans.questionId)) {
+totalQuestions++;
+workerScore += scoreAnswer(ans.answer, ans.questionId);
+}
+});
+});
 
-  payerData.forEach(entry => {
-    entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = section.trim().toLowerCase();
-      if (!excludedSections.has(normalizedSection)) {
-        payerScore += scoreAnswer(ans.answer, ans.questionId);
-      }
-    });
-  });
+payerData.forEach(entry => {
+entry.answers.forEach(ans => {
+const section = sectionMap[ans.questionId] || "Other";
+const normalizedSection = normalize(section);
+const exclusions = sectionQuestionExclusions[section] || [];
+if (!excludedSections.has(normalizedSection) && !exclusions.includes(ans.questionId)) {
+payerScore += scoreAnswer(ans.answer, ans.questionId);
+}
+});
+});
 
 const workerScoreText = `${workerScore}/${totalQuestions}`;
 const payerScoreText = `${payerScore}/${totalQuestions}`;
 
 const probabilityDiv = document.getElementById('probability');
-  probabilityDiv.innerHTML = `
-    <h3>Overall indicator outcome</h3>
-    <section class="panel panel-primary">
-      <header class="panel-heading">
-        <h5 class="panel-title">Worker's response</h5>
-      </header>
-      <div class="panel-body">
-        <p> ${generateBar("", workerScoreText)}</p>
-      </div>
-    </section>
-    <section class="panel panel-primary">
-      <header class="panel-heading">
-        <h5 class="panel-title">Payer's response</h5>
-      </header>
-      <div class="panel-body">
-        <p> ${generateBar("", payerScoreText)}</p>
-      </div>
-    </section>
-  <p><small>The outcome indicator is the number of questions where the responses resulted in the indicator of employment out of the total questions responses received</small></p>  
+probabilityDiv.innerHTML = `
+<h3>Overall indicator outcome</h3>
+<section class="panel panel-primary">
+<header class="panel-heading">
+<h5 class="panel-title">Worker's response</h5>
+</header>
+<div class="panel-body">
+<p> ${generateBar("", workerScoreText)}</p>
+</div>
+</section>
+<section class="panel panel-primary">
+<header class="panel-heading">
+<h5 class="panel-title">Payer's response</h5>
+</header>
+<div class="panel-body">
+<p> ${generateBar("", payerScoreText)}</p>
+</div>
+</section>
+<p><small>The outcome indicator is the number of questions where the responses resulted in the indicator of employment out of the total questions responses received</small></p>
 <hr>
-    <h3>Section-based scores</h3>
-  `;
+<h3>Section-based scores</h3>
+`;
 
-  const worker = calculateSectionScores(workerData);
-  const payer = calculateSectionScores(payerData);
-
+const worker = calculateSectionScores(workerData);
+const payer = calculateSectionScores(payerData);
 
 for (const section of Object.keys(worker.scores)) {
 const workerTotal = worker.totals[section] || 0;
 const payerTotal = payer.totals[section] || 0;
 
+// Only display sections where either worker or payer had answers
 if (workerTotal > 0 || payerTotal > 0) {
 const workerScoreText = workerTotal > 0 ? `${worker.scores[section]}/${workerTotal}` : 'N/A';
 const payerScoreText = payerTotal > 0 ? `${payer.scores[section]}/${payerTotal}` : 'N/A';
@@ -1164,6 +1176,7 @@ probabilityDiv.innerHTML += `
 }
 }
 }
+
 </script>
 
 <script>
