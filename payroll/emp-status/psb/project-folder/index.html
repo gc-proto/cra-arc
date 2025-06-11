@@ -1,8 +1,5 @@
 
 
-
-
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -70,7 +67,8 @@
 <h1>Worker vs. payer questionnaire comparison<br/>
 <small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small>
 </h1>
-<p>New - To use the comparison tool:</p>
+<p>To use the comparison tool:</p>
+<p>To use the comparison tool:</p>
 <ol>
 <li>Save the worker and payer JSON files on your computer.</li>
 <li>Upload both files below.</li>
@@ -91,8 +89,8 @@
 </ul>
 <details><summary>How to read the <strong>outcome indicator</strong></summary>
 <p>The outcome indicator populates the number of questions where the responses resulted in the indicator of employment out of the total questions responses received. Depending on the situation, the result of the response may be neutral.</p>
-
 </details>
+	
 <div class="row">
 <div class="col-md-9">
 <div id="content"></div>
@@ -319,7 +317,7 @@
 
 
 const excludedSections = new Set([
-  "section 1: general information",
+    "section 1: general information",
   "section 2: information about the business",	
   "worker - section 2a - employee information",
   "worker - section 2b - specified shareholder information",
@@ -479,18 +477,19 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
   return container;
 }
 
- 
+    
+   
 function generateBar(label, score) {
  let color = "#1a2695"; // dark blue
- if (score < 80) color = "#1a2695"; // dark blue
- if (score < 50) color = "#ffc107"; // yellow
- if (score < 20) color = "#1a2695"; // dark blue
+ if (score < 30) color = "#1a2695"; // dark blue
+ if (score < 15) color = "#ffc107"; // yellow
+ if (score < 5) color = "#1a2695"; // dark blue
  return `
 <div style="margin-bottom:1em">
 <label>${label} ${describeProbability(score)}</label>
 <div class="probability-bar">
 <div class="probability-fill" style="width: ${score}; background-color: ${color};">
-         ${score}%
+         ${score}
 </div>
 </div>
 </div>
@@ -504,15 +503,17 @@ function generateBar(label, score) {
  if (score >= 40) return "Neutral: Indicator of employment";
  if (score >= 20) return "Propable: Indicator of employment";
  if (score >= 10) return "Likely: Indicator of employment";	 
- if (scoret >= 0) return "Highly likely: Indicator of employment";	   
+ if (score >= 0) return "Highly likely: Indicator of employment";	   
  return "Highly likely: Indicator of employment";
 }
 
 </script>
-
 <!-- Probability bar container -->
 <div id="probability" style="margin-top: 2em;"></div>
+<!-- WET PreFooter -->
+</div></main>
 
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
 <script>
 const customScoringRules = {
    
@@ -1109,12 +1110,12 @@ function renderProbabilityScore(workerData, payerData) {
     });
   });
 
-  const workerScoreText = totalQuestions ? Math.round((workerScore / totalQuestions) * 100) : 0;
-  const payerScoreText = totalQuestions ? Math.round((payerScore / totalQuestions) * 100) : 0;
+const workerScoreText = `${workerScore}/${totalQuestions}`;
+const payerScoreText = `${payerScore}/${totalQuestions}`;
 
-  const probabilityDiv = document.getElementById('probability');
+const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
-    <h3>Overall outcome indicator</h3>
+    <h3>Overall indicator outcome</h3>
     <section class="panel panel-primary">
       <header class="panel-heading">
         <h5 class="panel-title">Worker's response</h5>
@@ -1131,7 +1132,7 @@ function renderProbabilityScore(workerData, payerData) {
         <p> ${generateBar("", payerScoreText)}</p>
       </div>
     </section>
-    <p><small>The outcome indicator is the number of questions where the responses resulted in the indicator of employment out of the total questions responses received</small></p>
+  <p><small>The outcome indicator is the number of questions where the responses resulted in the indicator of employment out of the total questions responses received</small></p>  
 <hr>
     <h3>Section-based scores</h3>
   `;
@@ -1141,9 +1142,11 @@ function renderProbabilityScore(workerData, payerData) {
 
   for (const section of Object.keys(worker.scores)) {
     if (worker.totals[section]) {
-      const workerScoreText = Math.round((worker.scores[section] / worker.totals[section]) * 100);
-      const payerScoreText = payer.totals[section] ? Math.round((payer.scores[section] / payer.totals[section]) * 100) : 0;
 
+	const workerScoreText = `${worker.scores[section]}/${worker.totals[section]}`;
+	const payerScoreText = `${payer.scores[section]}/${worker.totals[section]}`;
+	    
+    
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
           <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
@@ -1169,7 +1172,6 @@ function renderProbabilityScore(workerData, payerData) {
    showShare: true
  });
 </script>
-</div></main>
 
 </body>
 </html>
