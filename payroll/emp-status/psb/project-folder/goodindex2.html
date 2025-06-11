@@ -497,35 +497,29 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
   return container;
 }
 
-    
-   
+function normalize(section) {
+  return (section || "").trim().toLowerCase();
+}
+
 function generateBar(label, scoreText) {
-const match = scoreText.match(/^(\d+)/); // extract the first number (e.g., "3" from "3/5")
-const numericScore = match ? parseInt(match[1]) : 0;
+  const match = scoreText.match(/^(\d+)/);
+  const numericScore = match ? parseInt(match[1]) : 0;
 
-let color = "#1a2695"; // default
-if (numericScore < 5) color = "#1a2695";
-else if (numericScore < 15) color = "#ffc107";
-
-return `
-<div style="margin-bottom:1em">
-<label>${label} ${describeProbability(numericScore)}</label>
-
-</div>
-`;
+  return `
+    <div style="margin-bottom:1em">
+      <label>${label} ${describeProbability(numericScore)}</label>
+    </div>
+  `;
 }
 
-
-   function describeProbability(score) {
- if (score <= 0) return "Highly unlikely";	   
- if (score <= 15) return "Highly unlikely";
- if (score <= 20) return "Unlikely";
- if (score <= 30) return "Neutral";
- if (score <= 35) return "Propable";
- if (score <= 40) return "Likely";	 
- if (score <= 45) return "Highly likely";	   
- return "Highly likely";
+function describeProbability(score) {
+  if (score <= 0) return "Highly unlikely";
+  if (score <= 15) return "Unlikely";
+  if (score <= 30) return "Neutral";
+  if (score <= 40) return "Likely";
+  return "Highly likely";
 }
+
 
 </script>
 <!-- Probability bar container -->
