@@ -224,8 +224,8 @@
     306: "Subsection 5a - Control - Remuneration (4 of 8)",
     386: "Subsection 5a - Control - Remuneration (4 of 8)",
 
- 195: "Subsection 5a - Control - Location of services (5 of 8)",    
-   296: "Subsection 5a - Control - Location of services (5 of 8)",    
+     195: "Subsection 5a - Control - Location of services (5 of 8)",    
+     296: "Subsection 5a - Control - Location of services (5 of 8)",    
      426: "Subsection 5a - Control - Location of services (5 of 8)",  
 
      274: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
@@ -255,7 +255,7 @@
  285: "Subsection 5b - Ownership of tools or equipment", 
  286: "Subsection 5b - Ownership of tools or equipment",  
 
-   430: "Subsection 5c - Financial information",  
+     430: "Subsection 5c - Financial information",  
      211: "Subsection 5c - Financial information",  
      214: "Subsection 5c - Financial information",  
      216: "Subsection 5c - Financial information",  
@@ -292,7 +292,6 @@
       410: "Subsection 5b - Remuneration", 
       436: "Subsection 5b - Remuneration", 
       411: "Subsection 5b - Remuneration", 
-
 
      
      412: "Subsection 5c - Relationship of subordination", 
@@ -543,15 +542,15 @@ const customScoringRules = {
     351: answer => {
     switch (answer.toLowerCase()) {
       case "employer-employee": return 1; // Indicator of employment
-	case "payer-worker": return -1; // Indicator of self-employment	    
+	case "self-employed worker": return -1; // Indicator of self-employment	    
         default: return 0;  // Neutral  
     }
   },
    
   347: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1; // Indicator of employment
-      case "no": return -1; // Indicator of self-employment	  
+      case "no - payer": return 1; // Indicator of employment
+      case "yes": return -1; // Indicator of self-employment	  
        default: return 0;  // Neutral
     }
   },
@@ -572,22 +571,23 @@ const customScoringRules = {
     382: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of employment
-		    case "worker": return -1; // Indicator of self-employment
+      case "worker": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
   192: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+      case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
     383: answer => {
     switch (answer.toLowerCase()) {
-      case "payer": return 1; // Indicator of employment
-		    case "worker": return -1; // Indicator of self-employment
-       default: return 0;  // Neutral
+     case "payer": return 1; // Indicator of employment
+     case "worker": return -1; // Indicator of self-employment
+     case "payer and worker": return 0; // Neutral	    
+      default: return 0;  // Neutral
     }
   },
     258: answer => {
@@ -614,49 +614,50 @@ const customScoringRules = {
   261: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+      case "no": return -1; // Indicator of self-employment
+      case "does not apply": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
 262: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+      case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
   263: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	  case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
   264: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+    case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
   265: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+    case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
   191: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	    case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
  267: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	    case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
@@ -664,14 +665,14 @@ const customScoringRules = {
  268: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	    case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
    297: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	    case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
@@ -679,36 +680,40 @@ const customScoringRules = {
    298: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	    case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
   
    299: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+      case "yes - t4 slip": return 1; // Indicator of employment
+      case "no - t4a slip": return -1; // Indicator of self-employment
+      case "no - t5018 slip": return -1; // Indicator of self-employment	
+      case "no - t4-nr slip": return -1; // Indicator of self-employment
+      case "no - no slip issued": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
    271: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	    case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
  300: answer => {
     switch (answer.toLowerCase()) {
       case "hourly/monthly": return 1; // Indicator of employment
-		    case "weekly": return -1; // Indicator of self-employment
+      case "percentage of job completion/piecework": return -1; // Indicator of self-employment
+	  case "other": return 0; // Neutral	  	    
        default: return 0;  // Neutral
     }
   },
    301: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	    case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
@@ -743,21 +748,25 @@ const customScoringRules = {
    306: answer => {
     switch (answer.toLowerCase()) {
       case "filing a timesheet": return 1; // Indicator of employment
-		    case "other": return -1; // Indicator of self-employment
+	case "sending an invoice": return -1; // Indicator of self-employment
+	  case "other": return 0; // Neutral	 	    
        default: return 0;  // Neutral
     }
   },
    195: answer => {
     switch (answer.toLowerCase()) {
       case "payer's location": return 1; // Indicator of employment
-		    case "worker's location": return -1; // Indicator of self-employment
+     case "worker's location": return 0; // Neutral
+     case "mobile locations": return 0; // Neutral
+     case "client's location": return -1; // Indicator of self-employment		    
        default: return 0;  // Neutral
     }
   },
    296: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of employment
-		    case "worker": return -1; // Indicator of self-employment
+     case "worker": return -1; // Indicator of self-employment
+    case "payer and worker": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
@@ -773,9 +782,10 @@ const customScoringRules = {
   },
   275: answer => {
     switch (answer.toLowerCase()) {
-      case "yes - with cause or without cause": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
-       default: return 0;  // Neutral
+      case "yes - with or without cause": return 1; // Indicator of employment
+     case "no": return -1; // Indicator of self-employment
+     case "yes - with cause": return 0; // Neutral	 
+      default: return 0;  // Neutral
     }
   },
   428: answer => {
@@ -803,8 +813,9 @@ const customScoringRules = {
   278: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
-       default: return 0;  // Neutral
+    case "no": return -1; // Indicator of self-employment
+    case "not applicable - schedule is regular": return 0; // Neutral	
+	    default: return 0;  // Neutral
     }
   },
   280: answer => {
@@ -863,14 +874,16 @@ const customScoringRules = {
   290: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+    case "no": return -1; // Indicator of self-employment
+  case "does not apply": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },
   208: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of employment
-		    case "worker": return -1; // Indicator of self-employment
+     case "worker": return -1; // Indicator of self-employment
+     case "payer and worker": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
@@ -891,7 +904,8 @@ const customScoringRules = {
   286: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of employment
-		    case "worker": return -1; // Indicator of self-employment
+	case "worker": return -1; // Indicator of self-employment
+	 case "payer and worker": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },
@@ -900,7 +914,7 @@ const customScoringRules = {
   430: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+      case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
@@ -908,42 +922,42 @@ const customScoringRules = {
   211: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+      case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
   214: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
-       default: return 0;  // Neutral
+     case "no": return -1; // Indicator of self-employment
+      default: return 0;  // Neutral
     }
   },
   216: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
   217: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
   219: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	 case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
   233: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
@@ -957,22 +971,26 @@ const customScoringRules = {
   },
   397: answer => {
     switch (answer.toLowerCase()) {
-      case "payer's location": return 1; // Indicator of employment
-		    case "worker's location": return -1; // Indicator of self-employment
+     case "payer's location": return 1; // Indicator of employment
+     case "worker's location": return 0; // Neutral
+     case "mobile locations": return 0; // Neutral
+     case "client's location": return -1; // Indicator of self-employment		    
        default: return 0;  // Neutral
     }
   },
   398: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of employment
-		    case "worker": return -1; // Indicator of self-employment
+	  case "worker": return -1; // Indicator of self-employment
+	 case "payer and worker": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },
   399: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of employment
-		    case "worker": return -1; // Indicator of self-employment
+	    case "worker": return -1; // Indicator of self-employment
+	 case "payer and worker": return 0; // Neutral	
        default: return 0;  // Neutral
     }
   },
@@ -1007,14 +1025,19 @@ const customScoringRules = {
   403: answer => {
     switch (answer.toLowerCase()) {
       case "yes - t4 and rl-1 slips": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+      case "no - t4a slip": return -1; // Indicator of self-employment
+      case "no - t5018 slip": return -1; // Indicator of self-employment	
+      case "no - t4-nr slip": return -1; // Indicator of self-employment
+      case "no - no slip issued": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
   404: answer => {
     switch (answer.toLowerCase()) {
       case "hourly": return 1; // Indicator of employment
-     case "other": case "monthly":   return -1; // Indicator of self-employment	    
+      case "monthly": return 1; // Indicator of employment
+      case "percentage of job completion/piecework": return -1; // Indicator of self-employment
+      case "other": return 0; // Neutral	    
       default: return 0;  // Neutral
     }
   },
@@ -1049,7 +1072,8 @@ const customScoringRules = {
   410: answer => {
     switch (answer.toLowerCase()) {
       case "filing a timesheet": return 1; // Indicator of employment
-	    case "no": return -1; // Indicator of self-employment
+	   case "sending an invoice": return -1; // Indicator of self-employment
+	case "other": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
@@ -1135,9 +1159,10 @@ const customScoringRules = {
   },
   422: answer => {
     switch (answer.toLowerCase()) {
-      case "yes - with cause": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
-       default: return 0;  // Neutral
+      case "yes - with or without cause": return 1; // Indicator of employment
+     case "no": return -1; // Indicator of self-employment
+     case "yes - with cause": return 0; // Neutral	 
+      default: return 0;  // Neutral
     }
   },
    438: answer => {
@@ -1150,7 +1175,7 @@ const customScoringRules = {
   439: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	  case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
