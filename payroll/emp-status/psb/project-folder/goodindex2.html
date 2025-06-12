@@ -272,6 +272,7 @@
     
    431: "Subsection 5a - Carrying out the work",   
    397: "Subsection 5a - Carrying out the work", 
+   468: "Subsection 5a - Carrying out the work", 	   
      398: "Subsection 5a - Carrying out the work", 
      433: "Subsection 5a - Carrying out the work", 
      399: "Subsection 5a - Carrying out the work", 
@@ -984,12 +985,25 @@ const customScoringRules = {
        default: return 0;  // Neutral
     }
   },
-  397: answer => {
+ 397: answer => {
     switch (answer.toLowerCase()) {
      case "payer's location": return 1; // Indicator of employment
      case "worker's location": return 0; // Neutral
      case "mobile locations": return 0; // Neutral
-     case "client's location": return -1; // Indicator of self-employment		    
+     case "client's location": return -1; // Indicator of self-employment	
+     case "other options for transportation workers": return 0; // Neutral	    
+       default: return 0;  // Neutral
+    }
+  },
+ 468: answer => {
+    switch (answer.toLowerCase()) {
+     case "home terminal or dispatch center": return 1; // Indicator of employment
+     case "on the road/in transit": return -1; // Indicator of self-employment
+     case "delivery or pickup locations": return 0; // Neutral	
+     case "specific route or corridor": return 0; // Neutral	 
+     case "client facility or yard": return -1; // Indicator of self-employment 
+     case "remote or temporary worksite": return 0; // Neutral	 
+     case "rail yard, port, or airport": return 0; // Neutral	 
        default: return 0;  // Neutral
     }
   },
@@ -1026,7 +1040,7 @@ const customScoringRules = {
   400: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+     case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
