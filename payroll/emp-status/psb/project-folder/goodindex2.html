@@ -615,7 +615,8 @@ const customScoringRules = {
   261: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+      case "no": return -1; // Indicator of self-employment
+      case "does not apply": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
@@ -623,7 +624,6 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
       case "no": return -1; // Indicator of self-employment
-     case "does not apply": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },
@@ -688,8 +688,11 @@ const customScoringRules = {
   
    299: answer => {
     switch (answer.toLowerCase()) {
-      case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+      case "yes - t4 slip": return 1; // Indicator of employment
+      case "no - t4a slip": return -1; // Indicator of self-employment
+      case "no - t5018 slip": return -1; // Indicator of self-employment	
+      case "no - t4-nr slip": return -1; // Indicator of self-employment
+      case "no - no slip issued": return -1; // Neutral	    
        default: return 0;  // Neutral
     }
   },
