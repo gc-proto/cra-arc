@@ -542,7 +542,7 @@ const customScoringRules = {
     351: answer => {
     switch (answer.toLowerCase()) {
       case "employer-employee": return 1; // Indicator of employment
-	case "self-employed worker": return -1; // Indicator of self-employment	    
+      case "self-employed worker": return -1; // Indicator of self-employment	    
         default: return 0;  // Neutral  
     }
   },
@@ -557,14 +557,14 @@ const customScoringRules = {
   348: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-	case "no": return -1; // Indicator of self-employment	    
+    case "no": return -1; // Indicator of self-employment	    
        default: return 0;  // Neutral
     }
   },
   380: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of employment
-		    case "no": return -1; // Indicator of self-employment
+	 case "no": return -1; // Indicator of self-employment
        default: return 0;  // Neutral
     }
   },
@@ -572,6 +572,7 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of employment
       case "worker": return -1; // Indicator of self-employment
+      case "payer and worker": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },
