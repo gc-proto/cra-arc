@@ -519,11 +519,11 @@ function generateBar(label, scoreText) {
 }
 
 function describeProbability(score) {
-  if (score >= 5) return "Highly unlikely employment";
-  if (score >= 15) return "Unlikely employment";
-  if (score >= 30) return "Neutral employment";
-  if (score >= 40) return "Likely employment";
-  return "Highly likely employment";
+  if (score >= 5) return "Highly likely: Contract for services";
+  if (score >= 15) return "Likely: Contract for services";
+  if (score >= 30) return "Neutral facts: Contract of service or contract for services";
+  if (score >= 40) return "Likely: Contract of service";
+  return "Highly likely: Contract of service";
 }
 
 
@@ -1267,8 +1267,8 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-  const workerScoreText = `COS: ${workerScore} of ${totalQuestions}<br> CFS: ${workerSelf} <br> Neutral: ${workerNeutral}`;
-  const payerScoreText = `COS: ${payerScore} of ${totalQuestions}<br> CFS: ${payerSelf} <br> Neutral: ${payerNeutral}`;
+  const workerScoreText = `<abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions}<br> <abbr title="Contract for services">CFS</abbr>: ${workerSelf} <br> Neutral: ${workerNeutral}`;
+  const payerScoreText = `<abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions}<br> <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br> Neutral: ${payerNeutral}`;
 
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
@@ -1295,9 +1295,9 @@ function renderProbabilityScore(workerData, payerData) {
 
     if (wTotal > 0 || pTotal > 0) {
       const wScoreText = wTotal > 0
-        ? `COS: ${worker.scores[section]} of ${wTotal}<br> CFS: ${worker.selfEmployment[section] || 0} <br> Neutral: ${worker.neutrals[section]  || 0} ` : 'N/A';
+        ? `<abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal}<br> <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} <br> Neutral: ${worker.neutrals[section]  || 0} ` : 'N/A';
       const pScoreText = pTotal > 0
-        ? `COS: ${payer.scores[section]} of ${pTotal}<br> CFS: ${payer.selfEmployment[section] || 0} <br> Neutral: ${payer.neutrals[section] || 0} ` : 'N/A';
+        ? `<abbr title="Contract of service">COS</abbr>: ${payer.scores[section]} of ${pTotal}<br> <abbr title="Contract for services">CFS</abbr>: ${payer.selfEmployment[section] || 0} <br> Neutral: ${payer.neutrals[section] || 0} ` : 'N/A';
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
