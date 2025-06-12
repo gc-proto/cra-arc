@@ -1243,8 +1243,8 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-  const workerScoreText = `Employment: ${workerScore} of ${totalQuestions}<br> Neutral: ${workerNeutral}<br> Self-employed worker: ${workerSelf}`;
-  const payerScoreText = `Employment: ${payerScore} of ${totalQuestions}<br> Neutral: ${payerNeutral}<br> Self-employed worker: ${payerSelf}`;
+  const workerScoreText = `Employment: ${workerScore} of ${totalQuestions}<br> Neutral: ${workerNeutral} of ${totalQuestions}<br> Self-employed worker: ${workerSelf} of ${totalQuestions}`;
+  const payerScoreText = `Employment: ${payerScore} of ${totalQuestions}<br> Neutral: ${payerNeutral} of ${totalQuestions}<br> Self-employed worker: ${payerSelf} of ${totalQuestions}`;
 
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
@@ -1271,9 +1271,9 @@ function renderProbabilityScore(workerData, payerData) {
 
     if (wTotal > 0 || pTotal > 0) {
       const wScoreText = wTotal > 0
-        ? `Employment: ${worker.scores[section]} of ${wTotal}<br> Neutral: ${worker.neutrals[section] || 0}<br> Self-employed worker: ${worker.selfEmployment[section] || 0}` : 'N/A';
+        ? `Employment: ${worker.scores[section]} of ${wTotal}<br> Neutral: ${worker.neutrals[section] of ${wTotal} || 0}<br> Self-employed worker: ${worker.selfEmployment[section] of ${wTotal} || 0}` : 'N/A';
       const pScoreText = pTotal > 0
-        ? `Employment: ${payer.scores[section]} of ${pTotal}<br> Neutral: ${payer.neutrals[section] || 0} <br>Self-employed worker: ${payer.selfEmployment[section] || 0}` : 'N/A';
+        ? `Employment: ${payer.scores[section]} of ${pTotal}<br> Neutral: ${payer.neutrals[section] of ${pTotal} || 0} <br>Self-employed worker: ${payer.selfEmployment[section] of ${pTotal} || 0}` : 'N/A';
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
