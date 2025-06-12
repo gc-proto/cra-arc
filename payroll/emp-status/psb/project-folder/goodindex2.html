@@ -225,6 +225,7 @@
     386: "Subsection 5a - Control - Remuneration (4 of 8)",
 
      195: "Subsection 5a - Control - Location of services (5 of 8)",    
+     466: "Subsection 5a - Control - Location of services (5 of 8)",     
      296: "Subsection 5a - Control - Location of services (5 of 8)",    
      426: "Subsection 5a - Control - Location of services (5 of 8)",  
 
@@ -755,13 +756,27 @@ const customScoringRules = {
   },
    195: answer => {
     switch (answer.toLowerCase()) {
-      case "payer's location": return 1; // Indicator of employment
+     case "payer's location": return 1; // Indicator of employment
      case "worker's location": return 0; // Neutral
      case "mobile locations": return 0; // Neutral
-     case "client's location": return -1; // Indicator of self-employment		    
+     case "client's location": return -1; // Indicator of self-employment	
+     case "other options for transportation workers": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
+ 466: answer => {
+    switch (answer.toLowerCase()) {
+     case "home terminal or dispatch center": return 1; // Indicator of employment
+     case "on the road/in transit": return -1; // Indicator of self-employment
+     case "delivery or pickup locations": return 0; // Neutral	
+     case "specific route or corridor": return 0; // Neutral	 
+     case "client facility or yard": return -1; // Indicator of self-employment 
+     case "remote or temporary worksite": return 0; // Neutral	 
+     case "rail yard, port, or airport": return 0; // Neutral	 
+       default: return 0;  // Neutral
+    }
+  },
+	
    296: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of employment
