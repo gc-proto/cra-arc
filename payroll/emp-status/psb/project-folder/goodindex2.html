@@ -81,6 +81,27 @@ details {
   right: 4px;
 }
 
+.score-pill {
+  display: inline-block;
+  padding: 0.4em 0.75em;
+  border-radius: 999px;
+  font-size: 0.9em;
+  color: white;
+  font-weight: bold;
+  margin: 0.25em 0;
+}
+
+.cos-pill {
+  background-color: green;
+}
+
+.cfs-pill {
+  background-color: #004085;
+}
+
+.neutral-pill {
+  background-color: gray;
+}
 	
 </style>
 <script type="text/javascript">
@@ -601,12 +622,19 @@ function generateBar(label, scoreText) {
 }
 
 function describeProbability(score) {
-  if (score >= 5) return "Highly likely: Contract for services";
-  if (score >= 15) return "Likely: Contract for services";
-  if (score >= 30) return "Neutral facts: Contract of service or contract for services";
-  if (score >= 40) return "Likely: Contract of service";
-  return "Highly likely: Contract of service";
+  if (score >= 40) {
+    return `<span class="score-pill cos-pill">Highly likely: Contract of service</span>`;
+  } else if (score >= 30) {
+    return `<span class="score-pill neutral-pill">Likely: Contract of service</span>`;
+  } else if (score >= 15) {
+    return `<span class="score-pill neutral-pill">Neutral facts: Contract of service or contract for services</span>`;
+  } else if (score >= 5) {
+    return `<span class="score-pill cfs-pill">Likely: Contract for services</span>`;
+  } else {
+    return `<span class="score-pill cfs-pill">Highly likely: Contract for services</span>`;
+  }
 }
+
 
 
 </script>
