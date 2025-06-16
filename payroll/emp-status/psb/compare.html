@@ -80,6 +80,33 @@ details {
   bottom: 4px;
   right: 4px;
 }
+.score-pill {
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  border-radius: 999px;
+  margin-right: 0.5em;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+}
+.cos-pill { background-color: green; }
+.cfs-pill { background-color: #004085; }
+.neutral-pill { background-color: gray; }
+
+.probability-bar {
+  display: flex;
+  height: 20px;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1em;
+}
+.probability-bar div {
+  height: 100%;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+  font-size: 0.8em;
+}
 
 	
 </style>
@@ -600,13 +627,18 @@ function generateBar(label, scoreText) {
   `;
 }
 
-function describeProbability(score) {
-  if (score >= 5) return "Highly likely: Contract for services";
-  if (score >= 15) return "Likely: Contract for services";
-  if (score >= 30) return "Neutral facts: Contract of service or contract for services";
-  if (score >= 40) return "Likely: Contract of service";
-  return "Highly likely: Contract of service";
+function describeProbability(score, totalQuestions) {
+  if (totalQuestions === 0) return "No data";
+
+  const percent = (score / totalQuestions) * 100;
+
+  if (percent >= 80) return "Highly likely: Contract of service";
+  if (percent >= 60) return "Likely: Contract of service";
+  if (percent >= 30) return "Neutral facts: Contract of service or contract for services";
+  if (percent >= 20) return "Likely: Contract for services";
+  return "Highly likely: Contract for services";
 }
+
 
 
 </script>
@@ -1381,6 +1413,19 @@ function getIndicatorIcon(score) {
   }
 }
 
+function generateDistributionBar(cos, cfs, neutral, total) {
+  const cosPercent = total ? (cos / total * 100).toFixed(1) : 0;
+  const cfsPercent = total ? (cfs / total * 100).toFixed(1) : 0;
+  const neutralPercent = total ? (neutral / total * 100).toFixed(1) : 0;
+
+  return `
+    <div class="probability-bar">
+      <div style="width:${cosPercent}%; background: green;">${cos > 0 ? cosPercent + "%" : ""}</div>
+      <div style="width:${cfsPercent}%; background: #004085;">${cfs > 0 ? cfsPercent + "%" : ""}</div>
+      <div style="width:${neutralPercent}%; background: gray;">${neutral > 0 ? neutralPercent + "%" : ""}</div>
+    </div>
+  `;
+}	
 	
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
@@ -1424,18 +1469,26 @@ ${getIndicatorIcon(0)} Neutral: ${workerNeutral} `;
 const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
 ${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
 
+ const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
+  const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
+
+	
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
       <div class="panel-body">
-        <p>${generateBar("", workerScoreText)}</p><hr>
+   <p><strong>${describeProbability(workerScore, totalQuestions)}</strong></p>
+         ${workerBar}
+   <hr>
         <p>${workerScoreText}</p>
       </div>
     </section>
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
       <div class="panel-body">
-        <p>${generateBar("", payerScoreText)}</p><hr>
+   <p><strong>${describeProbability(payerrScore, totalQuestions)}</strong></p>
+   ${payerBar}
+<hr>
         <p>${payerScoreText}</p>
       </div>
     </section>
