@@ -1408,6 +1408,19 @@ function getIndicatorIcon(score) {
   }
 }
 
+function generateDistributionBar(cos, cfs, neutral, total) {
+  const cosPercent = total ? (cos / total * 100).toFixed(1) : 0;
+  const cfsPercent = total ? (cfs / total * 100).toFixed(1) : 0;
+  const neutralPercent = total ? (neutral / total * 100).toFixed(1) : 0;
+
+  return `
+    <div class="probability-bar">
+      <div style="width:${cosPercent}%; background: green;">${cos > 0 ? cosPercent + "%" : ""}</div>
+      <div style="width:${cfsPercent}%; background: #004085;">${cfs > 0 ? cfsPercent + "%" : ""}</div>
+      <div style="width:${neutralPercent}%; background: gray;">${neutral > 0 ? neutralPercent + "%" : ""}</div>
+    </div>
+  `;
+}	
 	
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
@@ -1451,10 +1464,15 @@ ${getIndicatorIcon(0)} Neutral: ${workerNeutral} `;
 const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
 ${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
 
+ const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
+  const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
+
+	
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
       <div class="panel-body">
+      ${workerBar}
         <p>${generateBar("", workerScoreText)}</p><hr>
         <p>${workerScoreText}</p>
       </div>
@@ -1462,6 +1480,7 @@ ${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
       <div class="panel-body">
+      ${payerBar}
         <p>${generateBar("", payerScoreText)}</p><hr>
         <p>${payerScoreText}</p>
       </div>
