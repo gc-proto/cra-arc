@@ -508,7 +508,8 @@ for (const [section, questions] of Object.entries(sectioned)) {
     const row = document.createElement('tr');
     let rowHTML = `<td>${question}</td>`;
   if (showWorker) {
- const isExcluded = excludedSections.has(section.toLowerCase());
+const isExcluded = excludedSections.has(normalize(section));
+
 const workerIcon = isExcluded ? '' : getScoreIcon(
   Object.keys(sectionMap).find(id => sectionMap[id] === section && workerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
   data.rawWorker
