@@ -62,7 +62,7 @@ details summary {
 
 details {
   margin-bottom: 1em;
-  padding: 0.5em 1em;
+  padding: 0.5em 0.5em;
   border: 1px solid #ccc;
   border-radius: 6px;
   background-color: #f9f9f9;
@@ -504,7 +504,6 @@ for (const [section, questions] of Object.entries(sectioned)) {
 
   if (rowCount > 0) {
     const shouldCollapse = [
-      "Section 1: General information",
       "Section 2: Information about the business",
       "Worker - Section 2a - Employee information",
       "Worker - Section 2b - Specified shareholder information",
@@ -515,7 +514,7 @@ for (const [section, questions] of Object.entries(sectioned)) {
 
     if (shouldCollapse) {
    const details = document.createElement('details');
-details.setAttribute('open', ''); // This makes it open by default
+// details.setAttribute('open', ''); // Collapse by default
    const summary = document.createElement('summary');
       summary.textContent = section;
       details.appendChild(summary);
