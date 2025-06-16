@@ -475,19 +475,19 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
     }
   }
 
- function formatAnswer(answer) {
+function formatAnswer(answer) {
   if (Array.isArray(answer)) {
-    return answer.map(group => {
+    return answer.map((group, index) => {
       const table = document.createElement("table");
-      table.innerHTML = "<thead><tr><th>Question for each</th><th>Answer for each</th></tr></thead>";
+      table.innerHTML = `<thead><tr><th colspan="2">User entry #${index + 1}</th></tr><tr><th>Question</th><th>Answer</th></tr></thead>`;
       const tbody = document.createElement("tbody");
-      
+
       group.forEach(sub => {
         const row = document.createElement("tr");
         row.innerHTML = `<td>${sub.questionEn}</td><td>${sub.answer}</td>`;
         tbody.appendChild(row);
       });
-      
+
       table.appendChild(tbody);
       return table.outerHTML;
     }).join("<br><br>");
@@ -496,7 +496,7 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
   return answer || "";
 }
 
-    const skipMismatchHighlighting = [
+	 const skipMismatchHighlighting = [
   "Section 1: General information",
   "Section 2: Information about the business",
   "Worker - Section 2a - Employee information",
