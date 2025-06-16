@@ -495,8 +495,22 @@ for (const [section, questions] of Object.entries(sectioned)) {
 
     const row = document.createElement('tr');
     let rowHTML = `<td>${question}</td>`;
-    if (showWorker) rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${worker}</td>`;
-    if (showPayer) rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${payer}</td>`;
+  if (showWorker) {
+  const workerIcon = getScoreIcon(
+    Object.keys(sectionMap).find(id => sectionMap[id] === section && workerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
+    data.rawWorker
+  );
+  rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${worker} ${workerIcon}</td>`;
+}
+
+if (showPayer) {
+  const payerIcon = getScoreIcon(
+    Object.keys(sectionMap).find(id => sectionMap[id] === section && payerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
+    data.rawPayer
+  );
+  rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${payer} ${payerIcon}</td>`;
+}
+
     row.innerHTML = rowHTML;
     tbody.appendChild(row);
     rowCount++;
@@ -1250,6 +1264,20 @@ function scoreAnswer(answer, questionId) {
   }
   return 0;
 }
+
+function getScoreIcon(questionId, answer) {
+  const score = scoreAnswer(answer, questionId);
+  if (score === 1) {
+    return `<i class="fas fa-check-circle" style="color: green;" title="Contract of service"></i>`;
+  } else if (score === -1) {
+    return `<i class="fas fa-times-circle" style="color: red;" title="Contract for services"></i>`;
+  } else if (score === 0) {
+    return `<i class="fas fa-minus-circle" style="color: grey;" title="Neutral"></i>`;
+  }
+  return '';
+}
+	
+	
 </script>
 
 <script>
