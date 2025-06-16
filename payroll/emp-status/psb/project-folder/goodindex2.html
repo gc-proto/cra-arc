@@ -475,16 +475,26 @@ const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : J
     }
   }
 
-  function formatAnswer(answer) {
-    if (Array.isArray(answer)) {
-      return answer.map(group =>
-        group.map(sub =>
-          `${sub.questionEn}: ${sub.answer}`
-        ).join("<br>")
-      ).join("<hr>");
-    }
-    return answer || "";
+ function formatAnswer(answer) {
+  if (Array.isArray(answer)) {
+    return answer.map(group => {
+      const table = document.createElement("table");
+      table.innerHTML = "<thead><tr><th>Field</th><th>Answer</th></tr></thead>";
+      const tbody = document.createElement("tbody");
+      
+      group.forEach(sub => {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${sub.questionEn}</td><td>${sub.answer}</td>`;
+        tbody.appendChild(row);
+      });
+      
+      table.appendChild(tbody);
+      return table.outerHTML;
+    }).join("<br><br>");
   }
+
+  return answer || "";
+}
 
     const skipMismatchHighlighting = [
   "Section 1: General information",
