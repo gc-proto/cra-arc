@@ -103,7 +103,7 @@ details {
   background-color: gray;
 }
 
-	.distribution-bar {
+.distribution-bar {
   display: flex;
   height: 1.5em;
   border-radius: 6px;
@@ -471,6 +471,8 @@ function tryRenderBoth() {
     // Add this line to render the probability score
 
 function generateDistributionBar(cosCount, cfsCount, neutralCount, total) {
+  if (total === 0) return ''; // Prevent divide-by-zero
+
   const cosPercent = (cosCount / total) * 100;
   const cfsPercent = (cfsCount / total) * 100;
   const neutralPercent = (neutralCount / total) * 100;
@@ -483,6 +485,7 @@ function generateDistributionBar(cosCount, cfsCount, neutralCount, total) {
     </div>
   `;
 }
+
 	  
 	  
 	  renderProbabilityScore(workerData, payerData);
@@ -1454,12 +1457,9 @@ function getIndicatorIcon(score) {
   }
 }
 
-	
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
-  probabilityDiv.innerHTML = `
-    <h3>Total - Indicators</h3>
-  `;
+  probabilityDiv.innerHTML = `<h3>Total - Indicators</h3>`;
 
   const worker = calculateSectionScores(workerData);
   const payer = calculateSectionScores(payerData);
@@ -1492,32 +1492,42 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-const workerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerSelf} <br>
-${getIndicatorIcon(0)} Neutral: ${workerNeutral} `;
-const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
-${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
+  // Create summary score text (pills + icons)
+  const workerScoreText = `
+    <span class="score-pill cos-pill">COS: ${workerScore} / ${totalQuestions} ${getIndicatorIcon(1)}</span>
+    <span class="score-pill cfs-pill">CFS: ${workerSelf} ${getIndicatorIcon(-1)}</span>
+    <span class="score-pill neutral-pill">Neutral: ${workerNeutral} ${getIndicatorIcon(0)}</span>
+  `;
 
-const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
-const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
-	
+  const payerScoreText = `
+    <span class="score-pill cos-pill">COS: ${payerScore} / ${totalQuestions} ${getIndicatorIcon(1)}</span>
+    <span class="score-pill cfs-pill">CFS: ${payerSelf} ${getIndicatorIcon(-1)}</span>
+    <span class="score-pill neutral-pill">Neutral: ${payerNeutral} ${getIndicatorIcon(0)}</span>
+  `;
+
+  const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
+  const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
 
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
-    <div class="panel-body">
-  <p>${generateBar("", workerScoreText)}</p>
-  ${workerBar}
-  <p>${workerScoreText}</p>
-</div>
+      <div class="panel-body">
+        <p>${generateBar("", describeProbability(workerScore))}</p>
+        ${workerBar}
+        <p>${workerScoreText}</p>
+      </div>
     </section>
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
-    <div class="panel-body">
-  <p>${generateBar("", payerScoreText)}</p>
-  ${payerBar}
-  <p>${payerScoreText}</p>
-</div>
+      <div class="panel-body">
+        <p>${generateBar("", describeProbability(payerScore))}</p>
+        ${payerBar}
+        <p>${payerScoreText}</p>
+      </div>
     </section>
+  `;
+}
+
     <hr>
     <h3>By section - Indicators</h3>
   `;
