@@ -499,8 +499,9 @@ for (const [section, questions] of Object.entries(sectioned)) {
     ].includes(section);
 
     if (shouldCollapse) {
-      const details = document.createElement('details');
-      const summary = document.createElement('summary');
+   const details = document.createElement('details');
+details.setAttribute('open', ''); // This makes it open by default
+   const summary = document.createElement('summary');
       summary.textContent = section;
       details.appendChild(summary);
       table.appendChild(tbody);
