@@ -188,7 +188,7 @@ details {
 
      358: "Worker - Section 3 - Payers (clients) information",  
      314: "Worker - Section 3 - Payers (clients) information",   
-              31401: "Worker - Section 3 - Payers (clients) information",   
+          31401: "Worker - Section 3 - Payers (clients) information",   
           31407: "Worker - Section 3 - Payers (clients) information",   
           31402: "Worker - Section 3 - Payers (clients) information",
           31403: "Worker - Section 3 - Payers (clients) information",
@@ -508,13 +508,10 @@ for (const [section, questions] of Object.entries(sectioned)) {
     const row = document.createElement('tr');
     let rowHTML = `<td>${question}</td>`;
   if (showWorker) {
-const isExcluded = excludedSections.has(normalize(section));
-
-const workerIcon = isExcluded ? '' : getScoreIcon(
-  Object.keys(sectionMap).find(id => sectionMap[id] === section && workerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
-  data.rawWorker
-);
-
+  const workerIcon = getScoreIcon(
+    Object.keys(sectionMap).find(id => sectionMap[id] === section && workerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
+    data.rawWorker
+  );
 rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
 <div class="td-wrapper">
   <div style="margin-bottom: 1.5em;">${worker}</div>
@@ -525,11 +522,10 @@ rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; positi
 }
 
 if (showPayer) {
- 	const payerIcon = isExcluded ? '' : getScoreIcon(
-  Object.keys(sectionMap).find(id => sectionMap[id] === section && payerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
-  data.rawPayer
-);
-
+  const payerIcon = getScoreIcon(
+    Object.keys(sectionMap).find(id => sectionMap[id] === section && payerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
+    data.rawPayer
+  );
 rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
  <div class="td-wrapper">
   <div style="margin-bottom: 1.5em;">${payer}</div>
