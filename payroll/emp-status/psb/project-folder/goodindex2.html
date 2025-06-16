@@ -102,7 +102,39 @@ details {
 .neutral-pill {
   background-color: gray;
 }
-	
+
+	.distribution-bar {
+  display: flex;
+  height: 1.5em;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.5em;
+}
+
+.bar-segment {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar-cos {
+  background-color: green;
+}
+
+.bar-cfs {
+  background-color: #004085;
+}
+
+.bar-neutral {
+  background-color: gray;
+}
+
 </style>
 <script type="text/javascript">
    document.write(wet.builder.refTop({}));
@@ -438,6 +470,19 @@ function tryRenderBoth() {
     
     // Add this line to render the probability score
 
+function generateDistributionBar(cosCount, cfsCount, neutralCount, total) {
+  const cosPercent = (cosCount / total) * 100;
+  const cfsPercent = (cfsCount / total) * 100;
+  const neutralPercent = (neutralCount / total) * 100;
+
+  return `
+    <div class="distribution-bar">
+      <div class="bar-segment bar-cos" style="width: ${cosPercent}%;">${cosCount}</div>
+      <div class="bar-segment bar-neutral" style="width: ${neutralPercent}%;">${neutralCount}</div>
+      <div class="bar-segment bar-cfs" style="width: ${cfsPercent}%;">${cfsCount}</div>
+    </div>
+  `;
+}
 	  
 	  
 	  renderProbabilityScore(workerData, payerData);
@@ -1452,20 +1497,26 @@ ${getIndicatorIcon(0)} Neutral: ${workerNeutral} `;
 const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
 ${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
 
+const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
+const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
+	
+
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
-      <div class="panel-body">
-        <p>${generateBar("", workerScoreText)}</p><hr>
-        <p>${workerScoreText}</p>
-      </div>
+    <div class="panel-body">
+  <p>${generateBar("", workerScoreText)}</p>
+  ${workerBar}
+  <p>${workerScoreText}</p>
+</div>
     </section>
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
-      <div class="panel-body">
-        <p>${generateBar("", payerScoreText)}</p><hr>
-        <p>${payerScoreText}</p>
-      </div>
+    <div class="panel-body">
+  <p>${generateBar("", payerScoreText)}</p>
+  ${payerBar}
+  <p>${payerScoreText}</p>
+</div>
     </section>
     <hr>
     <h3>By section - Indicators</h3>
