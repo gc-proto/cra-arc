@@ -81,33 +81,6 @@ details {
   right: 4px;
 }
 
-.score-pill {
-  display: inline-block;
-  padding: 0.3em 0.6em;
-  border-radius: 999px;
-  margin-right: 0.5em;
-  font-size: 0.9em;
-  font-weight: bold;
-  color: white;
-}
-.cos-pill { background-color: green; }
-.cfs-pill { background-color: #004085; }
-.neutral-pill { background-color: gray; }
-
-.probability-bar {
-  display: flex;
-  height: 20px;
-  border-radius: 999px;
-  overflow: hidden;
-  margin-bottom: 1em;
-}
-.probability-bar div {
-  height: 100%;
-  text-align: center;
-  line-height: 20px;
-  color: white;
-  font-size: 0.8em;
-}
 	
 </style>
 <script type="text/javascript">
@@ -1408,28 +1381,24 @@ function getIndicatorIcon(score) {
   }
 }
 
+	
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
-  probabilityDiv.innerHTML = `<h3>Total - Indicators</h3>`;
+  probabilityDiv.innerHTML = `
+    <h3>Total - Indicators</h3>
+  `;
 
   const worker = calculateSectionScores(workerData);
   const payer = calculateSectionScores(payerData);
 
-  let totalQuestions = 0,
-      workerScore = 0, payerScore = 0,
-      workerNeutral = 0, payerNeutral = 0,
-      workerSelf = 0, payerSelf = 0;
+  let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0;
 
   const allSections = new Set([
     ...Object.keys(worker.scores),
     ...Object.keys(payer.scores)
   ]);
 
-  // Total scores for included sections only
   for (const section of allSections) {
-    const normalized = normalize(section);
-    if (excludedSections.has(normalized)) continue;
-
     const wTotal = worker.totals[section] || 0;
     const pTotal = payer.totals[section] || 0;
     const wScore = worker.scores[section] || 0;
@@ -1450,34 +1419,23 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-  const workerScoreText = `
-    <span class="score-pill cos-pill">COS: ${workerScore} / ${totalQuestions} ${getIndicatorIcon(1)}</span>
-    <span class="score-pill cfs-pill">CFS: ${workerSelf} ${getIndicatorIcon(-1)}</span>
-    <span class="score-pill neutral-pill">Neutral: ${workerNeutral} ${getIndicatorIcon(0)}</span>
-  `;
-  const payerScoreText = `
-    <span class="score-pill cos-pill">COS: ${payerScore} / ${totalQuestions} ${getIndicatorIcon(1)}</span>
-    <span class="score-pill cfs-pill">CFS: ${payerSelf} ${getIndicatorIcon(-1)}</span>
-    <span class="score-pill neutral-pill">Neutral: ${payerNeutral} ${getIndicatorIcon(0)}</span>
-  `;
-
-  const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
-  const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
+const workerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerSelf} <br>
+${getIndicatorIcon(0)} Neutral: ${workerNeutral} `;
+const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
+${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
 
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
       <div class="panel-body">
-        <p><strong>${describeProbability(workerScore)}</strong></p>
-        ${workerBar}
+        <p>${generateBar("", workerScoreText)}</p><hr>
         <p>${workerScoreText}</p>
       </div>
     </section>
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
       <div class="panel-body">
-        <p><strong>${describeProbability(payerScore)}</strong></p>
-        ${payerBar}
+        <p>${generateBar("", payerScoreText)}</p><hr>
         <p>${payerScoreText}</p>
       </div>
     </section>
@@ -1485,41 +1443,36 @@ function renderProbabilityScore(workerData, payerData) {
     <h3>By section - Indicators</h3>
   `;
 
-  // Restore By Section indicators exactly as before
   for (const section of allSections) {
-    const normalized = normalize(section);
-    if (excludedSections.has(normalized)) continue;
-
     const wTotal = worker.totals[section] || 0;
     const pTotal = payer.totals[section] || 0;
 
     if (wTotal > 0 || pTotal > 0) {
-      const wScoreText = wTotal > 0
-        ? `${getIndicatorIcon(1)} COS: ${worker.scores[section]} of ${wTotal}<br>
-           ${getIndicatorIcon(-1)} CFS: ${worker.selfEmployment[section] || 0}<br>
-           ${getIndicatorIcon(0)} Neutral: ${worker.neutrals[section] || 0}`
-        : 'N/A';
+ const wScoreText = wTotal > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal} <br>
+   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} <br>
+ ${getIndicatorIcon(0)} Neutral: ${worker.neutrals[section] || 0} `
+  : 'N/A';
 
-      const pScoreText = pTotal > 0
-        ? `${getIndicatorIcon(1)} COS: ${payer.scores[section]} of ${pTotal}<br>
-           ${getIndicatorIcon(-1)} CFS: ${payer.selfEmployment[section] || 0}<br>
-           ${getIndicatorIcon(0)} Neutral: ${payer.neutrals[section] || 0}`
-        : 'N/A';
+const pScoreText = pTotal > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.scores[section]} of ${pTotal} <br>
+   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${payer.selfEmployment[section] || 0}<br>
+${getIndicatorIcon(0)}     Neutral: ${payer.neutrals[section] || 0} `
+  : 'N/A';
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
           <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
           <div class="panel-body">
-            <p><strong>Worker's response</strong><br>${wScoreText}</p>
-            <hr>
-            <p><strong>Payer's response</strong><br>${pScoreText}</p>
+            <p><strong>Worker's response</strong><br> ${wScoreText}</p>
+	    <hr>
+            <p><strong>Payer's response</strong><br> ${pScoreText}</p>
           </div>
         </section>
       `;
     }
   }
 }
-
 </script>
 
 <script>
