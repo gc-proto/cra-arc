@@ -40,10 +40,10 @@
      border-radius: 5px;
    }
    .probability-bar {
-     margin-top: 1em;
+     margin-top: 0.5em;
      background: #eee;
      border-radius: 5px;
-     height: 20px;
+     height: 30px;
      position: relative;
      width: 100%;
    }
@@ -1430,7 +1430,7 @@ function generateDistributionBar(cos, cfs, neutral, total) {
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
-    <h3>Total - Indicators</h3>
+   <h3>Total - Indicators</h3>
   `;
 
   const worker = calculateSectionScores(workerData);
@@ -1486,7 +1486,7 @@ ${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
       <div class="panel-body">
-   <p><strong>${describeProbability(payerrScore, totalQuestions)}</strong></p>
+   <p><strong>${describeProbability(payerScore, totalQuestions)}</strong></p>
    ${payerBar}
 <hr>
         <p>${payerScoreText}</p>
