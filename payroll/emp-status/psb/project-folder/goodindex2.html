@@ -1361,6 +1361,17 @@ function calculateSectionScores(data) {
   return { scores, totals, neutrals, selfEmployment };
 }
 
+function getIndicatorIcon(score) {
+  if (score === 1) {
+    return `<i class="fas fa-users" style="color: green;" title="Contract of service"></i>`;
+  } else if (score === -1) {
+    return `<i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i>`;
+  } else {
+    return `<i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i>`;
+  }
+}
+
+	
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
@@ -1398,8 +1409,12 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-  const workerScoreText = `<abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions}<br> <abbr title="Contract for services">CFS</abbr>: ${workerSelf} <br> Neutral: ${workerNeutral}`;
-  const payerScoreText = `<abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions}<br> <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br> Neutral: ${payerNeutral}`;
+const workerScoreText = `<abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} ${getIndicatorIcon(1)}<br>
+<abbr title="Contract for services">CFS</abbr>: ${workerSelf} ${getIndicatorIcon(-1)}<br>
+Neutral: ${workerNeutral} ${getIndicatorIcon(0)}`;
+const payerScoreText = `<abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} ${getIndicatorIcon(1)}<br>
+<abbr title="Contract for services">CFS</abbr>: ${payerSelf} ${getIndicatorIcon(-1)}<br>
+Neutral: ${payerNeutral} ${getIndicatorIcon(0)}`;
 
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
@@ -1425,10 +1440,17 @@ function renderProbabilityScore(workerData, payerData) {
     const pTotal = payer.totals[section] || 0;
 
     if (wTotal > 0 || pTotal > 0) {
-      const wScoreText = wTotal > 0
-        ? `<abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal}<br> <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} <br> Neutral: ${worker.neutrals[section]  || 0} ` : 'N/A';
-      const pScoreText = pTotal > 0
-        ? `<abbr title="Contract of service">COS</abbr>: ${payer.scores[section]} of ${pTotal}<br> <abbr title="Contract for services">CFS</abbr>: ${payer.selfEmployment[section] || 0} <br> Neutral: ${payer.neutrals[section] || 0} ` : 'N/A';
+ const wScoreText = wTotal > 0
+  ? `<abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal} ${getIndicatorIcon(1)}<br>
+     <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} ${getIndicatorIcon(-1)}<br>
+     Neutral: ${worker.neutrals[section] || 0} ${getIndicatorIcon(0)}`
+  : 'N/A';
+
+const pScoreText = pTotal > 0
+  ? `<abbr title="Contract of service">COS</abbr>: ${payer.scores[section]} of ${pTotal} ${getIndicatorIcon(1)}<br>
+     <abbr title="Contract for services">CFS</abbr>: ${payer.selfEmployment[section] || 0} ${getIndicatorIcon(-1)}<br>
+     Neutral: ${payer.neutrals[section] || 0} ${getIndicatorIcon(0)}`
+  : 'N/A';
 
       probabilityDiv.innerHTML += `
         <section class="panel panel-default">
