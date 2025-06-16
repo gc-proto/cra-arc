@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Worker payer questionnaire comparison - PSB Determination</title>
+<title>Worker vs. payer questionnaire comparison - PSB Determination</title>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="noindex, follow" name="robots"/>
 <!-- WET Assets -->
@@ -410,14 +410,6 @@ function tryRenderBoth() {
 	  renderProbabilityScore(workerData, payerData);
   }
 }
-<script>
-function getScoreIcon(score) {
-  if (score === 1) return '<i class="fas fa-check-circle text-success" title="Contract of service"></i> ';
-  if (score === 0) return '<i class="fas fa-circle text-secondary" title="Neutral"></i> ';
-  if (score === -1) return '<i class="fas fa-times-circle text-danger" title="Contract for services"></i> ';
-  return '';
-}
-</script>
 
 
  function renderJSON(workerData, payerData) {
@@ -501,27 +493,11 @@ for (const [section, questions] of Object.entries(sectioned)) {
     const isMismatch = !skipMismatchHighlighting.includes(section) &&
       rawWorker && rawPayer && rawWorker !== rawPayer;
 
- const row = document.createElement('tr');
-let rowHTML = `<td>${question}</td>`;
-
-// Try to locate questionId (used in scoring)
-const questionEntry = workerData.flatMap(e => e.answers).find(a => a.questionEn === question) ||
-                      payerData.flatMap(e => e.answers).find(a => a.questionEn === question);
-const questionId = questionEntry ? questionEntry.questionId : null;
-
-const wScore = scoreAnswer(rawWorker, questionId);
-const pScore = scoreAnswer(rawPayer, questionId);
-
-if (showWorker) {
-  rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${getScoreIcon(wScore)}${worker}</td>`;
-}
-if (showPayer) {
-  rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${getScoreIcon(pScore)}${payer}</td>`;
-}
-
-	
-	
-	row.innerHTML = rowHTML;
+    const row = document.createElement('tr');
+    let rowHTML = `<td>${question}</td>`;
+    if (showWorker) rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${worker}</td>`;
+    if (showPayer) rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${payer}</td>`;
+    row.innerHTML = rowHTML;
     tbody.appendChild(row);
     rowCount++;
   }
