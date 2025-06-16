@@ -1408,7 +1408,6 @@ function getIndicatorIcon(score) {
   }
 }
 
-
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `<h3>Total - Indicators</h3>`;
@@ -1426,6 +1425,7 @@ function renderProbabilityScore(workerData, payerData) {
     ...Object.keys(payer.scores)
   ]);
 
+  // Total scores for included sections only
   for (const section of allSections) {
     const normalized = normalize(section);
     if (excludedSections.has(normalized)) continue;
@@ -1481,22 +1481,45 @@ function renderProbabilityScore(workerData, payerData) {
         <p>${payerScoreText}</p>
       </div>
     </section>
+    <hr>
+    <h3>By section - Indicators</h3>
   `;
+
+  // Restore By Section indicators exactly as before
+  for (const section of allSections) {
+    const normalized = normalize(section);
+    if (excludedSections.has(normalized)) continue;
+
+    const wTotal = worker.totals[section] || 0;
+    const pTotal = payer.totals[section] || 0;
+
+    if (wTotal > 0 || pTotal > 0) {
+      const wScoreText = wTotal > 0
+        ? `${getIndicatorIcon(1)} COS: ${worker.scores[section]} of ${wTotal}<br>
+           ${getIndicatorIcon(-1)} CFS: ${worker.selfEmployment[section] || 0}<br>
+           ${getIndicatorIcon(0)} Neutral: ${worker.neutrals[section] || 0}`
+        : 'N/A';
+
+      const pScoreText = pTotal > 0
+        ? `${getIndicatorIcon(1)} COS: ${payer.scores[section]} of ${pTotal}<br>
+           ${getIndicatorIcon(-1)} CFS: ${payer.selfEmployment[section] || 0}<br>
+           ${getIndicatorIcon(0)} Neutral: ${payer.neutrals[section] || 0}`
+        : 'N/A';
+
+      probabilityDiv.innerHTML += `
+        <section class="panel panel-default">
+          <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
+          <div class="panel-body">
+            <p><strong>Worker's response</strong><br>${wScoreText}</p>
+            <hr>
+            <p><strong>Payer's response</strong><br>${pScoreText}</p>
+          </div>
+        </section>
+      `;
+    }
+  }
 }
 
-	function generateDistributionBar(cos, cfs, neutral, total) {
-  const cosPercent = total ? (cos / total * 100).toFixed(1) : 0;
-  const cfsPercent = total ? (cfs / total * 100).toFixed(1) : 0;
-  const neutralPercent = total ? (neutral / total * 100).toFixed(1) : 0;
-
-  return `
-    <div class="probability-bar">
-      <div style="width:${cosPercent}%; background: green;">${cos > 0 ? cosPercent + "%" : ""}</div>
-      <div style="width:${cfsPercent}%; background: #004085;">${cfs > 0 ? cfsPercent + "%" : ""}</div>
-      <div style="width:${neutralPercent}%; background: gray;">${neutral > 0 ? neutralPercent + "%" : ""}</div>
-    </div>
-  `;
-}
 </script>
 
 <script>
