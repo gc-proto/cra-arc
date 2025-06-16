@@ -81,46 +81,8 @@ details {
   right: 4px;
 }
 
-.score-pill {
-  display: inline-block;
-  padding: 0.3em 0.75em;
-  border-radius: 999px;
-  font-size: 0.85em;
-  color: white;
-  font-weight: bold;
-  margin: 0.25em 0.25em 0 0;
-}
-
-.cos-pill { background-color: green; }
-.cfs-pill { background-color: #004085; }
-.neutral-pill { background-color: gray; }
-
-.distribution-bar {
-  display: flex;
-  height: 1.5em;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-top: 0.5em;
-  font-size: 0.8em;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1.5em;
-  border: 1px solid #ccc;
-}
-
-.bar-segment {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bar-cos { background-color: green; }
-.bar-cfs { background-color: #004085; }
-.bar-neutral { background-color: gray; }
-</style>
 	
+</style>
 <script type="text/javascript">
    document.write(wet.builder.refTop({}));
 </script>
@@ -455,21 +417,8 @@ function tryRenderBoth() {
     
     // Add this line to render the probability score
 
-function generateDistributionBar(cosCount, cfsCount, neutralCount, total) {
-  if (total === 0) return ''; // prevent division by zero
-
-  const cosPercent = (cosCount / total) * 100;
-  const cfsPercent = (cfsCount / total) * 100;
-  const neutralPercent = (neutralCount / total) * 100;
-
-  return `
-    <div class="distribution-bar">
-      <div class="bar-segment bar-cos" style="width: ${cosPercent}%;">${cosCount}</div>
-      <div class="bar-segment bar-neutral" style="width: ${neutralPercent}%;">${neutralCount}</div>
-      <div class="bar-segment bar-cfs" style="width: ${cfsPercent}%;">${cfsCount}</div>
-    </div>
-  `;
-}
+	  
+	  
 	  renderProbabilityScore(workerData, payerData);
   }
 }
@@ -652,19 +601,12 @@ function generateBar(label, scoreText) {
 }
 
 function describeProbability(score) {
-  if (score >= 40) {
-    return `<span class="score-pill cos-pill">Highly likely: Contract of service</span>`;
-  } else if (score >= 30) {
-    return `<span class="score-pill neutral-pill">Likely: Contract of service</span>`;
-  } else if (score >= 15) {
-    return `<span class="score-pill neutral-pill">Neutral facts: Contract of service or contract for services</span>`;
-  } else if (score >= 5) {
-    return `<span class="score-pill cfs-pill">Likely: Contract for services</span>`;
-  } else {
-    return `<span class="score-pill cfs-pill">Highly likely: Contract for services</span>`;
-  }
+  if (score >= 5) return "Highly likely: Contract for services";
+  if (score >= 15) return "Likely: Contract for services";
+  if (score >= 30) return "Neutral facts: Contract of service or contract for services";
+  if (score >= 40) return "Likely: Contract of service";
+  return "Highly likely: Contract of service";
 }
-
 
 
 </script>
@@ -1438,17 +1380,18 @@ function getIndicatorIcon(score) {
     return `<i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i>`;
   }
 }
+
+	
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
-  probabilityDiv.innerHTML = `<h3>Total - Indicators</h3>`;
+  probabilityDiv.innerHTML = `
+    <h3>Total - Indicators</h3>
+  `;
 
   const worker = calculateSectionScores(workerData);
   const payer = calculateSectionScores(payerData);
 
-  let totalQuestions = 0,
-      workerScore = 0, payerScore = 0,
-      workerNeutral = 0, payerNeutral = 0,
-      workerSelf = 0, payerSelf = 0;
+  let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0;
 
   const allSections = new Set([
     ...Object.keys(worker.scores),
@@ -1456,9 +1399,6 @@ function renderProbabilityScore(workerData, payerData) {
   ]);
 
   for (const section of allSections) {
-    const normalized = normalize(section);
-    if (excludedSections.has(normalized)) continue;
-
     const wTotal = worker.totals[section] || 0;
     const pTotal = payer.totals[section] || 0;
     const wScore = worker.scores[section] || 0;
@@ -1479,44 +1419,60 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-  const workerScoreText = `
-    <span class="score-pill cos-pill">COS: ${workerScore} / ${totalQuestions} ${getIndicatorIcon(1)}</span>
-    <span class="score-pill cfs-pill">CFS: ${workerSelf} ${getIndicatorIcon(-1)}</span>
-    <span class="score-pill neutral-pill">Neutral: ${workerNeutral} ${getIndicatorIcon(0)}</span>
-  `;
-  const payerScoreText = `
-    <span class="score-pill cos-pill">COS: ${payerScore} / ${totalQuestions} ${getIndicatorIcon(1)}</span>
-    <span class="score-pill cfs-pill">CFS: ${payerSelf} ${getIndicatorIcon(-1)}</span>
-    <span class="score-pill neutral-pill">Neutral: ${payerNeutral} ${getIndicatorIcon(0)}</span>
-  `;
-
-  const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
-  const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
+const workerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerSelf} <br>
+${getIndicatorIcon(0)} Neutral: ${workerNeutral} `;
+const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
+${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
 
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
       <div class="panel-body">
-        <p><strong>${describeProbability(workerScore)}</strong></p>
-        ${workerBar}
+        <p>${generateBar("", workerScoreText)}</p><hr>
         <p>${workerScoreText}</p>
       </div>
     </section>
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
       <div class="panel-body">
-        <p><strong>${describeProbability(payerScore)}</strong></p>
-        ${payerBar}
+        <p>${generateBar("", payerScoreText)}</p><hr>
         <p>${payerScoreText}</p>
       </div>
     </section>
+    <hr>
+    <h3>By section - Indicators</h3>
   `;
-}
 
+  for (const section of allSections) {
+    const wTotal = worker.totals[section] || 0;
+    const pTotal = payer.totals[section] || 0;
 
+    if (wTotal > 0 || pTotal > 0) {
+ const wScoreText = wTotal > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal} <br>
+   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} <br>
+ ${getIndicatorIcon(0)} Neutral: ${worker.neutrals[section] || 0} `
+  : 'N/A';
+
+const pScoreText = pTotal > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.scores[section]} of ${pTotal} <br>
+   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${payer.selfEmployment[section] || 0}<br>
+${getIndicatorIcon(0)}     Neutral: ${payer.neutrals[section] || 0} `
+  : 'N/A';
+
+      probabilityDiv.innerHTML += `
+        <section class="panel panel-default">
+          <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
+          <div class="panel-body">
+            <p><strong>Worker's response</strong><br> ${wScoreText}</p>
+	    <hr>
+            <p><strong>Payer's response</strong><br> ${pScoreText}</p>
+          </div>
+        </section>
+      `;
+    }
   }
 }
-
 </script>
 
 <script>
@@ -1524,7 +1480,7 @@ function renderProbabilityScore(workerData, payerData) {
  // Optional: WET preFooter
  var defPreFooter = document.getElementById("def-preFooter");
  defPreFooter.outerHTML = wet.builder.preFooter({
-   dateModified: "2025-06-02",
+   dateModified: "2025-06-16",
    showPostContent: true,
    showFeedback: true,
    showShare: true
