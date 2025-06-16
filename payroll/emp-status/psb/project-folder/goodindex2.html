@@ -105,35 +105,25 @@ details {
 
 .distribution-bar {
   display: flex;
-  height: 1.5em;
-  border-radius: 6px;
+  height: 24px;
+  margin: 10px 0;
+  border-radius: 4px;
   overflow: hidden;
-  margin-top: 0.5em;
-  font-size: 0.8em;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1.5em;
+  border: 1px solid #ccc;
 }
 
 .bar-segment {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+  line-height: 24px;
 }
 
-.bar-cos {
-  background-color: green;
-}
-
-.bar-cfs {
-  background-color: #004085;
-}
-
-.bar-neutral {
-  background-color: gray;
-}
+.bar-cos { background-color: green; }
+.bar-cfs { background-color: #004085; }
+.bar-neutral { background-color: gray; }
 
 </style>
 <script type="text/javascript">
@@ -471,7 +461,7 @@ function tryRenderBoth() {
     // Add this line to render the probability score
 
 function generateDistributionBar(cosCount, cfsCount, neutralCount, total) {
-  if (total === 0) return ''; // Prevent divide-by-zero
+  if (total === 0) return ''; // prevent divide by zero
 
   const cosPercent = (cosCount / total) * 100;
   const cfsPercent = (cfsCount / total) * 100;
@@ -485,6 +475,7 @@ function generateDistributionBar(cosCount, cfsCount, neutralCount, total) {
     </div>
   `;
 }
+
 
 	  
 	  
@@ -1466,10 +1457,11 @@ function renderProbabilityScore(workerData, payerData) {
 
   let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0;
 
-  const allSections = new Set([
-    ...Object.keys(worker.scores),
-    ...Object.keys(payer.scores)
-  ]);
+ const allSections = new Set([
+  ...Object.keys(worker.scores),
+  ...Object.keys(payer.scores)
+]);
+
 
   for (const section of allSections) {
     const wTotal = worker.totals[section] || 0;
