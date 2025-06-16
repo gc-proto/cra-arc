@@ -500,7 +500,7 @@ for (const [section, questions] of Object.entries(sectioned)) {
     Object.keys(sectionMap).find(id => sectionMap[id] === section && workerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
     data.rawWorker
   );
-  rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${worker} ${workerIcon}</td>`;
+ rowHTML += `<td style="position: relative; ${isMismatch ? 'background-color: #fff3cd;' : ''}">${worker} ${workerIcon}</td>`;
 }
 
 if (showPayer) {
@@ -508,7 +508,7 @@ if (showPayer) {
     Object.keys(sectionMap).find(id => sectionMap[id] === section && payerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
     data.rawPayer
   );
-  rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}">${payer} ${payerIcon}</td>`;
+rowHTML += `<td style="position: relative; ${isMismatch ? 'background-color: #fff3cd;' : ''}">${payer} ${payerIcon}</td>`;
 }
 
     row.innerHTML = rowHTML;
@@ -1268,14 +1268,27 @@ function scoreAnswer(answer, questionId) {
 function getScoreIcon(questionId, answer) {
   const score = scoreAnswer(answer, questionId);
   if (score === 1) {
-    return `<i class="fas fa-check-circle" style="color: green;" title="Contract of service"></i>`;
+    return `<div style="position: relative;">
+              <div style="position: absolute; bottom: 2px; right: 2px;">
+                <i class="fas fa-check-circle" style="color: green;" title="Contract of service"></i>
+              </div>
+            </div>`;
   } else if (score === -1) {
-    return `<i class="fas fa-times-circle" style="color: red;" title="Contract for services"></i>`;
+    return `<div style="position: relative;">
+              <div style="position: absolute; bottom: 2px; right: 2px;">
+                <i class="fas fa-times-circle" style="color: red;" title="Contract for services"></i>
+              </div>
+            </div>`;
   } else if (score === 0) {
-    return `<i class="fas fa-minus-circle" style="color: grey;" title="Neutral"></i>`;
+    return `<div style="position: relative;">
+              <div style="position: absolute; bottom: 2px; right: 2px;">
+                <i class="fas fa-minus-circle" style="color: grey;" title="Neutral"></i>
+              </div>
+            </div>`;
   }
   return '';
 }
+
 	
 	
 </script>
