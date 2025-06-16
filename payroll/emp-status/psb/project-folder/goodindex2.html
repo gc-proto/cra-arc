@@ -1522,11 +1522,15 @@ const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, to
     <h3>By section - Indicators</h3>
   `;
 
-  for (const section of allSections) {
-    const wTotal = worker.totals[section] || 0;
-    const pTotal = payer.totals[section] || 0;
+ for (const section of allSections) {
+  const normalized = normalize(section);
+  if (excludedSections.has(normalized)) continue; // SKIP excluded sections
 
-    if (wTotal > 0 || pTotal > 0) {
+  const wTotal = worker.totals[section] || 0;
+  const pTotal = payer.totals[section] || 0;
+
+  if (wTotal > 0 || pTotal > 0) {
+
  const wScoreText = wTotal > 0
   ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal} <br>
    ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} <br>
