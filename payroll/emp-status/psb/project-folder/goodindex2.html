@@ -68,6 +68,17 @@ details {
   background-color: #f9f9f9;
 }
 
+.td-wrapper {
+  position: relative;
+  min-height: 3em; /* Add height to allow icon spacing */
+  padding-bottom: 1.2em; /* Make space for icon */
+}
+
+.score-icon {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+}
 
 	
 </style>
@@ -500,12 +511,12 @@ for (const [section, questions] of Object.entries(sectioned)) {
     Object.keys(sectionMap).find(id => sectionMap[id] === section && workerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
     data.rawWorker
   );
-rowHTML += `<td style="position: relative; ${isMismatch ? 'background-color: #fff3cd;' : ''}">
-              <div style="position: relative; min-height: 2em;">
-                ${worker}
-                ${workerIcon}
-              </div>
-            </td>`;
+rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
+  <div class="td-wrapper">
+    ${worker}
+    ${workerIcon}
+  </div>
+</td>`;
 
 }
 
@@ -514,12 +525,13 @@ if (showPayer) {
     Object.keys(sectionMap).find(id => sectionMap[id] === section && payerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))),
     data.rawPayer
   );
-rowHTML += `<td style="position: relative; ${isMismatch ? 'background-color: #fff3cd;' : ''}">
-              <div style="position: relative; min-height: 2em;">
-                ${payer}
-                ${payerIcon}
-              </div>
-            </td>`;
+rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
+  <div class="td-wrapper">
+    ${payer}
+    ${payerIcon}
+  </div>
+</td>`;
+
 
 }
 
@@ -1299,7 +1311,7 @@ function getScoreIcon(questionId, answer) {
 
   if (icon) {
     return `
-      <div style="position: absolute; bottom: 4px; right: 6px;">
+      <div class="score-icon">
         <i class="fas ${icon}" style="color: ${color};" title="${title}"></i>
       </div>`;
   }
