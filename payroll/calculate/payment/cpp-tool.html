@@ -270,7 +270,7 @@
        <details id="tab1">
         <summary>Answer interactive questions</summary>
         <div id="interactive">
-          <h2 class="mrgn-tp-sm">Answer a few questions to determine the CPP</h2>
+          <h2 class="mrgn-tp-sm">Answer a few questions to determine if you need to deduct CPP contributions</h2>
           <p class="text-muted small">Make a selection and <strong> scroll down</strong> for further questions or results</p>
   <div class="wb-frmvld gc-font-2019">
             <form>
@@ -355,7 +355,20 @@
                       </ul>
                     </div>
                   </li>
-                  <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-qpp", "live": true}'>Yes - Province of Quebec</li>
+                  <li>Yes - Province of Quebec
+          <div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
+                      <div class="wb-fieldflow-header">
+                        <div class="brdr-tp">
+                          <p class="gc-font-2019 mrgn-tp-md">Did you transfer your employee between Quebec and another province or territory?</p>
+                        </div>
+                         </div>
+                      <ul>
+                          <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-qpp1", "live": true}'>Yes</li>                
+                        <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-qpp2", "live": true}'>No</li>
+                      </ul>
+                    </div>
+
+</li>
                 </ul>
               </div>
           </form>
@@ -363,10 +376,16 @@
 
  <div id="results" class="mrgn-tp-lg" aria-live="polite">
 
-       <div id="ajax-qpp" class="alert alert-info hidden">
+    <div id="ajax-qpp1" class="alert alert-info hidden">
               <h3><small>Your result </small><br>
-                POE for non-employment income <small>for example, pension income, retiring allowances, RRSP and CPP/QPP</small></h3>
-              <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/learncpp.html#ajax-quebec"></div>
+                You must deduct QPP and CPP</small></h3>
+              <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/learncpp.html#ajax-quebec2"></div>
+            </div>
+	 
+       <div id="ajax-qpp2" class="alert alert-info hidden">
+              <h3><small>Your result </small><br>
+                You must deduct QPP</small></h3>
+             <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/learncpp.html#ajax-quebec1"></div>
             </div>
 
 </div>
