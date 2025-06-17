@@ -235,7 +235,7 @@ details {
  379: "Section 4 - Contract or agreement information",  
  347: "Section 4 - Contract or agreement information", 
  348: "Section 4 - Contract or agreement information", 
- 380: "Section 4 - Contract or agreement information", 
+
  382: "Section 4 - Contract or agreement information", 
  423: "Section 4 - Contract or agreement information", 
  349: "Section 4 - Contract or agreement information", 
@@ -685,17 +685,12 @@ const customScoringRules = {
        default: return 0;  // Neutral
     }
   },
-  380: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1; // Indicator of contract of service
-		    case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
-    }
-  },
+
     382: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
       case "worker": return -1; // Indicator of contract for services
+     case "payer and worker": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
