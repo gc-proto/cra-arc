@@ -292,15 +292,14 @@
                           <div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
                             <div class="wb-fieldflow-header">
                               <div class="brdr-tp">
-                                <p class="gc-font-2019 mrgn-tp-md">Where the employee is a resident of Canada, you need to consider how the employee reports for work.</p>
+                                <p class="gc-font-2019 mrgn-tp-md">Where your employee is a resident of Canada, you need to consider if your employee is receiving CPP/QPP disability pension.</p>
                               </div>
-                              <p class="wb-fieldflow-label">Does the employee report for work physically at an establishment of the employer?</p>
-                              <p>There is no minimum amount of time the employee has to report to that place.</p>
+                              <p class="wb-fieldflow-label">Is your employee considered to be disabled under the CPP or the QPP?</p>
+                             
                             </div>
                             <ul>
-                              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-1", "live": true}'>Yes - Reports physically (in-person) to only 1 establishment</li>
-                              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-3yesb", "live": true}'>Yes - Reports physically (in-person) to more than 1 establishment</li>
-                           <li>No - Does not report physically
+                              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#disable", "live": true}'>Yes </li>
+                                 <li>No
 
                                 <div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
                                   <div class="wb-fieldflow-header">
@@ -366,8 +365,8 @@
 	                                  </div>
 		                      
                       <ul>
-                          <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-qpp1", "live": true}'>Yes</li>                
-                        <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-qpp2", "live": true}'>No</li>
+                          <li data-wb-fieldflow='{"action": "toggle", "toggle": "#qpp1", "live": true}'>Yes</li>                
+                        <li data-wb-fieldflow='{"action": "toggle", "toggle": "#qpp2", "live": true}'>No</li>
                       </ul>
                     </div>
 
@@ -379,17 +378,24 @@
 
  <div id="results" class="mrgn-tp-lg" aria-live="polite">
 
-    <div id="ajax-qpp1" class="alert alert-info hidden">
+    <div id="qpp1" class="alert alert-info hidden">
               <h3><small>Your result </small><br>
                 You must deduct QPP and CPP</small></h3>
               <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/learncpp.html#ajax-quebec2"></div>
             </div>
 	 
-       <div id="ajax-qpp2" class="alert alert-info hidden">
+       <div id="qpp2" class="alert alert-info hidden">
               <h3><small>Your result </small><br>
                 You must deduct QPP</small></h3>
              <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/learncpp.html#ajax-quebec1"></div>
             </div>
+	 
+  <div id="disable" class="alert alert-info hidden">
+              <h3><small>Your result </small><br>
+                You must deduct QPP</small></h3>
+             <div data-ajax-replace="ajax-disabled"></div>
+            </div>
+
 
 </div>
 	
