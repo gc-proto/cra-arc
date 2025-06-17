@@ -314,8 +314,9 @@
                                   </div>
                                   <ul>
 				  <li data-wb-fieldflow='{"action": "toggle", "toggle": "#18", "live": true}'>Under 18 years of age</li>
-				 <li data-wb-fieldflow='{"action": "toggle", "toggle": "#70", "live": true}'>70 years of age or older</li>	  
-                                    <li>No
+				 <li data-wb-fieldflow='{"action": "toggle", "toggle": "#70", "live": true}'>70 years of age or older</li>		  
+				 <li data-wb-fieldflow='{"action": "toggle", "toggle": "#norm", "live": true}'>Between 18 and 60 years old</li>	  
+                                  <li>At least 60 but under 70 years of age
 
                                  <div class="wb-fieldflow-sub" data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
                                   <div class="wb-fieldflow-header">
@@ -336,21 +337,6 @@
                                   </ul>
                                 </div>
                              </li></ul></div></li>
-                        <li>Employee is not a resident of Canada for the full year
-                          <div class="wb-fieldflow-sub"  data-wb-fieldflow='{"renderas":"radio", "gcChckbxrdio":true, "isoptional": true}'>
-                            <div class="wb-fieldflow-header">
-                              <div class="brdr-tp gc-font-2019">
-                                <div data-ajax-replace="#ajax-nonres"></div>
-                              </div>
-                              <p class="wb-fieldflow-label">What is the situation of the employee?</p>
-                            </div>
-                            <ul>
-                              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-3nota", "live": true}'>Non-resident, including a commuter</li>
-                              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-3notb", "live": true}'>Part-year resident </li>
-                              <li data-wb-fieldflow='{"action": "toggle", "toggle": "#ajax-3notc", "live": true}'>Deemed resident or sojourner </li>
-                            </ul>
-                          </div>
-                        </li>
                        
                       </ul>
                     </div>
@@ -410,6 +396,19 @@
                 You do not deduct CPP</small></h3>
              <div data-ajax-replace="#ajax-18"></div>
             </div>
+	 
+ <div id="70" class="alert alert-info hidden">
+              <h3><small>Your result </small><br>
+                You do not deduct CPP</small></h3>
+             <div data-ajax-replace="#ajax-18"></div>
+            </div>
+
+ <div id="norm" class="alert alert-info hidden">
+              <h3><small>Your result </small><br>
+                You must deduct CPP</small></h3>
+             <div data-ajax-replace="#ajax-norm"></div>
+            </div>
+
 </div>
 	
 </div>
@@ -419,6 +418,12 @@
         <div id="static">
       <h2 class="mrgn-tp-sm">Full-text to determine the CPP</h2>
          <p>The following is the <strong>alternate format</strong> to the above questions or results, and provides the same information in full-text. </p>
+
+<h2 id="h_2">Employee at least 18 but under 60 years of age</h2>
+<div id="ajax-norm"> 
+<p>You must start deducting CPP from the first pay dated in the month after the employee turns 18. CPP contributions must continue until the employee turns 65 years of age, begins to receive a CPP/QPP retirement pension and files an election to stop CPP contributions.</p>
+</div>
+
 
 <h2 id="h_1">Employee who turns 18</h2>
  <div id="ajax-18"> 
@@ -430,18 +435,21 @@
 </details>
  </div>
 
-<div id="ajax-70"> 
 <h2 id="h_2">Employee who turns 70</h2>
+<div id="ajax-70"> 
 <p>You must deduct CPP contributions up to and including the last pay dated in the month in which the employee turns 70.</p>
+<details><summary>Example</summary>
+<p>Kamal turned 70 years of age on February 14. As a result, no pay period with a pay date later than February should have CPP contributions withheld. </p>
+</details>
 </div>
 
-<div id="ajax-between"> 
 <h2 id="h_3">Employee between the age of 65 and 70 who submit Form CPT30 </h2>
+<div id="ajax-between"> 
 </div>
 
 <h2 id="h_4">Employee is considered to be disabled under the CPP</h2>
-<p>An employee who is considered to be disabled under the CPP does not have to contribute to the CPP.</p>
 <div id="ajax-disabled"> 
+<p>An employee who is considered to be disabled under the CPP does not have to contribute to the CPP.</p>
 <h3>When to stop deducting if your employee is now considered disabled</h3>
 <p>You must deduct CPP contributions up to and including the last pay dated in the month in which the employee is considered to be disabled according to Service Canada.</p>
 <h4>How to calculate the prorating</h4>
