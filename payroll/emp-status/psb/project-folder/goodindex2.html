@@ -333,6 +333,12 @@ details {
      219: "Subsection 5c - Financial information",  
      233: "Subsection 5c - Financial information",  
     234: "Subsection 5c - Financial information",  
+	    495: "Subsection 5c - Financial information", 
+	    500: "Subsection 5c - Financial information", 
+	    478: "Subsection 5c - Financial information", 
+	    486: "Subsection 5c - Financial information", 
+	    487: "Subsection 5c - Financial information", 
+	   
 
  391: "Section 5 - Working relationship information - Contract formed in the province of Quebec",      
    
@@ -1208,7 +1214,41 @@ const customScoringRules = {
        default: return 0;  // Neutral
     }
   },
-  
+	
+  495: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+	
+   478: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "worker's corporation": return -1; // Indicator of contract for services	
+       default: return 0;  // Neutral
+    }
+  },
+
+ 486: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral	
+       default: return 0;  // Neutral
+    }
+  },	
+
+ 487: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral	
+       default: return 0;  // Neutral
+    }
+  },	
     431: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
