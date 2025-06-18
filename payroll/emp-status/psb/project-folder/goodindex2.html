@@ -284,6 +284,7 @@ details {
      466: "Subsection 5a - Control - Location of services (5 of 8)",     
      296: "Subsection 5a - Control - Location of services (5 of 8)",    
      426: "Subsection 5a - Control - Location of services (5 of 8)",  
+    480: "Subsection 5a - Control - Location of services (5 of 8)",  	   
 
      274: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
        275: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
@@ -900,10 +901,9 @@ const customScoringRules = {
    195: answer => {
     switch (answer.toLowerCase()) {
      case "payer's location": return 1; // Indicator of contract of service
-     case "worker's location": return 0; // Neutral
+     case "worker's location": return -1; // Indicator of contract for services	
      case "mobile locations": return 0; // Neutral
-     case "client's location": return -1; // Indicator of contract for services	
-     case "other options for transportation workers": return 0; // Neutral	    
+     case "client's location": return 0; // Neutral
        default: return 0;  // Neutral
     }
   },
@@ -929,7 +929,14 @@ const customScoringRules = {
     }
   },
 
-
+   480: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+     case "worker": return -1; // Indicator of contract for services
+    case "payer and worker": return 0; // Neutral	    
+       default: return 0;  // Neutral
+    }
+  },
 	
   274: answer => {
     switch (answer.toLowerCase()) {
