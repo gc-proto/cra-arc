@@ -1355,7 +1355,7 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "hourly": return 1; // Indicator of contract of service
       case "monthly": return 1; // Indicator of contract of service
-      case "percentage of job completion/piecework": return -1; // Indicator of contract for services
+      case "percentage of job completion/piecework": return 0; // Neutral
       case "other": return 0; // Neutral	    
       default: return 0;  // Neutral
     }
@@ -1478,8 +1478,8 @@ const customScoringRules = {
   },
   422: answer => {
     switch (answer.toLowerCase()) {
-      case "yes - with or without cause": return 1; // Indicator of contract of service
-     case "no": return -1; // Indicator of contract for services
+      case "yes - with or without cause": return 0; // Neutral	
+     case "no": return 0; // Neutral	
      case "yes - with cause": return 0; // Neutral	 
       default: return 0;  // Neutral
     }
