@@ -611,8 +611,8 @@ for (const [section, questions] of Object.entries(sectioned)) {
   if (!showWorker && !showPayer) continue;
 
   let theadHTML = '<thead><tr><th>Question</th>';
-  if (showWorker) theadHTML += '<th>Worker</th>';
-  if (showPayer) theadHTML += '<th>Payer</th>';
+ if (showWorker) theadHTML += '<th class="worker-col">Worker</th>';
+if (showPayer) theadHTML += '<th class="payer-col">Payer</th>';
   theadHTML += '</tr></thead>';
   table.innerHTML = theadHTML;
 
@@ -639,7 +639,7 @@ const workerIcon = isExcluded ? '' : getScoreIcon(
   ),
   data.rawWorker
 );
-rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
+rowHTML += `<td class="worker-col" style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
 <div class="td-wrapper">
   <div style="margin-bottom: 1.5em;">${worker}</div>
   ${workerIcon}
@@ -657,7 +657,7 @@ if (showPayer) {
   data.rawPayer
 );
 
-rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
+rowHTML += `<td class="payer-col" style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
  <div class="td-wrapper">
   <div style="margin-bottom: 1.5em;">${payer}</div>
   ${payerIcon}
@@ -1919,14 +1919,15 @@ function toggleColumnsVisibility(workerEntries, payerEntries) {
   const workerVisible = workerEntries && workerEntries.length > 0;
   const payerVisible = payerEntries && payerEntries.length > 0;
 
-  document.querySelectorAll('td.worker-col, th.worker-col').forEach(cell => {
+  document.querySelectorAll('.worker-col').forEach(cell => {
     cell.style.display = workerVisible ? '' : 'none';
   });
 
-  document.querySelectorAll('td.payer-col, th.payer-col').forEach(cell => {
+  document.querySelectorAll('.payer-col').forEach(cell => {
     cell.style.display = payerVisible ? '' : 'none';
   });
 }
+
 
 	
 </script>
