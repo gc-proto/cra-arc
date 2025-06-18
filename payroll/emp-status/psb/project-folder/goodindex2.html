@@ -193,15 +193,15 @@ details {
     334: "Section 2 - Information about the business",
     316: "Section 2 - Information about the business",
    
- 339: "Worker - Section 2a - Employee information",
-    170: "Worker - Section 2a - Employee information",
- 356: "Worker - Section 2a - Employee information",   
-  464: "Worker - Section 2a - Employee information",      
+ 339: "Section 2a - Additional information about the business of the worker",
+    170: "Section 2a - Additional information about the business of the worker",
+ 356: "Section 2a - Additional information about the business of the worker",   
+  464: "Section 2a - Additional information about the business of the worker",      
 
-   342: "Worker - Section 2b - Specified shareholder information",     
- 245: "Worker - Section 2b - Specified shareholder information",   
- 352: "Worker - Section 2b - Specified shareholder information",  
-  465: "Worker - Section 2b - Specified shareholder information",     
+   342: "Section 2a - Additional information about the business of the worker",     
+ 245: "Section 2a - Additional information about the business of the worker",   
+ 352: "Section 2a - Additional information about the business of the worker",  
+  465: "Section 2a - Additional information about the business of the worker",     
  
        444: "Payer - Section 3 - Payee (worker) information",   
        445: "Payer - Section 3 - Payee (worker) information",   
@@ -381,8 +381,7 @@ details {
 const excludedSections = new Set([
     "Section 1 - general information",
   "Section 2 - information about the business",	
-  "worker - section 2a - employee information",
-  "worker - section 2b - specified shareholder information",
+  "Section 2a - Additional information about the business of the worker",
   "payer - section 3 - payee (worker) information",
   "worker - section 3 - payers (clients) information",
   "section 5 - working relationship information",  	
@@ -499,8 +498,7 @@ function formatAnswer(answer) {
 	 const skipMismatchHighlighting = [
   "Section 1 - General information",
   "Section 2 - Information about the business",
-  "Worker - Section 2a - Employee information",
-  "Worker - Section 2b - Specified shareholder information",
+  "Section 2a - Additional information about the business of the worker",
   "Payer - Section 3 - Payee (worker) information",
   "Worker - Section 3 - Payers (clients) information",
   "Section 6 - Certification"
@@ -519,8 +517,7 @@ for (const [section, questions] of Object.entries(sectioned)) {
   const showWorker = !["Payer - Section 3 - Payee (worker) information"].includes(section);
   const showPayer = ![
     "Section 1 - General information",
-    "Worker - Section 2a - Employee information",
-    "Worker - Section 2b - Specified shareholder information",
+    "Section 2a - Additional information about the business of the worker",
     "Worker - Section 3 - Payers (clients) information"
   ].includes(section);
 
@@ -591,8 +588,7 @@ rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; positi
   if (rowCount > 0) {
     const shouldCollapse = [
       "Section 2 - Information about the business",
-      "Worker - Section 2a - Employee information",
-      "Worker - Section 2b - Specified shareholder information",
+      "Section 2a - Additional information about the business of the worker",
       "Payer - Section 3 - Payee (worker) information",
       "Worker - Section 3 - Payers (clients) information",
       "Section 6 - Certification"
