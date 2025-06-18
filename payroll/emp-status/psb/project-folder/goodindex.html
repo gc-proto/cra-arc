@@ -454,7 +454,9 @@ document.getElementById('jsonWorkerInput').addEventListener('change', function (
  reader.onload = function (e) {
    try {
      workerData = JSON.parse(e.target.result);
-     tryRenderBoth();
+
+	   
+	   tryRenderBoth();
    } catch (err) {
      alert("Invalid worker JSON file");
    }
@@ -476,19 +478,74 @@ document.getElementById('jsonPayerInput').addEventListener('change', function (e
  };
  reader.readAsText(file);
 });
+	
 function tryRenderBoth() {
   if (workerData && payerData) {
+    const allAnswers341 = [];
+
+    // Gather all question 341 answers from worker and payer data
+    [workerData, payerData].forEach(dataSet => {
+      dataSet.forEach(entry => {
+        entry.answers.forEach(ans => {
+          if (ans.questionId === 341 && ans.answer) {
+            allAnswers341.push(ans.answer.trim());
+          }
+        });
+      });
+    });
+
+    const uniqueAnswers = [...new Set(allAnswers341)];
     const container = document.getElementById('content');
     container.innerHTML = '';
-    container.appendChild(renderJSON(workerData, payerData));
-    
-    // Add this line to render the probability score
 
-	  
-	  
-	  renderProbabilityScore(workerData, payerData);
+    // CASE 1: Only one unique answer found — render normally
+    if (uniqueAnswers.length === 1) {
+      container.appendChild(renderJSON(workerData, payerData));
+      renderProbabilityScore(workerData, payerData);
+    }
+
+    // CASE 2: Two identical values — treat as single unique
+    else if (uniqueAnswers.length === 2 && uniqueAnswers[0] === uniqueAnswers[1]) {
+      container.appendChild(renderJSON(workerData, payerData));
+      renderProbabilityScore(workerData, payerData);
+    }
+
+    // CASE 3: Multiple different answers — prompt user to select one
+    else if (uniqueAnswers.length >= 2) {
+      const dropdown = document.createElement('select');
+      dropdown.id = 'case341Select';
+      dropdown.innerHTML = `<option disabled selected>Select a Case Number to view</option>` +
+        uniqueAnswers.map(val => `<option value="${val}">${val}</option>`).join('');
+
+      dropdown.addEventListener('change', () => {
+        const selectedValue = dropdown.value;
+
+        const filterBy341 = (dataSet) => dataSet.map(entry => {
+          const hasMatching341 = entry.answers.some(a => a.questionId === 341 && a.answer === selectedValue);
+          if (!hasMatching341) return null;
+          return {
+            ...entry,
+            answers: entry.answers
+          };
+        }).filter(Boolean);
+
+        const filteredWorker = filterBy341(workerData);
+        const filteredPayer = filterBy341(payerData);
+
+        container.innerHTML = '';
+        container.appendChild(renderJSON(filteredWorker, filteredPayer));
+        renderProbabilityScore(filteredWorker, filteredPayer);
+      });
+
+      const wrapper = document.createElement('div');
+      wrapper.style.marginBottom = '1em';
+      wrapper.innerHTML = `<label for="case341Select"><strong>Select Case Number (#341):</strong></label><br>`;
+      wrapper.appendChild(dropdown);
+      container.appendChild(wrapper);
+    }
   }
 }
+
 
 
  function renderJSON(workerData, payerData) {
