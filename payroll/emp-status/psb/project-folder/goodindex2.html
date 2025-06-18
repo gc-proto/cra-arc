@@ -251,6 +251,8 @@ details {
  424: "Subsection 5a - Control - Duties (1 of 8)",  	   
  258: "Subsection 5a - Control - Duties (1 of 8)",  
  257: "Subsection 5a - Control - Duties (1 of 8)",   
+ 492: "Subsection 5a - Control - Duties (1 of 8)",  
+ 479: "Subsection 5a - Control - Duties (1 of 8)",  	   
 
      259: "Subsection 5a - Control - Work schedule (2 of 8)", 
    261: "Subsection 5a - Control - Work schedule (2 of 8)",   
@@ -722,6 +724,23 @@ const customScoringRules = {
        default: return 0;  // Neutral
     }
   },
+
+  492: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+  479: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+    case "worker's corporation": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },	
+	
 	259: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
