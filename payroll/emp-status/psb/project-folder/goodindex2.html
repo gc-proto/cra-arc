@@ -289,6 +289,7 @@ details {
        276: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
        388: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
      429: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+ 481: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 	   
 
       278: "Subsection 5a - Control - How the work is done (7 of 8)", 
           280: "Subsection 5a - Control - How the work is done (7 of 8)", 
@@ -913,8 +914,8 @@ const customScoringRules = {
   },
   275: answer => {
     switch (answer.toLowerCase()) {
-      case "yes - with or without cause": return 1; // Indicator of contract of service
-     case "no": return -1; // Indicator of contract for services
+      case "yes - with or without cause": return 0; // Neutral
+     case "no": return -0; // Neutral
      case "yes - with cause": return 0; // Neutral	 
       default: return 0;  // Neutral
     }
@@ -933,13 +934,22 @@ const customScoringRules = {
        default: return 0;  // Neutral
     }
   },
+	
   429: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
-		    case "no": return -1; // Indicator of contract for services
+    case "no": return -1; // Indicator of contract for services
        default: return 0;  // Neutral
     }
   },
+	
+  481: answer => {
+    switch (answer.toLowerCase()) {
+      case "no": return 1; // Indicator of contract of service
+    case "yes": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },	
   
   278: answer => {
     switch (answer.toLowerCase()) {
