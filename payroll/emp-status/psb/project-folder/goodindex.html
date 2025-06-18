@@ -475,7 +475,7 @@ function tryRenderBoth() {
   if (workerData && payerData) {
     const allAnswers341 = [];
 
-    // Gather all question 341 answers from worker and payer data
+    // Collect all Case #341 answers
     [workerData, payerData].forEach(dataSet => {
       dataSet.forEach(entry => {
         entry.answers.forEach(ans => {
@@ -490,20 +490,26 @@ function tryRenderBoth() {
     const container = document.getElementById('content');
     container.innerHTML = '';
 
-    // CASE 1: Only one unique answer found — render normally
-    if (uniqueAnswers.length === 1) {
-      container.appendChild(renderJSON(workerData, payerData));
-      renderProbabilityScore(workerData, payerData);
+    // Utility: Filter data for a given case
+    const filterBy341 = (dataSet, value) =>
+      dataSet.filter(entry =>
+        entry.answers.some(a => a.questionId === 341 && a.answer === value)
+      );
+
+    // CASE 1 and 2: One case OR two identical cases → render both, but check if only one side has data
+    if (uniqueAnswers.length === 1 || (uniqueAnswers.length === 2 && uniqueAnswers[0] === uniqueAnswers[1])) {
+      const filteredWorker = filterBy341(workerData, uniqueAnswers[0]);
+      const filteredPayer = filterBy341(payerData, uniqueAnswers[0]);
+
+      container.appendChild(renderJSON(filteredWorker, filteredPayer));
+      renderProbabilityScore(filteredWorker, filteredPayer);
+
+      // Hide empty columns
+      setTimeout(() => toggleColumnsVisibility(filteredWorker, filteredPayer), 100);
     }
 
-    // CASE 2: Two identical values — treat as single unique
-    else if (uniqueAnswers.length === 2 && uniqueAnswers[0] === uniqueAnswers[1]) {
-      container.appendChild(renderJSON(workerData, payerData));
-      renderProbabilityScore(workerData, payerData);
-    }
-
-    // CASE 3: Multiple different answers — prompt user to select one
-    else if (uniqueAnswers.length >= 2) {
+    // CASE 3: Multiple distinct cases → dropdown required
+    else {
       const dropdown = document.createElement('select');
       dropdown.id = 'case341Select';
       dropdown.innerHTML = `<option disabled selected>Select a Case Number to view</option>` +
@@ -511,22 +517,14 @@ function tryRenderBoth() {
 
       dropdown.addEventListener('change', () => {
         const selectedValue = dropdown.value;
-
-        const filterBy341 = (dataSet) => dataSet.map(entry => {
-          const hasMatching341 = entry.answers.some(a => a.questionId === 341 && a.answer === selectedValue);
-          if (!hasMatching341) return null;
-          return {
-            ...entry,
-            answers: entry.answers
-          };
-        }).filter(Boolean);
-
-        const filteredWorker = filterBy341(workerData);
-        const filteredPayer = filterBy341(payerData);
+        const filteredWorker = filterBy341(workerData, selectedValue);
+        const filteredPayer = filterBy341(payerData, selectedValue);
 
         container.innerHTML = '';
         container.appendChild(renderJSON(filteredWorker, filteredPayer));
         renderProbabilityScore(filteredWorker, filteredPayer);
+
+        setTimeout(() => toggleColumnsVisibility(filteredWorker, filteredPayer), 100);
       });
 
       const wrapper = document.createElement('div');
@@ -537,7 +535,6 @@ function tryRenderBoth() {
     }
   }
 }
-
 
 
  function renderJSON(workerData, payerData) {
@@ -1917,6 +1914,21 @@ ${getIndicatorIcon(0)}     Neutral: ${payer.neutrals[section] || 0} `
     }
   }
 }
+
+function toggleColumnsVisibility(workerEntries, payerEntries) {
+  const workerVisible = workerEntries && workerEntries.length > 0;
+  const payerVisible = payerEntries && payerEntries.length > 0;
+
+  document.querySelectorAll('td.worker-col, th.worker-col').forEach(cell => {
+    cell.style.display = workerVisible ? '' : 'none';
+  });
+
+  document.querySelectorAll('td.payer-col, th.payer-col').forEach(cell => {
+    cell.style.display = payerVisible ? '' : 'none';
+  });
+}
+
+	
 </script>
 
 <script>
