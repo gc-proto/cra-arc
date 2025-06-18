@@ -314,6 +314,13 @@ details {
  284: "Subsection 5b - Ownership of tools or equipment",  
  285: "Subsection 5b - Ownership of tools or equipment", 
  286: "Subsection 5b - Ownership of tools or equipment",  
+ 471: "Subsection 5b - Ownership of tools or equipment",  
+ 473: "Subsection 5b - Ownership of tools or equipment",  
+   474: "Subsection 5b - Ownership of tools or equipment",  
+    475: "Subsection 5b - Ownership of tools or equipment",  
+    476: "Subsection 5b - Ownership of tools or equipment",  
+    477: "Subsection 5b - Ownership of tools or equipment",  
+	
 
      430: "Subsection 5c - Financial information",  
      211: "Subsection 5c - Financial information",  
@@ -1092,6 +1099,57 @@ const customScoringRules = {
     }
   },
 
+  471: answer => {
+    switch (answer.toLowerCase()) {
+      case "owned by the worker": return 0; // Neutral
+		    
+       default: return 0;  // Neutral
+    }
+  },
+
+ 473: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },	
+
+ 474: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },
+
+ 475: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },
+
+  476: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },	
+
+ 477: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },	
 	
   430: answer => {
     switch (answer.toLowerCase()) {
