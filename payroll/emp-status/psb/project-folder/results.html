@@ -1,53 +1,1886 @@
 
 
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Section-Based Scores</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        caption { font-size: 1.5em; margin-bottom: 10px; }
-    </style>
-</head>
-<body>
-    <table>
-        <caption>Section-Based Scores (Yes/Total)</caption>
-        <thead>
-            <tr>
-                <th>Section</th>
-                <th>Worker</th>
-                <th>Payer</th>
-            </tr>
-        </thead>
-        <tbody>
-<tr><td>Payer - Section 3 - Payee (worker) information</td><td>0/8</td><td>2/8</td></tr>
-<tr><td>Section 1: General information</td><td>0/3</td><td>0/3</td></tr>
-<tr><td>Section 2: Information about the business</td><td>0/22</td><td>0/22</td></tr>
-<tr><td>Section 4 - Contract or agreement information</td><td>3/11</td><td>3/11</td></tr>
-<tr><td>Section 5 - Working relationship information</td><td>0/1</td><td>0/1</td></tr>
-<tr><td>Section 6 - Certification</td><td>0/6</td><td>0/6</td></tr>
-<tr><td>Subsection 5a - Carrying out the work</td><td>3/8</td><td>3/8</td></tr>
-<tr><td>Subsection 5a - Control - Degree of autonomy (3 of 8)</td><td>0/4</td><td>0/4</td></tr>
-<tr><td>Subsection 5a - Control - Duties (1 of 8)</td><td>0/5</td><td>0/5</td></tr>
-<tr><td>Subsection 5a - Control - How the work is done (7 of 8)</td><td>0/6</td><td>0/6</td></tr>
-<tr><td>Subsection 5a - Control - Location of services (5 of 8)</td><td>0/3</td><td>0/3</td></tr>
-<tr><td>Subsection 5a - Control - Remuneration (4 of 8)</td><td>0/13</td><td>0/13</td></tr>
-<tr><td>Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)</td><td>0/6</td><td>0/6</td></tr>
-<tr><td>Subsection 5a - Control - Training (8 of 8)</td><td>0/4</td><td>0/4</td></tr>
-<tr><td>Subsection 5a - Control - Work schedule (2 of 8)</td><td>0/6</td><td>0/6</td></tr>
-<tr><td>Subsection 5b - Ownership of tools or equipment</td><td>0/6</td><td>0/6</td></tr>
-<tr><td>Subsection 5b - Remuneration</td><td>4/12</td><td>4/12</td></tr>
-<tr><td>Subsection 5c - Financial information</td><td>0/10</td><td>0/10</td></tr>
-<tr><td>Subsection 5c - Relationship of subordination</td><td>10/14</td><td>10/14</td></tr>
-<tr><td>Worker - Section 2a - Employee information</td><td>2/3</td><td>0/3</td></tr>
-<tr><td>Worker - Section 2b - Specified shareholder information</td><td>3/3</td><td>0/3</td></tr>
-<tr><td>Worker - Section 3 - Payers (clients) information</td><td>0/0</td><td>0/0</td></tr>
 
-        </tbody>
-    </table>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Worker vs. payer questionnaire comparison - PSB Determination</title>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="noindex, follow" name="robots"/>
+<!-- WET Assets -->
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/soyutils.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/cdts/compiled/wet-en.js"></script>
+<link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet"/>
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
+<link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet"/>
+<!-- Styles -->
+<style>
+   body {
+     font-family: Arial, sans-serif;
+     padding: 20px;
+   }
+   table {
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 1em;
+   }
+   th, td {
+     border: 1px solid #ccc;
+     padding: 8px;
+     vertical-align: top;
+   }
+   th {
+     background-color: #f2f2f2;
+   }
+    pre {
+     background: #f4f4f4;
+     padding: 10px;
+     border-radius: 5px;
+   }
+   .probability-bar {
+     margin-top: 0.2em;
+     background: #eee;
+     border-radius: 5px;
+     height: 30px;
+     position: relative;
+     width: 100%;
+   }
+   .probability-fill {
+     height: 100%;
+     border-radius: 5px;
+     text-align: center;
+     line-height: 30px;
+     color: white;
+     font-weight: Bold;
+   }
+
+details summary {
+  font-weight: bold;
+}
+
+details {
+  margin-bottom: 1em;
+  padding: 0.5em 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.td-wrapper {
+  position: relative;
+  min-height: 3em;
+  padding-bottom: 1.5em;
+  height: 100%;
+}
+
+.score-icon {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
+.score-pill {
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  border-radius: 999px;
+  margin-right: 0.5em;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+}
+.cos-pill { background-color: green; }
+.cfs-pill { background-color: #004085; }
+.neutral-pill { background-color: gray; }
+
+.probability-bar {
+  display: flex;
+  height: 30px;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1em;
+}
+.probability-bar div {
+  height: 100%;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  font-size: 0.8em;
+}
+
+	
+</style>
+<script type="text/javascript">
+   document.write(wet.builder.refTop({}));
+</script>
+</head>
+<body class="experimental" typeof="WebPage" vocab="http://schema.org/">
+<div id="def-top"></div>
+<main class="container" property="mainContentOfPage" role="main">
+<div class="gc-font-2019">
+<h1>Worker vs. payer questionnaire comparison<br/>
+<small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small>
+</h1>
+<details open><summary>Step-by-step instructions</summary>
+<div class="row">
+<div class="col-md-8">
+<p>To use the comparison tool:</p>
+ <ol class="lst-stps ld-zr stps-strpd">
+<li>Upload both worker and payer JSON files.</li>
+<li>View side-by-side results.<br>
+<small> To help you quickly spot mismatches between the 2 responses, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.</small></li>
+<li>View the total and sections indicators.</li>
+<li>Begin your full analysis using each factors. <br>
+<small>Each PSBCR case is unique and requires a thorough review of the facts.</small></li>
+</ol>
+</div>
+<div class="col-md-4">
+<h3>Upload the response files (JSON)</h3>
+<ul class="mrgn-tp-lg list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col mrgn-tp-md">
+<label>Worker's response:</label>
+<input accept=".json" id="jsonWorkerInput" type="file"/>
+
+</li>
+<li class="cnjnctn-col mrgn-tp-md">
+<label>Payer's response:</label>
+<input accept=".json" id="jsonPayerInput" type="file"/>
+</li>
+</ul>
+</div>
+</div></details>
+
+	
+<div class="row">
+<div class="col-md-8">
+<div id="content"></div>
+</div>
+<div class="col-md-4">
+<div id="probability"></div>
+</div>
+</div>
+<script>
+   const sectionMap = {
+    340: "Section 1 - General information", 
+   341: "Section 1 - General information",
+   335: "Section 1 - General information",
+    161: "Section 1 - General information",
+   240: "Section 1 - General information",
+    241: "Section 1 - General information",
+   243: "Section 1 - General information",
+
+    441:  "Section 2 - Business information", 
+   443:  "Section 2 - Business information",  
+  
+   315: "Section 2 - Business information",
+    318: "Section 2 - Business information",
+    319: "Section 2 - Business information",
+    317: "Section 2 - Business information",
+    320: "Section 2 - Business information", 
+    321: "Section 2 - Business information",
+    322: "Section 2 - Business information",
+     323: "Section 2 - Business information",
+    324: "Section 2 - Business information",
+    325: "Section 2 - Business information",
+    326: "Section 2 - Business information", 
+    327: "Section 2 - Business information",
+    328: "Section 2 - Business information",
+    329: "Section 2 - Business information",
+    330: "Section 2 - Business information",
+    331: "Section 2 - Business information", 
+    332: "Section 2 - Business information",
+    333: "Section 2 - Business information",
+    334: "Section 2 - Business information",
+    316: "Section 2 - Business information",
+   
+ 339: "Section 2a - Additional business information of the worker",
+    170: "Section 2a - Additional business information of the worker",
+ 356: "Section 2a - Additional business information of the worker",   
+  464: "Section 2a - Additional business information of the worker",      
+
+   342: "Section 2a - Additional business information of the worker",     
+ 245: "Section 2a - Additional business information of the worker",   
+ 352: "Section 2a - Additional business information of the worker",  
+  465: "Section 2a - Additional business information of the worker",     
+ 
+       444: "Section 3 - Payee (worker) information",   
+       445: "Section 3 - Payee (worker) information",   
+       446: "Section 3 - Payee (worker) information",   
+       447: "Section 3 - Payee (worker) information",   
+       448: "Section 3 - Payee (worker) information",   
+       449: "Section 3 - Payee (worker) information",   
+       450: "Section 3 - Payee (worker) information",   
+       451: "Section 3 - Payee (worker) information",   
+       452: "Section 3 - Payee (worker) information",   
+
+     358: "Section 3 - Payers (clients) information",  
+     314: "Section 3 - Payers (clients) information",   
+          31401: "Section 3 - Payers (clients) information",   
+          31407: "Section 3 - Payers (clients) information",   
+          31402: "Section 3 - Payers (clients) information",
+          31403: "Section 3 - Payers (clients) information",
+          31404: "Section 3 - Payers (clients) information", 
+          31405: "Section 3 - Payers (clients) information", 
+          31410: "Section 3 - Payers (clients) information", 
+          31411: "Section 3 - Payers (clients) information", 
+          31412: "Section 3 - Payers (clients) information", 
+          31406: "Section 3 - Payers (clients) information", 
+
+
+ 350: "Section 4 - Contract or agreement information",    
+ 236: "Section 4 - Contract or agreement information",    
+ 207: "Section 4 - Contract or agreement information",    
+ 206: "Section 4 - Contract or agreement information",   
+ 351: "Section 4 - Contract or agreement information",   
+ 379: "Section 4 - Contract or agreement information",  
+ 347: "Section 4 - Contract or agreement information", 
+ 348: "Section 4 - Contract or agreement information", 
+
+ 382: "Section 4 - Contract or agreement information", 
+ 423: "Section 4 - Contract or agreement information", 
+ 349: "Section 4 - Contract or agreement information", 
+
+
+189: "Section 5 - Working relationship information",     
+389: "Section 5 - Working relationship information",         
+    
+ 390: "Section 5 - Working relationship information - Contract formed in a province or territory other than Quebec",  
+   
+ 192: "Subsection 5a - Control - Duties (1 of 8)", 
+ 383: "Subsection 5a - Control - Duties (1 of 8)",
+ 424: "Subsection 5a - Control - Duties (1 of 8)",  	   
+ 258: "Subsection 5a - Control - Duties (1 of 8)",  
+ 257: "Subsection 5a - Control - Duties (1 of 8)",   
+ 492: "Subsection 5a - Control - Duties (1 of 8)",  
+ 479: "Subsection 5a - Control - Duties (1 of 8)",  	   
+
+     259: "Subsection 5a - Control - Work schedule (2 of 8)", 
+   261: "Subsection 5a - Control - Work schedule (2 of 8)",   
+     262: "Subsection 5a - Control - Work schedule (2 of 8)",   
+      263: "Subsection 5a - Control - Work schedule (2 of 8)",   
+      264: "Subsection 5a - Control - Work schedule (2 of 8)",   
+      265: "Subsection 5a - Control - Work schedule (2 of 8)",   
+
+     191: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+     267: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+     268: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+     312: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+    
+    297: "Subsection 5a - Control - Remuneration (4 of 8)",  
+    298: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     299: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     271: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     300: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     385: "Subsection 5a - Control - Remuneration (4 of 8)",  
+     301: "Subsection 5a - Control - Remuneration (4 of 8)",  
+    270: "Subsection 5a - Control - Remuneration (4 of 8)",
+     302: "Subsection 5a - Control - Remuneration (4 of 8)",
+    303: "Subsection 5a - Control - Remuneration (4 of 8)",
+    304: "Subsection 5a - Control - Remuneration (4 of 8)",
+    306: "Subsection 5a - Control - Remuneration (4 of 8)",
+    386: "Subsection 5a - Control - Remuneration (4 of 8)",
+
+     195: "Subsection 5a - Control - Location of services (5 of 8)",    
+     466: "Subsection 5a - Control - Location of services (5 of 8)",     
+     296: "Subsection 5a - Control - Location of services (5 of 8)",    
+     426: "Subsection 5a - Control - Location of services (5 of 8)",  
+    480: "Subsection 5a - Control - Location of services (5 of 8)",  	   
+
+     274: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       275: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       428: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       276: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       388: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+     429: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+ 481: "Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 	   
+
+      278: "Subsection 5a - Control - How the work is done (7 of 8)", 
+          280: "Subsection 5a - Control - How the work is done (7 of 8)", 
+         309: "Subsection 5a - Control - How the work is done (7 of 8)", 
+          310: "Subsection 5a - Control - How the work is done (7 of 8)", 
+      311: "Subsection 5a - Control - How the work is done (7 of 8)", 
+    459: "Subsection 5a - Control - How the work is done (7 of 8)", 
+   	   484: "Subsection 5a - Control - How the work is done (7 of 8)", 
+	    485: "Subsection 5a - Control - How the work is done (7 of 8)", 
+
+      198: "Subsection 5a - Control - Training (8 of 8)", 
+          281: "Subsection 5a - Control - Training (8 of 8)", 
+          282: "Subsection 5a - Control - Training (8 of 8)", 
+          283: "Subsection 5a - Control - Training (8 of 8)", 
+
+    
+ 290: "Subsection 5b - Ownership of tools or equipment", 
+ 208: "Subsection 5b - Ownership of tools or equipment", 
+ 210: "Subsection 5b - Ownership of tools or equipment",  
+ 284: "Subsection 5b - Ownership of tools or equipment",  
+ 285: "Subsection 5b - Ownership of tools or equipment", 
+ 286: "Subsection 5b - Ownership of tools or equipment",  
+ 471: "Subsection 5b - Ownership of tools or equipment",  
+ 473: "Subsection 5b - Ownership of tools or equipment",  
+   474: "Subsection 5b - Ownership of tools or equipment",  
+    475: "Subsection 5b - Ownership of tools or equipment",  
+    476: "Subsection 5b - Ownership of tools or equipment",  
+    477: "Subsection 5b - Ownership of tools or equipment",  
+	
+
+     430: "Subsection 5c - Financial information",  
+     211: "Subsection 5c - Financial information",  
+     214: "Subsection 5c - Financial information",  
+     216: "Subsection 5c - Financial information",  
+     218: "Subsection 5c - Financial information",  
+     217: "Subsection 5c - Financial information",  
+     215: "Subsection 5c - Financial information",  
+     219: "Subsection 5c - Financial information",  
+     233: "Subsection 5c - Financial information",  
+    234: "Subsection 5c - Financial information",  
+	    495: "Subsection 5c - Financial information", 
+	    500: "Subsection 5c - Financial information", 
+	    478: "Subsection 5c - Financial information", 
+	    486: "Subsection 5c - Financial information", 
+	    487: "Subsection 5c - Financial information", 
+	   
+
+ 391: "Section 5 - Working relationship information - Contract formed in the province of Quebec",      
+   
+    
+   431: "Subsection 5a - Carrying out the work",   
+   397: "Subsection 5a - Carrying out the work", 
+   468: "Subsection 5a - Carrying out the work", 	   
+     398: "Subsection 5a - Carrying out the work", 
+     433: "Subsection 5a - Carrying out the work", 
+     399: "Subsection 5a - Carrying out the work", 
+     432: "Subsection 5a - Carrying out the work", 
+     393: "Subsection 5a - Carrying out the work", 
+     394: "Subsection 5a - Carrying out the work", 
+	   510: "Subsection 5a - Carrying out the work", 
+	     511: "Subsection 5a - Carrying out the work", 
+     
+
+     400: "Subsection 5b - Remuneration",   
+    402: "Subsection 5b - Remuneration", 
+    403: "Subsection 5b - Remuneration", 
+      434: "Subsection 5b - Remuneration", 
+      404: "Subsection 5b - Remuneration", 
+      435: "Subsection 5b - Remuneration", 
+      405: "Subsection 5b - Remuneration", 
+      406: "Subsection 5b - Remuneration", 
+      407: "Subsection 5b - Remuneration", 
+      408: "Subsection 5b - Remuneration", 
+      410: "Subsection 5b - Remuneration", 
+      436: "Subsection 5b - Remuneration", 
+      411: "Subsection 5b - Remuneration", 
+
+     
+     412: "Subsection 5c - Relationship of subordination", 
+     413: "Subsection 5c - Relationship of subordination",  
+    414: "Subsection 5c - Relationship of subordination",  
+    415: "Subsection 5c - Relationship of subordination",  
+    416: "Subsection 5c - Relationship of subordination",  
+    417: "Subsection 5c - Relationship of subordination",  
+    418: "Subsection 5c - Relationship of subordination",  
+    419: "Subsection 5c - Relationship of subordination",  
+    420: "Subsection 5c - Relationship of subordination",  
+    421: "Subsection 5c - Relationship of subordination",  
+   422: "Subsection 5c - Relationship of subordination",  
+   438: "Subsection 5c - Relationship of subordination",  
+   439: "Subsection 5c - Relationship of subordination",   
+   460: "Subsection 5c - Relationship of subordination",  
+	   512: "Subsection 5c - Relationship of subordination",  
+	   493: "Subsection 5c - Relationship of subordination",  
+	   517: "Subsection 5c - Relationship of subordination",  
+	   514: "Subsection 5c - Relationship of subordination",  
+	   515: "Subsection 5c - Relationship of subordination",  
+	   516: "Subsection 5c - Relationship of subordination",  
+	   527: "Subsection 5c - Relationship of subordination",  
+	   528: "Subsection 5c - Relationship of subordination",  
+	   529: "Subsection 5c - Relationship of subordination",  
+	   520: "Subsection 5c - Relationship of subordination",  
+	   521: "Subsection 5c - Relationship of subordination",  
+	   522: "Subsection 5c - Relationship of subordination",  
+	   523: "Subsection 5c - Relationship of subordination",  
+	   524: "Subsection 5c - Relationship of subordination",  
+	    526: "Subsection 5c - Relationship of subordination", 
+	    518: "Subsection 5c - Relationship of subordination", 
+	    519: "Subsection 5c - Relationship of subordination", 
+	    525: "Subsection 5c - Relationship of subordination", 
+	    530: "Subsection 5c - Relationship of subordination", 
+	   531: "Subsection 5c - Relationship of subordination", 
+
+ 360: "Section 6 - Certification", 
+ 363: "Section 6 - Certification", 
+  376: "Section 6 - Certification", 
+     364: "Section 6 - Certification", 
+     366: "Section 6 - Certification", 
+     373: "Section 6 - Certification", 
+    375: "Section 6 - Certification", 
+     362: "Section 6 - Certification"
+   // Add more mappings as needed
+ };
+
+
+
+const excludedSections = new Set([
+    "section 1 - general information",
+  "section 2 - business information",	
+  "section 2a - additional business information of the worker",
+  "section 3 - payee (worker) information",
+  "section 3 - payers (clients) information",
+  "section 5 - working relationship information",  	
+  "section 6 - certification"
+]);
+
+const sectionQuestionExclusions = {
+"Section 4 - Contract or agreement information": [206, 350, 236, 207, 379, 423, 349], 	
+"Subsection 5a - Control - Duties (1 of 8)": [424],	
+"Subsection 5a - Control - Degree of autonomy (3 of 8)": [312], 	
+"Subsection 5a - Control - Remuneration (4 of 8)": [385, 386],	
+"Subsection 5a - Control - Location of services (5 of 8)": [426],  	
+"Subsection 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)": [388], 	
+"Subsection 5a - Control - How the work is done (7 of 8)": [310, 311], 	
+"Subsection 5b - Ownership of tools or equipment": [210],	
+"Subsection 5c - Financial information": [218, 215, 234],	
+"Subsection 5a - Carrying out the work": [433, 432],
+"Subsection 5b - Remuneration": [434, 435, 436],
+ "Subsection 5c - Relationship of subordination": [460]	
+// Add more as needed
+};
+	
+let workerData = null;
+let payerData = null;
+document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
+ const file = event.target.files[0];
+ if (!file) return;
+ const reader = new FileReader();
+ reader.onload = function (e) {
+   try {
+     workerData = JSON.parse(e.target.result);
+     tryRenderBoth();
+   } catch (err) {
+     alert("Invalid worker JSON file");
+   }
+ };
+ reader.readAsText(file);
+});
+    
+document.getElementById('jsonPayerInput').addEventListener('change', function (event) {
+ const file = event.target.files[0];
+ if (!file) return;
+ const reader = new FileReader();
+ reader.onload = function (e) {
+   try {
+     payerData = JSON.parse(e.target.result);
+     tryRenderBoth();
+   } catch (err) {
+     alert("Invalid payer JSON file");
+   }
+ };
+ reader.readAsText(file);
+});
+function tryRenderBoth() {
+  if (workerData && payerData) {
+    const container = document.getElementById('content');
+    container.innerHTML = '';
+    container.appendChild(renderJSON(workerData, payerData));
+    
+    // Add this line to render the probability score
+
+	  
+	  
+	  renderProbabilityScore(workerData, payerData);
+  }
+}
+
+
+ function renderJSON(workerData, payerData) {
+   const sectioned = {};
+
+   function addToSection(ans, isPayer = false) {
+    const section = sectionMap[ans.questionId] || "Other";
+    if (!sectioned[section]) sectioned[section] = {};
+    if (!sectioned[section][ans.questionEn]) {
+      sectioned[section][ans.questionEn] = {
+        worker: "", payer: "", rawWorker: "", rawPayer: ""
+      };
+    }
+    const formatted = formatAnswer(ans.answer);
+    
+const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : JSON.stringify(ans.answer);
+  
+    if (isPayer) {
+      sectioned[section][ans.questionEn].payer = formatted;
+      sectioned[section][ans.questionEn].rawPayer = raw;
+    } else {
+      sectioned[section][ans.questionEn].worker = formatted;
+      sectioned[section][ans.questionEn].rawWorker = raw;
+    }
+  }
+
+function formatAnswer(answer) {
+  if (Array.isArray(answer)) {
+    return answer.map((group, index) => {
+      const table = document.createElement("table");
+      table.innerHTML = `<thead><tr><th colspan="2">User entry #${index + 1}</th></tr><tr><th>Question</th><th>Answer</th></tr></thead>`;
+      const tbody = document.createElement("tbody");
+
+      group.forEach(sub => {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${sub.questionEn}</td><td>${sub.answer}</td>`;
+        tbody.appendChild(row);
+      });
+
+      table.appendChild(tbody);
+      return table.outerHTML;
+    }).join("<br><br>");
+  }
+
+  return answer || "";
+}
+
+	 const skipMismatchHighlighting = [
+  "Section 1 - General information",
+  "Section 2 - Business information",
+  "Section 2a - Additional business information of the worker",
+  "Section 3 - Payee (worker) information",
+  "Section 3 - Payers (clients) information",
+  "Section 6 - Certification"
+      
+];
+
+ 
+
+  workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
+  payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
+  const container = document.createElement('div');
+
+for (const [section, questions] of Object.entries(sectioned)) {
+  const table = document.createElement('table');
+
+  const showWorker = !["Section 3 - Payee (worker) information"].includes(section);
+  const showPayer = ![
+    "Section 1 - General information",
+    "Section 2a - Additional business information of the worker",
+    "Section 3 - Payers (clients) information"
+  ].includes(section);
+
+  if (!showWorker && !showPayer) continue;
+
+  let theadHTML = '<thead><tr><th>Question</th>';
+  if (showWorker) theadHTML += '<th>Worker</th>';
+  if (showPayer) theadHTML += '<th>Payer</th>';
+  theadHTML += '</tr></thead>';
+  table.innerHTML = theadHTML;
+
+  const tbody = document.createElement('tbody');
+  let rowCount = 0;
+
+  for (const [question, data] of Object.entries(questions)) {
+    const { worker, payer, rawWorker, rawPayer } = data;
+    if (!worker && !payer) continue;
+
+    const isMismatch = !skipMismatchHighlighting.includes(section) &&
+      rawWorker && rawPayer && rawWorker !== rawPayer;
+
+const isExcluded = excludedSections.has(normalize(section));
+
+	  
+    const row = document.createElement('tr');
+    let rowHTML = `<td>${question}</td>`;
+  if (showWorker) {
+const workerIcon = isExcluded ? '' : getScoreIcon(
+  Object.keys(sectionMap).find(id =>
+    sectionMap[id] === section &&
+    workerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))
+  ),
+  data.rawWorker
+);
+rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
+<div class="td-wrapper">
+  <div style="margin-bottom: 1.5em;">${worker}</div>
+  ${workerIcon}
+</div>
+</td>`;
+
+}
+
+if (showPayer) {
+  const payerIcon = isExcluded ? '' : getScoreIcon(
+  Object.keys(sectionMap).find(id =>
+    sectionMap[id] === section &&
+    payerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))
+  ),
+  data.rawPayer
+);
+
+rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
+ <div class="td-wrapper">
+  <div style="margin-bottom: 1.5em;">${payer}</div>
+  ${payerIcon}
+</div>
+</td>`;
+
+
+}
+
+    row.innerHTML = rowHTML;
+    tbody.appendChild(row);
+    rowCount++;
+  }
+
+  if (rowCount > 0) {
+    const shouldCollapse = [
+      "Section 2 - Business information",
+      "Section 2a - Additional business information of the worker",
+      "Section 3 - Payee (worker) information",
+      "Section 3 - Payers (clients) information",
+      "Section 6 - Certification"
+    ].includes(section);
+
+    if (shouldCollapse) {
+   const details = document.createElement('details');
+// details.setAttribute('open', ''); // Collapse by default
+   const summary = document.createElement('summary');
+      summary.textContent = section;
+      details.appendChild(summary);
+      table.appendChild(tbody);
+      details.appendChild(table);
+      container.appendChild(details);
+    } else {
+      const sectionHeader = document.createElement('h3');
+      sectionHeader.textContent = section;
+      container.appendChild(sectionHeader);
+      table.appendChild(tbody);
+      container.appendChild(table);
+    }
+  }
+}
+
+
+
+  return container;
+}
+
+function normalize(section) {
+  return (section || "").trim().toLowerCase();
+}
+
+function generateBar(label, scoreText) {
+  const match = scoreText.match(/^(\d+)/);
+  const numericScore = match ? parseInt(match[1]) : 0;
+
+  return `
+    <div style="margin-bottom:1em">
+      <label>${label} ${describeProbability(numericScore)}</label>
+    </div>
+  `;
+}
+
+function describeProbability(score, totalQuestions) {
+  if (totalQuestions === 0) return "No data";
+
+  const percent = (score / totalQuestions) * 100;
+
+  if (percent >= 80) return "Highly likely: Contract of service";
+  if (percent >= 60) return "Likely: Contract of service";
+  if (percent >= 30) return "Neutral facts: Contract of service or contract for services";
+  if (percent >= 20) return "Likely: Contract for services";
+  return "Highly likely: Contract for services";
+}
+
+
+
+</script>
+<!-- Probability bar container -->
+<div id="probability" style="margin-top: 2em;"></div>
+<!-- WET PreFooter -->
+</div></main>
+
+
+<script>
+const customScoringRules = {
+   
+	
+   
+    351: answer => {
+    switch (answer.toLowerCase()) {
+      case "employer-employee": return 1; // Indicator of contract of service
+	case "self-employed worker": return -1; // Indicator of contract for services	    
+        default: return 0;  // Neutral  
+    }
+  },
+   
+  347: answer => {
+    switch (answer.toLowerCase()) {
+      case "no - payer": return 1; // Indicator of contract of service
+      case "yes": return -1; // Indicator of contract for services	  
+       default: return 0;  // Neutral
+    }
+  },
+  348: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services	    
+       default: return 0;  // Neutral
+    }
+  },
+
+    382: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+      case "worker": return -1; // Indicator of contract for services
+     case "payer and worker": return 0; // Neutral	    
+       default: return 0;  // Neutral
+    }
+  },
+  192: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+    383: answer => {
+    switch (answer.toLowerCase()) {
+     case "payer": return 1; // Indicator of contract of service
+     case "worker": return -1; // Indicator of contract for services
+     case "payer and worker": return 0; // Neutral	    
+      default: return 0;  // Neutral
+    }
+  },
+    258: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+    257: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+  492: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+  479: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+    case "worker's corporation": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },	
+	
+	259: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  261: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+      case "does not apply": return 0; // Neutral	    
+       default: return 0;  // Neutral
+    }
+  },
+262: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  263: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  264: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  265: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  191: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+ 267: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+ 268: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+   297: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  
+   298: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  
+   299: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes - t4 slip": return 1; // Indicator of contract of service
+      case "no - t4a slip": return -1; // Indicator of contract for services
+      case "no - t5018 slip": return -1; // Indicator of contract for services	
+      case "no - t4-nr slip": return -1; // Indicator of contract for services
+      case "no - no slip issued": return -1; // Indicator of contract for services    
+       default: return 0;  // Neutral
+    }
+  },
+   271: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+ 300: answer => {
+    switch (answer.toLowerCase()) {
+      case "hourly/monthly": return 1; // Indicator of contract of service
+      case "percentage of job completion/piecework": return 0; // Neutral	
+	  case "other": return 0; // Neutral	  	    
+       default: return 0;  // Neutral
+    }
+  },
+   301: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+   270: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+   302: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+   303: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+   304: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+   306: answer => {
+    switch (answer.toLowerCase()) {
+      case "filing a timesheet": return 1; // Indicator of contract of service
+	case "sending an invoice": return -1; // Indicator of contract for services
+	  case "other": return 0; // Neutral	 	    
+       default: return 0;  // Neutral
+    }
+  },
+   195: answer => {
+    switch (answer.toLowerCase()) {
+     case "payer's location": return 1; // Indicator of contract of service
+     case "worker's location": return -1; // Indicator of contract for services	
+     case "mobile locations": return 0; // Neutral
+     case "client's location": return 0; // Neutral
+       default: return 0;  // Neutral
+    }
+  },
+ 466: answer => {
+    switch (answer.toLowerCase()) {
+     case "home terminal or dispatch center": return 1; // Indicator of contract of service
+     case "on the road/in transit": return -1; // Indicator of contract for services
+     case "delivery or pickup locations": return 0; // Neutral	
+     case "specific route or corridor": return 0; // Neutral	 
+     case "client facility or yard": return -1; // Indicator of contract for services 
+     case "remote or temporary worksite": return 0; // Neutral	 
+     case "rail yard, port, or airport": return 0; // Neutral	 
+       default: return 0;  // Neutral
+    }
+  },
+	
+   296: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+     case "worker": return -1; // Indicator of contract for services
+    case "payer and worker": return 0; // Neutral	    
+       default: return 0;  // Neutral
+    }
+  },
+
+   480: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+     case "worker": return -1; // Indicator of contract for services
+    case "payer and worker": return 0; // Neutral	    
+       default: return 0;  // Neutral
+    }
+  },
+	
+  274: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  275: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes - with or without cause": return 0; // Neutral
+     case "no": return -0; // Neutral
+     case "yes - with cause": return 0; // Neutral	 
+      default: return 0;  // Neutral
+    }
+  },
+  428: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  276: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+	
+  429: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+	
+  481: answer => {
+    switch (answer.toLowerCase()) {
+      case "no": return 1; // Indicator of contract of service
+    case "yes": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },	
+  
+  278: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+    case "not applicable - schedule is regular": return 0; // Neutral	
+	    default: return 0;  // Neutral
+    }
+  },
+  280: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  
+  309: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+ 
+  459: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+
+  484: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+ 485: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral	
+ case "does not apply": return 0; // Neutral			    
+       default: return 0;  // Neutral
+    }
+  },	
+	
+  198: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+      default: return 0;  // Neutral
+    }
+  },
+  281: answer => {
+    switch (answer.toLowerCase()) {
+     case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  282: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  283: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+  case "does not apply": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },
+
+	
+  290: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+  case "does not apply": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },
+  208: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+     case "worker": return -1; // Indicator of contract for services
+     case "payer and worker": return 0; // Neutral	    
+       default: return 0;  // Neutral
+    }
+  },
+  284: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  285: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  286: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },
+
+  471: answer => {
+    switch (answer.toLowerCase()) {
+      case "owned by the worker": return 0; // Neutral
+		    
+       default: return 0;  // Neutral
+    }
+  },
+
+ 473: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },	
+
+ 474: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },
+
+ 475: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },
+
+  476: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },	
+
+ 477: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },	
+	
+  430: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  
+  211: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  214: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+     case "no": return -1; // Indicator of contract for services
+      default: return 0;  // Neutral
+    }
+  },
+  216: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  217: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  219: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	 case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  233: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+	
+  495: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+	
+   478: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "worker's corporation": return -1; // Indicator of contract for services	
+       default: return 0;  // Neutral
+    }
+  },
+
+ 486: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral	
+       default: return 0;  // Neutral
+    }
+  },	
+
+ 487: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral	
+       default: return 0;  // Neutral
+    }
+  },	
+    431: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return 0;  // Neutral
+       default: return 0;  // Neutral
+    }
+  },
+ 397: answer => {
+    switch (answer.toLowerCase()) {
+     case "payer's location": return 1; // Indicator of contract of service
+     case "worker's location": return -1; // Indicator of contract for services	
+     case "mobile locations": return 0; // Neutral
+     case "client's location": return 0; // Neutral
+       default: return 0;  // Neutral
+    }
+  },
+ 468: answer => {
+    switch (answer.toLowerCase()) {
+     case "home terminal or dispatch center": return 1; // Indicator of contract of service
+     case "on the road/in transit": return -1; // Indicator of contract for services
+     case "delivery or pickup locations": return 0; // Neutral	
+     case "specific route or corridor": return 0; // Neutral	 
+     case "client facility or yard": return -1; // Indicator of contract for services 
+     case "remote or temporary worksite": return 0; // Neutral	 
+     case "rail yard, port, or airport": return 0; // Neutral	 
+       default: return 0;  // Neutral
+    }
+  },
+  398: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },
+  399: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral	
+       default: return 0;  // Neutral
+    }
+  },
+  393: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  394: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+  510: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker's corporation": return -1; // Indicator of contract for services
+	default: return 0;  // Neutral
+    }
+  },
+	
+  511: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral	
+       default: return 0;  // Neutral
+    }
+  },
+	
+  400: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+     case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  402: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  403: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes - t4 and rl-1 slips": return 1; // Indicator of contract of service
+      case "no - t4a slip": return -1; // Indicator of contract for services
+      case "no - t5018 slip": return -1; // Indicator of contract for services	
+      case "no - t4-nr slip": return -1; // Indicator of contract for services
+      case "no - no slip issued": return -1; // Indicator of contract for services    
+       default: return 0;  // Neutral
+    }
+  },
+  404: answer => {
+    switch (answer.toLowerCase()) {
+      case "hourly": return 1; // Indicator of contract of service
+      case "monthly": return 1; // Indicator of contract of service
+      case "percentage of job completion/piecework": return 0; // Neutral
+      case "other": return 0; // Neutral	    
+      default: return 0;  // Neutral
+    }
+  },
+  405: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  406: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  407: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  408: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  410: answer => {
+    switch (answer.toLowerCase()) {
+      case "filing a timesheet": return 1; // Indicator of contract of service
+	   case "sending an invoice": return -1; // Indicator of contract for services
+	case "other": return 0; // Neutral	    
+       default: return 0;  // Neutral
+    }
+  },
+  411: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+
+
+  412: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  413: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  414: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  415: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  416: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  417: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  418: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  419: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  420: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  421: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  422: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes - with or without cause": return 0; // Neutral	
+     case "no": return 0; // Neutral	
+     case "yes - with cause": return 0; // Neutral	 
+      default: return 0;  // Neutral
+    }
+  },
+   438: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  439: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+ 512: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+ 493: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+ 517: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+ 514: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+ 515: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+ 516: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  527: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },
+ 528: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },	
+ 529: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+  520: answer => {
+    switch (answer.toLowerCase()) {
+      case "owned by the worker": return 0; // Neutral
+		    
+       default: return 0;  // Neutral
+    }
+  },
+  521: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },	
+  522: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },	
+  523: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },
+ 524: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  526: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },	
+ 518: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  525: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },	
+  530: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },	
+  531: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return 0; // Neutral		    
+       default: return 0;  // Neutral
+    }
+  },	
+
+};
+
+
+function scoreAnswer(answer, questionId) {
+  if (typeof answer !== 'string') return 0;
+  const trimmed = answer.trim().toLowerCase();
+  if (customScoringRules[questionId]) {
+    return customScoringRules[questionId](trimmed);
+  }
+  return 0;
+}
+
+function getScoreIcon(questionId, answer) {
+  const score = scoreAnswer(answer, questionId);
+  let icon = '';
+  let color = '';
+  let title = '';
+
+  if (score === 1) {
+    icon = 'fas fa-users';
+    color = 'green';
+    title = 'Contract of service (employment)';
+  } else if (score === -1) {
+    icon = 'fas fa-user-tie';
+    color = '#004085';
+    title = 'Contract for services (self-employed worker)';
+  } else if (score === 0) {
+    icon = 'fas fa-not-equal';
+    color = 'grey';
+    title = 'Neutral';
+  }
+
+  if (icon) {
+    return `
+      <div class="score-icon">
+        <i class="fas ${icon}" style="color: ${color};" title="${title}"></i>
+      </div>`;
+  }
+
+  return '';
+}
+	
+	
+</script>
+
+<script>
+function normalize(section) {
+return (section || "").trim().toLowerCase();
+}
+	
+function calculateSectionScores(data) {
+  const scores = {}, totals = {}, neutrals = {}, selfEmployment = {};
+
+  data.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = normalize(section);
+      const exclusions = sectionQuestionExclusions[section] || [];
+
+      if (!excludedSections.has(normalizedSection)) {
+        if (!scores[section]) {
+          scores[section] = 0;
+          totals[section] = 0;
+          neutrals[section] = 0;
+          selfEmployment[section] = 0;
+        }
+
+        if (ans.answer && ans.answer !== "") {
+          totals[section]++;
+          if (!exclusions.includes(ans.questionId)) {
+            const score = scoreAnswer(ans.answer, ans.questionId);
+            if (score === 1) scores[section]++;
+            else if (score === 0) neutrals[section]++;
+            else if (score === -1) selfEmployment[section]++;
+          }
+        }
+      }
+    });
+  });
+
+  return { scores, totals, neutrals, selfEmployment };
+}
+
+function getIndicatorIcon(score) {
+  if (score === 1) {
+    return `<i class="fas fa-users" style="color: green;" title="Contract of service"></i>`;
+  } else if (score === -1) {
+    return `<i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i>`;
+  } else {
+    return `<i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i>`;
+  }
+}
+
+function generateDistributionBar(cos, cfs, neutral, total) {
+  const cosPercent = total ? (cos / total * 100).toFixed(1) : 0;
+  const cfsPercent = total ? (cfs / total * 100).toFixed(1) : 0;
+  const neutralPercent = total ? (neutral / total * 100).toFixed(1) : 0;
+
+  return `
+    <div class="probability-bar">
+      <div style="width:${cosPercent}%; background: green;">${cos > 0 ? cosPercent + "%" : ""}</div>
+      <div style="width:${cfsPercent}%; background: #004085;">${cfs > 0 ? cfsPercent + "%" : ""}</div>
+      <div style="width:${neutralPercent}%; background: gray;">${neutral > 0 ? neutralPercent + "%" : ""}</div>
+    </div>
+  `;
+}	
+	
+function renderProbabilityScore(workerData, payerData) {
+  const probabilityDiv = document.getElementById('probability');
+  probabilityDiv.innerHTML = `
+   <h3>Total - Indicators</h3>
+  `;
+
+  const worker = calculateSectionScores(workerData);
+  const payer = calculateSectionScores(payerData);
+
+  let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0;
+
+  const allSections = new Set([
+    ...Object.keys(worker.scores),
+    ...Object.keys(payer.scores)
+  ]);
+
+  for (const section of allSections) {
+    const wTotal = worker.totals[section] || 0;
+    const pTotal = payer.totals[section] || 0;
+    const wScore = worker.scores[section] || 0;
+    const pScore = payer.scores[section] || 0;
+    const wNeutral = worker.neutrals[section] || 0;
+    const pNeutral = payer.neutrals[section] || 0;
+    const wSelf = worker.selfEmployment[section] || 0;
+    const pSelf = payer.selfEmployment[section] || 0;
+
+    if (wTotal > 0 || pTotal > 0) {
+      totalQuestions += Math.max(wTotal, pTotal);
+      workerScore += wScore;
+      payerScore += pScore;
+      workerNeutral += wNeutral;
+      payerNeutral += pNeutral;
+      workerSelf += wSelf;
+      payerSelf += pSelf;
+    }
+  }
+
+const workerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerSelf} <br>
+${getIndicatorIcon(0)} Neutral: ${workerNeutral} `;
+const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
+${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
+
+ const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
+  const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
+
+	
+  probabilityDiv.innerHTML += `
+    <section class="panel panel-primary">
+      <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
+      <div class="panel-body">
+   <p><strong>${describeProbability(workerScore, totalQuestions)}</strong></p>
+         ${workerBar}
+   <hr>
+        <p>${workerScoreText}</p>
+      </div>
+    </section>
+    <section class="panel panel-primary">
+      <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
+      <div class="panel-body">
+   <p><strong>${describeProbability(payerScore, totalQuestions)}</strong></p>
+   ${payerBar}
+<hr>
+        <p>${payerScoreText}</p>
+      </div>
+    </section>
+    <hr>
+    <h3>By section - Indicators</h3>
+  `;
+
+  for (const section of allSections) {
+    const wTotal = worker.totals[section] || 0;
+    const pTotal = payer.totals[section] || 0;
+
+    if (wTotal > 0 || pTotal > 0) {
+ const wScoreText = wTotal > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal} <br>
+   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} <br>
+ ${getIndicatorIcon(0)} Neutral: ${worker.neutrals[section] || 0} `
+  : 'N/A';
+
+const pScoreText = pTotal > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.scores[section]} of ${pTotal} <br>
+   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${payer.selfEmployment[section] || 0}<br>
+${getIndicatorIcon(0)}     Neutral: ${payer.neutrals[section] || 0} `
+  : 'N/A';
+
+      probabilityDiv.innerHTML += `
+        <section class="panel panel-default">
+          <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
+          <div class="panel-body">
+            <p><strong>Worker's response</strong><br> ${wScoreText}</p>
+	    <hr>
+            <p><strong>Payer's response</strong><br> ${pScoreText}</p>
+          </div>
+        </section>
+      `;
+    }
+  }
+}
+</script>
+
+<script>
+
+ // Optional: WET preFooter
+ var defPreFooter = document.getElementById("def-preFooter");
+ defPreFooter.outerHTML = wet.builder.preFooter({
+   dateModified: "2025-06-16",
+   showPostContent: true,
+   showFeedback: true,
+   showShare: true
+ });
+</script>
+
 </body>
 </html>
