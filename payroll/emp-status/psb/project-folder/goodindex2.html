@@ -1805,6 +1805,7 @@ function calculateSectionScores(data) {
           totals[section] = 0;
           neutrals[section] = 0;
           selfEmployment[section] = 0;
+  	  infodoc[section] = 0;	
         }
 
         if (ans.answer && ans.answer !== "") {
@@ -1814,13 +1815,14 @@ function calculateSectionScores(data) {
             if (score === 1) scores[section]++;
             else if (score === 0) neutrals[section]++;
             else if (score === -1) selfEmployment[section]++;
+	    else if (score === -2) infodoc[section]++;	  
 	  }
         }
       }
     });
   });
 
-  return { scores, totals, neutrals, selfEmployment };
+  return { scores, totals, neutrals, selfEmployment, infodoc };
 }
 
 function getIndicatorIcon(score) {
@@ -1828,8 +1830,11 @@ function getIndicatorIcon(score) {
     return `<i class="fas fa-users" style="color: green;" title="Contract of service"></i>`;
   } else if (score === -1) {
     return `<i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i>`;
-  } else {
+  }  else if (score === 0) {
     return `<i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i>`;
+  } 
+    else {
+    return `<i class="fas fa-search" style="color: #696969;" title="Information to help with the contract review"></i>`;
   }
 }
 
