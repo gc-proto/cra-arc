@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -92,6 +94,7 @@ details {
 .cos-pill { background-color: green; }
 .cfs-pill { background-color: #004085; }
 .neutral-pill { background-color: gray; }
+.doc-pill { background-color: #696969; }
 
 .probability-bar {
   display: flex;
@@ -136,10 +139,17 @@ details {
 </div>
 <div class="col-md-4">
 <h3>Upload the response files (JSON)</h3>
-<p class="mrgn-tp-lg">
-  <label>Upload JSON response file</label>
-  <input accept=".json" id="jsonCombinedInput" type="file"/>
-</p>
+<ul class="mrgn-tp-lg list-unstyled cnjnctn-type-and">
+<li class="cnjnctn-col mrgn-tp-md">
+<label>Worker's response:</label>
+<input accept=".json" id="jsonWorkerInput" type="file"/>
+
+</li>
+<li class="cnjnctn-col mrgn-tp-md">
+<label>Payer's response:</label>
+<input accept=".json" id="jsonPayerInput" type="file"/>
+</li>
+</ul>
 </div>
 </div></details>
 
@@ -228,7 +238,6 @@ details {
  379: "Section 4 - Contract or agreement information",  
  347: "Section 4 - Contract or agreement information", 
  348: "Section 4 - Contract or agreement information", 
-
  382: "Section 4 - Contract or agreement information", 
  423: "Section 4 - Contract or agreement information", 
  349: "Section 4 - Contract or agreement information", 
@@ -258,6 +267,11 @@ details {
      267: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
      268: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
      312: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+	   513: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+	    494: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+	    496: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+	    497: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
+	    499: "Subsection 5a - Control - Degree of autonomy (3 of 8)",   
     
     297: "Subsection 5a - Control - Remuneration (4 of 8)",  
     298: "Subsection 5a - Control - Remuneration (4 of 8)",  
@@ -321,9 +335,7 @@ details {
      214: "Subsection 5c - Financial information",  
      216: "Subsection 5c - Financial information",  
      218: "Subsection 5c - Financial information",  
-     217: "Subsection 5c - Financial information",  
-     215: "Subsection 5c - Financial information",  
-     219: "Subsection 5c - Financial information",  
+      219: "Subsection 5c - Financial information",  
      233: "Subsection 5c - Financial information",  
     234: "Subsection 5c - Financial information",  
 	    495: "Subsection 5c - Financial information", 
@@ -369,7 +381,10 @@ details {
     414: "Subsection 5c - Relationship of subordination",  
     415: "Subsection 5c - Relationship of subordination",  
     416: "Subsection 5c - Relationship of subordination",  
-    417: "Subsection 5c - Relationship of subordination",  
+ 532: "Subsection 5c - Relationship of subordination",  	   
+    417: "Subsection 5c - Relationship of subordination", 
+ 533: "Subsection 5c - Relationship of subordination",  
+ 534: "Subsection 5c - Relationship of subordination",  	   
     418: "Subsection 5c - Relationship of subordination",  
     419: "Subsection 5c - Relationship of subordination",  
     420: "Subsection 5c - Relationship of subordination",  
@@ -423,7 +438,7 @@ const excludedSections = new Set([
 ]);
 
 const sectionQuestionExclusions = {
-"Section 4 - Contract or agreement information": [206, 350, 236, 207, 379, 423, 349], 	
+"Section 4 - Contract or agreement information": [236, 207, 206, 379, 347, 348, 423, 349], 	
 "Subsection 5a - Control - Duties (1 of 8)": [424],	
 "Subsection 5a - Control - Degree of autonomy (3 of 8)": [312], 	
 "Subsection 5a - Control - Remuneration (4 of 8)": [385, 386],	
@@ -440,99 +455,46 @@ const sectionQuestionExclusions = {
 	
 let workerData = null;
 let payerData = null;
-	
-document.getElementById('jsonCombinedInput').addEventListener('change', function (event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    try {
-      const combinedData = JSON.parse(e.target.result);
-
-      // Filter responses into worker and payer by role if needed
-      workerData = combinedData.filter(entry =>
-        entry.answers.some(a =>
-          a.questionId === 441 && a.answer.toLowerCase().includes('worker')
-        )
-      );
-
-      payerData = combinedData.filter(entry =>
-        entry.answers.some(a =>
-          a.questionId === 441 && a.answer.toLowerCase().includes('payer')
-        )
-      );
-
-      tryRenderBoth();
-    } catch (err) {
-      alert("Invalid combined JSON file");
-    }
-  };
-  reader.readAsText(file);
+document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
+ const file = event.target.files[0];
+ if (!file) return;
+ const reader = new FileReader();
+ reader.onload = function (e) {
+   try {
+     workerData = JSON.parse(e.target.result);
+     tryRenderBoth();
+   } catch (err) {
+     alert("Invalid worker JSON file");
+   }
+ };
+ reader.readAsText(file);
 });
-	
+    
+document.getElementById('jsonPayerInput').addEventListener('change', function (event) {
+ const file = event.target.files[0];
+ if (!file) return;
+ const reader = new FileReader();
+ reader.onload = function (e) {
+   try {
+     payerData = JSON.parse(e.target.result);
+     tryRenderBoth();
+   } catch (err) {
+     alert("Invalid payer JSON file");
+   }
+ };
+ reader.readAsText(file);
+});
 function tryRenderBoth() {
   if (workerData && payerData) {
-    const allAnswers341 = [];
-
-    // Collect all Case #341 answers
-    [workerData, payerData].forEach(dataSet => {
-      dataSet.forEach(entry => {
-        entry.answers.forEach(ans => {
-          if (ans.questionId === 341 && ans.answer) {
-            allAnswers341.push(ans.answer.trim());
-          }
-        });
-      });
-    });
-
-    const uniqueAnswers = [...new Set(allAnswers341)];
     const container = document.getElementById('content');
     container.innerHTML = '';
+    container.appendChild(renderJSON(workerData, payerData));
+    
+    // Add this line to render the probability score
 
-    // Utility: Filter data for a given case
-    const filterBy341 = (dataSet, value) =>
-      dataSet.filter(entry =>
-        entry.answers.some(a => a.questionId === 341 && a.answer === value)
-      );
-
-    // CASE 1 and 2: One case OR two identical cases → render both, but check if only one side has data
-    if (uniqueAnswers.length === 1 || (uniqueAnswers.length === 2 && uniqueAnswers[0] === uniqueAnswers[1])) {
-      const filteredWorker = filterBy341(workerData, uniqueAnswers[0]);
-      const filteredPayer = filterBy341(payerData, uniqueAnswers[0]);
-
-      container.appendChild(renderJSON(filteredWorker, filteredPayer));
-      renderProbabilityScore(filteredWorker, filteredPayer);
-
-      // Hide empty columns
-      setTimeout(() => toggleColumnsVisibility(filteredWorker, filteredPayer), 100);
-    }
-
-    // CASE 3: Multiple distinct cases → dropdown required
-    else {
-      const dropdown = document.createElement('select');
-      dropdown.id = 'case341Select';
-      dropdown.innerHTML = `<option disabled selected>Select a Case Number to view</option>` +
-        uniqueAnswers.map(val => `<option value="${val}">${val}</option>`).join('');
-
-      dropdown.addEventListener('change', () => {
-        const selectedValue = dropdown.value;
-        const filteredWorker = filterBy341(workerData, selectedValue);
-        const filteredPayer = filterBy341(payerData, selectedValue);
-
-        container.innerHTML = '';
-        container.appendChild(renderJSON(filteredWorker, filteredPayer));
-        renderProbabilityScore(filteredWorker, filteredPayer);
-
-        setTimeout(() => toggleColumnsVisibility(filteredWorker, filteredPayer), 100);
-      });
-
-      const wrapper = document.createElement('div');
-      wrapper.style.marginBottom = '1em';
-      wrapper.innerHTML = `<label for="case341Select"><strong>Select Case Number (#341):</strong></label><br>`;
-      wrapper.appendChild(dropdown);
-      container.appendChild(wrapper);
-    }
+	  
+	  
+	  renderProbabilityScore(workerData, payerData);
   }
 }
 
@@ -749,25 +711,11 @@ const customScoringRules = {
     351: answer => {
     switch (answer.toLowerCase()) {
       case "employer-employee": return 1; // Indicator of contract of service
-	case "self-employed worker": return -1; // Indicator of contract for services	    
-        default: return 0;  // Neutral  
+      case "self-employed worker": return -1; // Indicator of contract for services	    
+      default: return 0;  // Neutral  
     }
   },
    
-  347: answer => {
-    switch (answer.toLowerCase()) {
-      case "no - payer": return 1; // Indicator of contract of service
-      case "yes": return -1; // Indicator of contract for services	  
-       default: return 0;  // Neutral
-    }
-  },
-  348: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1; // Indicator of contract of service
-	case "no": return -1; // Indicator of contract for services	    
-       default: return 0;  // Neutral
-    }
-  },
 
     382: answer => {
     switch (answer.toLowerCase()) {
@@ -777,6 +725,7 @@ const customScoringRules = {
        default: return 0;  // Neutral
     }
   },
+	
   192: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
@@ -888,6 +837,39 @@ const customScoringRules = {
        default: return 0;  // Neutral
     }
   },
+
+ 494: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
+ 496: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+ 497: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+	
+ 499: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+	
+	
    297: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
@@ -990,6 +972,7 @@ const customScoringRules = {
      case "client facility or yard": return -1; // Indicator of contract for services 
      case "remote or temporary worksite": return 0; // Neutral	 
      case "rail yard, port, or airport": return 0; // Neutral	 
+     case "other": return 0; // Neutral			    
        default: return 0;  // Neutral
     }
   },
@@ -1007,7 +990,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
      case "worker": return -1; // Indicator of contract for services
-    case "payer and worker": return 0; // Neutral	    
+    case "payer and worker": return 0; // Neutral	
+    case "does not apply": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },
@@ -1160,7 +1144,8 @@ const customScoringRules = {
   284: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
-		    case "no": return -1; // Indicator of contract for services
+     case "no": return -1; // Indicator of contract for services
+     case "does not apply": return 0;  // Neutral	    
        default: return 0;  // Neutral
     }
   },
@@ -1168,6 +1153,7 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
+	 case "does not apply": return 0;  // Neutral		    
        default: return 0;  // Neutral
     }
   },
@@ -1175,7 +1161,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral	
+	 case "does not apply": return 0;  // Neutral		    
        default: return 0;  // Neutral
     }
   },
@@ -1183,7 +1170,12 @@ const customScoringRules = {
   471: answer => {
     switch (answer.toLowerCase()) {
       case "owned by the worker": return 0; // Neutral
-		    
+     case "owned by the corporation of the worker": return 0; // Neutral
+     case "owned by the payer": return 0; // Neutral
+     case "leased by the worker": return 0; // Neutral
+     case "leased by the corporation of the worker": return 0; // Neutral
+     case "leased by the payer": return 0; // Neutral
+      case "don't know": return 0; // Neutral
        default: return 0;  // Neutral
     }
   },
@@ -1201,7 +1193,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral	
+  case "don't know": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },
@@ -1210,7 +1203,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral	
+	  case "don't know": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
@@ -1261,13 +1255,7 @@ const customScoringRules = {
        default: return 0;  // Neutral
     }
   },
-  217: answer => {
-    switch (answer.toLowerCase()) {
-      case "yes": return 1; // Indicator of contract of service
-	case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
-    }
-  },
+
   219: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
@@ -1296,6 +1284,7 @@ const customScoringRules = {
       case "payer": return 1; // Indicator of contract of service
 	    case "worker": return -1; // Indicator of contract for services
 	 case "worker's corporation": return -1; // Indicator of contract for services	
+	  case "don't know": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },
@@ -1305,6 +1294,7 @@ const customScoringRules = {
       case "payer": return 1; // Indicator of contract of service
 	    case "worker": return -1; // Indicator of contract for services
 	 case "payer and worker": return 0; // Neutral	
+	  case "don't know": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },	
@@ -1314,6 +1304,7 @@ const customScoringRules = {
       case "payer": return 1; // Indicator of contract of service
 	    case "worker": return -1; // Indicator of contract for services
 	 case "payer and worker": return 0; // Neutral	
+	  case "don't know": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },	
@@ -1342,9 +1333,11 @@ const customScoringRules = {
      case "client facility or yard": return -1; // Indicator of contract for services 
      case "remote or temporary worksite": return 0; // Neutral	 
      case "rail yard, port, or airport": return 0; // Neutral	 
+     case "other": return 0; // Neutral			    
        default: return 0;  // Neutral
     }
   },
+
   398: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
@@ -1507,6 +1500,15 @@ const customScoringRules = {
        default: return 0;  // Neutral
     }
   },
+	
+  532: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+	
   417: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
@@ -1514,6 +1516,22 @@ const customScoringRules = {
        default: return 0;  // Neutral
     }
   },
+  533: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+  534: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+		    case "does not apply": return 0;  // Neutral	    
+       default: return 0;  // Neutral
+    }
+  },
+	
   418: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
@@ -1611,7 +1629,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	  case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral		
+	 case "does not apply": return 0; // Neutral			    
        default: return 0;  // Neutral
     }
   },
@@ -1630,13 +1649,19 @@ const customScoringRules = {
     }
   },
 
-  520: answer => {
+   520: answer => {
     switch (answer.toLowerCase()) {
       case "owned by the worker": return 0; // Neutral
-		    
+     case "owned by the corporation of the worker": return 0; // Neutral
+     case "owned by the payer": return 0; // Neutral
+     case "leased by the worker": return 0; // Neutral
+     case "leased by the corporation of the worker": return 0; // Neutral
+     case "leased by the payer": return 0; // Neutral
+      case "don't know": return 0; // Neutral
        default: return 0;  // Neutral
     }
   },
+
   521: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
@@ -1649,7 +1674,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	  case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral	
+	 case "don't know": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },	
@@ -1657,7 +1683,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	  case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral	
+	case "don't know": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
@@ -1687,7 +1714,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	  case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral	
+	case "don't know": return 0; // Neutral	  	    
        default: return 0;  // Neutral
     }
   },	
@@ -1695,7 +1723,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	  case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral
+	case "don't know": return 0; // Neutral	  	    
        default: return 0;  // Neutral
     }
   },	
@@ -1703,7 +1732,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	  case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral		
+	case "don't know": return 0; // Neutral	  	    
        default: return 0;  // Neutral
     }
   },	
@@ -1738,7 +1768,11 @@ function getScoreIcon(questionId, answer) {
     icon = 'fas fa-not-equal';
     color = 'grey';
     title = 'Neutral';
-  }
+  } else if (score === -2) {
+    icon = 'fas fa-search';
+    color = '#696969';
+    title = 'Information to help with the contract review';
+  }	
 
   if (icon) {
     return `
@@ -1754,12 +1788,10 @@ function getScoreIcon(questionId, answer) {
 </script>
 
 <script>
-function normalize(section) {
-return (section || "").trim().toLowerCase();
-}
+
 	
 function calculateSectionScores(data) {
-  const scores = {}, totals = {}, neutrals = {}, selfEmployment = {};
+  const scores = {}, totals = {}, neutrals = {}, selfEmployment = {}, infoDoc = {}; 
 
   data.forEach(entry => {
     entry.answers.forEach(ans => {
@@ -1773,6 +1805,7 @@ function calculateSectionScores(data) {
           totals[section] = 0;
           neutrals[section] = 0;
           selfEmployment[section] = 0;
+  	  infoDoc[section] = 0;	
         }
 
         if (ans.answer && ans.answer !== "") {
@@ -1782,13 +1815,14 @@ function calculateSectionScores(data) {
             if (score === 1) scores[section]++;
             else if (score === 0) neutrals[section]++;
             else if (score === -1) selfEmployment[section]++;
-          }
+	    else if (score === -2) infoDoc[section]++;	  
+	  }
         }
       }
     });
   });
 
-  return { scores, totals, neutrals, selfEmployment };
+  return { scores, totals, neutrals, selfEmployment, infoDoc};
 }
 
 function getIndicatorIcon(score) {
@@ -1796,8 +1830,10 @@ function getIndicatorIcon(score) {
     return `<i class="fas fa-users" style="color: green;" title="Contract of service"></i>`;
   } else if (score === -1) {
     return `<i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i>`;
-  } else {
+  }  else if (score === 0) {
     return `<i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i>`;
+  } else {
+    return `<i class="fas fa-search" style="color: #696969;" title="Information to help with the contract review"></i>`;
   }
 }
 
@@ -1824,7 +1860,7 @@ function renderProbabilityScore(workerData, payerData) {
   const worker = calculateSectionScores(workerData);
   const payer = calculateSectionScores(payerData);
 
-  let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0;
+  let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0, workerinfoDoc = 0, payerinfoDoc = 0;
 
   const allSections = new Set([
     ...Object.keys(worker.scores),
@@ -1840,6 +1876,9 @@ function renderProbabilityScore(workerData, payerData) {
     const pNeutral = payer.neutrals[section] || 0;
     const wSelf = worker.selfEmployment[section] || 0;
     const pSelf = payer.selfEmployment[section] || 0;
+    const wDoc = worker.infoDoc[section] || 0;
+    const pDoc = payer.infoDoc[section] || 0;
+	  
 
     if (wTotal > 0 || pTotal > 0) {
       totalQuestions += Math.max(wTotal, pTotal);
@@ -1914,21 +1953,6 @@ ${getIndicatorIcon(0)}     Neutral: ${payer.neutrals[section] || 0} `
     }
   }
 }
-
-function toggleColumnsVisibility(workerEntries, payerEntries) {
-  const workerVisible = workerEntries && workerEntries.length > 0;
-  const payerVisible = payerEntries && payerEntries.length > 0;
-
-  document.querySelectorAll('td.worker-col, th.worker-col').forEach(cell => {
-    cell.style.display = workerVisible ? '' : 'none';
-  });
-
-  document.querySelectorAll('td.payer-col, th.payer-col').forEach(cell => {
-    cell.style.display = payerVisible ? '' : 'none';
-  });
-}
-
-	
 </script>
 
 <script>
