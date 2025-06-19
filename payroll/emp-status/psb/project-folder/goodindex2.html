@@ -1311,9 +1311,11 @@ const customScoringRules = {
      case "client facility or yard": return -1; // Indicator of contract for services 
      case "remote or temporary worksite": return 0; // Neutral	 
      case "rail yard, port, or airport": return 0; // Neutral	 
+     case "other": return 0; // Neutral			    
        default: return 0;  // Neutral
     }
   },
+
   398: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
@@ -1580,7 +1582,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	  case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral		
+	 case "does not apply": return 0; // Neutral			    
        default: return 0;  // Neutral
     }
   },
