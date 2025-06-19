@@ -964,22 +964,22 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
      case "payer's location": return 1; // Indicator of contract of service
      case "worker's location": return -1; // Indicator of contract for services	
-     case "mobile locations": return 0; // Neutral
-     case "client's location": return 0; // Neutral
-       default: return 0;  // Neutral
+     case "mobile locations": return -2; // 
+     case "client's location": return -2; // 
+      
     }
   },
  466: answer => {
     switch (answer.toLowerCase()) {
      case "home terminal or dispatch center": return 1; // Indicator of contract of service
-     case "on the road/in transit": return -1; // Indicator of contract for services
-     case "delivery or pickup locations": return 0; // Neutral	
-     case "specific route or corridor": return 0; // Neutral	 
-     case "client facility or yard": return -1; // Indicator of contract for services 
-     case "remote or temporary worksite": return 0; // Neutral	 
-     case "rail yard, port, or airport": return 0; // Neutral	 
-     case "other": return 0; // Neutral			    
-       default: return 0;  // Neutral
+     case "on the road/in transit": return -2; // Indicator of contract for services
+     case "delivery or pickup locations": return -2; // 
+     case "specific route or corridor": return -2; //
+     case "client facility or yard": return -2; // 
+     case "remote or temporary worksite": return -2; //
+     case "rail yard, port, or airport": return -2; // 
+     case "other": return -2; // 			    
+      
     }
   },
 	
@@ -987,8 +987,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
      case "worker": return -1; // Indicator of contract for services
-    case "payer and worker": return 0; // Neutral	    
-       default: return 0;  // Neutral
+    case "payer and worker": return -2; // 	    
+       
     }
   },
 
@@ -996,9 +996,9 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
      case "worker": return -1; // Indicator of contract for services
-    case "payer and worker": return 0; // Neutral	
-    case "does not apply": return 0; // Neutral		    
-       default: return 0;  // Neutral
+    case "payer and worker": return -2; // 	
+    case "does not apply": return -2; // 		    
+      
     }
   },
 	
