@@ -1290,17 +1290,18 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 	case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
+    
     }
   },
 	
    478: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
-	    case "worker": return -1; // Indicator of contract for services
-	 case "worker's corporation": return -1; // Indicator of contract for services	
-	  case "don't know": return 0; // Neutral		    
-       default: return 0;  // Neutral
+      case "worker": return -1; // Indicator of contract for services
+      case "worker's corporation": return -1; // Indicator of contract for services	
+      case "payer and worker": return -2; // 		    
+     case "don't know": return -2; // 		    
+    
     }
   },
 
