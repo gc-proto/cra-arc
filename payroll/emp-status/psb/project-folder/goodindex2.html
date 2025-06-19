@@ -966,13 +966,13 @@ const customScoringRules = {
      case "worker's location": return -1; // Indicator of contract for services	
      case "mobile locations": return -2; // 
      case "client's location": return -2; // 
-      
+     case "other options for transportation workers": return -2; //  
     }
   },
  466: answer => {
     switch (answer.toLowerCase()) {
-     case "home terminal or dispatch center": return 1; // Indicator of contract of service
-     case "on the road/in transit": return -2; // Indicator of contract for services
+     case "home terminal or dispatch center": return -2; // 
+     case "on the road/in transit": return -2; // 
      case "delivery or pickup locations": return -2; // 
      case "specific route or corridor": return -2; //
      case "client facility or yard": return -2; // 
@@ -1322,30 +1322,30 @@ const customScoringRules = {
     431: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
-	  case "no": return 0;  // Neutral
-       default: return 0;  // Neutral
+	  case "no": return -2;  //
+     
     }
   },
  397: answer => {
     switch (answer.toLowerCase()) {
      case "payer's location": return 1; // Indicator of contract of service
      case "worker's location": return -1; // Indicator of contract for services	
-     case "mobile locations": return 0; // Neutral
-     case "client's location": return 0; // Neutral
-       default: return 0;  // Neutral
+     case "mobile locations": return -2; //  
+     case "client's location": return -2; //  
+    case "other options for transportation workers": return -2; //  	    
     }
   },
  468: answer => {
     switch (answer.toLowerCase()) {
-     case "home terminal or dispatch center": return 1; // Indicator of contract of service
-     case "on the road/in transit": return -1; // Indicator of contract for services
-     case "delivery or pickup locations": return 0; // Neutral	
-     case "specific route or corridor": return 0; // Neutral	 
-     case "client facility or yard": return -1; // Indicator of contract for services 
-     case "remote or temporary worksite": return 0; // Neutral	 
-     case "rail yard, port, or airport": return 0; // Neutral	 
-     case "other": return 0; // Neutral			    
-       default: return 0;  // Neutral
+     case "home terminal or dispatch center": return -2; // 
+     case "on the road/in transit": return -2; // 
+     case "delivery or pickup locations": return -2; // 
+     case "specific route or corridor": return -2; // 	 
+     case "client facility or yard": return -2; //  
+     case "remote or temporary worksite": return -2; //  
+     case "rail yard, port, or airport": return -2; // 	 
+     case "other": return -2; // 		    
+     
     }
   },
 
@@ -1353,30 +1353,30 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	  case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
-       default: return 0;  // Neutral
+	 case "payer and worker": return -2; // 		    
+     
     }
   },
   399: answer => {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	    case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral	
-       default: return 0;  // Neutral
+	 case "payer and worker": return -2; // 	
+      
     }
   },
   393: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
+      
     }
   },
   394: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
+      
     }
   },
 
@@ -1384,7 +1384,7 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	    case "worker's corporation": return -1; // Indicator of contract for services
-	default: return 0;  // Neutral
+
     }
   },
 	
@@ -1394,7 +1394,7 @@ const customScoringRules = {
 	    case "worker": return -1; // Indicator of contract for services
 	 case "payer and worker": return -2; // 	
 	case "does not apply": return 0; // Neutral		    
-       default: return -2;  // 
+     
     }
   },
 	
@@ -1402,14 +1402,14 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
      case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
+  
     }
   },
   402: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
+      
     }
   },
   403: answer => {
@@ -1419,44 +1419,44 @@ const customScoringRules = {
       case "no - t5018 slip": return -1; // Indicator of contract for services	
       case "no - t4-nr slip": return -1; // Indicator of contract for services
       case "no - no slip issued": return -1; // Indicator of contract for services    
-       default: return 0;  // Neutral
+      
     }
   },
   404: answer => {
     switch (answer.toLowerCase()) {
       case "hourly": return 1; // Indicator of contract of service
       case "monthly": return 1; // Indicator of contract of service
-      case "percentage of job completion/piecework": return 0; // Neutral
-      case "other": return 0; // Neutral	    
-      default: return 0;  // Neutral
+      case "percentage of job completion/piecework": return -2; // 
+      case "other": return -2; // 	    
+     
     }
   },
   405: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
+    
     }
   },
   406: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
+      
     }
   },
   407: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
+      
     }
   },
   408: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
+       
     }
   },
   410: answer => {
