@@ -436,7 +436,7 @@ const excludedSections = new Set([
 ]);
 
 const sectionQuestionExclusions = {
-"section 4 - contract or agreement information": [236, 207, 206, 379, 347, 348, 423, 349], 	
+"section 4 - Contract or agreement information": [236, 207, 206, 379, 347, 348, 423, 349], 	
 "subsection 5a - control - duties (1 of 8)": [424],	
 "subsection 5a - control - degree of autonomy (3 of 8)": [312], 	
 "subsection 5a - control - remuneration (4 of 8)": [385, 386],	
@@ -836,11 +836,19 @@ const customScoringRules = {
     }
   },
 
+ 513: answer => {
+    switch (answer.toLowerCase()) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services
+       default: return 0;  // Neutral
+    }
+  },
+
  494: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 	    case "no": return -1; // Indicator of contract for services
-       default: return 0;  // Neutral
+      
     }
   },
 
