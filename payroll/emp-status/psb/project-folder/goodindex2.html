@@ -1,7 +1,5 @@
 
 
-
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -94,7 +92,6 @@ details {
 .cos-pill { background-color: green; }
 .cfs-pill { background-color: #004085; }
 .neutral-pill { background-color: gray; }
-.doc-pill { background-color: #696969; }
 
 .probability-bar {
   display: flex;
@@ -745,14 +742,14 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-    
+       default: return 0;  // Neutral
     }
   },
     257: answer => {
     switch (answer.toLowerCase()) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-    
+       default: return 0;  // Neutral
     }
   },
 
@@ -1768,7 +1765,8 @@ function getScoreIcon(questionId, answer) {
     icon = 'fas fa-not-equal';
     color = 'grey';
     title = 'Neutral';
-  } else if (score === -2) {
+  }
+ else if (score === -2) {
     icon = 'fas fa-search';
     color = '#696969';
     title = 'Information to help with the contract review';
@@ -1788,10 +1786,12 @@ function getScoreIcon(questionId, answer) {
 </script>
 
 <script>
-
+function normalize(section) {
+return (section || "").trim().toLowerCase();
+}
 	
 function calculateSectionScores(data) {
-  const scores = {}, totals = {}, neutrals = {}, selfEmployment = {}, infoDoc = {}; 
+  const scores = {}, totals = {}, neutrals = {}, selfEmployment = {};
 
   data.forEach(entry => {
     entry.answers.forEach(ans => {
@@ -1805,7 +1805,6 @@ function calculateSectionScores(data) {
           totals[section] = 0;
           neutrals[section] = 0;
           selfEmployment[section] = 0;
-  	  infoDoc[section] = 0;	
         }
 
         if (ans.answer && ans.answer !== "") {
@@ -1815,14 +1814,13 @@ function calculateSectionScores(data) {
             if (score === 1) scores[section]++;
             else if (score === 0) neutrals[section]++;
             else if (score === -1) selfEmployment[section]++;
-	    else if (score === -2) infoDoc[section]++;	  
 	  }
         }
       }
     });
   });
 
-  return { scores, totals, neutrals, selfEmployment, infoDoc};
+  return { scores, totals, neutrals, selfEmployment };
 }
 
 function getIndicatorIcon(score) {
@@ -1830,10 +1828,8 @@ function getIndicatorIcon(score) {
     return `<i class="fas fa-users" style="color: green;" title="Contract of service"></i>`;
   } else if (score === -1) {
     return `<i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i>`;
-  }  else if (score === 0) {
-    return `<i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i>`;
   } else {
-    return `<i class="fas fa-search" style="color: #696969;" title="Information to help with the contract review"></i>`;
+    return `<i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i>`;
   }
 }
 
@@ -1860,7 +1856,7 @@ function renderProbabilityScore(workerData, payerData) {
   const worker = calculateSectionScores(workerData);
   const payer = calculateSectionScores(payerData);
 
-  let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0, workerinfoDoc = 0, payerinfoDoc = 0;
+  let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0;
 
   const allSections = new Set([
     ...Object.keys(worker.scores),
@@ -1876,9 +1872,6 @@ function renderProbabilityScore(workerData, payerData) {
     const pNeutral = payer.neutrals[section] || 0;
     const wSelf = worker.selfEmployment[section] || 0;
     const pSelf = payer.selfEmployment[section] || 0;
-    const wDoc = worker.infoDoc[section] || 0;
-    const pDoc = payer.infoDoc[section] || 0;
-	  
 
     if (wTotal > 0 || pTotal > 0) {
       totalQuestions += Math.max(wTotal, pTotal);
