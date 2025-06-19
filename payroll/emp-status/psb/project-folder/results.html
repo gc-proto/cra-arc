@@ -136,17 +136,10 @@ details {
 </div>
 <div class="col-md-4">
 <h3>Upload the response files (JSON)</h3>
-<ul class="mrgn-tp-lg list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col mrgn-tp-md">
-<label>Worker's response:</label>
-<input accept=".json" id="jsonWorkerInput" type="file"/>
-
-</li>
-<li class="cnjnctn-col mrgn-tp-md">
-<label>Payer's response:</label>
-<input accept=".json" id="jsonPayerInput" type="file"/>
-</li>
-</ul>
+<p class="mrgn-tp-lg">
+  <label>Upload JSON response file</label>
+  <input accept=".json" id="jsonCombinedInput" type="file"/>
+</p>
 </div>
 </div></details>
 
@@ -447,35 +440,37 @@ const sectionQuestionExclusions = {
 	
 let workerData = null;
 let payerData = null;
-document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
- const file = event.target.files[0];
- if (!file) return;
- const reader = new FileReader();
- reader.onload = function (e) {
-   try {
-     workerData = JSON.parse(e.target.result);
-     tryRenderBoth();
-   } catch (err) {
-     alert("Invalid worker JSON file");
-   }
- };
- reader.readAsText(file);
-});
-    
-document.getElementById('jsonPayerInput').addEventListener('change', function (event) {
- const file = event.target.files[0];
- if (!file) return;
- const reader = new FileReader();
- reader.onload = function (e) {
-   try {
-     payerData = JSON.parse(e.target.result);
-     tryRenderBoth();
-   } catch (err) {
-     alert("Invalid payer JSON file");
-   }
- };
- reader.readAsText(file);
-});
+
+document.getElementById('jsonCombinedInput').addEventListener('change', function (event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const combinedData = JSON.parse(e.target.result);
+
+      // Filter responses into worker and payer by role if needed
+      workerData = combinedData.filter(entry =>
+        entry.answers.some(a =>
+          a.questionId === 441 && a.answer.toLowerCase().includes('worker')
+        )
+      );
+
+      payerData = combinedData.filter(entry =>
+        entry.answers.some(a =>
+          a.questionId === 441 && a.answer.toLowerCase().includes('payer')
+        )
+      );
+
+   tryRenderBoth();
+    } catch (err) {
+      alert("Invalid combined JSON file");
+    }
+  };
+  reader.readAsText(file);
+});	    
+	
 function tryRenderBoth() {
   if (workerData && payerData) {
     const container = document.getElementById('content');
