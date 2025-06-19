@@ -1142,7 +1142,12 @@ const customScoringRules = {
   471: answer => {
     switch (answer.toLowerCase()) {
       case "owned by the worker": return 0; // Neutral
-		    
+     case "owned by the corporation of the worker": return 0; // Neutral
+     case "owned by the payer": return 0; // Neutral
+     case "leased by the worker": return 0; // Neutral
+     case "leased by the corporation of the worker": return 0; // Neutral
+     case "leased by the payer": return 0; // Neutral
+      case "don't know": return 0; // Neutral
        default: return 0;  // Neutral
     }
   },
@@ -1160,7 +1165,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral	
+  case "don't know": return 0; // Neutral		    
        default: return 0;  // Neutral
     }
   },
@@ -1169,7 +1175,8 @@ const customScoringRules = {
     switch (answer.toLowerCase()) {
       case "payer": return 1; // Indicator of contract of service
 	case "worker": return -1; // Indicator of contract for services
-	 case "payer and worker": return 0; // Neutral		    
+	 case "payer and worker": return 0; // Neutral	
+	  case "don't know": return 0; // Neutral	    
        default: return 0;  // Neutral
     }
   },
