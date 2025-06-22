@@ -690,12 +690,25 @@ const customScoringRules = {
     }
   },
 
+  347: answer => {
+    switch (answer.toLowerCase()) {
+     default: return -2;  // 	    
+    }
+  },
+	
   348: answer => {
     switch (answer.toLowerCase()) {
      default: return -2;  // 	    
     }
   },
 
+	 382: answer => {
+    switch (answer.toLowerCase()) {
+      case "payer": return 1; // Indicator of contract of service
+      case "worker": return -1; // Indicator of contract for services
+     case "payer and worker": return 0;  // Neutral    
+    }
+  },
 
   423: answer => {
     switch (answer.toLowerCase()) {
@@ -717,13 +730,7 @@ const customScoringRules = {
   },
    
 
-    382: answer => {
-    switch (answer.toLowerCase()) {
-      case "payer": return 1; // Indicator of contract of service
-      case "worker": return -1; // Indicator of contract for services
-     case "payer and worker": return 0;  // Neutral    
-    }
-  },
+   
 	
   192: answer => {
     switch (answer.toLowerCase()) {
