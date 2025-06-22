@@ -1758,7 +1758,6 @@ const customScoringRules = {
 function scoreAnswer(answer, questionId) {
   if (typeof answer !== 'string') return 0;
   const trimmed = answer.trim().toLowerCase();
-	console.log(`Scoring Q${questionId}: ${lowerAnswer}`);
   if (customScoringRules[questionId]) {
     return customScoringRules[questionId](trimmed);
   }
