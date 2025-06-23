@@ -1803,31 +1803,34 @@ function calculateSectionScores(data) {
 
   data.forEach(entry => {
     entry.answers.forEach(ans => {
-      const section = sectionMap[ans.questionId] || "Other";
-      const normalizedSection = normalize(section);
-      const exclusions = sectionQuestionExclusions[section] || [];
+  const section = sectionMap[ans.questionId] || "Other";
+  const normalizedSection = normalize(section);
+  const exclusions = sectionQuestionExclusions[section] || [];
 
-      if (!excludedSections.has(normalizedSection)) {
-        if (!scores[section]) {
-          scores[section] = 0;
-          totals[section] = 0;
-          neutrals[section] = 0;
-          selfEmployment[section] = 0;
-	  infoDoc[section] = 0;	
-        }
+  if (!scores[section]) {
+    scores[section] = 0;
+    totals[section] = 0;
+    neutrals[section] = 0;
+    selfEmployment[section] = 0;
+    infoDoc[section] = 0;
+  }
 
-        if (ans.answer && ans.answer !== "") {
-          totals[section]++;
-          if (!exclusions.includes(ans.questionId)) {
-            const score = scoreAnswer(ans.answer, ans.questionId);
-            if (score === 1) scores[section]++;
-            else if (score === 0) neutrals[section]++;
-            else if (score === -1) selfEmployment[section]++;
-	    else if (score === -2) infoDoc[section]++;	  
-	  }
-        }
+  if (ans.answer && ans.answer !== "") {
+    totals[section]++;
+    const score = scoreAnswer(ans.answer, ans.questionId);
+
+    if (!excludedSections.has(normalizedSection)) {
+      if (!exclusions.includes(ans.questionId)) {
+        if (score === 1) scores[section]++;
+        else if (score === 0) neutrals[section]++;
+        else if (score === -1) selfEmployment[section]++;
       }
-    });
+    }
+
+    if (score === -2) infoDoc[section]++; // Always count -2
+  }
+});
+
   });
 
   return { scores, totals, neutrals, selfEmployment, infoDoc};
