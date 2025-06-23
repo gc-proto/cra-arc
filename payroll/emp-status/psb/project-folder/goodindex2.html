@@ -1747,12 +1747,12 @@ const customScoringRules = {
 
 
 function scoreAnswer(answer, questionId) {
-  if (typeof answer !== 'string') return 0;
+  if (typeof answer !== 'string') return -2; // Changed from 0 to -2
   const trimmed = answer.trim().toLowerCase();
   if (customScoringRules[questionId]) {
     return customScoringRules[questionId](trimmed);
   }
-  return 0;
+ return -2; // Changed from 0 to -2
 }
 
 function getScoreIcon(questionId, answer) {
