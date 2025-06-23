@@ -1807,7 +1807,7 @@ return (section || "").trim().toLowerCase();
 }
 	
 function calculateSectionScores(data) {
-  const scores = {}, totals = {}, neutrals = {}, selfEmployment = {}; 
+  const scores = {}, totals = {}, neutrals = {}, selfEmployment = {};
 
   data.forEach(entry => {
     entry.answers.forEach(ans => {
@@ -1821,7 +1821,6 @@ function calculateSectionScores(data) {
           totals[section] = 0;
           neutrals[section] = 0;
           selfEmployment[section] = 0;
-	  doc[section] = 0;	
         }
 
         if (ans.answer && ans.answer !== "") {
@@ -1831,14 +1830,13 @@ function calculateSectionScores(data) {
             if (score === 1) scores[section]++;
             else if (score === 0) neutrals[section]++;
             else if (score === -1) selfEmployment[section]++;
-	    else if (score === -2) doc[section]++;	  
 	  }
         }
       }
     });
   });
 
-  return { scores, totals, neutrals, selfEmployment, doc };
+  return { scores, totals, neutrals, selfEmployment };
 }
 
 function getIndicatorIcon(score) {
@@ -1894,8 +1892,6 @@ function renderProbabilityScore(workerData, payerData) {
     const pNeutral = payer.neutrals[section] || 0;
     const wSelf = worker.selfEmployment[section] || 0;
     const pSelf = payer.selfEmployment[section] || 0;
-    const wDoc = worker.doc[section] || 0;
-    const pDoc = payer.doc[section] || 0;	  
 
     if (wTotal > 0 || pTotal > 0) {
       totalQuestions += Math.max(wTotal, pTotal);
@@ -1905,19 +1901,13 @@ function renderProbabilityScore(workerData, payerData) {
       payerNeutral += pNeutral;
       workerSelf += wSelf;
       payerSelf += pSelf;
-      workerDoc += wDoc;
-      payerDoc += pDoc;    
     }
   }
 
-const workerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br>
- ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerSelf} <br>
-${getIndicatorIcon(0)} Neutral: ${workerNeutral} ; <br>
-${getIndicatorIcon(0)} Doc: ${workerDoc} `;
-const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> 
-${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
-${getIndicatorIcon(0)} Neutral: ${payerNeutral} ; <br>
-${getIndicatorIcon(0)} Doc: ${payerDoc} `;
+const workerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerSelf} <br>
+${getIndicatorIcon(0)} Neutral: ${workerNeutral} `;
+const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
+${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
 
  const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
   const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
@@ -1954,15 +1944,13 @@ ${getIndicatorIcon(0)} Doc: ${payerDoc} `;
  const wScoreText = wTotal > 0
   ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal} <br>
    ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} <br>
- ${getIndicatorIcon(0)} Neutral: ${worker.neutrals[section] || 0} <br>
- ${getIndicatorIcon(0)} Doc: ${worker.doc[section] || 0}  `
+ ${getIndicatorIcon(0)} Neutral: ${worker.neutrals[section] || 0} `
   : 'N/A';
 
 const pScoreText = pTotal > 0
   ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.scores[section]} of ${pTotal} <br>
    ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${payer.selfEmployment[section] || 0}<br>
-${getIndicatorIcon(0)}     Neutral: ${payer.neutrals[section] || 0}  <br>
-${getIndicatorIcon(0)}     Doc: ${payer.doc[section] || 0} `
+${getIndicatorIcon(0)}     Neutral: ${payer.neutrals[section] || 0} `
   : 'N/A';
 
       probabilityDiv.innerHTML += `
