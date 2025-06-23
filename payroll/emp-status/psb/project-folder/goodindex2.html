@@ -953,33 +953,32 @@ const customScoringRules = {
       
     }
   },
-	
-   195: answer => {
-  const normalized = normalizeAnswer(answer);   switch (normalized) {
+
+
+ 195: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
      case "payer's location": return 1; // Indicator of contract of service
      case "worker's location": return -1; // Indicator of contract for services	
-     case "mobile locations": return -2; // Information to help with the contract review 
-      case "client's location": return -2; //  Information to help with the contract review
-     case "other options for transportation workers": return -2; //  Information to help with the contract review 
-     default: return -2;  //	Information to help with the contract review     
+     case "mobile locations": return -2; //  Information to help with the contract review
+     case "client's location": return -2; //  Information to help with the contract review
+    case "other options for transportation workers": return -2; // Information to help with the contract review 
+	default: return -2;  // Information to help with the contract review	    
     }
   },
-	
  466: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-     case "home terminal or dispatch center": return -2; // Information to help with the contract review 
-     case "on the road/in transit": return -2; // Information to help with the contract review 
-     case "delivery or pickup locations": return -2; // Information to help with the contract review 
-     case "specific route or corridor": return -2; // Information to help with the contract review 
-     case "client facility or yard": return -2; // Information to help with the contract review 
-     case "remote or temporary worksite": return -2; // Information to help with the contract review 
-     case "rail yard, port, or airport": return -2; // Information to help with the contract review 
-     case "other": return -2; // Information to help with the contract review 
-	default: return -2;  // Information to help with the contract review 	    
-      
+     case "home terminal or dispatch center": return -2; // Information to help with the contract review
+     case "on the road/in transit": return -2; // Information to help with the contract review
+     case "delivery or pickup locations": return -2; // Information to help with the contract review
+     case "specific route or corridor": return -2; // 	Information to help with the contract review 
+     case "client facility or yard": return -2; //  Information to help with the contract review
+     case "remote or temporary worksite": return -2; //  Information to help with the contract review
+     case "rail yard, port, or airport": return -2; // 	Information to help with the contract review 
+     case "other": return -2; // Information to help with the contract review		    
+     default: return -2;  // Information to help with the contract review
     }
   },
-	
+
    296: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "payer": return 1; // Indicator of contract of service
