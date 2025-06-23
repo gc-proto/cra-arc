@@ -1915,7 +1915,7 @@ ${getIndicatorIcon(0)} Neutral: ${payerNeutral}  <br> ${getIndicatorIcon(-2)} <a
   ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal} <br>
    ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} <br>
  ${getIndicatorIcon(0)} Neutral: ${worker.neutrals[section] || 0} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerDoc[section] || 0}
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${worker.infoDoc[section] || 0}
 
 `
   : 'N/A';
@@ -1924,7 +1924,7 @@ const pScoreText = pTotal > 0
   ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.scores[section]} of ${pTotal} <br>
    ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${payer.selfEmployment[section] || 0}<br>
 ${getIndicatorIcon(0)}  Neutral: ${payer.neutrals[section] || 0} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payer.Doc[section] || 0} 
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payer.infoDoc[section] || 0} 
 `
   : 'N/A';
 
