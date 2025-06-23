@@ -1027,8 +1027,7 @@ const customScoringRules = {
       case "yes": return 1; // Indicator of contract of service
     case "no": return -1; // Indicator of contract for services
     case "not applicable - schedule is regular": return -2; // 	
-	
-    }
+	}
   },
   280: answer => {
     switch (answer.toLowerCase()) {
@@ -1826,16 +1825,18 @@ function getIndicatorIcon(score) {
   }
 }
 
-function generateDistributionBar(cos, cfs, neutral, total) {
+function generateDistributionBar(cos, cfs, neutral, info, total) {
   const cosPercent = total ? (cos / total * 100).toFixed(1) : 0;
   const cfsPercent = total ? (cfs / total * 100).toFixed(1) : 0;
   const neutralPercent = total ? (neutral / total * 100).toFixed(1) : 0;
+  const infoPercent = total ? (info / total * 100).toFixed(1) : 0;	
 
   return `
     <div class="probability-bar">
       <div style="width:${cosPercent}%; background: green;">${cos > 0 ? cosPercent + "%" : ""}</div>
       <div style="width:${cfsPercent}%; background: #004085;">${cfs > 0 ? cfsPercent + "%" : ""}</div>
       <div style="width:${neutralPercent}%; background: gray;">${neutral > 0 ? neutralPercent + "%" : ""}</div>
+       <div style="width:${infoPercent}%; background: #a2bffe;">${info > 0 ? infoPercent + "%" : ""}</div>
     </div>
   `;
 }	
