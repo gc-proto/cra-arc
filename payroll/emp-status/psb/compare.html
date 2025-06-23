@@ -631,31 +631,6 @@ function normalize(section) {
   return (section || "").trim().toLowerCase();
 }
 
-function generateBar(label, scoreText) {
-  const match = scoreText.match(/^(\d+)/);
-  const numericScore = match ? parseInt(match[1]) : 0;
-
-  return `
-    <div style="margin-bottom:1em">
-      <label>${label} ${describeProbability(numericScore)}</label>
-    </div>
-  `;
-}
-
-function describeProbability(score, totalQuestions) {
-  if (totalQuestions === 0) return "No data";
-
-  const percent = (score / totalQuestions) * 100;
-
-  if (percent >= 80) return "Highly likely: Contract of service";
-  if (percent >= 60) return "Likely: Contract of service";
-  if (percent >= 30) return "Neutral facts: Contract of service or contract for services";
-  if (percent >= 20) return "Likely: Contract for services";
-  return "Highly likely: Contract for services";
-}
-
-
-
 </script>
 <!-- Probability bar container -->
 <div id="probability" style="margin-top: 2em;"></div>
@@ -919,7 +894,7 @@ const customScoringRules = {
       case "hourly/monthly": return 1; // Indicator of contract of service
       case "percentage of job completion/piecework": return -2; // 	
 	  case "other": return -1; // Indicator of contract for services	  	    
-    
+     default: return -2;  // 
     }
   },
    301: answer => {
@@ -976,14 +951,14 @@ const customScoringRules = {
   },
  466: answer => {
     switch (answer.toLowerCase()) {
-     case "home terminal or dispatch center": return -2; // 
-     case "on the road/in transit": return -2; // 
-     case "delivery or pickup locations": return -2; // 
-     case "specific route or corridor": return -2; //
-     case "client facility or yard": return -2; // 
-     case "remote or temporary worksite": return -2; //
-     case "rail yard, port, or airport": return -2; // 
-     case "other": return -2; // 			    
+     case "home terminal or dispatch center": return -1; // 
+     case "on the road/in transit": return -1; // 
+     case "delivery or pickup locations": return -1; // 
+     case "specific route or corridor": return -1; //
+     case "client facility or yard": return -1; // 
+     case "remote or temporary worksite": return -1; //
+     case "rail yard, port, or airport": return -1; // 
+     case "other": return -1; // 			    
       
     }
   },
@@ -1429,11 +1404,10 @@ const customScoringRules = {
   },
   404: answer => {
     switch (answer.toLowerCase()) {
-      case "hourly": return 1; // Indicator of contract of service
-      case "monthly": return 1; // Indicator of contract of service
+       case "hourly/monthly": return 1; // Indicator of contract of service
       case "percentage of job completion/piecework": return -2; // 
       case "other": return -2; // 	    
-     
+       default: return -2;  // 
     }
   },
   405: answer => {
@@ -1871,6 +1845,9 @@ function generateDistributionBar(cos, cfs, neutral, total) {
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
+  <h3>References and resources</h3>
+    <p>Add resources here</p>
+    <hr>
    <h3>Total - Indicators</h3>
   `;
 
@@ -1910,29 +1887,19 @@ ${getIndicatorIcon(0)} Neutral: ${workerNeutral} `;
 const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
 ${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
 
- const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
-  const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
 
-	
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
-      <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
+      <header class="panel-heading"><h5 class="panel-title">All section 5</h5></header>
       <div class="panel-body">
-   <p><strong>${describeProbability(workerScore, totalQuestions)}</strong></p>
-         ${workerBar}
-   <hr>
-        <p>${workerScoreText}</p>
+      <p><strong>Worker's response</strong><br>
+          <p>${workerScoreText}</p>
+	   <hr>
+     <p><strong>Payer's response</strong><br>
+       <p>${payerScoreText}</p>
       </div>
     </section>
-    <section class="panel panel-primary">
-      <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
-      <div class="panel-body">
-   <p><strong>${describeProbability(payerScore, totalQuestions)}</strong></p>
-   ${payerBar}
-<hr>
-        <p>${payerScoreText}</p>
-      </div>
-    </section>
+  
     <hr>
     <h3>By section - Indicators</h3>
   `;
@@ -1955,7 +1922,7 @@ ${getIndicatorIcon(0)}     Neutral: ${payer.neutrals[section] || 0} `
   : 'N/A';
 
       probabilityDiv.innerHTML += `
-        <section class="panel panel-default">
+        <section class="panel panel-info">
           <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
           <div class="panel-body">
             <p><strong>Worker's response</strong><br> ${wScoreText}</p>
@@ -1966,6 +1933,7 @@ ${getIndicatorIcon(0)}     Neutral: ${payer.neutrals[section] || 0} `
       `;
     }
   }
+ 
 }
 </script>
 
