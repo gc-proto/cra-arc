@@ -631,31 +631,6 @@ function normalize(section) {
   return (section || "").trim().toLowerCase();
 }
 
-function generateBar(label, scoreText) {
-  const match = scoreText.match(/^(\d+)/);
-  const numericScore = match ? parseInt(match[1]) : 0;
-
-  return `
-    <div style="margin-bottom:1em">
-      <label>${label} ${describeProbability(numericScore)}</label>
-    </div>
-  `;
-}
-
-function describeProbability(score, totalQuestions) {
-  if (totalQuestions === 0) return "No data";
-
-  const percent = (score / totalQuestions) * 100;
-
-  if (percent >= 80) return "Highly likely: Contract of service";
-  if (percent >= 60) return "Likely: Contract of service";
-  if (percent >= 30) return "Neutral facts: Contract of service or contract for services";
-  if (percent >= 20) return "Likely: Contract for services";
-  return "Highly likely: Contract for services";
-}
-
-
-
 </script>
 <!-- Probability bar container -->
 <div id="probability" style="margin-top: 2em;"></div>
@@ -1909,27 +1884,18 @@ ${getIndicatorIcon(0)} Neutral: ${workerNeutral} `;
 const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
 ${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
 
- const workerBar = generateDistributionBar(workerScore, workerSelf, workerNeutral, totalQuestions);
-  const payerBar = generateDistributionBar(payerScore, payerSelf, payerNeutral, totalQuestions);
 
-	
   probabilityDiv.innerHTML += `
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Worker's response</h5></header>
       <div class="panel-body">
-   <p><strong>${describeProbability(workerScore, totalQuestions)}</strong></p>
-         ${workerBar}
-   <hr>
-        <p>${workerScoreText}</p>
+          <p>${workerScoreText}</p>
       </div>
     </section>
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">Payer's response</h5></header>
       <div class="panel-body">
-   <p><strong>${describeProbability(payerScore, totalQuestions)}</strong></p>
-   ${payerBar}
-<hr>
-        <p>${payerScoreText}</p>
+          <p>${payerScoreText}</p>
       </div>
     </section>
     <hr>
