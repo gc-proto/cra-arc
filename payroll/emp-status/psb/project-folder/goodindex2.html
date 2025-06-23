@@ -1845,6 +1845,9 @@ function generateDistributionBar(cos, cfs, neutral, total) {
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
+  <h3>References and resources</h3>
+    <p>Add resources here</p>
+    <hr>
    <h3>Total - Indicators</h3>
   `;
 
@@ -1886,10 +1889,6 @@ ${getIndicatorIcon(0)} Neutral: ${payerNeutral} `;
 
 
   probabilityDiv.innerHTML += `
-     <hr>
-    <h3>Resources</h3>
-    <p>Add resources here.</p>
-    <hr>
     <section class="panel panel-primary">
       <header class="panel-heading"><h5 class="panel-title">All section 5</h5></header>
       <div class="panel-body">
@@ -1923,7 +1922,7 @@ ${getIndicatorIcon(0)}     Neutral: ${payer.neutrals[section] || 0} `
   : 'N/A';
 
       probabilityDiv.innerHTML += `
-        <section class="panel panel-default">
+        <section class="panel panel-info">
           <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
           <div class="panel-body">
             <p><strong>Worker's response</strong><br> ${wScoreText}</p>
