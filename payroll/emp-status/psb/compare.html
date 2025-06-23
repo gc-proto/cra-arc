@@ -1047,7 +1047,7 @@ const customScoringRules = {
       case "yes": return 1; // Indicator of contract of service
     case "no": return -1; // Indicator of contract for services
     case "not applicable - schedule is regular": return -2; // Information to help with the contract review 
-  
+  default: return -2;  // 
 	}
   },
 	
@@ -1073,7 +1073,7 @@ const customScoringRules = {
 	  case "quantity of work": return 0;  // Neutral
 	  case "length of time required to complete the task": return 0;  // Neutral
 	  case "other": return 0;  // Neutral
-	default: return 0;  // Neutral
+	default: return -2;  // 
     }
   },
 
@@ -1747,12 +1747,12 @@ const customScoringRules = {
 
 
 function scoreAnswer(answer, questionId) {
-  if (typeof answer !== 'string') return 0;
+  if (typeof answer !== 'string') return -2; // Changed from 0 to -2
   const trimmed = answer.trim().toLowerCase();
   if (customScoringRules[questionId]) {
     return customScoringRules[questionId](trimmed);
   }
-  return 0;
+ return -2; // Changed from 0 to -2
 }
 
 function getScoreIcon(questionId, answer) {
