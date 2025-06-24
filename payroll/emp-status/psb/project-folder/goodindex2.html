@@ -643,7 +643,7 @@ rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; positi
 
 function normalize(section) {
   return (section || "")
-   .trim()
+ .trim()
 .toLowerCase()
 .replace(/[’‘]/g, "'")
 .replace(/[\u2013\u2014\u2012\u2010]/g, '-')
@@ -1786,9 +1786,15 @@ function getScoreIcon(questionId, answer) {
 
 <script>
 function normalize(section) {
-return (section || "").trim().toLowerCase();
+  return (section || "")
+ .trim()
+.toLowerCase()
+.replace(/[’‘]/g, "'")
+.replace(/[\u2013\u2014\u2012\u2010]/g, '-')
+.replace(/\s+/g, ' ')
+.replace(/[^a-z0-9\s'/-]/g, ''); // strip unexpected punctuation
 }
-	
+
 function calculateSectionScores(data) {
   const scores = {}, totals = {}, neutrals = {}, selfEmployment = {}, infoDoc = {};
 
