@@ -122,9 +122,9 @@ details {
  <ol class="lst-stps ld-zr stps-strpd">
 <li>Upload both worker and payer JSON files.
 <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col text-center"><label>Worker's response:</label>
+<li class="cnjnctn-col"><label>Worker's response:</label>
 <input accept=".json" id="jsonWorkerInput" type="file"/></li>
-<li class="cnjnctn-col text-center"><label>Payer's response:</label>
+<li class="cnjnctn-col"><label>Payer's response:</label>
 <input accept=".json" id="jsonPayerInput" type="file"/></li>
 </ul>
 </li>
@@ -1867,22 +1867,23 @@ function generateDistributionBar(cos, cfs, neutral, info, total) {
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
-  <h3>Resources</h3>
-  <h4>Canada.ca resources</h4>
+  <details><summary>Resources</summary>
+  <h3>Canada.ca</h3>
      <ul>
 		   
 <li><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/corporations/corporation-income-tax-return/tax-implications-personal-services-business.html">Worker who performs services on behalf of their own corporation (personal services business)</a> </li>
-<li><a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4110/employee-self-employed.html">Employment status: Employee or self-employed</a> </li>
+<li><a href="https://test.canada.ca/cra-arc/subway/cppeirulings/index.html">Employment status: Employee or self-employed</a> </li>
 <li><a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained.html">CPP/EI explained: Specific professions/industries</a> </li>
 
 		</ul>
- <h4>Infozone resources</h4>
+ <h3>Infozone</h3>
      <ul>
+<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_006-e.html">CPP/EI policy manual: How to determine where the contract was formed</a> </li>
 <li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_007-e.html">CPP/EI policy manual: Contract formed in a province or territory other than Quebec</a> </li>
 <li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_008-e.html">CPP/EI policy manual: Contract formed in the province of Quebec</a> </li>
 <li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/002-e.html">CPP/EI policy manual: Specific employments/workers</a> </li>	
 		</ul>
-      
+   </details>   
     <hr>
    <h3>Total – Indicators</h3>
 <p>Totals are provided for <strong>information only</strong>. They are not provided to determine if the worker would have reasonably been determined to be an employee or self-employed if their corporation did not exist.</p>
