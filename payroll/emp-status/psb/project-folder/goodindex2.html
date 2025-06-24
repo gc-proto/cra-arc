@@ -486,7 +486,7 @@ function tryRenderBoth() {
     }
     const formatted = formatAnswer(ans.answer);
     
-const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : JSON.stringify(ans.answer);
+const raw = typeof ans.answer === 'string' ? normalizeAnswer(ans.answer) : JSON.stringify(ans.answer);
   
     if (isPayer) {
       sectioned[section][ans.questionEn].payer = formatted;
