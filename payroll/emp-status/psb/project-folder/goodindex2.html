@@ -642,7 +642,12 @@ rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; positi
 }
 
 function normalize(section) {
-  return (section || "").trim().toLowerCase();
+  return (section || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[’‘]/g, "'") // Normalize curly apostrophes
+    .replace(/[\u2013\u2014\u2012\u2010]/g, '-') // Normalize en/em/non-breaking dashes to hyphen
+    .replace(/\s+/g, ' '); // Collapse multiple spaces
 }
 
 </script>
