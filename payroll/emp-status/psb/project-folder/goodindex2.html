@@ -643,11 +643,12 @@ rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; positi
 
 function normalize(section) {
   return (section || "")
-    .trim()
-    .toLowerCase()
-    .replace(/[’‘]/g, "'") // Normalize curly apostrophes
-    .replace(/[\u2013\u2014\u2012\u2010]/g, '-') // Normalize en/em/non-breaking dashes to hyphen
-    .replace(/\s+/g, ' '); // Collapse multiple spaces
+   .trim()
+.toLowerCase()
+.replace(/[’‘]/g, "'")
+.replace(/[\u2013\u2014\u2012\u2010]/g, '-')
+.replace(/\s+/g, ' ')
+.replace(/[^a-z0-9\s'/-]/g, ''); // strip unexpected punctuation
 }
 
 </script>
@@ -660,17 +661,18 @@ function normalize(section) {
 <script>
 
 function normalizeAnswer(answer) {
-  return answer
-    .trim()
-    .toLowerCase()
-    .replace(/[’‘]/g, "'") // Normalize curly apostrophes
-    .replace(/[\u2013\u2014\u2012\u2010]/g, '-') // Normalize en/em/non-breaking dashes to hyphen
-    .replace(/\s+/g, ' '); // Collapse multiple spaces
+return String(answer || "")
+.trim()
+.toLowerCase()
+.replace(/[’‘]/g, "'")
+.replace(/[\u2013\u2014\u2012\u2010]/g, '-')
+.replace(/\s+/g, ' ')
+.replace(/[^a-z0-9\s'/-]/g, ''); // strip unexpected punctuation
 }
-	
+
+
 const customScoringRules = {
    
- 
   207: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
 	  case "yes - you must send a copy of the contract or agreement with this questionnaire": return -2;  // 
