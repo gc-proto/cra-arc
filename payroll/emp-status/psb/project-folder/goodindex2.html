@@ -1046,9 +1046,10 @@ const customScoringRules = {
   
  278: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-         case "yes": return 1; // Indicator of contract of service
-         case "no": return -1; // Indicator of contract for services
-         case "not applicable - schedule is regular": return -2; // Information to help with the contract review 
+         case "not applicable - schedule is regular": return 1; // Information to help with the contract review 
+        case "yes": return 1; // Indicator of contract of service
+        case "no": return -1; // Indicator of contract for services
+        
   default: return 0;  // 	  		     
     }
   },
