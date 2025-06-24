@@ -1739,9 +1739,9 @@ const customScoringRules = {
 
 function scoreAnswer(answer, questionId) {
   if (typeof answer !== 'string') return -2; // Changed from 0 to -2
-  const trimmed = answer.trim().toLowerCase();
+  const normalized = normalizeAnswer(answer); 
   if (customScoringRules[questionId]) {
-    return customScoringRules[questionId](trimmed);
+    return customScoringRules[questionId](normalized);
   }
  return -2; // Changed from 0 to -2
 }
