@@ -118,33 +118,33 @@ details {
 <small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small>
 </h1>
 <details open><summary>Step-by-step instructions</summary>
-<div class="row">
-<div class="col-md-8">
 <p>To use the comparison tool:</p>
  <ol class="lst-stps ld-zr stps-strpd">
-<li>Upload both worker and payer JSON files.</li>
+<li>Upload both worker and payer JSON files.
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
+<li class="cnjnctn-col"><label>Worker's response:</label>
+<input accept=".json" id="jsonWorkerInput" type="file"/></li>
+<li class="cnjnctn-col"><label>Payer's response:</label>
+<input accept=".json" id="jsonPayerInput" type="file"/></li>
+</ul>
+</li>
+
 <li>View side-by-side results.<br>
 <small> To help you quickly spot mismatches between the 2 responses, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.</small></li>
-<li>View the total and sections indicators.</li>
-<li>Begin your full analysis using each factors. <br>
-<small>Each PSBCR case is unique and requires a thorough review of the facts.</small></li>
-</ol>
-</div>
-<div class="col-md-4">
-<h3>Upload the response files (JSON)</h3>
-<ul class="mrgn-tp-lg list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col mrgn-tp-md">
-<label>Worker's response:</label>
-<input accept=".json" id="jsonWorkerInput" type="file"/>
-
-</li>
-<li class="cnjnctn-col mrgn-tp-md">
-<label>Payer's response:</label>
-<input accept=".json" id="jsonPayerInput" type="file"/>
-</li>
+<li>Begin your full analysis using each factors. 
+<p class="small">Each PSBCR case is unique and requires a thorough review of the facts to determine if the worker’s corporation was carrying on a personal services business for the period under review. The purpose of this questionnaire is to review the following condition for worker's corporation to have been carrying on a PSB:</p>
+<p class="small mrgn-lft-lg">If the corporation did not exist, the worker would <strong>reasonably be considered an employee</strong> of the payer (the corporation’s client) to whom the services were provided.</p>
+<p class="small">The questionnaire is using the following icons to show whether the answers suggest the worker would be considered:</p>
+<ul class="list-unstyled small">
+<li class="mrgn-lft-lg"><i class="fas fa-users" style="color: green;" title="Contract of service"></i> Contract of service (employment)</li>
+<li class="mrgn-lft-lg"><i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i> Contract for services (self-employed worker)</li>
+<li class="mrgn-lft-lg"><i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i> Neutral</li>
+<li class="mrgn-lft-lg"><i class="fas fa-book" style="color: #a2bffe;" title="Information to help with the contract review"></i> Information to help with the contract review</li>
 </ul>
-</div>
-</div></details>
+<p class="small mrgn-tp-md">Depending on the situation for this review, the icons may not always apply. To make a final decision, you need to review all indicators together, along with the documents sent by both the payer and the worker.</p>
+</li>
+</ol>
+</details>
 
 	
 <div class="row">
@@ -1867,10 +1867,24 @@ function generateDistributionBar(cos, cfs, neutral, info, total) {
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
-  <h3>References and resources</h3>
-    <p>Add resources here</p>
-    <hr>
-   <h3>Total - Indicators</h3>
+   <h3>Resources</h3>
+  <details><summary>Canada.ca</summary>
+       <ul>
+<li><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/corporations/corporation-income-tax-return/tax-implications-personal-services-business.html">Worker who performs services on behalf of their own corporation (personal services business)</a> </li>
+<li><a href="https://test.canada.ca/cra-arc/subway/cppeirulings/index.html">Employment status: Employee or self-employed</a> </li>
+<li><a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained.html">CPP/EI explained: Specific professions/industries</a> </li>
+</ul></details>   
+ 
+<details><summary>Infozone</summary>
+     <ul>
+<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_006-e.html">CPP/EI policy manual: How to determine where the contract was formed</a> </li>
+<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_007-e.html">CPP/EI policy manual: Contract formed in a province or territory other than Quebec</a> </li>
+<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_008-e.html">CPP/EI policy manual: Contract formed in the province of Quebec</a> </li>
+<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/002-e.html">CPP/EI policy manual: Specific employments/workers</a> </li>	
+</ul>    </details>   
+   
+   <h3>Total – Indicators</h3>
+<p class="small">Totals are provided for <strong>information only</strong>. They are not provided to determine if the worker would have reasonably been determined to be an employee or self-employed if their corporation did not exist.</p>
   `;
 
   const worker = calculateSectionScores(workerData);
