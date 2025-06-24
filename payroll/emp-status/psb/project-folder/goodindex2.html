@@ -984,7 +984,7 @@ const customScoringRules = {
      case "remote or temporary worksite": return -2; //  Information to help with the contract review
      case "rail yard, port, or airport": return -2; // 	Information to help with the contract review 
      case "other": return -2; // Information to help with the contract review		    
-     default: return -2;  // Information to help with the contract review
+    
     }
   },
 
@@ -993,17 +993,18 @@ const customScoringRules = {
       case "payer": return 1; // Indicator of contract of service
      case "worker": return -1; // Indicator of contract for services
     case "payer and worker": return -2; // 	  Information to help with the contract review   
-     default: return -2;  //   Information to help with the contract review 
+  
     }
   },
 
-   480: answer => {
+//Who decided where the truck used by the worker (truck driver) would be parked? 
+480: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "payer": return 1; // Indicator of contract of service
      case "worker": return -1; // Indicator of contract for services
     case "payer and worker": return -2; // Information to help with the contract review 	
     case "does not apply": return -2; // Information to help with the contract review 		    
-     default: return -2;  //  Information to help with the contract review 
+
     }
   },
 	
@@ -1295,7 +1296,8 @@ const customScoringRules = {
     
     }
   },
-	
+
+//Who was responsible for paying for the insurance?	
    478: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "payer": return 1; // Indicator of contract of service
@@ -1303,7 +1305,6 @@ const customScoringRules = {
       case "worker's corporation": return -1; // Indicator of contract for services	
       case "payer and worker": return -2; // 	Information to help with the contract review 	    
      case "don't know": return -2; // 	Information to help with the contract review 	    
-    
     }
   },
 
@@ -1643,6 +1644,8 @@ const customScoringRules = {
       
     }
   },
+
+//Who decided where the truck used by the worker (truck driver) would be parked?
   527: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "payer": return 1; // Indicator of contract of service
