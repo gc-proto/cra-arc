@@ -1074,14 +1074,18 @@ const customScoringRules = {
     }
   },
 
-  310: answer => {
-     const normalized = normalizeAnswer(answer);   switch (normalized) {
-           case "quality of work": return 0;  // Neutral
-	  case "quantity of work": return 0;  // Neutral
-	  case "length of time required to complete the task": return 0;  // Neutral
-	  case "other": return 0;  // Neutral
-	}
-  },
+310: answer => {
+  const answers = Array.isArray(answer) ? answer : [answer];
+  const normalizedAnswers = answers.map(normalizeAnswer);
+  // If any of the selected answers match the neutral ones, return 0
+  const neutralOptions = [
+    "quality of work",
+    "quantity of work",
+    "length of time required to complete the task",
+    "other"
+  ];
+  return normalizedAnswers.some(ans => neutralOptions.includes(ans)) ? 0 : null;
+},
 
  
   459: answer => {
