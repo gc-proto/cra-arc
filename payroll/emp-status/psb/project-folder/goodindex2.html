@@ -1937,12 +1937,14 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-const workerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerSelf} <br>
-${getIndicatorIcon(0)} Neutral: ${workerNeutral} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerDoc}`;
-const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
-${getIndicatorIcon(0)} Neutral: ${payerNeutral}  <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payerDoc} `;
+const workerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br>
+${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerSelf || 0} <br>
+${getIndicatorIcon(0)} Neutral: ${workerNeutral || 0} <br>
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerDoc || 0}`;
+const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> 
+${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf || 0} <br>
+${getIndicatorIcon(0)} Neutral: ${payerNeutral || 0}  <br>
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payerDoc || 0} `;
 
 
   probabilityDiv.innerHTML += `
@@ -1966,12 +1968,12 @@ ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract revie
     const pTotal = payer.totals[section] || 0;
 
     if (wTotal > 0 || pTotal > 0) {
- const wScoreText = wTotal > 0
+
+    const wScoreText = wTotal > 0
   ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal} <br>
    ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} <br>
  ${getIndicatorIcon(0)} Neutral: ${worker.neutrals[section] || 0} <br>
 ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${worker.infoDoc[section] || 0}
-
 `
   : 'N/A';
 
