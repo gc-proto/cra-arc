@@ -1739,12 +1739,12 @@ const customScoringRules = {
 
 
 function scoreAnswer(answer, questionId) {
-  if (typeof answer !== 'string') return -2; // Changed from 0 to -2
+  if (typeof answer !== 'string') return 0; // 
   const normalized = normalizeAnswer(answer); 
   if (customScoringRules[questionId]) {
     return customScoringRules[questionId](normalized);
   }
- return -2; // Changed from 0 to -2
+ return 0; // 
 }
 
 function getScoreIcon(questionId, answer) {
