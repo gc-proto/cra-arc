@@ -131,18 +131,11 @@ details {
 </ol>
 </div>
 <div class="col-md-4">
-<h3>Upload the response files (JSON)</h3>
-<ul class="mrgn-tp-lg list-unstyled cnjnctn-type-and">
-<li class="cnjnctn-col mrgn-tp-md">
-<label>Worker's response:</label>
-<input accept=".json" id="jsonWorkerInput" type="file"/>
 
-</li>
-<li class="cnjnctn-col mrgn-tp-md">
-<label>Payer's response:</label>
-<input accept=".json" id="jsonPayerInput" type="file"/>
-</li>
-</ul>
+<h3>Upload the response file(s) (JSON)</h3>
+<p>You can upload one or more JSON files. The system will automatically detect whether each file is a worker or payer response.</p>
+<input accept=".json" id="jsonUniversalInput" type="file" multiple/>
+
 </div>
 </div></details>
 
@@ -449,79 +442,30 @@ document.getElementById('jsonPayerInput').addEventListener('change', function (e
  reader.readAsText(file);
 });
 
-let selectedCaseNumber = null;
-
-function extractCaseNumbers(data) {
-  const caseSet = new Set();
-  data?.forEach(entry => {
-    if (entry.caseNumber) caseSet.add(entry.caseNumber);
+document.getElementById('jsonUniversalInput').addEventListener('change', function (event) {
+  const files = Array.from(event.target.files);
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      try {
+        const data = JSON.parse(e.target.result);
+        const role = (data[0]?.respondentType || "").toLowerCase();
+        if (role.includes("payer")) {
+          payerData = data;
+        } else if (role.includes("worker")) {
+          workerData = data;
+        } else {
+          alert("Could not detect if file is for worker or payer: " + file.name);
+        }
+        tryRenderBoth();
+      } catch (err) {
+        alert("Invalid JSON file: " + file.name);
+      }
+    };
+    reader.readAsText(file);
   });
-  return Array.from(caseSet);
-}
+});
 
-function getMatchedCaseNumbers() {
-  const workerCases = extractCaseNumbers(workerData);
-  const payerCases = extractCaseNumbers(payerData);
-
-  if (workerData && payerData) {
-    return workerCases.filter(caseNum => payerCases.includes(caseNum));
-  } else {
-    return workerData ? workerCases : payerCases;
-  }
-}
-
-function renderCaseSelector(matchedCases) {
-  const container = document.getElementById('content');
-  container.innerHTML = '';
-
-  const label = document.createElement('label');
-  label.textContent = "Select Case Number:";
-
-  const select = document.createElement('select');
-  select.classList.add("form-control", "mrgn-bttm-md");
-  matchedCases.forEach(caseNum => {
-    const opt = document.createElement('option');
-    opt.value = caseNum;
-    opt.text = caseNum;
-    select.appendChild(opt);
-  });
-
-  select.addEventListener('change', () => {
-    selectedCaseNumber = select.value;
-    renderSelectedCase();
-  });
-
-  container.appendChild(label);
-  container.appendChild(select);
-
-  if (matchedCases.length === 1) {
-    selectedCaseNumber = matchedCases[0];
-    renderSelectedCase();
-  }
-}
-
-function renderSelectedCase() {
-  const container = document.getElementById('content');
-  container.innerHTML = "";
-  const filteredWorker = (workerData || []).filter(entry => entry.caseNumber === selectedCaseNumber);
-  const filteredPayer = (payerData || []).filter(entry => entry.caseNumber === selectedCaseNumber);
-  container.appendChild(renderJSON(filteredWorker, filteredPayer));
-
-  if (workerData && payerData) {
-    renderProbabilityScore(filteredWorker, filteredPayer);
-  }
-}
-
-function tryRenderBoth() {
-  if (!workerData && !payerData) return;
-
-  const matchedCases = getMatchedCaseNumbers();
-  if (matchedCases.length > 0) {
-    renderCaseSelector(matchedCases);
-  } else {
-    document.getElementById('content').innerHTML = '<p>No matching case numbers found.</p>';
-  }
-}
 
 function tryRenderBoth() {
   if (workerData && payerData) {
