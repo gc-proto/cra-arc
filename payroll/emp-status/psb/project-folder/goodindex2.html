@@ -670,18 +670,12 @@ function normalizeAnswer(answer) {
 	
 const customScoringRules = {
    
-
-  236: answer => {
-     const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	  Information to help with the contract review   
-    }
-  },
-
+ 
   207: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
 	  case "yes - you must send a copy of the contract or agreement with this questionnaire": return -2;  // 
       case "no": return -2;  // 	Information to help with the contract review     
-     default: return -2;  // 	    Information to help with the contract review 
+  
     }
   },
 
@@ -692,21 +686,18 @@ const customScoringRules = {
     }
   },
 
-  379: answer => {
-     const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	  Information to help with the contract review   
-    }
-  },
 
   347: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	 Information to help with the contract review    
+   case "yes": return -2; // Information to help with the contract review 
+      case "no": return -2; // Information to help with the contract review 
     }
   },
 	
   348: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	Information to help with the contract review     
+    case "yes": return -2; // Information to help with the contract review 
+      case "no": return -2; // Information to help with the contract review 
     }
   },
 
@@ -718,15 +709,11 @@ const customScoringRules = {
     }
   },
 
-  423: answer => {
-     const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	Information to help with the contract review     
-    }
-  },	
 
   349: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	    
+    case "yes": return -2; // Information to help with the contract review 
+      case "no": return -2; // Information to help with the contract review 	    
     }
   },
 	
@@ -908,7 +895,7 @@ const customScoringRules = {
       case "no - t5018 slip": return -1; // Indicator of contract for services	
       case "no - t4-nr slip": return -1; // Indicator of contract for services
       case "no - no slip issued": return -1; // Indicator of contract for services    
-    default: return -1;  // Indicator of contract for services
+  
     }
   },
    271: answer => {
@@ -923,7 +910,7 @@ const customScoringRules = {
       case "hourly/monthly": return 1; // Indicator of contract of service
       case "percentage of job completion/piecework": return -2; // 	Information to help with the contract review 
 	  case "other": return -1; // Indicator of contract for services	  	    
-     default: return -2;  // Information to help with the contract review 
+   
     }
   },
    301: answer => {
@@ -1416,7 +1403,7 @@ const customScoringRules = {
       case "no - t5018 slip": return -1; // Indicator of contract for services	
       case "no - t4-nr slip": return -1; // Indicator of contract for services
       case "no - no slip issued": return -1; // Indicator of contract for services    
-      default: return -1;  // Indicator of contract for services
+    
     }
   },
   404: answer => {
@@ -1424,7 +1411,7 @@ const customScoringRules = {
        case "hourly/monthly": return 1; // Indicator of contract of service
       case "percentage of job completion/piecework": return -2; // Information to help with the contract review
       case "other": return -2; // Information to help with the contract review	    
-       default: return -2;  // Information to help with the contract review
+    
     }
   },
   405: answer => {
