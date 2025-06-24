@@ -964,14 +964,13 @@ const customScoringRules = {
     }
   },
 
-
  195: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
+    case "other options for transportation workers": return -2; // Information to help with the contract review 
      case "payer's location": return 1; // Indicator of contract of service
      case "worker's location": return -1; // Indicator of contract for services	
      case "mobile locations": return -2; //  Information to help with the contract review
      case "client's location": return -2; //  Information to help with the contract review
-    case "other options for transportation workers": return -2; // Information to help with the contract review 
     }
   },
 
@@ -991,10 +990,9 @@ const customScoringRules = {
 //Who determined where the worker performed the services under the contract?
    296: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-      case "payer": return 1; // Indicator of contract of service
+       case "payer": return 1; // Indicator of contract of service
      case "worker": return -1; // Indicator of contract for services
-    case "payer and worker": return -2; // 	  Information to help with the contract review   
-  
+   case "payer and worker": return -2; // 	  Information to help with the contract review   
     }
   },
 
@@ -1005,7 +1003,6 @@ const customScoringRules = {
      case "worker": return -1; // Indicator of contract for services
     case "payer and worker": return -2; // Information to help with the contract review 	
     case "does not apply": return -2; // Information to help with the contract review 		    
-
     }
   },
 	
@@ -1013,7 +1010,6 @@ const customScoringRules = {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-     
     }
   },
   275: answer => {
