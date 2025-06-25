@@ -681,6 +681,13 @@ function formatAnswer(answer) {
 
 for (const [section, questions] of Object.entries(sectioned)) {
   const table = document.createElement('table');
+let showWorker = workerData.length > 0;
+let showPayer = payerData.length > 0;
+
+// Special rule: for Section 1, only show worker column
+if (section === "Section 1 - General information") {
+  showPayer = false;
+}
 
    if (!showWorker && !showPayer) continue;
 
