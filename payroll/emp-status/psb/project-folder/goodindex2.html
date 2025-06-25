@@ -521,14 +521,24 @@ function extractCaseNumbers(data) {
 function updateCaseSelector(caseNumbers) {
   const dropdown = document.getElementById("caseSelector");
   dropdown.innerHTML = "";
+
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Make your selection...";
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  dropdown.appendChild(defaultOption);
+
   caseNumbers.forEach(cn => {
     const option = document.createElement("option");
     option.value = cn;
     option.textContent = cn;
     dropdown.appendChild(option);
   });
+
   document.getElementById("caseSelectorContainer").style.display = "block";
 }
+
 
 function handleCaseSelection(workerCases, payerCases) {
   const workerKeys = [...workerCases.keys()];
