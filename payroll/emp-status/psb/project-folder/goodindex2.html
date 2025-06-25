@@ -681,11 +681,12 @@ function formatAnswer(answer) {
 
 for (const [section, questions] of Object.entries(sectioned)) {
   const table = document.createElement('table');
+
 let showWorker = workerData.length > 0;
 let showPayer = payerData.length > 0;
 
-// Special rule: for Section 1, only show worker column
-if (section === "Section 1 - General information") {
+// Special rule: in combined view, Section 1 should only show worker column
+if (section === "Section 1 - General information" && showWorker && showPayer) {
   showPayer = false;
 }
 
@@ -693,12 +694,12 @@ if (section === "Section 1 - General information") {
 
 let theadHTML = '<thead><tr><th>Question</th>';
 if (showWorker) {
-  theadHTML += `<th>${section === "Section 1 - General information" ? "Answer" : "Worker"}</th>`;
+  const label = (section === "Section 1 - General information" && showPayer) ? "Answer" : "Worker";
+  theadHTML += `<th>${label}</th>`;
 }
-if (showPayer) {
-  theadHTML += '<th>Payer</th>';
-}
+if (showPayer) theadHTML += '<th>Payer</th>';
 theadHTML += '</tr></thead>';
+
 
 	
   table.innerHTML = theadHTML;
