@@ -615,8 +615,10 @@ function renderSelectedCase(workerCases, payerCases, caseNumber) {
   }
 }
 	
+function renderJSON(workerData, payerData) {
+  const showWorker = workerData.length > 0;
+  const showPayer = payerData.length > 0;
 
- function renderJSON(workerData, payerData) {
    const sectioned = {};
 
    function addToSection(ans, isPayer = false) {
@@ -689,10 +691,10 @@ for (const [section, questions] of Object.entries(sectioned)) {
 
   if (!showWorker && !showPayer) continue;
 
-  let theadHTML = '<thead><tr><th>Question</th>';
-  if (showWorker) theadHTML += '<th>Worker</th>';
-  if (showPayer) theadHTML += '<th>Payer</th>';
-  theadHTML += '</tr></thead>';
+ let theadHTML = '<thead><tr><th>Question</th>';
+if (showWorker) theadHTML += '<th>Worker</th>';
+if (showPayer) theadHTML += '<th>Payer</th>';
+theadHTML += '</tr></thead>';
   table.innerHTML = theadHTML;
 
   const tbody = document.createElement('tbody');
