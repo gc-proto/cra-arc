@@ -1740,7 +1740,7 @@ const customScoringRules = {
 function scoreAnswer(answer, questionId) {
   const rule = customScoringRules[questionId];
   if (rule) return rule(answer);
-  return 0; // Default to neutral if no rule found
+  return -2; // Default to information documents if no rule found
 }
 
 function getScoreIcon(questionId, answer) {
@@ -1808,6 +1808,8 @@ function calculateSectionScores(data) {
           totals[section]++;
           if (!exclusions.includes(ans.questionId)) {
             const score = scoreAnswer(ans.answer, ans.questionId);
+	  console.log("QID:", ans.questionId, "Answer:", ans.answer, "Score:", score, "Section:", section);
+
             if (score === 1) scores[section]++;
             else if (score === 0) neutrals[section]++;
             else if (score === -1) selfEmployment[section]++;
