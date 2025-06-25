@@ -547,14 +547,20 @@ function handleCaseSelection(workerCases, payerCases) {
 
   const matching = workerKeys.filter(k => payerCases.has(k));
 
-  const dropdown = document.getElementById("caseSelector");
-  dropdown.onchange = () => renderSelectedCase(workerCases, payerCases, dropdown.value);
+ const dropdown = document.getElementById("caseSelector");
+dropdown.onchange = () => {
+  if (dropdown.value) {
+    renderSelectedCase(workerCases, payerCases, dropdown.value);
+  }
+};
 
   // Show dropdown if more than 1 matching case
-  if (matching.length > 1) {
-    updateCaseSelector(matching);
-    renderSelectedCase(workerCases, payerCases, matching[0]);
-  }
+  
+if (matching.length > 1) {
+  updateCaseSelector(matching);
+  // Do not render anything yet
+}
+
 
   // Exactly one match? Show it directly
   else if (matching.length === 1) {
@@ -569,10 +575,12 @@ function handleCaseSelection(workerCases, payerCases) {
   }
 
   // Multiple worker or payer cases, but no match — show all
-  else if (allKeys.length > 1) {
-    updateCaseSelector(allKeys);
-    renderSelectedCase(workerCases, payerCases, allKeys[0]);
-  }
+ 
+else if (allKeys.length > 1) {
+  updateCaseSelector(allKeys);
+  // Do not render anything yet
+}
+
 }
 
 
