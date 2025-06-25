@@ -150,16 +150,11 @@ details {
 <p>To use the comparison tool:</p>
  <ol class="lst-stps ld-zr stps-strpd">
 <li><h3>Upload either the worker, the payer or the combined JSON file</h3>
-<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col">
-<label>Worker's answers:</label>
-<input accept=".json" id="jsonWorkerInput" type="file"/></li>
-<li class="cnjnctn-col"><label>Payer's answers:</label>
-<input accept=".json" id="jsonPayerInput" type="file"/></li>
-</ul>
+<label>Upload your JSON file:</label>
+<input accept=".json" id="jsonInput" type="file" />
 <div id="caseSelectorContainer" style="display:none;">
 <hr>
-<h4>You have uploaded a combined JSON file</h4>
+<h3>Step 1B - You have uploaded a combined JSON file</h3>
   <label for="caseSelector">Select the case number you want to review:</label>
   <select id="caseSelector"></select>
 </div>
@@ -467,35 +462,52 @@ const sectionQuestionExclusions = {
 	
 let workerData = null;
 let payerData = null;
-document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
- const file = event.target.files[0];
- if (!file) return;
- const reader = new FileReader();
- reader.onload = function (e) {
-   try {
-     workerData = JSON.parse(e.target.result);
-     tryRenderBoth();
-   } catch (err) {
-     alert("Invalid worker JSON file");
-   }
- };
- reader.readAsText(file);
+document.getElementById('jsonInput').addEventListener('change', function (event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  handleSmartJsonUpload(file);
 });
-    
-document.getElementById('jsonPayerInput').addEventListener('change', function (event) {
- const file = event.target.files[0];
- if (!file) return;
- const reader = new FileReader();
- reader.onload = function (e) {
-   try {
-     payerData = JSON.parse(e.target.result);
-     tryRenderBoth();
-   } catch (err) {
-     alert("Invalid payer JSON file");
-   }
- };
- reader.readAsText(file);
-});
+
+function handleSmartJsonUpload(file) {
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const jsonData = JSON.parse(e.target.result);
+      const workerCases = new Map();
+      const payerCases = new Map();
+
+      jsonData.forEach(entry => {
+        const q441 = entry.answers.find(a => a.questionId === 441);
+        const caseAns = entry.answers.find(a => a.questionId === 341);
+        const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
+
+        if (q441 && q441.answer.includes("Worker whose corporation")) {
+          workerCases.set(caseNumber, entry);
+        } else if (q441 && q441.answer.includes("Payer who made payments")) {
+          payerCases.set(caseNumber, entry);
+        }
+      });
+
+      const workerKeys = [...workerCases.keys()];
+      const payerKeys = [...payerCases.keys()];
+      const allKeys = [...new Set([...workerKeys, ...payerKeys])];
+
+      if (workerKeys.length > 0 && payerKeys.length > 0) {
+        handleCaseSelection(workerCases, payerCases);
+      } else if (workerKeys.length > 0) {
+        renderSelectedCase(workerCases, new Map(), workerKeys[0]);
+      } else if (payerKeys.length > 0) {
+        renderSelectedCase(new Map(), payerCases, payerKeys[0]);
+      } else {
+        alert("Could not determine if the file is for a worker or payer.");
+      }
+    } catch (err) {
+      alert("Invalid JSON file.");
+    }
+  };
+  reader.readAsText(file);
+}
+
 
 
 function tryRenderBoth() {
