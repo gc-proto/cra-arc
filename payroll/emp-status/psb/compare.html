@@ -248,11 +248,11 @@ details {
      268: "Section 5a - Control - Degree of autonomy (3 of 8)",   
      312: "Section 5a - Control - Degree of autonomy (3 of 8)",   
      504: "Section 5a - Control - Degree of autonomy (3 of 8)", 	   
-	   513: "Section 5a - Control - Degree of autonomy (3 of 8)",   
-	    494: "Section 5a - Control - Degree of autonomy (3 of 8)",   
-	    496: "Section 5a - Control - Degree of autonomy (3 of 8)",   
-	    497: "Section 5a - Control - Degree of autonomy (3 of 8)",   
-	    499: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+   513: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+    494: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+    496: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+    497: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+    499: "Section 5a - Control - Degree of autonomy (3 of 8)",   
     
     297: "Section 5a - Control - Remuneration (4 of 8)",  
     298: "Section 5a - Control - Remuneration (4 of 8)",  
@@ -268,13 +268,13 @@ details {
     306: "Section 5a - Control - Remuneration (4 of 8)",
     386: "Section 5a - Control - Remuneration (4 of 8)",
 
-     195: "Section 5a - Control - Location of services (5 of 8)",    
-     466: "Section 5a - Control - Location of services (5 of 8)",     
-     296: "Section 5a - Control - Location of services (5 of 8)",    
-     426: "Section 5a - Control - Location of services (5 of 8)",  
-  505: "Section 5a - Control - Location of services (5 of 8)",  	   
-    480: "Section 5a - Control - Location of services (5 of 8)",  	   
-
+  195: "Section 5a - Control - Location of services (5 of 8)", 	   
+  466: "Section 5a - Control - Location of services (5 of 8)", 	   
+  296: "Section 5a - Control - Location of services (5 of 8)",    
+  426: "Section 5a - Control - Location of services (5 of 8)", 	   
+  505: "Section 5a - Control - Location of services (5 of 8)", 
+  480: "Section 5a - Control - Location of services (5 of 8)", 
+	
      274: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
        275: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
        428: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
@@ -282,17 +282,18 @@ details {
        388: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
      429: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
  506: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 	   
- 481: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 	   
+ 481: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 	       
 
-      278: "Section 5a - Control - How the work is done (7 of 8)", 
-          280: "Section 5a - Control - How the work is done (7 of 8)", 
-         309: "Section 5a - Control - How the work is done (7 of 8)", 
-          310: "Section 5a - Control - How the work is done (7 of 8)", 
-      311: "Section 5a - Control - How the work is done (7 of 8)", 
-    459: "Section 5a - Control - How the work is done (7 of 8)", 
-  507: "Section 5a - Control - How the work is done (7 of 8)",	   
-   	   484: "Section 5a - Control - How the work is done (7 of 8)", 
-	    485: "Section 5a - Control - How the work is done (7 of 8)", 
+      278: "Section 5a - Control - How the work is done (7 of 8)",
+	   
+          280: "Section 5a - Control - How the work is done (7 of 8)",
+         309: "Section 5a - Control - How the work is done (7 of 8)",
+          310: "Section 5a - Control - How the work is done (7 of 8)",
+      311: "Section 5a - Control - How the work is done (7 of 8)",
+    459: "Section 5a - Control - How the work is done (7 of 8)",
+  507: "Section 5a - Control - How the work is done (7 of 8)",
+   	   484: "Section 5a - Control - How the work is done (7 of 8)",
+	    485: "Section 5a - Control - How the work is done (7 of 8)",
 
       198: "Section 5a - Control - Training (8 of 8)", 
           281: "Section 5a - Control - Training (8 of 8)", 
@@ -418,7 +419,7 @@ const excludedSections = new Set([
   "section 3 - payee (worker) information",
   "section 3 - payers (clients) information",
   "section 4 - contract or agreement information",	
-  "section 5 - working relationship information",  	
+ "section 5 - working relationship information", 	
   "section 6 - certification"
 ]);
 
@@ -486,7 +487,7 @@ function tryRenderBoth() {
     }
     const formatted = formatAnswer(ans.answer);
     
-const raw = typeof ans.answer === 'string' ? ans.answer.trim().toLowerCase() : JSON.stringify(ans.answer);
+const raw = typeof ans.answer === 'string' ? normalizeAnswer(ans.answer) : JSON.stringify(ans.answer);
   
     if (isPayer) {
       sectioned[section][ans.questionEn].payer = formatted;
@@ -642,7 +643,13 @@ rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; positi
 }
 
 function normalize(section) {
-  return (section || "").trim().toLowerCase();
+  return (section || "")
+   .trim()
+.toLowerCase()
+.replace(/[’‘]/g, "'")
+.replace(/[\u2013\u2014\u2012\u2010]/g, '-')
+.replace(/\s+/g, ' ')
+.replace(/[^a-z0-9\s'/-]/g, ''); // strip unexpected punctuation
 }
 
 </script>
@@ -655,27 +662,23 @@ function normalize(section) {
 <script>
 
 function normalizeAnswer(answer) {
-  return answer
-    .trim()
-    .toLowerCase()
-    .replace(/[’‘]/g, "'") // Normalize curly apostrophes
-    .replace(/\s+/g, ' '); // Collapse multiple spaces
+return String(answer || "")
+.trim()
+.toLowerCase()
+.replace(/[’‘]/g, "'")
+.replace(/[\u2013\u2014\u2012\u2010]/g, '-')
+.replace(/\s+/g, ' ')
+.replace(/[^a-z0-9\s'/-]/g, ''); // strip unexpected punctuation
 }
-	
+
+
 const customScoringRules = {
    
-
-  236: answer => {
-     const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	  Information to help with the contract review   
-    }
-  },
-
   207: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
 	  case "yes - you must send a copy of the contract or agreement with this questionnaire": return -2;  // 
       case "no": return -2;  // 	Information to help with the contract review     
-     default: return -2;  // 	    Information to help with the contract review 
+  
     }
   },
 
@@ -686,21 +689,18 @@ const customScoringRules = {
     }
   },
 
-  379: answer => {
-     const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	  Information to help with the contract review   
-    }
-  },
 
   347: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	 Information to help with the contract review    
+   case "yes": return -2; // Information to help with the contract review 
+      case "no": return -2; // Information to help with the contract review 
     }
   },
 	
   348: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	Information to help with the contract review     
+    case "yes": return -2; // Information to help with the contract review 
+      case "no": return -2; // Information to help with the contract review 
     }
   },
 
@@ -712,15 +712,11 @@ const customScoringRules = {
     }
   },
 
-  423: answer => {
-     const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	Information to help with the contract review     
-    }
-  },	
 
   349: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-     default: return -2;  // 	    
+    case "yes": return -2; // Information to help with the contract review 
+      case "no": return -2; // Information to help with the contract review 	    
     }
   },
 	
@@ -902,7 +898,7 @@ const customScoringRules = {
       case "no - t5018 slip": return -1; // Indicator of contract for services	
       case "no - t4-nr slip": return -1; // Indicator of contract for services
       case "no - no slip issued": return -1; // Indicator of contract for services    
-    default: return -1;  // Indicator of contract for services
+  
     }
   },
    271: answer => {
@@ -917,7 +913,7 @@ const customScoringRules = {
       case "hourly/monthly": return 1; // Indicator of contract of service
       case "percentage of job completion/piecework": return -2; // 	Information to help with the contract review 
 	  case "other": return -1; // Indicator of contract for services	  	    
-     default: return -2;  // Information to help with the contract review 
+   
     }
   },
    301: answer => {
@@ -964,7 +960,6 @@ const customScoringRules = {
     }
   },
 
-
  195: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
      case "payer's location": return 1; // Indicator of contract of service
@@ -974,6 +969,7 @@ const customScoringRules = {
     case "other options for transportation workers": return -2; // Information to help with the contract review 
     }
   },
+
  466: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
      case "home terminal or dispatch center": return -2; // Information to help with the contract review
@@ -984,26 +980,25 @@ const customScoringRules = {
      case "remote or temporary worksite": return -2; //  Information to help with the contract review
      case "rail yard, port, or airport": return -2; // 	Information to help with the contract review 
      case "other": return -2; // Information to help with the contract review		    
-     default: return -2;  // Information to help with the contract review
-    }
+        }
   },
 
+//Who determined where the worker performed the services under the contract?
    296: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-      case "payer": return 1; // Indicator of contract of service
+       case "payer": return 1; // Indicator of contract of service
      case "worker": return -1; // Indicator of contract for services
-    case "payer and worker": return -2; // 	  Information to help with the contract review   
-     default: return -2;  //   Information to help with the contract review 
+   case "payer and worker": return -2; // 	  Information to help with the contract review   
     }
   },
 
-   480: answer => {
+//Who decided where the truck used by the worker (truck driver) would be parked? 
+480: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "payer": return 1; // Indicator of contract of service
      case "worker": return -1; // Indicator of contract for services
     case "payer and worker": return -2; // Information to help with the contract review 	
     case "does not apply": return -2; // Information to help with the contract review 		    
-     default: return -2;  //  Information to help with the contract review 
     }
   },
 	
@@ -1011,7 +1006,6 @@ const customScoringRules = {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "yes": return 1; // Indicator of contract of service
 		    case "no": return -1; // Indicator of contract for services
-     
     }
   },
   275: answer => {
@@ -1040,7 +1034,6 @@ const customScoringRules = {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "yes": return 1; // Indicator of contract of service
     case "no": return -1; // Indicator of contract for services
-    
     }
   },
 	
@@ -1052,20 +1045,19 @@ const customScoringRules = {
     }
   },	
   
-  278: answer => {
-     const normalized = normalizeAnswer(answer);   switch (normalized) {
-      case "yes": return 1; // Indicator of contract of service
-    case "no": return -1; // Indicator of contract for services
-    case "not applicable - schedule is regular": return -2; // Information to help with the contract review 
-  default: return -2;  // 
-	}
-  },
-	
+  	
   280: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "yes": return 1; // Indicator of contract of service
      case "no": return -1; // Indicator of contract for services
-      
+        }
+  },
+
+ 278: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+        case "yes": return 1; // Indicator of contract of service
+        case "no": return -1; // Indicator of contract for services
+	 case "not applicable - schedule is regular": return -2; // Information to help with the contract review 	     	  		     
     }
   },
   
@@ -1073,17 +1065,6 @@ const customScoringRules = {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "yes": return 1; // Indicator of contract of service
     case "no": return -1; // Indicator of contract for services
- 
-    }
-  },
-
-  310: answer => {
-     const normalized = normalizeAnswer(answer);   switch (normalized) {
-           case "quality of work": return 0;  // Neutral
-	  case "quantity of work": return 0;  // Neutral
-	  case "length of time required to complete the task": return 0;  // Neutral
-	  case "other": return 0;  // Neutral
-	default: return -2;  // 
     }
   },
 
@@ -1295,7 +1276,8 @@ const customScoringRules = {
     
     }
   },
-	
+
+//Who was responsible for paying for the insurance?	
    478: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "payer": return 1; // Indicator of contract of service
@@ -1303,7 +1285,6 @@ const customScoringRules = {
       case "worker's corporation": return -1; // Indicator of contract for services	
       case "payer and worker": return -2; // 	Information to help with the contract review 	    
      case "don't know": return -2; // 	Information to help with the contract review 	    
-    
     }
   },
 
@@ -1339,9 +1320,9 @@ const customScoringRules = {
      case "mobile locations": return -2; //  Information to help with the contract review
      case "client's location": return -2; //  Information to help with the contract review
     case "other options for transportation workers": return -2; // Information to help with the contract review 
-	    
     }
   },
+
  468: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
      case "home terminal or dispatch center": return -2; // Information to help with the contract review
@@ -1352,8 +1333,7 @@ const customScoringRules = {
      case "remote or temporary worksite": return -2; //  Information to help with the contract review
      case "rail yard, port, or airport": return -2; // 	Information to help with the contract review 
      case "other": return -2; // Information to help with the contract review		    
-    
-    }
+        }
   },
 
   398: answer => {
@@ -1426,7 +1406,7 @@ const customScoringRules = {
       case "no - t5018 slip": return -1; // Indicator of contract for services	
       case "no - t4-nr slip": return -1; // Indicator of contract for services
       case "no - no slip issued": return -1; // Indicator of contract for services    
-      default: return -1;  // Indicator of contract for services
+    
     }
   },
   404: answer => {
@@ -1434,7 +1414,7 @@ const customScoringRules = {
        case "hourly/monthly": return 1; // Indicator of contract of service
       case "percentage of job completion/piecework": return -2; // Information to help with the contract review
       case "other": return -2; // Information to help with the contract review	    
-       default: return -2;  // Information to help with the contract review
+    
     }
   },
   405: answer => {
@@ -1643,6 +1623,8 @@ const customScoringRules = {
       
     }
   },
+
+//Who decided where the truck used by the worker (truck driver) would be parked?
   527: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
       case "payer": return 1; // Indicator of contract of service
@@ -1757,12 +1739,9 @@ const customScoringRules = {
 
 
 function scoreAnswer(answer, questionId) {
-  if (typeof answer !== 'string') return -2; // Changed from 0 to -2
-  const trimmed = answer.trim().toLowerCase();
-  if (customScoringRules[questionId]) {
-    return customScoringRules[questionId](trimmed);
-  }
- return -2; // Changed from 0 to -2
+  const rule = customScoringRules[questionId];
+  if (rule) return rule(answer);
+  return -2; // Default to information documents if no rule found
 }
 
 function getScoreIcon(questionId, answer) {
@@ -1809,7 +1788,7 @@ return (section || "").trim().toLowerCase();
 }
 	
 function calculateSectionScores(data) {
-  const scores = {}, totals = {}, neutrals = {}, selfEmployment = {}, infoDoc = {};
+  const totalsScores = {}, cosScores = {}, cfsScores = {}, neutralsScores = {}, infoScores = {}; 
 
   data.forEach(entry => {
     entry.answers.forEach(ans => {
@@ -1818,29 +1797,31 @@ function calculateSectionScores(data) {
       const exclusions = sectionQuestionExclusions[section] || [];
 
       if (!excludedSections.has(normalizedSection)) {
-        if (!scores[section]) {
-          scores[section] = 0;
-          totals[section] = 0;
-          neutrals[section] = 0;
-          selfEmployment[section] = 0;
-	  infoDoc[section] = 0;	
+        if (!totalsScores[section]) {
+          totalsScores[section] = 0;
+ 	  cosScores[section] = 0;
+          cfsScores[section] = 0;
+ 	  neutralsScores[section] = 0;
+          infoScores[section] = 0;	
         }
 
         if (ans.answer && ans.answer !== "") {
-          totals[section]++;
+          totalsScores[section]++;
           if (!exclusions.includes(ans.questionId)) {
             const score = scoreAnswer(ans.answer, ans.questionId);
-            if (score === 1) scores[section]++;
-            else if (score === 0) neutrals[section]++;
-            else if (score === -1) selfEmployment[section]++;
-	    else if (score === -2) infoDoc[section]++;	  
+	  console.log("QID:", ans.questionId, "Answer:", ans.answer, "Score:", score, "Section:", section);
+
+            if (score === 1) cosScores[section]++;
+            else if (score === -1) cfsScores[section]++;
+	    else if (score === 0) neutralsScores[section]++;
+	    else if (score === -2) infoScores[section]++;	  
 	  }
         }
       }
     });
   });
 
-  return { scores, totals, neutrals, selfEmployment, infoDoc};
+  return {totalsScores, cosScores, cfsScores, neutralsScores, infoScores};
 }
 
 function getIndicatorIcon(score) {
@@ -1895,50 +1876,53 @@ function renderProbabilityScore(workerData, payerData) {
    
    <h3>Total – Indicators</h3>
 <p class="small">Totals are provided for <strong>information only</strong>. They are <strong>not</strong> provided to determine if the worker would have reasonably been considered an employee or self-employed if their corporation did not exist.</p>
-
   `;
 
   const worker = calculateSectionScores(workerData);
   const payer = calculateSectionScores(payerData);
 
-  let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0, workerDoc = 0, payerDoc = 0;
+  let totalQuestions = 0, workerCos = 0, payerCos = 0, workerNeutral = 0, payerNeutral = 0, workerCfs = 0, payerCfs = 0, workerInfo = 0, payerInfo = 0;
 
   const allSections = new Set([
-    ...Object.keys(worker.scores),
-    ...Object.keys(payer.scores)
+    ...Object.keys(worker.cosScores),
+    ...Object.keys(payer.cosScores)
   ]);
 
   for (const section of allSections) {
-    const wTotal = worker.totals[section] || 0;
-    const pTotal = payer.totals[section] || 0;
-    const wScore = worker.scores[section] || 0;
-    const pScore = payer.scores[section] || 0;
-    const wNeutral = worker.neutrals[section] || 0;
-    const pNeutral = payer.neutrals[section] || 0;
-    const wSelf = worker.selfEmployment[section] || 0;
-    const pSelf = payer.selfEmployment[section] || 0;
-    const wDoc = worker.infoDoc[section] || 0;
-    const pDoc = payer.infoDoc[section] || 0;	  
+    const wTotal = worker.totalsScores[section] || 0;
+    const pTotal = payer.totalsScores[section] || 0;
+    const wCos = worker.cosScores[section] || 0;
+    const pCos = payer.cosScores[section] || 0;
+    const wNeutral = worker.neutralsScores[section] || 0;
+    const pNeutral = payer.neutralsScores[section] || 0;
+    const wCfs = worker.cfsScores[section] || 0;
+    const pCfs = payer.cfsScores[section] || 0;
+    const wInfo = worker.infoScores[section] || 0;
+    const pInfo = payer.infoScores[section] || 0;	  
 
     if (wTotal > 0 || pTotal > 0) {
       totalQuestions += Math.max(wTotal, pTotal);
-      workerScore += wScore;
-      payerScore += pScore;
+      workerCos += wCos;
+      payerCos += pCos;
       workerNeutral += wNeutral;
       payerNeutral += pNeutral;
-      workerSelf += wSelf;
-      payerSelf += pSelf;
-      workerDoc += wDoc;
-      payerDoc += pDoc;    
+      workerCfs += wCfs;
+      payerCfs += pCfs;
+      workerInfo += wInfo;
+      payerInfo += pInfo;    
     }
   }
 
-const workerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerSelf} <br>
-${getIndicatorIcon(0)} Neutral: ${workerNeutral} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerDoc}`;
-const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf} <br>
-${getIndicatorIcon(0)} Neutral: ${payerNeutral}  <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payerDoc} `;
+const workerScoreText = `
+${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerCos} of ${totalQuestions} <br>
+${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerCfs || 0} <br>
+${getIndicatorIcon(0)} Neutral: ${workerNeutral || 0} <br>
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerInfo || 0}`;
+const payerScoreText = `
+${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerCos} of ${totalQuestions} <br> 
+${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerCfs || 0} <br>
+${getIndicatorIcon(0)} Neutral: ${payerNeutral || 0}  <br>
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payerInfo || 0} `;
 
 
   probabilityDiv.innerHTML += `
@@ -1958,24 +1942,24 @@ ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract revie
   `;
 
   for (const section of allSections) {
-    const wTotal = worker.totals[section] || 0;
-    const pTotal = payer.totals[section] || 0;
+    const wTotal = worker.totalsScores[section] || 0;
+    const pTotal = payer.totalsScores[section] || 0;
 
     if (wTotal > 0 || pTotal > 0) {
- const wScoreText = wTotal > 0
-  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal} <br>
-   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.selfEmployment[section] || 0} <br>
- ${getIndicatorIcon(0)} Neutral: ${worker.neutrals[section] || 0} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${worker.infoDoc[section] || 0}
 
+    const wScoreText = wTotal > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.cosScores[section]} of ${wTotal} <br>
+   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.cfsScores[section] || 0} <br>
+ ${getIndicatorIcon(0)} Neutral: ${worker.neutralsScores[section] || 0} <br>
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${worker.infoScores[section] || 0}
 `
   : 'N/A';
 
 const pScoreText = pTotal > 0
-  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.scores[section]} of ${pTotal} <br>
-   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${payer.selfEmployment[section] || 0}<br>
-${getIndicatorIcon(0)}  Neutral: ${payer.neutrals[section] || 0} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payer.infoDoc[section] || 0} 
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.cosScores[section]} of ${pTotal} <br>
+   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${payer.cfsScores[section] || 0}<br>
+${getIndicatorIcon(0)}  Neutral: ${payer.neutralsScores[section] || 0} <br>
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payer.infoScores[section] || 0} 
 `
   : 'N/A';
 
@@ -1993,18 +1977,6 @@ ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract revie
   }
  
 }
-</script>
-
-<script>
-
- // Optional: WET preFooter
- var defPreFooter = document.getElementById("def-preFooter");
- defPreFooter.outerHTML = wet.builder.preFooter({
-   dateModified: "2025-06-16",
-   showPostContent: true,
-   showFeedback: true,
-   showShare: true
- });
 </script>
 
 </body>
