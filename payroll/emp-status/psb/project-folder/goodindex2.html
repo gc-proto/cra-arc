@@ -1538,14 +1538,14 @@ const customScoringRules = {
   },
   403: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-      case "yes - t4 and rl-1 slips": return 1; // Indicator of contract of service
-      case "no -  t4A slip": return -1; // Indicator of contract for services
+     case "yes - t4 and rl-1 slips": return 1; // Indicator of contract of service
+      case "no - t4a slip": return -1; // Indicator of contract for services
       case "no - t5018 slip": return -1; // Indicator of contract for services	
       case "no - t4-nr slip": return -1; // Indicator of contract for services
       case "no - no slip issued": return -1; // Indicator of contract for services    
-    
     }
   },
+
   404: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
        case "hourly/monthly": return 1; // Indicator of contract of service
