@@ -14,6 +14,35 @@
 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/m%C3%A9li-m%C3%A9lo/2023-10-mount-revelstoke.min.css" rel="stylesheet"/>
 <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css" rel="stylesheet"/>
+
+
+  <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TBZBZVVK8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5TBZBZVVK8');
+    </script>
+
+<!-- Utility framework -->
+    <link rel="stylesheet" href="/gcds-utility.min.css" />
+
+    <link rel="stylesheet" href="/styles/prism.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <script src="/scripts/code-showcase.js"></script>
+    <script src="/scripts/code-copy.js"></script>
+    <script src="/scripts/component-preview.js"></script>
+    <script src="/scripts/general.js"></script>
+    <link rel="icon" type="image/x-icon" sizes="96x96" href="/favicon.ico">
+
+    <!-- GC Design System  Components-->
+    <link rel="stylesheet" href="/components/dist/gcds/gcds.css">
+    <script type="module" src="/components/dist/gcds/gcds.esm.js"></script>
+
+
+
+
 <!-- Styles -->
 <style>
    body {
@@ -120,18 +149,21 @@ details {
 <details open><summary>Step-by-step instructions</summary>
 <p>To use the comparison tool:</p>
  <ol class="lst-stps ld-zr stps-strpd">
-<li>Upload both worker and payer JSON files.
-<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col"><label>Worker's answers:</label>
-<input accept=".json" id="jsonWorkerInput" type="file"/></li>
-<li class="cnjnctn-col"><label>Payer's answers:</label>
-<input accept=".json" id="jsonPayerInput" type="file"/></li>
-</ul>
+<li><h3>Upload either the worker, the payer or the combined JSON file</h3>
+<label>Upload your JSON file:</label>
+<input accept=".json" id="jsonInput" type="file" />
+<div id="caseSelectorContainer" style="display:none;">
+<hr>
+<h3>Step 1B - You have uploaded a combined JSON file</h3>
+  <label for="caseSelector">Select the case number you want to review:</label>
+  <select id="caseSelector"></select>
+</div>
 </li>
 
-<li>View side-by-side results.<br>
-<small> To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.</small></li>
-<li>Begin your full analysis using each factors. 
+<li><h3>View side-by-side results</h3>
+<p class="small"> To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.</p></li>
+
+<li><h3>Begin your full analysis using each factors </h3>
 <p class="small">Each PSBCR case is unique and requires a thorough review of the facts to determine if the worker’s corporation was carrying on a personal services business for the period under review. The purpose of this questionnaire is to review the following condition for worker's corporation to have been carrying on a PSB:</p>
 <p class="small mrgn-lft-lg">If the corporation did not exist, the worker would <strong>reasonably be considered an employee</strong> of the payer (the corporation’s client) to whom the services were provided.</p>
 <p class="small">The questionnaire uses the following icons to categorize the answers received:</p>
@@ -430,51 +462,163 @@ const sectionQuestionExclusions = {
 	
 let workerData = null;
 let payerData = null;
-document.getElementById('jsonWorkerInput').addEventListener('change', function (event) {
- const file = event.target.files[0];
- if (!file) return;
- const reader = new FileReader();
- reader.onload = function (e) {
-   try {
-     workerData = JSON.parse(e.target.result);
-     tryRenderBoth();
-   } catch (err) {
-     alert("Invalid worker JSON file");
-   }
- };
- reader.readAsText(file);
+document.getElementById('jsonInput').addEventListener('change', function (event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  handleSmartJsonUpload(file);
 });
-    
-document.getElementById('jsonPayerInput').addEventListener('change', function (event) {
- const file = event.target.files[0];
- if (!file) return;
- const reader = new FileReader();
- reader.onload = function (e) {
-   try {
-     payerData = JSON.parse(e.target.result);
-     tryRenderBoth();
-   } catch (err) {
-     alert("Invalid payer JSON file");
-   }
- };
- reader.readAsText(file);
-});
-function tryRenderBoth() {
-  if (workerData && payerData) {
-    const container = document.getElementById('content');
-    container.innerHTML = '';
-    container.appendChild(renderJSON(workerData, payerData));
-    
-    // Add this line to render the probability score
 
-	  
-	  
-	  renderProbabilityScore(workerData, payerData);
-  }
+function handleSmartJsonUpload(file) {
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const jsonData = JSON.parse(e.target.result);
+      const workerCases = new Map();
+      const payerCases = new Map();
+
+      jsonData.forEach(entry => {
+        const q441 = entry.answers.find(a => a.questionId === 441);
+        const caseAns = entry.answers.find(a => a.questionId === 341);
+        const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
+
+        if (q441 && q441.answer.includes("Worker whose corporation")) {
+          workerCases.set(caseNumber, entry);
+        } else if (q441 && q441.answer.includes("Payer who made payments")) {
+          payerCases.set(caseNumber, entry);
+        }
+      });
+
+      const workerKeys = [...workerCases.keys()];
+      const payerKeys = [...payerCases.keys()];
+      const allKeys = [...new Set([...workerKeys, ...payerKeys])];
+
+      if (workerKeys.length > 0 && payerKeys.length > 0) {
+        handleCaseSelection(workerCases, payerCases);
+      } else if (workerKeys.length > 0) {
+        renderSelectedCase(workerCases, new Map(), workerKeys[0]);
+      } else if (payerKeys.length > 0) {
+        renderSelectedCase(new Map(), payerCases, payerKeys[0]);
+      } else {
+        alert("Could not determine if the file is for a worker or payer.");
+      }
+    } catch (err) {
+      alert("Invalid JSON file.");
+    }
+  };
+  reader.readAsText(file);
 }
 
 
- function renderJSON(workerData, payerData) {
+
+function tryRenderBoth() {
+  if (!workerData && !payerData) return;
+
+  const workerCases = workerData ? extractCaseNumbers(workerData) : new Map();
+  const payerCases = payerData ? extractCaseNumbers(payerData) : new Map();
+
+  handleCaseSelection(workerCases, payerCases);
+}
+
+function extractCaseNumbers(data) {
+  const cases = new Map(); // Map of caseNumber -> entry
+  data.forEach(entry => {
+    const caseAns = entry.answers.find(a => a.questionId === 341);
+    if (caseAns && caseAns.answer) {
+      cases.set(caseAns.answer.trim(), entry);
+    }
+  });
+  return cases;
+}
+
+function updateCaseSelector(caseNumbers) {
+  const dropdown = document.getElementById("caseSelector");
+  dropdown.innerHTML = "";
+
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Make your selection...";
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  dropdown.appendChild(defaultOption);
+
+  caseNumbers.forEach(cn => {
+    const option = document.createElement("option");
+    option.value = cn;
+    option.textContent = cn;
+    dropdown.appendChild(option);
+  });
+
+  document.getElementById("caseSelectorContainer").style.display = "block";
+}
+
+
+function handleCaseSelection(workerCases, payerCases) {
+  const workerKeys = [...workerCases.keys()];
+  const payerKeys = [...payerCases.keys()];
+  const allKeys = [...new Set([...workerKeys, ...payerKeys])];
+
+  const matching = workerKeys.filter(k => payerCases.has(k));
+
+ const dropdown = document.getElementById("caseSelector");
+dropdown.onchange = () => {
+  if (dropdown.value) {
+    renderSelectedCase(workerCases, payerCases, dropdown.value);
+  }
+};
+
+  // Show dropdown if more than 1 matching case
+  
+if (matching.length > 1) {
+  updateCaseSelector(matching);
+  // Do not render anything yet
+}
+
+
+  // Exactly one match? Show it directly
+  else if (matching.length === 1) {
+    document.getElementById("caseSelectorContainer").style.display = "none";
+    renderSelectedCase(workerCases, payerCases, matching[0]);
+  }
+
+  // Only one case in total? Just show it
+  else if (allKeys.length === 1) {
+    document.getElementById("caseSelectorContainer").style.display = "none";
+    renderSelectedCase(workerCases, payerCases, allKeys[0]);
+  }
+
+  // Multiple worker or payer cases, but no match — show all
+ 
+else if (allKeys.length > 1) {
+  updateCaseSelector(allKeys);
+  // Do not render anything yet
+}
+
+}
+
+
+function renderSelectedCase(workerCases, payerCases, caseNumber) {
+  const container = document.getElementById("content");
+  container.innerHTML = "";
+
+  const workerEntry = workerCases.get(caseNumber);
+  const payerEntry = payerCases.get(caseNumber);
+
+  if (workerEntry && payerEntry) {
+    container.appendChild(renderJSON([workerEntry], [payerEntry]));
+    renderProbabilityScore([workerEntry], [payerEntry]);
+  } else if (workerEntry) {
+    container.appendChild(renderJSON([workerEntry], []));
+    renderProbabilityScore([workerEntry], []);
+  } else if (payerEntry) {
+    container.appendChild(renderJSON([], [payerEntry]));
+    renderProbabilityScore([], [payerEntry]);
+  }
+}
+	
+function renderJSON(workerData, payerData) {
+  const showWorker = workerData.length > 0;
+  const showPayer = payerData.length > 0;
+
    const sectioned = {};
 
    function addToSection(ans, isPayer = false) {
@@ -538,19 +682,26 @@ function formatAnswer(answer) {
 for (const [section, questions] of Object.entries(sectioned)) {
   const table = document.createElement('table');
 
-  const showWorker = !["Section 3 - Payee (worker) information"].includes(section);
-  const showPayer = ![
-    "Section 1 - General information",
-    "Section 2a - Additional business information of the worker",
-    "Section 3 - Payers (clients) information"
-  ].includes(section);
+let showWorker = workerData.length > 0;
+let showPayer = payerData.length > 0;
 
-  if (!showWorker && !showPayer) continue;
+// Special rule: in combined view, Section 1 should only show worker column
+if (section === "Section 1 - General information" && showWorker && showPayer) {
+  showPayer = false;
+}
 
-  let theadHTML = '<thead><tr><th>Question</th>';
-  if (showWorker) theadHTML += '<th>Worker</th>';
-  if (showPayer) theadHTML += '<th>Payer</th>';
-  theadHTML += '</tr></thead>';
+   if (!showWorker && !showPayer) continue;
+
+let theadHTML = '<thead><tr><th>Question</th>';
+if (showWorker) {
+  const label = (section === "Section 1 - General information" && showPayer) ? "Answer" : "Worker";
+  theadHTML += `<th>${label}</th>`;
+}
+if (showPayer) theadHTML += '<th>Payer</th>';
+theadHTML += '</tr></thead>';
+
+
+	
   table.innerHTML = theadHTML;
 
   const tbody = document.createElement('tbody');
@@ -1401,14 +1552,14 @@ const customScoringRules = {
   },
   403: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-      case "yes - t4 and rl-1 slips": return 1; // Indicator of contract of service
-      case "no -  t4A slip": return -1; // Indicator of contract for services
+     case "yes - t4 and rl-1 slips": return 1; // Indicator of contract of service
+      case "no - t4a slip": return -1; // Indicator of contract for services
       case "no - t5018 slip": return -1; // Indicator of contract for services	
       case "no - t4-nr slip": return -1; // Indicator of contract for services
       case "no - no slip issued": return -1; // Indicator of contract for services    
-    
     }
   },
+
   404: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
        case "hourly/monthly": return 1; // Indicator of contract of service
