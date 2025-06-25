@@ -1787,7 +1787,7 @@ return (section || "").trim().toLowerCase();
 }
 	
 function calculateSectionScores(data) {
-  const cosScores = {}, totals = {}, neutralsScores = {}, cfsScores = {}, infoScores = {}; 
+  const cosScores = {}, totalsScores = {}, neutralsScores = {}, cfsScores = {}, infoScores = {}; 
 
   data.forEach(entry => {
     entry.answers.forEach(ans => {
@@ -1798,14 +1798,14 @@ function calculateSectionScores(data) {
       if (!excludedSections.has(normalizedSection)) {
         if (!cosScores[section]) {
           cosScores[section] = 0;
-          totals[section] = 0;
+          totalsScores[section] = 0;
           neutralsScores[section] = 0;
           cfsScores[section] = 0;
 	  infoScores[section] = 0;	
         }
 
         if (ans.answer && ans.answer !== "") {
-          totals[section]++;
+          totalsScores[section]++;
           if (!exclusions.includes(ans.questionId)) {
             const score = scoreAnswer(ans.answer, ans.questionId);
 	  console.log("QID:", ans.questionId, "Answer:", ans.answer, "Score:", score, "Section:", section);
@@ -1820,7 +1820,7 @@ function calculateSectionScores(data) {
     });
   });
 
-  return {cosScores, totals, neutralsScores, cfsScores, infoScores};
+  return {cosScores, totalsScores, neutralsScores, cfsScores, infoScores};
 }
 
 function getIndicatorIcon(score) {
@@ -1888,8 +1888,8 @@ function renderProbabilityScore(workerData, payerData) {
   ]);
 
   for (const section of allSections) {
-    const wTotal = worker.totals[section] || 0;
-    const pTotal = payer.totals[section] || 0;
+    const wTotal = worker.totalsScores[section] || 0;
+    const pTotal = payer.totalsScores[section] || 0;
     const wScore = worker.cosScores[section] || 0;
     const pScore = payer.cosScores[section] || 0;
     const wNeutral = worker.neutralsScores[section] || 0;
@@ -1941,8 +1941,8 @@ ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract revie
   `;
 
   for (const section of allSections) {
-    const wTotal = worker.totals[section] || 0;
-    const pTotal = payer.totals[section] || 0;
+    const wTotal = worker.totalsScores[section] || 0;
+    const pTotal = payer.totalsScores[section] || 0;
 
     if (wTotal > 0 || pTotal > 0) {
 
