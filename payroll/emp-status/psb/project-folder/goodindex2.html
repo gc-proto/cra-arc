@@ -1787,7 +1787,7 @@ return (section || "").trim().toLowerCase();
 }
 	
 function calculateSectionScores(data) {
-  const scores = {}, totals = {}, neutralsScores = {}, cfsScores = {}, infoDoc = {};
+  const cosScores = {}, totals = {}, neutralsScores = {}, cfsScores = {}, infoScores = {}; 
 
   data.forEach(entry => {
     entry.answers.forEach(ans => {
@@ -1796,12 +1796,12 @@ function calculateSectionScores(data) {
       const exclusions = sectionQuestionExclusions[section] || [];
 
       if (!excludedSections.has(normalizedSection)) {
-        if (!scores[section]) {
-          scores[section] = 0;
+        if (!cosScores[section]) {
+          cosScores[section] = 0;
           totals[section] = 0;
           neutralsScores[section] = 0;
           cfsScores[section] = 0;
-	  infoDoc[section] = 0;	
+	  infoScores[section] = 0;	
         }
 
         if (ans.answer && ans.answer !== "") {
@@ -1810,17 +1810,17 @@ function calculateSectionScores(data) {
             const score = scoreAnswer(ans.answer, ans.questionId);
 	  console.log("QID:", ans.questionId, "Answer:", ans.answer, "Score:", score, "Section:", section);
 
-            if (score === 1) scores[section]++;
+            if (score === 1) cosScores[section]++;
             else if (score === 0) neutralsScores[section]++;
             else if (score === -1) cfsScores[section]++;
-	    else if (score === -2) infoDoc[section]++;	  
+	    else if (score === -2) infoScores[section]++;	  
 	  }
         }
       }
     });
   });
 
-  return {scores, totals, neutralsScores, cfsScores, infoDoc};
+  return {cosScores, totals, neutralsScores, cfsScores, infoScores};
 }
 
 function getIndicatorIcon(score) {
@@ -1883,21 +1883,21 @@ function renderProbabilityScore(workerData, payerData) {
   let totalQuestions = 0, workerScore = 0, payerScore = 0, workerNeutral = 0, payerNeutral = 0, workerSelf = 0, payerSelf = 0, workerDoc = 0, payerDoc = 0;
 
   const allSections = new Set([
-    ...Object.keys(worker.scores),
-    ...Object.keys(payer.scores)
+    ...Object.keys(worker.cosScores),
+    ...Object.keys(payer.cosScores)
   ]);
 
   for (const section of allSections) {
     const wTotal = worker.totals[section] || 0;
     const pTotal = payer.totals[section] || 0;
-    const wScore = worker.scores[section] || 0;
-    const pScore = payer.scores[section] || 0;
+    const wScore = worker.cosScores[section] || 0;
+    const pScore = payer.cosScores[section] || 0;
     const wNeutral = worker.neutralsScores[section] || 0;
     const pNeutral = payer.neutralsScores[section] || 0;
     const wSelf = worker.cfsScores[section] || 0;
     const pSelf = payer.cfsScores[section] || 0;
-    const wDoc = worker.infoDoc[section] || 0;
-    const pDoc = payer.infoDoc[section] || 0;	  
+    const wDoc = worker.infoScores[section] || 0;
+    const pDoc = payer.infoScores[section] || 0;	  
 
     if (wTotal > 0 || pTotal > 0) {
       totalQuestions += Math.max(wTotal, pTotal);
@@ -1912,11 +1912,13 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-const workerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br>
+const workerScoreText = `
+${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerScore} of ${totalQuestions} <br>
 ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerSelf || 0} <br>
 ${getIndicatorIcon(0)} Neutral: ${workerNeutral || 0} <br>
 ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerDoc || 0}`;
-const payerScoreText = `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> 
+const payerScoreText = `
+${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerScore} of ${totalQuestions} <br> 
 ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerSelf || 0} <br>
 ${getIndicatorIcon(0)} Neutral: ${payerNeutral || 0}  <br>
 ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payerDoc || 0} `;
@@ -1945,18 +1947,18 @@ ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract revie
     if (wTotal > 0 || pTotal > 0) {
 
     const wScoreText = wTotal > 0
-  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.scores[section]} of ${wTotal} <br>
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.cosScores[section]} of ${wTotal} <br>
    ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.cfsScores[section] || 0} <br>
  ${getIndicatorIcon(0)} Neutral: ${worker.neutralsScores[section] || 0} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${worker.infoDoc[section] || 0}
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${worker.infoScores[section] || 0}
 `
   : 'N/A';
 
 const pScoreText = pTotal > 0
-  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.scores[section]} of ${pTotal} <br>
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.cosScores[section]} of ${pTotal} <br>
    ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${payer.cfsScores[section] || 0}<br>
 ${getIndicatorIcon(0)}  Neutral: ${payer.neutralsScores[section] || 0} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payer.infoDoc[section] || 0} 
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payer.infoScores[section] || 0} 
 `
   : 'N/A';
 
