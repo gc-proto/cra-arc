@@ -149,6 +149,11 @@ details {
 	
 <div class="row">
 <div class="col-md-8">
+<div id="caseSelectorContainer" style="display:none;">
+  <label for="caseSelector">Select Case Number:</label>
+  <select id="caseSelector"></select>
+</div>
+	
 <div id="content"></div>
 </div>
 <div class="col-md-4">
@@ -459,20 +464,84 @@ document.getElementById('jsonPayerInput').addEventListener('change', function (e
  };
  reader.readAsText(file);
 });
-function tryRenderBoth() {
-  if (workerData && payerData) {
-    const container = document.getElementById('content');
-    container.innerHTML = '';
-    container.appendChild(renderJSON(workerData, payerData));
-    
-    // Add this line to render the probability score
 
-	  
-	  
-	  renderProbabilityScore(workerData, payerData);
+
+function tryRenderBoth() {
+  if (!workerData && !payerData) return;
+
+  const workerCases = workerData ? extractCaseNumbers(workerData) : new Map();
+  const payerCases = payerData ? extractCaseNumbers(payerData) : new Map();
+
+  handleCaseSelection(workerCases, payerCases);
+}
+
+function extractCaseNumbers(data) {
+  const cases = new Map(); // Map of caseNumber -> entry
+  data.forEach(entry => {
+    const caseAns = entry.answers.find(a => a.questionId === 341);
+    if (caseAns && caseAns.answer) {
+      cases.set(caseAns.answer.trim(), entry);
+    }
+  });
+  return cases;
+}
+
+function updateCaseSelector(caseNumbers) {
+  const dropdown = document.getElementById("caseSelector");
+  dropdown.innerHTML = "";
+  caseNumbers.forEach(cn => {
+    const option = document.createElement("option");
+    option.value = cn;
+    option.textContent = cn;
+    dropdown.appendChild(option);
+  });
+  document.getElementById("caseSelectorContainer").style.display = "block";
+}
+
+function handleCaseSelection(workerCases, payerCases) {
+  const workerKeys = [...workerCases.keys()];
+  const payerKeys = [...payerCases.keys()];
+
+  const matching = workerKeys.filter(k => payerCases.has(k));
+  const all = [...new Set([...workerKeys, ...payerKeys])];
+
+  const dropdown = document.getElementById("caseSelector");
+  dropdown.onchange = () => renderSelectedCase(workerCases, payerCases, dropdown.value);
+
+  if (matching.length === 1) {
+    document.getElementById("caseSelectorContainer").style.display = "none";
+    renderSelectedCase(workerCases, payerCases, matching[0]);
+  } else if (matching.length > 1) {
+    updateCaseSelector(matching);
+    renderSelectedCase(workerCases, payerCases, matching[0]);
+  } else if (all.length === 1) {
+    document.getElementById("caseSelectorContainer").style.display = "none";
+    renderSelectedCase(workerCases, payerCases, all[0]);
+  } else {
+    updateCaseSelector(all);
+    renderSelectedCase(workerCases, payerCases, all[0]);
   }
 }
 
+function renderSelectedCase(workerCases, payerCases, caseNumber) {
+  const container = document.getElementById("content");
+  container.innerHTML = "";
+
+  const workerEntry = workerCases.get(caseNumber);
+  const payerEntry = payerCases.get(caseNumber);
+
+  if (workerEntry && payerEntry) {
+    container.appendChild(renderJSON([workerEntry], [payerEntry]));
+    renderProbabilityScore([workerEntry], [payerEntry]);
+  } else if (workerEntry) {
+    container.appendChild(renderJSON([workerEntry], []));
+    renderProbabilityScore([workerEntry], []);
+  } else if (payerEntry) {
+    container.appendChild(renderJSON([], [payerEntry]));
+    renderProbabilityScore([], [payerEntry]);
+  }
+}
+	
 
  function renderJSON(workerData, payerData) {
    const sectioned = {};
