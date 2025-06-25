@@ -691,10 +691,16 @@ if (section === "Section 1 - General information") {
 
    if (!showWorker && !showPayer) continue;
 
- let theadHTML = '<thead><tr><th>Question</th>';
-if (showWorker) theadHTML += '<th>Worker</th>';
-if (showPayer) theadHTML += '<th>Payer</th>';
+let theadHTML = '<thead><tr><th>Question</th>';
+if (showWorker) {
+  theadHTML += `<th>${section === "Section 1 - General information" ? "Answer" : "Worker"}</th>`;
+}
+if (showPayer) {
+  theadHTML += '<th>Payer</th>';
+}
 theadHTML += '</tr></thead>';
+
+	
   table.innerHTML = theadHTML;
 
   const tbody = document.createElement('tbody');
