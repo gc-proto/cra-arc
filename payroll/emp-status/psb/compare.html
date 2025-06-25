@@ -694,7 +694,8 @@ if (section === "Section 1 - General information" && showWorker && showPayer) {
 
 let theadHTML = '<thead><tr><th>Question</th>';
 if (showWorker) {
-  const label = (section === "Section 1 - General information" && showPayer) ? "Answer" : "Worker";
+ const label = (section === "Section 1 - General information" && workerData.length > 0 && payerData.length > 0) ? "Answer" : "Worker";
+
   theadHTML += `<th>${label}</th>`;
 }
 if (showPayer) theadHTML += '<th>Payer</th>';
