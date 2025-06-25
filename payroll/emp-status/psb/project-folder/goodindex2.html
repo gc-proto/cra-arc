@@ -682,14 +682,7 @@ function formatAnswer(answer) {
 for (const [section, questions] of Object.entries(sectioned)) {
   const table = document.createElement('table');
 
-  const showWorker = !["Section 3 - Payee (worker) information"].includes(section);
-  const showPayer = ![
-    "Section 1 - General information",
-    "Section 2a - Additional business information of the worker",
-    "Section 3 - Payers (clients) information"
-  ].includes(section);
-
-  if (!showWorker && !showPayer) continue;
+   if (!showWorker && !showPayer) continue;
 
  let theadHTML = '<thead><tr><th>Question</th>';
 if (showWorker) theadHTML += '<th>Worker</th>';
