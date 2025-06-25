@@ -121,7 +121,7 @@ details {
 <p>To use the comparison tool:</p>
  <ol class="lst-stps ld-zr stps-strpd">
 <li>Upload both worker and payer JSON files.
-<ul class="list-unstyled cnjnctn-type-and">
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col"><label>Worker's answers:</label>
 <input accept=".json" id="jsonWorkerInput" type="file"/></li>
 <li class="cnjnctn-col"><label>Payer's answers:</label>
@@ -501,38 +501,27 @@ function updateCaseSelector(caseNumbers) {
 function handleCaseSelection(workerCases, payerCases) {
   const workerKeys = [...workerCases.keys()];
   const payerKeys = [...payerCases.keys()];
-  const allKeys = [...new Set([...workerKeys, ...payerKeys])];
 
   const matching = workerKeys.filter(k => payerCases.has(k));
+  const all = [...new Set([...workerKeys, ...payerKeys])];
 
   const dropdown = document.getElementById("caseSelector");
   dropdown.onchange = () => renderSelectedCase(workerCases, payerCases, dropdown.value);
 
-  // Show dropdown if more than 1 matching case
-  if (matching.length > 1) {
+  if (matching.length === 1) {
+    document.getElementById("caseSelectorContainer").style.display = "none";
+    renderSelectedCase(workerCases, payerCases, matching[0]);
+  } else if (matching.length > 1) {
     updateCaseSelector(matching);
     renderSelectedCase(workerCases, payerCases, matching[0]);
-  }
-
-  // Exactly one match? Show it directly
-  else if (matching.length === 1) {
+  } else if (all.length === 1) {
     document.getElementById("caseSelectorContainer").style.display = "none";
-    renderSelectedCase(workerCases, payerCases, matching[0]);
-  }
-
-  // Only one case in total? Just show it
-  else if (allKeys.length === 1) {
-    document.getElementById("caseSelectorContainer").style.display = "none";
-    renderSelectedCase(workerCases, payerCases, allKeys[0]);
-  }
-
-  // Multiple worker or payer cases, but no match — show all
-  else if (allKeys.length > 1) {
-    updateCaseSelector(allKeys);
-    renderSelectedCase(workerCases, payerCases, allKeys[0]);
+    renderSelectedCase(workerCases, payerCases, all[0]);
+  } else {
+    updateCaseSelector(all);
+    renderSelectedCase(workerCases, payerCases, all[0]);
   }
 }
-
 
 function renderSelectedCase(workerCases, payerCases, caseNumber) {
   const container = document.getElementById("content");
