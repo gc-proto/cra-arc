@@ -542,21 +542,7 @@ function updateCaseSelector(caseNumbers) {
   caseNumbers.forEach(cn => {
     const option = document.createElement("option");
     option.value = cn;
-   const workerEntry = workerCases.get(cn) || payerCases.get(cn);
-  let label = cn;
-
-  if (workerEntry) {
-  const nameAnswer = workerEntry.answers.find(a => a.questionId === 241);
-  const idAnswer = workerEntry.answers.find(a => a.questionId === 243);
-  const name = nameAnswer ? nameAnswer.answer : "";
-  const id = idAnswer ? idAnswer.answer : "";
-  if (name || id) {
-    label += ` - ${id} ${name}`.trim();
-  }
-}
-
-option.textContent = label;
-
+    option.textContent = cn;
     dropdown.appendChild(option);
   });
 
