@@ -542,12 +542,29 @@ function updateCaseSelector(caseNumbers) {
   caseNumbers.forEach(cn => {
     const option = document.createElement("option");
     option.value = cn;
-    option.textContent = cn;
+
+    // Try to get the entry from either worker or payer cases
+    const entry = workerCases.get(cn) || payerCases.get(cn);
+    let label = cn;
+
+    if (entry) {
+      const nameAnswer = entry.answers.find(a => a.questionId === 241);
+      const idAnswer = entry.answers.find(a => a.questionId === 243);
+      const name = nameAnswer ? nameAnswer.answer : "";
+      const id = idAnswer ? idAnswer.answer : "";
+
+      if (name || id) {
+        label += ` - ${id} ${name}`.trim();
+      }
+    }
+
+    option.textContent = label;
     dropdown.appendChild(option);
   });
 
   document.getElementById("caseSelectorContainer").style.display = "block";
 }
+
 
 
 function handleCaseSelection(workerCases, payerCases) {
