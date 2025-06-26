@@ -2151,6 +2151,41 @@ ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract revie
  
 }
 </script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  fetch('june25.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Failed to load JSON');
+      return response.json();
+    })
+    .then(jsonData => {
+      const workerMap = new Map();
+      const payerMap = new Map();
+
+      jsonData.forEach(entry => {
+        const q441 = entry.answers.find(a => a.questionId === 441);
+        const caseAns = entry.answers.find(a => a.questionId === 341);
+        const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
+
+        if (q441 && q441.answer.includes("Worker whose corporation")) {
+          workerMap.set(caseNumber, entry);
+        } else if (q441 && q441.answer.includes("Payer who made payments")) {
+          payerMap.set(caseNumber, entry);
+        }
+      });
+
+      // Assign to global variables
+      workerCases = workerMap;
+      payerCases = payerMap;
+
+      // Trigger dropdown setup
+      handleCaseSelection(workerCases, payerCases);
+    })
+    .catch(error => {
+      console.error('Error loading JSON:', error);
+    });
+});
+</script>
 
 </body>
 </html>
