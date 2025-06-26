@@ -149,19 +149,17 @@ details {
 <details open><summary>Step-by-step instructions</summary>
 <p>To use the comparison tool:</p>
  <ol class="lst-stps ld-zr stps-strpd">
-<li><h3>Upload either the worker, the payer or the combined JSON file</h3>
-<label>Upload your JSON file:</label>
-<input accept=".json" id="jsonInput" type="file" />
-<div id="caseSelectorContainer" style="display:none;">
-<hr>
-<h3>You have uploaded a combined JSON file</h3>
-  <label for="caseSelector">Select the case number (including the CRA first and last name) you want to review:</label>
-  <select id="caseSelector"></select>
+<li><h3>Select your case number</h3>
+<p>You have to select the case number (and the matching first and last PSB officer name) you want to review.  This tool will provide you with either the worker, the payer or the combined worker/payer answers.</p>
 <p class="mrgn-tp-md"> To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.</p>
+<div id="caseSelectorContainer">
+  <label for="caseSelector">Select the case number:</label>
+  <select id="caseSelector"></select>
 </div>
 </li>
 
-<li><h3>Begin your full analysis using each factors </h3>
+<li id="step2" style="display: none;">
+<h3>Begin your full analysis using each factors </h3>
 <p>Each PSBCR case is unique and requires a thorough review of the facts to determine if the worker’s corporation was carrying on a personal services business for the period under review. The purpose of this questionnaire is to review the following condition for worker's corporation to have been carrying on a PSB:</p>
 <p class="mrgn-lft-lg">If the corporation did not exist, the worker would <strong>reasonably be considered an employee</strong> of the payer (the corporation’s client) to whom the services were provided.</p>
 <p>The questionnaire uses the following icons to categorize the answers received:</p>
@@ -460,11 +458,7 @@ const sectionQuestionExclusions = {
 	
 let workerData = null;
 let payerData = null;
-document.getElementById('jsonInput').addEventListener('change', function (event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  handleSmartJsonUpload(file);
-});
+
 
 function handleSmartJsonUpload(file) {
   const reader = new FileReader();
@@ -580,8 +574,10 @@ function handleCaseSelection(workerCases, payerCases) {
 dropdown.onchange = () => {
   if (dropdown.value) {
     renderSelectedCase(workerCases, payerCases, dropdown.value);
+    document.getElementById("step2").style.display = "block";
   }
 };
+
 
   // Show dropdown if more than 1 matching case
   
@@ -2150,6 +2146,41 @@ ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract revie
   }
  
 }
+</script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  fetch('june25.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Failed to load JSON');
+      return response.json();
+    })
+    .then(jsonData => {
+      const workerMap = new Map();
+      const payerMap = new Map();
+
+      jsonData.forEach(entry => {
+        const q441 = entry.answers.find(a => a.questionId === 441);
+        const caseAns = entry.answers.find(a => a.questionId === 341);
+        const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
+
+        if (q441 && q441.answer.includes("Worker whose corporation")) {
+          workerMap.set(caseNumber, entry);
+        } else if (q441 && q441.answer.includes("Payer who made payments")) {
+          payerMap.set(caseNumber, entry);
+        }
+      });
+
+      // Assign to global variables
+      workerCases = workerMap;
+      payerCases = payerMap;
+
+      // Trigger dropdown setup
+      handleCaseSelection(workerCases, payerCases);
+    })
+    .catch(error => {
+      console.error('Error loading JSON:', error);
+    });
+});
 </script>
 
 </body>
