@@ -615,9 +615,15 @@ if (matching.length > 1) {
 
   // Only one case in total? Just show it
 else if (allKeys.length === 1) {
+  console.log("Only one case found, showing dropdown.");
   updateCaseSelector(allKeys);
-  document.getElementById("caseSelectorContainer").style.display = "block"; // <-- this line is key
+  document.getElementById("caseSelectorContainer").style.display = "block";
+
+  const dropdown = document.getElementById("caseSelector");
+  dropdown.selectedIndex = 1; // Select the only case
+  dropdown.dispatchEvent(new Event("change")); // Trigger rendering
 }
+
 
   // Multiple worker or payer cases, but no match — show all
  
