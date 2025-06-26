@@ -150,9 +150,8 @@ details {
 <p>To use the comparison tool:</p>
  <ol class="lst-stps ld-zr stps-strpd">
 <li><h3>Upload either the worker, the payer or the combined JSON file</h3>
-<label>Upload your JSON file:</label>
-<input accept=".json" id="jsonInput" type="file" />
-<div id="caseSelectorContainer" style="display:none;">
+
+<div id="caseSelectorContainer">
 <hr>
 <h3>You have uploaded a combined JSON file</h3>
   <label for="caseSelector">Select the case number (including the CRA first and last name) you want to review:</label>
@@ -460,11 +459,7 @@ const sectionQuestionExclusions = {
 	
 let workerData = null;
 let payerData = null;
-document.getElementById('jsonInput').addEventListener('change', function (event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  handleSmartJsonUpload(file);
-});
+
 
 function handleSmartJsonUpload(file) {
   const reader = new FileReader();
