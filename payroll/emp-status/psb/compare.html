@@ -133,6 +133,20 @@ details {
   font-size: 0.8em;
 }
 
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #summaryContent, #summaryContent * {
+    visibility: visible;
+  }
+  #summaryContent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
 	
 </style>
 <script type="text/javascript">
@@ -174,6 +188,8 @@ details {
 </ol>
 </details>
 
+
+<div id="summaryContent">
 	
 <div class="row">
 <div class="col-md-8">
@@ -182,7 +198,7 @@ details {
 <div class="col-md-4">
 <div id="probability"></div>
 </div>
-</div>
+</div></div>
 <script>
    const sectionMap = {
    
@@ -698,10 +714,20 @@ for (const [section, questions] of Object.entries(sectioned)) {
 let showWorker = workerData.length > 0;
 let showPayer = payerData.length > 0;
 
-// Special rule: in combined view, Section 1 should only show worker column
+// Special rules for column visibility
 if (section === "Section 1 - General information" && showWorker && showPayer) {
   showPayer = false;
 }
+if (section === "Section 2a - Additional business information of the worker" && showWorker && showPayer) {
+  showPayer = false;
+}
+if (section === "Section 3 - Payers (clients) information" && showWorker && showPayer) {
+  showPayer = false;
+}
+if (section === "Section 3 - Payee (worker) information" && showWorker && showPayer) {
+  showWorker = false;
+}
+
 
    if (!showWorker && !showPayer) continue;
 
@@ -2023,6 +2049,8 @@ function generateDistributionBar(cos, cfs, neutral, info, total) {
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
   probabilityDiv.innerHTML = `
+<button onclick="printSummary()" class="btn btn-primary btn-lg btn-block mrgn-tp-lg">Print your summary/Save as PDF</button>
+
    <h3>Resources</h3>
   <details><summary>Canada.ca</summary>
        <ul>
@@ -2040,7 +2068,7 @@ function renderProbabilityScore(workerData, payerData) {
 </ul>    </details>   
    
    <h3>Total – Indicators</h3>
-<p class="small">Totals are provided for <strong>information only</strong>. They are <strong>not</strong> provided to determine if the worker would have reasonably been considered an employee or self-employed if their corporation did not exist.</p>
+<p >Totals are provided for <strong>information only</strong>. They are <strong>not</strong> provided to determine if the worker would have reasonably been considered an employee or self-employed if their corporation did not exist.</p>
   `;
 
   const worker = calculateSectionScores(workerData);
