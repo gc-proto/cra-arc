@@ -540,7 +540,12 @@ function extractCaseNumbers(data) {
 }
 
 function updateCaseSelector(caseNumbers) {
-  const dropdown = document.getElementById("caseSelector");
+  console.log("Updating dropdown with cases:", caseNumbers);	
+
+const dropdown = document.getElementById("caseSelector");
+dropdown.selectedIndex = 1;
+dropdown.dispatchEvent(new Event("change"));
+
   dropdown.innerHTML = "";
 
   const defaultOption = document.createElement("option");
@@ -576,7 +581,8 @@ function updateCaseSelector(caseNumbers) {
     dropdown.appendChild(option);
   });
 
-  document.getElementById("caseSelectorContainer").style.display = "block";
+ document.getElementById("caseSelectorContainer").style.setProperty("display", "block", "important");
+
 }
 
 
