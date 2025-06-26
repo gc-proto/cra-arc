@@ -471,8 +471,10 @@ function handleSmartJsonUpload(file) {
   reader.onload = function (e) {
     try {
       const jsonData = JSON.parse(e.target.result);
-      const workerCases = new Map();
-      const payerCases = new Map();
+     
+	workerCases = new Map();
+	payerCases = new Map();
+
 
       jsonData.forEach(entry => {
         const q441 = entry.answers.find(a => a.questionId === 441);
@@ -543,7 +545,6 @@ function updateCaseSelector(caseNumbers) {
     const option = document.createElement("option");
     option.value = cn;
 
-    // Try to get the entry from either worker or payer cases
     const entry = workerCases.get(cn) || payerCases.get(cn);
     let label = cn;
 
@@ -554,7 +555,7 @@ function updateCaseSelector(caseNumbers) {
       const id = idAnswer ? idAnswer.answer : "";
 
       if (name || id) {
-        label += ` - ${id} ${name}`.trim();
+        label += ` - ${[id, name].filter(Boolean).join(" ")}`;
       }
     }
 
@@ -564,6 +565,7 @@ function updateCaseSelector(caseNumbers) {
 
   document.getElementById("caseSelectorContainer").style.display = "block";
 }
+
 
 
 
