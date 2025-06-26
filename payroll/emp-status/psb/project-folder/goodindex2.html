@@ -501,15 +501,15 @@ function handleSmartJsonUpload(file) {
       const payerKeys = [...payerCases.keys()];
       const allKeys = [...new Set([...workerKeys, ...payerKeys])];
 
-      if (workerKeys.length > 0 && payerKeys.length > 0) {
-        handleCaseSelection(workerCases, payerCases);
-      } else if (workerKeys.length > 0) {
-        renderSelectedCase(workerCases, new Map(), workerKeys[0]);
-      } else if (payerKeys.length > 0) {
-        renderSelectedCase(new Map(), payerCases, payerKeys[0]);
-      } else {
-        alert("Could not determine if the file is for a worker or payer.");
-      }
+      
+if (workerKeys.length > 0 || payerKeys.length > 0) {
+  handleCaseSelection(workerCases, payerCases);
+} else {
+  alert("Could not determine if the file is for a worker or payer.");
+}
+
+
+
     } catch (err) {
       alert("Invalid JSON file.");
     }
