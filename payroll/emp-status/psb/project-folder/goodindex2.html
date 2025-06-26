@@ -540,12 +540,8 @@ function extractCaseNumbers(data) {
 }
 
 function updateCaseSelector(caseNumbers) {
-  console.log("Updating dropdown with cases:", caseNumbers);	
-
-const dropdown = document.getElementById("caseSelector");
-dropdown.selectedIndex = 1;
-dropdown.dispatchEvent(new Event("change"));
-
+  console.log("Updating dropdown with cases:", caseNumbers);
+  const dropdown = document.getElementById("caseSelector");
   dropdown.innerHTML = "";
 
   const defaultOption = document.createElement("option");
@@ -568,8 +564,8 @@ dropdown.dispatchEvent(new Event("change"));
     else if (hasPayer) label += " (P)";
 
     const entry = workerCases.get(cn) || payerCases.get(cn);
-    const nameAnswer = entry.answers.find(a => a.questionId === 241);
-    const idAnswer = entry.answers.find(a => a.questionId === 243);
+    const nameAnswer = entry?.answers.find(a => a.questionId === 241);
+    const idAnswer = entry?.answers.find(a => a.questionId === 243);
     const name = nameAnswer ? nameAnswer.answer : "";
     const id = idAnswer ? idAnswer.answer : "";
 
@@ -581,12 +577,14 @@ dropdown.dispatchEvent(new Event("change"));
     dropdown.appendChild(option);
   });
 
- document.getElementById("caseSelectorContainer").style.setProperty("display", "block", "important");
+  document.getElementById("caseSelectorContainer").style.setProperty("display", "block", "important");
 
+  // Now select the first case and trigger change
+  if (caseNumbers.length === 1) {
+    dropdown.selectedIndex = 1;
+    dropdown.dispatchEvent(new Event("change"));
+  }
 }
-
-
-
 
 
 function handleCaseSelection(workerCases, payerCases) {
