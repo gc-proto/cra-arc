@@ -155,23 +155,23 @@ details {
 <div id="caseSelectorContainer" style="display:none;">
 <hr>
 <h3>You have uploaded a combined JSON file</h3>
-  <label for="caseSelector">Select the case number you want to review:</label>
+  <label for="caseSelector">Select the case number (including the CRA first and last name) you want to review:</label>
   <select id="caseSelector"></select>
-<p class="small"> To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.</p>
+<p class="mrgn-tp-md"> To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.</p>
 </div>
 </li>
 
 <li><h3>Begin your full analysis using each factors </h3>
-<p class="small">Each PSBCR case is unique and requires a thorough review of the facts to determine if the worker’s corporation was carrying on a personal services business for the period under review. The purpose of this questionnaire is to review the following condition for worker's corporation to have been carrying on a PSB:</p>
-<p class="small mrgn-lft-lg">If the corporation did not exist, the worker would <strong>reasonably be considered an employee</strong> of the payer (the corporation’s client) to whom the services were provided.</p>
-<p class="small">The questionnaire uses the following icons to categorize the answers received:</p>
-<ul class="list-unstyled small">
+<p>Each PSBCR case is unique and requires a thorough review of the facts to determine if the worker’s corporation was carrying on a personal services business for the period under review. The purpose of this questionnaire is to review the following condition for worker's corporation to have been carrying on a PSB:</p>
+<p class="mrgn-lft-lg">If the corporation did not exist, the worker would <strong>reasonably be considered an employee</strong> of the payer (the corporation’s client) to whom the services were provided.</p>
+<p>The questionnaire uses the following icons to categorize the answers received:</p>
+<ul class="list-unstyled">
 <li class="mrgn-lft-lg"><i class="fas fa-users" style="color: green;" title="Contract of service"></i> Contract of service (employment)</li>
 <li class="mrgn-lft-lg"><i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i> Contract for services (self-employed worker)</li>
 <li class="mrgn-lft-lg"><i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i> Neutral</li>
 <li class="mrgn-lft-lg"><i class="fas fa-book" style="color: #a2bffe;" title="Information to help with the contract review"></i> Information to help with the contract review</li>
 </ul>
-<p class="small mrgn-tp-md">These categorizations are <strong>generally</strong> accurate for the indicators reviewed. However, depending on the facts of this review, these icons may not always apply. To make a final decision, you need to review <strong>all</strong> indicators together, along with the documents sent by both the payer and the worker.</p>
+<p class="mrgn-tp-md">These categorizations are <strong>generally</strong> accurate for the indicators reviewed. However, depending on the facts of this review, these icons may not always apply. To make a final decision, you need to review <strong>all</strong> indicators together, along with the documents sent by both the payer and the worker.</p>
 </li>
 </ol>
 </details>
@@ -471,8 +471,10 @@ function handleSmartJsonUpload(file) {
   reader.onload = function (e) {
     try {
       const jsonData = JSON.parse(e.target.result);
-      const workerCases = new Map();
-      const payerCases = new Map();
+     
+	workerCases = new Map();
+	payerCases = new Map();
+
 
       jsonData.forEach(entry => {
         const q441 = entry.answers.find(a => a.questionId === 441);
@@ -542,12 +544,29 @@ function updateCaseSelector(caseNumbers) {
   caseNumbers.forEach(cn => {
     const option = document.createElement("option");
     option.value = cn;
-    option.textContent = cn;
+
+    const entry = workerCases.get(cn) || payerCases.get(cn);
+    let label = cn;
+
+    if (entry) {
+      const nameAnswer = entry.answers.find(a => a.questionId === 241);
+      const idAnswer = entry.answers.find(a => a.questionId === 243);
+      const name = nameAnswer ? nameAnswer.answer : "";
+      const id = idAnswer ? idAnswer.answer : "";
+
+      if (name || id) {
+        label += ` - ${[id, name].filter(Boolean).join(" ")}`;
+      }
+    }
+
+    option.textContent = label;
     dropdown.appendChild(option);
   });
 
   document.getElementById("caseSelectorContainer").style.display = "block";
 }
+
+
 
 
 function handleCaseSelection(workerCases, payerCases) {
@@ -2063,16 +2082,20 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-const workerScoreText = `
-${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerCos} of ${totalQuestions} <br>
-${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerCfs || 0} <br>
-${getIndicatorIcon(0)} Neutral: ${workerNeutral || 0} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerInfo || 0}`;
-const payerScoreText = `
-${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerCos} of ${totalQuestions} <br> 
-${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerCfs || 0} <br>
-${getIndicatorIcon(0)} Neutral: ${payerNeutral || 0}  <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payerInfo || 0} `;
+const workerScoreText = totalQuestions > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerCos} of ${totalQuestions} <br>
+     ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerCfs || 0} <br>
+     ${getIndicatorIcon(0)} Neutral: ${workerNeutral || 0} <br>
+     ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerInfo || 0}`
+  : 'N/A';
+
+const payerScoreText = totalQuestions > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerCos} of ${totalQuestions} <br>
+     ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerCfs || 0} <br>
+     ${getIndicatorIcon(0)} Neutral: ${payerNeutral || 0} <br>
+     ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payerInfo || 0}`
+  : 'N/A';
+
 
 
   probabilityDiv.innerHTML += `
