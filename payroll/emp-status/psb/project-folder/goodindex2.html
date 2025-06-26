@@ -585,7 +585,6 @@ function updateCaseSelector(caseNumbers) {
   }
 }
 
-
 function handleCaseSelection(workerCases, payerCases) {
   const workerKeys = [...workerCases.keys()];
   const payerKeys = [...payerCases.keys()];
@@ -594,7 +593,7 @@ function handleCaseSelection(workerCases, payerCases) {
 
   const dropdown = document.getElementById("caseSelector");
 
-  //  Set the event handler BEFORE any selection logic
+  // ✅ Set the event handler BEFORE any selection logic
   dropdown.onchange = () => {
     if (dropdown.value) {
       renderSelectedCase(workerCases, payerCases, dropdown.value);
@@ -602,30 +601,36 @@ function handleCaseSelection(workerCases, payerCases) {
     }
   };
 
-  //  Multiple matching cases
+  // ✅ Multiple matching cases
   if (matching.length > 1) {
     updateCaseSelector(matching);
   }
 
-  //  Exactly one matching case
+  // ✅ Exactly one matching case
   else if (matching.length === 1) {
     document.getElementById("caseSelectorContainer").style.display = "none";
     renderSelectedCase(workerCases, payerCases, matching[0]);
   }
 
-  //  Only one case total (worker or payer)
+  // ✅ Only one case total (worker or payer)
   else if (allKeys.length === 1) {
     console.log("Only one case found, showing dropdown.");
     updateCaseSelector(allKeys);
 
-    //  Delay to ensure dropdown is populated before selecting
     setTimeout(() => {
-      dropdown.selectedIndex = 1;
+      const dropdown = document.getElementById("caseSelector");
+      if (!dropdown) {
+        console.error("Dropdown not found!");
+        return;
+      }
+
+      console.log("Dropdown options:", [...dropdown.options].map(opt => opt.textContent));
+      dropdown.value = allKeys[0]; // Select by value
       dropdown.dispatchEvent(new Event("change"));
     }, 50);
   }
 
-  //  Multiple cases but no match — show all
+  // ✅ Multiple cases but no match — show all
   else if (allKeys.length > 1) {
     updateCaseSelector(allKeys);
   }
