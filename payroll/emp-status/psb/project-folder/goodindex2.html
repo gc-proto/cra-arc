@@ -133,6 +133,20 @@ details {
   font-size: 0.8em;
 }
 
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #summaryContent, #summaryContent * {
+    visibility: visible;
+  }
+  #summaryContent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
 	
 </style>
 <script type="text/javascript">
@@ -174,6 +188,8 @@ details {
 </ol>
 </details>
 
+
+<div id="summaryContent">
 	
 <div class="row">
 <div class="col-md-8">
@@ -182,7 +198,7 @@ details {
 <div class="col-md-4">
 <div id="probability"></div>
 </div>
-</div>
+</div></div>
 <script>
    const sectionMap = {
    
