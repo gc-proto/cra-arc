@@ -554,18 +554,22 @@ function updateCaseSelector(caseNumbers) {
     const option = document.createElement("option");
     option.value = cn;
 
-    const entry = workerCases.get(cn) || payerCases.get(cn);
     let label = cn;
+    const hasWorker = workerCases.has(cn);
+    const hasPayer = payerCases.has(cn);
 
-    if (entry) {
-      const nameAnswer = entry.answers.find(a => a.questionId === 241);
-      const idAnswer = entry.answers.find(a => a.questionId === 243);
-      const name = nameAnswer ? nameAnswer.answer : "";
-      const id = idAnswer ? idAnswer.answer : "";
+    if (hasWorker && hasPayer) label += " (w/p)";
+    else if (hasWorker) label += " (w)";
+    else if (hasPayer) label += " (p)";
 
-      if (name || id) {
-        label += ` - ${[id, name].filter(Boolean).join(" ")}`;
-      }
+    const entry = workerCases.get(cn) || payerCases.get(cn);
+    const nameAnswer = entry.answers.find(a => a.questionId === 241);
+    const idAnswer = entry.answers.find(a => a.questionId === 243);
+    const name = nameAnswer ? nameAnswer.answer : "";
+    const id = idAnswer ? idAnswer.answer : "";
+
+    if (name || id) {
+      label += ` - ${[id, name].filter(Boolean).join(" ")}`;
     }
 
     option.textContent = label;
@@ -574,6 +578,7 @@ function updateCaseSelector(caseNumbers) {
 
   document.getElementById("caseSelectorContainer").style.display = "block";
 }
+
 
 
 
@@ -609,10 +614,10 @@ if (matching.length > 1) {
   }
 
   // Only one case in total? Just show it
-  else if (allKeys.length === 1) {
-    document.getElementById("caseSelectorContainer").style.display = "none";
-    renderSelectedCase(workerCases, payerCases, allKeys[0]);
-  }
+ else if (allKeys.length === 1) {
+  updateCaseSelector(allKeys);
+}
+
 
   // Multiple worker or payer cases, but no match — show all
  
