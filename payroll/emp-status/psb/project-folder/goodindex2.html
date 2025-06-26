@@ -579,12 +579,13 @@ function updateCaseSelector(caseNumbers) {
 
   document.getElementById("caseSelectorContainer").style.setProperty("display", "block", "important");
 
-  // Now select the first case and trigger change
+  // Select and trigger change only if one case
   if (caseNumbers.length === 1) {
     dropdown.selectedIndex = 1;
     dropdown.dispatchEvent(new Event("change"));
   }
 }
+
 
 
 function handleCaseSelection(workerCases, payerCases) {
@@ -621,13 +622,7 @@ if (matching.length > 1) {
 else if (allKeys.length === 1) {
   console.log("Only one case found, showing dropdown.");
   updateCaseSelector(allKeys);
-  document.getElementById("caseSelectorContainer").style.display = "block";
-
-  const dropdown = document.getElementById("caseSelector");
-  dropdown.selectedIndex = 1; // Select the only case
-  dropdown.dispatchEvent(new Event("change")); // Trigger rendering
 }
-
 
   // Multiple worker or payer cases, but no match — show all
  
