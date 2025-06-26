@@ -586,54 +586,49 @@ function updateCaseSelector(caseNumbers) {
 }
 
 
-
 function handleCaseSelection(workerCases, payerCases) {
   const workerKeys = [...workerCases.keys()];
   const payerKeys = [...payerCases.keys()];
   const allKeys = [...new Set([...workerKeys, ...payerKeys])];
-
   const matching = workerKeys.filter(k => payerCases.has(k));
 
- const dropdown = document.getElementById("caseSelector");
-dropdown.onchange = () => {
-  if (dropdown.value) {
-    renderSelectedCase(workerCases, payerCases, dropdown.value);
-    document.getElementById("step2").style.display = "block";
+  const dropdown = document.getElementById("caseSelector");
+
+  //  Set the event handler BEFORE any selection logic
+  dropdown.onchange = () => {
+    if (dropdown.value) {
+      renderSelectedCase(workerCases, payerCases, dropdown.value);
+      document.getElementById("step2").style.display = "block";
+    }
+  };
+
+  //  Multiple matching cases
+  if (matching.length > 1) {
+    updateCaseSelector(matching);
   }
-};
 
-
-  // Show dropdown if more than 1 matching case
-  
-if (matching.length > 1) {
-  updateCaseSelector(matching);
-  // Do not render anything yet
-}
-
-
-  // Exactly one match? Show it directly
+  //  Exactly one matching case
   else if (matching.length === 1) {
     document.getElementById("caseSelectorContainer").style.display = "none";
     renderSelectedCase(workerCases, payerCases, matching[0]);
   }
 
-  // Only one case in total? Just show it
+  //  Only one case total (worker or payer)
+  else if (allKeys.length === 1) {
+    console.log("Only one case found, showing dropdown.");
+    updateCaseSelector(allKeys);
 
-else if (allKeys.length === 1) {
-  console.log("Only one case found, showing dropdown.");
-  updateCaseSelector(allKeys);
-  const dropdown = document.getElementById("caseSelector");
-  dropdown.selectedIndex = 1;
-  dropdown.dispatchEvent(new Event("change"));
-}
+    //  Delay to ensure dropdown is populated before selecting
+    setTimeout(() => {
+      dropdown.selectedIndex = 1;
+      dropdown.dispatchEvent(new Event("change"));
+    }, 50);
+  }
 
- // Multiple worker or payer cases, but no match — show all
- 
-else if (allKeys.length > 1) {
-  updateCaseSelector(allKeys);
-  // Do not render anything yet
-}
-
+  //  Multiple cases but no match — show all
+  else if (allKeys.length > 1) {
+    updateCaseSelector(allKeys);
+  }
 }
 
 
