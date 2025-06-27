@@ -2049,55 +2049,59 @@ function generateDistributionBar(cos, cfs, neutral, info, total) {
   `;
 }	
 	
+
+
 function renderProbabilityScore(workerData, payerData) {
-const probabilityDiv = document.getElementById('probability');
+  const probabilityDiv = document.getElementById('probability');
 
-// Determine heading text
-let headingText = '';
-if (workerData.length > 0 && payerData.length > 0) {
-  headingText = "Worker's and payer's answers – Begin your full analysis using each factor";
-} else if (workerData.length > 0) {
-  headingText = "Worker's answers – Begin your analysis using each factor";
-} else if (payerData.length > 0) {
-  headingText = "Payer's answers – Begin your analysis using each factor";
-}
-
-// Inject heading into full-width container above the row
-const headingContainer = document.getElementById('analysisHeading');
-if (headingContainer) {
-  headingContainer.innerHTML = ''; // Clear previous heading
-  if (headingText) {
-    const heading = document.createElement('h2');
-    heading.textContent = headingText;
-    heading.classList.add('mt-4', 'mb-3'); // Optional Bootstrap spacing
-    headingContainer.appendChild(heading);
+  // Determine heading text
+  let headingText = '';
+  if (workerData.length > 0 && payerData.length > 0) {
+    headingText = "Worker's and payer's answers – Begin your full analysis using each factor";
+  } else if (workerData.length > 0) {
+    headingText = "Worker's answers – Begin your analysis using each factor";
+  } else if (payerData.length > 0) {
+    headingText = "Payer's answers – Begin your analysis using each factor";
   }
-}
 
+  // Inject heading into full-width container above the row
+  const headingContainer = document.getElementById('analysisHeading');
+  if (headingContainer) {
+    headingContainer.innerHTML = '';
+    if (headingText) {
+      const heading = document.createElement('h2');
+      heading.textContent = headingText;
+      heading.classList.add('mt-4', 'mb-3');
+      headingContainer.appendChild(heading);
+    }
+  }
 
-if (workerData.length > 0 && payerData.length > 0) {
-  const mismatchNote = document.createElement('p');
-  mismatchNote.classList.add('mrgn-tp-md');
-  mismatchNote.innerHTML = `To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.`;
-  introContainer.appendChild(mismatchNote);
-}
+  // Inject intro paragraph and icon legend
+  const introContainer = document.getElementById('analysisIntro');
+  if (introContainer) {
+    introContainer.innerHTML = `
+      <p>Each PSBCR case is unique and requires a thorough review of the facts to determine if the worker’s corporation was carrying on a personal services business for the period under review. The purpose of this questionnaire is to review the following condition for worker's corporation to have been carrying on a PSB:</p>
+      <p class="mrgn-lft-lg">If the corporation did not exist, the worker would <strong>reasonably be considered an employee</strong> of the payer (the corporation’s client) to whom the services were provided.</p>
+      <p>The questionnaire uses the following icons to categorize the answers received:</p>
+      <ul class="list-unstyled">
+        <li class="mrgn-lft-lg"><i class="fas fa-users" style="color: green;" title="Contract of service"></i> Contract of service (employment)</li>
+        <li class="mrgn-lft-lg"><i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i> Contract for services (self-employed worker)</li>
+        <li class="mrgn-lft-lg"><i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i> Neutral</li>
+        <li class="mrgn-lft-lg"><i class="fas fa-book" style="color: #a2bffe;" title="Information to help with the contract review"></i> Information to help with the contract review</li>
+      </ul>
+      <p class="mrgn-tp-md">These categorizations are <strong>generally</strong> accurate for the indicators reviewed. However, depending on the facts of this review, these icons may not always apply. To make a final decision, you need to review <strong>all</strong> indicators together, along with the documents sent by both the payer and the worker.</p>
+    `;
 
-const introContainer = document.getElementById('analysisIntro');
-if (introContainer) {
-  introContainer.innerHTML = `
-    
-    <p>The questionnaire uses the following icons to categorize the answers received:</p>
-    <ul class="list-unstyled">
-      <li class="mrgn-lft-lg"><i class="fas fa-users" style="color: green;" title="Contract of service"></i> Contract of service (employment)</li>
-      <li class="mrgn-lft-lg"><i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i> Contract for services (self-employed worker)</li>
-      <li class="mrgn-lft-lg"><i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i> Neutral</li>
-      <li class="mrgn-lft-lg"><i class="fas fa-book" style="color: #a2bffe;" title="Information to help with the contract review"></i> Information to help with the contract review</li>
-    </ul>
-    <p class="mrgn-tp-md">These categorizations are <strong>generally</strong> accurate for the indicators reviewed. However, depending on the facts of this review, these icons may not always apply. To make a final decision, you need to review <strong>all</strong> indicators together, along with the documents sent by both the payer and the worker.</p>
-  `;
-}
+    // Add mismatch note only if both sets of answers are present
+    if (workerData.length > 0 && payerData.length > 0) {
+      const mismatchNote = document.createElement('p');
+      mismatchNote.classList.add('mrgn-tp-md');
+      mismatchNote.innerHTML = `To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.`;
+      introContainer.appendChild(mismatchNote);
+    }
+  }
 
-// Clear and populate the probability section
+ // Clear and populate the probability section
 probabilityDiv.innerHTML = `
 <button onclick="printSummary()" class="btn btn-primary btn-lg btn-block mrgn-tp-lg">Print your summary/Save as PDF</button>
 
