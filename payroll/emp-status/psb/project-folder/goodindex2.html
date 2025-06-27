@@ -2143,10 +2143,11 @@ probabilityDiv.innerHTML = `
 <li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/002-e.html">CPP/EI policy manual: Specific employments/workers</a> </li>	
 </ul>    </details>   
    
-<label for="caseDropdown">View court cases</label>
-<select id="caseDropdown">
+<label for="courtCaseDropdown">View court cases</label>
+<select id="courtCaseDropdown">
   <option value="">Make your selection...</option>
 </select>
+
 <div id="caseDetails" style="margin-top: 1em;"></div>
 <hr>
 
@@ -2374,8 +2375,8 @@ document.addEventListener("DOMContentLoaded", () => {
           assessment: entry.Assessment
         });
       });
-
-      const dropdown = document.getElementById("caseDropdown");
+     
+const dropdown = document.getElementById("courtCaseDropdown");
       Object.keys(groupedCases).forEach(name => {
         const option = document.createElement("option");
         option.value = name;
