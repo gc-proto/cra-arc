@@ -2069,19 +2069,21 @@ function renderProbabilityScore(workerData, payerData) {
   // Inject heading into full-width container above the row
 const headingContainer = document.getElementById('analysisHeading');
 if (headingContainer) {
-  // Remove any previous introDetails if it exists
-  const existingDetails = document.getElementById('introDetails');
-  if (existingDetails) existingDetails.remove();
+  
 
-  // Create <details> container
-  const details = document.createElement('details');
-  details.id = 'introDetails';
-  details.open = true;
+// Remove any previous introDetails if it exists
+const existingDetails = document.getElementById('introDetails');
+if (existingDetails) existingDetails.remove();
 
-  // Create <summary>
-  const summary = document.createElement('summary');
-  summary.innerHTML = '<strong>About this summary</strong>';
-  details.appendChild(summary);
+// Create <details> container
+const details = document.createElement('details');
+details.id = 'introDetails';
+details.open = true;
+
+// Create <summary>
+const summary = document.createElement('summary');
+summary.innerHTML = '<strong>About this analysis</strong>';
+details.appendChild(summary);
 
   // Create content container
   const introContainer = document.createElement('div');
@@ -2097,19 +2099,18 @@ if (headingContainer) {
     <p class="mrgn-tp-md">These categorizations are <strong>generally</strong> accurate for the indicators reviewed. However, depending on the facts of this review, these icons may not always apply. To make a final decision, you need to review <strong>all</strong> indicators together, along with the documents sent by both the payer and the worker.</p>
   `;
 
-  // Add mismatch note if both sets of answers are present
-  if (workerData.length > 0 && payerData.length > 0) {
-    const mismatchNote = document.createElement('p');
-    mismatchNote.classList.add('mrgn-tp-md');
-    mismatchNote.innerHTML = `To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.`;
-    introContainer.appendChild(mismatchNote);
-  }
 
-  // Append content to <details>
-  details.appendChild(introContainer);
+// Add mismatch note if both sets of answers are present
+if (workerData.length > 0 && payerData.length > 0) {
+  const mismatchNote = document.createElement('p');
+  mismatchNote.classList.add('mrgn-tp-md');
+  mismatchNote.innerHTML = `To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.`;
+  introContainer.appendChild(mismatchNote);
+}
 
-  // Append <details> to the heading container
-  headingContainer.appendChild(details);
+// Append content and details to heading container
+details.appendChild(introContainer);
+headingContainer.appendChild(details);
 }
 
  // Clear and populate the probability section
