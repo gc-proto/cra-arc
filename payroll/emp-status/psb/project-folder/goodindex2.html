@@ -2143,12 +2143,15 @@ probabilityDiv.innerHTML = `
 <li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/002-e.html">CPP/EI policy manual: Specific employments/workers</a> </li>	
 </ul>    </details>   
    
-<label for="courtCaseDropdown">View court cases</label>
-<select id="courtCaseDropdown">
-  <option value="">Make your selection...</option>
-</select>
+<button id="openCourtCasesBtn" class="btn btn-default btn-lg btn-block">View court cases</button>
+<!-- Modal -->
+<div id="courtCaseModal" style="display:none; position:fixed; top:10%; left:10%; width:80%; height:80%; background:white; border:1px solid #ccc; padding:20px; overflow:auto; z-index:1000;">
+  <button onclick="document.getElementById('courtCaseModal').style.display='none'" style="float:right;">Close</button>
+  <h2>Court Cases</h2>
+  <div id="courtCaseContent"></div>
+</div>
 
-<div id="caseDetails" style="margin-top: 1em;"></div>
+
 <hr>
 
    <h3>Total – Indicators</h3>
@@ -2295,60 +2298,39 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-// Load court cases (replace with actual JSON if embedding directly)
-let courtCases = []; // This should be populated with the parsed JSON from psb_cases.txt
+let courtCases = [];
 
-function normalizeText(text) {
-  return String(text || "")
-    .trim()
-    .toLowerCase()
-    .replace(/[’‘]/g, "'")
-    .replace(/[\u2013\u2014\u2012\u2010]/g, '-')
-    .replace(/\s+/g, ' ')
-    .replace(/[^a-z0-9\s'/-]/g, '');
-}
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("PSB_cases_Final.json")
+    .then(response => response.json())
+    .then(data => {
+      courtCases = data;
 
-function injectCourtCases(sectioned) {
-  for (const [section, questions] of Object.entries(sectioned)) {
-    for (const [question, data] of Object.entries(questions)) {
-      const headers = Array.from(document.querySelectorAll("h3"));
-      const header = headers.find(h => h.textContent.trim() === section);
-     const container = header?.parentElement;
-      if (!container) continue;
+      const button = document.getElementById("openCourtCasesBtn");
+      const modal = document.getElementById("courtCaseModal");
+      const content = document.getElementById("courtCaseContent");
 
-      const normalizedQuestion = normalizeText(question);
-      const indicator = data.rawWorker || data.rawPayer || '';
-      const normalizedIndicator = normalizeText(indicator).includes('self') || indicator.includes('no') ? 'CFS' : 'COS';
-
-      const matchingCases = courtCases.filter(c => {
-        return normalizeText(c["Category - Factor"]).includes(normalizedQuestion) &&
-               c.Indicator === normalizedIndicator;
-      });
-
-      if (matchingCases.length > 0) {
-        const details = document.createElement('details');
-        const summary = document.createElement('summary');
-        summary.textContent = 'Relevant Court Cases';
-        details.appendChild(summary);
-
-        matchingCases.forEach(c => {
-          const div = document.createElement('div');
-          div.innerHTML = `<strong>${c["Case Name"]}</strong><br>
-            <em>${c["Factor"]}</em><br>
-            ${c["Assessment"]}<br>
-            <small>${c["Summary"]}</small><br>
-            <strong>${c["Result"] || ""}</strong><hr>`;
-          details.appendChild(div);
-        });
-
-        container.appendChild(details);
-      }
-    }
-  }
-}
-
-
+      button.addEventListener("click", () => {
+        content.innerHTML = courtCases.map(c => `
+          <div style="margin-bottom: 1em;">
+            <strong>${c["Case Name"]}</strong><br>
+            <em>${c["Factor"]}</em><br>
+            Indicator: ${c["Indicator"]}<br>
+            Assessment: ${c["Assessment"]}<br>
+            <small>${c["Summary"]}</small><br>
+            <strong>${c["Result"] || ""}</strong>
+            <hr>
+          </div>
+        `).join("");
+        modal.style.display = "block";
+      });
+    })
+    .catch(error => {
+      console.error("Error loading JSON:", error);
+    });
+});
 </script>
+
 
 
 <script>
