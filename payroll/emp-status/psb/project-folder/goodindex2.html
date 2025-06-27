@@ -165,8 +165,8 @@ details {
 <div id="caseSelectorContainer">
   <label for="caseSelector"></label>   <select id="caseSelector"></select>
 </div>
-<p class="mrgn-tp-md"> To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.</p>
 
+<hr>
 
 <div id="summaryContent">
 
@@ -2071,6 +2071,14 @@ if (headingContainer) {
     heading.classList.add('mt-4', 'mb-3'); // Optional Bootstrap spacing
     headingContainer.appendChild(heading);
   }
+}
+
+
+if (workerData.length > 0 && payerData.length > 0) {
+  const mismatchNote = document.createElement('p');
+  mismatchNote.classList.add('mrgn-tp-md');
+  mismatchNote.innerHTML = `To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.`;
+  introContainer.appendChild(mismatchNote);
 }
 
 const introContainer = document.getElementById('analysisIntro');
