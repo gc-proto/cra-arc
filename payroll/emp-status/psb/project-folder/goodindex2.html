@@ -2062,6 +2062,21 @@ function generateDistributionBar(cos, cfs, neutral, info, total) {
 	
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
+let headingText = '';
+if (workerData.length > 0 && payerData.length > 0) {
+  headingText = "Worker's and payer's answers – Begin your full analysis using each factor";
+} else if (workerData.length > 0) {
+  headingText = "Worker's answers – Begin your analysis using each factor";
+} else if (payerData.length > 0) {
+  headingText = "Payer's answers – Begin your analysis using each factor";
+}
+
+if (headingText) {
+  const heading = document.createElement('h2');
+  heading.textContent = headingText;
+  probabilityDiv.appendChild(heading);
+}
+	
   probabilityDiv.innerHTML = `
 <button onclick="printSummary()" class="btn btn-primary btn-lg btn-block mrgn-tp-lg">Print your summary/Save as PDF</button>
 
