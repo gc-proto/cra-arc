@@ -164,7 +164,7 @@ details {
 <p>To use the comparison tool:</p>
  <ol class="lst-stps ld-zr stps-strpd">
 <li><h3>Select your case number</h3>
-<p>You have to select the case number (and the matching first and last PSB officer name) you want to review.  This tool will provide you with either the worker, the payer or the combined worker/payer answers.</p>
+<p>You have to select the case number (and the matching first and last PSB officer name) you want to review.  This tool will provide you with either the worker (W), the payer (P) or the combined worker and payer (W/P) answers.</p>
 <div id="caseSelectorContainer">
   <label for="caseSelector"></label>   <select id="caseSelector"></select>
 </div>
@@ -501,15 +501,14 @@ function handleSmartJsonUpload(file) {
       const payerKeys = [...payerCases.keys()];
       const allKeys = [...new Set([...workerKeys, ...payerKeys])];
 
-      if (workerKeys.length > 0 && payerKeys.length > 0) {
-        handleCaseSelection(workerCases, payerCases);
-      } else if (workerKeys.length > 0) {
-        renderSelectedCase(workerCases, new Map(), workerKeys[0]);
-      } else if (payerKeys.length > 0) {
-        renderSelectedCase(new Map(), payerCases, payerKeys[0]);
-      } else {
-        alert("Could not determine if the file is for a worker or payer.");
-      }
+
+if (workerKeys.length > 0 || payerKeys.length > 0) {
+  handleCaseSelection(workerCases, payerCases);
+} else {
+  alert("Could not determine if the file is for a worker or payer.");
+}
+
+
     } catch (err) {
       alert("Invalid JSON file.");
     }
@@ -540,6 +539,7 @@ function extractCaseNumbers(data) {
 }
 
 function updateCaseSelector(caseNumbers) {
+  console.log("Updating dropdown with cases:", caseNumbers);
   const dropdown = document.getElementById("caseSelector");
   dropdown.innerHTML = "";
 
@@ -554,73 +554,87 @@ function updateCaseSelector(caseNumbers) {
     const option = document.createElement("option");
     option.value = cn;
 
-    const entry = workerCases.get(cn) || payerCases.get(cn);
     let label = cn;
+    const hasWorker = workerCases.has(cn);
+    const hasPayer = payerCases.has(cn);
 
-    if (entry) {
-      const nameAnswer = entry.answers.find(a => a.questionId === 241);
-      const idAnswer = entry.answers.find(a => a.questionId === 243);
-      const name = nameAnswer ? nameAnswer.answer : "";
-      const id = idAnswer ? idAnswer.answer : "";
+    if (hasWorker && hasPayer) label += " (W/P)";
+    else if (hasWorker) label += " (W)";
+    else if (hasPayer) label += " (P)";
 
-      if (name || id) {
-        label += ` - ${[id, name].filter(Boolean).join(" ")}`;
-      }
+    const entry = workerCases.get(cn) || payerCases.get(cn);
+    const nameAnswer = entry?.answers.find(a => a.questionId === 241);
+    const idAnswer = entry?.answers.find(a => a.questionId === 243);
+    const name = nameAnswer ? nameAnswer.answer : "";
+    const id = idAnswer ? idAnswer.answer : "";
+
+    if (name || id) {
+      label += ` - ${[id, name].filter(Boolean).join(" ")}`;
     }
 
     option.textContent = label;
     dropdown.appendChild(option);
   });
 
-  document.getElementById("caseSelectorContainer").style.display = "block";
+  document.getElementById("caseSelectorContainer").style.setProperty("display", "block", "important");
+
+  // Select and trigger change only if one case
+  if (caseNumbers.length === 1) {
+    dropdown.selectedIndex = 1;
+    dropdown.dispatchEvent(new Event("change"));
+  }
 }
-
-
-
 
 function handleCaseSelection(workerCases, payerCases) {
   const workerKeys = [...workerCases.keys()];
   const payerKeys = [...payerCases.keys()];
   const allKeys = [...new Set([...workerKeys, ...payerKeys])];
-
   const matching = workerKeys.filter(k => payerCases.has(k));
 
- const dropdown = document.getElementById("caseSelector");
-dropdown.onchange = () => {
-  if (dropdown.value) {
-    renderSelectedCase(workerCases, payerCases, dropdown.value);
-    document.getElementById("step2").style.display = "block";
-  }
-};
+  const dropdown = document.getElementById("caseSelector");
 
+  // ✅ Set the event handler BEFORE any selection logic
+  dropdown.onchange = () => {
+    if (dropdown.value) {
+      renderSelectedCase(workerCases, payerCases, dropdown.value);
+      document.getElementById("step2").style.display = "block";
+    }
+  };
 
-  // Show dropdown if more than 1 matching case
-  
-if (matching.length > 1) {
-  updateCaseSelector(matching);
-  // Do not render anything yet
+  // ✅ Multiple matching cases
+ if (allKeys.length > 1) {
+  updateCaseSelector(allKeys);
 }
 
 
-  // Exactly one match? Show it directly
+  // ✅ Exactly one matching case
   else if (matching.length === 1) {
     document.getElementById("caseSelectorContainer").style.display = "none";
     renderSelectedCase(workerCases, payerCases, matching[0]);
   }
 
-  // Only one case in total? Just show it
+  // ✅ Only one case total (worker or payer)
   else if (allKeys.length === 1) {
-    document.getElementById("caseSelectorContainer").style.display = "none";
-    renderSelectedCase(workerCases, payerCases, allKeys[0]);
+    console.log("Only one case found, showing dropdown.");
+    updateCaseSelector(allKeys);
+
+    setTimeout(() => {
+      const dropdown = document.getElementById("caseSelector");
+      if (!dropdown) {
+        console.error("Dropdown not found!");
+        return;
+      }
+
+      console.log("Dropdown options:", [...dropdown.options].map(opt => opt.textContent));
+      dropdown.value = allKeys[0]; // Select by value
+      dropdown.dispatchEvent(new Event("change"));
+    }, 50);
   }
 
-  // Multiple worker or payer cases, but no match — show all
- 
-else if (allKeys.length > 1) {
-  updateCaseSelector(allKeys);
-  // Do not render anything yet
-}
-
+  // ✅ Multiple cases but no match — show all
+  else if (allKeys.length > 1) {
+    updateCaseSelector(allKeys);
+  }
 }
 
 
@@ -642,6 +656,7 @@ function renderSelectedCase(workerCases, payerCases, caseNumber) {
     renderProbabilityScore([], [payerEntry]);
   }
 }
+
 	
 function renderJSON(workerData, payerData) {
   const showWorker = workerData.length > 0;
@@ -2174,41 +2189,40 @@ ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract revie
  
 }
 </script>
+
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-  fetch('June27forms.json')
-    .then(response => {
-      if (!response.ok) throw new Error('Failed to load JSON');
-      return response.json();
-    })
-    .then(jsonData => {
-      const workerMap = new Map();
-      const payerMap = new Map();
-
-      jsonData.forEach(entry => {
-        const q441 = entry.answers.find(a => a.questionId === 441);
-        const caseAns = entry.answers.find(a => a.questionId === 341);
-        const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
-
-        if (q441 && q441.answer.includes("Worker whose corporation")) {
-          workerMap.set(caseNumber, entry);
-        } else if (q441 && q441.answer.includes("Payer who made payments")) {
-          payerMap.set(caseNumber, entry);
-        }
+  // Only fetch remote JSON if no file has been uploaded
+  if (!window.workerCases && !window.payerCases) {
+    fetch('https://test.canada.ca/cra-arc/payroll/emp-status/psb/June27forms.json')
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to load JSON');
+        return response.json();
+      })
+      .then(jsonData => {
+        const workerMap = new Map();
+        const payerMap = new Map();
+        jsonData.forEach(entry => {
+          const q441 = entry.answers.find(a => a.questionId === 441);
+          const caseAns = entry.answers.find(a => a.questionId === 341);
+          const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
+          if (q441 && q441.answer.includes("Worker whose corporation")) {
+            workerMap.set(caseNumber, entry);
+          } else if (q441 && q441.answer.includes("Payer who made payments")) {
+            payerMap.set(caseNumber, entry);
+          }
+        });
+        window.workerCases = workerMap;
+        window.payerCases = payerMap;
+        handleCaseSelection(workerMap, payerMap);
+      })
+      .catch(error => {
+        console.error('Error loading JSON:', error);
       });
-
-      // Assign to global variables
-      workerCases = workerMap;
-      payerCases = payerMap;
-
-      // Trigger dropdown setup
-      handleCaseSelection(workerCases, payerCases);
-    })
-    .catch(error => {
-      console.error('Error loading JSON:', error);
-    });
+  }
 });
 </script>
+
 
 
 <script>
