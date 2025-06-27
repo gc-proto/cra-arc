@@ -189,6 +189,12 @@ details {
 
 
 <div id="summaryContent">
+
+<div id="analysisHeadingContainer" class="row">
+  <div class="col-12">
+    <div id="analysisHeading"></div>
+  </div>
+</div>
 	
 <div class="row">
 <div class="col-md-8">
@@ -2061,8 +2067,32 @@ function generateDistributionBar(cos, cfs, neutral, info, total) {
 }	
 	
 function renderProbabilityScore(workerData, payerData) {
-  const probabilityDiv = document.getElementById('probability');
-  probabilityDiv.innerHTML = `
+const probabilityDiv = document.getElementById('probability');
+
+// Determine heading text
+let headingText = '';
+if (workerData.length > 0 && payerData.length > 0) {
+  headingText = "Worker's and payer's answers – Begin your full analysis using each factor";
+} else if (workerData.length > 0) {
+  headingText = "Worker's answers – Begin your analysis using each factor";
+} else if (payerData.length > 0) {
+  headingText = "Payer's answers – Begin your analysis using each factor";
+}
+
+// Inject heading into full-width container above the row
+const headingContainer = document.getElementById('analysisHeading');
+if (headingContainer) {
+  headingContainer.innerHTML = ''; // Clear previous heading
+  if (headingText) {
+    const heading = document.createElement('h2');
+    heading.textContent = headingText;
+    heading.classList.add('mt-4', 'mb-3'); // Optional Bootstrap spacing
+    headingContainer.appendChild(heading);
+  }
+}
+
+// Clear and populate the probability section
+probabilityDiv.innerHTML = `
 <button onclick="printSummary()" class="btn btn-primary btn-lg btn-block mrgn-tp-lg">Print your summary/Save as PDF</button>
 
    <h3>Resources</h3>
@@ -2120,14 +2150,14 @@ function renderProbabilityScore(workerData, payerData) {
     }
   }
 
-const workerScoreText = totalQuestions > 0
+const workerScoreText = (workerCos + workerCfs + workerNeutral + workerInfo) > 0
   ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerCos} of ${totalQuestions} <br>
      ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerCfs || 0} <br>
      ${getIndicatorIcon(0)} Neutral: ${workerNeutral || 0} <br>
      ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerInfo || 0}`
   : 'N/A';
 
-const payerScoreText = totalQuestions > 0
+const payerScoreText = (payerCos + payerCfs + payerNeutral + payerInfo) > 0
   ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerCos} of ${totalQuestions} <br>
      ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerCfs || 0} <br>
      ${getIndicatorIcon(0)} Neutral: ${payerNeutral || 0} <br>
