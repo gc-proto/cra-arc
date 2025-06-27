@@ -189,6 +189,12 @@ details {
 
 
 <div id="summaryContent">
+
+<div id="analysisHeadingContainer" class="row">
+  <div class="col-12">
+    <div id="analysisHeading"></div>
+  </div>
+</div>
 	
 <div class="row">
 <div class="col-md-8">
@@ -2063,6 +2069,7 @@ function generateDistributionBar(cos, cfs, neutral, info, total) {
 function renderProbabilityScore(workerData, payerData) {
 const probabilityDiv = document.getElementById('probability');
 
+// Determine heading text
 let headingText = '';
 if (workerData.length > 0 && payerData.length > 0) {
   headingText = "Worker's and payer's answers – Begin your full analysis using each factor";
@@ -2072,19 +2079,20 @@ if (workerData.length > 0 && payerData.length > 0) {
   headingText = "Payer's answers – Begin your analysis using each factor";
 }
 
-// Clear the container first
-probabilityDiv.innerHTML = '';
-
-// Add heading if applicable
-if (headingText) {
-  const heading = document.createElement('h2');
-  heading.textContent = headingText;
-  heading.style.marginTop = '1em';
-  probabilityDiv.appendChild(heading);
+// Inject heading into full-width container above the row
+const headingContainer = document.getElementById('analysisHeading');
+if (headingContainer) {
+  headingContainer.innerHTML = ''; // Clear previous heading
+  if (headingText) {
+    const heading = document.createElement('h2');
+    heading.textContent = headingText;
+    heading.classList.add('mt-4', 'mb-3'); // Optional Bootstrap spacing
+    headingContainer.appendChild(heading);
+  }
 }
 
-
-probabilityDiv.innerHTML += `
+// Clear and populate the probability section
+probabilityDiv.innerHTML = `
 <button onclick="printSummary()" class="btn btn-primary btn-lg btn-block mrgn-tp-lg">Print your summary/Save as PDF</button>
 
    <h3>Resources</h3>
