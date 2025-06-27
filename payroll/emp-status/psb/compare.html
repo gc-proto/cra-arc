@@ -2056,7 +2056,12 @@ function generateDistributionBar(cos, cfs, neutral, info, total) {
 function renderProbabilityScore(workerData, payerData) {
   const probabilityDiv = document.getElementById('probability');
 
-  // Determine heading text
+  // Inject heading into full-width container above the row
+const headingContainer = document.getElementById('analysisHeading');
+if (headingContainer) {
+  headingContainer.innerHTML = ''; // Clear previous content
+
+  // Create and insert the <h2> heading
   let headingText = '';
   if (workerData.length > 0 && payerData.length > 0) {
     headingText = "Worker's and payer's answers – Begin your full analysis using each factor";
@@ -2066,9 +2071,13 @@ function renderProbabilityScore(workerData, payerData) {
     headingText = "Payer's answers – Begin your analysis using each factor";
   }
 
-  // Inject heading into full-width container above the row
-const headingContainer = document.getElementById('analysisHeading');
-if (headingContainer) {
+  if (headingText) {
+    const heading = document.createElement('h2');
+    heading.textContent = headingText;
+    heading.classList.add('mt-4', 'mb-3');
+    headingContainer.appendChild(heading);
+  }
+
   // Remove any previous introDetails if it exists
   const existingDetails = document.getElementById('introDetails');
   if (existingDetails) existingDetails.remove();
@@ -2087,7 +2096,7 @@ if (headingContainer) {
   const introContainer = document.createElement('div');
   introContainer.id = 'analysisIntro';
   introContainer.innerHTML = `
-   <p>The questionnaire uses the following icons to categorize the answers received:</p>
+    <p>The questionnaire uses the following icons to categorize the answers received:</p>
     <ul class="list-unstyled">
       <li class="mrgn-lft-lg"><i class="fas fa-users" style="color: green;" title="Contract of service"></i> Contract of service (employment)</li>
       <li class="mrgn-lft-lg"><i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i> Contract for services (self-employed worker)</li>
@@ -2105,12 +2114,12 @@ if (headingContainer) {
     introContainer.appendChild(mismatchNote);
   }
 
-  // Append content to <details>
+  // Append content and details to heading container
   details.appendChild(introContainer);
-
-  // Append <details> to the heading container
   headingContainer.appendChild(details);
 }
+
+
 
  // Clear and populate the probability section
 probabilityDiv.innerHTML = `
