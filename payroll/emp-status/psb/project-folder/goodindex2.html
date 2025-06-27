@@ -2290,12 +2290,67 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
+<script>
+// Load court cases (replace with actual JSON if embedding directly)
+let courtCases = []; // This should be populated with the parsed JSON from psb_cases.txt
+
+function normalizeText(text) {
+  return String(text || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[’‘]/g, "'")
+    .replace(/[\u2013\u2014\u2012\u2010]/g, '-')
+    .replace(/\s+/g, ' ')
+    .replace(/[^a-z0-9\s'/-]/g, '');
+}
+
+function injectCourtCases(sectioned) {
+  for (const [section, questions] of Object.entries(sectioned)) {
+    for (const [question, data] of Object.entries(questions)) {
+      const container = document.querySelector(`h3:contains("${section}")`)?.nextElementSibling;
+      if (!container) continue;
+
+      const normalizedQuestion = normalizeText(question);
+      const indicator = data.rawWorker || data.rawPayer || '';
+      const normalizedIndicator = normalizeText(indicator).includes('self') || indicator.includes('no') ? 'CFS' : 'COS';
+
+      const matchingCases = courtCases.filter(c => {
+        return normalizeText(c["Category - Factor"]).includes(normalizedQuestion) &&
+               c.Indicator === normalizedIndicator;
+      });
+
+      if (matchingCases.length > 0) {
+        const details = document.createElement('details');
+        const summary = document.createElement('summary');
+        summary.textContent = 'Relevant Court Cases';
+        details.appendChild(summary);
+
+        matchingCases.forEach(c => {
+          const div = document.createElement('div');
+          div.innerHTML = `<strong>${c["Case Name"]}</strong><br>
+            <em>${c["Factor"]}</em><br>
+            ${c["Assessment"]}<br>
+            <small>${c["Summary"]}</small><br>
+            <strong>${c["Result"]}</strong><hr>`;
+          details.appendChild(div);
+        });
+
+        container.appendChild(details);
+      }
+    }
+  }
+}
+</script>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   fetch("PSB_cases_Final.json")
     .then(response => response.json())
     .then(data => {
-      const groupedCases = {};
+     courtCases = data;
+     const groupedCases = {};
 
       data.forEach(entry => {
         const name = entry["Case Name"];
