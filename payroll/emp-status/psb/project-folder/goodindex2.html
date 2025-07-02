@@ -2139,6 +2139,9 @@ probabilityDiv.innerHTML = `
 <li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/002-e.html">CPP/EI policy manual: Specific employments/workers</a> </li>	
 </ul>    </details>   
    
+<a href="#courtCaseModal" aria-controls="mid-screen" class="overlay-lnk" role="button">View court cases</a> 
+                         
+
 <button id="openCourtCasesBtn" class="btn btn-default btn-lg btn-block">View court cases</button>
 <!-- Modal -->
 <div id="courtCaseModal" style="display:none; position:fixed; top:10%; left:10%; width:80%; height:80%; background:white; border:1px solid #ccc; padding:20px; overflow:auto; z-index:1000;">
@@ -2343,13 +2346,16 @@ function printSummary() {
 </script>
 
 <!-- Modal for Court Cases -->
-<div id="courtCaseModal" style="display:none; position:fixed; top:5%; left:5%; width:90%; height:90%; background:white; border:2px solid #444; padding:20px; overflow:auto; z-index:1000;">
-  <button onclick="document.getElementById('courtCaseModal').style.display='none'" style="float:right;">Close</button>
-  <h2>Court Cases</h2>
-  <div id="courtCaseContent">
-    <!-- Injected court case content goes here -->
-  </div>
-</div>
+ <section id="courtCaseModal" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
+               <header class="modal-header">
+                  <h2 class="modal-title">View PSB court cases</h2>
+               </header>
+               <div class="modal-body">
+				   
+                  <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/emp-status/psb/project-folder/court-cases2.html">Search the list of PSB court decisions</a></div>
+               </div>
+            </section>
+
 <script>
 document.getElementById("openCourtCasesBtn").addEventListener("click", function () {
   fetch("court-cases2.html")
