@@ -2325,17 +2325,19 @@ function printSummary() {
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+$(document).on("wb-ready.wb-lbx", function (event) {
   const lightboxBtn = document.querySelector('.wb-lbx');
   if (lightboxBtn) {
+    console.log("Lightbox is ready");
     lightboxBtn.addEventListener('click', () => {
       console.log('Lightbox clicked');
     });
   } else {
-    console.warn('Lightbox button not found');
+    console.warn('Lightbox button still not found after wb-ready');
   }
 });
 </script>
+
 
 
 
