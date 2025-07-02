@@ -2139,16 +2139,18 @@ probabilityDiv.innerHTML = `
 <li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/002-e.html">CPP/EI policy manual: Specific employments/workers</a> </li>	
 </ul>    </details>   
    
-<a href="#courtCaseModal" aria-controls="mid-screen" class="overlay-lnk" role="button">View court cases</a> 
-                         
+  <p><a href="#courtCaseModal" class="wb-lbx btn btn-primary btn-lg d-flex max-content" aria-controls="courtCaseModal" role="button" data-wb-doaction='{"action": "ajax", "url": "court-cases2.txt", "container": "#container", "trigger": true}'>View court cases</a></p>
+
+<!-- Modal for Court Cases -->
+ <section id="courtCaseModal" class="mfp-hide modal-dialog modal-content overlay-def wb-popup-mid">
+               <header class="modal-header">
+                  <h2 class="modal-title">View court cases</h2>
+               </header>
+                <div id="container"></div>		   
+            </section>
+                  
 
 <button id="openCourtCasesBtn" class="btn btn-default btn-lg btn-block">View court cases</button>
-<!-- Modal -->
-<div id="courtCaseModal" style="display:none; position:fixed; top:10%; left:10%; width:80%; height:80%; background:white; border:1px solid #ccc; padding:20px; overflow:auto; z-index:1000;">
-  <button onclick="document.getElementById('courtCaseModal').style.display='none'" style="float:right;">Close</button>
-  <h2>Court Cases</h2>
-  <div id="courtCaseContent"></div>
-</div>
 
 
 <hr>
@@ -2344,37 +2346,6 @@ function printSummary() {
   }, 100);
 }
 </script>
-
-<!-- Modal for Court Cases -->
- <section id="courtCaseModal" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
-               <header class="modal-header">
-                  <h2 class="modal-title">View PSB court cases</h2>
-               </header>
-               <div class="modal-body">
-				   
-                  <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/emp-status/psb/project-folder/court-cases2.html">Search the list of PSB court decisions</a></div>
-               </div>
-            </section>
-
-<script>
-document.getElementById("openCourtCasesBtn").addEventListener("click", function () {
-  fetch("court-cases2.html")
-    .then(response => response.text())
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      const courtSection = doc.querySelector("#court");
-      document.getElementById("courtCaseContent").innerHTML = courtSection.innerHTML;
-      document.getElementById("courtCaseModal").style.display = "block";
-    })
-    .catch(error => {
-      console.error("Error loading court cases:", error);
-      document.getElementById("courtCaseContent").innerHTML = "<p>Unable to load court cases.</p>";
-      document.getElementById("courtCaseModal").style.display = "block";
-    });
-});
-</script>
-
 
 
 </body>
