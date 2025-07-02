@@ -2139,14 +2139,24 @@ probabilityDiv.innerHTML = `
 <li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/002-e.html">CPP/EI policy manual: Specific employments/workers</a> </li>	
 </ul>    </details>   
    
-  <p><a href="#courtcases" class="wb-lbx btn btn-primary btn-lg btn-block d-flex max-content" aria-controls="centred-popup" role="button">View court cases</a></p>
+
+ <p><a href="#wizard-auto" class="wb-lbx btn btn-primary btn-lg d-flex max-content" aria-controls="wizard-auto" role="button" data-wb-doaction='{"action": "ajax", "url": "ajax/vehicle-wizard.txt", "container": "#container", "trigger": true}'><span class="fas fa-car fa-2x mrgn-rght-sm d-flex pull-left"></span><span class="d-flex align-self-center pull-left mrgn-tp-sm">Launch vehicle validator</span></a></p>
+<section id="wizard-auto" class="mfp-hide modal-dialog modal-content overlay-def wb-popup-mid">
+	<header class="modal-header">
+		<h2 class="modal-title"><span class="fas fa-car fa-lg mrgn-rght-sm  "></span>Vehicle validator</h2>
+	</header>
+     <div id="container"></div>
+		</section>
+
+
+  <p><a href="#courtcases" class="wb-lbx btn btn-primary btn-lg btn-block d-flex max-content" aria-controls="courtcases" role="button" data-wb-doaction='{"action": "ajax", "url": "court-cases2.html", "container": "#container", "trigger": true}'>View court cases</a></p>
 
 <!-- Modal for Court Cases -->
  <section id="courtcases" class="mfp-hide modal-dialog modal-content overlay-def">
                <header class="modal-header">
                   <h2 class="modal-title">View court cases</h2>
                </header>
-                <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/emp-status/psb/project-folder/court-cases2.html#court"></div>	   
+                <div id="container"></div>   
             </section>
 
 <hr>
