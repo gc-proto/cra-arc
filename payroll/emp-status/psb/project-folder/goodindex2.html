@@ -2342,6 +2342,33 @@ function printSummary() {
 }
 </script>
 
+<!-- Modal for Court Cases -->
+<div id="courtCaseModal" style="display:none; position:fixed; top:5%; left:5%; width:90%; height:90%; background:white; border:2px solid #444; padding:20px; overflow:auto; z-index:1000;">
+  <button onclick="document.getElementById('courtCaseModal').style.display='none'" style="float:right;">Close</button>
+  <h2>Court Cases</h2>
+  <div id="courtCaseContent">
+    <!-- Injected court case content goes here -->
+  </div>
+</div>
+<script>
+document.getElementById("openCourtCasesBtn").addEventListener("click", function () {
+  fetch("court-cases2.html")
+    .then(response => response.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      const courtSection = doc.querySelector("#court");
+      document.getElementById("courtCaseContent").innerHTML = courtSection.innerHTML;
+      document.getElementById("courtCaseModal").style.display = "block";
+    })
+    .catch(error => {
+      console.error("Error loading court cases:", error);
+      document.getElementById("courtCaseContent").innerHTML = "<p>Unable to load court cases.</p>";
+      document.getElementById("courtCaseModal").style.display = "block";
+    });
+});
+</script>
+
 
 
 </body>
