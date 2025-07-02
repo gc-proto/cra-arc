@@ -2140,15 +2140,31 @@ probabilityDiv.innerHTML = `
 </ul>    </details>   
    
 
-  <p><a href="#courtcases" class="wb-lbx btn btn-default btn-lg btn-block d-flex max-content" aria-controls="courtcases" role="button" data-wb-doaction='{"action": "ajax", "url": "https://test.canada.ca/cra-arc/payroll/emp-status/psb/project-folder/court-cases2.html", "container": "#container", "trigger": true}'>View court cases</a></p>
+ <p>
+  <a href="#courtcases"
+     class="wb-lbx btn btn-default btn-lg btn-block d-flex max-content"
+     aria-controls="courtcases"
+     role="button"
+     data-wb-doaction='{
+       "action": "ajax",
+       "url": "https://test.canada.ca/cra-arc/payroll/emp-status/psb/project-folder/court-cases2.html",
+       "container": "#courtcases .modal-body",
+       "trigger": true
+     }'>
+    View court cases
+  </a>
+</p>
 
 <!-- Modal for Court Cases -->
- <section id="courtcases" class="mfp-hide modal-dialog modal-content overlay-def">
-               <header class="modal-header">
-                  <h2 class="modal-title">View court cases</h2>
-               </header>
-                <div id="container"></div>   
-            </section>
+<section id="courtcases" class="mfp-hide modal-dialog modal-content overlay-def" role="dialog" aria-labelledby="modal-title">
+  <header class="modal-header">
+    <h2 class="modal-title" id="modal-title">View court cases</h2>
+  </header>
+  <div class="modal-body">
+    <!-- AJAX content will be injected here -->
+  </div>
+</section>
+
 
 <hr>
 
