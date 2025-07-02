@@ -2296,41 +2296,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-let courtCases = [];
-
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("PSB_cases_Final.json")
-    .then(response => response.json())
-    .then(data => {
-      courtCases = data;
-
-      const button = document.getElementById("openCourtCasesBtn");
-      const modal = document.getElementById("courtCaseModal");
-      const content = document.getElementById("courtCaseContent");
-
-      button.addEventListener("click", () => {
-        content.innerHTML = courtCases.map(c => `
-          <div style="margin-bottom: 1em;">
-            <strong>${c["Case Name"]}</strong><br>
-            <em>${c["Factor"]}</em><br>
-            Indicator: ${c["Indicator"]}<br>
-            Assessment: ${c["Assessment"]}<br>
-            <small>${c["Summary"]}</small><br>
-            <strong>${c["Result"] || ""}</strong>
-            <hr>
-          </div>
-        `).join("");
-        modal.style.display = "block";
-      });
-    })
-    .catch(error => {
-      console.error("Error loading JSON:", error);
-    });
-});
-</script>
-
-
-<script>
 function printSummary() {
   // Expand all <details> elements
   document.querySelectorAll("details").forEach(detail => {
