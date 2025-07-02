@@ -2165,7 +2165,6 @@ probabilityDiv.innerHTML = `
   </div>
 </section>
 
-
 <hr>
 
    <h3>Total – Indicators</h3>
@@ -2326,10 +2325,18 @@ function printSummary() {
 </script>
 
 <script>
-document.querySelector('.wb-lbx').addEventListener('click', () => {
-  console.log('Lightbox clicked');
+document.addEventListener('DOMContentLoaded', () => {
+  const lightboxBtn = document.querySelector('.wb-lbx');
+  if (lightboxBtn) {
+    lightboxBtn.addEventListener('click', () => {
+      console.log('Lightbox clicked');
+    });
+  } else {
+    console.warn('Lightbox button not found');
+  }
 });
 </script>
+
 
 
 </body>
