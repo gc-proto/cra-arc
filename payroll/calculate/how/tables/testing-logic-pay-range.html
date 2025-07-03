@@ -4,20 +4,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Remuneration Ranges by Pay Period</title>
+  <title>Remuneration Ranges</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    table { border-collapse: collapse; width: 60%; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: right; }
-    th { background-color: #f2f2f2; }
-    label, select { font-size: 16px; }
+    #remuneration-section {
+      display: none;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 4px 8px;
+    }
   </style>
 </head>
 <body>
 
-  <h2>Remuneration Ranges by Pay Period</h2>
   <label for="pay-period">Select Pay Period:</label>
   <select id="pay-period" onchange="populateTable(this.value)">
+    <option value="">-- Select --</option>
     <option value="daily">Daily</option>
     <option value="weekly">Weekly</option>
     <option value="bi-weekly">Bi-weekly</option>
@@ -28,89 +32,98 @@
     <option value="22-period">22 pay periods</option>
   </select>
 
-  <table>
-    <thead>
-      <tr><th>From ($)</th><th>To ($)</th></tr>
-    </thead>
-    <tbody id="remuneration-table-body"></tbody>
-  </table>
+  <div id="remuneration-section">
+    <h3>Remuneration Ranges</h3>
+    <table>
+      <thead>
+        <tr><th>From</th><th>To</th></tr>
+      </thead>
+      <tbody id="remuneration-table-body"></tbody>
+    </table>
+  </div>
 
   <script>
-    const rules = {
-      "daily": [[44, 151.99, 2]],
+    const ranges = {
+      "daily": [{start: 44, end: 151.99, step: 2}],
       "weekly": [
-        [202, 309.99, 2],
-        [310, 529.99, 4],
-        [530, 969.99, 8],
-        [970, 1629.99, 12],
-        [1630, 2509.99, 16],
-        [2510, 3609.99, 20]
+        {start: 202, end: 309.99, step: 2},
+        {start: 310, end: 529.99, step: 4},
+        {start: 530, end: 969.99, step: 8},
+        {start: 970, end: 1629.99, step: 12},
+        {start: 1630, end: 2509.99, step: 16},
+        {start: 2510, end: 3609.99, step: 20}
       ],
       "bi-weekly": [
-        [403, 618.99, 4],
-        [619, 1058.99, 8],
-        [1059, 1938.99, 16],
-        [1939, 3258.99, 24],
-        [3259, 5018.99, 32],
-        [5019, 7218.99, 40]
+        {start: 403, end: 618.99, step: 4},
+        {start: 619, end: 1058.99, step: 8},
+        {start: 1059, end: 1938.99, step: 16},
+        {start: 1939, end: 3258.99, step: 24},
+        {start: 3259, end: 5018.99, step: 32},
+        {start: 5019, end: 7218.99, step: 40}
       ],
       "semi-monthly": [
-        [437, 652.99, 4],
-        [653, 1092.99, 8],
-        [1093, 2082.99, 18],
-        [2083, 3512.99, 26],
-        [3513, 5382.99, 34],
-        [5383, 7802.99, 44]
+        {start: 437, end: 652.99, step: 4},
+        {start: 653, end: 1092.99, step: 8},
+        {start: 1093, end: 2082.99, step: 18},
+        {start: 2083, end: 3512.99, step: 26},
+        {start: 3513, end: 5382.99, step: 34},
+        {start: 5383, end: 7802.99, step: 44}
       ],
       "monthly": [
-        [873, 1304.99, 8],
-        [1305, 2294.99, 18],
-        [2295, 4164.99, 34],
-        [4165, 7024.99, 52],
-        [7025, 10874.99, 70],
-        [10875, 15604.99, 86]
+        {start: 873, end: 1304.99, step: 8},
+        {start: 1305, end: 2294.99, step: 18},
+        {start: 2295, end: 4164.99, step: 34},
+        {start: 4165, end: 7024.99, step: 52},
+        {start: 7025, end: 10874.99, step: 70},
+        {start: 10875, end: 15604.99, step: 86}
       ],
       "10-monthly": [
-        [1048, 1587.99, 10],
-        [1588, 2687.99, 20],
-        [2688, 4997.99, 42],
-        [4998, 8407.99, 62],
-        [8408, 13027.99, 84],
-        [13028, 18747.99, 104]
+        {start: 1048, end: 1587.99, step: 10},
+        {start: 1588, end: 2687.99, step: 20},
+        {start: 2688, end: 4997.99, step: 42},
+        {start: 4998, end: 8407.99, step: 62},
+        {start: 8408, end: 13027.99, step: 84},
+        {start: 13028, end: 18747.99, step: 104}
       ],
       "four-week": [
-        [806, 1237.99, 8],
-        [1238, 2117.99, 16],
-        [2118, 3877.99, 32],
-        [3878, 6517.99, 48],
-        [6518, 10037.99, 64],
-        [10038, 14437.99, 80]
+        {start: 806, end: 1237.99, step: 8},
+        {start: 1238, end: 2117.99, step: 16},
+        {start: 2118, end: 3877.99, step: 32},
+        {start: 3878, end: 6517.99, step: 48},
+        {start: 6518, end: 10037.99, step: 64},
+        {start: 10038, end: 14437.99, step: 80}
       ],
       "22-period": [
-        [477, 800.99, 6],
-        [801, 1350.99, 10],
-        [1351, 2340.99, 18],
-        [2341, 3880.99, 28],
-        [3881, 5970.99, 38],
-        [5971, 8610.99, 48]
+        {start: 477, end: 800.99, step: 6},
+        {start: 801, end: 1350.99, step: 10},
+        {start: 1351, end: 2340.99, step: 18},
+        {start: 2341, end: 3880.99, step: 28},
+        {start: 3881, end: 5970.99, step: 38},
+        {start: 5971, end: 8610.99, step: 48}
       ]
     };
 
     function populateTable(period) {
+      const section = document.getElementById("remuneration-section");
       const tbody = document.getElementById("remuneration-table-body");
       tbody.innerHTML = "";
-      const ranges = rules[period];
-      for (const [start, end, step] of ranges) {
-        for (let from = start; from <= end; from += step) {
-          let to = from + step;
-          if (to > end + 0.001) to = end;
-          const row = `<tr><td>${from.toFixed(2)}</td><td>${to.toFixed(2)}</td></tr>`;
+
+      if (!ranges[period]) {
+        section.style.display = "none";
+        return;
+      }
+
+      section.style.display = "block";
+
+      ranges[period].forEach(range => {
+        for (let from = range.start; from <= range.end; from += range.step) {
+          let to = from + range.step;
+          if (to > range.end) to = range.end;
+          const row = `<tr><td>$${from.toFixed(2)}</td><td>$${to.toFixed(2)}</td></tr>`;
           tbody.innerHTML += row;
         }
-      }
+      });
     }
-
-    window.onload = () => populateTable("daily");
   </script>
 
 </body>
