@@ -1,0 +1,117 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Remuneration Ranges by Pay Period</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table { border-collapse: collapse; width: 60%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: right; }
+    th { background-color: #f2f2f2; }
+    label, select { font-size: 16px; }
+  </style>
+</head>
+<body>
+
+  <h2>Remuneration Ranges by Pay Period</h2>
+  <label for="pay-period">Select Pay Period:</label>
+  <select id="pay-period" onchange="populateTable(this.value)">
+    <option value="daily">Daily</option>
+    <option value="weekly">Weekly</option>
+    <option value="bi-weekly">Bi-weekly</option>
+    <option value="semi-monthly">Semi-monthly</option>
+    <option value="monthly">Monthly (12 pay periods)</option>
+    <option value="10-monthly">Monthly (10 pay periods)</option>
+    <option value="four-week">Four-week</option>
+    <option value="22-period">22 pay periods</option>
+  </select>
+
+  <table>
+    <thead>
+      <tr><th>From ($)</th><th>To ($)</th></tr>
+    </thead>
+    <tbody id="remuneration-table-body"></tbody>
+  </table>
+
+  <script>
+    const rules = {
+      "daily": [[44, 151.99, 2]],
+      "weekly": [
+        [202, 309.99, 2],
+        [310, 529.99, 4],
+        [530, 969.99, 8],
+        [970, 1629.99, 12],
+        [1630, 2509.99, 16],
+        [2510, 3609.99, 20]
+      ],
+      "bi-weekly": [
+        [403, 618.99, 4],
+        [619, 1058.99, 8],
+        [1059, 1938.99, 16],
+        [1939, 3258.99, 24],
+        [3259, 5018.99, 32],
+        [5019, 7218.99, 40]
+      ],
+      "semi-monthly": [
+        [437, 652.99, 4],
+        [653, 1092.99, 8],
+        [1093, 2082.99, 18],
+        [2083, 3512.99, 26],
+        [3513, 5382.99, 34],
+        [5383, 7802.99, 44]
+      ],
+      "monthly": [
+        [873, 1304.99, 8],
+        [1305, 2294.99, 18],
+        [2295, 4164.99, 34],
+        [4165, 7024.99, 52],
+        [7025, 10874.99, 70],
+        [10875, 15604.99, 86]
+      ],
+      "10-monthly": [
+        [1048, 1587.99, 10],
+        [1588, 2687.99, 20],
+        [2688, 4997.99, 42],
+        [4998, 8407.99, 62],
+        [8408, 13027.99, 84],
+        [13028, 18747.99, 104]
+      ],
+      "four-week": [
+        [806, 1237.99, 8],
+        [1238, 2117.99, 16],
+        [2118, 3877.99, 32],
+        [3878, 6517.99, 48],
+        [6518, 10037.99, 64],
+        [10038, 14437.99, 80]
+      ],
+      "22-period": [
+        [477, 800.99, 6],
+        [801, 1350.99, 10],
+        [1351, 2340.99, 18],
+        [2341, 3880.99, 28],
+        [3881, 5970.99, 38],
+        [5971, 8610.99, 48]
+      ]
+    };
+
+    function populateTable(period) {
+      const tbody = document.getElementById("remuneration-table-body");
+      tbody.innerHTML = "";
+      const ranges = rules[period];
+      for (const [start, end, step] of ranges) {
+        for (let from = start; from <= end; from += step) {
+          let to = from + step;
+          if (to > end + 0.001) to = end;
+          const row = `<tr><td>${from.toFixed(2)}</td><td>${to.toFixed(2)}</td></tr>`;
+          tbody.innerHTML += row;
+        }
+      }
+    }
+
+    window.onload = () => populateTable("daily");
+  </script>
+
+</body>
+</html>
