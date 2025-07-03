@@ -64,6 +64,76 @@
 <h1 property="name" id="wb-cont" class="gc-thickline">Testing - 2022 Federal tax deductions table - Semi-monthly (24 pay periods a year)</h1>
 <section>
 
+	
+	<h3>Number Range Filters (Integers, floats, currency, etc)</h3>
+	<p>This filter accepts the positive or negative integers, floats with a maximum of two decimal points (E.g. 1.0/1.00 or 1,0/1,00), or Canadian/French Canadian currency (E.g. $1.00/1,00 $). DataTable data can be a actual number or string containing number.</p>
+	
+			<h4 class="wb-inv">Filtering Options</h4>
+			<details open>
+				<summary><h4 class="h4">Filter Options</h4></summary>
+				<p class="mrgn-tp-md">Use filters to below options to change the focus of your results in following data table</p>
+				<form class="wb-tables-filter" data-bind-to="dataset-filter2">
+					
+				
+					<div class="form-group">
+						<fieldset>
+							<legend><span class="field-name">Pay range</span></legend>
+							<div class="row form-group">
+								<div class="col-md-6">
+									<label for="dt_min_salary" class="small">Min</label>
+									<input type="number" class="form-control" id="dt_min_salary" name="dt_min_salary" min="0" data-column="4"/>
+								</div>
+								<div class="col-md-6">
+									<label for="dt_max_salary" class="small">Max</label>
+									<input type="number" class="form-control" id="dt_max_salary" name="dt_max_salary" min="1" data-column="4"/>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary" aria-controls="dataset-filter2">Filter</button>
+					</div>
+					<div class="form-group">
+						<button type="reset" class="btn btn-link btn-sm p-0">Reset to defaults</button>
+					</div>
+				</form>
+			</details>
+				
+			<table class="wb-tables table table-striped table-hover" id="dataset-filter2" data-wb-tables='{
+			"bDeferRender": true,
+			"ajaxSource": "https://test.canada.ca/cra-arc/payroll/calculate/how/2022tables/test-table-chris.html",
+			"order": [1, "desc"],
+			"columns": [
+				{ "data": "hdr1A"},
+				{ "data": "hdr1B"},
+				{ "data": "hdr2" },
+				{ "data": "hdr3" },
+				{ "data": "hdr4" },
+				{ "data": "hdr5" },
+				{ "data": "hdr6" },
+				{ "data": "hdr7" },
+				{ "data": "hdr8" },
+				{ "data": "hdr9" },
+				{ "data": "hdr10" },
+				{ "data": "hdr11" },
+				{ "data": "hdr12" }
+			]}'>
+				<thead>
+				<tr>
+					<th>Pay range</th>
+					<th>CC 0</th>
+					<th>CC 2</th>
+					<th>CC 3</th>
+					<th>CC 4</th>
+					<th>CC 5</th>
+				</tr>
+				</thead>
+			</table>
+		
+	
+
+
 <div>
  <table id="dataset-filter2" class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
