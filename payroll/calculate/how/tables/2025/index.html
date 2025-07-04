@@ -88,7 +88,6 @@
 <option value="DAILY">240 periods (daily)</option>
 </optgroup>
 </select></div>
-
 <div class="form-group"><label class="required" for="province"><span>Province or territory of employment</span><strong class="required"> <span><span class="wb-inv">(required)</span></span> </strong></label>
 <select class="form-control" id="province" onchange="checkSelections()">
 <option value="">Make your selection</option>
@@ -108,9 +107,7 @@
 <option value="YUKON"> Yukon </option></optgroup>
 <option value="OUTSIDE_CANADA"> Outside Canada </option>
 </select></div>
-
-<hr><h3 id="payPeriodHeading"></h3>
-   
+<hr/><h3 id="payPeriodHeading" style="display: none;"></h3>
 <div id="taxTable" style="display: none;">
 <table class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
@@ -365,7 +362,6 @@ function populateTable(period) {
   });
 }
 </script>
-
 </main>
 <!-- Write closure template -->
 <script type="text/javascript">
@@ -386,9 +382,11 @@ function checkSelections() {
 
   if (payPeriod) {
     const selectedText = document.getElementById("payPeriod").selectedOptions[0].text;
-    heading.textContent = "Pay period frequency: " + selectedText;
+    heading.style.display = show ? "block" : "none";
+    heading.textContent = show ? "Pay period frequency: " + document.getElementById("payPeriod").selectedOptions[0].text : "";
   } else {
-    heading.textContent = "";
+    heading.style.display = show ? "block" : "none";
+    heading.textContent = show ? "Pay period frequency: " + document.getElementById("payPeriod").selectedOptions[0].text : "";
   }
 
   if (province) {
@@ -397,6 +395,5 @@ function checkSelections() {
   } else {
     caption.textContent = "";
   }
-}
-</script></body>
+}</script></body>
 </html>
