@@ -94,9 +94,9 @@
 <option value="OUTSIDE_CANADA"> Outside Canada </option>
 </select></div>
 
-<div class="form-group"><label for="pp" class="required"><span>Pay period frequency</span><strong class="required">&nbsp;<span><span class="wb-inv">(required)</span></span>&nbsp;</strong></label>
+<div class="form-group"><label for="payPeriod" class="required"><span>Pay period frequency</span><strong class="required">&nbsp;<span><span class="wb-inv">(required)</span></span>&nbsp;</strong></label>
 
-<select id="pp" class="form-control" onchange="populateTable(this.value)">
+<select id="payPeriod" class="form-control" onchange="populateTable(this.value)">
 <option value="">Make your selection...</option>
 
 <optgroup label="Common pay periods per year">
@@ -117,7 +117,7 @@
 
 
 <div id="remuneration-section">
- <table id="dataset-filter2" class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
+ <table id="dataset-filter2" style="display: none;" class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
                      } }'>
 
@@ -288,11 +288,20 @@ function populateTable(period) {
 }
 </script>
 
+		 
+<script>
+  document.getElementById("payPeriod").addEventListener("change", function () {
+    const selected = this.value;
+    const table = document.getElementById("dataset-filter2");
+    table.style.display = selected ? "block" : "none";
+  });
+</script>
+
 
   <script>
     function showTable() {
       const payPeriod = document.getElementById("payPeriod").value;
-      const table = document.getElementById("taxTable");
+      const table = document.getElementById("dataset-filter2");
       table.style.display = payPeriod ? "block" : "none";
     }
   </script>
