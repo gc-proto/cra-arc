@@ -86,7 +86,7 @@
 
 <div class="form-group"><label for="pp" class="required"><span>Pay period frequency</span><strong class="required">&nbsp;<span><span class="wb-inv">(required)</span></span>&nbsp;</strong></label>
 
-<select id="pp" class="form-control">
+<select id="pp" class="form-control" onchange="populateTable(this.value)">
 <option value="">Make your selection...</option>
 
 <optgroup label="Common pay periods per year">
@@ -105,22 +105,7 @@
 </optgroup>
 </select></div>
 
-<h3>Remuneration by pay period</h3>
-<label for="pay-period">Select the pay Period:</label>
-<select class="form-control" id="pay-period" onchange="populateTable(this.value)">
-<option value="">Make your selection...</option>
-<option value="daily">240 periods (daily)</option>
-<option value="10-monthly">10 periods</option>
-<option value="monthly">12 periods (monthly)</option>
-<option value="13-monthly">13 periods</option>
-<option value="22-monthly">22 periods</option>
-<option value="semi-monthly">24 periods (semi-monthly)</option>
-<option value="bi-weekly">26 periods (Biweekly)</option>
-<option value="bi-weekly2">27 periods (Biweekly)</option>
-<option value="weekly">52 periods (weekly)</option>
-<option value="weekly">53 periods (weekly)</option>
-</select>
-	
+
 <div id="remuneration-section" style="display:none;">
  <table id="dataset-filter2" class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
