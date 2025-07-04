@@ -17,7 +17,7 @@
 
 
   <style>
-    #dataset-filter2 {
+    #taxTable #footnote {
       display: none;
       margin-top: 20px;
     }
@@ -118,7 +118,7 @@
 <div id="remuneration-section">
 <hr>
 
- <table id="dataset-filter2" style="display: none;" class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
+ <table id="taxTable" style="display: none;" class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
                      } }'>
 
@@ -254,18 +254,20 @@
              
         </tbody>
       </table>
-		<aside class="wb-fnote" role="note">
-	<h2 id="fn">Footnotes</h2>
+	
+<div id="footnote">
+		<aside class="wb-fnote" role="note" >
+	<h4 id="fn" >Footnotes</h4>
 	<dl>
 		
 		<dt>Footnote *</dt>
 		<dd id="fn*">
-			<p>You normally use claim code ''0'' only for non-resident employees. However, if you have non-resident employees who earn less than the minimum amount shown in
-the ''Pay'' column, you may not be able to use these tables. Instead, refer to the ''Step-by-step calculation of tax deductions'' in Section ''A'' of this publication.</p>
+			<p>You normally use claim code '0' only for non-resident employees. However, if you have non-resident employees who earn less than the minimum amount shown in the 'Pay' column, you may not be able to use these tables.</p>
 			<p class="fn-rtn"><a href="#fn*-rf"><span class="wb-inv">Return to footnote </span>*<span class="wb-inv"> referrer</span></a></p>
 		</dd>
 	</dl>
 </aside></div>
+</div>
 </section>
            </div>
           
@@ -289,24 +291,26 @@ function populateTable(period) {
 }
 </script>
 
-		 
-<script>
-  document.getElementById("payPeriod").addEventListener("change", function () {
-    const selected = this.value;
-    const table = document.getElementById("dataset-filter2");
-    table.style.display = selected ? "block" : "none";
-  });
-</script>
+	
 
 
   <script>
-    function showTable() {
+    function showElements() {
       const payPeriod = document.getElementById("payPeriod").value;
-      const table = document.getElementById("dataset-filter2");
-      table.style.display = payPeriod ? "block" : "none";
+      const table = document.getElementById("taxTable");
+      const footnote = document.getElementById("footnote");
+
+      if (payPeriod) {
+        table.style.display = "block";
+        footnote.style.display = "block";
+      } else {
+        table.style.display = "none";
+        footnote.style.display = "none";
+      }
     }
   </script>
 
+ 
 		 
 <nav class="mrgn-bttm-lg mrgn-tp-lg">
   <h3 class="wb-inv">Document navigation</h3>
