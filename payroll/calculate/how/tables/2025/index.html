@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <!--[if lt IE 9]>
@@ -16,9 +17,6 @@
 <!-- Meta data -->
 <!-- Meta data-->
 <!-- Load closure template scripts -->
-
-
-  
 <style>
     #taxTable {
       display: none;
@@ -29,13 +27,13 @@
 <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/compiled/wet-en.js" type="text/javascript"></script>
 <link href="https://test.canada.ca/covid-19-guidance/proto/css/alpha-beta-banner.css" rel="stylesheet"/>
 <link href="https://cra-arc.gc.ca/wet-boew/css/custom/steps.css" rel="stylesheet"/>
-<link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" rel="stylesheet">
+<link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" rel="stylesheet"/>
 <!-- Write closure template -->
 <script type="text/javascript">
             document.write(wet.builder.refTop({
             }));
          </script>
-</link></head>
+</head>
 <body class="experimental" typeof="WebPage" vocab="http://schema.org/">
 <div id="def-top">
 </div>
@@ -108,13 +106,13 @@
 <option value="WEEKLY_53PP">53 periods (weekly)</option>
 <option value="DAILY">240 periods (daily)</option>
 </optgroup>
-</select></div>
+</select><h3 id="payPeriodHeading"></h3></div>
 <hr/>
 <div id="taxTable" style="display: none;">
 <table class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
                      } }' id="dataset-table">
-<caption>
+<caption id="tableCaption">
         Claim code (CC) for federal tax deductions (in dollars) for pay range
         </caption>
 <thead>
@@ -258,7 +256,6 @@
 </div>
 </section>
 </div>
-
 <script>
 function checkSelections() {
   const province = document.getElementById("province").value;
@@ -268,7 +265,6 @@ function checkSelections() {
   table.style.display = show ? "block" : "none";
 }
 </script>
-
 <script>
 const ranges = {
   "DAILY": [
@@ -367,16 +363,37 @@ function populateTable(period) {
 }
 </script>
 
-</script>
-
-   
 </main>
-
 <!-- Write closure template -->
 <script type="text/javascript">
             document.write(wet.builder.refFooter({
             }));
          </script>
 <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
-</body>
+<script>
+function checkSelections() {
+  const province = document.getElementById("province").value;
+  const payPeriod = document.getElementById("payPeriod").value;
+  const table = document.getElementById("taxTable");
+  const heading = document.getElementById("payPeriodHeading");
+  const caption = document.getElementById("tableCaption");
+
+  const show = province && payPeriod;
+  table.style.display = show ? "block" : "none";
+
+  if (payPeriod) {
+    const selectedText = document.getElementById("payPeriod").selectedOptions[0].text;
+    heading.textContent = "Pay period frequency: " + selectedText;
+  } else {
+    heading.textContent = "";
+  }
+
+  if (province) {
+    const selectedProvince = document.getElementById("province").selectedOptions[0].text.trim();
+    caption.textContent = "" + selectedProvince ;
+  } else {
+    caption.textContent = "";
+  }
+}
+</script></body>
 </html>
