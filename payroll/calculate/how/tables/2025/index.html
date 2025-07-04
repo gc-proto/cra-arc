@@ -108,8 +108,6 @@
 <option value="OUTSIDE_CANADA"> Outside Canada </option>
 </select></div>
 <hr/><h3 id="payPeriodHeading" style="display: none;"></h3>
-
-
 <div id="taxTablef" style="display: none;">
 <table class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
@@ -181,8 +179,6 @@
 </dl>
 </aside>
 </div>
-
-
 <div id="taxTable" style="display: none;">
 <table class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
@@ -335,10 +331,27 @@
 function checkSelections() {
   const province = document.getElementById("province").value;
   const payPeriod = document.getElementById("payPeriod").value;
-  const table = document.getElementById("taxTable");
-  const table = document.getElementById("taxTablef");
+  const federalTable = document.getElementById("taxTablef");
+  const provincialTable = document.getElementById("taxTable");
+  const heading = document.getElementById("payPeriodHeading");
+  const caption = document.getElementById("tableCaption");
+
   const show = province && payPeriod;
-  table.style.display = show ? "block" : "none";
+
+  federalTable.style.display = show ? "block" : "none";
+  provincialTable.style.display = show ? "block" : "none";
+  heading.style.display = show ? "block" : "none";
+
+  if (show) {
+    const selectedText = document.getElementById("payPeriod").selectedOptions[0].text;
+    heading.textContent = "Pay period frequency: " + selectedText;
+
+    const selectedProvince = document.getElementById("province").selectedOptions[0].text.trim();
+    caption.textContent = selectedProvince + " provincial tax deductions";
+  } else {
+    heading.textContent = "";
+    caption.textContent = "";
+  }
 }
 </script>
 <script>
