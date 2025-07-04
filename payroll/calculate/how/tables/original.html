@@ -18,7 +18,7 @@
 
   
 <style>
-    #taxTable, #footnote {
+    #taxTable {
       display: none;
       margin-top: 20px;
     }
@@ -76,8 +76,8 @@
 <h1 property="name" id="wb-cont" class="gc-thickline">Testing - 2025 Federal, provincial and territorial income tax tables</h1>
 <section>
 
-<div class="form-group"><label for="poe" class="required"><span>Province or territory of employment</span><strong class="required">&nbsp;<span ><span class="wb-inv">(required)</span></span>&nbsp;</strong></label>
-<select id="poe" class="form-control">
+<div class="form-group"><label for="province" class="required"><span>Province or territory of employment</span><strong class="required">&nbsp;<span ><span class="wb-inv">(required)</span></span>&nbsp;</strong></label>
+<select id="province" class="form-control">
 <option value="">Make your selection</option>
 <optgroup label="Provinces">
 <option value="ALBERTA"> Alberta </option>
@@ -117,10 +117,10 @@
 </optgroup>
 </select></div>
 
-<div id="remuneration-section">
+<div id="taxTable">
 <hr>
 
- <table id="taxTable" style="display: none;" class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
+ <table id="dataset-table" style="display: none;" class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
                      } }'>
 
@@ -257,7 +257,6 @@
         </tbody>
       </table>
 	
-<div id="footnote">
 		<aside class="wb-fnote" role="note" >
 	<h4 id="fn" >Footnotes</h4>
 	<dl>
@@ -268,7 +267,7 @@
 			<p class="fn-rtn"><a href="#fn*-rf"><span class="wb-inv">Return to footnote </span>*<span class="wb-inv"> referrer</span></a></p>
 		</dd>
 	</dl>
-</aside></div>
+</aside>
 </div>
 </section>
            </div>
@@ -300,12 +299,8 @@ function populateTable(period) {
       const province = document.getElementById("province").value;
       const payPeriod = document.getElementById("payPeriod").value;
       const table = document.getElementById("taxTable");
-      const footnote = document.getElementById("footnote");
-
       const show = province && payPeriod;
-
       table.style.display = show ? "block" : "none";
-      footnote.style.display = show ? "block" : "none";
     }
   </script>
 
