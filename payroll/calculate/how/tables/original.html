@@ -258,7 +258,96 @@
 </div>
 </section>
 </div>
+
 <script>
+function checkSelections() {
+  const province = document.getElementById("province").value;
+  const payPeriod = document.getElementById("payPeriod").value;
+  const table = document.getElementById("taxTable");
+  const show = province && payPeriod;
+  table.style.display = show ? "block" : "none";
+}
+</script>
+
+<script>
+const ranges = {
+  "DAILY": [
+{start: 79, end: 847, prov: fed},
+{start: 101, end: 869, prov: ab}
+],
+  "MONTHLY_12PP": [
+    {start: 202, end: 309.99, step: 2},
+    {start: 310, end: 529.99, step: 4},
+    {start: 530, end: 969.99, step: 8},
+    {start: 970, end: 1629.99, step: 12},
+    {start: 1630, end: 2509.99, step: 16},
+    {start: 2510, end: 3609.99, step: 20}
+  ],
+  "SEMI_MONTHLY": [
+    {start: 403, end: 618.99, step: 4},
+    {start: 619, end: 1058.99, step: 8},
+    {start: 1059, end: 1938.99, step: 16},
+    {start: 1939, end: 3258.99, step: 24},
+    {start: 3259, end: 5018.99, step: 32},
+    {start: 5019, end: 7218.99, step: 40}
+  ],
+  "BI_WEEKLY": [
+    {start: 437, end: 652.99, step: 4},
+    {start: 653, end: 1092.99, step: 8},
+    {start: 1093, end: 2082.99, step: 18},
+    {start: 2083, end: 3512.99, step: 26},
+    {start: 3513, end: 5382.99, step: 34},
+    {start: 5383, end: 7802.99, step: 44}
+  ],
+  "WEEKLY_52PP": [
+    {start: 873, end: 1304.99, step: 8},
+    {start: 1305, end: 2294.99, step: 18},
+    {start: 2295, end: 4164.99, step: 34},
+    {start: 4165, end: 7024.99, step: 52},
+    {start: 7025, end: 10874.99, step: 70},
+    {start: 10875, end: 15604.99, step: 86}
+  ],
+  "TEN_PP": [
+    {start: 1048, end: 1587.99, step: 10},
+    {start: 1588, end: 2687.99, step: 20},
+    {start: 2688, end: 4997.99, step: 42},
+    {start: 4998, end: 8407.99, step: 62},
+    {start: 8408, end: 13027.99, step: 84},
+    {start: 13028, end: 18747.99, step: 104}
+  ],
+  "THIRTEEN_13PP": [
+    {start: 806, end: 1237.99, step: 8},
+    {start: 1238, end: 2117.99, step: 16},
+    {start: 2118, end: 3877.99, step: 32},
+    {start: 3878, end: 6517.99, step: 48},
+    {start: 6518, end: 10037.99, step: 64},
+    {start: 10038, end: 14437.99, step: 80}
+  ],
+  "TWENTYTWO_22PP": [
+    {start: 477, end: 800.99, step: 6},
+    {start: 801, end: 1350.99, step: 10},
+    {start: 1351, end: 2340.99, step: 18},
+    {start: 2341, end: 3880.99, step: 28},
+    {start: 3881, end: 5970.99, step: 38},
+    {start: 5971, end: 8610.99, step: 48},
+],
+   "BI_WEEKLY_27PP": [
+    {start: 477, end: 800.99, step: 6},
+    {start: 801, end: 1350.99, step: 10},
+    {start: 1351, end: 2340.99, step: 18},
+    {start: 2341, end: 3880.99, step: 28},
+    {start: 3881, end: 5970.99, step: 38},
+    {start: 5971, end: 8610.99, step: 48}
+   ],
+   "WEEKLY_53PP": [
+    {start: 477, end: 800.99, step: 6},
+    {start: 801, end: 1350.99, step: 10},
+    {start: 1351, end: 2340.99, step: 18},
+    {start: 2341, end: 3880.99, step: 28},
+    {start: 3881, end: 5970.99, step: 38},
+    {start: 5971, end: 8610.99, step: 48}
+  ]
+};
 
 function populateTable(period) {
   const section = document.getElementById("remuneration-section");
@@ -278,16 +367,9 @@ function populateTable(period) {
 }
 </script>
 
-<script>
-function checkSelections() {
-  const province = document.getElementById("province").value;
-  const payPeriod = document.getElementById("payPeriod").value;
-  const table = document.getElementById("taxTable");
-  const show = province && payPeriod;
-  table.style.display = show ? "block" : "none";
-}
 </script>
 
+   
 </main>
 
 <!-- Write closure template -->
