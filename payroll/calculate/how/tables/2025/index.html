@@ -18,7 +18,7 @@
 <!-- Meta data-->
 <!-- Load closure template scripts -->
 <style>
-    #taxTable {
+    #taxTable, #taxTablef {
       display: none;
       margin-top: 20px;
     }
@@ -108,6 +108,81 @@
 <option value="OUTSIDE_CANADA"> Outside Canada </option>
 </select></div>
 <hr/><h3 id="payPeriodHeading" style="display: none;"></h3>
+
+
+<div id="taxTablef" style="display: none;">
+<table class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
+                     "sSearch": "Filter by amount"
+                     } }' id="dataset-tablef">
+<caption id="tableCaption1">
+        Claim code (CC) for federal tax deductions (in dollars) for pay range
+        </caption>
+<thead>
+<tr>
+<th colspan="2" id="hdr1f">Pay range</th>
+<th id="hdr2f" rowspan="2">CC 0</th>
+<th id="hdr3f" rowspan="2">CC 1</th>
+<th id="hdr4f" rowspan="2">CC 2</th>
+<th id="hdr5f" rowspan="2">CC 3</th>
+<th id="hdr6f" rowspan="2">CC 4</th>
+<th id="hdr7f" rowspan="2">CC 5</th>
+<th id="hdr8f" rowspan="2">CC 6</th>
+<th id="hdr9f" rowspan="2">CC 7</th>
+<th id="hdr10f" rowspan="2">CC 8</th>
+<th id="hdr11f" rowspan="2">CC 9</th>
+<th id="hdr12f" rowspan="2">CC 10</th>
+</tr>
+<tr>
+<th headers="hdr1" id="hdr1A">From</th>
+<th headers="hdr1" id="hdr1B">Less than</th>
+</tr>
+</thead>
+<tbody id="remuneration-table-bodyf">
+<tr>
+<td headers="hdr1 hdr1A"><strong>0</strong></td>
+<td headers="hdr1 hdr1B"><strong>697</strong></td>
+<td headers="hdr2"><sup id="fn*-rf1"><a class="fn-lnk" href="#fn1*"><span class="wb-inv">Footnote </span>*</a></sup></td>
+<td headers="hdr3">0</td>
+<td headers="hdr4">0</td>
+<td headers="hdr5">0</td>
+<td headers="hdr6">0</td>
+<td headers="hdr7">0</td>
+<td headers="hdr8">0</td>
+<td headers="hdr9">0</td>
+<td headers="hdr10">0</td>
+<td headers="hdr11">0</td>
+<td headers="hdr12">0</td>
+</tr>
+<tr>
+<td headers="hdr1 hdr1A"><strong>697</strong></td>
+<td headers="hdr1 hdr1B"><strong>701</strong></td>
+<td headers="hdr2">90.40</td>
+<td headers="hdr3">0.45</td>
+<td headers="hdr4">0</td>
+<td headers="hdr5">0</td>
+<td headers="hdr6">0</td>
+<td headers="hdr7">0</td>
+<td headers="hdr8">0</td>
+<td headers="hdr9">0</td>
+<td headers="hdr10">0</td>
+<td headers="hdr11">0</td>
+<td headers="hdr12">0</td>
+</tr>
+</tbody>
+</table>
+<aside class="wb-fnote" role="note">
+<h4 id="fn1">Footnotes</h4>
+<dl>
+<dt>Footnote *</dt>
+<dd id="fn1*">
+<p>You normally use claim code '0' only for non-resident employees. However, if you have non-resident employees who earn less than the minimum amount shown in the 'Pay' column, you may not be able to use these tables.</p>
+<p class="fn-rtn"><a href="#fn*-rf1"><span class="wb-inv">Return to footnote </span>*<span class="wb-inv"> referrer</span></a></p>
+</dd>
+</dl>
+</aside>
+</div>
+
+
 <div id="taxTable" style="display: none;">
 <table class="wb-tables table small table-striped table-bordered table-hover table-lined" data-wb-tables='{"columnDefs": [ { "visible": false} ], "paging": false, "oLanguage": {
                      "sSearch": "Filter by amount"
@@ -261,6 +336,7 @@ function checkSelections() {
   const province = document.getElementById("province").value;
   const payPeriod = document.getElementById("payPeriod").value;
   const table = document.getElementById("taxTable");
+  const table = document.getElementById("taxTablef");
   const show = province && payPeriod;
   table.style.display = show ? "block" : "none";
 }
@@ -374,6 +450,8 @@ function checkSelections() {
   const province = document.getElementById("province").value;
   const payPeriod = document.getElementById("payPeriod").value;
   const table = document.getElementById("taxTable");
+    const table = document.getElementById("taxTablef");
+ 
   const heading = document.getElementById("payPeriodHeading");
   const caption = document.getElementById("tableCaption");
 
