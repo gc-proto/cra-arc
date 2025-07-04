@@ -16,12 +16,14 @@
          <!-- Load closure template scripts -->
 
 
-  <style>
-    #taxTable #footnote {
+  
+<style>
+    #taxTable, #footnote {
       display: none;
       margin-top: 20px;
     }
   </style>
+
 
 	      
          <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/compiled/soyutils.js"></script>
@@ -292,20 +294,20 @@ function populateTable(period) {
 </script>
 
 	
+
 <script>
-  document.getElementById("payPeriod").addEventListener("change", function () {
-    const selected = this.value;
-    const table = document.getElementById("taxTable");
-    const footnote = document.getElementById("footnote");	  
-     if (payPeriod) {
-        table.style.display = "block";
-        footnote.style.display = "block";
-      } else {
-        table.style.display = "none";
-        footnote.style.display = "none";
-      }
-  });
-</script>
+    function checkSelections() {
+      const province = document.getElementById("province").value;
+      const payPeriod = document.getElementById("payPeriod").value;
+      const table = document.getElementById("taxTable");
+      const footnote = document.getElementById("footnote");
+
+      const show = province && payPeriod;
+
+      table.style.display = show ? "block" : "none";
+      footnote.style.display = show ? "block" : "none";
+    }
+  </script>
 
 		 
 <nav class="mrgn-bttm-lg mrgn-tp-lg">
