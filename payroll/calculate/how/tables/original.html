@@ -292,25 +292,21 @@ function populateTable(period) {
 </script>
 
 	
-
-
-  <script>
-    function showElements() {
-      const payPeriod = document.getElementById("payPeriod").value;
-      const table = document.getElementById("taxTable");
-      const footnote = document.getElementById("footnote");
-
-      if (payPeriod) {
+<script>
+  document.getElementById("payPeriod").addEventListener("change", function () {
+    const selected = this.value;
+    const table = document.getElementById("taxTable");
+    const footnote = document.getElementById("footnote");	  
+     if (payPeriod) {
         table.style.display = "block";
         footnote.style.display = "block";
       } else {
         table.style.display = "none";
         footnote.style.display = "none";
       }
-    }
-  </script>
+  });
+</script>
 
- 
 		 
 <nav class="mrgn-bttm-lg mrgn-tp-lg">
   <h3 class="wb-inv">Document navigation</h3>
