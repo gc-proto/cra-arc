@@ -518,7 +518,7 @@
           <p>You may have an establishment in Quebec and in another province or territory. If you transfer an employee from Quebec to another province or territory, you can take into account the QPP contributions you deducted from that employee throughout the year when calculating the maximum CPP contributions to deduct. </p>
 
 <p>The following formula reconciles the amounts contributed to the CPP and QPP to make sure that enough contributions to the CPP are withheld and future benefits are not affected:</p>
-<h3>Step 1 - Determine the conversion factor</h3>
+<h3>Step 1 - Determine the CPP contribution percentage</h3>
  <ul class="fa-ul lst-spcd mrgn-tp-md mrgn-bttm-lg mrgn-lft-lg">
 			<li><span class="fa-stack text-success">
                                     <span class="far fa-circle fa-stack-2x"></span>
@@ -526,7 +526,29 @@
                                     </span><span class="mrgn-tp-0 text-muted h5"><a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#cpprate", "class": "hidden"}, {"action": "addClass", "source": "#max, #max1", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(5)", "class": "info"}]'>CPP contribution rate&nbsp;<span class="far fa-question-circle"></span></a></span>
                                  <div class="mrgn-tp-md"></div>
                               </li>
+		  <li class="brdr-bttm">
+                                 <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5"> (<a href="#cpp2-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#rate", "class": "hidden"}, {"action": "addClass", "source": "#max, #max1", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate2-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate2-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate2-tbl>tbody>tr>td:nth-child(3)", "class": "info"}]'>CPP2 contribution rate&nbsp;<span class="far fa-question-circle"></span></a></span>
+                                 <div class="mrgn-tp-md"></div>
+                              </li>
 
+    <li><span class="fas  fa-li"><span class="fas fa-equals"></span><span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                 <span class="fas fa-circle fa-stack-2x"></span>
+                                 <span class="fas fa-hashtag fa-stack-1x fa-inverse"></span>
+                                 </span> <span class="mrgn-tp-0 text-muted h5"> Result of the total CPP contribution rate</span></span> 
+                              </li>
+                           </ul>
+
+<h3>Step 2 - Determine the conversion factor</h3>
+<ul class="fa-ul lst-spcd mrgn-tp-md mrgn-bttm-lg mrgn-lft-lg">
+			<li><span class="fa-stack text-success">
+                                    <span class="far fa-circle fa-stack-2x"></span>
+                                    <span class="fas fa-percent fa-stack-1x"></span>
+                                    </span><span class="mrgn-tp-0 text-muted h5">CPP/CPP2 contribution rate</span>
+                                 <div class="mrgn-tp-md"></div>
+                              </li>
 			 <li class="brdr-bttm">
                                  <span class="fas  fa-li"><span class="fas fa-divide"></span><span class="wb-inv">divide by</span></span> <span class="fa-stack text-success">
                                  <span class="far fa-circle fa-stack-2x"></span>
@@ -542,7 +564,8 @@
                                  </span> <span class="mrgn-tp-0 text-muted h5"> This is the conversion factor </span></span> 
                               </li>
                            </ul>
-<h3>Step 2 - Calculate the QPP contribution based on the conversion factor</h3>
+
+<h3>Step 3 - Calculate the QPP contribution based on the conversion factor</h3>
  <ul class="fa-ul lst-spcd mrgn-tp-md mrgn-bttm-lg mrgn-lft-lg">
                                  <li><span class="fa-stack text-success">
                                     <span class="far fa-circle fa-stack-2x"></span>
@@ -634,6 +657,7 @@
 </details> 
 <p>Learn more: <a href="https://test.canada.ca/cra-arc/payroll/calculate/payment/first-nations-pop2.html">First Nations workers and the Canada Pension Plan</a></p>
 </div>
+
 
  <h2 id="h_7c">What to do if you have employees outside Canada</h2>
 <div id="ajax-outside">
@@ -785,6 +809,20 @@
 				   
                   <div data-ajax-replace="/cra-arc/payroll/calculate/when/cpprates.html #ajax-cpprate"><a href="/cra-arc/payroll/calculate/when/cpprates.html">CPP contributions rates, maximums and exemptions</a></div>
                </div>
+            </section>
+
+  <section id="cpp2-contrib" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
+               <header class="modal-header">
+                  <h2 class="modal-title">CPP2 contributions rates and maximums</h2>
+               </header>
+               <div class="modal-body">
+	<p class="lead hidden" id="max"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual employee and employer contribution" (<strong>column&nbsp;4)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
+	<p class="lead hidden" id="max1"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Additional maximum annual pensionable earnings" (<strong>column&nbsp;2)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
+<p class="lead hidden" id="rate"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Employee and employer contribution rate" (<strong>column&nbsp;3</strong>) that matches the "Year" (<strong>column&nbsp;1</strong>) </p>
+			
+  <div data-ajax-replace="/cra-arc/payroll/calculate/when/cpp2rates.html #ajax-cpprate2"><a href="/cra-arc/payroll/calculate/when/cpp2rates.html">CPP2 contributions rates and maximums</a></div>
+	   
+               </div>  
             </section>
 
             <nav class="mrgn-bttm-lg mrgn-tp-lg">
