@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
+<!--<style>
 
 table, th, td {
 border-collapse: collapse;
@@ -69,6 +69,58 @@ background: #dadada;
 
 
 	
+</style>//-->
+<style>
+table, th, td {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+td {
+  width: 125px;
+}
+td > div.range {
+  display: flex;
+  flex-direction: column-reverse;
+  text-align: center;
+}
+td > div.range meter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  writing-mode: sideways-lr;
+  width: 100px;
+  height: 200px;
+}
+@-moz-document url-prefix() {
+  td > div.range meter {
+    width: 50px;
+    background: #dadada;
+    border: 1px solid black;
+  }
+}
+td > div.range meter::-webkit-meter-bar {
+  width: 50px;
+  height: 200px;
+  border: 1px solid #333;
+}
+td > div.range meter::-moz-meter-bar {
+  background: #2572b4;
+  height: 200px;
+  width: 50px;
+  border-radius: 0px;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  td > div.range meter {
+    background-clip: content-box;
+  }
+  td > div.range meter::-webkit-meter-optimum-value {
+    background: #2572b4;
+  }
+  td > div.range meter::-webkit-meter-bar {
+    background: #dadada;
+  }
+}
 </style>
 </head>
 <body>
