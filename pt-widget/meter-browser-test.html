@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@-moz-document url-prefix() {
+  h1 {
+    color: red;
+  }
+  meter {
+  
+
+ width: 50px;
+background: #dadada;
+border: 1px solid black;
+}
+}
+table, th, td {
+border-collapse: collapse;
+border: 1px solid black;
+
+}
+
+
+/*td>div.range {
+	display:flex;
+    flex-direction:column-reverse;
+ 
+
+}*/
+td>div.range {
+display:flex;
+    flex-direction:column-reverse;
+ text-align: center;
+ 
+
+}
+td>div.range meter {
+display:block;
+margin-left: auto;
+margin-right: auto;
+ 
+
+}
+
+
+meter {writing-mode: sideways-lr; width: 100px; height: 200px;}
+@-moz-document url-prefix() {
+  h1 {
+    color: red;
+  }
+  meter {
+  
+
+ width: 50px;
+background: #dadada;
+border: 1px solid black;
+}
+}
+meter::-webkit-meter-bar {
+
+border: 1px solid #333;
+}
+meter::-moz-meter-bar {
+background: #dadada;}
+
+meter::-moz-meter-bar {
+background: #2572b4;
+ height: 200px;
+  width: 50px;
+  border-radius: 0px;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+meter {background-clip: border-box;}
+
+meter::-webkit-meter-optimum-value {
+background: #2572b4;
+}
+meter::-webkit-meter-bar {
+background: #dadada;
+
+}
+}
+</style>
+</head>
+<body>
+<h1>Meter content</h1>
+<h2>Table Headers</h2>
+
+<p>Use the TH element to define table headers.</p>
+
+<table>
+<thead>
+  <tr class="column">
+   <th scope="col"><div>Names</div></th>
+    <th scope="col"><div>Firstname</div></th>
+    <th scope="col"><div>Lastname</div></th>
+    <th scope="col"><div>Age</div></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="rows">
+  <th scope="row"><div>Name 1</div></th>
+    <td><div>Jill</div></td>
+    <td class="parent"><div class="range"><span>$50,000</span><meter value="2" min=0 max=10>2</meter><span>$100,000</span></div></td>
+    <td><div>50</div></td>
+  </tr>
+  <tr class="rows">
+  <th scope="row"><div>Name 2</div></th>
+    <td><div>Eve</div></td>
+   <td class="parent"><div class="range"><span>$50,000</span><meter value="2" min=0 max=10>2</meter><span>$100,000</span></div></td>
+    <td><div>94</div></td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
