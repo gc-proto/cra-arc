@@ -79,7 +79,7 @@ td > div.range meter::-moz-meter-bar {
     background: #dadada;
   }
 }
-.active-cell, .prev-active {
+.active-cell, .prev-active, .tax-rate-cell {
     font-weight: bold;
 }    
     
@@ -962,6 +962,7 @@ if (index === 0) {
 
 // === Rate Cell ===
   const rateCell = document.createElement('td');
+	  payableCell.setAttribute('class', 'tax-rate-cell');  
   rateCell.innerHTML = `${(bracket.rate * 100).toFixed(1)}%`;
   rateRow.appendChild(rateCell);
 
@@ -976,7 +977,6 @@ if (index === 0) {
       
 // === Tax payable Cell ===      
    const payableCell = document.createElement('td'); 
-    payableCell.setAttribute('class', 'nowrap');  
      payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| tax !== 0? ' prev-active': ''}`);
 payableCell.innerHTML += `<span class="float-plus">+ </span>
 ${formatter.format(tax)}`;  
