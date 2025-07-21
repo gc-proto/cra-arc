@@ -340,8 +340,8 @@ transform: scale(1.5);
       </div>
       <div class="tax-total" id="provinceTotal"></div>
     </div>
-    <div id="quebecNotice" style="display:none;">
-      <p>For Quebec tax rates, please visit the official site: <a href="https://www.revenuquebec.ca/en/" target="_blank">Revenu Québec</a></p>
+    <div id="quebecNotice">
+      <p><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-qc.png" alt="" class="mrgn-rght-md">For Quebec tax rates, please visit the official site: <a href="https://www.revenuquebec.ca/en/" target="_blank">Revenu Québec</a></p>
     </div>
   </div>
   <section id="afterTaxWrapper">
@@ -800,14 +800,10 @@ const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
         const selectedProvince = provinceSelect.value;
          if (!selectedProvince) {
-   
-             
-             //use querySelectorAll when optimizing 
-             //document.getElementById('chooseProvinceAlert').style.display = 'block'; 
-            document.getElementById('incomeSliderDesign').style.display = 'none'; document.getElementById('provinceTableWrapper').style.display = 'none';
-            document.getElementById('provinceTableCaption').style.display = 'none'; 
-       document.getElementById('federalTableWrapper').style.display = 'none'; document.getElementById('afterTaxWrapper').style.display = 'none';     
-        document.getElementById('quebecNotice').style.display = 'none';
+   let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #provinceTableCaption, #provinceTotal, #federalTableWrapper, #afterTaxWrapper, #quebecNotice');    
+elementsToHide.forEach(element => {
+  element.classList.add('hidden'); 
+});
         document.getElementById('provinceTitle').textContent = '';
         document.getElementById('provinceTotal').innerHTML = '';
         return;
@@ -825,22 +821,23 @@ const selectedProvinceFlag  = taxData[selectedProvince].flag_url;
 
      
       if (selectedProvince === 'QC') {
-        //use querySelectorAll when optimizing 
-         document.getElementById('incomeSliderDesign').style.display = 'contents'; //document.getElementById('chooseProvinceAlert').style.display = 'none'; 
-          document.getElementById('federalTableWrapper').style.display = 'block'; document.getElementById('provinceTotal').style.display = 'none';
-         document.getElementById('provinceTableWrapper').style.display = 'none';
-          document.getElementById('provinceTableCaption').style.display = 'none';
-          document.getElementById('afterTaxWrapper').style.display = 'none';
-        document.getElementById('quebecNotice').style.display = 'block';
+       let elementsToHide = document.querySelectorAll(' #provinceTableWrapper, #provinceTableCaption, #provinceTotal, #afterTaxWrapper');    
+elementsToHide.forEach(element => {
+  element.classList.add('hidden'); 
+});    
+let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #federalTableWrapper, #quebecNotice');    
+elementsToShow.forEach(element => {
+  element.classList.remove('hidden'); 
+});         
       }  else {
-       //use querySelectorAll when optimizing (use hidden class) 
-         document.getElementById('incomeSliderDesign').style.display = 'contents'; // document.getElementById('chooseProvinceAlert').style.display = 'none'; 
-          
-document.getElementById('provinceTableWrapper').style.display = 'block';
-          document.getElementById('provinceTableCaption').style.display = 'block';
-          document.getElementById('provinceTotal').style.display = 'block';
-       document.getElementById('federalTableWrapper').style.display = 'block'; document.getElementById('afterTaxWrapper').style.display = 'block';  
-        document.getElementById('quebecNotice').style.display = 'none';
+         let elementsToHide = document.querySelectorAll(' #quebecNotice');    
+elementsToHide.forEach(element => {
+  element.classList.add('hidden'); 
+});    
+let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #provinceTableCaption, #federalTableWrapper, #afterTaxWrapper');    
+elementsToShow.forEach(element => {
+  element.classList.remove('hidden'); 
+});     
      
         provincialTaxAmount = updateTable('province', taxData[selectedProvince], income);
       }
