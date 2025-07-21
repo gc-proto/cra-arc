@@ -82,7 +82,13 @@ td > div.range meter::-moz-meter-bar {
 .active-cell, .prev-active, .tax-rate-cell {
     font-weight: bold;
 }    
-    
+.estimate-borders {
+    border: 1px solid #2572b4;
+    padding: 10px; 10px 10px 15px;
+    width: 200px;
+    display: inline-block;
+    border-radius: 25px;   
+}   
  /********** Range Input Styles **********/
 .wb-input-range {
 --HTooltipPos: 0px;
@@ -1041,7 +1047,7 @@ tableBody.appendChild(incomeRow);
 tableBody.appendChild(payableRow);
 
 
-totalDiv.innerHTML = ` Estimated federal tax payable: <strong>${formatter.format(totalTax)}</strong> `;    
+totalDiv.innerHTML = ` Estimated federal tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${formatter.format(totalTax)}</span> `;    
  //Duplicated...need to clean (possibly put in seperate function)
     const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
@@ -1049,7 +1055,7 @@ totalDiv.innerHTML = ` Estimated federal tax payable: <strong>${formatter.format
     
     const customTotal = document.getElementById("provinceTotal");   
 if (customTotal) {
-    customTotal.innerHTML = `Estimated ${selectedProvinceName} tax payable: <strong>${formatter.format(totalTax)}</strong>`;
+    customTotal.innerHTML = `Estimated ${selectedProvinceName} tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${formatter.format(totalTax)}</span>`;
 }
 
     
