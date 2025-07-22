@@ -410,6 +410,8 @@ transform: scale(1.5);
         </div>
       </div>
     </div>
+  </section>
+	<section id="afterTaxHints">
     <div class="row wb-eqht-grd">
       <div class="col-md-7">
         <div class="row">
@@ -800,7 +802,7 @@ const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
         const selectedProvince = provinceSelect.value;
          if (!selectedProvince) {
-   let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #provinceTableCaption, #provinceTotal, #federalTableWrapper, #afterTaxWrapper, #quebecNotice');    
+   let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #provinceTableCaption, #provinceTotal, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints, #quebecNotice');    
 elementsToHide.forEach(element => {
   element.classList.add('hidden'); 
 });
@@ -825,7 +827,7 @@ const selectedProvinceFlag  = taxData[selectedProvince].flag_url;
 elementsToHide.forEach(element => {
   element.classList.add('hidden'); 
 });    
-let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #federalTableWrapper, #quebecNotice');    
+let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #federalTableWrapper, #quebecNotice, #afterTaxHints');    
 elementsToShow.forEach(element => {
   element.classList.remove('hidden'); 
 });         
@@ -834,7 +836,7 @@ elementsToShow.forEach(element => {
 elementsToHide.forEach(element => {
   element.classList.add('hidden'); 
 });    
-let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #provinceTableCaption, #federalTableWrapper, #afterTaxWrapper');    
+let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #provinceTableCaption, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints');    
 elementsToShow.forEach(element => {
   element.classList.remove('hidden'); 
 });     
