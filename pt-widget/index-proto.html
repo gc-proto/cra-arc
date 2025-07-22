@@ -872,8 +872,7 @@ function updateTable(idPrefix, data, income) {
   const headerRow = document.getElementById(`${idPrefix}Header`);
   const tableBody = document.getElementById(`${idPrefix}Body`);
 //const tableRow = tableBody.querySelector('tr');    
-    
-//const bodyRow2 = document.getElementById(`${idPrefix}2Body`);    
+     
   const totalDiv = document.getElementById(`${idPrefix}Total`);
   const minIncome = parseInt(incomeSlider.min);
   const maxIncome = parseInt(incomeSlider.max);
@@ -881,8 +880,6 @@ function updateTable(idPrefix, data, income) {
   headerRow.innerHTML = '<td></td>';
     
 tableBody.innerHTML = ''; 
-//bodyRow1.innerHTML = '<th scope="row">Tax rate</th>';    
- // bodyRow2.innerHTML = '<th scope="row" class="brdr-0 align-middle small nowrap">Tax payable</th>';
 let taxCount = 1;
   let totalTax = 0;
   let previousThreshold = 0;
@@ -899,25 +896,6 @@ let taxCount = 1;
 
 let activeIndex = -1;
 previousThreshold = 0;
-
-/*
-//Remove July 16, moved content below...will test to make sure not needed
-data.brackets.forEach((bracket, index) => {
-  const threshold = bracket.threshold;
-  const lowerBound = previousThreshold;
-  const upperBound = threshold;
-
-  if (income >= lowerBound && income < upperBound && activeIndex === -1) {
-    activeIndex = index;
-  }
-
-  previousThreshold = threshold;
-}); 
-
-
-
-  // Reset for rendering
-  previousThreshold = 0; */
  
     //Create rate row and header
     const rateRow = document.createElement('tr');
@@ -986,56 +964,7 @@ payableCell.innerHTML += `<span class="float-plus">+ </span>
 ${formatter.format(tax)}`;  
       
       
-    payableRow.appendChild(payableCell);  
-      
-      // row.appendChild(rateCell);
-      
-      
-/*     const row = document.createElement('tr');
- //Create tax bracket header cell
-      
-        const rateCell = document.createElement('td');
-        rateCell.setAttribute('scope', 'row')
-      
-      rateCell.innerHTML += `${(bracket.rate * 100).toFixed(1)}%`;
-        row.appendChild(rateCell);
-//Create income range per rate cell
-        const incomeCell = document.createElement('td');
-       incomeCell.setAttribute('class', 'small meter-range');
-      incomeCell.innerHTML += `<div class="threshold-amounts">$${index === 0 ? '0' : previousThreshold.toLocaleString()}</span>
-        <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}"></meter>
-    
-${threshold === Infinity ? '<span class="wb-inv">to </span><span class="nowrap">$1,200,000 <span class="glyphicon glyphicon-arrow-up"><span class="wb-inv"> or more</span></span></span>' : '<span class="wb-inv">to </span>$' + threshold.toLocaleString()}</div>`;
-        row.appendChild(incomeCell);
-      
-//Create tax payable cell      
-const payableCell = document.createElement('td');
-   payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| tax !== 0? ' prev-active': ''}`);
-payableCell.innerHTML += `
-${formatter.format(tax)}`;
-        row.appendChild(payableCell);
-       tableBody.appendChild(row); */
-      
-     
-
-      
-      
-      
-      
-   /*   bodyRow.innerHTML += `
-      <td class="small">
-        ${threshold === Infinity ? '<span class="wb-inv">to </span><span class="nowrap">$1,200,000 <span class="glyphicon glyphicon-arrow-up"><span class="wb-inv"> or more</span></span></span>' : '<span class="wb-inv">to </span>$' + threshold.toLocaleString()}<br>
-        <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}"></meter>
-        <br>
-        $${index === 0 ? '0' : previousThreshold.toLocaleString()}
-      </td>`;
-      bodyRow2.innerHTML += `
-      <td class="tax-amount ${index === activeIndex ? 'active-cell' : ''|| tax !== 0? 'prev-active': ''}">
-${formatter.format(tax)}
-      </td>`; */
-
-      
-      
+    payableRow.appendChild(payableCell);          
    currentTaxValues.push(tax.toFixed(2));
    previousThreshold = threshold;
   });
