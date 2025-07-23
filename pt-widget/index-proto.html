@@ -255,9 +255,9 @@ transform: scale(1.5);
         </div>
       </fieldset>
       <fieldset  id="incomeSliderDesign" class="brdr-0">
-        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second: </span>Input a taxable income amount</legend>
+        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second: </span>Input an amount</legend>
         <div class="top-bar-stick">
-          <label for="incomeInput" class="wb-inv">Taxable income amount (spinner increment is $2,000) </label>
+         
           <div class="wb-input-range brdr-rds-0">
             <div class="row panel-body d-sm-flex align-items-center">
               <div class="px-2">
@@ -267,6 +267,7 @@ transform: scale(1.5);
                 </div>
               </div>
               <div class="col-xs-6 col-sm-4 col-md-3 px-2 btn-toggle-value hidden" id="toggleInputValue">
+		       <label for="incomeInput" class="wb-inv">Input field for dollar amount (spinner increment is $2,000) </label>
                 <div class="input-group align-self-center py-3"> <span class="input-group-addon">$</span>
                   <input id="incomeInput" name="incomeAmount" type="number" class="form-control input-lg text-right" value="0" min="0" step="20000">
                   <span class="input-group-addon">.00</span> </div>
@@ -276,16 +277,18 @@ transform: scale(1.5);
               <div class="full-width px-2 btn-toggle-value" id="toggleSliderValue">
                 <div class="slider-group align-self-center">
                   <div id="incomeTooltip" class="wb-input-range-tooltip" aria-hidden="true"  data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}"> $0 </div>
-                  <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="1200000" value="0" step="2000" list="amountTicks" name="incomeAmount" title="Range: $0 to $1,200,000" aria-label="Range slider for income (increment of $2,000)" data-wb-input-range="{&quot;target&quot;: [&quot;incomeInput&quot;, &quot;incomeTooltip&quot;]}">
-                  <datalist id="amountTicks" class="d-flex">
+			<label for="incomeSlider" class="wb-inv">Range slider for dollar amount (increment of $2,000)</label>
+                  <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="1200000" value="0" step="2000" list="amountTicks" name="incomeAmount" title="Range: $0 to $1,200,000"  data-wb-input-range="{&quot;target&quot;: [&quot;incomeInput&quot;, &quot;incomeTooltip&quot;]}">
+                <datalist id="amountTicks" class="d-flex">
                     <option value="0" label="$0"></option>
-                    <option value="200000"></option>
+                    <!-- Comment to remove to allow custom amounts
+			<option value="200000"></option>
                     <option value="400000"></option>
                     <option value="600000"></option>
                     <option value="800000"></option>
-                    <option value="1000000"></option>
+                    <option value="1000000"></option>//-->
                     <option value="1200000" label="$1,200,000"></option>
-                  </datalist>
+		</datalist>
                 </div>
               </div>
             </div>
