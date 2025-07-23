@@ -723,20 +723,27 @@ transform: scale(1.5);
 	})(jQuery, window, wb);
 </script> 
 <script>
-
+var  pagelang = document.documentElement.lang;
     let taxData = {};
     const incomeSlider = document.getElementById('incomeSlider');
     const incomeInput = document.getElementById('incomeInput');
     const provinceSelect = document.getElementById('provinceSelect');
     const incomeAmount = $(".based-income");
- let formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
+   var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
+  style: "currency",
+  currency: "CAD",
   minimumFractionDigits: 0,
-  maximumFractionDigits: 0
-});
-    
-    
+  maximumFractionDigits: 0,
+  roundingPriority: "auto",
+  roundingMode: "trunc"
+ });    
+ var percentFormatter = new Intl.NumberFormat(pagelang + "-CA", {
+  style: "percent",
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+  roundingPriority: "auto",
+  roundingMode: "trunc"
+ });      
     fetch('canada_tax_rates.json')
       .then(response => response.json())
       .then(data => {
@@ -793,17 +800,11 @@ setupScrollObserver('provinceTableWrapper');
  
 let previousTaxValues = { federal: [], province: [] };
     function updateTables() {
-      let formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0
-});
        
 incomeSlider.value = incomeInput.value;
 const income = Number(incomeInput.value) || 0;
 
-       incomeAmount.text("(based on the taxable income of: $" + income.toLocaleString() + ")");
+       incomeAmount.text("(based on the taxable income of: $" + currencyFormatterChart.format(income) + ")");
 
   
       const federalTaxAmount = updateTable('federal', taxData.federal, income);
@@ -855,25 +856,25 @@ elementsToShow.forEach(element => {
 //Optimize this section
       const afterTax = income - federalTaxAmount - provincialTaxAmount;
         
-        document.getElementById('preTaxIncomeCal').textContent = `${formatter.format(income)}`;
+        document.getElementById('preTaxIncomeCal').textContent = `${currencyFormatterChart.format(income)}`;
         
         
         
         
         
   //For math calculation      
-         document.getElementById('fedTaxCal').textContent = `${formatter.format(federalTaxAmount)}`;
-        document.getElementById('provTaxCal').textContent = `${formatter.format(provincialTaxAmount)}`;
+         document.getElementById('fedTaxCal').textContent = `${currencyFormatterChart.format(federalTaxAmount)}`;
+        document.getElementById('provTaxCal').textContent = `${currencyFormatterChart.format(provincialTaxAmount)}`;
         document.getElementById('provTaxName').textContent = `${selectedProvinceName}`;
         document.getElementById('provTaxNamePC').textContent = `${selectedProvinceName}`;
-      document.getElementById('afterTaxIncome').textContent = `${formatter.format(afterTax)}`;
+      document.getElementById('afterTaxIncome').textContent = `${currencyFormatterChart.format(afterTax)}`;
 // For percentage calculation
   const totalTaxPercent = federalTaxAmount + provincialTaxAmount;
         
-        document.getElementById('totalTaxPC').innerHTML = `${calculatePercentage(totalTaxPercent, income).toFixed(1)}<sup>%</sup>`; 
-        document.getElementById('fedTaxPC').innerHTML = `${calculatePercentage(federalTaxAmount, income).toFixed(1)}<sup>%</sup>`;      
-    document.getElementById('provTaxPC').innerHTML = `${calculatePercentage(provincialTaxAmount, income).toFixed(1)}<sup>%</sup>`;          
-      document.getElementById('afterTaxPC').innerHTML = `${calculatePercentage(afterTax, income).toFixed(1)}<sup>%</sup>`;    
+        document.getElementById('totalTaxPC').innerHTML = `${calculatePercentage(totalTaxPercent, income)}<sup>%</sup>`; 
+        document.getElementById('fedTaxPC').innerHTML = `${calculatePercentage(federalTaxAmount, income))}<sup>%</sup>`;      
+    document.getElementById('provTaxPC').innerHTML = `${calculatePercentage(provincialTaxAmount, income)}<sup>%</sup>`;          
+      document.getElementById('afterTaxPC').innerHTML = `${calculatePercentage(afterTax, income)}<sup>%</sup>`;    
         
     }
 
@@ -893,12 +894,6 @@ let taxCount = 1;
   let totalTax = 0;
   let previousThreshold = 0;
   let currentTaxValues = [];
-  let formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0
-  });
 
   // Determine which bracket the income falls into
 
@@ -954,7 +949,7 @@ if (index === 0) {
 // === Rate Cell ===
   const rateCell = document.createElement('td');
 	  rateCell.setAttribute('class', 'tax-rate-cell');  
-  rateCell.innerHTML = `${(bracket.rate * 100).toFixed(1)}%`;
+  rateCell.innerHTML = `${percentFormatter.format(bracket.rate)}`;
   rateRow.appendChild(rateCell);
 
       // === Income range Cell (clean up inner HTML) ===
@@ -970,7 +965,7 @@ if (index === 0) {
    const payableCell = document.createElement('td'); 
      payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| tax !== 0? ' prev-active': ''}`);
 payableCell.innerHTML += `<span class="float-plus">+ </span>
-${formatter.format(tax)}`;  
+${currencyFormatterChart.format(tax)}`;  
       
       
     payableRow.appendChild(payableCell);          
@@ -983,7 +978,7 @@ tableBody.appendChild(incomeRow);
 tableBody.appendChild(payableRow);
 
 
-totalDiv.innerHTML = ` Estimated federal tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${formatter.format(totalTax)}</span> `;    
+totalDiv.innerHTML = ` Estimated federal tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span> `;    
  //Duplicated...need to clean (possibly put in seperate function)
     const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
@@ -991,7 +986,7 @@ totalDiv.innerHTML = ` Estimated federal tax payable <span class="estimate-borde
     
     const customTotal = document.getElementById("provinceTotal");   
 if (customTotal) {
-    customTotal.innerHTML = `Estimated ${selectedProvinceName} tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${formatter.format(totalTax)}</span>`;
+    customTotal.innerHTML = `Estimated ${selectedProvinceName} tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span>`;
 }
 
     
@@ -1063,7 +1058,8 @@ function calculatePercentage(part, total) {
   if (total === 0) {
     return 0; // Avoid division by zero
   }
-  return (part / total) * 100;
+ const formattedString =  percentFormatter.format(part / total);
+    return formattedString.replace('%', '').trim();
 }
  
  // Script for button toggle
