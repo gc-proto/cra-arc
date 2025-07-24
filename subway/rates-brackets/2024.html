@@ -25,74 +25,76 @@
             document.write(wet.builder.refTop({
             }));
          </script>
-	<style>
+<style>
 /***Font styling***/
-.small 
-	{line-height: 1.44em;}
-	
-    /*****Table styling *****/
+.small {
+    line-height: 1.44em;
+}
+/*****Table styling *****/
    
 .table>tbody>tr>th[scope=row] {
     vertical-align: middle;
-      width: 20%; 
-} 
+    width: 20%;
+}
 td > div.range {
-  display: flex;
-  flex-direction: column-reverse;
-  text-align: center;
-	padding: 0px 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 0px 20px;
 }
 td > div.range meter {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  writing-mode: vertical-lr;
-  width: 50px;
-  height: 200px;
-transform:scaleY(-1);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    writing-mode: vertical-lr;
+    width: 50px;
+    height: 200px;
+    transform: scaleY(-1);
 }
 @-moz-document url-prefix() {
-  td > div.range meter {
-    width: 50px;
-    background: #f4f6f6;
-    border: 1px solid black;
-      transform: none;
-  }
+td > div.range meter {
+width: 50px;
+background: #f4f6f6;
+border: 1px solid black;
+transform: none;
+}
 }
 td > div.range meter::-webkit-meter-bar {
-  width: 50px;
-  height: 200px;
-  border: 1px solid #333;
+width: 50px;
+height: 200px;
+border: 1px solid #333;
 }
 td > div.range meter::-moz-meter-bar {
-  background: #2572b4;
-  height: 200px;
-  width: 50px;
-  border-radius: 0px;
+background: #2572b4;
+height: 200px;
+width: 50px;
+border-radius: 0px;
 }
+
 @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-  td > div.range meter {
+td > div.range meter {
     background-clip: content-box;
-  }
-  td > div.range meter::-webkit-meter-optimum-value {
-    background: #2572b4;
-  }
-  td > div.range meter::-webkit-meter-bar {
-    background: #f4f6f6;
-  }
+}
+td > div.range meter::-webkit-meter-optimum-value {
+background: #2572b4;
+}
+td > div.range meter::-webkit-meter-bar {
+background: #f4f6f6;
+}
 }
 .active-cell, .prev-active, .tax-rate-cell {
     font-weight: bold;
-}    
+}
 .estimate-borders {
     border: 1px solid #2572b4;
-    padding: 10px; 10px 10px 15px;
+    padding: 10px;
+10px 10px 15px;
     width: 200px;
     display: inline-block;
-    border-radius: 25px;   
-}   
- /********** Range Input Styles **********/
+    border-radius: 25px;
+}
+/********** Range Input Styles **********/
 .wb-input-range {
 --HTooltipPos: 0px;
 --tooltipArrow: none;
@@ -146,7 +148,7 @@ output.wb-input-range-tooltip {
     top: 100%;
     left: 50%;
     border-top: 10px var(--tooltipArrow) #e3e3e3;
-}    
+}
 
 
       /* webkit styles  */
@@ -158,7 +160,7 @@ box-sizing: border-box;
 border: none;
 border-radius: 1rem;
 transform: scale(1.5);
-}  
+}
 /****Sticky slider ****/    
 .top-bar-stick {
     position: sticky;
@@ -167,29 +169,28 @@ transform: scale(1.5);
     z-index: 10;
     background-color: #fff;
 }
-     #stickycontent {
+#stickycontent {
     position: relative;
 }
 .wb-frmvld, form, fieldset, legend {
     display: contents;
 }
- /***Class to prevent horizontal scroll of page ***/
-    .tbl-hidden {font-size: 0px;}
+/***Class to prevent horizontal scroll of page ***/
+.tbl-hidden {
+    font-size: 0px;
+}
 /*** Plus signs ***/
-    .float-plus {
+.float-plus {
     font-weight: bold;
     position: absolute;
-        left: 0;
-}    
-    td.tax-amount {position: relative;}
-    
-    
-    tbody>tr:last-child>td:first-of-type>span.float-plus {
- 
-      display:none;
-    }
-         
-    
+    left: 0;
+}
+td.tax-amount {
+    position: relative;
+}
+tbody>tr:last-child>td:first-of-type>span.float-plus {
+    display: none;
+}
 </style>
 </head>
 <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
@@ -228,27 +229,572 @@ transform: scale(1.5);
     <ul>
       <li><a href="1.html">How a progressive tax system works</a></li>
       <li><a href="2.html">Find the rates and brackets for each tax year</a>
-		<ul class="noline">
-						<li><a href="#">2025</a></li>
-						<li><a href="#" class="active">2024</a></li>
-						<li><a href="#">2023</a></li>
-				  </ul>
-		
-		
-		</li>
+        <ul class="noline">
+          <li><a href="#">2025</a></li>
+          <li><a href="#" class="active">2024</a></li>
+          <li><a href="#">2023</a></li>
+        </ul>
+      </li>
       <li><a href="3.html">Reduce the amount of taxes you owe</a></li>
     </ul>
   </nav>
   <h1 property="name" id="wb-cont">2024</h1>
   <p class="gc-byline">Estimate the 2024 tax year <span class="text-muted">(as of April 1, 2025)</span></p>
-</hgroup>
- <div id="stickycontent"> 
-<p>This is an educational tool to show how tax brackets and progressive tax rates work in Canada and each province and territory (except for Quebec).</p>
-    <h2>Instructions</h2>
+  </hgroup>
+  <h2>Federal rates and brackets</h2>
+  <table class="table table-condensed">
+    <caption>
+    Federal income tax rates for 2024
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Tax rate</th>
+        <th scope="col">Taxable income threshold</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>15%</td>
+        <td>on the portion of taxable income that is&nbsp;$55,867 or less, <strong>plus</strong></td>
+      </tr>
+      <tr>
+        <td>20.5%</td>
+        <td>on the portion of taxable income over $55,867 up to $111,733, <strong>plus</strong></td>
+      </tr>
+      <tr>
+        <td>26% </td>
+        <td>on the portion of taxable income over $111,733 up to $173,205, <strong>plus</strong></td>
+      </tr>
+      <tr>
+        <td>29%</td>
+        <td>on the portion of taxable income over $173,205 up to $246,752, <strong>plus</strong></td>
+      </tr>
+      <tr>
+        <td>33%</td>
+        <td>on the portion of taxable income over $246,752</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>Provincial and territorial rates and brackets</h2>
+  <div class="mwsaccordion-html section">
+    <ul class="list-unstyled" id="details-elements-39627">
+      <li>
+        <details>
+          <summary>Newfoundland and Labrador</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/newfoundlandAndLabrador/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-6">
+              <table class="table table-condensed">
+                <caption>
+                Newfoundland and Labrador income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>8.7%</td>
+                    <td>on the portion of taxable income that is $44,192 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>14.5%</td>
+                    <td>on the portion of taxable income over $44,192 up to $88,382, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>15.8%</td>
+                    <td>on the portion of taxable income over $88,382 up to $157,792, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>17.8%</td>
+                    <td>on the portion of taxable income over $157,792 up to $220,910, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>19.8%</td>
+                    <td>on the portion of taxable income over $220,910 up to $282,214, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>20.8%</td>
+                    <td>on the portion of taxable income over $282,214 up to $564,429, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>21.3%</td>
+                    <td>on the portion of taxable income over $564,429 up to $1,128,858, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>21.8%</td>
+                    <td>on the portion of taxable income over $1,128,858</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Prince Edward Island</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/princeEdwardIsland/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-7">
+              <table class="table table-condensed">
+                <caption>
+                Prince Edward Island income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>9.5%</td>
+                    <td>on the portion of taxable income that is $33,328 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>13.47%</td>
+                    <td>on the portion of taxable income over $33,328 up to $64,656, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>16.6%</td>
+                    <td>on the portion of taxable income over $64,656 up to $105,000, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>17.62%</td>
+                    <td>on the portion of taxable income over $105,000 up to $140,000, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>19%</td>
+                    <td>on the portion of taxable income over $140,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Nova Scotia</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/novaScotia/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-8">
+              <table class="table table-condensed">
+                <caption>
+                Nova Scotia income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>8.79%</td>
+                    <td>on the portion of taxable income that is $30,507 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>14.95%</td>
+                    <td>on the portion of taxable income over $30,507 up to $61,015, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>16.67%</td>
+                    <td>on the portion of taxable income over $61,015 up to $95,883, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>17.5%</td>
+                    <td>on the portion of taxable income over $95,883 up to $154,650, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>21%</td>
+                    <td>on the portion of taxable income over $154,650</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>New Brunswick</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/newBrunswick/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-9">
+              <table class="table table-condensed">
+                <caption>
+                New Brunswick income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>9.4%</td>
+                    <td>on the portion of taxable income that is $51,306 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>14%</td>
+                    <td>on the portion of taxable income over $51,306 up to $102,614, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>16%</td>
+                    <td>on the portion of taxable income over $102,614 up to $190,060, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>19.5%</td>
+                    <td>on the portion of taxable income over $190,060</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Quebec</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/quebec/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-10">
+              <p>See <a href="https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/income-tax-rates/">Revenu Québec's income tax rates</a>.</p>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Ontario</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/ontario/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-11">
+              <table class="table table-condensed">
+                <caption>
+                Ontario income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>5.05%</td>
+                    <td>on the portion of taxable income that is $52,886 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>9.15%</td>
+                    <td>on the portion of taxable income over $52,886 up to $105,775, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>11.16%</td>
+                    <td>on the portion of taxable income over $105,775 up to $150,000, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>12.16%</td>
+                    <td>on the portion of taxable income over $150,000 up to $220,000, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>13.16%</td>
+                    <td>on the portion of taxable income over $220,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Manitoba</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/manitoba/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-12">
+              <table class="table table-condensed">
+                <caption>
+                Manitoba income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>10.8%</td>
+                    <td>on the portion of taxable income that is $47,564 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>12.75%</td>
+                    <td>on the portion of taxable income over $47,564 up to $101,200, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>17.4%</td>
+                    <td>on the portion of taxable income over $101,200</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Saskatchewan</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/saskatchewan/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-13">
+              <table class="table table-condensed">
+                <caption>
+                Saskatchewan income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>10.5%</td>
+                    <td>on the portion of taxable income that is $53,463 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>12.5%</td>
+                    <td>on the portion of taxable income over $53,463 up to $152,750, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>14.5%</td>
+                    <td>on the portion of taxable income over $152,750</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Alberta</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/alberta/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-14">
+              <table class="table table-condensed">
+                <caption>
+                Alberta income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>8%</td>
+                    <td>on the portion of taxable income that is $60,000 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>10%</td>
+                    <td>on the portion of taxable income over $60,000  up to $151,234, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>12%</td>
+                    <td>on the portion of taxable income over $151,234 up to $181,481, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>13%</td>
+                    <td>on the portion of taxable income over $181,481 up to $241,974, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>14%</td>
+                    <td>on the portion of taxable income over $241,974 up to $362,961, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>15%</td>
+                    <td>on the portion of taxable income over $362,961</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>British Columbia</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/britishColumbia/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-15">
+              <table class="table table-condensed">
+                <caption>
+                British Columbia income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>5.06%</td>
+                    <td>on the portion of taxable income that is $49,279 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>7.7%</td>
+                    <td>on the portion of taxable income over $49,279 up to $98,560, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>10.5%</td>
+                    <td>on the portion of taxable income over $98,560 up to $113,158, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>12.29%</td>
+                    <td>on the portion of taxable income over $113,158 up to $137,407, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>14.7%</td>
+                    <td>on the portion of taxable income over $137,407 up to $186,306, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>16.8%</td>
+                    <td>on the portion of taxable income over $186,306 up to $259,829, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>20.5%</td>
+                    <td>on the portion of taxable income over $259,829</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Yukon</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/yukon/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-16">
+              <table class="table table-condensed">
+                <caption>
+                Yukon income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>6.4%</td>
+                    <td>on the portion of taxable income that is $57,375 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>9%</td>
+                    <td>on the portion of taxable income over $57,375 up to $114,750, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>10.9%</td>
+                    <td>on the portion of taxable income over $114,750 up to $177,882, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>12.8%</td>
+                    <td>on the portion of taxable income over $177,882 up to $500,000, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>15%</td>
+                    <td>on the portion of taxable income over $500,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Northwest Territories</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/northwestTerritories/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-17">
+              <table class="table table-condensed">
+                <caption>
+                Northwest Territories income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>5.9%</td>
+                    <td>on the portion of taxable income that is $51,964 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>8.6%</td>
+                    <td>on the portion of taxable income over $51,964 up to $103,930, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>12.2%</td>
+                    <td>on the portion of taxable income over $103,930 up to $168,967, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>14.05%</td>
+                    <td>on the portion of taxable income over $168,967</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Nunavut</summary>
+          <div class="mwsgeneric-base-html parbase section">
+            <div data-json-replace="#[income-tax-rates]/nunavut/variations/2025/value" class="wb-init wb-data-json-inited" id="wb-auto-18">
+              <table class="table table-condensed">
+                <caption>
+                Nunavut income tax rates for 2025
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Tax rate</th>
+                    <th scope="col">Taxable income threshold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>4%</td>
+                    <td>on the portion of taxable income that is $54,707 or less, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>7%</td>
+                    <td>on the portion of taxable income over $54,707 up to $109,413, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>9%</td>
+                    <td>on the portion of taxable income over $109,413 up to $177,881, <strong>plus</strong></td>
+                  </tr>
+                  <tr>
+                    <td>11.5%</td>
+                    <td>on the portion of taxable income over $177,881</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </li>
+    </ul>
+  </div>
+  <div id="stickycontent">
+    <h2>Estimate your tax payable across tax brackets</h2>
     <p>Use the slider or input field to increase or decrease an amount.</p>
     <p>The change will show you how the tax payable is applied in each tax bracket. </p>
     <p><strong>Before you proceed:</strong> Do not use this tool to calculate your actual tax amount. All amounts are rounded to the nearest dollar.</p>
-      <h2>Estimate your tax payable across tax brackets</h2>
     <form>
       <fieldset class="brdr-0">
         <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">1</span></span> <span class="wb-inv">First: </span>Select a province or territory </legend>
@@ -264,7 +810,6 @@ transform: scale(1.5);
       <fieldset  id="incomeSliderDesign" class="brdr-0">
         <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second: </span>Add an amount</legend>
         <div class="top-bar-stick">
-         
           <div class="wb-input-range brdr-rds-0">
             <div class="row panel-body d-sm-flex align-items-center">
               <div class="px-2">
@@ -274,7 +819,7 @@ transform: scale(1.5);
                 </div>
               </div>
               <div class="col-xs-6 col-sm-4 col-md-3 px-2 btn-toggle-value hidden" id="toggleInputValue">
-		       <label for="incomeInput" class="wb-inv">Input field for dollar amount (spinner increment is $2,000) </label>
+                <label for="incomeInput" class="wb-inv">Input field for dollar amount (spinner increment is $2,000) </label>
                 <div class="input-group align-self-center py-3"> <span class="input-group-addon">$</span>
                   <input id="incomeInput" name="incomeAmount" type="number" class="form-control input-lg text-right" value="0" min="0" step="20000">
                   <span class="input-group-addon">.00</span> </div>
@@ -284,9 +829,9 @@ transform: scale(1.5);
               <div class="full-width px-2 btn-toggle-value" id="toggleSliderValue">
                 <div class="slider-group align-self-center">
                   <div id="incomeTooltip" class="wb-input-range-tooltip" aria-hidden="true"  data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}"> $0 </div>
-			<label for="incomeSlider" class="wb-inv">Range slider for dollar amount (increment of $2,000)</label>
+                  <label for="incomeSlider" class="wb-inv">Range slider for dollar amount (increment of $2,000)</label>
                   <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="1200000" value="0" step="2000" list="amountTicks" name="incomeAmount" title="Range: $0 to $1,200,000"  data-wb-input-range="{&quot;target&quot;: [&quot;incomeInput&quot;, &quot;incomeTooltip&quot;]}">
-                <datalist id="amountTicks" class="d-flex">
+                  <datalist id="amountTicks" class="d-flex">
                     <option value="0">$0</option>
                     <!-- Comment to remove to allow custom amounts
 			<option value="200000"></option>
@@ -295,7 +840,7 @@ transform: scale(1.5);
                     <option value="800000"></option>
                     <option value="1000000"></option>//-->
                     <option value="1200000">$1,200,000</option>
-		</datalist>
+                  </datalist>
                 </div>
               </div>
             </div>
@@ -303,7 +848,7 @@ transform: scale(1.5);
         </div>
       </fieldset>
     </form>
-      <p class="wb-inv"><a href="#results">Go to table results</a></p>
+    <p class="wb-inv"><a href="#results">Go to table results</a></p>
     <!--Used to test scroll into view <button onclick='$("#federalTable td:nth-of-type(5)").addClass("active-cell")'>Highlight Column 5</button>//--> 
     <!--HIDE for now, may not need, delete from script if to be removed  <div id="chooseProvinceAlert">
         <div class="alert alert-info mrgn-tp-xl">
@@ -313,29 +858,27 @@ transform: scale(1.5);
     </div>
      //-->
     
-
-      <div id="federalTableWrapper" class="hidden mrgn-bttm-xl">
-          <h3 id="results">Results</h3>      
-        <h4 id="federalTableCaption" class="h5"><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-ca.png" alt="" class="mrgn-rght-md">Federal tax <span class="based-income"></span></h4>
-        <div id="federalScroll" class="table-responsive table-scroll">
-          <table class="table pb-2 text-center" id="federalTable" aria-describedby="federalTableCaption">
-            <caption class="wb-inv">
-            Federal tax
-            </caption>
-            <thead class="wb-inv">
-              <tr id="federalHeader">
-                <th scope="col">Tax bracket</th>
-              </tr>
-            </thead>
-            <tbody id="federalBody">
-                <tr></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="tax-total" id="federalTotal"></div>
-	    <p class="small mrgn-tp-md">This is the tax before any federal deductions, benefits or credits have been applied.</p>  
+    <div id="federalTableWrapper" class="hidden mrgn-bttm-xl">
+      <h3 id="results">Results</h3>
+      <h4 id="federalTableCaption" class="h5"><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-ca.png" alt="" class="mrgn-rght-md">Federal tax <span class="based-income"></span></h4>
+      <div id="federalScroll" class="table-responsive table-scroll">
+        <table class="table pb-2 text-center" id="federalTable" aria-describedby="federalTableCaption">
+          <caption class="wb-inv">
+          Federal tax
+          </caption>
+          <thead class="wb-inv">
+            <tr id="federalHeader">
+              <th scope="col">Tax bracket</th>
+            </tr>
+          </thead>
+          <tbody id="federalBody">
+            <tr></tr>
+          </tbody>
+        </table>
       </div>
-
+      <div class="tax-total" id="federalTotal"></div>
+      <p class="small mrgn-tp-md">This is the tax before any federal deductions, benefits or credits have been applied.</p>
+    </div>
     <div id="provinceTableWrapper" class="hidden" >
       <h4 id="provinceTableCaption" class="h5"><span id="provinceFlag"></span><span id="provinceTitle">Provincial tax</span> <span class="based-income"></span></h4>
       <div id="provinceScroll" class="table-responsive table-scroll">
@@ -345,7 +888,7 @@ transform: scale(1.5);
           </caption>
           <thead class="wb-inv">
             <tr id="provinceHeader">
-                <th scope="col">Tax bracket</th>
+              <th scope="col">Tax bracket</th>
             </tr>
           </thead>
           <tbody id="provinceBody">
@@ -354,7 +897,7 @@ transform: scale(1.5);
         </table>
       </div>
       <div class="tax-total" id="provinceTotal"></div>
-	    <p class="small mrgn-tp-md">This is the tax before any provincial or territorial deductions, benefits or credits have been applied.</p>
+      <p class="small mrgn-tp-md">This is the tax before any provincial or territorial deductions, benefits or credits have been applied.</p>
     </div>
     <div id="quebecNotice">
       <p><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-qc.png" alt="" class="mrgn-rght-md">For Quebec tax rates, please visit the official site: <a href="https://www.revenuquebec.ca/en/" target="_blank">Revenu Québec</a></p>
@@ -427,42 +970,8 @@ transform: scale(1.5);
       </div>
     </div>
   </section>
-	<section id="afterTaxHints">
-    <div class="row wb-eqht-grd">
-      <div class="col-md-7">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="panel panel-primary panel-body mrgn-tp-lg  eqht-trgt brdr-rds-0">
-              <h4 class="h3 mrgn-tp-sm text-primary"> Reduce how much you owe in taxes </h4>
-              <p>You may be able to pay less tax, which will increase the amount you keep.</p>
-              <details class="mrgn-bttm-lg">
-                <summary>Examples of claims you may be able to make</summary>
-                <ul>
-                  <li><a href="#">Basic personal amount</a></li>
-                  <li><a href="#">Common credit</a></li>
-                  <li><a href="#">Common benefit</a></li>
-                  <li><a href="#">Common deduction</a></li>
-                </ul>
-              </details>
-              <p>For more, <strong>refer to:</strong> <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses.html">claiming deductions, credits, and expenses</a></p>
-            </div>
-          </div>
-          <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x pr-2"></span><span class="fas fa-long-arrow-alt-down fa-stack-1x pl-3"></span> </span></div>
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="panel panel-primary panel-body mrgn-tp-lg eqht-trgt brdr-rds-0">
-              <h4 class="h3 mrgn-tp-sm text-primary">Where do your tax dollars go</h4>
-              <p>Learn what are taxes, why they are collected and how our tax system works by studying the <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html">purpose of taxes</a></p>
-            </div>
-          </div>
-          <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-money-bill-wave fa-stack-1x"></span> </span></div>
-        </div>
-      </div>
-    </div>
-    
+  <h2>Where do your tax dollars go</h2>
+  <p>Learn what are taxes, why they are collected and how our tax system works by studying the <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html">purpose of taxes</a></p>
   </section>
   <nav class="gc-subway-pagination">
     <h2 class="wb-inv">Document navigation</h2>
@@ -496,7 +1005,7 @@ transform: scale(1.5);
             document.write(wet.builder.refFooter({
             }));
          </script> 
-	<script>
+<script>
 	/**
 	* @title WET-BOEW Input range plugin
 	* @overview Plugin to display current value on an input of type range
@@ -1109,7 +1618,7 @@ const observer = new IntersectionObserver(
 
 observer.observe(el);
     
-  </script>
+  </script> 
 <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
 </body>
 </html>
