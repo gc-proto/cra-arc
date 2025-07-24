@@ -306,8 +306,8 @@ transform: scale(1.5);
     </div>
      //-->
     
-    <div class="table-container">
-      <div id="federalTableWrapper" class="mrgn-bttm-xl">
+
+      <div id="federalTableWrapper" class="hidden mrgn-bttm-xl">
           <h3 id="results">Results</h3>      
         <h4 id="federalTableCaption" class="h5"><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-ca.png" alt="" class="mrgn-rght-md">Federal tax <span class="based-income"></span></h4>
         <div class="table-responsive" id="federalScroll">
@@ -320,7 +320,7 @@ transform: scale(1.5);
                 <th scope="col">Tax bracket</th>
               </tr>
             </thead>
-            <tbody  id="federalBody">
+            <tbody id="federalBody">
                 <tr></tr>
             </tbody>
           </table>
@@ -328,10 +328,10 @@ transform: scale(1.5);
         <div class="tax-total" id="federalTotal"></div>
 	    <p class="small mrgn-tp-md">This is the tax before any federal deductions, benefits or credits have been applied.</p>  
       </div>
-    </div>
-    <div class="table-container" id="provinceContainer">
+
+    <div id="provinceTableWrapper" class="hidden" >
       <h4 id="provinceTableCaption" class="h5"><span id="provinceFlag"></span><span id="provinceTitle">Provincial tax</span> <span class="based-income"></span></h4>
-      <div id="provinceTableWrapper" class="table-responsive">
+      <div id="provinceScroll" class="table-responsive">
         <table class="table pb-2 text-center" id="provinceTable" aria-describedby="provinceTableCaption">
           <caption class="wb-inv">
           Selected provincial or territorial tax
@@ -341,7 +341,7 @@ transform: scale(1.5);
                 <th scope="col">Tax bracket</th>
             </tr>
           </thead>
-          <tbody  id="provinceBody">
+          <tbody id="provinceBody">
             <tr></tr>
           </tbody>
         </table>
@@ -759,7 +759,7 @@ var  pagelang = document.documentElement.lang;
         updateTables();
         
 setupScrollObserver('federalScroll');
-setupScrollObserver('provinceTableWrapper');
+setupScrollObserver('provinceScroll');
 
       });
 
@@ -770,7 +770,7 @@ setupScrollObserver('provinceTableWrapper');
       updateTables();
         
 setupScrollObserver('federalScroll');
-setupScrollObserver('provinceTableWrapper');
+setupScrollObserver('provinceScroll');
 
     });
 
@@ -779,7 +779,7 @@ setupScrollObserver('provinceTableWrapper');
       updateTables();
         
 setupScrollObserver('federalScroll');
-setupScrollObserver('provinceTableWrapper');
+setupScrollObserver('provinceScroll');
 
     });
 
@@ -812,7 +812,7 @@ const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
         const selectedProvince = provinceSelect.value;
          if (!selectedProvince) {
-   let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceContainer, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints, #quebecNotice');    
+   let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints, #quebecNotice');    
 elementsToHide.forEach(element => {
   element.classList.add('hidden'); 
 });
@@ -833,7 +833,7 @@ const selectedProvinceFlag  = taxData[selectedProvince].flag_url;
 
      
       if (selectedProvince === 'QC') {
-       let elementsToHide = document.querySelectorAll('#provinceContainer, #afterTaxWrapper');    
+       let elementsToHide = document.querySelectorAll('#provinceTableWrapper, #afterTaxWrapper');    
 elementsToHide.forEach(element => {
   element.classList.add('hidden'); 
 });    
@@ -846,7 +846,7 @@ elementsToShow.forEach(element => {
 elementsToHide.forEach(element => {
   element.classList.add('hidden'); 
 });    
-let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #provinceContainer, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints');    
+let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints');    
 elementsToShow.forEach(element => {
   element.classList.remove('hidden'); 
 });     
