@@ -147,7 +147,17 @@ output.wb-input-range-tooltip {
     left: 50%;
     border-top: 10px var(--tooltipArrow) #e3e3e3;
 }    
-
+.range-list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0px 2px;
+}
+.range-list span {
+    font-size: 1em;
+    text-align: center;
+    padding: 0px 1px;
+}
 
       /* webkit styles  */
       input[type="range"]::-webkit-slider-thumb {
@@ -279,16 +289,14 @@ transform: scale(1.5);
                   <div id="incomeTooltip" class="wb-input-range-tooltip" aria-hidden="true"  data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}"> $0 </div>
 			<label for="incomeSlider" class="wb-inv">Range slider for dollar amount (increment of $2,000)</label>
                   <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="1200000" value="0" step="2000" list="amountTicks" name="incomeAmount" title="Range: $0 to $1,200,000"  data-wb-input-range="{&quot;target&quot;: [&quot;incomeInput&quot;, &quot;incomeTooltip&quot;]}">
-                <datalist id="amountTicks" class="d-flex">
-                    <option value="0">$0</option>
-                    <!-- Comment to remove to allow custom amounts
-			<option value="200000"></option>
-                    <option value="400000"></option>
-                    <option value="600000"></option>
-                    <option value="800000"></option>
-                    <option value="1000000"></option>//-->
-                    <option value="1200000">$1,200,000</option>
+                <datalist id="amountTicks" class="hidden">
+                    <option value="0"></option>
+                    <option value="1200000"></option>
 		</datalist>
+		<div class="range-list">
+			<span>$0</span>
+			<span>$1,200,000</span>
+		</div>	
                 </div>
               </div>
             </div>
