@@ -25,6 +25,172 @@
             document.write(wet.builder.refTop({
             }));
          </script>
+	<style>
+/***Font styling***/
+.small 
+	{line-height: 1.44em;}
+	
+    /*****Table styling *****/
+   
+.table>tbody>tr>th[scope=row] {
+    vertical-align: middle;
+      width: 20%; 
+} 
+td > div.range {
+  display: flex;
+  flex-direction: column-reverse;
+  text-align: center;
+	padding: 0px 20px;
+}
+td > div.range meter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  writing-mode: vertical-lr;
+  width: 50px;
+  height: 200px;
+transform:scaleY(-1);
+}
+@-moz-document url-prefix() {
+  td > div.range meter {
+    width: 50px;
+    background: #f4f6f6;
+    border: 1px solid black;
+      transform: none;
+  }
+}
+td > div.range meter::-webkit-meter-bar {
+  width: 50px;
+  height: 200px;
+  border: 1px solid #333;
+}
+td > div.range meter::-moz-meter-bar {
+  background: #2572b4;
+  height: 200px;
+  width: 50px;
+  border-radius: 0px;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  td > div.range meter {
+    background-clip: content-box;
+  }
+  td > div.range meter::-webkit-meter-optimum-value {
+    background: #2572b4;
+  }
+  td > div.range meter::-webkit-meter-bar {
+    background: #f4f6f6;
+  }
+}
+.active-cell, .prev-active, .tax-rate-cell {
+    font-weight: bold;
+}    
+.estimate-borders {
+    border: 1px solid #2572b4;
+    padding: 10px; 10px 10px 15px;
+    width: 200px;
+    display: inline-block;
+    border-radius: 25px;   
+}   
+ /********** Range Input Styles **********/
+.wb-input-range {
+--HTooltipPos: 0px;
+--tooltipArrow: none;
+}
+/*     .wb-input-range .input-group-addon {
+          background-color: unset;
+          border: 0;
+          border-radius: 0;
+          width: auto;
+          padding-left: 5px;
+          padding-right: 5px;
+      } */
+
+.wb-input-range datalist {
+    display: flex;
+    justify-content: space-between;
+}
+.wb-input-range output.wb-input-range-tooltip, .wb-input-range div.wb-input-range-tooltip {
+    font-size: 20px;
+    min-width: 2em;
+    text-align: center;
+    position: relative;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 6px;
+    line-height: 1.4em;
+    display: inline-block;
+    background: #e3e3e3;
+    color: #333333;
+    transform: translate(var(--HTooltipPos), 0px);
+}
+.wb-input-range output.wb-input-range-tooltip {
+    height: 28px;
+    top: -0.2em;
+}
+.wb-input-range div.wb-input-range-tooltip {
+    top: -0.2em;
+}
+output.wb-input-range-tooltip {
+    padding-top: 0px;
+}
+.wb-input-range output.wb-input-range-tooltip:before, .wb-input-range div.wb-input-range-tooltip:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    margin-top: -1px;
+    margin-left: -4px;
+    top: 100%;
+    left: 50%;
+    border-top: 10px var(--tooltipArrow) #e3e3e3;
+}    
+
+
+      /* webkit styles  */
+      input[type="range"]::-webkit-slider-thumb {
+background-color: #335075;
+background-image: linear-gradient(to bottom, #335075, #26374A);
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+border: none;
+border-radius: 1rem;
+transform: scale(1.5);
+}  
+/****Sticky slider ****/    
+.top-bar-stick {
+    position: sticky;
+    top: -1px;
+    padding-top: 10px;
+    z-index: 10;
+    background-color: #fff;
+}
+     #stickycontent {
+    position: relative;
+}
+.wb-frmvld, form, fieldset, legend {
+    display: contents;
+}
+ /***Class to prevent horizontal scroll of page ***/
+    .tbl-hidden {font-size: 0px;}
+/*** Plus signs ***/
+    .float-plus {
+    font-weight: bold;
+    position: absolute;
+        left: 0;
+}    
+    td.tax-amount {position: relative;}
+    
+    
+    tbody>tr:last-child>td:first-of-type>span.float-plus {
+ 
+      display:none;
+    }
+         
+    
+</style>
 </head>
 <body vocab="http://schema.org/" typeof="WebPage" class="experimental">
 <div id="def-top"> </div>
@@ -74,25 +240,230 @@
     </ul>
   </nav>
   <h1 property="name" id="wb-cont">2024</h1>
-  <p>The tax rates are split up into income brackets. A different tax rate applies to each bracket, but only to the income within that bracket.</p>
-  <p>The taxes you pay are based on which one or more of the brackets your income falls into. The higher tax rate <strong>does not</strong> apply to all your income.</p>
-  <p> The same brackets are used for all types of income, such as:</p>
-  <ul>
-    <li>Employment income</li>
-    <li>Occasional earnings</li>
-    <li>Varied income (such as capital gains or rental income)</li>
-  </ul>
-  <p>You determine your federal tax rate and provincial or territorial tax rate separately. Your combined tax rate would be the sum of the two individual rates but is not the rate used to calculate your taxes.</p>
+  <p class="gc-byline">Estimate the 2024 tax year <span class="text-muted">(as of April 1, 2025)</span></p>
+</hgroup>
+ <div id="stickycontent"> 
+<p>This is an educational tool to show how tax brackets and progressive tax rates work in Canada and each province and territory (except for Quebec).</p>
+    <h2>Instructions</h2>
+    <p>Use the slider or input field to increase or decrease an amount.</p>
+    <p>The change will show you how the tax payable is applied in each tax bracket. </p>
+    <p><strong>Before you proceed:</strong> Do not use this tool to calculate your actual tax amount. All amounts are rounded to the nearest dollar.</p>
+      <h2>Estimate your tax payable across tax brackets</h2>
+    <form>
+      <fieldset class="brdr-0">
+        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">1</span></span> <span class="wb-inv">First: </span>Select a province or territory </legend>
+        <div class="row panel-body mrgn-bttm-md mrgn-tp-md">
+          <div class="dropdown-container col-md-4">
+            <label for="provinceSelect" class="wb-inv">Select your province or territory</label>
+            <select id="provinceSelect" class="form-control input-lg">
+              <option disabled="disabled" selected="selected" value="">Select</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset  id="incomeSliderDesign" class="brdr-0">
+        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second: </span>Add an amount</legend>
+        <div class="top-bar-stick">
+         
+          <div class="wb-input-range brdr-rds-0">
+            <div class="row panel-body d-sm-flex align-items-center">
+              <div class="px-2">
+                <div class="btn-group d-flex" id="btnSelect">
+                  <button id="toggleSlider" class="btn btn-lg btn-default btn-primary btn-toggle" aria-pressed="true" type="button">Slider</button>
+                  <button id="toggleInput" class="btn btn-lg btn-default btn-toggle" aria-pressed="false" type="button">Input</button>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-4 col-md-3 px-2 btn-toggle-value hidden" id="toggleInputValue">
+		       <label for="incomeInput" class="wb-inv">Input field for dollar amount (spinner increment is $2,000) </label>
+                <div class="input-group align-self-center py-3"> <span class="input-group-addon">$</span>
+                  <input id="incomeInput" name="incomeAmount" type="number" class="form-control input-lg text-right" value="0" min="0" step="20000">
+                  <span class="input-group-addon">.00</span> </div>
+              </div>
+              <div class="clearfix visible-xs"> </div>
+              <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
+              <div class="full-width px-2 btn-toggle-value" id="toggleSliderValue">
+                <div class="slider-group align-self-center">
+                  <div id="incomeTooltip" class="wb-input-range-tooltip" aria-hidden="true"  data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}"> $0 </div>
+			<label for="incomeSlider" class="wb-inv">Range slider for dollar amount (increment of $2,000)</label>
+                  <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="1200000" value="0" step="2000" list="amountTicks" name="incomeAmount" title="Range: $0 to $1,200,000"  data-wb-input-range="{&quot;target&quot;: [&quot;incomeInput&quot;, &quot;incomeTooltip&quot;]}">
+                <datalist id="amountTicks" class="d-flex">
+                    <option value="0">$0</option>
+                    <!-- Comment to remove to allow custom amounts
+			<option value="200000"></option>
+                    <option value="400000"></option>
+                    <option value="600000"></option>
+                    <option value="800000"></option>
+                    <option value="1000000"></option>//-->
+                    <option value="1200000">$1,200,000</option>
+		</datalist>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+      <p class="wb-inv"><a href="#results">Go to table results</a></p>
+    <!--Used to test scroll into view <button onclick='$("#federalTable td:nth-of-type(5)").addClass("active-cell")'>Highlight Column 5</button>//--> 
+    <!--HIDE for now, may not need, delete from script if to be removed  <div id="chooseProvinceAlert">
+        <div class="alert alert-info mrgn-tp-xl">
+            <h2 class="h3">You must select a province or territory</h2>
+            <p>Use the selection above to estimate the tax rates for the federal government and your chosen province or territory.</p>
+        </div>
+    </div>
+     //-->
+    
+
+      <div id="federalTableWrapper" class="hidden mrgn-bttm-xl">
+          <h3 id="results">Results</h3>      
+        <h4 id="federalTableCaption" class="h5"><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-ca.png" alt="" class="mrgn-rght-md">Federal tax <span class="based-income"></span></h4>
+        <div id="federalScroll" class="table-responsive table-scroll">
+          <table class="table pb-2 text-center" id="federalTable" aria-describedby="federalTableCaption">
+            <caption class="wb-inv">
+            Federal tax
+            </caption>
+            <thead class="wb-inv">
+              <tr id="federalHeader">
+                <th scope="col">Tax bracket</th>
+              </tr>
+            </thead>
+            <tbody id="federalBody">
+                <tr></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tax-total" id="federalTotal"></div>
+	    <p class="small mrgn-tp-md">This is the tax before any federal deductions, benefits or credits have been applied.</p>  
+      </div>
+
+    <div id="provinceTableWrapper" class="hidden" >
+      <h4 id="provinceTableCaption" class="h5"><span id="provinceFlag"></span><span id="provinceTitle">Provincial tax</span> <span class="based-income"></span></h4>
+      <div id="provinceScroll" class="table-responsive table-scroll">
+        <table class="table pb-2 text-center" id="provinceTable" aria-describedby="provinceTableCaption">
+          <caption class="wb-inv">
+          Selected provincial or territorial tax
+          </caption>
+          <thead class="wb-inv">
+            <tr id="provinceHeader">
+                <th scope="col">Tax bracket</th>
+            </tr>
+          </thead>
+          <tbody id="provinceBody">
+            <tr></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tax-total" id="provinceTotal"></div>
+	    <p class="small mrgn-tp-md">This is the tax before any provincial or territorial deductions, benefits or credits have been applied.</p>
+    </div>
+    <div id="quebecNotice">
+      <p><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-qc.png" alt="" class="mrgn-rght-md">For Quebec tax rates, please visit the official site: <a href="https://www.revenuquebec.ca/en/" target="_blank">Revenu Québec</a></p>
+    </div>
   </div>
-  <figure class="wb-mltmd mrgn-bttm-md" id="taxrates-video">
-    <video poster="https://www.canada.ca/content/dam/cra-arc/serv-info/tax/individuals/edu-prgms/layt/lrn-bt-txs-52k-en.png" title="Learn About Your Taxes">
-      <source type="video/youtube" src="https://youtu.be/zKeTYZ_T_bM">
-    </video>
-  </figure>
-  <details>
-    <summary class="max-content text-centre">Transcript</summary>
-    <div data-ajax-replace="https://www.canada.ca/content/canadasite/en/revenue-agency/services/tax/individuals/educational-programs/videos/learn-about-taxes-rates.html#transcript-content"></div>
-  </details>
+  <section id="afterTaxWrapper">
+    <hgroup>
+      <h3 class="mrgn-bttm-0">Estimate of your amount after tax</h3>
+      <p class="gc-byline text-muted">Rounded to the nearest dollar</p>
+    </hgroup>
+    <div class="row wb-eqht-grd">
+      <div class="col-md-5">
+        <div class="panel panel-primary brdr-rds-0">
+          <header class="panel-heading brdr-rds-0">
+            <h4 class="panel-title">Calculation</h4>
+          </header>
+          <div class="panel-body eqht-trgt">
+            <div class="wb-math-grid">
+              <div class="mg-row">
+                <div class="mg-cell"></div>
+                <div class="mg-cell text-right fa-lg text-primary" id="preTaxIncomeCal"></div>
+                <div class="mg-cell">Pre tax amount</div>
+              </div>
+              <div class="mg-row">
+                <div class="mg-cell h3 text-primary">&minus;</div>
+                <div class="mg-cell text-right fa-lg text-primary" id="fedTaxCal"></div>
+                <div class="mg-cell">Federal tax</div>
+              </div>
+              <div class="mg-row">
+                <div class="mg-cell h3 text-primary">&minus;</div>
+                <div class="mg-cell text-right fa-lg text-primary" id="provTaxCal"></div>
+                <div class="mg-cell"><span id="provTaxName">Provincial/Territorial</span> tax</div>
+              </div>
+              <div class="mg-row">
+                <div class="mg-cell mg-brdr-tp h3 text-primary">=</div>
+                <div class="mg-cell mg-brdr-tp text-right fa-lg text-primary" id="afterTaxIncome"></div>
+                <div class="mg-cell">After tax amount</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="panel panel-primary brdr-rds-0">
+          <header class="panel-heading brdr-rds-0">
+            <h4 class="panel-title">Percentage</h4>
+          </header>
+          <div class="panel-body eqht-trgt">
+            <div class="row mrgn-tp-md">
+              <div class="col-sm-8">
+                <div class="row">
+                  <div class="col-xs-5">
+                    <div class="mrgn-tp-md"> <span id="totalTaxPC" class="fa-lg fa-3x text-primary nowrap">0<sup>%</sup></span><br>
+                      goes to taxes</div>
+                  </div>
+                  <div class="col-xs-7 pl-4">
+                    <p class="mrgn-tp-0"><span id="fedTaxPC"  class="fa-lg text-primary nowrap">0<sup>%</sup></span> Federal tax</p>
+                    <hr class="brdr-tp mrgn-tp-sm mrgn-bttm-sm">
+                    <p class="mrgn-tp-0"><span id="provTaxPC" class="fa-lg  text-primary nowrap">0<sup>%</sup></span> <span id="provTaxNamePC">Provincial</span> tax</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 brdr-lft">
+                <div class="mrgn-tp-md"> <span class="fa-lg fa-3x mrgn-tp-0 text-primary nowrap" id="afterTaxPC">0<sup>%</sup></span><br>
+                  is what you keep</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+	<section id="afterTaxHints">
+    <div class="row wb-eqht-grd">
+      <div class="col-md-7">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="panel panel-primary panel-body mrgn-tp-lg  eqht-trgt brdr-rds-0">
+              <h4 class="h3 mrgn-tp-sm text-primary"> Reduce how much you owe in taxes </h4>
+              <p>You may be able to pay less tax, which will increase the amount you keep.</p>
+              <details class="mrgn-bttm-lg">
+                <summary>Examples of claims you may be able to make</summary>
+                <ul>
+                  <li><a href="#">Basic personal amount</a></li>
+                  <li><a href="#">Common credit</a></li>
+                  <li><a href="#">Common benefit</a></li>
+                  <li><a href="#">Common deduction</a></li>
+                </ul>
+              </details>
+              <p>For more, <strong>refer to:</strong> <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses.html">claiming deductions, credits, and expenses</a></p>
+            </div>
+          </div>
+          <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x pr-2"></span><span class="fas fa-long-arrow-alt-down fa-stack-1x pl-3"></span> </span></div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="panel panel-primary panel-body mrgn-tp-lg eqht-trgt brdr-rds-0">
+              <h4 class="h3 mrgn-tp-sm text-primary">Where do your tax dollars go</h4>
+              <p>Learn what are taxes, why they are collected and how our tax system works by studying the <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html">purpose of taxes</a></p>
+            </div>
+          </div>
+          <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-money-bill-wave fa-stack-1x"></span> </span></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
   <nav class="gc-subway-pagination">
     <h2 class="wb-inv">Document navigation</h2>
     <ul class="pager">
@@ -125,6 +496,620 @@
             document.write(wet.builder.refFooter({
             }));
          </script> 
+	<script>
+	/**
+	* @title WET-BOEW Input range plugin
+	* @overview Plugin to display current value on an input of type range
+	* @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+	*/
+	(function ($, window, wb) {
+		"use strict";
+		/*
+		 * Variable and function definitions.
+		 * These are global to the plugin - meaning that they will be initialized once per page,
+		 * not once per instance of plugin on the page. So, this is a good place to define
+		 * variables that are common to all instances of the plugin on a page.
+		 */
+    
+        
+		var componentName = "wb-input-range",
+			selector = "." + componentName,
+			tooltipName = componentName + "-tooltip",
+			initEvent = "wb-init" + selector,
+			$document = wb.doc,
+			defaults = {},
+            pagelang = document.documentElement.lang,
+			/**
+			 * @method init
+			 * @param {jQuery Event} event Event that triggered the function call
+			 */
+			init = function (event) {
+				// Start initialization
+				// returns DOM object = proceed with init
+				// returns undefined = do not proceed with init (e.g., already initialized)
+				var elm = wb.init(event, componentName, selector),
+					$elm,
+					settings;
+
+				if (elm) {
+					$elm = $(elm);
+					// ... Do the plugin initialisation
+					// Get the plugin JSON configuration set on attribute data-wb-input-range
+					settings = $.extend(
+						true,
+						{},
+						defaults,
+						window[componentName],
+						wb.getData($elm, componentName)
+					);
+
+					// Call my custom event
+					$elm.trigger("wb-input-range", settings);
+					// Identify that initialization has completed
+					wb.ready($elm, componentName);
+				}
+			},
+           
+			getFuncValue = function (funcName, inputParam) {
+				let funcArr, fnElem;
+
+				if (funcName.includes(".") === true) {
+					funcArr = funcName.split(".");
+					fnElem = {};
+					for (let i = 0; i <= funcArr.length - 1; i = i + 1) {
+						if (i === 0) {
+							fnElem = funcArr[i];
+						} else if (i === funcArr.length - 1 && typeof window[fnElem] !== "undefined" && funcArr[i] in window[fnElem] && typeof window[fnElem][funcArr[i]] === "function") {
+							return window[fnElem][funcArr[i]](inputParam);
+						} else if (typeof window[fnElem] !== "undefined" && funcArr[i] in window[fnElem] === true) {
+							fnElem = fnElem[funcArr[i]];
+						}
+					}
+				} else if (typeof window[funcName] === "function") {
+					return window[funcName](inputParam);
+				}
+				return inputParam;
+			},
+			attributeDefaultSet = function (atr, defaultVal) {
+				if (atr === "") {
+					return defaultVal;
+				}
+				return atr;
+			},
+			updateTooltipPos = function (inputRangeElm, displayElm, groupElm) {
+				const thumbWidth = 14;
+				const sideOffset = 4;
+				let tooltipPos,
+					inputMin = attributeDefaultSet(inputRangeElm.min, 0),
+					inputMax = attributeDefaultSet(inputRangeElm.max, 100),
+					inputRangeElmWidth = inputRangeElm.getBoundingClientRect().width,
+					displayElmWidth = displayElm.getBoundingClientRect().width;
+
+				if (displayElm.classList.contains(tooltipName)) {
+					tooltipPos = (((inputRangeElm.valueAsNumber - Number(inputMin)) / (Number(inputMax) - Number(inputMin))) * ((inputRangeElm.getBoundingClientRect().width - (thumbWidth / 2)) - (thumbWidth / 2)));
+
+					groupElm.style.setProperty("--tooltipArrow", "solid");
+					tooltipPos = tooltipPos + (thumbWidth / 2) - (displayElmWidth / 2);
+					if (tooltipPos < 0 && tooltipPos + displayElmWidth > inputRangeElmWidth) {
+						// if tooltip is larger then slider track then center over slider track
+						tooltipPos = (inputRangeElmWidth / 2) - (displayElmWidth / 2);
+						groupElm.style.setProperty("--tooltipArrow", "none");
+					} else if (tooltipPos <= 0 || inputRangeElmWidth === 0) {
+						tooltipPos = -sideOffset;
+						groupElm.style.setProperty("--tooltipArrow", "none");
+					} else if (tooltipPos + displayElmWidth > inputRangeElmWidth) {
+						tooltipPos = inputRangeElmWidth - displayElmWidth + sideOffset;
+						groupElm.style.setProperty("--tooltipArrow", "none");
+					}
+					displayElm.style.setProperty("--HTooltipPos", tooltipPos + "px");
+				}
+			},
+			updateValElm = function (inputRangeElm, displayElm, groupElm) {
+                 var currencyFormatter = new Intl.NumberFormat(pagelang + "-CA", {
+  style: "currency",
+  currency: "CAD",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+  roundingPriority: "auto",
+  roundingMode: "trunc"
+ });
+                
+				let displayText, outputData;
+
+				if (displayElm !== null) {
+					outputData = wb.getData(displayElm, "wb-input-range");
+					if (typeof outputData !== "undefined" && Object.prototype.hasOwnProperty.call(outputData, "fn") === true) {
+						displayText = getFuncValue(outputData.fn, inputRangeElm.value);
+					} else {
+						displayText = inputRangeElm.value;
+					}
+					if (displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA") {
+						displayElm.value = displayText;
+					} else {
+						displayElm.innerHTML = currencyFormatter.format(displayText);
+						updateTooltipPos(inputRangeElm, displayElm, groupElm);
+						window.onresize = function () {
+							updateTooltipPos(inputRangeElm, displayElm, groupElm);
+                            
+						};
+					}
+                   
+				}
+			},
+			setRangeValue = function (inputRange) {
+				let groupElm = document.getElementById(inputRange.parentId),
+					targetArr = wb.getData(inputRange, "wb-input-range");
+
+				if (typeof targetArr !== "undefined" && Object.prototype.hasOwnProperty.call(targetArr, "target") === true) {
+					targetArr.target.forEach(function (currentId) {
+						updateValElm(inputRange, document.getElementById(currentId), groupElm);
+					}, inputRange, groupElm);
+				}
+			},
+			updateRangeFromField = function (elm) {
+				let adjustedInputVal, outputData,
+					elmMin = attributeDefaultSet(elm.min, 0),
+					elmMax = attributeDefaultSet(elm.max, 100),
+					elmStep = attributeDefaultSet(elm.step, 1),
+					rangeElm = document.getElementById(elm.rangeId);
+
+				outputData = wb.getData(elm, "wb-input-range");
+				if (typeof outputData !== "undefined" && Object.prototype.hasOwnProperty.call(outputData, "fn") === true) {
+					adjustedInputVal = getFuncValue(outputData.fn, parseInt($(elm).val(), 10));
+				} else {
+					adjustedInputVal = parseInt($(elm).val(), 10) || parseInt(elmMin, 10);
+				}
+				if (adjustedInputVal < parseInt(elmMin, 10)) {
+					$(rangeElm).val(parseInt(elmMin, 10));
+				} else if (adjustedInputVal > parseInt(elmMax, 10)) {
+					$(rangeElm).val(parseInt(elmMax, 10));
+				} else {
+					$(rangeElm).val(Math.round(adjustedInputVal / parseInt(elmStep, 10)) * parseInt(elmStep, 10));
+				}
+			};
+
+		// Add your plugin event handler
+		$document.on("wb-input-range", selector, function (event, data) {
+			var targetArr,
+				groupElm = event.currentTarget,
+				$rangeElm = $(groupElm).find("input[type=range]"),
+				rangeElm = $rangeElm[0];
+
+			rangeElm.params = [];
+			rangeElm.params = data.target;
+			if (!groupElm.hasAttribute("id")) {
+				groupElm.id = wb.getId();
+			}
+			rangeElm.parentId = groupElm.id;
+			setRangeValue(rangeElm);
+			targetArr = wb.getData(rangeElm, "wb-input-range");
+			if (typeof targetArr !== "undefined" && Object.prototype.hasOwnProperty.call(targetArr, "target") === true) {
+				targetArr.target.forEach(function (currentId) {
+					let displayElm = document.getElementById(currentId);
+
+					if (displayElm !== null && (displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA")) {
+						if (rangeElm.hasAttribute("id") === false) {
+							rangeElm.id = wb.getId();
+						}
+						displayElm.rangeId = rangeElm.id;
+
+						$(displayElm).on("change input", function () {
+							let newTargetArr = targetArr.target.slice();
+
+							updateRangeFromField(this);
+							for (let i = 0; i <= newTargetArr.length - 1; i = i + 1) {
+								if (document.getElementById(newTargetArr[i]).tagName !== "INPUT" && document.getElementById(newTargetArr[i]).tagName !== "TEXTAREA") {
+									updateValElm(rangeElm, document.getElementById(newTargetArr[i]), document.getElementById(rangeElm.parentId));
+								}
+							}
+						});
+					} else {
+						updateValElm(rangeElm, displayElm, groupElm);
+					}
+				}, rangeElm, groupElm, targetArr);
+			}
+		});
+
+		$(".wb-input-range").on("change input", "input[type=range]", function () {
+			setRangeValue(this);
+		});
+
+		// disable mouse wheel scroll of slider which only occurs in some browsers
+		$(".wb-input-range").on("wheel", "input[type=range]", function (event) {
+			window.scrollTo(window.scrollX, window.scrollY + event.originalEvent.deltaY);
+			event.preventDefault();
+			event.stopPropagation();
+		});
+
+		$document.on("update" + selector, function (event) {
+			setRangeValue(event.target);
+		});
+
+		// Bind the init event of the plugin
+		$document.on("timerpoke.wb " + initEvent, selector, init);
+		// Add the timer poke to initialize the plugin
+		wb.add(selector);
+	})(jQuery, window, wb);
+</script> 
+<script>
+var  pagelang = document.documentElement.lang;
+    let taxData = {};
+    const incomeSlider = document.getElementById('incomeSlider');
+    const incomeInput = document.getElementById('incomeInput');
+    const provinceSelect = document.getElementById('provinceSelect');
+    const incomeAmount = $(".based-income");
+   var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
+  style: "currency",
+  currency: "CAD",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+  roundingPriority: "auto",
+  roundingMode: "trunc"
+ });    
+ var percentFormatter = new Intl.NumberFormat(pagelang + "-CA", {
+  style: "percent",
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+ });      
+    fetch('canada_tax_rates.json')
+      .then(response => response.json())
+      .then(data => {
+        for (const region in data) {
+          data[region].brackets.forEach(bracket => {
+            if (bracket.threshold === "Infinity") {
+              bracket.threshold = Infinity;
+            }
+          });
+        }
+        taxData = data;
+        populateProvinceDropdown();
+        updateTables();
+        
+setupScrollObserver('federalScroll');
+setupScrollObserver('provinceScroll');
+
+      });
+
+    incomeSlider.addEventListener('input', () => {
+  incomeInput.value = incomeSlider.value;
+   
+     
+      updateTables();
+        
+setupScrollObserver('federalScroll');
+setupScrollObserver('provinceScroll');
+
+    });
+
+    incomeInput.addEventListener('input', () => {
+      incomeSlider.value = incomeInput.value;
+      updateTables();
+        
+setupScrollObserver('federalScroll');
+setupScrollObserver('provinceScroll');
+
+    });
+
+    provinceSelect.addEventListener('change', updateTables);
+
+    function populateProvinceDropdown() {
+      for (const region in taxData) {
+        if (region !== 'federal') {
+          const option = document.createElement('option');
+          option.value = region;
+        option.textContent = taxData[region].en;    
+          option.setAttribute("name", taxData[region].en);
+          provinceSelect.appendChild(option);
+        }
+      }
+    }
+
+ 
+let previousTaxValues = { federal: [], province: [] };
+    function updateTables() {
+       
+incomeSlider.value = incomeInput.value;
+const income = Number(incomeInput.value) || 0;
+
+       incomeAmount.text("(based on the taxable income of: $" + currencyFormatterChart.format(income) + ")");
+
+  
+      const federalTaxAmount = updateTable('federal', taxData.federal, income);
+const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
+        const selectedProvinceName = provinceSelected .getAttribute('name');
+        const selectedProvince = provinceSelect.value;
+         if (!selectedProvince) {
+   let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints, #quebecNotice');    
+elementsToHide.forEach(element => {
+  element.classList.add('hidden'); 
+});
+        document.getElementById('provinceTitle').textContent = '';
+        document.getElementById('provinceTotal').innerHTML = '';
+        return;
+      }
+    
+        
+const selectedProvinceFlag  = taxData[selectedProvince].flag_url; 
+     
+      document.getElementById('provinceFlag').innerHTML = `<img src="${selectedProvinceFlag}" alt="" class="mrgn-rght-md">`;
+        
+      document.getElementById('provinceTitle').textContent = `${selectedProvinceName} tax`;
+
+      let provincialTaxAmount = 0;
+
+      if (selectedProvince === 'QC') {
+       let elementsToHide = document.querySelectorAll('#provinceTableWrapper, #afterTaxWrapper');    
+elementsToHide.forEach(element => {
+  element.classList.add('hidden'); 
+});    
+let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #federalTableWrapper, #quebecNotice, #afterTaxHints');    
+elementsToShow.forEach(element => {
+  element.classList.remove('hidden'); 
+});         
+      }  else {
+         let elementsToHide = document.querySelectorAll(' #quebecNotice');    
+elementsToHide.forEach(element => {
+  element.classList.add('hidden'); 
+});    
+let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints');    
+elementsToShow.forEach(element => {
+  element.classList.remove('hidden'); 
+});     
+     
+        provincialTaxAmount = updateTable('province', taxData[selectedProvince], income);
+      }
+//Optimize this section
+      const afterTax = income - federalTaxAmount - provincialTaxAmount;
+        
+        document.getElementById('preTaxIncomeCal').textContent = `${currencyFormatterChart.format(income)}`;
+        
+        
+        
+        
+        
+  //For math calculation      
+         document.getElementById('fedTaxCal').textContent = `${currencyFormatterChart.format(federalTaxAmount)}`;
+        document.getElementById('provTaxCal').textContent = `${currencyFormatterChart.format(provincialTaxAmount)}`;
+        document.getElementById('provTaxName').textContent = `${selectedProvinceName}`;
+        document.getElementById('provTaxNamePC').textContent = `${selectedProvinceName}`;
+      document.getElementById('afterTaxIncome').textContent = `${currencyFormatterChart.format(afterTax)}`;
+// For percentage calculation
+  const totalTaxPercent = federalTaxAmount + provincialTaxAmount;
+        
+        document.getElementById('totalTaxPC').innerHTML = `${calculatePercentage(totalTaxPercent, income)}<sup>%</sup>`; 
+        document.getElementById('fedTaxPC').innerHTML = `${calculatePercentage(federalTaxAmount, income)}<sup>%</sup>`;      
+    document.getElementById('provTaxPC').innerHTML = `${calculatePercentage(provincialTaxAmount, income)}<sup>%</sup>`;          
+      document.getElementById('afterTaxPC').innerHTML = `${calculatePercentage(afterTax, income)}<sup>%</sup>`;    
+        
+    }
+
+function updateTable(idPrefix, data, income) {
+  const headerRow = document.getElementById(`${idPrefix}Header`);
+  const tableBody = document.getElementById(`${idPrefix}Body`);
+//const tableRow = tableBody.querySelector('tr');    
+     
+  const totalDiv = document.getElementById(`${idPrefix}Total`);
+  const minIncome = parseInt(incomeSlider.min);
+  const maxIncome = parseInt(incomeSlider.max);
+
+  headerRow.innerHTML = '<td></td>';
+    
+tableBody.innerHTML = ''; 
+let taxCount = 1;
+  let totalTax = 0;
+  let previousThreshold = 0;
+  let currentTaxValues = [];
+
+  // Determine which bracket the income falls into
+
+
+let activeIndex = -1;
+previousThreshold = 0;
+ 
+    //Create rate row and header
+    const rateRow = document.createElement('tr');
+const rateHeader = document.createElement('th');
+  rateHeader.setAttribute('scope', 'row')   
+rateHeader.innerHTML += `Tax rate`;   
+ rateRow.appendChild(rateHeader);   
+ 
+    //Create income row and header   
+const incomeRow = document.createElement('tr');
+const incomeHeader = document.createElement('th');
+  incomeHeader.setAttribute('scope', 'row')   
+incomeHeader.innerHTML += `Income range<span class="wb-inv"> per tax rate</span>`;   
+ incomeRow.appendChild(incomeHeader);      
+
+    //Create tax payable row and header    
+const payableRow = document.createElement('tr');
+const payableHeader = document.createElement('th');
+  payableHeader.setAttribute('scope', 'row')   
+payableHeader.innerHTML += `Estimated tax<span class="wb-inv"> per tax rate</span>`; 
+payableRow.appendChild(payableHeader);   
+    
+    
+  
+  data.brackets.forEach((bracket, index) => {
+    const threshold = bracket.threshold;
+       const lowerBound = previousThreshold;
+  const upperBound = threshold;
+
+  if (income >= lowerBound && income < upperBound && activeIndex === -1) {
+    activeIndex = index;
+  }
+      
+    let bracketIncome = Math.max(0, Math.min(income, threshold) - previousThreshold);
+    
+if (index === 0) {
+  bracketIncome = Math.max(0, bracketIncome);
+}
+
+    const taxEstimate = Math.round(bracketIncome * bracket.rate);
+    totalTax += taxEstimate;
+
+      
+  headerRow.innerHTML += `<th scope="col">Tax bracket ${taxCount++}</th>`;
+   
+
+// === Rate Cell ===
+  const rateCell = document.createElement('td');
+	  rateCell.setAttribute('class', 'tax-rate-cell');  
+  rateCell.innerHTML = `${percentFormatter.format(bracket.rate)}`;
+  rateRow.appendChild(rateCell);
+
+      // === Income range Cell (clean up inner HTML) ===
+      const incomeCell = document.createElement('td');
+       
+    incomeCell.innerHTML += `<div class="range"><div class="nowrap">$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> to</span></div>
+        <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}" aria-hidden="true"></meter>
+    
+<div class="nowrap">${threshold === Infinity ? '$1,200,000<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> or more</span></span>' : '$' + threshold.toLocaleString()}</div></div>`;
+    incomeRow.appendChild(incomeCell);
+      
+// === Tax payable Cell ===      
+   const payableCell = document.createElement('td'); 
+     payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| taxEstimate !== 0? ' prev-active': ''}`);
+payableCell.innerHTML += `<span class="float-plus">+ </span>
+${currencyFormatterChart.format(taxEstimate)}`;  
+      
+      
+    payableRow.appendChild(payableCell);          
+   currentTaxValues.push(taxEstimate.toFixed(2));
+   previousThreshold = threshold;
+  });
+ 
+tableBody.appendChild(rateRow);
+tableBody.appendChild(incomeRow);
+tableBody.appendChild(payableRow);
+
+
+totalDiv.innerHTML = ` Estimated federal tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span> `;    
+ //Duplicated...need to clean (possibly put in seperate function)
+    const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
+        const selectedProvinceName = provinceSelected .getAttribute('name');
+    
+    
+    const customTotal = document.getElementById("provinceTotal");   
+if (customTotal) {
+    customTotal.innerHTML = `Estimated ${selectedProvinceName} tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span>`;
+}
+
+    
+
+  // Scroll the active cell into view manually
+  const activeCell = document.querySelector(`#${idPrefix}Body .active-cell`);
+  if (activeCell) {
+    const container = activeCell.closest('.table-scroll');
+    if (container && !isElementFullyVisible(container, activeCell)) {
+      smoothScrollTo(container, activeCell);
+    }
+  }
+
+  previousTaxValues[idPrefix] = currentTaxValues;
+  return totalTax;
+}
+
+
+ 
+
+  
+    
+function isElementFullyVisible(container, element) {
+  const containerLeft = container.scrollLeft;
+  const containerRight = containerLeft + container.clientWidth;
+  const elementLeft = element.offsetLeft;
+  const elementRight = elementLeft + element.offsetWidth;
+  return elementLeft >= containerLeft && elementRight <= containerRight;
+}
+
+function smoothScrollTo(container, target, duration = 400) {
+  const containerLeft = container.scrollLeft;
+  const targetLeft = target.offsetLeft;
+  const targetRight = targetLeft + target.offsetWidth;
+
+  let scrollTo = containerLeft;
+
+  if (targetLeft < containerLeft) {
+    scrollTo = targetLeft - 20;
+  } else if (targetRight > containerLeft + container.clientWidth) {
+    scrollTo = targetRight - container.clientWidth ;
+  } else {
+    return;
+  }
+
+  const distance = scrollTo - containerLeft;
+  const startTime = performance.now();
+
+  function scrollStep(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 0.5 - Math.cos(progress * Math.PI) / 2;
+    container.scrollLeft = containerLeft + distance * ease;
+    if (progress < 1) {
+      requestAnimationFrame(scrollStep);
+    }
+  }
+
+  requestAnimationFrame(scrollStep);
+}
+
+ function setupScrollObserver() {
+  document.querySelectorAll('.table-scroll').forEach(container => {
+    const cells = container.querySelectorAll('.tax-amount');
+    
+  });
+} 
+function calculatePercentage(part, total) {
+  if (total === 0) {
+    return 0; // Avoid division by zero
+  }
+ const formattedString =  percentFormatter.format(part / total);
+    return formattedString.replace('%', '').trim();
+}
+ 
+ // Script for button toggle
+  const buttons = document.querySelectorAll('.btn-toggle');
+const buttonsValue = document.querySelectorAll(".btn-toggle-value");    
+     buttons.forEach(button => {
+        button.addEventListener('click', inputToggle);  
+        
+     });
+    function inputToggle(event) {
+       buttons.forEach(otherButton => {
+                otherButton.classList.remove("btn-primary");
+           otherButton.setAttribute("aria-pressed", false); 
+           buttonsValue.forEach(otherValue => {
+               otherValue.classList.add("hidden");
+    const mySlider = document.getElementById('incomeSlider');
+mySlider.value = 0;
+const myInput = document.getElementById('incomeInput');
+myInput.value = 0;               
+               updateTables();
+          $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");
+           });
+            }); 
+         this.classList.add('btn-primary');
+        this.setAttribute("aria-pressed", true);
+        const getTargetID = event.target.id;
+      
+       const getTargetValue = document.getElementById(getTargetID +"Value");
+        getTargetValue.classList.remove("hidden");
+         
+    }   
+ //Script to add class to sticky element
+const el = document.querySelector(".top-bar-stick");
+    const childEl = document.querySelector(".wb-input-range");
+  const classesToToggle = ["panel", "panel-default"];  
+const observer = new IntersectionObserver( 
+  ([e]) => 
+    classesToToggle.forEach(className => {
+    childEl.classList.toggle(className, e.intersectionRatio < 1)}),
+  { threshold: [1] }
+);
+
+observer.observe(el);
+    
+  </script>
 <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
 </body>
 </html>
