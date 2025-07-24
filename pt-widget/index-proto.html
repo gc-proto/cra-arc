@@ -240,7 +240,7 @@ transform: scale(1.5);
     <h2>Instructions</h2>
     <p>Use the slider or input field to increase or decrease an amount.</p>
     <p>The change will show you how the tax payable is applied in each tax bracket. </p>
-    <p><strong>Before you proceed:</strong> Do not use this tool to calculate your actual tax amount.</p>
+    <p><strong>Before you proceed:</strong> Do not use this tool to calculate your actual tax amount. All amounts are rounded to the nearest dollar.</p>
       <h2>Estimate your tax payable across tax brackets</h2>
     <form>
       <fieldset class="brdr-0">
@@ -310,7 +310,7 @@ transform: scale(1.5);
       <div id="federalTableWrapper" class="hidden mrgn-bttm-xl">
           <h3 id="results">Results</h3>      
         <h4 id="federalTableCaption" class="h5"><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-ca.png" alt="" class="mrgn-rght-md">Federal tax <span class="based-income"></span></h4>
-        <div class="table-responsive" id="federalScroll">
+        <div id="federalScroll" class="table-responsive table-scroll">
           <table class="table pb-2 text-center" id="federalTable" aria-describedby="federalTableCaption">
             <caption class="wb-inv">
             Federal tax
@@ -331,7 +331,7 @@ transform: scale(1.5);
 
     <div id="provinceTableWrapper" class="hidden" >
       <h4 id="provinceTableCaption" class="h5"><span id="provinceFlag"></span><span id="provinceTitle">Provincial tax</span> <span class="based-income"></span></h4>
-      <div id="provinceScroll" class="table-responsive">
+      <div id="provinceScroll" class="table-responsive table-scroll">
         <table class="table pb-2 text-center" id="provinceTable" aria-describedby="provinceTableCaption">
           <caption class="wb-inv">
           Selected provincial or territorial tax
@@ -741,8 +741,6 @@ var  pagelang = document.documentElement.lang;
   style: "percent",
   minimumFractionDigits: 1,
   maximumFractionDigits: 1,
-  roundingPriority: "auto",
-  roundingMode: "trunc"
  });      
     fetch('canada_tax_rates.json')
       .then(response => response.json())
@@ -829,9 +827,7 @@ const selectedProvinceFlag  = taxData[selectedProvince].flag_url;
       document.getElementById('provinceTitle').textContent = `${selectedProvinceName} tax`;
 
       let provincialTaxAmount = 0;
-  
 
-     
       if (selectedProvince === 'QC') {
        let elementsToHide = document.querySelectorAll('#provinceTableWrapper, #afterTaxWrapper');    
 elementsToHide.forEach(element => {
@@ -939,8 +935,8 @@ if (index === 0) {
   bracketIncome = Math.max(0, bracketIncome);
 }
 
-    const tax = bracketIncome * bracket.rate;
-    totalTax += tax;
+    const taxEstimate = Math.round(bracketIncome * bracket.rate);
+    totalTax += taxEstimate;
 
       
   headerRow.innerHTML += `<th scope="col">Tax bracket ${taxCount++}</th>`;
@@ -963,13 +959,13 @@ if (index === 0) {
       
 // === Tax payable Cell ===      
    const payableCell = document.createElement('td'); 
-     payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| tax !== 0? ' prev-active': ''}`);
+     payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| taxEstimate !== 0? ' prev-active': ''}`);
 payableCell.innerHTML += `<span class="float-plus">+ </span>
-${currencyFormatterChart.format(tax)}`;  
+${currencyFormatterChart.format(taxEstimate)}`;  
       
       
     payableRow.appendChild(payableCell);          
-   currentTaxValues.push(tax.toFixed(2));
+   currentTaxValues.push(taxEstimate.toFixed(2));
    previousThreshold = threshold;
   });
  
@@ -994,7 +990,7 @@ if (customTotal) {
   // Scroll the active cell into view manually
   const activeCell = document.querySelector(`#${idPrefix}Body .active-cell`);
   if (activeCell) {
-    const container = activeCell.closest('.table-responsive');
+    const container = activeCell.closest('.table-scroll');
     if (container && !isElementFullyVisible(container, activeCell)) {
       smoothScrollTo(container, activeCell);
     }
@@ -1049,7 +1045,7 @@ function smoothScrollTo(container, target, duration = 400) {
 }
 
  function setupScrollObserver() {
-  document.querySelectorAll('.table-responsive').forEach(container => {
+  document.querySelectorAll('.table-scroll').forEach(container => {
     const cells = container.querySelectorAll('.tax-amount');
     
   });
