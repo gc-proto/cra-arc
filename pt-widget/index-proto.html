@@ -299,7 +299,7 @@ transform: scale(1.5);
 		</datalist>//-->
 		<div class="range-list">
 			<span>$0</span>
-			<span>$1,200,000</span>
+			<span id="rangeListMax></span>
 		</div>	
                 </div>
               </div>
@@ -860,9 +860,10 @@ elementsToHide.forEach(element => {
         return;
       }
  //Set slider maximum
-  const provinceMaxAmount  = taxData[selectedProvince].range_max;       
+  const provinceMaxAmount  = taxData[selectedProvince].range_max;
+const rangeListMax = document.getElementById('rangeListMax');	    
    incomeSlider.setAttribute("max", provinceMaxAmount);    
-        
+    rangeListMax.innerHTML = currencyFormatterChart.format(provinceMaxAmount);     
 const selectedProvinceFlag  = taxData[selectedProvince].flag_url; 
      
       document.getElementById('provinceFlag').innerHTML = `<img src="${selectedProvinceFlag}" alt="" class="mrgn-rght-md">`;
