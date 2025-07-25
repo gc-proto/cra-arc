@@ -744,7 +744,7 @@ const dataTaxRate = {
   fr: "Tax rate [Fr]"
 };
 const dataIncomeRange = {
-  en: "Income range<span class="\wb-inv\"> per tax rate</span>",
+  en: "Income range<span class=\"wb-inv\"> per tax rate</span>",
   fr: "Income range<span class=\"wb-inv\"> per tax rate</span> [Fr]"
 }
 const dataTaxEstimate = {
@@ -846,7 +846,7 @@ basedIncome.forEach(element => {
 });
 
   
-      const federalTaxAmount = updateTable('federal', taxData.federal, income);
+    
 const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
         const selectedProvince = provinceSelect.value;
@@ -859,15 +859,18 @@ elementsToHide.forEach(element => {
         document.getElementById('provinceTotal').innerHTML = '';
         return;
       }
-    
+ //Set slider maximum
+  const provinceMaxAmount  = taxData[selectedProvince].range_max;       
+   incomeSlider.setAttribute("max", provinceMaxAmount);    
         
 const selectedProvinceFlag  = taxData[selectedProvince].flag_url; 
      
       document.getElementById('provinceFlag').innerHTML = `<img src="${selectedProvinceFlag}" alt="" class="mrgn-rght-md">`;
         
       document.getElementById('provinceTitle').textContent = `${selectedProvinceName} tax`;
-
-      let provincialTaxAmount = 0;
+	    
+	    let federalTaxAmount = 0;
+	    let provincialTaxAmount = 0;
 
       if (selectedProvince === 'QC') {
        let elementsToHide = document.querySelectorAll('#provinceTableWrapper, #afterTaxWrapper');    
@@ -877,7 +880,8 @@ elementsToHide.forEach(element => {
 let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #federalTableWrapper, #quebecNotice, #afterTaxHints');    
 elementsToShow.forEach(element => {
   element.classList.remove('hidden'); 
-});         
+});
+ $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");	      
       }  else {
          let elementsToHide = document.querySelectorAll(' #quebecNotice');    
 elementsToHide.forEach(element => {
@@ -887,8 +891,9 @@ let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #provinceTa
 elementsToShow.forEach(element => {
   element.classList.remove('hidden'); 
 });     
-     
+    federalTaxAmount = updateTable('federal', taxData.federal, income);
         provincialTaxAmount = updateTable('province', taxData[selectedProvince], income);
+ $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");	      
       }
 //Optimize this section
       const afterTax = income - federalTaxAmount - provincialTaxAmount;
@@ -995,7 +1000,7 @@ if (index === 0) {
     incomeCell.innerHTML += `<div class="range"><div class="nowrap">$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> ${dataHiddenTo[pagelang]}</span></div>
         <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}" aria-hidden="true"></meter>
     
-<div class="nowrap">${threshold === Infinity ? '$1,200,000<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ' + dataHiddenOrMore[pagelang] +'</span></span>' : '$' + threshold.toLocaleString()}</div></div>`;
+<div class="nowrap">${threshold === Infinity ? '' + currencyFormatterChart.format(maxIncome) + 'span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ' + dataHiddenOrMore[pagelang] +'</span></span>' : '$' + threshold.toLocaleString()}</div></div>`;
     incomeRow.appendChild(incomeCell);
       
 // === Tax payable Cell ===      
