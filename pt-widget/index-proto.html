@@ -337,7 +337,7 @@ transform: scale(1.5);
             </tbody>
           </table>
         </div>
-        <div class="tax-total" id="federalTotal"></div>
+        <div class="tax-total">Federal<span id="federalTotal"></span></div>
 	    <p class="small mrgn-tp-md">This is the tax before any federal deductions, benefits or credits have been applied.</p>  
       </div>
 
@@ -366,10 +366,8 @@ transform: scale(1.5);
     </div>
   </div>
   <section id="afterTaxWrapper">
-    <hgroup>
+
       <h3 class="mrgn-bttm-0">Estimate of your amount after tax</h3>
-      <p class="gc-byline text-muted">Rounded to the nearest dollar</p>
-    </hgroup>
     <div class="row wb-eqht-grd">
       <div class="col-md-5">
         <div class="panel panel-primary brdr-rds-0">
@@ -736,12 +734,41 @@ transform: scale(1.5);
 </script> 
 <script>
 var  pagelang = document.documentElement.lang;
-    let taxData = {};
-    const incomeSlider = document.getElementById('incomeSlider');
-    const incomeInput = document.getElementById('incomeInput');
-    const provinceSelect = document.getElementById('provinceSelect');
-    const incomeAmount = $(".based-income");
-   var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
+//Langauge arrays
+const dataTableHeader = {
+      en: "based on the taxable income of:",
+      fr: "based on the taxable income of: [Fr]"
+      } 
+const dataTaxRate = {
+  en: "Tax rate",
+  fr: "Tax rate [Fr]"
+};
+const dataIncomeRange = {
+  en: "Income range<span class="\wb-inv\"> per tax rate</span>",
+  fr: "Income range<span class=\"wb-inv\"> per tax rate</span> [Fr]"
+}
+const dataTaxEstimate = {
+  en: "Estimated tax<span class=\"wb-inv\"> per tax rate</span>",
+  fr: "Estimated tax<span class=\"wb-inv\"> per tax rate</span> [Fr]"
+}
+const dataTotalEstimate = {
+    en: ": estimated tax payable",
+    fr: " : estimated tax payable [Fr]"
+}
+const dataHiddenTo = {
+    en: "to",
+    fr: "à"
+    }
+const dataHiddenOrMore = {
+    en: "or more",
+    fr: "ou plus"
+    }	
+let taxData = {};
+const incomeSlider = document.getElementById('incomeSlider');
+const incomeInput = document.getElementById('incomeInput');
+const provinceSelect = document.getElementById('provinceSelect');
+const basedIncome = document.querySelectorAll('.based-income');
+var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
   style: "currency",
   currency: "CAD",
   minimumFractionDigits: 0,
@@ -814,7 +841,9 @@ let previousTaxValues = { federal: [], province: [] };
 incomeSlider.value = incomeInput.value;
 const income = Number(incomeInput.value) || 0;
 
-       incomeAmount.text("(based on the taxable income of: " + currencyFormatterChart.format(income) + ")");
+basedIncome.forEach(element => {
+  element.innerHTML = `(${dataTableHeader[pagelang]} ${currencyFormatterChart.format(income)})`;
+});
 
   
       const federalTaxAmount = updateTable('federal', taxData.federal, income);
@@ -913,21 +942,21 @@ previousThreshold = 0;
     const rateRow = document.createElement('tr');
 const rateHeader = document.createElement('th');
   rateHeader.setAttribute('scope', 'row')   
-rateHeader.innerHTML += `Tax rate`;   
+rateHeader.innerHTML += `${dataTaxRate[pagelang]}`;   
  rateRow.appendChild(rateHeader);   
  
     //Create income row and header   
 const incomeRow = document.createElement('tr');
 const incomeHeader = document.createElement('th');
   incomeHeader.setAttribute('scope', 'row')   
-incomeHeader.innerHTML += `Income range<span class="wb-inv"> per tax rate</span>`;   
+incomeHeader.innerHTML += `${dataIncomeRange[pagelang]}`;   
  incomeRow.appendChild(incomeHeader);      
 
     //Create tax payable row and header    
 const payableRow = document.createElement('tr');
 const payableHeader = document.createElement('th');
   payableHeader.setAttribute('scope', 'row')   
-payableHeader.innerHTML += `Estimated tax<span class="wb-inv"> per tax rate</span>`; 
+payableHeader.innerHTML += `${dataTaxEstimate[pagelang]}`; 
 payableRow.appendChild(payableHeader);   
     
     
@@ -963,10 +992,10 @@ if (index === 0) {
       // === Income range Cell (clean up inner HTML) ===
       const incomeCell = document.createElement('td');
        
-    incomeCell.innerHTML += `<div class="range"><div class="nowrap">$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> to</span></div>
+    incomeCell.innerHTML += `<div class="range"><div class="nowrap">$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> ${dataHiddenTo[pagelang]}</span></div>
         <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}" aria-hidden="true"></meter>
     
-<div class="nowrap">${threshold === Infinity ? '$1,200,000<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> or more</span></span>' : '$' + threshold.toLocaleString()}</div></div>`;
+<div class="nowrap">${threshold === Infinity ? '$1,200,000<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ' + dataHiddenOrMore[pagelang] +'</span></span>' : '$' + threshold.toLocaleString()}</div></div>`;
     incomeRow.appendChild(incomeCell);
       
 // === Tax payable Cell ===      
@@ -986,7 +1015,7 @@ tableBody.appendChild(incomeRow);
 tableBody.appendChild(payableRow);
 
 
-totalDiv.innerHTML = ` Estimated federal tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span> `;    
+totalDiv.innerHTML = `${dataTotalEstimate[pagelang]} <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span> `;    
  //Duplicated...need to clean (possibly put in seperate function)
     const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
@@ -994,7 +1023,7 @@ totalDiv.innerHTML = ` Estimated federal tax payable <span class="estimate-borde
     
     const customTotal = document.getElementById("provinceTotal");   
 if (customTotal) {
-    customTotal.innerHTML = `Estimated ${selectedProvinceName} tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span>`;
+    customTotal.innerHTML = `${selectedProvinceName}${dataTotalEstimate[pagelang]} <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span>`;
 }
 
     
