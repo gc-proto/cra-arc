@@ -430,7 +430,7 @@ transform: scale(1.5);
       </div>
     </div>
   </section>
-	<section id="afterTaxHints">
+	<section id="afterTaxHints" class="hidden>
     <div class="row wb-eqht-grd">
       <div class="col-md-7">
         <div class="row">
@@ -464,11 +464,13 @@ transform: scale(1.5);
           <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-money-bill-wave fa-stack-1x"></span> </span></div>
         </div>
       </div>
-    </div>
+  
     
   </section>
   <hr class="brdr-tp mrgn-tp-xl">
-  
+  <section id="errorMsg">
+<p><span class="fas fa-exclamation fa-lg mrgn-rght-sm"></span>Error with loading script</p>
+  </section>
   <div id="def-preFooter"> </div>
 </div>
 <!-- Write closure template --> 
@@ -829,8 +831,8 @@ setupScrollObserver('provinceScroll');
         if (region !== 'federal') {
           const option = document.createElement('option');
           option.value = region;
-        option.textContent = taxData[region].en;    
-          option.setAttribute("name", taxData[region].en);
+        option.textContent = taxData[region][pagelang];    
+          option.setAttribute("name", taxData[region][pagelang]);
           provinceSelect.appendChild(option);
         }
       }
@@ -853,7 +855,7 @@ const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
         const selectedProvince = provinceSelect.value;
          if (!selectedProvince) {
-   let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints, #quebecNotice');    
+   let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints, #quebecNotice, #errorMsg');    
 elementsToHide.forEach(element => {
   element.classList.add('hidden'); 
 });
