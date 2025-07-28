@@ -26,6 +26,10 @@
             }));
          </script>
 <style>
+/***Font styling***/
+.small 
+	{line-height: 1.44em;}
+	
     /*****Table styling *****/
    
 .table>tbody>tr>th[scope=row] {
@@ -51,7 +55,7 @@ transform:scaleY(-1);
 @-moz-document url-prefix() {
   td > div.range meter {
     width: 50px;
-    background: #dadada;
+    background: #f4f6f6;
     border: 1px solid black;
       transform: none;
   }
@@ -75,7 +79,7 @@ td > div.range meter::-moz-meter-bar {
     background: #2572b4;
   }
   td > div.range meter::-webkit-meter-bar {
-    background: #dadada;
+    background: #f4f6f6;
   }
 }
 .active-cell, .prev-active, .tax-rate-cell {
@@ -143,7 +147,17 @@ output.wb-input-range-tooltip {
     left: 50%;
     border-top: 10px var(--tooltipArrow) #e3e3e3;
 }    
-
+.range-list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0px 2px;
+}
+.range-list span {
+    font-size: 1em;
+    text-align: center;
+    padding: 0px 1px;
+}
 
       /* webkit styles  */
       input[type="range"]::-webkit-slider-thumb {
@@ -184,7 +198,11 @@ transform: scale(1.5);
  
       display:none;
     }
-         
+/***Math grid fix (remove once class has been pushed)***/
+.wb-math-grid .mg-spcd {
+    border-collapse: separate;
+    border-spacing: 0px 5px;
+}
     
 </style>
 	
@@ -229,19 +247,18 @@ transform: scale(1.5);
 
   <hgroup>
 <h1 property="name" id="wb-cont">Breakdown of tax brackets and rates</h1>
- <p class="gc-byline">Estimate the 2024 tax year <span class="text-muted">(as of April 1, 2025)</span></p>
+ <p class="gc-byline">Estimate the 2024 tax year <span class="text-muted">(as of July 1, 2025)</span></p>
 </hgroup>
  <div id="stickycontent"> 
 <p>This is an educational tool to show how tax brackets and progressive tax rates work in Canada and each province and territory (except for Quebec).</p>
-    <h2>Instructions</h2>
-    <p>Use the slider or input field to increase or decrease an estimated taxable income amount.</p>
-    <p>The change will show you how the tax payable is applied in each tax bracket.  </p>
-    <p><strong>Before you proceed:</strong> Do not use this tool to calculate your actual tax amount.</p>
+<p>A change in the dollar amount will show you how the tax payable is applied in each tax bracket.</p>	 
+    <p><strong>Before you proceed:</strong> Do not use this tool to calculate your actual tax amount. All amounts are rounded to the nearest dollar.</p>
       <h2>Estimate your tax payable across tax brackets</h2>
     <form>
       <fieldset class="brdr-0">
         <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">1</span></span> <span class="wb-inv">First: </span>Select a province or territory </legend>
-        <div class="row panel-body mrgn-bttm-md mrgn-tp-md">
+        <p>The province or territory you choose may have a different maximum amount in the slider</p>
+	      <div class="row panel-body mrgn-bttm-md mrgn-tp-md">
           <div class="dropdown-container col-md-4">
             <label for="provinceSelect" class="wb-inv">Select your province or territory</label>
             <select id="provinceSelect" class="form-control input-lg">
@@ -251,9 +268,10 @@ transform: scale(1.5);
         </div>
       </fieldset>
       <fieldset  id="incomeSliderDesign" class="brdr-0">
-        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second: </span>Input a taxable income amount</legend>
+        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second: </span>Add an amount</legend>
+	   <p>Use the slider (increments of $2,000) or the input field to increase or decrease an amount.</p>    
         <div class="top-bar-stick">
-          <label for="incomeInput" class="wb-inv">Taxable income amount (spinner increment is $2,000) </label>
+         
           <div class="wb-input-range brdr-rds-0">
             <div class="row panel-body d-sm-flex align-items-center">
               <div class="px-2">
@@ -263,6 +281,7 @@ transform: scale(1.5);
                 </div>
               </div>
               <div class="col-xs-6 col-sm-4 col-md-3 px-2 btn-toggle-value hidden" id="toggleInputValue">
+		       <label for="incomeInput" class="wb-inv">Input field for dollar amount (spinner increment is $2,000) </label>
                 <div class="input-group align-self-center py-3"> <span class="input-group-addon">$</span>
                   <input id="incomeInput" name="incomeAmount" type="number" class="form-control input-lg text-right" value="0" min="0" step="20000">
                   <span class="input-group-addon">.00</span> </div>
@@ -272,16 +291,16 @@ transform: scale(1.5);
               <div class="full-width px-2 btn-toggle-value" id="toggleSliderValue">
                 <div class="slider-group align-self-center">
                   <div id="incomeTooltip" class="wb-input-range-tooltip" aria-hidden="true"  data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}"> $0 </div>
-                  <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="1200000" value="0" step="2000" list="amountTicks" name="incomeAmount" title="Range: $0 to $1,200,000" aria-label="Range slider for income (increment of $2,000)" data-wb-input-range="{&quot;target&quot;: [&quot;incomeInput&quot;, &quot;incomeTooltip&quot;]}">
-                  <datalist id="amountTicks" class="d-flex">
-                    <option value="0" label="$0"></option>
-                    <option value="200000"></option>
-                    <option value="400000"></option>
-                    <option value="600000"></option>
-                    <option value="800000"></option>
-                    <option value="1000000"></option>
-                    <option value="1200000" label="$1,200,000"></option>
-                  </datalist>
+			<label for="incomeSlider" class="wb-inv">Range slider for dollar amount (increment of $2,000)</label>
+                  <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="1200000" value="0" step="2000" list="amountTicks" name="incomeAmount" title="Range: $0 to $1,200,000"  data-wb-input-range="{&quot;target&quot;: [&quot;incomeInput&quot;, &quot;incomeTooltip&quot;]}">
+                <!--<datalist id="amountTicks" class="hidden">
+                    <option value="0"></option>
+                    <option value="1200000"></option>
+		</datalist>//-->
+		<div class="range-list">
+			<span>$0</span>
+			<span id="rangeListMax"></span>
+		</div>	
                 </div>
               </div>
             </div>
@@ -299,11 +318,11 @@ transform: scale(1.5);
     </div>
      //-->
     
-    <div class="table-container">
-      <div id="federalTableWrapper" class="mrgn-bttm-xl">
+
+      <div id="federalTableWrapper" class="hidden mrgn-bttm-xl">
           <h3 id="results">Results</h3>      
-        <div id="federalTableCaption" class="h5"><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-ca.png" alt="" class="mrgn-rght-md">Federal tax <span class="based-income"></span></div>
-        <div class="table-responsive" id="federalScroll">
+        <h4 id="federalTableCaption" class="h5"><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-ca.png" alt="" class="mrgn-rght-md">Federal tax <span class="based-income"></span></h4>
+        <div id="federalScroll" class="table-responsive table-scroll">
           <table class="table pb-2 text-center" id="federalTable" aria-describedby="federalTableCaption">
             <caption class="wb-inv">
             Federal tax
@@ -313,17 +332,18 @@ transform: scale(1.5);
                 <th scope="col">Tax bracket</th>
               </tr>
             </thead>
-            <tbody  id="federalBody">
+            <tbody id="federalBody">
                 <tr></tr>
             </tbody>
           </table>
         </div>
-        <div class="tax-total" id="federalTotal"></div>
+        <div class="tax-total mrgn-tp-md">Federal<span id="federalTotal"></span></div>
+	    <p class="small mrgn-tp-md">This is the tax before any federal deductions, benefits or credits have been applied.</p>  
       </div>
-    </div>
-    <div class="table-container" id="provinceContainer">
-      <div id="provinceTableCaption" class="h5"><span id="provinceFlag"></span><span id="provinceTitle">Provincial tax</span> <span class="based-income"></span></div>
-      <div id="provinceTableWrapper" class="table-responsive">
+
+    <div id="provinceTableWrapper" class="hidden" >
+      <h4 id="provinceTableCaption" class="h5"><span id="provinceFlag"></span><span id="provinceTitle">Provincial tax</span> <span class="based-income"></span></h4>
+      <div id="provinceScroll" class="table-responsive table-scroll">
         <table class="table pb-2 text-center" id="provinceTable" aria-describedby="provinceTableCaption">
           <caption class="wb-inv">
           Selected provincial or territorial tax
@@ -333,34 +353,33 @@ transform: scale(1.5);
                 <th scope="col">Tax bracket</th>
             </tr>
           </thead>
-          <tbody  id="provinceBody">
+          <tbody id="provinceBody">
             <tr></tr>
           </tbody>
         </table>
       </div>
-      <div class="tax-total" id="provinceTotal"></div>
+      <div class="tax-total mrgn-tp-md" id="provinceTotal"></div>
+	    <p class="small mrgn-tp-md">This is the tax before any provincial or territorial deductions, benefits or credits have been applied.</p>
     </div>
-    <div id="quebecNotice" style="display:none;">
-      <p>For Quebec tax rates, please visit the official site: <a href="https://www.revenuquebec.ca/en/" target="_blank">Revenu Québec</a></p>
+    <div id="quebecNotice">
+      <p><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-qc.png" alt="" class="mrgn-rght-md">For Quebec tax rates, please visit the official site: <a href="https://www.revenuquebec.ca/en/" target="_blank">Revenu Québec</a></p>
     </div>
   </div>
   <section id="afterTaxWrapper">
-    <hgroup>
-      <h3 class="mrgn-bttm-0">Estimate of your after tax income</h3>
-      <p class="gc-byline text-muted">Rounded to the nearest dollar</p>
-    </hgroup>
+
+      <h3 class="mrgn-bttm-0">Estimate of your amount after tax</h3>
     <div class="row wb-eqht-grd">
       <div class="col-md-5">
         <div class="panel panel-primary brdr-rds-0">
           <header class="panel-heading brdr-rds-0">
-            <h3 class="panel-title">Calculation</h3>
+            <h4 class="panel-title">Calculation</h4>
           </header>
           <div class="panel-body eqht-trgt">
-            <div class="wb-math-grid">
+            <div class="wb-math-grid mg-spcd">
               <div class="mg-row">
                 <div class="mg-cell"></div>
                 <div class="mg-cell text-right fa-lg text-primary" id="preTaxIncomeCal"></div>
-                <div class="mg-cell">Pre tax income</div>
+                <div class="mg-cell">Pre tax amount</div>
               </div>
               <div class="mg-row">
                 <div class="mg-cell h3 text-primary">&minus;</div>
@@ -370,12 +389,12 @@ transform: scale(1.5);
               <div class="mg-row">
                 <div class="mg-cell h3 text-primary">&minus;</div>
                 <div class="mg-cell text-right fa-lg text-primary" id="provTaxCal"></div>
-                <div class="mg-cell"><span id="provTaxName">Provincial</span> tax</div>
+                <div class="mg-cell"><span id="provTaxName">Provincial/Territorial</span> tax</div>
               </div>
               <div class="mg-row">
                 <div class="mg-cell mg-brdr-tp h3 text-primary">=</div>
                 <div class="mg-cell mg-brdr-tp text-right fa-lg text-primary" id="afterTaxIncome"></div>
-                <div class="mg-cell">After tax income</div>
+                <div class="mg-cell">After tax amount</div>
               </div>
             </div>
           </div>
@@ -384,7 +403,7 @@ transform: scale(1.5);
       <div class="col-md-7">
         <div class="panel panel-primary brdr-rds-0">
           <header class="panel-heading brdr-rds-0">
-            <h3 class="panel-title">Percentage</h3>
+            <h4 class="panel-title">Percentage</h4>
           </header>
           <div class="panel-body eqht-trgt">
             <div class="row mrgn-tp-md">
@@ -410,12 +429,14 @@ transform: scale(1.5);
         </div>
       </div>
     </div>
+  </section>
+	<section id="afterTaxHints">
     <div class="row wb-eqht-grd">
       <div class="col-md-7">
         <div class="row">
           <div class="col-xs-12">
             <div class="panel panel-primary panel-body mrgn-tp-lg  eqht-trgt brdr-rds-0">
-              <h3 class="mrgn-tp-0 text-primary"> Reduce how much you owe in taxes </h3>
+              <h4 class="h3 mrgn-tp-sm text-primary"> Reduce how much you owe in taxes </h4>
               <p>You may be able to pay less tax, which will increase the amount you keep.</p>
               <details class="mrgn-bttm-lg">
                 <summary>Examples of claims you may be able to make</summary>
@@ -436,7 +457,7 @@ transform: scale(1.5);
         <div class="row">
           <div class="col-xs-12">
             <div class="panel panel-primary panel-body mrgn-tp-lg eqht-trgt brdr-rds-0">
-              <h3 class="mrgn-tp-0 text-primary">Where do your tax dollars go</h3>
+              <h4 class="h3 mrgn-tp-sm text-primary">Where do your tax dollars go</h4>
               <p>Learn what are taxes, why they are collected and how our tax system works by studying the <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html">purpose of taxes</a></p>
             </div>
           </div>
@@ -712,20 +733,56 @@ transform: scale(1.5);
 	})(jQuery, window, wb);
 </script> 
 <script>
-
-    let taxData = {};
-    const incomeSlider = document.getElementById('incomeSlider');
-    const incomeInput = document.getElementById('incomeInput');
-    const provinceSelect = document.getElementById('provinceSelect');
-    const incomeAmount = $(".based-income");
- let formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
+var  pagelang = document.documentElement.lang;
+//Langauge arrays
+const langToggle = {
+	dataTableHeader: {
+		en: "based on the taxable income of:",
+		fr: "based on the taxable income of: [Fr]"
+	},
+	dataTaxRate: {
+		en: "Tax rate",
+		fr: "Tax rate [Fr]"
+	},
+	dataIncomeRange: {
+		en: "Income range<span class=\"wb-inv\"> per tax rate</span>",
+		fr: "Income range<span class=\"wb-inv\"> per tax rate</span> [Fr]"
+	},
+	dataTaxEstimate: {
+		en: "Estimated tax<span class=\"wb-inv\"> per tax rate</span>",
+		fr: "Estimated tax<span class=\"wb-inv\"> per tax rate</span> [Fr]"
+	},
+	dataTotalEstimate: {
+		en: ": estimated tax payable",
+		fr: " : estimated tax payable [Fr]"
+	},
+	dataHiddenTo: {
+		en: "to",
+		fr: "à"
+	},
+	dataHiddenOrMore: {
+		en: "or more",
+		fr: "ou plus"
+	}
+} 
+let taxData = {};
+const incomeSlider = document.getElementById('incomeSlider');
+const incomeInput = document.getElementById('incomeInput');
+const provinceSelect = document.getElementById('provinceSelect');
+const basedIncome = document.querySelectorAll('.based-income');
+var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
+  style: "currency",
+  currency: "CAD",
   minimumFractionDigits: 0,
-  maximumFractionDigits: 0
-});
-    
-    
+  maximumFractionDigits: 0,
+  roundingPriority: "auto",
+  roundingMode: "trunc"
+ });    
+ var percentFormatter = new Intl.NumberFormat(pagelang + "-CA", {
+  style: "percent",
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+ });      
     fetch('canada_tax_rates.json')
       .then(response => response.json())
       .then(data => {
@@ -741,7 +798,7 @@ transform: scale(1.5);
         updateTables();
         
 setupScrollObserver('federalScroll');
-setupScrollObserver('provinceTableWrapper');
+setupScrollObserver('provinceScroll');
 
       });
 
@@ -752,7 +809,7 @@ setupScrollObserver('provinceTableWrapper');
       updateTables();
         
 setupScrollObserver('federalScroll');
-setupScrollObserver('provinceTableWrapper');
+setupScrollObserver('provinceScroll');
 
     });
 
@@ -761,7 +818,7 @@ setupScrollObserver('provinceTableWrapper');
       updateTables();
         
 setupScrollObserver('federalScroll');
-setupScrollObserver('provinceTableWrapper');
+setupScrollObserver('provinceScroll');
 
     });
 
@@ -782,90 +839,88 @@ setupScrollObserver('provinceTableWrapper');
  
 let previousTaxValues = { federal: [], province: [] };
     function updateTables() {
-      let formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0
-});
        
 incomeSlider.value = incomeInput.value;
 const income = Number(incomeInput.value) || 0;
 
-       incomeAmount.text("(based on the taxable income of: $" + income.toLocaleString() + ")");
+basedIncome.forEach(element => {
+  element.innerHTML = `(${langToggle.dataTableHeader[pagelang]} ${currencyFormatterChart.format(income)})`;
+});
 
   
-      const federalTaxAmount = updateTable('federal', taxData.federal, income);
+    
 const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
         const selectedProvince = provinceSelect.value;
          if (!selectedProvince) {
-   
-             
-             //use querySelectorAll when optimizing 
-             //document.getElementById('chooseProvinceAlert').style.display = 'block'; 
-            document.getElementById('incomeSliderDesign').style.display = 'none'; document.getElementById('provinceTableWrapper').style.display = 'none';
-            document.getElementById('provinceTableCaption').style.display = 'none'; 
-       document.getElementById('federalTableWrapper').style.display = 'none'; document.getElementById('afterTaxWrapper').style.display = 'none';     
-        document.getElementById('quebecNotice').style.display = 'none';
+   let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints, #quebecNotice');    
+elementsToHide.forEach(element => {
+  element.classList.add('hidden'); 
+});
         document.getElementById('provinceTitle').textContent = '';
         document.getElementById('provinceTotal').innerHTML = '';
         return;
       }
-    
-        
+ //Set slider maximum
+  const provinceMaxAmount  = taxData[selectedProvince].range_max;
+const rangeListMax = document.getElementById('rangeListMax');	    
+   incomeSlider.setAttribute("max", provinceMaxAmount);    
+    rangeListMax.innerHTML = currencyFormatterChart.format(provinceMaxAmount);     
 const selectedProvinceFlag  = taxData[selectedProvince].flag_url; 
      
       document.getElementById('provinceFlag').innerHTML = `<img src="${selectedProvinceFlag}" alt="" class="mrgn-rght-md">`;
         
       document.getElementById('provinceTitle').textContent = `${selectedProvinceName} tax`;
+	    
+	    let federalTaxAmount = 0;
+	    let provincialTaxAmount = 0;
 
-      let provincialTaxAmount = 0;
-  
-
-     
       if (selectedProvince === 'QC') {
-        //use querySelectorAll when optimizing 
-         document.getElementById('incomeSliderDesign').style.display = 'contents'; //document.getElementById('chooseProvinceAlert').style.display = 'none'; 
-          document.getElementById('federalTableWrapper').style.display = 'block'; document.getElementById('provinceTotal').style.display = 'none';
-         document.getElementById('provinceTableWrapper').style.display = 'none';
-          document.getElementById('provinceTableCaption').style.display = 'none';
-          document.getElementById('afterTaxWrapper').style.display = 'none';
-        document.getElementById('quebecNotice').style.display = 'block';
+	    federalTaxAmount = updateTable('federal', taxData.federal, income);       
+       let elementsToHide = document.querySelectorAll('#provinceTableWrapper, #afterTaxWrapper');    
+elementsToHide.forEach(element => {
+  element.classList.add('hidden'); 
+});    
+let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #federalTableWrapper, #quebecNotice, #afterTaxHints');    
+elementsToShow.forEach(element => {
+  element.classList.remove('hidden'); 
+});
+ $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");	      
       }  else {
-       //use querySelectorAll when optimizing (use hidden class) 
-         document.getElementById('incomeSliderDesign').style.display = 'contents'; // document.getElementById('chooseProvinceAlert').style.display = 'none'; 
-          
-document.getElementById('provinceTableWrapper').style.display = 'block';
-          document.getElementById('provinceTableCaption').style.display = 'block';
-          document.getElementById('provinceTotal').style.display = 'block';
-       document.getElementById('federalTableWrapper').style.display = 'block'; document.getElementById('afterTaxWrapper').style.display = 'block';  
-        document.getElementById('quebecNotice').style.display = 'none';
-     
+         let elementsToHide = document.querySelectorAll(' #quebecNotice');    
+elementsToHide.forEach(element => {
+  element.classList.add('hidden'); 
+});    
+let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints');    
+elementsToShow.forEach(element => {
+  element.classList.remove('hidden'); 
+});     
+    federalTaxAmount = updateTable('federal', taxData.federal, income);
         provincialTaxAmount = updateTable('province', taxData[selectedProvince], income);
+ $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");	      
       }
 //Optimize this section
       const afterTax = income - federalTaxAmount - provincialTaxAmount;
         
-        document.getElementById('preTaxIncomeCal').textContent = `${formatter.format(income)}`;
+        document.getElementById('preTaxIncomeCal').textContent = `${currencyFormatterChart.format(income)}`;
         
         
         
         
         
   //For math calculation      
-         document.getElementById('fedTaxCal').textContent = `${formatter.format(federalTaxAmount)}`;
-        document.getElementById('provTaxCal').textContent = `${formatter.format(provincialTaxAmount)}`;
+         document.getElementById('fedTaxCal').textContent = `${currencyFormatterChart.format(federalTaxAmount)}`;
+        document.getElementById('provTaxCal').textContent = `${currencyFormatterChart.format(provincialTaxAmount)}`;
         document.getElementById('provTaxName').textContent = `${selectedProvinceName}`;
         document.getElementById('provTaxNamePC').textContent = `${selectedProvinceName}`;
-      document.getElementById('afterTaxIncome').textContent = `${formatter.format(afterTax)}`;
+      document.getElementById('afterTaxIncome').textContent = `${currencyFormatterChart.format(afterTax)}`;
 // For percentage calculation
   const totalTaxPercent = federalTaxAmount + provincialTaxAmount;
         
-        document.getElementById('totalTaxPC').innerHTML = `${calculatePercentage(totalTaxPercent, income).toFixed(1)}<sup>%</sup>`; 
-        document.getElementById('fedTaxPC').innerHTML = `${calculatePercentage(federalTaxAmount, income).toFixed(1)}<sup>%</sup>`;      
-    document.getElementById('provTaxPC').innerHTML = `${calculatePercentage(provincialTaxAmount, income).toFixed(1)}<sup>%</sup>`;          
-      document.getElementById('afterTaxPC').innerHTML = `${calculatePercentage(afterTax, income).toFixed(1)}<sup>%</sup>`;    
+        document.getElementById('totalTaxPC').innerHTML = `${calculatePercentage(totalTaxPercent, income)}<sup>%</sup>`; 
+        document.getElementById('fedTaxPC').innerHTML = `${calculatePercentage(federalTaxAmount, income)}<sup>%</sup>`;      
+    document.getElementById('provTaxPC').innerHTML = `${calculatePercentage(provincialTaxAmount, income)}<sup>%</sup>`;          
+      document.getElementById('afterTaxPC').innerHTML = `${calculatePercentage(afterTax, income)}<sup>%</sup>`;    
         
     }
 
@@ -873,8 +928,7 @@ function updateTable(idPrefix, data, income) {
   const headerRow = document.getElementById(`${idPrefix}Header`);
   const tableBody = document.getElementById(`${idPrefix}Body`);
 //const tableRow = tableBody.querySelector('tr');    
-    
-//const bodyRow2 = document.getElementById(`${idPrefix}2Body`);    
+     
   const totalDiv = document.getElementById(`${idPrefix}Total`);
   const minIncome = parseInt(incomeSlider.min);
   const maxIncome = parseInt(incomeSlider.max);
@@ -882,63 +936,36 @@ function updateTable(idPrefix, data, income) {
   headerRow.innerHTML = '<td></td>';
     
 tableBody.innerHTML = ''; 
-//bodyRow1.innerHTML = '<th scope="row">Tax rate</th>';    
- // bodyRow2.innerHTML = '<th scope="row" class="brdr-0 align-middle small nowrap">Tax payable</th>';
 let taxCount = 1;
   let totalTax = 0;
   let previousThreshold = 0;
   let currentTaxValues = [];
-  let formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0
-  });
 
   // Determine which bracket the income falls into
 
 
 let activeIndex = -1;
 previousThreshold = 0;
-
-/*
-//Remove July 16, moved content below...will test to make sure not needed
-data.brackets.forEach((bracket, index) => {
-  const threshold = bracket.threshold;
-  const lowerBound = previousThreshold;
-  const upperBound = threshold;
-
-  if (income >= lowerBound && income < upperBound && activeIndex === -1) {
-    activeIndex = index;
-  }
-
-  previousThreshold = threshold;
-}); 
-
-
-
-  // Reset for rendering
-  previousThreshold = 0; */
  
     //Create rate row and header
     const rateRow = document.createElement('tr');
 const rateHeader = document.createElement('th');
   rateHeader.setAttribute('scope', 'row')   
-rateHeader.innerHTML += `Tax rate`;   
+rateHeader.innerHTML += `${langToggle.dataTaxRate[pagelang]}`;   
  rateRow.appendChild(rateHeader);   
  
     //Create income row and header   
 const incomeRow = document.createElement('tr');
 const incomeHeader = document.createElement('th');
   incomeHeader.setAttribute('scope', 'row')   
-incomeHeader.innerHTML += `Income range<span class="wb-inv"> per tax rate</span>`;   
+incomeHeader.innerHTML += `${langToggle.dataIncomeRange[pagelang]}`;   
  incomeRow.appendChild(incomeHeader);      
 
     //Create tax payable row and header    
 const payableRow = document.createElement('tr');
 const payableHeader = document.createElement('th');
   payableHeader.setAttribute('scope', 'row')   
-payableHeader.innerHTML += `Estimated tax<span class="wb-inv"> per tax rate</span>`; 
+payableHeader.innerHTML += `${langToggle.dataTaxEstimate[pagelang]}`; 
 payableRow.appendChild(payableHeader);   
     
     
@@ -958,8 +985,8 @@ if (index === 0) {
   bracketIncome = Math.max(0, bracketIncome);
 }
 
-    const tax = bracketIncome * bracket.rate;
-    totalTax += tax;
+    const taxEstimate = Math.round(bracketIncome * bracket.rate);
+    totalTax += taxEstimate;
 
       
   headerRow.innerHTML += `<th scope="col">Tax bracket ${taxCount++}</th>`;
@@ -968,76 +995,27 @@ if (index === 0) {
 // === Rate Cell ===
   const rateCell = document.createElement('td');
 	  rateCell.setAttribute('class', 'tax-rate-cell');  
-  rateCell.innerHTML = `${(bracket.rate * 100).toFixed(1)}%`;
+  rateCell.innerHTML = `${percentFormatter.format(bracket.rate)}`;
   rateRow.appendChild(rateCell);
 
       // === Income range Cell (clean up inner HTML) ===
       const incomeCell = document.createElement('td');
        
-    incomeCell.innerHTML += `<div class="range"><div class="nowrap">$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> to</span></div>
+    incomeCell.innerHTML += `<div class="range"><div class="nowrap">$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> ${langToggle.dataHiddenTo[pagelang]}</span></div>
         <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}" aria-hidden="true"></meter>
     
-<div class="nowrap">${threshold === Infinity ? '$1,200,000<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> or more</span></span>' : '$' + threshold.toLocaleString()}</div></div>`;
+<div class="nowrap">${threshold === Infinity ? '' + currencyFormatterChart.format(maxIncome) + '<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ' + langToggle.dataHiddenOrMore[pagelang] +'</span></span>' : '$' + threshold.toLocaleString()}</div></div>`;
     incomeRow.appendChild(incomeCell);
       
 // === Tax payable Cell ===      
    const payableCell = document.createElement('td'); 
-     payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| tax !== 0? ' prev-active': ''}`);
+     payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| taxEstimate !== 0? ' prev-active': ''}`);
 payableCell.innerHTML += `<span class="float-plus">+ </span>
-${formatter.format(tax)}`;  
+${currencyFormatterChart.format(taxEstimate)}`;  
       
       
-    payableRow.appendChild(payableCell);  
-      
-      // row.appendChild(rateCell);
-      
-      
-/*     const row = document.createElement('tr');
- //Create tax bracket header cell
-      
-        const rateCell = document.createElement('td');
-        rateCell.setAttribute('scope', 'row')
-      
-      rateCell.innerHTML += `${(bracket.rate * 100).toFixed(1)}%`;
-        row.appendChild(rateCell);
-//Create income range per rate cell
-        const incomeCell = document.createElement('td');
-       incomeCell.setAttribute('class', 'small meter-range');
-      incomeCell.innerHTML += `<div class="threshold-amounts">$${index === 0 ? '0' : previousThreshold.toLocaleString()}</span>
-        <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}"></meter>
-    
-${threshold === Infinity ? '<span class="wb-inv">to </span><span class="nowrap">$1,200,000 <span class="glyphicon glyphicon-arrow-up"><span class="wb-inv"> or more</span></span></span>' : '<span class="wb-inv">to </span>$' + threshold.toLocaleString()}</div>`;
-        row.appendChild(incomeCell);
-      
-//Create tax payable cell      
-const payableCell = document.createElement('td');
-   payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| tax !== 0? ' prev-active': ''}`);
-payableCell.innerHTML += `
-${formatter.format(tax)}`;
-        row.appendChild(payableCell);
-       tableBody.appendChild(row); */
-      
-     
-
-      
-      
-      
-      
-   /*   bodyRow.innerHTML += `
-      <td class="small">
-        ${threshold === Infinity ? '<span class="wb-inv">to </span><span class="nowrap">$1,200,000 <span class="glyphicon glyphicon-arrow-up"><span class="wb-inv"> or more</span></span></span>' : '<span class="wb-inv">to </span>$' + threshold.toLocaleString()}<br>
-        <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}"></meter>
-        <br>
-        $${index === 0 ? '0' : previousThreshold.toLocaleString()}
-      </td>`;
-      bodyRow2.innerHTML += `
-      <td class="tax-amount ${index === activeIndex ? 'active-cell' : ''|| tax !== 0? 'prev-active': ''}">
-${formatter.format(tax)}
-      </td>`; */
-
-      
-      
-   currentTaxValues.push(tax.toFixed(2));
+    payableRow.appendChild(payableCell);          
+   currentTaxValues.push(taxEstimate.toFixed(2));
    previousThreshold = threshold;
   });
  
@@ -1046,7 +1024,7 @@ tableBody.appendChild(incomeRow);
 tableBody.appendChild(payableRow);
 
 
-totalDiv.innerHTML = ` Estimated federal tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${formatter.format(totalTax)}</span> `;    
+totalDiv.innerHTML = `${langToggle.dataTotalEstimate[pagelang]} <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span> `;    
  //Duplicated...need to clean (possibly put in seperate function)
     const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
@@ -1054,7 +1032,7 @@ totalDiv.innerHTML = ` Estimated federal tax payable <span class="estimate-borde
     
     const customTotal = document.getElementById("provinceTotal");   
 if (customTotal) {
-    customTotal.innerHTML = `Estimated ${selectedProvinceName} tax payable <span class="estimate-borders fa-lg text-primary nowrap">= ${formatter.format(totalTax)}</span>`;
+    customTotal.innerHTML = `${selectedProvinceName}${langToggle.dataTotalEstimate[pagelang]} <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span>`;
 }
 
     
@@ -1062,7 +1040,7 @@ if (customTotal) {
   // Scroll the active cell into view manually
   const activeCell = document.querySelector(`#${idPrefix}Body .active-cell`);
   if (activeCell) {
-    const container = activeCell.closest('.table-responsive');
+    const container = activeCell.closest('.table-scroll');
     if (container && !isElementFullyVisible(container, activeCell)) {
       smoothScrollTo(container, activeCell);
     }
@@ -1117,7 +1095,7 @@ function smoothScrollTo(container, target, duration = 400) {
 }
 
  function setupScrollObserver() {
-  document.querySelectorAll('.table-responsive').forEach(container => {
+  document.querySelectorAll('.table-scroll').forEach(container => {
     const cells = container.querySelectorAll('.tax-amount');
     
   });
@@ -1126,7 +1104,8 @@ function calculatePercentage(part, total) {
   if (total === 0) {
     return 0; // Avoid division by zero
   }
-  return (part / total) * 100;
+ const formattedString =  percentFormatter.format(part / total);
+    return formattedString.replace('%', '').trim();
 }
  
  // Script for button toggle
