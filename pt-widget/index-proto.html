@@ -762,9 +762,9 @@ const langToggle = {
 		en: "to",
 		fr: "à"
 	},
-	dataHiddenOrMore: {
-		en: "or more",
-		fr: "ou plus"
+	dataHiddenAndUp: {
+		en: "and up",
+		fr: "et plus"
 	}
 } 
 let taxData = {};
@@ -1006,7 +1006,7 @@ if (index === 0) {
     incomeCell.innerHTML += `<div class="range"><div class="nowrap">$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> ${langToggle.dataHiddenTo[pagelang]}</span></div>
         <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}" aria-hidden="true"></meter>
     
-<div class="nowrap">${threshold === Infinity ? '' + currencyFormatterChart.format(maxIncome) + '<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ' + langToggle.dataHiddenOrMore[pagelang] +'</span></span>' : '$' + threshold.toLocaleString()}</div></div>`;
+<div class="nowrap">${threshold === Infinity ? '' + currencyFormatterChart.format(maxIncome) + '<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ' + langToggle.dataHiddenAndUp[pagelang] +'</span></span>' : '$' + threshold.toLocaleString()}</div></div>`;
     incomeRow.appendChild(incomeCell);
       
 // === Tax payable Cell ===      
