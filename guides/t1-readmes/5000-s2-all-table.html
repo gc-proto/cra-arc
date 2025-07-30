@@ -161,7 +161,17 @@
       <!--Prior year forms -->
       <h2 id="prvs-yr">Previous year versions</h2>
       <div class="table-responsive">
-        <table class="wb-tables table table-striped table-condensed table-hover" data-page-length='50' data-wb-tables='{ "ordering": false }'>
+        <table class="wb-tables table table-striped table-condensed table-hover" id="year-filter" 
+            data-wb-urlmapping='{
+                "year": {
+                    "action": "tblfilter",
+                    "source": "#year-filter",
+                    "column": 0,
+                    "value": "{qval}",
+                    "match": "^[1-2][0-9][0-9][0-9]$",
+                    "default": "2024"
+                }
+            }' aria-live="polite" data-page-length='50' data-wb-tables='{ "ordering": false }'>
           <caption class="wb-inv">
           Available prior year versions
           </caption>
@@ -230,6 +240,13 @@
               <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-17e.pdf">5000-s2-17e.pdf</a></td>
               <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-lp-17e.pdf">5000-s2-lp-17e.pdf</a></td>
               <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-17e.txt">5000-s2-17e.txt</a></td>
+            </tr>
+            <tr>
+              <td>2016</td>
+              <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-fill-16e.pdf">5000-s2-fill-16e.pdf</a></td>
+              <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-16e.pdf">5000-s2-16e.pdf</a></td>
+              <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-lp-16e.pdf">5000-s2-lp-16e.pdf</a></td>
+              <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-16e.txt">5000-s2-16e.txt</a></td>
             </tr>
             <tr>
               <td>2015</td>
@@ -376,72 +393,9 @@
           </dd>
         </dl>
       </section>
-      <div id="def-preFooter"> 
-        <!-- Write closure fall-back static file --> 
-        <!-- /ROOT/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/static/preFooter-en.html --> 
-        <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/preFooter-en.html" --> 
-      </div>
-      <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const params = new URLSearchParams(window.location.search);
-    let search = "";
-
-    if ([...params].length > 0) {
-      const first = [...params.entries()][0];
-      search = first[1] ? first[1] : first[0]; // handle ?year=2022 and ?2022
-    }
-
-    if (search) {
-      $(document).on("wb-ready.wb-tables", function (event) {
-        const table = $(event.target).DataTable();
-        table.search(search).draw();
-      });
-    }
-  });
-</script> 
     </main>
   </div>
-</div>
-
-<!-- Populate the selected year links--> 
-<!--<script>
- // Extract 'year' from the URL parameters
- const urlParams = new URLSearchParams(window.location.search);
- const year = urlParams.get('year');
-
- // Insert 'year' into your HTML
- if (year) {
-    //*************************
-    // This script needs error checking for when the forms isn't there. But not sure how to do this with the dynamic list
-    //*************************
-
- // Get the last two digits of the year
- const lastTwoDigits = year.slice(-2);
-
- // Create the fillable PDF link with the last 2 digits 
- document.getElementById('fillable-pdf').innerHTML = 'Selected year: <a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-fill-'
-  + lastTwoDigits + 'e.pdf" download="5000-s2-fill-'
-  + lastTwoDigits + 'e.pdf">' + year + ' - <span class="wb-inv"> Accessible</span> Fillable PDF (5000-s2-fill-'
-  + lastTwoDigits + 'e.pdf)</a>';
-
- // Create the standart PDF link with the last 2 digits 
- document.getElementById('standard-pdf').innerHTML = 'Selected year: <a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-'
-  + lastTwoDigits + 'e.pdf">' + year + ' - Standard print PDF (5000-s2-' + lastTwoDigits + 'e.pdf)</a>';
-
- // Create the large print PDF link with the last 2 digits 
- document.getElementById('large-pdf').innerHTML = 'Selected year: <a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-lp'
-  + lastTwoDigits + 'e.pdf">' + year + ' - Large print PDF (5000-s2-lp' + lastTwoDigits + 'e.pdf)</a>';
-
- // Create the e-text link with the last 2 digits 
- document.getElementById('e-text').innerHTML = 'Selected year: <a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-'
-  + lastTwoDigits + 'e.txt">' + year + ' - E-text (5000-s2-' + lastTwoDigits + 'e.txt)</a>';
- } else {
- document.getElementById('fillable-pdf').innerHTML = '<a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-fill-23e.pdf">2023 - Fillable PDF (5000-s2-fill-23e.pdf)</a>';
- document.getElementById('standard-pdf').innerHTML = '<a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-23e.pdf">2023 - Standard print PDF (5000-s2-23e.pdf)</a>';
- document.getElementById('large-pdf').innerHTML = '<a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-lp-23e.pdf">2023 - Large print PDF (5000-s2-lp-23e.pdf)</a>';
- document.getElementById('e-text').innerHTML = '<a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-23e.txt">2023 - E-text (5000-s2-23e.txt)</a>';
- }
-</script> --> 
+</div> 
 
 <!-- Write closure template --> 
 <script>
@@ -451,33 +405,8 @@
   pagedetails: false
  });
  </script>
-<div id="def-footer"> 
-  <!-- Write closure fall-back static file --> 
-  <!-- /ROOT/app/cls/WET/gcweb/v4_0_43/cdts/static/footer-en.html --> 
-  <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/footer-en.html" --> 
-</div>
 <!-- Write closure template --> 
-<script>
- var defFooter = document.getElementById("def-footer");
- defFooter.outerHTML = wet.builder.footer({
-  privacyLink: {
-  href: "https://www.canada.ca/en/revenue-agency/corporate/privacy-notice.html"
-  },
-  contextualFooter: {
-  title: "Canada Revenue Agency (CRA)",
-  links: [{
-   text: "Contact the CRA",
-   href: "https://www.canada.ca/en/revenue-agency/corporate/contact-information.html"
-  }, {
-   text: "About the CRA",
-   href: "https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra.html"
-  }, {
-   text: "Compliance and enforcement",
-   href: "https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/compliance.html"
-  }]
-  }
- });
- </script> 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> 
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/ep-pp.min.js"></script> 
