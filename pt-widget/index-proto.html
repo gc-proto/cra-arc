@@ -256,7 +256,7 @@ transform: scale(1.5);
     <form>
       <fieldset class="brdr-0">
         <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">1</span></span> <span class="wb-inv">First: </span>Select a province or territory </legend>
-        <p class="mrgn-lft-xl">The province or territory you choose may have a different maximum amount in the slider</p>
+        <p class="mrgn-lft-xl">Each province or territory has a maximum amount based on the top tax threshold</p>
 	      <div class="row panel-body mrgn-bttm-md mrgn-tp-md">
           <div class="dropdown-container col-md-4">
             <label for="provinceSelect" class="wb-inv">Select your province or territory</label>
@@ -272,18 +272,19 @@ transform: scale(1.5);
         <div class="top-bar-stick">
          
           <div class="wb-input-range brdr-rds-0">
-            <div class="row panel-body d-sm-flex align-items-center">
+            <div class="row panel-body d-sm-flex">
               <div class="px-2">
-                <div class="btn-group d-flex" id="btnSelect">
+                <div class="btn-group d-flex pt-3" id="btnSelect">
                   <button id="toggleSlider" class="btn btn-lg btn-default btn-primary btn-toggle" aria-pressed="true" type="button">Slider</button>
                   <button id="toggleInput" class="btn btn-lg btn-default btn-toggle" aria-pressed="false" type="button">Input</button>
                 </div>
               </div>
               <div class="col-xs-10 col-sm-4 col-md-3 px-2 btn-toggle-value hidden" id="toggleInputValue">
 		       <label for="incomeInput" class="wb-inv">Input field for dollar amount (spinner increment is $2,000), no cents </label>
-                <div class="input-group align-self-center py-3"> <span class="input-group-addon">$</span>
+                <div class="input-group align-self-center pt-3"> <span class="input-group-addon">$</span>
                   <input id="incomeInput" name="incomeAmount" type="number" class="form-control input-lg text-right" value="0" min="0" step="20000">
                   <span class="input-group-addon">.00</span> </div>
+		       <p class="small">Chart range maximum is <span class="rangelist-max"></span></p>
               </div>
               <div class="clearfix visible-xs"> </div>
               <hr class="brdr-bttm visible-xs mrgn-tp-md mrgn-bttm-md">
@@ -298,7 +299,7 @@ transform: scale(1.5);
 		</datalist>//-->
 		<div class="range-list">
 			<span>$0</span>
-			<span id="rangeListMax"></span>
+			<span class="rangeist-max"></span>
 		</div>	
                 </div>
               </div>
@@ -867,10 +868,13 @@ elementsToHide.forEach(element => {
       }
  //Set slider maximum
   const provinceMaxAmount  = taxData[selectedProvince].range_max;
-const rangeListMax = document.getElementById('rangeListMax');	    
-   incomeSlider.setAttribute("max", provinceMaxAmount);    
-    rangeListMax.innerHTML = currencyFormatterChart.format(provinceMaxAmount);     
-const selectedProvinceFlag  = taxData[selectedProvince].flag_url; 
+const rangeListMax = document.querySelectorAll('.rangelist-max');     	    
+   incomeSlider.setAttribute("max", provinceMaxAmount);   
+	rangeListMax.forEach(listmax => {
+      listmax.innerHTML = currencyFormatterChart.format(provinceMaxAmount);      
+ });        
+
+	    const selectedProvinceFlag  = taxData[selectedProvince].flag_url; 
      
       document.getElementById('provinceFlag').innerHTML = `<img src="${selectedProvinceFlag}" alt="" class="mrgn-rght-md">`;
         
