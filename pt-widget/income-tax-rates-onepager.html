@@ -123,48 +123,7 @@
 <div class="mwstitle section">
   <h1 property="name" id="wb-cont" dir="ltr"> Tax rates and income brackets for individuals</h1>
 </div>
-  <ul class="list-inline"  data-wb-actionmng='[
-		{ "trggroup":"clearFilter", "action": "removeClass", "source": ".fltopts", "class": "btn-primary" }
-	]'>
-    <li>
-      <button type="button" class="fltopts btn btn-default" data-wb-doaction='[
-			{ "action": "run", "trggroup": "clearFilter" },
-			
-			{ "action": "addClass", "class": "btn-primary" }
-		]'>Backgrounders</button>
-    </li>
-    <li>
-      <button type="button" class="fltopts btn btn-default" data-wb-doaction='[
-			{ "action": "run", "trggroup": "clearFilter" },
-			
-			{ "action": "addClass", "class": "btn-primary" }
-		]'>Media</button>
-    </li>
-    <li>
-      <button type="button" class="fltopts btn btn-default" data-wb-doaction='[
-			{ "action": "run", "trggroup": "clearFilter" },
-			
-			{ "action": "addClass", "class": "btn-primary" }
-		]'>News</button>
-    </li>
-    <li>
-      <button type="button" class="fltopts btn btn-default" data-wb-doaction='[
-			{ "action": "run", "trggroup": "clearFilter" },
-			
-			{ "action": "addClass", "class": "btn-primary" }
-		]'>Speeches</button>
-    </li>
-    <li>
-      <button type="button" class="fltopts btn btn-default" data-wb-doaction='[
-			{ "action": "run", "trggroup": "clearFilter" },
-			
-			{ "action": "addClass", "class": "btn-primary" }
-		]'>Statements</button>
-    </li>
-    <li>
-      <button type="button" class="btn btn-link" data-wb-doaction='{ "action": "run", "trggroup": "clearFilter" }'>View all</button>
-    </li>
-  </ul>
+
 <div class="mwsalerts section">
   <section class="alert alert-info">
     <h2 class="h3">Change in individual income tax rate</h2>
@@ -1650,7 +1609,10 @@
         <form method="get">
           <fieldset>
             <legend>Choose a  way to compare by</legend>
-           
+             <div class="btn-group mrgn-bttm-md" data-wb-actionmng='[{ "trggroup":"resetFilter", "action": "removeClass", "source": ".fltr-btns", "class": "btn-primary" }, { "trggroup":"resetFilter", "action": "addClass", "source": ".fltr-tbl", "class": "hidden" }, { "trggroup":"resetFilter", "action": "removeClass", "source": ".fltr-tbl", "class": "tbl-flgd" }, { "trggroup":"resetFilter", "action": "removeClass", "source": "#choiceAlert", "class": "hidden" },  { "trggroup":"ajax", "url": "previous-years.html.clean-area", "container": "#ajax-results" }]' >
+                <button class="btn btn-lg btn-default btn-primary fltr-btns"  data-wb-doaction='[{ "action": "run", "trggroup": "resetFilter" },{"action": "ajax", "url": "#fltr-years", "container": "#ajax-filters", "type": "replace"}, { "action": "addClass", "class": "btn-primary" }]'>Tax year</button>
+              <button class="btn btn-lg btn-default fltr-btns" data-wb-doaction='[{ "action": "run", "trggroup": "resetFilter" },{"action": "ajax", "url": "#fltr-region", "container": "#ajax-filters", "type": "replace"}, { "action": "addClass", "class": "btn-primary" },  { "trggroup":"ajax", "url": "previous-years.html.clean-area", "container": "#ajax-results" }]'>Region</button>
+            </div>
           </fieldset>
           <div id="ajax-filters" data-ajax-replace='#fltr-years'> </div>
           <div class="hidden">
