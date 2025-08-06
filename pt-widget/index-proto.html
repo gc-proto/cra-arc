@@ -632,7 +632,8 @@ transform: scale(1.5);
 					if (displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA") {
 						displayElm.value = displayText;
 					} else {
-						displayElm.innerHTML = currencyFormatter.format(displayText);
+						//displayElm.innerHTML = currencyFormatter.format(displayText);
+						displayElm.textContent = currencyFormatter.format(displayText);
 						updateTooltipPos(inputRangeElm, displayElm, groupElm);
 						window.onresize = function () {
 							updateTooltipPos(inputRangeElm, displayElm, groupElm);
@@ -863,7 +864,8 @@ elementsToHide.forEach(element => {
   element.classList.add('hidden'); 
 });
         document.getElementById('provinceTitle').textContent = '';
-        document.getElementById('provinceTotal').innerHTML = '';
+       document.getElementById('provinceTotal').textContent = '';
+		 //document.getElementById('provinceTotal').innerHTML = '';
         return;
       }
  //Set slider maximum
@@ -871,7 +873,8 @@ elementsToHide.forEach(element => {
 const rangeListMax = document.querySelectorAll('.rangelist-max');     	    
    incomeSlider.setAttribute("max", provinceMaxAmount);   
 	rangeListMax.forEach(listmax => {
-      listmax.innerHTML = currencyFormatterChart.format(provinceMaxAmount);      
+     // listmax.innerHTML = currencyFormatterChart.format(provinceMaxAmount);
+	listmax.textContent = currencyFormatterChart.format(provinceMaxAmount);      	
  });        
 
 	    const selectedProvinceFlag  = taxData[selectedProvince].flag_url; 
@@ -959,21 +962,23 @@ previousThreshold = 0;
     const rateRow = document.createElement('tr');
 const rateHeader = document.createElement('th');
   rateHeader.setAttribute('scope', 'row')   
-rateHeader.innerHTML += `${langToggle.dataTaxRate[pagelang]}`;   
+//rateHeader.innerHTML += `${langToggle.dataTaxRate[pagelang]}`;  
+rateHeader.textContent += `${langToggle.dataTaxRate[pagelang]}`;	
  rateRow.appendChild(rateHeader);   
  
     //Create income row and header   
 const incomeRow = document.createElement('tr');
 const incomeHeader = document.createElement('th');
   incomeHeader.setAttribute('scope', 'row')   
-incomeHeader.innerHTML += `${langToggle.dataIncomeRange[pagelang]}`;   
+incomeHeader.innerHTML += `${langToggle.dataIncomeRange[pagelang]}`; 
+	
  incomeRow.appendChild(incomeHeader);      
 
     //Create tax payable row and header    
 const payableRow = document.createElement('tr');
 const payableHeader = document.createElement('th');
   payableHeader.setAttribute('scope', 'row')   
-payableHeader.innerHTML += `${langToggle.dataTaxEstimate[pagelang]}`; 
+payableHeader.innerHTML += `${langToggle.dataTaxEstimate[pagelang]}`;	
 payableRow.appendChild(payableHeader);   
     
     
@@ -1003,7 +1008,8 @@ if (index === 0) {
 // === Rate Cell ===
   const rateCell = document.createElement('td');
 	  rateCell.setAttribute('class', 'tax-rate-cell');  
-  rateCell.innerHTML = `${percentFormatter.format(bracket.rate)}`;
+  //rateCell.innerHTML = `${percentFormatter.format(bracket.rate)}`;
+	rateCell.textContent = `${percentFormatter.format(bracket.rate)}`;  
   rateRow.appendChild(rateCell);
 
       // === Income range Cell (clean up inner HTML) ===
