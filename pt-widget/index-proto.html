@@ -632,7 +632,6 @@ transform: scale(1.5);
 					if (displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA") {
 						displayElm.value = displayText;
 					} else {
-						//displayElm.innerHTML = currencyFormatter.format(displayText);
 						displayElm.textContent = currencyFormatter.format(displayText);
 						updateTooltipPos(inputRangeElm, displayElm, groupElm);
 						window.onresize = function () {
@@ -865,7 +864,6 @@ elementsToHide.forEach(element => {
 });
         document.getElementById('provinceTitle').textContent = '';
        document.getElementById('provinceTotal').textContent = '';
-		 //document.getElementById('provinceTotal').innerHTML = '';
         return;
       }
  //Set slider maximum
@@ -873,7 +871,6 @@ elementsToHide.forEach(element => {
 const rangeListMax = document.querySelectorAll('.rangelist-max');     	    
    incomeSlider.setAttribute("max", provinceMaxAmount);   
 	rangeListMax.forEach(listmax => {
-     // listmax.innerHTML = currencyFormatterChart.format(provinceMaxAmount);
 	listmax.textContent = currencyFormatterChart.format(provinceMaxAmount);      	
  });        
 
@@ -910,16 +907,49 @@ elementsToShow.forEach(element => {
         provincialTaxAmount = updateTable('province', taxData[selectedProvince], income);
  $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");	      
       }
-//Optimize this section
-      const afterTax = income - federalTaxAmount - provincialTaxAmount;
         
-        document.getElementById('preTaxIncomeCal').textContent = `${currencyFormatterChart.format(income)}`;
+    const afterTax = income - federalTaxAmount - provincialTaxAmount;      
+ /**Functions for estimate section**/        
+  function updateCurrency(id, amount) {
+  document.getElementById(id).textContent = currencyFormatterChart.format(amount);
+}
+
+function updatePercentage(id, amount, income) {
+  const percentage = calculatePercentage(amount, income);
+  document.getElementById(id).innerHTML = `${percentage}<sup>%</sup>`;
+}
+
+function updateText(id, text) {
+  document.getElementById(id).textContent = text;
+}
+
+// Currency updates for math calculation
+const currencyUpdates = [
+  { id: 'preTaxIncomeCal', amount: income },
+ { id: 'fedTaxCal', amount: federalTaxAmount },
+  { id: 'provTaxCal', amount: provincialTaxAmount },
+  { id: 'afterTaxIncome', amount: afterTax }
+];
+currencyUpdates.forEach(({ id, amount }) => updateCurrency(id, amount));
+
+// Text updates for math calculation
+const textUpdates = [
+  { id: 'provTaxName', text: selectedProvinceName },
+  { id: 'provTaxNamePC', text: selectedProvinceName }
+];
+textUpdates.forEach(({ id, text }) => updateText(id, text));
+
+// Percentage updates
+const percentageUpdates = [
+  { id: 'totalTaxPC', amount: federalTaxAmount + provincialTaxAmount },
+  { id: 'fedTaxPC', amount: federalTaxAmount },
+  { id: 'provTaxPC', amount: provincialTaxAmount },
+  { id: 'afterTaxPC', amount: afterTax }
+];
+percentageUpdates.forEach(({ id, amount }) => updatePercentage(id, amount, income));       
         
         
-        
-        
-        
-  //For math calculation      
+  /*For math calculation      
          document.getElementById('fedTaxCal').textContent = `${currencyFormatterChart.format(federalTaxAmount)}`;
         document.getElementById('provTaxCal').textContent = `${currencyFormatterChart.format(provincialTaxAmount)}`;
         document.getElementById('provTaxName').textContent = `${selectedProvinceName}`;
@@ -932,14 +962,12 @@ elementsToShow.forEach(element => {
         document.getElementById('fedTaxPC').innerHTML = `${calculatePercentage(federalTaxAmount, income)}<sup>%</sup>`;      
     document.getElementById('provTaxPC').innerHTML = `${calculatePercentage(provincialTaxAmount, income)}<sup>%</sup>`;          
       document.getElementById('afterTaxPC').innerHTML = `${calculatePercentage(afterTax, income)}<sup>%</sup>`;    
-        
+        */
     }
 
 function updateTable(idPrefix, data, income) {
   const headerRow = document.getElementById(`${idPrefix}Header`);
   const tableBody = document.getElementById(`${idPrefix}Body`);
-//const tableRow = tableBody.querySelector('tr');    
-     
   const totalDiv = document.getElementById(`${idPrefix}Total`);
   const minIncome = parseInt(incomeSlider.min);
   const maxIncome = parseInt(incomeSlider.max);
