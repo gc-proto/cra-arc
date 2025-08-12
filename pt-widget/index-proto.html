@@ -472,7 +472,7 @@ transform: scale(1.5);
   </section>
   <hr class="brdr-tp mrgn-tp-xl">
   <section id="errorMsg">
-<p><span class="fas fa-exclamation fa-lg mrgn-rght-sm"></span>Error with loading script</p>
+<p><span class="fas fa-exclamation fa-lg mrgn-rght-sm"></span>Error with loading script, try <a href="?">refreshing page</a>.</p>
   </section>
   <div id="def-preFooter"> </div>
 </div>
@@ -1039,7 +1039,7 @@ if (index === 0) {
 
       // === Income range Cell (clean up inner HTML) ===
       const incomeCell = document.createElement('td');
-       
+          let fillAmount = meterFill();  
     incomeCell.innerHTML += `<div class="range"><div class="nowrap">$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> ${langToggle.dataHiddenTo[pagelang]}</span></div>
         <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}" aria-hidden="true"></meter>
     
