@@ -824,17 +824,19 @@ setupScrollObserver('provinceScroll');
 
     provinceSelect.addEventListener('change', updateTables);
 
-    function populateProvinceDropdown() {
-      for (const region in taxData) {
-        if (region !== 'federal') {
-          const option = document.createElement('option');
-          option.value = region;
-        option.textContent = taxData[region][pagelang];    
-          option.setAttribute("name", taxData[region][pagelang]);
-          provinceSelect.appendChild(option);
-        }
-      }
-    }
+function populateProvinceDropdown() {
+  const regions = Object.keys(taxData)
+    .filter(region => region !== 'federal')
+    .sort((a, b) => taxData[a][pagelang].localeCompare(taxData[b][pagelang], pagelang, { sensitivity: 'base' }));
+  for (const region of regions) {
+    const option = document.createElement('option');
+    option.value = region;
+    option.textContent = taxData[region][pagelang];
+    option.setAttribute("name", taxData[region][pagelang]);
+    provinceSelect.appendChild(option);
+  }
+}
+
 
  
 let previousTaxValues = { federal: [], province: [] };
