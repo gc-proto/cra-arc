@@ -245,17 +245,17 @@ transform: scale(1.5);
 <link href="https://design.canada.ca/css/beta/social-media.css" rel="stylesheet">
 <div>
 
-
+<hgroup id="wb-cont">
 <h1 property="name" id="wb-cont">Learn about progressive tax rates and income brackets</h1>
-
+<p class="gc-byline">Estimate for the tax year 2025</p>
  <div id="stickycontent"> 
 <p>The interactive chart below shows you how tax brackets and progressive tax rates work in Canada and in each province and territory (except Quebec).</p>
     <p><strong><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"></span>This is for educational purposes only:</strong> Do not use this to calculate your actual tax amount.</p>
       <h2>Estimate your tax payable</h2>
     <form>
       <fieldset class="brdr-0">
-        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">1</span></span> <span class="wb-inv">First: </span>Select your province or territory </legend>
-        <p class="mrgn-lft-xl">Provincial and territorial tax rates vary across Canada</p>
+        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">1</span></span> <span class="wb-inv">First: </span>Select a province or territory</legend>
+        <p class="mrgn-lft-xl">Provincial and territorial tax rates vary across Canada.</p>
 	      <div class="row panel-body mrgn-bttm-md mrgn-tp-md">
           <div class="dropdown-container col-md-4">
             <label for="provinceSelect" class="wb-inv">Province or territory</label>
@@ -266,7 +266,7 @@ transform: scale(1.5);
         </div>
       </fieldset>
       <fieldset  id="incomeSliderDesign" class="brdr-0">
-        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second: </span>Enter your amount</legend>
+        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second: </span>Enter an income amount</legend>
 	   <p class="mrgn-lft-xl">Use the slider (increments of $2,000) or the input field to increase or decrease your amount.</p>    
         <div class="top-bar-stick">
          
@@ -280,7 +280,7 @@ transform: scale(1.5);
                 </div>
               </div>
               <div class="col-xs-10 col-sm-4 col-md-3 px-2 btn-toggle-value hidden" id="toggleInputValue">
-		       <label for="incomeInput" class="wb-inv">Input field for dollar amount (spinner increment is $2,000), no cents </label>
+		       <label for="incomeInput" class="wb-inv">Input field for dollar amount (spinner increment is $2,000), no cents</label>
                 <div class="input-group align-self-center pt-3"> <span class="input-group-addon">$</span>
                   <input id="incomeInput" name="incomeAmount" type="number" class="form-control input-lg text-right" value="0" min="0" step="20000" aria-invalid="false" pattern="\d*">
                   <span class="input-group-addon">.00</span> </div>
@@ -336,7 +336,7 @@ transform: scale(1.5);
             </tbody>
           </table>
         </div>
-        <div class="tax-total mrgn-tp-md"><strong>Federal</strong><span id="federalTotal"></span></div>
+        <div class="tax-total mrgn-tp-md"><span id="federalTotal"></span><strong>Federal</strong></div>
 	    <p class="small mrgn-tp-md">This amount does not include any federal credits, benefits or deductions you may be entitled to.</p>  
       </div>
 
@@ -438,18 +438,16 @@ transform: scale(1.5);
         <div class="row">
           <div class="col-xs-12">
             <div class="panel panel-primary panel-body mrgn-tp-lg eqht-trgt brdr-rds-0">
-              <h4 class="h3 mrgn-tp-sm text-primary"> Reduce how much tax your may owe </h4>
-              <p>You may be able to pay less tax, which will increase the amount you keep.</p>
+              <h4 class="h3 mrgn-tp-sm text-primary">Reduce how much tax your may owe</h4>
+              <p>You may be eligible to claim various deductions, credits, and expenses to reduce the amount of tax you owe.</p>
               <details class="mrgn-bttm-lg" role="button">
-                <summary>Examples of claims you may be able to make</summary>
-                <ul>
-                  <li><a href="#">Basic personal amount</a></li>
-                  <li><a href="#">Common credit</a></li>
-                  <li><a href="#">Common benefit</a></li>
-                  <li><a href="#">Common deduction</a></li>
-                </ul>
+                <summary>Example: Basic personal amount</summary>
+               <p>The basic personal amount is a non-refundable tax credit that provides a partial reduction for your income.</p>
+				  <p>It is applied both federally and provincially, or territorially to the first part of your income, within the lowest tax bracket.</p>
+				  <p>If your total taxable income is below the maximum amount, you would not pay any tax.</p>
+				  <p>For more details, refer to <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-30000-basic-personal-amount.html">basic personal amount</a>.</p>
               </details>
-              <p>For ways to reduce how much you owe, refer to <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses.html">claiming deductions, credits, and expenses</a></p>
+              <p>For all deduction types, refer to <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses.html">claiming deductions, credits, and expenses</a>.</p>
             </div>
           </div>
           <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x pr-2"></span><span class="fas fa-long-arrow-alt-down fa-stack-1x pl-3"></span> </span></div>
@@ -761,8 +759,8 @@ const langToggle = {
     fr: "meter bar is at [Fr] :"
 	},  
 	dataTotalEstimate: {
-		en: ": Estimated tax payable",
-		fr: " : Estimated tax payable [Fr]"
+		en: "Estimated tax payable: ",
+		fr: "Estimated tax payable [Fr] : "
 	},
 	dataHiddenTo: {
 		en: "to",
@@ -1073,7 +1071,7 @@ totalDiv.innerHTML = `${langToggle.dataTotalEstimate[pagelang]} <span class="est
     
     const customTotal = document.getElementById("provinceTotal");   
 if (customTotal) {
-    customTotal.innerHTML = `<strong>${selectedProvinceName}</strong>${langToggle.dataTotalEstimate[pagelang]} <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span>`;
+    customTotal.innerHTML = `${langToggle.dataTotalEstimate[pagelang]}<strong>${selectedProvinceName}</strong> <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span>`;
 }
 
     
