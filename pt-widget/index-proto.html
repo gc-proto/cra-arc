@@ -276,8 +276,8 @@ transform: scale(1.5);
               <div class="px-2">
 		<div class="pt-3 hidden-xs"></div>      
                 <div class="btn-group d-flex" id="btnSelect">
-                  <button id="toggleSlider" class="btn btn-lg btn-default btn-primary btn-toggle" aria-pressed="true" type="button">Slider</button>
-                  <button id="toggleInput" class="btn btn-lg btn-default btn-toggle" aria-pressed="false" type="button">Input</button>
+                  <button id="toggleSlider" class="btn btn-lg btn-default btn-primary btn-toggle" aria-pressed="true" type="button"><span class="h4">Slider</span></button>
+                  <button id="toggleInput" class="btn btn-lg btn-default btn-toggle" aria-pressed="false" type="button"><span class="h4">Input</span></button>
                 </div>
               </div>
               <div class="col-xs-10 col-sm-5 col-md-3 px-2 btn-toggle-value hidden" id="toggleInputValue">
@@ -1173,7 +1173,7 @@ myInput.value = 0;
             }); 
          this.classList.add('btn-primary');
         this.setAttribute("aria-pressed", true);
-        const getTargetID = event.target.id;
+        const getTargetID = event.currentTarget.id;
       
        const getTargetValue = document.getElementById(getTargetID +"Value");
         getTargetValue.classList.remove("hidden");
