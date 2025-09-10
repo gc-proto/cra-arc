@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Worker vs. payer questionnaire comparison - PSB Determination</title>
+<title>Housing and Utilities Questionnaire – Employer Compliance Audit (ECA) Review</title>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="noindex, follow" name="robots"/>
 <!-- WET Assets -->
@@ -157,7 +157,7 @@ details {
 <div id="def-top"></div>
 <main class="container" property="mainContentOfPage" role="main">
 <div class="gc-font-2019">
-<h1>Worker vs. payer questionnaire comparison<br/>
+<h1>Housing and Utilities Questionnaire – Employer Compliance Audit (ECA) Review<br/>
 <small>Questionnaire to determine if the worker's corporation was carrying on a personal services business (PSB)</small>
 </h1>
 
@@ -171,3270 +171,2133 @@ details {
   <label for="caseSelector"></label>   <select id="caseSelector"></select>
 </div>
 <hr>
+<div id="summaryContent">
 
+<div id="analysisHeadingContainer" class="row">
+  <div class="col-12">
+    <div id="analysisHeading"></div>
+  <div id="analysisIntro"></div>
+  </div>
+</div>
+
+	
+<div class="row">
+<div class="col-md-8">
+<div id="content"></div>
+</div>
+<div class="col-md-4">
+<div id="probability"></div>
+</div>
+</div></div>
+<script>
+   const sectionMap = {
+   
+   340: "Section 1 - General information",
+    341: "Section 1 - General information",
+    335: "Section 1 - General information",
+    161: "Section 1 - General information",
+   240: "Section 1 - General information",
+   241: "Section 1 - General information",
+   243: "Section 1 - General information",
+   441:  "Section 2 - Business information", 
+   443:  "Section 2 - Business information",  
+    315: "Section 2 - Business information",
+    318: "Section 2 - Business information",
+    319: "Section 2 - Business information",
+    317: "Section 2 - Business information",
+    320: "Section 2 - Business information", 
+    321: "Section 2 - Business information",
+    322: "Section 2 - Business information",
+     323: "Section 2 - Business information",
+    324: "Section 2 - Business information",
+    325: "Section 2 - Business information",
+    326: "Section 2 - Business information", 
+    327: "Section 2 - Business information",
+    328: "Section 2 - Business information",
+    329: "Section 2 - Business information",
+    330: "Section 2 - Business information",
+    331: "Section 2 - Business information", 
+    332: "Section 2 - Business information",
+    333: "Section 2 - Business information",
+    334: "Section 2 - Business information",
+    316: "Section 2 - Business information",
+	
+   
+  339: "Section 2a - Additional business information of the worker",
+    170: "Section 2a - Additional business information of the worker",
+ 356: "Section 2a - Additional business information of the worker",   
+  464: "Section 2a - Additional business information of the worker",      
+  342: "Section 2a - Additional business information of the worker",     
+ 245: "Section 2a - Additional business information of the worker",   
+ 352: "Section 2a - Additional business information of the worker",  
+  465: "Section 2a - Additional business information of the worker",     
+
+       444: "Section 3 - Payee (worker) information",      
+       445: "Section 3 - Payee (worker) information",   
+       446: "Section 3 - Payee (worker) information",   
+       447: "Section 3 - Payee (worker) information",   
+       448: "Section 3 - Payee (worker) information",   
+       449: "Section 3 - Payee (worker) information",   
+       450: "Section 3 - Payee (worker) information",   
+       451: "Section 3 - Payee (worker) information",   
+       452: "Section 3 - Payee (worker) information",   
+
+     314: "Section 3 - Payers (clients) information",   
+
+ 350: "Section 4 - Contract or agreement information", 	   
+ 236: "Section 4 - Contract or agreement information",    
+ 207: "Section 4 - Contract or agreement information",    
+ 206: "Section 4 - Contract or agreement information",   
+ 351: "Section 4 - Contract or agreement information",   
+ 379: "Section 4 - Contract or agreement information",  
+ 347: "Section 4 - Contract or agreement information", 
+ 348: "Section 4 - Contract or agreement information", 
+ 382: "Section 4 - Contract or agreement information", 
+ 423: "Section 4 - Contract or agreement information", 
+ 349: "Section 4 - Contract or agreement information", 
+    
+189: "Section 5 - Working relationship information",         
+389: "Section 5 - Working relationship information",
+390: "Section 5 - Working relationship information", 	
+391: "Section 5 - Working relationship information",    
+    
+ 192: "Section 5a - Control - Duties (1 of 8)", 
+ 383: "Section 5a - Control - Duties (1 of 8)",
+ 424: "Section 5a - Control - Duties (1 of 8)",  	   
+ 258: "Section 5a - Control - Duties (1 of 8)",  
+ 257: "Section 5a - Control - Duties (1 of 8)",   
+ 491: "Section 5a - Control - Duties (1 of 8)", 
+ 492: "Section 5a - Control - Duties (1 of 8)",  
+ 479: "Section 5a - Control - Duties (1 of 8)",  	   
+
+     259: "Section 5a - Control - Work schedule (2 of 8)", 
+   261: "Section 5a - Control - Work schedule (2 of 8)",   
+     262: "Section 5a - Control - Work schedule (2 of 8)",   
+      263: "Section 5a - Control - Work schedule (2 of 8)",   
+      264: "Section 5a - Control - Work schedule (2 of 8)",   
+      265: "Section 5a - Control - Work schedule (2 of 8)",   
+
+     191: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+     267: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+     268: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+     312: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+     504: "Section 5a - Control - Degree of autonomy (3 of 8)", 	   
+   513: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+    494: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+    496: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+    497: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+    499: "Section 5a - Control - Degree of autonomy (3 of 8)",   
+    
+    297: "Section 5a - Control - Remuneration (4 of 8)",  
+    298: "Section 5a - Control - Remuneration (4 of 8)",  
+     299: "Section 5a - Control - Remuneration (4 of 8)",  
+     271: "Section 5a - Control - Remuneration (4 of 8)",  
+     300: "Section 5a - Control - Remuneration (4 of 8)",  
+     385: "Section 5a - Control - Remuneration (4 of 8)",  
+     301: "Section 5a - Control - Remuneration (4 of 8)",  
+    270: "Section 5a - Control - Remuneration (4 of 8)",
+     302: "Section 5a - Control - Remuneration (4 of 8)",
+    303: "Section 5a - Control - Remuneration (4 of 8)",
+    304: "Section 5a - Control - Remuneration (4 of 8)",
+    306: "Section 5a - Control - Remuneration (4 of 8)",
+    386: "Section 5a - Control - Remuneration (4 of 8)",
+
+  195: "Section 5a - Control - Location of services (5 of 8)", 	   
+  466: "Section 5a - Control - Location of services (5 of 8)", 	   
+  296: "Section 5a - Control - Location of services (5 of 8)",    
+  426: "Section 5a - Control - Location of services (5 of 8)", 	   
+  505: "Section 5a - Control - Location of services (5 of 8)", 
+  480: "Section 5a - Control - Location of services (5 of 8)", 
+	
+     274: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       275: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       428: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       276: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+       388: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+     429: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 
+ 506: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 	   
+ 481: "Section 5a - Control - Right to exercise punitive action and or terminate the relationship (6 of 8)", 	       
+
+      278: "Section 5a - Control - How the work is done (7 of 8)",
+	   
+          280: "Section 5a - Control - How the work is done (7 of 8)",
+         309: "Section 5a - Control - How the work is done (7 of 8)",
+          310: "Section 5a - Control - How the work is done (7 of 8)",
+      311: "Section 5a - Control - How the work is done (7 of 8)",
+    459: "Section 5a - Control - How the work is done (7 of 8)",
+  507: "Section 5a - Control - How the work is done (7 of 8)",
+   	   484: "Section 5a - Control - How the work is done (7 of 8)",
+	    485: "Section 5a - Control - How the work is done (7 of 8)",
+
+      198: "Section 5a - Control - Training (8 of 8)", 
+          281: "Section 5a - Control - Training (8 of 8)", 
+          282: "Section 5a - Control - Training (8 of 8)", 
+          283: "Section 5a - Control - Training (8 of 8)", 
+
+    
+ 290: "Section 5b - Ownership of tools or equipment", 
+ 208: "Section 5b - Ownership of tools or equipment", 
+ 210: "Section 5b - Ownership of tools or equipment",  
+ 284: "Section 5b - Ownership of tools or equipment",  
+ 285: "Section 5b - Ownership of tools or equipment", 
+ 286: "Section 5b - Ownership of tools or equipment",  
+482: "Section 5b - Ownership of tools or equipment",  
+   471: "Section 5b - Ownership of tools or equipment",  
+ 473: "Section 5b - Ownership of tools or equipment",  
+   474: "Section 5b - Ownership of tools or equipment",  
+    475: "Section 5b - Ownership of tools or equipment",  
+    476: "Section 5b - Ownership of tools or equipment",  
+    477: "Section 5b - Ownership of tools or equipment",  
+	
+
+     430: "Section 5c - Financial information",  
+     211: "Section 5c - Financial information",  
+     214: "Section 5c - Financial information",  
+     216: "Section 5c - Financial information",  
+     218: "Section 5c - Financial information",  
+      219: "Section 5c - Financial information",  
+     233: "Section 5c - Financial information",  
+    234: "Section 5c - Financial information",  
+	    490: "Section 5c - Financial information", 	   
+	    495: "Section 5c - Financial information", 
+	    500: "Section 5c - Financial information", 
+	    478: "Section 5c - Financial information", 
+	    486: "Section 5c - Financial information", 
+	    487: "Section 5c - Financial information", 
+   
+   431: "Section 5a - Carrying out the work",   
+   397: "Section 5a - Carrying out the work", 
+   468: "Section 5a - Carrying out the work", 	   
+     398: "Section 5a - Carrying out the work", 
+     433: "Section 5a - Carrying out the work", 
+     399: "Section 5a - Carrying out the work", 
+     432: "Section 5a - Carrying out the work", 
+     393: "Section 5a - Carrying out the work", 
+     394: "Section 5a - Carrying out the work", 
+ 508: "Section 5a - Carrying out the work", 	   
+	   510: "Section 5a - Carrying out the work", 
+	     511: "Section 5a - Carrying out the work", 
+     
+
+     400: "Section 5b - Remuneration",   
+    402: "Section 5b - Remuneration", 
+    403: "Section 5b - Remuneration", 
+      404: "Section 5b - Remuneration", 
+      435: "Section 5b - Remuneration", 
+      405: "Section 5b - Remuneration", 
+      406: "Section 5b - Remuneration", 
+      407: "Section 5b - Remuneration", 
+      408: "Section 5b - Remuneration", 
+      410: "Section 5b - Remuneration", 
+      436: "Section 5b - Remuneration", 
+      411: "Section 5b - Remuneration", 
+
+     
+     412: "Section 5c - Relationship of subordination", 
+     413: "Section 5c - Relationship of subordination",  
+    414: "Section 5c - Relationship of subordination",  
+    415: "Section 5c - Relationship of subordination",  
+    416: "Section 5c - Relationship of subordination",  
+ 532: "Section 5c - Relationship of subordination",  	   
+    417: "Section 5c - Relationship of subordination", 
+ 533: "Section 5c - Relationship of subordination",  
+ 534: "Section 5c - Relationship of subordination",  	   
+    418: "Section 5c - Relationship of subordination",  
+    419: "Section 5c - Relationship of subordination",  
+    420: "Section 5c - Relationship of subordination",  
+    421: "Section 5c - Relationship of subordination",  
+   422: "Section 5c - Relationship of subordination",  
+   438: "Section 5c - Relationship of subordination",  
+   439: "Section 5c - Relationship of subordination",   
+   460: "Section 5c - Relationship of subordination",  
+   509: "Section 5c - Relationship of subordination",  
+	   512: "Section 5c - Relationship of subordination",  
+	   493: "Section 5c - Relationship of subordination",  
+	   517: "Section 5c - Relationship of subordination",  
+	   514: "Section 5c - Relationship of subordination",  
+	   515: "Section 5c - Relationship of subordination",  
+	   516: "Section 5c - Relationship of subordination",  
+	   527: "Section 5c - Relationship of subordination",  
+	   528: "Section 5c - Relationship of subordination",  
+	   529: "Section 5c - Relationship of subordination",  
+	   520: "Section 5c - Relationship of subordination",  
+	   521: "Section 5c - Relationship of subordination",  
+	   522: "Section 5c - Relationship of subordination",  
+	   523: "Section 5c - Relationship of subordination",  
+	   524: "Section 5c - Relationship of subordination",  
+	    526: "Section 5c - Relationship of subordination", 
+	    518: "Section 5c - Relationship of subordination", 
+	    519: "Section 5c - Relationship of subordination", 
+	    525: "Section 5c - Relationship of subordination", 
+	    530: "Section 5c - Relationship of subordination", 
+	   531: "Section 5c - Relationship of subordination", 
+
+ 360: "Section 6 - Certification", 
+ 363: "Section 6 - Certification", 
+  376: "Section 6 - Certification", 
+     364: "Section 6 - Certification", 
+     366: "Section 6 - Certification", 
+     373: "Section 6 - Certification", 
+    375: "Section 6 - Certification", 
+ 362: "Section 6 - Certification" 
+
+   // Add more mappings as needed
+ };
+
+
+
+const excludedSections = new Set([
+  "section 1 - general information",
+  "section 2 - business information",	
+  "section 2a - additional business information of the worker",
+  "section 3 - payee (worker) information",
+  "section 3 - payers (clients) information",
+  "section 4 - contract or agreement information",	
+ "section 5 - working relationship information", 	
+  "section 6 - certification"
+]);
+
+const sectionQuestionExclusions = {
+
+// trying to remove this as it is not working
+};
+	
+let workerData = null;
+let payerData = null;
+
+
+function handleSmartJsonUpload(file) {
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const jsonData = JSON.parse(e.target.result);
+     
+	workerCases = new Map();
+	payerCases = new Map();
+
+
+      jsonData.forEach(entry => {
+        const q441 = entry.answers.find(a => a.questionId === 441);
+        const caseAns = entry.answers.find(a => a.questionId === 341);
+        const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
+
+        if (q441 && q441.answer.includes("Worker whose corporation")) {
+          workerCases.set(caseNumber, entry);
+        } else if (q441 && q441.answer.includes("Payer who made payments")) {
+          payerCases.set(caseNumber, entry);
+        }
+      });
+
+      const workerKeys = [...workerCases.keys()];
+      const payerKeys = [...payerCases.keys()];
+      const allKeys = [...new Set([...workerKeys, ...payerKeys])];
+
+
+if (workerKeys.length > 0 || payerKeys.length > 0) {
+  handleCaseSelection(workerCases, payerCases);
+} else {
+  alert("Could not determine if the file is for a worker or payer.");
+}
+
+
+    } catch (err) {
+      alert("Invalid JSON file.");
+    }
+  };
+  reader.readAsText(file);
+}
+
+
+
+function tryRenderBoth() {
+  if (!workerData && !payerData) return;
+
+  const workerCases = workerData ? extractCaseNumbers(workerData) : new Map();
+  const payerCases = payerData ? extractCaseNumbers(payerData) : new Map();
+
+  handleCaseSelection(workerCases, payerCases);
+}
+
+function extractCaseNumbers(data) {
+  const cases = new Map(); // Map of caseNumber -> entry
+  data.forEach(entry => {
+    const caseAns = entry.answers.find(a => a.questionId === 341);
+    if (caseAns && caseAns.answer) {
+      cases.set(caseAns.answer.trim(), entry);
+    }
+  });
+  return cases;
+}
+
+function updateCaseSelector(caseNumbers) {
+  console.log("Updating dropdown with cases:", caseNumbers);
+  const dropdown = document.getElementById("caseSelector");
+  dropdown.innerHTML = "";
+
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Make your selection...";
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  dropdown.appendChild(defaultOption);
+
+  caseNumbers.forEach(cn => {
+    const option = document.createElement("option");
+    option.value = cn;
+
+    let label = cn;
+    const hasWorker = workerCases.has(cn);
+    const hasPayer = payerCases.has(cn);
+
+    if (hasWorker && hasPayer) label += " (W/P)";
+    else if (hasWorker) label += " (W)";
+    else if (hasPayer) label += " (P)";
+
+    const entry = workerCases.get(cn) || payerCases.get(cn);
+    const nameAnswer = entry?.answers.find(a => a.questionId === 241);
+    const idAnswer = entry?.answers.find(a => a.questionId === 243);
+    const name = nameAnswer ? nameAnswer.answer : "";
+    const id = idAnswer ? idAnswer.answer : "";
+
+    if (name || id) {
+      label += ` - ${[id, name].filter(Boolean).join(" ")}`;
+    }
+
+    option.textContent = label;
+    dropdown.appendChild(option);
+  });
+
+  document.getElementById("caseSelectorContainer").style.setProperty("display", "block", "important");
+
+  // Select and trigger change only if one case
+  if (caseNumbers.length === 1) {
+    dropdown.selectedIndex = 1;
+    dropdown.dispatchEvent(new Event("change"));
+  }
+}
+
+function handleCaseSelection(workerCases, payerCases) {
+  const workerKeys = [...workerCases.keys()];
+  const payerKeys = [...payerCases.keys()];
+  const allKeys = [...new Set([...workerKeys, ...payerKeys])];
+  const matching = workerKeys.filter(k => payerCases.has(k));
+
+  const dropdown = document.getElementById("caseSelector");
+
+  // ✅ Set the event handler BEFORE any selection logic
+  dropdown.onchange = () => {
+    if (dropdown.value) {
+      renderSelectedCase(workerCases, payerCases, dropdown.value);
+      document.getElementById("step2").style.display = "block";
+    }
+  };
+
+  // ✅ Multiple matching cases
+ if (allKeys.length > 1) {
+  updateCaseSelector(allKeys);
+}
+
+
+  // ✅ Exactly one matching case
+  else if (matching.length === 1) {
+    document.getElementById("caseSelectorContainer").style.display = "none";
+    renderSelectedCase(workerCases, payerCases, matching[0]);
+  }
+
+  // ✅ Only one case total (worker or payer)
+  else if (allKeys.length === 1) {
+    console.log("Only one case found, showing dropdown.");
+    updateCaseSelector(allKeys);
+
+    setTimeout(() => {
+      const dropdown = document.getElementById("caseSelector");
+      if (!dropdown) {
+        console.error("Dropdown not found!");
+        return;
+      }
+
+      console.log("Dropdown options:", [...dropdown.options].map(opt => opt.textContent));
+      dropdown.value = allKeys[0]; // Select by value
+      dropdown.dispatchEvent(new Event("change"));
+    }, 50);
+  }
+
+  // ✅ Multiple cases but no match — show all
+  else if (allKeys.length > 1) {
+    updateCaseSelector(allKeys);
+  }
+}
+
+
+function renderSelectedCase(workerCases, payerCases, caseNumber) {
+  const container = document.getElementById("content");
+  container.innerHTML = "";
+
+  const workerEntry = workerCases.get(caseNumber);
+  const payerEntry = payerCases.get(caseNumber);
+
+  if (workerEntry && payerEntry) {
+    container.appendChild(renderJSON([workerEntry], [payerEntry]));
+    renderProbabilityScore([workerEntry], [payerEntry]);
+  } else if (workerEntry) {
+    container.appendChild(renderJSON([workerEntry], []));
+    renderProbabilityScore([workerEntry], []);
+  } else if (payerEntry) {
+    container.appendChild(renderJSON([], [payerEntry]));
+    renderProbabilityScore([], [payerEntry]);
+  }
+}
+
+	
+function renderJSON(workerData, payerData) {
+  const showWorker = workerData.length > 0;
+  const showPayer = payerData.length > 0;
+
+   const sectioned = {};
+
+   function addToSection(ans, isPayer = false) {
+    const section = sectionMap[ans.questionId] || "Other";
+    if (!sectioned[section]) sectioned[section] = {};
+    if (!sectioned[section][ans.questionEn]) {
+      sectioned[section][ans.questionEn] = {
+        worker: "", payer: "", rawWorker: "", rawPayer: ""
+      };
+    }
+    const formatted = formatAnswer(ans.answer);
+    
+const raw = typeof ans.answer === 'string' ? normalizeAnswer(ans.answer) : JSON.stringify(ans.answer);
+  
+    if (isPayer) {
+      sectioned[section][ans.questionEn].payer = formatted;
+      sectioned[section][ans.questionEn].rawPayer = raw;
+    } else {
+      sectioned[section][ans.questionEn].worker = formatted;
+      sectioned[section][ans.questionEn].rawWorker = raw;
+    }
+  }
+
+function formatAnswer(answer) {
+  if (Array.isArray(answer)) {
+    return answer.map((group, index) => {
+      const table = document.createElement("table");
+      table.innerHTML = `<thead><tr><th colspan="2">User entry #${index + 1}</th></tr><tr><th>Question</th><th>Answer</th></tr></thead>`;
+      const tbody = document.createElement("tbody");
+
+      group.forEach(sub => {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${sub.questionEn}</td><td>${sub.answer}</td>`;
+        tbody.appendChild(row);
+      });
+
+      table.appendChild(tbody);
+      return table.outerHTML;
+    }).join("<br><br>");
+  }
+
+  return answer || "";
+}
+
+	 const skipMismatchHighlighting = [
+  "Section 1 - General information",
+  "Section 2 - Business information",
+  "Section 2a - Additional business information of the worker",
+  "Section 3 - Payee (worker) information",
+  "Section 3 - Payers (clients) information",
+  "Section 6 - Certification"
+      
+];
+
+ 
+
+  workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
+  payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
+  const container = document.createElement('div');
+
+for (const [section, questions] of Object.entries(sectioned)) {
+  const table = document.createElement('table');
+
+let showWorker = workerData.length > 0;
+let showPayer = payerData.length > 0;
+
+// Special rules for column visibility
+if (section === "Section 1 - General information" && showWorker && showPayer) {
+  showPayer = false;
+}
+if (section === "Section 2a - Additional business information of the worker" && showWorker && showPayer) {
+  showPayer = false;
+}
+if (section === "Section 3 - Payers (clients) information" && showWorker && showPayer) {
+  showPayer = false;
+}
+if (section === "Section 3 - Payee (worker) information" && showWorker && showPayer) {
+  showWorker = false;
+}
+
+
+   if (!showWorker && !showPayer) continue;
+
+let theadHTML = '<thead><tr><th>Question</th>';
+if (showWorker) {
+ const label = (section === "Section 1 - General information" && workerData.length > 0 && payerData.length > 0) ? "Answer" : "Worker";
+
+  theadHTML += `<th>${label}</th>`;
+}
+if (showPayer) theadHTML += '<th>Payer</th>';
+theadHTML += '</tr></thead>';
+
+
+	
+  table.innerHTML = theadHTML;
+
+  const tbody = document.createElement('tbody');
+  let rowCount = 0;
+
+  for (const [question, data] of Object.entries(questions)) {
+    const { worker, payer, rawWorker, rawPayer } = data;
+    if (!worker && !payer) continue;
+
+    const isMismatch = !skipMismatchHighlighting.includes(section) &&
+      rawWorker && rawPayer && rawWorker !== rawPayer;
+
+const isExcluded = excludedSections.has(normalize(section));
+
+	  
+    const row = document.createElement('tr');
+    let rowHTML = `<td>${question}</td>`;
+  if (showWorker) {
+const workerIcon = isExcluded ? '' : getScoreIcon(
+  Object.keys(sectionMap).find(id =>
+    sectionMap[id] === section &&
+    workerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))
+  ),
+  data.rawWorker
+);
+rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
+<div class="td-wrapper">
+  <div style="margin-bottom: 1.5em;">${worker}</div>
+  ${workerIcon}
+</div>
+</td>`;
+
+}
+
+if (showPayer) {
+  const payerIcon = isExcluded ? '' : getScoreIcon(
+  Object.keys(sectionMap).find(id =>
+    sectionMap[id] === section &&
+    payerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))
+  ),
+  data.rawPayer
+);
+
+rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
+ <div class="td-wrapper">
+  <div style="margin-bottom: 1.5em;">${payer}</div>
+  ${payerIcon}
+</div>
+</td>`;
+
+
+}
+
+    row.innerHTML = rowHTML;
+    tbody.appendChild(row);
+    rowCount++;
+  }
+
+  if (rowCount > 0) {
+    const shouldCollapse = [
+      "Section 2 - Business information",
+      "Section 2a - Additional business information of the worker",
+      "Section 3 - Payee (worker) information",
+      "Section 3 - Payers (clients) information",
+      "Section 6 - Certification"
+    ].includes(section);
+
+    if (shouldCollapse) {
+   const details = document.createElement('details');
+// details.setAttribute('open', ''); // Collapse by default
+   const summary = document.createElement('summary');
+      summary.textContent = section;
+      details.appendChild(summary);
+      table.appendChild(tbody);
+      details.appendChild(table);
+      container.appendChild(details);
+    } else {
+      const sectionHeader = document.createElement('h3');
+      sectionHeader.textContent = section;
+      container.appendChild(sectionHeader);
+      table.appendChild(tbody);
+      container.appendChild(table);
+    }
+  }
+}
+
+
+
+  return container;
+}
+
+function normalize(section) {
+  return (section || "")
+   .trim()
+.toLowerCase()
+.replace(/[’‘]/g, "'")
+.replace(/[\u2013\u2014\u2012\u2010]/g, '-')
+.replace(/\s+/g, ' ')
+.replace(/[^a-z0-9\s'/-]/g, ''); // strip unexpected punctuation
+}
+
+</script>
+<!-- Probability bar container -->
+<div id="probability" style="margin-top: 2em;"></div>
+<!-- WET PreFooter -->
 </div></main>
 
-{
-  "groups": {
-    "end": {
-      "name": "End",
-      "titleEn": "Confirmation page",
-      "titleFr": "Confirmation page",
-      "elements": []
-    },
-    "start": {
-      "name": "Start",
-      "titleEn": "Start page",
-      "titleFr": "Start page",
-      "autoFlow": true,
-      "elements": [],
-      "nextAction": "b912e7f0-ebbe-4a22-bd7e-dde48148040e"
-    },
-    "review": {
-      "name": "Review",
-      "titleEn": "End (Review page and Confirmation)",
-      "titleFr": "End (Review page and Confirmation)",
-      "autoFlow": true,
-      "elements": [],
-      "nextAction": "end"
-    },
-    "0790b343-ffef-4b8e-89b1-94a27a235c32": {
-      "name": "Section 4 - Other benefit information related to the housing or utilities",
-      "titleEn": "Section 4 - Other benefit information related to the housing or utilities",
-      "titleFr": "Section 4 – Autres renseignements sur les avantages liés au logement ou aux services publics",
-      "autoFlow": true,
-      "elements": [
-        "102",
-        "82",
-        "131"
-      ],
-      "nextAction": "2337075e-abbf-49ee-9501-f8b0d7fe1061"
-    },
-    "2337075e-abbf-49ee-9501-f8b0d7fe1061": {
-      "name": "Section 5 - Certification",
-      "titleEn": "Section 5 - Certification",
-      "titleFr": "Section 5 - Attestation",
-      "autoFlow": true,
-      "elements": [
-        "119",
-        "19",
-        "20",
-        "22",
-        "24",
-        "26",
-        "28",
-        "29"
-      ],
-      "nextAction": "review"
-    },
-    "269c723c-28bf-42a2-bfb1-b7c9f03272ec": {
-      "name": "3d (1) - Special situations",
-      "titleEn": "3d (1) - Special situations",
-      "titleFr": "3d (1) – Situations particulières",
-      "autoFlow": true,
-      "elements": [
-        "72",
-        "73",
-        "103",
-        "80",
-        "81"
-      ],
-      "nextAction": "557ab3a3-6056-4514-b9d0-beb78afaf6d1"
-    },
-    "3d304b3c-0ff8-4679-a7c9-b265304ba09d": {
-      "name": "3f (1) - Additional housing and utilities benefit information",
-      "titleEn": "3f (1) - Additional housing and utilities benefit information",
-      "titleFr": "3f (1)  - Renseignements supplémentaire sur l'avantage lié au logement et aux services publics",
-      "autoFlow": false,
-      "elements": [
-        "127",
-        "117"
-      ],
-      "nextAction": [
-        {
-          "groupId": "9c6a4ab6-81af-47dc-8af0-4dc3e92e9033",
-          "choiceId": "117.0"
-        },
-        {
-          "groupId": "0790b343-ffef-4b8e-89b1-94a27a235c32",
-          "choiceId": "117.1"
-        }
-      ]
-    },
-    "43e236fe-c6c5-4472-9b6d-1fac0947a402": {
-      "name": "3a (2) - Fair market value (FMV) of the housing benefit",
-      "titleEn": "3a (2) - Fair market value (FMV) of the housing benefit",
-      "titleFr": "3a (2) – Juste valeur marchande (JVM) de l’avantage relatif au logement ",
-      "autoFlow": true,
-      "elements": [
-        "125"
-      ],
-      "nextAction": "a5f8b8fd-78c2-4656-a2d2-6eb9b311ef2e"
-    },
-    "557ab3a3-6056-4514-b9d0-beb78afaf6d1": {
-      "name": "3e (1) - Utilities provided with the housing benefit",
-      "titleEn": "3e (1) - Utilities provided with the housing benefit",
-      "titleFr": "3e (1) – Renseignements sur les avantages liés aux services publics",
-      "autoFlow": true,
-      "elements": [
-        "101",
-        "132",
-        "133"
-      ],
-      "nextAction": "3d304b3c-0ff8-4679-a7c9-b265304ba09d"
-    },
-    "69dd22d4-fa3e-44b8-86f4-d3ec3efe1995": {
-      "name": "3c (1) - Reduction to the value of the housing benefit",
-      "titleEn": "3c (1) - Reduction to the value of the housing benefit",
-      "titleFr": "3c (1) – Réduction de la valeur de l’avantage lié au logement",
-      "autoFlow": true,
-      "elements": [
-        "104",
-        "78",
-        "134"
-      ],
-      "nextAction": "269c723c-28bf-42a2-bfb1-b7c9f03272ec"
-    },
-    "7af1e6bc-dd44-4ef7-802c-1aee0937955d": {
-      "name": "Section 2 - Employee or shareholder information",
-      "titleEn": "Section 2 - Employee or shareholder information",
-      "titleFr": "Section 2 – Renseignements sur l’employé ou l’actionnaire",
-      "autoFlow": true,
-      "elements": [
-        "39",
-        "40",
-        "2",
-        "4",
-        "6",
-        "5",
-        "121",
-        "8",
-        "106",
-        "12",
-        "107",
-        "14",
-        "15"
-      ],
-      "nextAction": "b9274d89-8aaa-4cbe-bce1-be67067427ce"
-    },
-    "9c6a4ab6-81af-47dc-8af0-4dc3e92e9033": {
-      "name": "Section 3 (2) - Housing and utilities benefit information",
-      "titleEn": "Section 3 (2) - Housing and utilities benefit information",
-      "titleFr": "Section 3 (2) – Renseignements sur les avantages liés au logement",
-      "autoFlow": true,
-      "elements": [
-        "124"
-      ],
-      "nextAction": "43e236fe-c6c5-4472-9b6d-1fac0947a402"
-    },
-    "9cfd245c-bc9e-4e89-a2c8-27d2b2f76ddd": {
-      "name": "3a (1) - Fair market value (FMV) of the housing benefit",
-      "titleEn": "3a (1) - Fair market value (FMV) of the housing benefit",
-      "titleFr": "3a (1) – Juste valeur marchande (JVM) de l’avantage lié au logement",
-      "autoFlow": true,
-      "elements": [
-        "63",
-        "64",
-        "129"
-      ],
-      "nextAction": "cc3f8afd-778b-489c-a538-9114041059a6"
-    },
-    "a5f8b8fd-78c2-4656-a2d2-6eb9b311ef2e": {
-      "name": "3f (2) - Additional housing and utilities benefit information",
-      "titleEn": "3f (2) - Additional housing and utilities benefit information",
-      "titleFr": "3f (2)  - Renseignements supplémentaire sur l'avantage lié au logement et aux services publics",
-      "autoFlow": false,
-      "elements": [
-        "123",
-        "122"
-      ],
-      "nextAction": "0790b343-ffef-4b8e-89b1-94a27a235c32"
-    },
-    "b912e7f0-ebbe-4a22-bd7e-dde48148040e": {
-      "name": "Section 1 - Information about this audit",
-      "titleEn": "Section 1 - Information about this audit",
-      "titleFr": "Section 1 - Renseignements concernant cette vérification",
-      "autoFlow": true,
-      "elements": [
-        "30",
-        "31",
-        "38",
-        "32"
-      ],
-      "nextAction": "7af1e6bc-dd44-4ef7-802c-1aee0937955d"
-    },
-    "b9274d89-8aaa-4cbe-bce1-be67067427ce": {
-      "name": "Section 3 (1) - Housing and utilities benefit information",
-      "titleEn": "Section 3 (1) - Housing and utilities benefit information",
-      "titleFr": " Section 3 (1) – Renseignements sur les avantages liés au logement et aux services publics",
-      "autoFlow": true,
-      "elements": [
-        "16",
-        "55",
-        "47",
-        "48",
-        "50",
-        "51",
-        "52",
-        "56",
-        "54",
-        "57",
-        "58",
-        "59",
-        "60",
-        "61",
-        "62"
-      ],
-      "nextAction": "9cfd245c-bc9e-4e89-a2c8-27d2b2f76ddd"
-    },
-    "cc3f8afd-778b-489c-a538-9114041059a6": {
-      "name": "3b (1) - Use and availability of the housing",
-      "titleEn": "3b (1) - Use and availability of the housing",
-      "titleFr": "3b (1) – Utilisation et disponibilité du logement",
-      "autoFlow": true,
-      "elements": [
-        "67",
-        "68",
-        "135",
-        "105",
-        "74",
-        "137",
-        "76",
-        "138"
-      ],
-      "nextAction": "69dd22d4-fa3e-44b8-86f4-d3ec3efe1995"
-    }
-  },
-  "layout": [
-    30,
-    31,
-    38,
-    32,
-    39,
-    40,
-    2,
-    4,
-    6,
-    5,
-    121,
-    8,
-    106,
-    12,
-    107,
-    14,
-    15,
-    16,
-    55,
-    47,
-    48,
-    50,
-    51,
-    52,
-    56,
-    54,
-    57,
-    58,
-    59,
-    60,
-    61,
-    62,
-    63,
-    64,
-    129,
-    67,
-    68,
-    135,
-    105,
-    74,
-    137,
-    76,
-    138,
-    104,
-    78,
-    134,
-    72,
-    73,
-    103,
-    80,
-    81,
-    101,
-    132,
-    133,
-    127,
-    117,
-    124,
-    125,
-    123,
-    122,
-    102,
-    82,
-    131,
-    119,
-    19,
-    20,
-    22,
-    24,
-    26,
-    28,
-    29
-  ],
-  "titleEn": "Housing and utilities questionnaire –  Employer Compliance Audit (ECA) review",
-  "titleFr": "Questionnaire sur le logement et les services publics – Vérification de la conformité de l’employeur (VCE)",
-  "elements": [
-    {
-      "id": 127,
-      "type": "richText",
-      "uuid": "26ca26aa-fc37-4ddb-a23d-264614e88d2d",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "If you provided **more than one housing benefit** during the year for this employee or shareholder, you need to complete section 3 multiple times, once for each benefit.",
-        "descriptionFr": "Si vous avez fourni **plus d’un avantage lié au logement** au cours de l’année pour cet employé ou cet actionnaire, vous devez remplir la section 3 plusieurs fois, une fois pour chaque avantage.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 132,
-      "type": "radio",
-      "uuid": "e1c37350-94f8-4005-a87f-f04f1729e238",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes",
-            "fr": "Oui"
-          },
-          {
-            "en": "No",
-            "fr": "Non"
-          }
-        ],
-        "titleEn": "Did you pay for or provide any utilities with the housing benefit to your employee or shareholder?",
-        "titleFr": "Avez-vous payé ou fourni des services publics avec l’avantage relatif au logement à votre employé ou actionnaire?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 135,
-      "type": "dynamicRow",
-      "uuid": "7db7b3ad-d1d4-44aa-909b-a696fccfc125",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Provide details about the use for each calendar year during the audit period",
-        "titleFr": "Fournissez des détails sur la façon dont le logement a été utilisé pour chaque année civile pendant la période de vérification",
-        "dynamicRow": {
-          "rowTitleEn": "Calendar year",
-          "rowTitleFr": "Année civile",
-          "addButtonTextEn": "+ Add another calendar year",
-          "addButtonTextFr": "+ Ajouter une autre année civile",
-          "removeButtonTextEn": "- Remove the calendar year",
-          "removeButtonTextFr": "- Supprimer l'année civile"
-        },
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [
-          {
-            "id": 13501,
-            "type": "radio",
-            "uuid": "39c36b77-6927-45f3-927b-3dd796dfc34c",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "2024",
-                  "fr": "2024"
-                },
-                {
-                  "en": "2023",
-                  "fr": "2023"
-                },
-                {
-                  "en": "2022",
-                  "fr": "2022"
-                }
-              ],
-              "titleEn": "Calendar year",
-              "titleFr": "Année civile",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13502,
-            "type": "textField",
-            "uuid": "fbfc0d9a-bf26-479e-b0b1-392b15b9184b",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Provide the business-related purposes percentage use",
-              "titleFr": "Indiquez le pourcentage d'utilisation du logement à des fins professionnelles",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter the percentage of use. Do not enter the % sign, commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Inscrivez le pourcentage d'utilisation. N’utilisez pas le symbole du pourcentage (%), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13503,
-            "type": "textArea",
-            "uuid": "7625cb75-e663-45a1-a552-71e0958b976b",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Provide details on how the housing was used for business-related purposes",
-              "titleFr": "Fournissez des détails sur la façon dont le logement a été utilisé à des fins professionnelles",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          }
-        ],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "maxNumberOfRows": 50,
-        "conditionalRules": [
-          {
-            "choiceId": "68.0"
-          }
-        ]
-      }
-    },
-    {
-      "id": 134,
-      "type": "dynamicRow",
-      "uuid": "02e1fe68-5139-4681-8d45-854fa5e533ca",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Provide details about the reduction for each calendar year during the audit period",
-        "titleFr": "Fournissez des détails concernant la réduction pour chaque année civile pendant la période de vérification",
-        "dynamicRow": {
-          "rowTitleEn": "Calendar year",
-          "rowTitleFr": "Année civile",
-          "addButtonTextEn": "+ Add another calendar year",
-          "addButtonTextFr": "+ Ajouter une autre année civile",
-          "removeButtonTextEn": "- Remove the calendar year",
-          "removeButtonTextFr": "- Supprimer l'année civile"
-        },
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [
-          {
-            "id": 13401,
-            "type": "radio",
-            "uuid": "a6eb28e3-1704-4a40-9cb7-faa0e9b00641",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "2024",
-                  "fr": "2024"
-                },
-                {
-                  "en": "2023",
-                  "fr": "2023"
-                },
-                {
-                  "en": "2022",
-                  "fr": "2022"
-                }
-              ],
-              "titleEn": "Calendar year",
-              "titleFr": "Année civile",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13402,
-            "type": "textArea",
-            "uuid": "a2f5258e-389d-43df-a8de-bd6707660635",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Provide details on why the value was reduced and how you calculated the reduction",
-              "titleFr": "Fournissez des détails expliquant pourquoi la valeur a été réduite et comment vous avez calculé cette réduction",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          }
-        ],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "maxNumberOfRows": 50,
-        "conditionalRules": [
-          {
-            "choiceId": "78.0"
-          },
-          {
-            "choiceId": "78.1"
-          },
-          {
-            "choiceId": "78.2"
-          }
-        ]
-      }
-    },
-    {
-      "id": 133,
-      "type": "dynamicRow",
-      "uuid": "943514be-b2ce-4886-97e0-af92de96bbec",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Provide details about the type of utilities for each calendar year during the audit period",
-        "titleFr": "Fournissez des détails sur le type de services publics pour chaque année civile pendant la période de vérification",
-        "dynamicRow": {
-          "rowTitleEn": "Calendar year",
-          "rowTitleFr": "Année civile",
-          "addButtonTextEn": "+ Add another calendar year",
-          "addButtonTextFr": "+ Ajouter une autre année civile",
-          "removeButtonTextEn": "- Remove calendar year",
-          "removeButtonTextFr": "- Supprimer l'année civile"
-        },
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [
-          {
-            "id": 13309,
-            "type": "radio",
-            "uuid": "675cfbae-b605-41f7-99ed-c481ff255394",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "2024",
-                  "fr": "2024"
-                },
-                {
-                  "en": "2023",
-                  "fr": "2023"
-                },
-                {
-                  "en": "2022",
-                  "fr": "2022"
-                }
-              ],
-              "titleEn": "Calendar year",
-              "titleFr": "Année civile",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13302,
-            "type": "textField",
-            "uuid": "62a07afa-46d8-4209-96a5-950cc758b9cd",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Electricity - Actual cost you paid for this calendar year",
-              "titleFr": "Électricité - Coût réel que vous avez payé pour cette année civile",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter an amount. If nil, enter 0. Do not use the dollar sign ($), commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Entrez un montant. S’il est nul, inscrivez 0. N’utilisez pas le symbole du dollar ($), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13303,
-            "type": "textField",
-            "uuid": "5453d1e6-e311-4237-9cfc-b8ec308e926a",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Water - Actual cost you paid for this calendar year",
-              "titleFr": "Eau - Coût réel que vous avez payé pour cette année civile",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter an amount. If nil, enter 0. Do not use the dollar sign ($), commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Entrez un montant. S’il est nul, inscrivez 0. N’utilisez pas le symbole du dollar ($), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13304,
-            "type": "textField",
-            "uuid": "21aa268a-48dc-453d-9c98-6d883108a400",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Heating - Actual cost you paid for this calendar year",
-              "titleFr": "Chauffage - Coût réel que vous avez payé pour cette année civile",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter an amount. If nil, enter 0. Do not use the dollar sign ($), commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Entrez un montant. S’il est nul, inscrivez 0. N’utilisez pas le symbole du dollar ($), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13305,
-            "type": "textField",
-            "uuid": "5fb4c32d-7daa-47e1-8bbb-5e0ad06ba876",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Internet - Actual cost you paid for this calendar year",
-              "titleFr": "Internet - Coût réel que vous avez payé pour cette année civile",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter an amount. If nil, enter 0. Do not use the dollar sign ($), commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Entrez un montant. S’il est nul, inscrivez 0. N’utilisez pas le symbole du dollar ($), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13306,
-            "type": "textField",
-            "uuid": "27f86f52-8ed8-4e95-a3ec-0c71d37a1a02",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Cable/TV  - Actual cost you paid for this calendar year",
-              "titleFr": "Câble/télévision - Coût réel que vous avez payé pour cette année civile",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter an amount. If nil, enter 0. Do not use the dollar sign ($), commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Entrez un montant. S’il est nul, inscrivez 0. N’utilisez pas le symbole du dollar ($), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13307,
-            "type": "textField",
-            "uuid": "b6d1db1d-a0dd-4fde-ac49-5748b827dd3c",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Other utilities not listed above - Actual cost you paid for this calendar year",
-              "titleFr": "Autres services publics non identifiés ci-dessus - Coût réel que vous avez payé pour cette année civile",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter an amount. If nil, enter 0. Do not use the dollar sign ($), commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Entrez un montant. S’il est nul, inscrivez 0. N’utilisez pas le symbole du dollar ($), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13308,
-            "type": "textArea",
-            "uuid": "2b6ea37c-51fd-4000-8a78-2c1f341aea63",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "If other utilities, describe the nature of the utilities benefit you provided",
-              "titleFr": "Si autres services publics, décrivez la nature de l’avantage lié aux services publics que vous avez fourni",
-              "questionId": "",
-              "validation": {
-                "required": false
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          }
-        ],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "maxNumberOfRows": 50,
-        "conditionalRules": [
-          {
-            "choiceId": "132.0"
-          }
-        ]
-      }
-    },
-    {
-      "id": 125,
-      "type": "richText",
-      "uuid": "4a18ec0c-be51-4dff-9751-1cc5de5e3cc4",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "Will be the same as 3a (1) but need to finalize the wording before it is copied. \n\nAs per the ECA program, the employer should have the ability to enter **up to 10** benefit.",
-        "descriptionFr": "Sera identique à la section 3b, mais le libellé doit être finalisé avant d’être copié.\n\nConformément au programme VCE, l’employeur devrait avoir la possibilité d’entrer jusqu’à **10&#32;**avantages.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 124,
-      "type": "richText",
-      "uuid": "b5ee0f8b-cbd2-4c24-8297-d1916b8ae714",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "Will be the same as 3 (1) but need to finalize the wording before it is copied. \n\nAs per the ECA program, the employer should have the ability to enter **up to 10** benefit.",
-        "descriptionFr": "Sera identique à la section 3a, mais le libellé doit être finalisé avant d’être copié.\n\nConformément au programme VCE, l’employeur devrait avoir la possibilité d’entrer jusqu’à **10&#32;**avantages.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 137,
-      "type": "dynamicRow",
-      "uuid": "176494ec-802d-4adb-9dc5-ca37081f549f",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Provide details about the availability for each calendar year during the audit period",
-        "titleFr": "Fournissez des détails sur la façon dont le logement a été founi pour chaque année civile pendant la période de vérification pour chaque année civile pendant la période de vérification",
-        "dynamicRow": {
-          "rowTitleEn": "Calendar year",
-          "rowTitleFr": "Année civile",
-          "addButtonTextEn": "+ Add another calendar year",
-          "addButtonTextFr": "+ Ajouter une autre année civile",
-          "removeButtonTextEn": "- Remove the calendar year",
-          "removeButtonTextFr": "- Supprimer l'année civile"
-        },
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [
-          {
-            "id": 13701,
-            "type": "radio",
-            "uuid": "6addef66-33f4-4069-a37b-f83783687896",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "2024",
-                  "fr": "2024"
-                },
-                {
-                  "en": "2023",
-                  "fr": "2023"
-                },
-                {
-                  "en": "2022",
-                  "fr": "2022"
-                }
-              ],
-              "titleEn": "Calendar year",
-              "titleFr": "Année civile",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13702,
-            "type": "textArea",
-            "uuid": "dce21c65-1058-4d17-b57f-ed9f9bd9a30c",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Provide details about the use of the housing",
-              "titleFr": "Fournissez les détails sur l’utilisation du logement",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          }
-        ],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "maxNumberOfRows": 50,
-        "conditionalRules": [
-          {
-            "choiceId": "74.0"
-          }
-        ]
-      }
-    },
-    {
-      "id": 131,
-      "type": "dynamicRow",
-      "uuid": "b14b4d3f-3465-44cd-95b6-1885e9bd4dde",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Provide details about the FMV of the furniture you provided for each calendar year during the audit period",
-        "titleFr": "Fournissez des détails sur la JVM des meubles que vous avez fourni pour chaque année civile pendant la période de vérification",
-        "dynamicRow": {
-          "rowTitleEn": "Calendar year",
-          "rowTitleFr": "Année civile",
-          "addButtonTextEn": "+ Add another calendar year",
-          "addButtonTextFr": "+ Ajouter une autre année civile",
-          "removeButtonTextEn": "- Remove the calendar year",
-          "removeButtonTextFr": "- Supprimer l'année civile"
-        },
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [
-          {
-            "id": 13105,
-            "type": "radio",
-            "uuid": "c1889d84-919c-4a78-87af-8f251ce3b25d",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "2024",
-                  "fr": "2024"
-                },
-                {
-                  "en": "2023",
-                  "fr": "2023"
-                },
-                {
-                  "en": "2022",
-                  "fr": "2022"
-                }
-              ],
-              "titleEn": "Calendar year",
-              "titleFr": "",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13106,
-            "type": "textField",
-            "uuid": "eadd5dda-37a9-4e2d-9948-87f8588961ae",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Enter the FMV of the furniture that you paid for or provided to your employee or shareholder",
-              "titleFr": "Indiquez la JVM des meubles que vous avez payés ou fournis à votre employé ou à votre actionnaire",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter an amount. Do not use the dollar sign ($), commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Entrez un montant. N’utilisez pas le symbole du dollar ($), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13104,
-            "type": "textArea",
-            "uuid": "a1056eac-b363-4485-9006-e6e82852bafb",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Provide details of how you determined the FMV",
-              "titleFr": "Fournissez des détails sur la manière dont vous avez déterminé la JVM",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13102,
-            "type": "textField",
-            "uuid": "7a394795-d355-4c25-8ae0-d00501603d51",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Enter the amount your employee or shareholder reimbursed you",
-              "titleFr": "Indiquez tous les montants que votre employé ou actionnaire vous a remboursés",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter an amount. Do not use the dollar sign ($), commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Entrez un montant. N’utilisez pas le symbole du dollar ($), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          }
-        ],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "maxNumberOfRows": 50,
-        "conditionalRules": [
-          {
-            "choiceId": "82.0"
-          }
-        ]
-      }
-    },
-    {
-      "id": 119,
-      "type": "checkbox",
-      "uuid": "23fc9c1c-16a7-49fd-a017-466c1fde52d2",
-      "properties": {
-        "choices": [
-          {
-            "en": "All information provided in this questionnaire is true, accurate, and complete to the best of your knowledge",
-            "fr": "Tous les renseignements fournis dans ce questionnaire sont véridiques, exacts et complets au meilleur de vos connaissances"
-          },
-          {
-            "en": "You understand that the information will be used to ensure the housing and utilities benefits provided are reported correctly",
-            "fr": "Vous comprenez que les informations seront utilisées pour s'assurer que les avantages liés au logement et de services publics fournies sont correctement déclarées."
-          }
-        ],
-        "titleEn": "By providing this certification, you confirm that:",
-        "titleFr": "En fournissant cette certification, vous confirmez que :",
-        "validation": {
-          "all": true,
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 138,
-      "type": "dynamicRow",
-      "uuid": "b60da25f-6fa0-424a-bf2b-cd404aa63546",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Provide details about how the housing was shared for each calendar year during the audit period",
-        "titleFr": "Fournissez des détails sur la façon dont le logement a été partagé pour chaque année civile pendant la période de vérification",
-        "dynamicRow": {
-          "rowTitleEn": "Calendar year",
-          "rowTitleFr": "Année civile",
-          "addButtonTextEn": "+ Add another calendar year",
-          "addButtonTextFr": "+ Ajouter une autre année civile",
-          "removeButtonTextEn": "- Remove the calendar year",
-          "removeButtonTextFr": "- Supprimer l'année civile"
-        },
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [
-          {
-            "id": 13801,
-            "type": "radio",
-            "uuid": "c5589be1-b1ea-44b4-96f4-3086cbcdf2e8",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "2024",
-                  "fr": "2024"
-                },
-                {
-                  "en": "2023",
-                  "fr": "2023"
-                },
-                {
-                  "en": "2022",
-                  "fr": "2022"
-                }
-              ],
-              "titleEn": "Calendar year",
-              "titleFr": "Année civile",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 13802,
-            "type": "textArea",
-            "uuid": "14c6e437-2e3c-4505-a35b-172b51d8e19b",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Provide details about how the housing was shared",
-              "titleFr": "Fournissez des détails sur la façon dont le logement a été partagé",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          }
-        ],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "maxNumberOfRows": 50,
-        "conditionalRules": [
-          {
-            "choiceId": "76.0"
-          }
-        ]
-      }
-    },
-    {
-      "id": 117,
-      "type": "radio",
-      "uuid": "e1c7ab39-d9ad-49b0-9f0c-ebd573d05f57",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes - Continue to section 3 (2)",
-            "fr": "Oui - Continez à la section 3 (2)"
-          },
-          {
-            "en": "No - Continue to section 4",
-            "fr": "Non - Continuez à la section 4"
-          }
-        ],
-        "titleEn": "Did you provide an additional housing benefit for this employee or shareholder?",
-        "titleFr": "Avez-vous fourni un avantage lié au logement supplémentaire pour cet employé ou actionnaire?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 122,
-      "type": "radio",
-      "uuid": "e1c7ab39-d9ad-49b0-9f0c-ebd573d05f57",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes - Continue to section 3 (3)",
-            "fr": "Oui - Continez à la section 3 (3)"
-          },
-          {
-            "en": "No - Continue to section 4",
-            "fr": "Non - Continuez à la section 4"
-          }
-        ],
-        "titleEn": "Did you provide an additional housing benefit for this employee or shareholder?",
-        "titleFr": "Avez-vous fourni un avantage lié au logement supplémentaire pour cet employé ou actionnaire?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 101,
-      "type": "richText",
-      "uuid": "ae84a8cb-efbd-432b-aa00-5a87389589e5",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "For this **audit period**, answer the following questions regarding the **utilities benefit** you provided with the housing benefit you entered in section 3a (1).\n\nIf you provided **more than one housing benefit** during the year for this employee or shareholder, you will need to answer additional questions regarding these additional utility benefits later.",
-        "descriptionFr": "Pour cette **période de vérification**, veuillez répondre aux questions suivantes concernant l’avantage lié aux **services publics** que vous avez fourni avec l’avantage lié au logement que vous avez inscrit à la section 3a (1).\n\nSi vous avez fourni **plus d’un avantage lié au logement** au cours de l’année pour cet employé ou actionnaire, vous devrez répondre à des questions supplémentaires concernant ces autres avantages liés aux services publics ultérieurement.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 123,
-      "type": "richText",
-      "uuid": "b1eca773-5847-44c5-a363-8efa2273a5bb",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "If you provided **more than one housing benefit** during the year for this employee or shareholder, you need to complete section 3 multiple times, once for each benefit.",
-        "descriptionFr": "Si vous avez fourni **plus d’un avantage lié au logement** au cours de l’année pour cet employé ou cet actionnaire, vous devez remplir la section 3 plusieurs fois, une fois pour chaque avantage.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 106,
-      "type": "checkbox",
-      "uuid": "53d272ff-906d-4cbd-a5fd-6ac6ef932d15",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Code 30",
-            "fr": "Code 30"
-          },
-          {
-            "en": "Code 32",
-            "fr": "Code 32"
-          },
-          {
-            "en": "Code 33",
-            "fr": "Code 33"
-          },
-          {
-            "en": "Code 40",
-            "fr": "Code 40"
-          },
-          {
-            "en": "Other codes",
-            "fr": "Autres codes"
-          }
-        ],
-        "titleEn": "The codes used to report on the T4 slip was:",
-        "titleFr": "Les codes utilisés pour déclarer sur le feuillet T4 était: ",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": [
-          {
-            "choiceId": "8.0"
-          }
-        ]
-      }
-    },
-    {
-      "id": 121,
-      "type": "richText",
-      "uuid": "3676be90-39d3-4bd6-bdc4-53d2241b7321",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Reporting information",
-        "descriptionFr": "### Information sur la déclaration",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 107,
-      "type": "checkbox",
-      "uuid": "928dbedd-3560-4ce3-9e27-a09f7cdcccfe",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Code 028",
-            "fr": "Code 028"
-          },
-          {
-            "en": "Code 116",
-            "fr": "Code 116"
-          },
-          {
-            "en": "Other codes",
-            "fr": "Autres codes"
-          }
-        ],
-        "titleEn": "The codes used to report on the T4A slip was:",
-        "titleFr": "Les codes utilisés pour déclarer sur le feuillet T4A était : ",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": [
-          {
-            "choiceId": "8.1"
-          }
-        ]
-      }
-    },
-    {
-      "id": 129,
-      "type": "dynamicRow",
-      "uuid": "bc5df284-e541-4e28-993a-e4619cdd3b9e",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Provide details about the FMV of the housing you provided for each calendar year during the audit period",
-        "titleFr": "Fournissez des détails sur la JVM du logement que vous avez fourni pour chaque année civile pendant la période de vérification",
-        "dynamicRow": {
-          "rowTitleEn": "Calendar year",
-          "rowTitleFr": "Année civile",
-          "addButtonTextEn": "+ Add another calendar year",
-          "addButtonTextFr": "+ Ajouter une autre année civile",
-          "removeButtonTextEn": "- Remove the calendar year",
-          "removeButtonTextFr": "- Supprimer l'année civile"
-        },
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [
-          {
-            "id": 12907,
-            "type": "radio",
-            "uuid": "b29477cb-52de-4139-81ed-8b31778212a4",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "2024",
-                  "fr": "2024"
-                },
-                {
-                  "en": "2023",
-                  "fr": "2023"
-                },
-                {
-                  "en": "2022",
-                  "fr": "2022"
-                }
-              ],
-              "titleEn": "Calendar year",
-              "titleFr": "Année civile",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 12908,
-            "type": "textField",
-            "uuid": "04942ebe-40c5-4c05-a13a-0b5fa79db5e7",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Enter the FMV of the housing you provided to your employee or shareholder in the calendar year",
-              "titleFr": "Indiquez la JVM du logement que vous avez fourni à votre employé ou à votre actionnaire au cours de l’année civile",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter an amount. Do not use the dollar sign ($), commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Entrez un montant. N’utilisez pas le symbole du dollar ($), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 12903,
-            "type": "textArea",
-            "uuid": "6cf05301-42e7-4eb8-889d-06bcbaea301f",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Provide details of how you determined the FMV",
-              "titleFr": "Fournissez des détails sur la manière dont vous avez déterminé la JVM",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 12904,
-            "type": "textArea",
-            "uuid": "7ee1e079-34c3-4fcc-9572-fe2ded34a584",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Provide details of what rent was paid for the housing by your employee or shareholder ",
-              "titleFr": "Fournissez des détails sur le loyer payé pour le logement par votre employé ou actionnaire",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          },
-          {
-            "id": 12905,
-            "type": "textField",
-            "uuid": "5ca6ba4f-b009-40c2-a549-4c85ffe60824",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Enter any amounts your employee or shareholder reimbursed you",
-              "titleFr": "Indiquez tous les montants que votre employé ou actionnaire vous a remboursés",
-              "questionId": "",
-              "validation": {
-                "type": "number",
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "Enter an amount. Do not use the dollar sign ($), commas, or periods. Round the amount up to the nearest whole number.",
-              "descriptionFr": "Entrez un montant. N’utilisez pas le symbole du dollar ($), ni de virgules ou de points. Arrondissez le montant à l’unité supérieure.",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          }
-        ],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "maxNumberOfRows": 3,
-        "conditionalRules": [
-          {
-            "choiceId": "64.0"
-          },
-          {
-            "choiceId": "64.1"
-          }
-        ]
-      }
-    },
-    {
-      "id": 39,
-      "type": "radio",
-      "uuid": "ec99c7e3-4e67-40d2-8a8d-8f8a92cf7567",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Your employee",
-            "fr": "Votre employé"
-          },
-          {
-            "en": "A shareholder",
-            "fr": "Un actionnaire"
-          },
-          {
-            "en": "A shareholder who is also your employee",
-            "fr": "Un actionnaire qui est aussi votre employé"
-          }
-        ],
-        "titleEn": "You are providing information for an individual who is one of the following:",
-        "titleFr": "Vous fournissez des renseignements pour une personne qui est l’une des suivantes :",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 55,
-      "type": "richText",
-      "uuid": "a6331936-5c7f-4976-8b55-2196ed1784bb",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Period the housing was provided",
-        "descriptionFr": "### Période d’utilisation du logement que vous avez fourni",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 47,
-      "type": "formattedDate",
-      "uuid": "b5532b40-7340-41dd-a30c-f3653ea242ec",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "From",
-        "titleFr": "De",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 48,
-      "type": "formattedDate",
-      "uuid": "b5532b40-7340-41dd-a30c-f3653ea242ec",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "To",
-        "titleFr": "À",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 50,
-      "type": "richText",
-      "uuid": "86dffa88-bdbc-4401-bd5c-19b9ac82a309",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Address of the housing",
-        "descriptionFr": "### Adresse du logement",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 51,
-      "type": "textField",
-      "uuid": "906f6e97-176e-4df5-9c83-ba8770ef54ad",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Street address",
-        "titleFr": "Adresse municipale",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "autoComplete": "address-line1",
-        "descriptionEn": "Include street name and number.",
-        "descriptionFr": "Indiquez le nom de rue et le numéro d'unité.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 52,
-      "type": "textField",
-      "uuid": "0d15958c-735a-4bc7-9f75-3d787cc8b553",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "City, town, or community",
-        "titleFr": "Ville ou communauté",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "autoComplete": "address-level2",
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 56,
-      "type": "dropdown",
-      "uuid": "c702e7ff-5b69-494d-a786-98555b00d7ff",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Alberta",
-            "fr": "Alberta"
-          },
-          {
-            "en": "British Columbia",
-            "fr": "Colombie-Britannique"
-          },
-          {
-            "en": "Manitoba",
-            "fr": "Manitoba"
-          },
-          {
-            "en": "New Brunswick",
-            "fr": "Nouveau-Brunswick"
-          },
-          {
-            "en": "Newfoundland and Labrador",
-            "fr": "Terre-Neuve-et-Labrador"
-          },
-          {
-            "en": "Nova Scotia",
-            "fr": "Nouvelle-Écosse\t"
-          },
-          {
-            "en": "Northwest Territories",
-            "fr": "Territoires du Nord-Ouest"
-          },
-          {
-            "en": "Nunavut",
-            "fr": "Nunavut"
-          },
-          {
-            "en": "Ontario",
-            "fr": "Ontario"
-          },
-          {
-            "en": "Prince Edward Island",
-            "fr": "Île-du-Prince-Édouard\t"
-          },
-          {
-            "en": "Quebec",
-            "fr": "Québec"
-          },
-          {
-            "en": "Saskatchewan",
-            "fr": "Saskatchewan"
-          },
-          {
-            "en": "Yukon",
-            "fr": "Yukon"
-          },
-          {
-            "en": "Outside Canada",
-            "fr": "À l’extérieur du Canada"
-          }
-        ],
-        "titleEn": "Province or territory",
-        "titleFr": "Province ou territoire ",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 54,
-      "type": "textField",
-      "uuid": "368c4f3a-add6-41aa-bbc7-01033b617c6a",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Postal or zip code",
-        "titleFr": "Code postal ou code zip",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "autoComplete": "postal-code",
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 57,
-      "type": "richText",
-      "uuid": "972fb70b-7491-4689-8d72-495a616b5fed",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Type of housing",
-        "descriptionFr": "### **Type de logement**",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 105,
-      "type": "richText",
-      "uuid": "048e88ec-dd96-441e-b74d-31ade63914ae",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Availability of the housing",
-        "descriptionFr": "### Disponibilité du logement",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 58,
-      "type": "radio",
-      "uuid": "11032099-ffc9-48f2-b0ed-d05f35606997",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Apartment",
-            "fr": "Appartement"
-          },
-          {
-            "en": "Condominium",
-            "fr": "Condominium"
-          },
-          {
-            "en": "House",
-            "fr": "Maison"
-          },
-          {
-            "en": "Semi-detached house",
-            "fr": "Maison en rangée"
-          },
-          {
-            "en": "Townhouse",
-            "fr": "Maison jumelée"
-          },
-          {
-            "en": "Villa",
-            "fr": "Villa"
-          },
-          {
-            "en": "Other type of housing",
-            "fr": "Autre type de logement"
-          }
-        ],
-        "titleEn": "Enter the type of housing",
-        "titleFr": "Indiquez le type de logement",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 59,
-      "type": "textArea",
-      "uuid": "9c649ab6-76ba-4062-b2fe-13569a7e25f9",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Describe the type of housing",
-        "titleFr": "Décrivez le type de logement",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": [
-          {
-            "choiceId": "58.6"
-          }
-        ]
-      }
-    },
-    {
-      "id": 60,
-      "type": "richText",
-      "uuid": "62e94a11-7e4b-4c24-80fa-d1b0c3b337db",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Total surface area of the housing",
-        "descriptionFr": "### **Superficie totale du logement fourni**",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 61,
-      "type": "textField",
-      "uuid": "6a444c74-75f0-4212-abf5-3bf2ec67afff",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Enter the number of square metres (m²) or square feet (ft²) ",
-        "titleFr": "Indiquez le nombre de mètres carrés (m²) ou de pieds carrés (pi²) ",
-        "questionId": "",
-        "validation": {
-          "type": "number",
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 104,
-      "type": "richText",
-      "uuid": "2dd6500a-44ee-4fd1-8501-10b23f1df2d8",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "Learn more: [Special circumstances that reduce the value of a housing benefit](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/benefits-allowances/boarding-lodging/housing-utilities/special-circumstances-that-reduce-value-a-housing-benefit.html)",
-        "descriptionFr": "Pour en savoir plus: [Circonstances particulières permettant de réduire la valeur d'un avantage relatif au logement](https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/retenues-paie/avantages-allocations/pension-logement/logement-services-publics/circonstances-particulieres-permettant-reduire-valeur-avantage-relatif-logement.html)",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 62,
-      "type": "radio",
-      "uuid": "63895977-0d4e-4627-9099-6f9e8cd7fcfa",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Square metres (m²)",
-            "fr": "Mètres carrés (m²)"
-          },
-          {
-            "en": "Square feet (ft²)",
-            "fr": "Pieds carrés (pi²) "
-          }
-        ],
-        "titleEn": "What is the unit of measurement used for the surface area",
-        "titleFr": "Quelle est l’unité de mesure utilisée pour la superficie",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 63,
-      "type": "richText",
-      "uuid": "4a140f2e-9e54-487f-8df2-8aab680b5503",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "FMV is the highest price that can be obtained in an open market between an informed and willing buyer and an informed and willing seller who are dealing at arm's length.\n\nGenerally, the FMV of a benefit is the price that could be reasonably charged for the use of that benefit in an open market (that is, the market price for a similar benefit in the surrounding area).\n\nThis determination must be done based on a review of the facts in each specific situation.",
-        "descriptionFr": "La JVM représente le prix le plus élevé pouvant être obtenu sur un marché libre entre un acheteur et un vendeur informés et consentants, agissant de manière indépendante.\n\nEn général, la JVM d’un avantage correspond au prix qui pourrait raisonnablement être exigé pour l’utilisation de cet avantage sur un marché libre (c’est-à-dire le prix du marché pour un avantage similaire dans la région environnante).\n\nCette évaluation doit être effectuée en fonction d’un examen des faits propres à chaque situation.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 103,
-      "type": "richText",
-      "uuid": "84c54ef2-5938-4171-9e3c-a28f80a98920",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Member of the clergy, a regular minister or a member of a religious order\n\nLearn more: [Clergy residence](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/benefits-allowances/boarding-lodging/housing-utilities/clergy-residence.html)",
-        "descriptionFr": "### Membre du clergé, ministre régulier ou membre d'un ordre religieux\n\nPour en savoir plus: [Résidence des membres du clergé](https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/retenues-paie/avantages-allocations/pension-logement/logement-services-publics/residence-membres-clerge.html)",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 64,
-      "type": "radio",
-      "uuid": "c226f757-55e4-494a-afdf-c117f0501794",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes - Rent free",
-            "fr": "Oui - Gratuitement"
-          },
-          {
-            "en": "Yes - Less than the FMV of the accommodation",
-            "fr": "Oui - À un coût inférieur à la JVM du logement"
-          },
-          {
-            "en": "No - Equal to the FMV of the accommodation",
-            "fr": "Non - Équivalent à la JVM du logement"
-          },
-          {
-            "en": "No - Above the FMV of the accommodation",
-            "fr": "Non - À un coût supérieur à la JVM du logement"
-          }
-        ],
-        "titleEn": "Did you provide the housing for less than FMV?",
-        "titleFr": "Avez-vous fourni le logement pour moins que la JVM?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "This includes the superintendent of an apartment block, with a house, apartment or similar accommodation.",
-        "descriptionFr": "Cela comprend le concierge d’un immeuble d’appartements, avec une maison, un appartement ou un logement similaire.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 102,
-      "type": "richText",
-      "uuid": "4b0eddd2-0c0a-4f00-8d66-ace804ff4f2c",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Furniture you provided to your employee or shareholder\n\nFor this **audit period**, answer the following questions regarding  **any furniture** you provided to the employee or shareholder you indicated in section 2.\n\nThis **does not** include furniture provided as part of the housing benefit, such as a fully furnished apartment",
-        "descriptionFr": "### Remboursement des frais de logement ou de services publics\n\nPour cette **période de vérification**, veuillez répondre aux questions suivantes concernant tout mobilier qui **ne faisait pas partie** de l’avantage lié au logement (par exemple, un appartement meublé) que vous avez fourni à votre employé.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 67,
-      "type": "richText",
-      "uuid": "9ccef327-e89e-4737-be57-b8463d2f944a",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Use of the housing",
-        "descriptionFr": "### Utilisation du logement",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 68,
-      "type": "radio",
-      "uuid": "b6a64c01-787b-4a7e-a83c-bd45e641e3a1",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes",
-            "fr": "Oui"
-          },
-          {
-            "en": "No",
-            "fr": "Non"
-          }
-        ],
-        "titleEn": "Was the housing used for business-related purposes (such as meeting with clients in a home office)? ",
-        "titleFr": "Le logement était-il utilisé à des fins professionnelles (par exemple, pour rencontrer des clients dans un bureau à domicile)?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 72,
-      "type": "richText",
-      "uuid": "25a55bd8-d394-491c-a6b8-50a5744174b4",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Employee or shareholder working in a prescribed zone\n\nLearn more: [Housing and travel assistance benefits paid in a prescribed zone](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/benefits-allowances/housing-travel-assistance-benefits-paid-a-prescribed-zone.html)",
-        "descriptionFr": "### Employé ou actionnaire travaillant dans une zone désignée\n\nPour en savoir plus: [Logement et aide accordés pour les voyages dans les zones visées par règlement](https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/retenues-paie/avantages-allocations/logement-aide-accordes-voyages-zones-visees-reglement.html)",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 73,
-      "type": "radio",
-      "uuid": "ba1577a7-556f-49c2-9790-3d3b98ee7819",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes",
-            "fr": "Oui"
-          },
-          {
-            "en": "No",
-            "fr": "Non"
-          }
-        ],
-        "titleEn": "Was the housing provided to your employee or shareholder working in a prescribed zone?",
-        "titleFr": "Le logement a-t-il été fourni à votre employé ou actionnaire travaillant dans une zone désignée?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 74,
-      "type": "radio",
-      "uuid": "ba1577a7-556f-49c2-9790-3d3b98ee7819",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes",
-            "fr": "Oui"
-          },
-          {
-            "en": "No",
-            "fr": "Non"
-          }
-        ],
-        "titleEn": "Was this housing available to other employees or shareholders under the same conditions?",
-        "titleFr": "Ce logement était-il offert à d'autres employés ou actionnaires selon les mêmes conditions?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 76,
-      "type": "radio",
-      "uuid": "a9bcb662-11a0-4320-8b05-543a6ce37dcf",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes",
-            "fr": "Oui"
-          },
-          {
-            "en": "No",
-            "fr": "Non"
-          }
-        ],
-        "titleEn": "Did the employee or shareholder share the housing with another employee, shareholder or anyone else? ",
-        "titleFr": "L'employé ou l'actionnaire a-t-il partagé le logement avec un autre employé, un actionnaire ou toute autre personne?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 78,
-      "type": "radio",
-      "uuid": "ef1186f4-dbd2-4021-8196-187c3a0522e8",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes - Suitability of size - Accommodation larger than needed",
-            "fr": "Oui – Adéquation de la taille – Logement plus grand que nécessaire"
-          },
-          {
-            "en": "Yes - Loss of privacy and quiet enjoyment",
-            "fr": "Oui – Perte de vie privée et de jouissance paisible"
-          },
-          {
-            "en": "Yes - Both suitability of size and,  loss of privacy and quiet enjoyment",
-            "fr": "Oui – À la fois l’adéquation de la taille et la perte de vie privée et de jouissance paisible"
-          },
-          {
-            "en": "No",
-            "fr": "Non"
-          }
-        ],
-        "titleEn": "Did you apply a reduction to the value of the housing benefit? ",
-        "titleFr": "Avez-vous appliqué une réduction à la valeur de l’avantage lié au logement?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 80,
-      "type": "radio",
-      "uuid": "b3897e1b-b035-4e44-b98c-f96e9543540c",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes",
-            "fr": "Oui"
-          },
-          {
-            "en": "No",
-            "fr": "Non"
-          }
-        ],
-        "titleEn": "Was the housing provided to a member of the clergy, a regular minister or a member of a religious order?",
-        "titleFr": "Le logement était-il fourni à un membre du clergé, à un ministre régulier ou à un membre d’un ordre religieux?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 81,
-      "type": "radio",
-      "uuid": "b3897e1b-b035-4e44-b98c-f96e9543540c",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes - Provide a copy of the completed Form T1223",
-            "fr": "Oui - Fournissez une copie du formulaire T1223 dûment rempli"
-          },
-          {
-            "en": "No",
-            "fr": "Non"
-          }
-        ],
-        "titleEn": "Was the clergy residence deduction applied when calculating the employee’s income tax and CPP contribution withholdings?",
-        "titleFr": "La déduction pour résidence du clergé a-t-elle été appliquée lors du calcul de l’impôt sur le revenu et des retenues au titre du RPC de l’employé?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": [
-          {
-            "choiceId": "80.0"
-          }
-        ]
-      }
-    },
-    {
-      "id": 82,
-      "type": "radio",
-      "uuid": "fd128f62-cc40-4655-a303-a62069c5690b",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Yes",
-            "fr": "Oui"
-          },
-          {
-            "en": "No",
-            "fr": "Non"
-          }
-        ],
-        "titleEn": "Did you pay for or provide any furniture to your employee or shareholder?",
-        "titleFr": "Avez-vous payé ou fourni du mobilier à votre employé ou actionnaire?",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 40,
-      "type": "richText",
-      "uuid": "10766dfa-4fd0-4f27-9977-974986e80517",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Identification of your employee or shareholder",
-        "descriptionFr": "### Identification de votre employé ou actionnaire",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 30,
-      "type": "richText",
-      "uuid": "7c82efaa-c3d0-47d7-9058-72c1bb3cab56",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Case reference number of the ECA",
-        "descriptionFr": "### Numéro de référence du dossier de la VCE",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 31,
-      "type": "textField",
-      "uuid": "61872757-9691-4b93-a80f-8d0f4b81c2f9",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Case reference number",
-        "titleFr": "Numéro de référence du dossier",
-        "questionId": "S1_Q1",
-        "validation": {
-          "required": true,
-          "maxLength": 10
-        },
-        "subElements": [],
-        "descriptionEn": "Enter the case number",
-        "descriptionFr": "Entrer le numéro de dossier",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 38,
-      "type": "richText",
-      "uuid": "d0f66a26-4765-4a52-ab6c-2935a5829b74",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Review periods of the ECA",
-        "descriptionFr": "### Périodes de la vérification de la VCE",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 32,
-      "type": "dynamicRow",
-      "uuid": "9d3faf48-74c1-4dfa-a739-d48c64fe42b5",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Periods under this audit",
-        "titleFr": "Périodes sous cette vérification",
-        "dynamicRow": {
-          "rowTitleEn": "Tax year end",
-          "rowTitleFr": "Fin de l'année d'imposition",
-          "addButtonTextEn": "+ Add another tax year end",
-          "addButtonTextFr": "+ Ajouter une autre fin d'année d’imposition",
-          "removeButtonTextEn": "- Remove tax year end",
-          "removeButtonTextFr": "- Supprimer une autre fin d'année d’imposition"
-        },
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [
-          {
-            "id": 3201,
-            "type": "formattedDate",
-            "uuid": "319a6646-4bdc-4d81-8c33-b9f69fc557af",
-            "properties": {
-              "tags": [],
-              "choices": [
-                {
-                  "en": "",
-                  "fr": ""
-                }
-              ],
-              "titleEn": "Tax year ending",
-              "titleFr": "Année d'imposition se terminant",
-              "questionId": "",
-              "validation": {
-                "required": true
-              },
-              "subElements": [],
-              "descriptionEn": "",
-              "descriptionFr": "",
-              "placeholderEn": "",
-              "placeholderFr": ""
-            }
-          }
-        ],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "maxNumberOfRows": 3,
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 19,
-      "type": "richText",
-      "uuid": "7d564af5-27c8-4604-8593-1e9ead70275b",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "### Identification",
-        "descriptionFr": "### Identification",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 20,
-      "type": "radio",
-      "uuid": "5029b22b-2b53-4783-992a-aa992bde7225",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "Owner of the business",
-            "fr": "Le propriétaire de l'entreprise"
-          },
-          {
-            "en": "Director of the corporation",
-            "fr": "Administrateur de la société"
-          },
-          {
-            "en": "Authorized representative",
-            "fr": "Un représentant autorisé"
-          }
-        ],
-        "titleEn": "You are the:  ",
-        "titleFr": "Vous êtes :",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 22,
-      "type": "textField",
-      "uuid": "1df5fb6a-4ef0-43e9-932d-16cdfea19ee0",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Your first name",
-        "titleFr": "Prénom",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "autoComplete": "given-name",
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 24,
-      "type": "textField",
-      "uuid": "5fbb2eeb-03fe-42e8-aab2-cc00b60933e3",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Your last name",
-        "titleFr": "Nom de famille",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "autoComplete": "family-name",
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 26,
-      "type": "textField",
-      "uuid": "f92a8154-9a61-4113-b34a-efe30f42bad4",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Your phone number",
-        "titleFr": "Numéro de téléphone",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "autoComplete": "tel",
-        "descriptionEn": "For example: 111-222-3333",
-        "descriptionFr": "Par exemple : 111-222-3333",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 28,
-      "type": "radio",
-      "uuid": "39d06c3d-62ea-46e1-8b75-7278b5043d9a",
-      "properties": {
-        "choices": [
-          {
-            "en": "English",
-            "fr": "Anglais"
-          },
-          {
-            "en": "French",
-            "fr": "Français"
-          }
-        ],
-        "titleEn": "Preferred language for communication",
-        "titleFr": "Langue de communication préférée",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 29,
-      "type": "richText",
-      "uuid": "760b1bde-e931-471c-a0f7-5c029028836c",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\n\nSubmitting false or misleading information may result in penalties or legal consequences under the Income Tax Act.",
-        "descriptionFr": "\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\n\nLa soumission de renseignements faux ou trompeurs peut entraîner des pénalités ou des conséquences juridiques en vertu de la Loi de l'impôt sur le revenu",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 16,
-      "type": "richText",
-      "uuid": "79722775-35f0-4cf6-b3ee-12ca6e05cb0c",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "",
-        "titleFr": "",
-        "questionId": "",
-        "validation": {
-          "required": false
-        },
-        "subElements": [],
-        "descriptionEn": "For this **audit period**, answer the following questions regarding the **housing benefit** you provided for the employee or shareholder you indicated in section 2.\n\nIf you provided **more than one housing benefit** during the year for this employee or shareholder, you will need to answer additional questions regarding these additional housing benefits later.",
-        "descriptionFr": "Pour cette **période de vérification**, veuillez répondre aux questions suivantes concernant l'**avantage lié au logement** que vous avez founi.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 2,
-      "type": "textField",
-      "uuid": "ca54cdec-0194-485b-a422-36de9f14e85b",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "First name",
-        "titleFr": "Prénom",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "autoComplete": "given-name",
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 4,
-      "type": "textField",
-      "uuid": "a1a49e25-946b-4f27-8804-c97e5f862fe6",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Last name",
-        "titleFr": "Nom de famille",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "autoComplete": "family-name",
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 6,
-      "type": "textField",
-      "uuid": "dced479d-4acd-4428-93f3-606a0ab1eff9",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Social insurance number (SIN)",
-        "titleFr": "Numéro d'assurance sociale (NAS)",
-        "questionId": "",
-        "validation": {
-          "required": true,
-          "maxLength": 9
-        },
-        "subElements": [],
-        "autoComplete": "",
-        "descriptionEn": "Enter the 9 digit SIN. Enter 9 zeros if you do not have your employee's or shareholder's SIN.",
-        "descriptionFr": "Inscrivez le NAS à 9 chiffres. Inscrivez 9 zéros si vous n'avez pas le NAS de l'employé ou l'actionnaire.",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 5,
-      "type": "textField",
-      "uuid": "80b9e778-186f-4673-97a1-c8be362f0b58",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Job title",
-        "titleFr": "Intitulé du poste",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "autoComplete": "organization-title",
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 8,
-      "type": "radio",
-      "uuid": "120fde3c-eaf1-4729-9ce0-a8adcea71535",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "T4 slip",
-            "fr": "Feuillet T4"
-          },
-          {
-            "en": "T4A slip",
-            "fr": "Feuillet T4A"
-          },
-          {
-            "en": "Not reported on a slip",
-            "fr": "Non déclaré sur un feuillet "
-          }
-        ],
-        "titleEn": "The taxable benefit was reported on:",
-        "titleFr": "L’avantage imposable a été déclaré sur: ",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": []
-      }
-    },
-    {
-      "id": 14,
-      "type": "textField",
-      "uuid": "2db36f44-dc7d-41f4-bf17-a8ab941bb498",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Provide the other codes used on the T4A slip",
-        "titleFr": "Fournissez les autres codes utilisés sur le feuillet T4A",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": [
-          {
-            "choiceId": "107.2"
-          }
-        ]
-      }
-    },
-    {
-      "id": 12,
-      "type": "textField",
-      "uuid": "ad786d49-8196-45e6-9cd0-33d07c6963df",
-      "properties": {
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Provide the other codes used on the T4 slip",
-        "titleFr": "Fournissez les autres codes utilisés sur le feuillet T4 ",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": [
-          {
-            "choiceId": "106.4"
-          }
-        ]
-      }
-    },
-    {
-      "id": 15,
-      "type": "textArea",
-      "uuid": "5cd3b4f5-cd5c-430b-9838-a28a654d929f",
-      "properties": {
-        "tags": [],
-        "choices": [
-          {
-            "en": "",
-            "fr": ""
-          }
-        ],
-        "titleEn": "Provide details as to why the taxable benefit was not reported",
-        "titleFr": "Fournissez les détails sur les raisons pour lesquelles l’avantage imposable n’a pas été déclaré",
-        "questionId": "",
-        "validation": {
-          "required": true
-        },
-        "subElements": [],
-        "descriptionEn": "",
-        "descriptionFr": "",
-        "placeholderEn": "",
-        "placeholderFr": "",
-        "conditionalRules": [
-          {
-            "choiceId": "8.2"
-          }
-        ]
-      }
-    }
-  ],
-  "confirmation": {
-    "descriptionEn": "## Next step\n\nThe CRA auditor will review your responses to this questionnaire. They will provide the results of the audit (either by phone or by sending you a letter) within **30 business days** from the date the request is submitted. \n\nDepending on your situation, the CRA auditor may contact you to request additional information or documents.\n\n## **Sending your supporting documents**\n\nFor the benefit you provided, you **must also send any supporting documents** to the CRA auditor. You have to include your ECA case reference number when sending your documents. \n\nIf these documents are available electronically, you can send them using our online services at [Sign in to your CRA account](https://www.canada.ca/en/revenue-agency/services/e-services/cra-login-services.html). \n\nTo send a copy of your paper documents by fax or mail, use the number or address in the letter you received from the CRA auditor. If possible, also return this questionnaire with the documents.\n\n## More than one employee or shareholder information required \n\nIf more than one employee or shareholder information is required, you have to complete a new questionnaire **for each employee or shareholder requested by the CRA auditor.&#32;**\n\nContinue to: **Add link to the same questionnaire**.\n\n## More information\n\nFor more information on how to determine if the housing or utilities benefits is taxable and if you need to deduct CPP, EI and income tax, go to [Housing or utilities](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/benefits-allowances/boarding-lodging/housing-utilities.html).",
-    "descriptionFr": "## Prochaine étape\n\nUn vérificateur de l'ARC va examiner vos réponses à ce questionnaire. Il vous fournira les résultats de la vérification (soit par téléphone, soit en vous envoyant une lettre) dans les **30 jours ouvrables** à compter de la date de l'envoie de la demande. \n\nSelon votre situation, le vérificateur de l'ARC peut vous contacter pour demander des reseignements ou documents supplémentaires. \n\n## Comment envoyer des documents\n\nIl se peut que vous deviez envoyer des documents justificatifs au vérificateur de l’ARC. Vous devez inclure votre numéro de référence du dossier de la VCO lorsque vous envoyer vos documents.\n\nSi ces documents sont disponibles en version électronique, veuillez nous les envoyer à l’aide de nos services en ligne à [Se connecter à son compte de l'ARC](https://www.canada.ca/fr/agence-revenu/services/services-electroniques/services-ouverture-session-arc.html). \n\nPour envoyer une copie de vos documents papier par télécopieur ou par courrier, utilisez le numéro ou l'adresse indiqués dans la lettre que vous avez reçue du vérificateur de l'ARC. Si possible, retournez également ce questionnaire avec les documents.\n\n## Renseignements requis pour pour plus d'un employé ou actionnaire\n\nSi des renseignements pour plus d'un employé ou actionnaire sont requis, vous devez remplir un nouveau questionnaire **pour chaque employé ou actionnaire demandé par le vérificateur de l’ARC**. \n\nAllez à: **Ajouter le lien à ce même questionnaire**.\n\n## Pour en savoir plus\n\nPour en savoir plus sur la façon de déterminer si les avantages liés au logement ou aux services publics sont imposables et si vous devez déduire le RPC, l’AE et l’impôt sur le revenu, consultez [Logement ou services publics](https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/retenues-paie/avantages-allocations/pension-logement/logement-services-publics.html).",
-    "referrerUrlEn": "",
-    "referrerUrlFr": ""
-  },
-  "groupsLayout": [
-    "b912e7f0-ebbe-4a22-bd7e-dde48148040e",
-    "7af1e6bc-dd44-4ef7-802c-1aee0937955d",
-    "b9274d89-8aaa-4cbe-bce1-be67067427ce",
-    "9cfd245c-bc9e-4e89-a2c8-27d2b2f76ddd",
-    "cc3f8afd-778b-489c-a538-9114041059a6",
-    "69dd22d4-fa3e-44b8-86f4-d3ec3efe1995",
-    "269c723c-28bf-42a2-bfb1-b7c9f03272ec",
-    "557ab3a3-6056-4514-b9d0-beb78afaf6d1",
-    "3d304b3c-0ff8-4679-a7c9-b265304ba09d",
-    "9c6a4ab6-81af-47dc-8af0-4dc3e92e9033",
-    "43e236fe-c6c5-4472-9b6d-1fac0947a402",
-    "a5f8b8fd-78c2-4656-a2d2-6eb9b311ef2e",
-    "0790b343-ffef-4b8e-89b1-94a27a235c32",
-    "2337075e-abbf-49ee-9501-f8b0d7fe1061"
-  ],
-  "introduction": {
-    "descriptionEn": "### Purpose of this questionnaire\n\nThis questionnaire is to determine whether you, as the employer, provided a taxable benefit to your employees or a shareholder benefit to your shareholders for housing and utilities. If the benefit is taxable, it will provide the details to help us make sure you calculated and reported the benefits correctly on your employee’s T4 or your shareholder’s T4A slip for the **period under audit**.\n\nFor more information, go to [Housing or utilities](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/benefits-allowances/boarding-lodging/housing-utilities.html).\n\n### About this questionnaire\n\nThere are up to **5 sections to complete**. You can review and correct your answers by using “Go back” at the bottom of each page, or by reviewing all your answers together at the end of the questionnaire.\n\n1. Information about this audit\n2. Employee or shareholder information\n3. Housing and utilities benefit information (if you provided more than one housing benefit, you need to complete this section multiple times, once for each benefit)\n4. Other benefit information related to the housing and utilities benefit\n5. Certification\n\nYou have the ability to save progress and resume the questionnaire later. Once you submit your request, you will receive instant confirmation. \n\nYou must complete this questionnaire for **each employee or shareholder requested by the auditor** and provide it to the auditor assigned to your case by the **date they requested**.\n\nOnce the questionnaire is submitted, you will also have to **send any supporting documents** to the CRA auditor. \n\n\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\n\n### Privacy statement",
-    "descriptionFr": "### L'objectif de ce questionnaire\n\nCe questionnaire vise à déterminer si vous, en tant qu'employeur, avez fourni un avantage imposable à vos employés ou un avantage à vos actionnaires lié au logement et aux services publics. Si l’avantage est imposable, il permettra de recueillir les renseignements nécessaires pour nous assurer que vous avez correctement calculé et déclaré les avantages sur le feuillet T4 de votre employé ou le feuillet T4A de votre actionnaire pour la **période visée par la vérification**.\n\nPour en savoir plus, consultez [Logement ou services publics](https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/retenues-paie/avantages-allocations/pension-logement/logement-services-publics.html).\n\n### À propos de ce questionnaire\n\nIl y a jusqu'à **5 sections à remplir**. Vous pouvez réviser et corriger vos réponses à tout moment en utilisant le bouton « Retour » au bas de chaque page, ou en passant en revue toutes vos réponses à la fin du questionnaire.\n\n1. Renseignements concernant cette vérification\n2. Renseignements sur l’employé ou l’actionnaire\n3. Renseignements sur les avantages liés au logement et aux services publics (si vous avez fourni plus d’un avantage lié au logement, vous devrez remplir cette section plusieurs fois, une fois pour chaque avantage)\n4. Autres renseignements sur les avantages liés au logement et aux services publics\n5. Attestation\n\nVous avez la possibilité de sauvegarder votre progrès et de poursuivre le questionnaire plus tard. Une fois votre demande soumise, vous recevrez instantanément une confirmation.\n\nVous devez remplir ce questionnaire pour **chaque employé ou actionnaire demandé par le vérificateur** et le remettre au vérificateur assigné à votre dossier **au plus tard à date demandée celui-ci**.\n\nUne fois le questionnaire soumis, vous devrez également envoyer tous les documents à l’appui à l’auditeur de l’ARC.\n\n\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\n\n### Déclaration sur la protection des renseignements personnels"
-  },
-  "privacyPolicy": {
-    "descriptionEn": "By providing CRA the required information on this form, you are authorizing CRA to use the phone number and email address provided to communicate with you.\n\nPersonal information is collected and used to administer or enforce the Income Tax Act and related programs and activities including administering tax, benefits, audit, compliance, and collection. The information collected may be disclosed to other federal, provincial, territorial, aboriginal or foreign government institutions to the extent authorized by law. Failure to provide this information may result in paying interest or penalties, or in other actions. Under the Privacy Act, individuals have a right of protection, access to and correction of their personal information, and to file a complaint with the Privacy Commissioner of Canada regarding the handling of their personal information. Refer to Personal Information Bank [Employer Compliance (CRA PPU 120)](https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra/access-information-privacy-canada-revenue-agency/info-source-appendix.html#PPU120) in the Info Source Appendix – Personal Information Banks.",
-    "descriptionFr": "En fournissant à l'ARC les renseignements requis dans ce formulaire, vous autorisez l'ARC à utiliser le numéro de téléphone et l'adresse électronique fournis pour communiquer avec vous. \n\nLes renseignements personnels sont recueillis et utilisés pour administrer ou respecter la Loi de l'impôt sur le revenu et les programmes et activités connexes, dont l'administration des lois fiscales, des prestations, de la vérification, de l'observation et du recouvrement. Les renseignements recueillis peuvent être divulgués à d'autres instituttions gouvernementales fédérales, provinciales, territoriales, autochtones ou étrangères, dans la mesure où la loi l'autorise. Le défaut de fournir ces renseignements peut entraîner le paiement d'intérêts ou de pénalités, ou d'autres actions. En vertu de la Loi sur la protection des renseignements personnels, les individus ont un droit de protection, d'accès et de correction de leurs renseignements personnels, et de déposer une plainte auprès du Commissaire à la protection de la vie privée concernant le traitement de leurs renseignements personnels. Se référer aux Fichiers de renseignements personnels [Observation par les employeurs (CRA PPU 120)](https://www.canada.ca/fr/agence-revenu/organisation/a-propos-agence-revenu-canada-arc/acces-a-information-protection-renseignements-personnels-a-agence-revenu-canada/info-source-annexe.html#PPU120) dans l'Info Source Appendice - Fichiers de renseignements personnels."
-  },
-  "lastGeneratedElementId": 139
+
+<script>
+
+function normalizeAnswer(answer) {
+return String(answer || "")
+.trim()
+.toLowerCase()
+.replace(/[’‘]/g, "'")
+.replace(/[\u2013\u2014\u2012\u2010]/g, '-')
+.replace(/\s+/g, ' ')
+.replace(/[^a-z0-9\s'/-]/g, ''); // strip unexpected punctuation
 }
+
+
+const customScoringRules = {
+   
+  207: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+	  case "yes - you must send a copy of the contract or agreement with this questionnaire": return -2;  // 
+      case "no": return -2;  // 	Information to help with the contract review     
+  
+    }
+  },
+
+  206: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return -2; // Information to help with the contract review 
+      case "no": return -2; // Information to help with the contract review 
+    }
+  },
+
+
+  347: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+   case "yes": return -2; // Information to help with the contract review 
+      case "no": return -2; // Information to help with the contract review 
+    }
+  },
+	
+  348: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+    case "yes": return -2; // Information to help with the contract review 
+      case "no": return -2; // Information to help with the contract review 
+    }
+  },
+
+	 382: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+      case "worker": return -1; // Indicator of contract for services
+     case "payer and worker": return 0;  // Neutral    
+    }
+  },
+
+
+  349: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+    case "yes": return -2; // Information to help with the contract review 
+      case "no": return -2; // Information to help with the contract review 	    
+    }
+  },
+	
+    351: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "employer-employee": return 1; // Indicator of contract of service
+      case "self-employed worker": return -1; // Indicator of contract for services	    
+    }
+  },
+   
+
+   
+	
+  192: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+    }
+  },
+    383: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+     case "payer": return 1; // Indicator of contract of service
+     case "worker": return -1; // Indicator of contract for services
+     case "payer and worker": return -2; //   
+    }
+  },
+    258: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    }
+  },
+    257: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    }
+  },
+
+  492: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    }
+  },
+
+  479: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+    case "worker's corporation": return -1; // Indicator of contract for services
+    }
+  },	
+	
+	259: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    }
+  },
+  261: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+      case "does not apply": return 0; // Neutral	    
+    
+    }
+  },
+262: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+  263: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  264: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+   
+    }
+  },
+  265: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+  
+    }
+  },
+  191: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+ 267: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+
+ 268: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+
+ 513: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+
+ 494: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+
+ 496: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+ 497: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+	
+ 499: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+	
+	
+   297: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+  
+   298: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+  
+   299: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes - t4 slip": return 1; // Indicator of contract of service
+      case "no - t4a slip": return -1; // Indicator of contract for services
+      case "no - t5018 slip": return -1; // Indicator of contract for services	
+      case "no - t4-nr slip": return -1; // Indicator of contract for services
+      case "no - no slip issued": return -1; // Indicator of contract for services    
+  
+    }
+  },
+   271: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+ 300: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "hourly/monthly": return 1; // Indicator of contract of service
+      case "percentage of job completion/piecework": return -2; // 	Information to help with the contract review 
+	  case "other": return -1; // Indicator of contract for services	  	    
+   
+    }
+  },
+   301: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+   270: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+   302: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+   303: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+   304: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+   306: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "filing a timesheet": return 1; // Indicator of contract of service
+	case "sending an invoice": return -1; // Indicator of contract for services
+	  case "other": return -2; // 	 Information to help with the contract review 	    
+      
+    }
+  },
+
+ 195: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+     case "payer's location": return 1; // Indicator of contract of service
+     case "worker's location": return -1; // Indicator of contract for services	
+     case "mobile locations": return -2; //  Information to help with the contract review
+     case "client's location": return -2; //  Information to help with the contract review
+    case "other options for transportation workers": return -2; // Information to help with the contract review 
+    }
+  },
+
+ 466: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+     case "home terminal or dispatch center": return -2; // Information to help with the contract review
+     case "on the road/in transit": return -2; // Information to help with the contract review
+     case "delivery or pickup locations": return -2; // Information to help with the contract review
+     case "specific route or corridor": return -2; // 	Information to help with the contract review 
+     case "client facility or yard": return -2; //  Information to help with the contract review
+     case "remote or temporary worksite": return -2; //  Information to help with the contract review
+     case "rail yard, port, or airport": return -2; // 	Information to help with the contract review 
+     case "other": return -2; // Information to help with the contract review		    
+        }
+  },
+
+//Who determined where the worker performed the services under the contract?
+   296: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+       case "payer": return 1; // Indicator of contract of service
+     case "worker": return -1; // Indicator of contract for services
+   case "payer and worker": return -2; // 	  Information to help with the contract review   
+    }
+  },
+
+//Who decided where the truck used by the worker (truck driver) would be parked? 
+480: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+     case "worker": return -1; // Indicator of contract for services
+    case "payer and worker": return -2; // Information to help with the contract review 	
+    case "does not apply": return -2; // Information to help with the contract review 		    
+    }
+  },
+	
+  274: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    }
+  },
+  275: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes - with or without cause": return -2; // Information to help with the contract review 
+     case "no":  return -2; // Information to help with the contract review 
+     case "yes - with cause":  return -2; // Information to help with the contract review 	 
+    }
+  },
+  428: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+         }
+  },
+	
+  276: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+	
+  429: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+    }
+  },
+	
+  481: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "no": return 1; // Indicator of contract of service
+    case "yes": return -1; // Indicator of contract for services
+   
+    }
+  },	
+  
+  	
+  280: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+     case "no": return -1; // Indicator of contract for services
+        }
+  },
+
+ 278: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+        case "yes": return 1; // Indicator of contract of service
+        case "no": return -1; // Indicator of contract for services
+	 case "not applicable - schedule is regular": return -2; // Information to help with the contract review 	     	  		     
+    }
+  },
+  
+  309: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+    }
+  },
+
+ 
+  459: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+   
+    }
+  },
+
+
+  484: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return -1; // Indicator of contract for services
+    case "no": return 1; // Indicator of contract of service
+     
+    }
+  },
+
+ 485: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review 	
+      case "does not apply": return 0; // Neutral			    
+    
+    }
+  },	
+	
+  198: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+  281: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+     case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+ 
+    }
+  },
+  282: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+  case "no": return -1; // Indicator of contract for services
+  
+    }
+  },
+  283: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+  case "does not apply": return 0; // Neutral		    
+    
+    }
+  },
+
+	
+  290: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+    case "no": return -1; // Indicator of contract for services
+    }
+  },
+  208: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+     case "worker": return -1; // Indicator of contract for services
+     case "payer and worker": return -2; // 	Information to help with the contract review     
+     
+    }
+  },
+	
+  284: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+     case "no": return -1; // Indicator of contract for services
+     case "does not apply": return 0;  // Neutral	    
+     }
+  },
+  285: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+	 case "does not apply": return 0;  // Neutral		    
+    }
+  },
+  286: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review 	
+	 case "does not apply": return 0;  // Neutral		    
+      }
+  },
+
+  471: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "owned by the worker": return -2; // Information to help with the contract review 
+     case "owned by the corporation of the worker": return -2; // Information to help with the contract review 
+     case "owned by the payer": return -2; // Information to help with the contract review 
+     case "leased by the worker": return -2; // Information to help with the contract review 
+     case "leased by the corporation of the worker": return -2; // Information to help with the contract review 
+     case "leased by the payer": return -2; // Information to help with the contract review 
+      case "don't know": return -2; // Information to help with the contract review 
+     
+    }
+  },
+
+ 473: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // 		    
+     
+    }
+  },	
+
+ 474: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Neutral	
+  case "don't know": return 1; // Indicator of contract of service		    
+      
+    }
+  },
+
+ 475: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review 	
+	  case "don't know": return 1; // Indicator of contract of service	    
+     
+    }
+  },
+
+  476: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+    
+    }
+  },	
+
+ 477: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review 		    
+     
+    }
+  },	
+	
+  430: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+   
+    }
+  },
+  
+  211: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+      case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+  214: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+     case "no": return -1; // Indicator of contract for services
+
+    }
+  },
+  216: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+
+  219: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	 case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+  233: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+	
+  495: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+
+//Who was responsible for paying for the insurance?	
+   478: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+      case "worker": return -1; // Indicator of contract for services
+      case "worker's corporation": return -1; // Indicator of contract for services	
+      case "payer and worker": return -2; // 	Information to help with the contract review 	    
+     case "don't know": return -2; // 	Information to help with the contract review 	    
+    }
+  },
+
+ 486: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	  case "payer and worker": return -2; // Information to help with the contract review 
+	  case "don't know":  return -2; // Information to help with the contract review 		    
+      
+    }
+  },	
+
+ 487: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review 
+	  case "don't know":  return -2; // 	Information to help with the contract review 
+    }
+  },	
+    431: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -2;  // Information to help with the contract review 
+     
+    }
+  },
+ 397: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+     case "payer's location": return 1; // Indicator of contract of service
+     case "worker's location": return -1; // Indicator of contract for services	
+     case "mobile locations": return -2; //  Information to help with the contract review
+     case "client's location": return -2; //  Information to help with the contract review
+    case "other options for transportation workers": return -2; // Information to help with the contract review 
+    }
+  },
+
+ 468: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+     case "home terminal or dispatch center": return -2; // Information to help with the contract review
+     case "on the road/in transit": return -2; // Information to help with the contract review
+     case "delivery or pickup locations": return -2; // Information to help with the contract review
+     case "specific route or corridor": return -2; // 	Information to help with the contract review 
+     case "client facility or yard": return -2; //  Information to help with the contract review
+     case "remote or temporary worksite": return -2; //  Information to help with the contract review
+     case "rail yard, port, or airport": return -2; // 	Information to help with the contract review 
+     case "other": return -2; // Information to help with the contract review		    
+        }
+  },
+
+  398: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review		    
+     
+    }
+  },
+  399: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review	
+      
+    }
+  },
+  393: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  394: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+
+  510: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker's corporation": return -1; // Indicator of contract for services
+
+    }
+  },
+	
+  511: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	    case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review	
+	case "does not apply": return 0; // Neutral		    
+     
+    }
+  },
+	
+  400: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+     case "no": return -1; // Indicator of contract for services
+  
+    }
+  },
+  402: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  403: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+     case "yes - t4 and rl-1 slips": return 1; // Indicator of contract of service
+      case "no - t4a slip": return -1; // Indicator of contract for services
+      case "no - t5018 slip": return -1; // Indicator of contract for services	
+      case "no - t4-nr slip": return -1; // Indicator of contract for services
+      case "no - no slip issued": return -1; // Indicator of contract for services    
+    }
+  },
+
+  404: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+       case "hourly/monthly": return 1; // Indicator of contract of service
+      case "percentage of job completion/piecework": return -2; // Information to help with the contract review
+      case "other": return -2; // Information to help with the contract review	    
+    
+    }
+  },
+  405: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+  406: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  407: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  408: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+       
+    }
+  },
+  410: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "filing a timesheet": return 1; // Indicator of contract of service
+	   case "sending an invoice": return -1; // Indicator of contract for services
+	case "other": return -2; // Information to help with the contract review	    
+     
+    }
+  },
+  411: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+
+
+
+  412: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  413: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+  414: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  415: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  416: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+	
+  532: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+	
+  417: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  533: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+  534: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+		    case "does not apply": return 0;  // Neutral	    
+     
+    }
+  },
+	
+  418: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  419: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+  420: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+  421: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+  422: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes - with or without cause": return -2; //	Information to help with the contract review
+     case "no": return -2; // 	Information to help with the contract review
+     case "yes - with cause": return -2; // Information to help with the contract review	 
+    
+    }
+  },
+   438: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+		    case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+  439: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+
+ 512: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+ 493: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return -1; // Indicator of contract for services
+	  case "no": return 1; // Indicator of contract of service
+      
+    }
+  },
+ 517: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return -1; // Indicator of contract for services
+	  case "no": return 1; // Indicator of contract of service
+      
+    }
+  },
+ 514: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+     
+    }
+  },
+ 515: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+       
+    }
+  },
+ 516: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+
+//Who decided where the truck used by the worker (truck driver) would be parked?
+  527: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review		
+	 case "does not apply": return -2; // Information to help with the contract review			    
+     
+    }
+  },
+ 528: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return -1; // Indicator of contract for services
+	  case "no": return 1; // Indicator of contract of service
+    
+    }
+  },	
+ 529: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return -1; // Indicator of contract for services
+	  case "no": return 1; // Indicator of contract of service
+    
+    }
+  },
+
+   520: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "owned by the worker": return -2; // Information to help with the contract review  
+     case "owned by the corporation of the worker": return -2; //   Information to help with the contract review
+     case "owned by the payer": return -2; //   Information to help with the contract review
+     case "leased by the worker": return -2; //   Information to help with the contract review
+     case "leased by the corporation of the worker": return -2; //  Information to help with the contract review 
+     case "leased by the payer": return -2; //  Information to help with the contract review 
+      case "don't know": return -2; // Information to help with the contract review        
+    }
+  },
+
+  521: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review    
+      
+    }
+  },	
+  522: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review	
+	 case "don't know": return -2; // 	Information to help with the contract review	    
+     
+    }
+  },	
+  523: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review	
+	 case "don't know": return -2; // Information to help with the contract review
+    }
+  },
+ 524: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+    
+    }
+  },
+  526: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; //    Information to help with the contract review 
+     
+    }
+  },	
+ 518: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "yes": return 1; // Indicator of contract of service
+	  case "no": return -1; // Indicator of contract for services
+      
+    }
+  },
+  525: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+  case "worker's corporation": return -1; // Indicator of contract for services		    
+	 case "payer and worker": return -2; // 	Information to help with the contract review	
+	case "don't know": return -2; // 	Information to help with the contract review
+    }
+  },	
+  530: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	  case "payer and worker": return -2; // Information to help with the contract review		
+	case "don't know": return -2; // Information to help with the contract review	
+    }
+  },	
+  531: answer => {
+     const normalized = normalizeAnswer(answer);   switch (normalized) {
+      case "payer": return 1; // Indicator of contract of service
+	  case "worker": return -1; // Indicator of contract for services
+	 case "payer and worker": return -2; // Information to help with the contract review		
+	case "don't know": return -2; // 	Information to help with the contract review  	    
+     
+    }
+  },	
+
+};
+
+
+function scoreAnswer(answer, questionId) {
+  const rule = customScoringRules[questionId];
+  if (rule) return rule(answer);
+  return -2; // Default to information documents if no rule found
+}
+
+function getScoreIcon(questionId, answer) {
+  const score = scoreAnswer(answer, questionId);
+  let icon = '';
+  let color = '';
+  let title = '';
+
+  if (score === 1) {
+    icon = 'fas fa-users';
+    color = 'green';
+    title = 'Contract of service (employment)';
+  } else if (score === -1) {
+    icon = 'fas fa-user-tie';
+    color = '#004085';
+    title = 'Contract for services (self-employed worker)';
+  } else if (score === 0) {
+    icon = 'fas fa-not-equal';
+    color = 'grey';
+    title = 'Neutral';
+  }
+ else if (score === -2) {
+    icon = 'fas fa-book';
+    color = '#a2bffe';
+    title = 'Information to help with the contract review';
+  }	
+
+  if (icon) {
+    return `
+      <div class="score-icon">
+        <i class="fas ${icon}" style="color: ${color};" title="${title}"></i>
+      </div>`;
+  }
+
+  return '';
+}
+	
+	
+</script>
+
+<script>
+function normalize(section) {
+return (section || "").trim().toLowerCase();
+}
+	
+function calculateSectionScores(data) {
+  const totalsScores = {}, cosScores = {}, cfsScores = {}, neutralsScores = {}, infoScores = {}; 
+
+  data.forEach(entry => {
+    entry.answers.forEach(ans => {
+      const section = sectionMap[ans.questionId] || "Other";
+      const normalizedSection = normalize(section);
+      const exclusions = sectionQuestionExclusions[section] || [];
+
+      if (!excludedSections.has(normalizedSection)) {
+        if (!totalsScores[section]) {
+          totalsScores[section] = 0;
+ 	  cosScores[section] = 0;
+          cfsScores[section] = 0;
+ 	  neutralsScores[section] = 0;
+          infoScores[section] = 0;	
+        }
+
+        if (ans.answer && ans.answer !== "") {
+          totalsScores[section]++;
+          if (!exclusions.includes(ans.questionId)) {
+            const score = scoreAnswer(ans.answer, ans.questionId);
+	  console.log("QID:", ans.questionId, "Answer:", ans.answer, "Score:", score, "Section:", section);
+
+            if (score === 1) cosScores[section]++;
+            else if (score === -1) cfsScores[section]++;
+	    else if (score === 0) neutralsScores[section]++;
+	    else if (score === -2) infoScores[section]++;	  
+	  }
+        }
+      }
+    });
+  });
+
+  return {totalsScores, cosScores, cfsScores, neutralsScores, infoScores};
+}
+
+function getIndicatorIcon(score) {
+  if (score === 1) {
+    return `<i class="fas fa-users" style="color: green;" title="Contract of service"></i>`;
+  } 
+   else if (score === -1) {
+    return `<i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i>`;
+ }	  
+  else if (score === 0) {
+    return `<i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i>`;	  
+  } 
+  else if (score === -2) {
+    return `<i class="fas fa-book" style="color: #a2bffe;" title="Information to help with the contract review"></i>`;
+  }
+}
+
+function generateDistributionBar(cos, cfs, neutral, info, total) {
+  const cosPercent = total ? (cos / total * 100).toFixed(1) : 0;
+  const cfsPercent = total ? (cfs / total * 100).toFixed(1) : 0;
+  const neutralPercent = total ? (neutral / total * 100).toFixed(1) : 0;
+  const infoPercent = total ? (info / total * 100).toFixed(1) : 0;	
+
+  return `
+    <div class="probability-bar">
+      <div style="width:${cosPercent}%; background: green;">${cos > 0 ? cosPercent + "%" : ""}</div>
+      <div style="width:${cfsPercent}%; background: #004085;">${cfs > 0 ? cfsPercent + "%" : ""}</div>
+      <div style="width:${neutralPercent}%; background: gray;">${neutral > 0 ? neutralPercent + "%" : ""}</div>
+       <div style="width:${infoPercent}%; background: #a2bffe;">${info > 0 ? infoPercent + "%" : ""}</div>
+    </div>
+  `;
+}	
+	
+
+
+function renderProbabilityScore(workerData, payerData) {
+  const probabilityDiv = document.getElementById('probability');
+
+  // Inject heading into full-width container above the row
+const headingContainer = document.getElementById('analysisHeading');
+if (headingContainer) {
+  headingContainer.innerHTML = ''; // Clear previous content
+
+  // Create and insert the <h2> heading
+  let headingText = '';
+  if (workerData.length > 0 && payerData.length > 0) {
+    headingText = "Worker's and payer's answers – Begin your full analysis using each factor";
+  } else if (workerData.length > 0) {
+    headingText = "Worker's answers – Begin your analysis using each factor";
+  } else if (payerData.length > 0) {
+    headingText = "Payer's answers – Begin your analysis using each factor";
+  }
+
+  if (headingText) {
+    const heading = document.createElement('h2');
+    heading.textContent = headingText;
+    heading.classList.add('mt-4', 'mb-3');
+    headingContainer.appendChild(heading);
+  }
+
+  // Remove any previous introDetails if it exists
+  const existingDetails = document.getElementById('introDetails');
+  if (existingDetails) existingDetails.remove();
+
+  // Create <details> container
+  const details = document.createElement('details');
+  details.id = 'introDetails';
+  details.open = true;
+
+  // Create <summary>
+  const summary = document.createElement('summary');
+  summary.innerHTML = '<strong>About this summary</strong>';
+  details.appendChild(summary);
+
+  // Create content container
+  const introContainer = document.createElement('div');
+  introContainer.id = 'analysisIntro';
+  introContainer.innerHTML = `
+    <p>The questionnaire uses the following icons to categorize the answers received:</p>
+    <ul class="list-unstyled">
+      <li class="mrgn-lft-lg"><i class="fas fa-users" style="color: green;" title="Contract of service"></i> Contract of service (employment)</li>
+      <li class="mrgn-lft-lg"><i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i> Contract for services (self-employed worker)</li>
+      <li class="mrgn-lft-lg"><i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i> Neutral</li>
+      <li class="mrgn-lft-lg"><i class="fas fa-book" style="color: #a2bffe;" title="Information to help with the contract review"></i> Information to help with the contract review</li>
+    </ul>
+    <p class="mrgn-tp-md">These categorizations are <strong>generally</strong> accurate for the indicators reviewed. However, depending on the facts of this review, these icons may not always apply. To make a final decision, you need to review <strong>all</strong> indicators together, along with the documents sent by both the payer and the worker.</p>
+  `;
+
+  // Add mismatch note if both sets of answers are present
+  if (workerData.length > 0 && payerData.length > 0) {
+    const mismatchNote = document.createElement('p');
+    mismatchNote.classList.add('mrgn-tp-md');
+    mismatchNote.innerHTML = `To help you quickly spot mismatches between the 2 answers, if the worker and payer answers are different, the cells will be highlighted in <span style="background-color: #fff3cd;">yellow</span>.`;
+    introContainer.appendChild(mismatchNote);
+  }
+
+  // Append content and details to heading container
+  details.appendChild(introContainer);
+  headingContainer.appendChild(details);
+}
+
+
+
+ // Clear and populate the probability section
+probabilityDiv.innerHTML = `
+<button onclick="printSummary()" class="btn btn-primary btn-lg btn-block mrgn-tp-lg">Print your summary/Save as PDF</button>
+
+   <h3>Resources</h3>
+  <details><summary>Canada.ca</summary>
+       <ul>
+<li><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/corporations/corporation-income-tax-return/tax-implications-personal-services-business.html">Worker who performs services on behalf of their own corporation (personal services business)</a> </li>
+<li><a href="https://test.canada.ca/cra-arc/subway/cppeirulings/index.html">Employment status: Employee or self-employed</a> </li>
+<li><a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained.html">CPP/EI explained: Specific professions/industries</a> </li>
+</ul></details>   
+ 
+<details><summary>Infozone</summary>
+     <ul>
+<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_006-e.html">CPP/EI policy manual: How to determine where the contract was formed</a> </li>
+<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_007-e.html">CPP/EI policy manual: Contract formed in a province or territory other than Quebec</a> </li>
+<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_008-e.html">CPP/EI policy manual: Contract formed in the province of Quebec</a> </li>
+<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/002-e.html">CPP/EI policy manual: Specific employments/workers</a> </li>	
+</ul>    </details>   
+   
+   <h3>Total – Indicators</h3>
+<p >Totals are provided for <strong>information only</strong>. They are <strong>not</strong> provided to determine if the worker would have reasonably been considered an employee or self-employed if their corporation did not exist.</p>
+  `;
+
+  const worker = calculateSectionScores(workerData);
+  const payer = calculateSectionScores(payerData);
+
+  let totalQuestions = 0, workerCos = 0, payerCos = 0, workerNeutral = 0, payerNeutral = 0, workerCfs = 0, payerCfs = 0, workerInfo = 0, payerInfo = 0;
+
+  const allSections = new Set([
+    ...Object.keys(worker.cosScores),
+    ...Object.keys(payer.cosScores)
+  ]);
+
+  for (const section of allSections) {
+    const wTotal = worker.totalsScores[section] || 0;
+    const pTotal = payer.totalsScores[section] || 0;
+    const wCos = worker.cosScores[section] || 0;
+    const pCos = payer.cosScores[section] || 0;
+    const wNeutral = worker.neutralsScores[section] || 0;
+    const pNeutral = payer.neutralsScores[section] || 0;
+    const wCfs = worker.cfsScores[section] || 0;
+    const pCfs = payer.cfsScores[section] || 0;
+    const wInfo = worker.infoScores[section] || 0;
+    const pInfo = payer.infoScores[section] || 0;	  
+
+    if (wTotal > 0 || pTotal > 0) {
+      totalQuestions += Math.max(wTotal, pTotal);
+      workerCos += wCos;
+      payerCos += pCos;
+      workerNeutral += wNeutral;
+      payerNeutral += pNeutral;
+      workerCfs += wCfs;
+      payerCfs += pCfs;
+      workerInfo += wInfo;
+      payerInfo += pInfo;    
+    }
+  }
+
+const workerScoreText = (workerCos + workerCfs + workerNeutral + workerInfo) > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerCos} of ${totalQuestions} <br>
+     ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerCfs || 0} <br>
+     ${getIndicatorIcon(0)} Neutral: ${workerNeutral || 0} <br>
+     ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerInfo || 0}`
+  : 'N/A';
+
+const payerScoreText = (payerCos + payerCfs + payerNeutral + payerInfo) > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerCos} of ${totalQuestions} <br>
+     ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerCfs || 0} <br>
+     ${getIndicatorIcon(0)} Neutral: ${payerNeutral || 0} <br>
+     ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payerInfo || 0}`
+  : 'N/A';
+
+
+
+  probabilityDiv.innerHTML += `
+    <section class="panel panel-primary">
+      <header class="panel-heading"><h5 class="panel-title">All section 5</h5></header>
+      <div class="panel-body">
+      <p><strong>Worker's answers</strong><br>
+          <p>${workerScoreText}</p>
+	   <hr>
+     <p><strong>Payer's answers</strong><br>
+       <p>${payerScoreText}</p>
+      </div>
+    </section>
+  
+    <hr>
+    <h3>By section - Indicators</h3>
+  `;
+
+  for (const section of allSections) {
+    const wTotal = worker.totalsScores[section] || 0;
+    const pTotal = payer.totalsScores[section] || 0;
+
+    if (wTotal > 0 || pTotal > 0) {
+
+    const wScoreText = wTotal > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.cosScores[section]} of ${wTotal} <br>
+   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.cfsScores[section] || 0} <br>
+ ${getIndicatorIcon(0)} Neutral: ${worker.neutralsScores[section] || 0} <br>
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${worker.infoScores[section] || 0}
+`
+  : 'N/A';
+
+const pScoreText = pTotal > 0
+  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.cosScores[section]} of ${pTotal} <br>
+   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${payer.cfsScores[section] || 0}<br>
+${getIndicatorIcon(0)}  Neutral: ${payer.neutralsScores[section] || 0} <br>
+${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payer.infoScores[section] || 0} 
+`
+  : 'N/A';
+
+      probabilityDiv.innerHTML += `
+        <section class="panel panel-info">
+          <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
+          <div class="panel-body">
+            <p><strong>Worker's answers</strong><br> ${wScoreText}</p>
+	    <hr>
+            <p><strong>Payer's answers</strong><br> ${pScoreText}</p>
+          </div>
+        </section>
+      `;
+    }
+  }
+ 
+}
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  // Only fetch remote JSON if no file has been uploaded
+  if (!window.workerCases && !window.payerCases) {
+    fetch('https://test.canada.ca/cra-arc/payroll/emp-status/psb/June27forms.json')
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to load JSON');
+        return response.json();
+      })
+      .then(jsonData => {
+        const workerMap = new Map();
+        const payerMap = new Map();
+        jsonData.forEach(entry => {
+          const q441 = entry.answers.find(a => a.questionId === 441);
+          const caseAns = entry.answers.find(a => a.questionId === 341);
+          const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
+          if (q441 && q441.answer.includes("Worker whose corporation")) {
+            workerMap.set(caseNumber, entry);
+          } else if (q441 && q441.answer.includes("Payer who made payments")) {
+            payerMap.set(caseNumber, entry);
+          }
+        });
+        window.workerCases = workerMap;
+        window.payerCases = payerMap;
+        handleCaseSelection(workerMap, payerMap);
+      })
+      .catch(error => {
+        console.error('Error loading JSON:', error);
+      });
+  }
+});
+</script>
+
+
+
+<script>
+function printSummary() {
+  // Expand all <details> elements
+  document.querySelectorAll("details").forEach(detail => {
+    detail.setAttribute("open", true);
+  });
+
+  // Wait a moment to ensure rendering, then print
+  setTimeout(() => {
+    window.print();
+  }, 100);
+}
+</script>
 
 
 
