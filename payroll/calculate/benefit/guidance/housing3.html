@@ -293,8 +293,6 @@ const sectionQuestionExclusions = {
 };
 	
 let workerData = null;
-let payerData = null;
-
 
 function handleSmartJsonUpload(file) {
   const reader = new FileReader();
@@ -307,11 +305,11 @@ function handleSmartJsonUpload(file) {
 
 
       jsonData.forEach(entry => {
-        const q441 = entry.answers.find(a => a.questionId === 441);
+        const q31 = entry.answers.find(a => a.questionId === 31);
         const caseAns = entry.answers.find(a => a.questionId === 341);
         const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
 
-        if (q441 && q441.answer.includes("Worker whose corporation")) {
+        if (q31 && q31.answer.includes("Worker whose corporation")) {
           workerCases.set(caseNumber, entry);
         } 
       });
@@ -655,16 +653,13 @@ window.addEventListener('DOMContentLoaded', () => {
       const workerMap = new Map();
    
       jsonData.forEach(entry => {
-        const q441 = entry.answers.find(a => a.questionId === 441);
-        const caseAns = entry.answers.find(a => a.questionId === 341);
+        const q31 = entry.answers.find(a => a.questionId === 31);
+        const caseAns = entry.answers.find(a => a.questionId === 31);
         const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
 
-        if (q441 && q441.answer.includes("Worker whose corporation")) {
+        if (q31 && q31.answer.includes("Worker whose corporation")) {
           workerMap.set(caseNumber, entry);
-        } else if (q441 && q441.answer.includes("Payer who made payments")) {
-          payerMap.set(caseNumber, entry);
-        }
-      });
+        } });
 
       // Assign to global variables
       workerCases = workerMap;
