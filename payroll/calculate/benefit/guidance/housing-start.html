@@ -54,13 +54,31 @@
         try {
           const data = JSON.parse(e.target.result);
           const answers = data[0].answers;
-          let html = '<h2>Responses</h2><table><tr><th>Question</th><th>Answer</th></tr>';
+          let html = '<h2>Responses</h2>
+           
+            <table id="comparisonTable" class="wb-tables table table-hover" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
+         <thead>
+<tr>
+<th class="id-col hidden">Question ID</th>
+<th>Employer question</th>
+<th>Employer response</th>
+</tr>
+</thead>  
+      <tbody>`;
+    
+<td class="id-col hidden">${row.id}</td>
+<td>${row.wTitle}</td>
+<td>${row.wChoices}</td>
+</tr>`;
+      
           answers.forEach(item => {
             const question = item.questionEn || 'Unknown Question';
             const answer = Array.isArray(item.answer) ? JSON.stringify(item.answer) : item.answer;
             html += `<tr><td>${question}</td><td>${answer}</td></tr>`;
           });
           html += '</table>';
+
+                 
           document.getElementById('dataDisplay').innerHTML = html;
         } catch (err) {
           document.getElementById('dataDisplay').innerHTML = `<p style="color:red;">Error parsing JSON: ${err.message}</p>`;
