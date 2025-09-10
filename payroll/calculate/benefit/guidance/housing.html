@@ -918,15 +918,23 @@ function normalize(section) {
 <!-- WET PreFooter -->
 </div></main>
 
-
+<script>
+function normalizeAnswer(answer) {
+return String(answer || "")
+.trim()
+.toLowerCase()
+.replace(/[’‘]/g, "'")
+.replace(/[\u2013\u2014\u2012\u2010]/g, '-')
+.replace(/\s+/g, ' ')
+.replace(/[^a-z0-9\s'/-]/g, ''); // strip unexpected punctuation
+}
+</script>
 
 <script>
 function normalize(section) {
 return (section || "").trim().toLowerCase();
 }
 	
-function calculateSectionScores(data) {
-  const totalsScores = {}, cosScores = {}, cfsScores = {}, neutralsScores = {}, infoScores = {}; 
 
   data.forEach(entry => {
     entry.answers.forEach(ans => {
@@ -962,36 +970,6 @@ function calculateSectionScores(data) {
   return {totalsScores, cosScores, cfsScores, neutralsScores, infoScores};
 }
 
-function getIndicatorIcon(score) {
-  if (score === 1) {
-    return `<i class="fas fa-users" style="color: green;" title="Contract of service"></i>`;
-  } 
-   else if (score === -1) {
-    return `<i class="fas fa-user-tie" style="color: #004085;" title="Contract for services"></i>`;
- }	  
-  else if (score === 0) {
-    return `<i class="fas fa-not-equal" style="color: grey;" title="Neutral"></i>`;	  
-  } 
-  else if (score === -2) {
-    return `<i class="fas fa-book" style="color: #a2bffe;" title="Information to help with the contract review"></i>`;
-  }
-}
-
-function generateDistributionBar(cos, cfs, neutral, info, total) {
-  const cosPercent = total ? (cos / total * 100).toFixed(1) : 0;
-  const cfsPercent = total ? (cfs / total * 100).toFixed(1) : 0;
-  const neutralPercent = total ? (neutral / total * 100).toFixed(1) : 0;
-  const infoPercent = total ? (info / total * 100).toFixed(1) : 0;	
-
-  return `
-    <div class="probability-bar">
-      <div style="width:${cosPercent}%; background: green;">${cos > 0 ? cosPercent + "%" : ""}</div>
-      <div style="width:${cfsPercent}%; background: #004085;">${cfs > 0 ? cfsPercent + "%" : ""}</div>
-      <div style="width:${neutralPercent}%; background: gray;">${neutral > 0 ? neutralPercent + "%" : ""}</div>
-       <div style="width:${infoPercent}%; background: #a2bffe;">${info > 0 ? infoPercent + "%" : ""}</div>
-    </div>
-  `;
-}	
 	
 
 
