@@ -201,46 +201,44 @@ details {
 <script>
    const sectionMap = {
    
-   340: "Section 1 - General information",
-    341: "Section 1 - General information",
-    335: "Section 1 - General information",
-    161: "Section 1 - General information",
-   240: "Section 1 - General information",
-   241: "Section 1 - General information",
-   243: "Section 1 - General information",
-   441:  "Section 2 - Business information", 
-   443:  "Section 2 - Business information",  
-    315: "Section 2 - Business information",
-    318: "Section 2 - Business information",
-    319: "Section 2 - Business information",
-    317: "Section 2 - Business information",
-    320: "Section 2 - Business information", 
-    321: "Section 2 - Business information",
-    322: "Section 2 - Business information",
-     323: "Section 2 - Business information",
-    324: "Section 2 - Business information",
-    325: "Section 2 - Business information",
-    326: "Section 2 - Business information", 
-    327: "Section 2 - Business information",
-    328: "Section 2 - Business information",
-    329: "Section 2 - Business information",
-    330: "Section 2 - Business information",
-    331: "Section 2 - Business information", 
-    332: "Section 2 - Business information",
-    333: "Section 2 - Business information",
-    334: "Section 2 - Business information",
-    316: "Section 2 - Business information",
-	
+   30: "Section 1 - Information about this audit",
+    31: "Section 1 - Information about this audit",
+    38: "Section 1 - Information about this audit",
+    32: "Section 1 - Information about this audit",
    
-  339: "Section 2a - Additional business information of the worker",
-    170: "Section 2a - Additional business information of the worker",
- 356: "Section 2a - Additional business information of the worker",   
-  464: "Section 2a - Additional business information of the worker",      
-  342: "Section 2a - Additional business information of the worker",     
- 245: "Section 2a - Additional business information of the worker",   
- 352: "Section 2a - Additional business information of the worker",  
-  465: "Section 2a - Additional business information of the worker",     
+   39:  "Section 2 - Employee or shareholder information", 
+   40:  "Section 2 - Employee or shareholder information",  
+    2: "Section 2 - Employee or shareholder information",
+    4: "Section 2 - Employee or shareholder information",
+    6: "Section 2 - Employee or shareholder information",
+    5: "Section 2 - Employee or shareholder information",
+    121: "Section 2 - Employee or shareholder information", 
+    8: "Section 2 - Employee or shareholder information",
+    106: "Section 2 - Employee or shareholder information",
+    12: "Section 2 - Employee or shareholder information",
+    107: "Section 2 - Employee or shareholder information",
+    14: "Section 2 - Employee or shareholder information",
+    15: "Section 2 - Employee or shareholder information", 
+   
+  124: "Section 3 (2) - Housing and utilities benefit information",
+ 
+   63: "3a (1) - Fair market value (FMV) of the housing benefit",
+ 64: "3a (1) - Fair market value (FMV) of the housing benefit",   
+  129: "3a (1) - Fair market value (FMV) of the housing benefit",    
+	   
+  67: "3b (1) - Use and availability of the housing",     
+ 68: "3b (1) - Use and availability of the housing",   
+ 135: "3b (1) - Use and availability of the housing",  
+  105: "3b (1) - Use and availability of the housing",     
+  105: "3b (1) - Use and availability of the housing",    
+  74: "3b (1) - Use and availability of the housing",    
+	137: "3b (1) - Use and availability of the housing",    
+	     76: "3b (1) - Use and availability of the housing",    
+	     138: "3b (1) - Use and availability of the housing",    
 
+
+
+	   
        444: "Section 3 - Payee (worker) information",      
        445: "Section 3 - Payee (worker) information",   
        446: "Section 3 - Payee (worker) information",   
@@ -456,9 +454,9 @@ details {
 
 
 const excludedSections = new Set([
-  "section 1 - general information",
-  "section 2 - business information",	
-  "section 2a - additional business information of the worker",
+  "Section 1 - Information about this audit",
+  "Section 2 - Employee or shareholder information",	
+  "Section 3 (2) - Housing and utilities benefit information",
   "section 3 - payee (worker) information",
   "section 3 - payers (clients) information",
   "section 4 - contract or agreement information",	
@@ -692,9 +690,9 @@ function formatAnswer(answer) {
 }
 
 	 const skipMismatchHighlighting = [
-  "Section 1 - General information",
-  "Section 2 - Business information",
-  "Section 2a - Additional business information of the worker",
+  "Section 1 - Information about this audit",
+  "Section 2 - Employee or shareholder information",
+  "Section 3 (2) - Housing and utilities benefit information",
   "Section 3 - Payee (worker) information",
   "Section 3 - Payers (clients) information",
   "Section 6 - Certification"
@@ -714,10 +712,10 @@ let showWorker = workerData.length > 0;
 let showPayer = payerData.length > 0;
 
 // Special rules for column visibility
-if (section === "Section 1 - General information" && showWorker && showPayer) {
+if (section === "Section 1 - Information about this audit" && showWorker && showPayer) {
   showPayer = false;
 }
-if (section === "Section 2a - Additional business information of the worker" && showWorker && showPayer) {
+if (section === "Section 3 (2) - Housing and utilities benefit information" && showWorker && showPayer) {
   showPayer = false;
 }
 if (section === "Section 3 - Payers (clients) information" && showWorker && showPayer) {
@@ -732,7 +730,7 @@ if (section === "Section 3 - Payee (worker) information" && showWorker && showPa
 
 let theadHTML = '<thead><tr><th>Question</th>';
 if (showWorker) {
- const label = (section === "Section 1 - General information" && workerData.length > 0 && payerData.length > 0) ? "Answer" : "Worker";
+ const label = (section === "Section 1 - Information about this audit" && workerData.length > 0 && payerData.length > 0) ? "Answer" : "Worker";
 
   theadHTML += `<th>${label}</th>`;
 }
@@ -801,8 +799,8 @@ rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; positi
 
   if (rowCount > 0) {
     const shouldCollapse = [
-      "Section 2 - Business information",
-      "Section 2a - Additional business information of the worker",
+      "Section 2 - Employee or shareholder information",
+      "Section 3 (2) - Housing and utilities benefit information",
       "Section 3 - Payee (worker) information",
       "Section 3 - Payers (clients) information",
       "Section 6 - Certification"
