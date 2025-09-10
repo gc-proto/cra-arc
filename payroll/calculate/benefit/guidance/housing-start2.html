@@ -42,58 +42,17 @@
 </ol>
 <hr>
 <h3>Upload the response files (JSON)</h3>
-<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
-<li class="cnjnctn-col"><label>Worker's response: <input type="file" id="workerFile" accept=".json"></label></li>
-<li class="cnjnctn-col"><label>Payer's response: <input type="file" id="payerFile" accept=".json"></label></li>
-</ul>
-<button class="btn btn-primary btn-lg" onclick="compare()">Compare</button>
-<!-- Filters and Toggle (initially hidden) -->
-<div id="filters" class="hidden">
-<h2 class="mrgn-tp-lg">Comparison Results</h2>
-<div class="btn-group mrgn-bttm-md" role="group" aria-label="Filter options">
-<button class="btn btn-default" onclick="filterTable('all')">Show All</button>
-<button class="btn btn-warning" onclick="filterTable('mismatch')">Show Mismatches</button>
-<button class="btn btn-success" onclick="filterTable('match')">Show Matches</button>
-</div>
-<div class="checkbox">
-<label><input type="checkbox" id="toggleIdCol" onchange="toggleIdColumn()"> Show Question ID column</label>
-</div>
-</div>
+<input type="file" id="jsonFile" accept=".json">
+  <div id="dataDisplay"></div>
+
+
 <!-- Output -->
 <div id="output" class="mrgn-tp-md"></div>
 <button id="pdfButton" onclick="downloadPDF()" class="btn btn-secondary hidden">Download PDF</button>
-</div>
+
 <script>
      let tableData = [];
-     function compare() {
-       const workerFile = document.getElementById('workerFile').files[0];
-       const payerFile = document.getElementById('payerFile').files[0];
-       if (!workerFile || !payerFile) {
-         alert("Please select both JSON files.");
-         return;
-       }
-       Promise.all([workerFile.text(), payerFile.text()])
-         .then(([workerText, payerText]) => {
-           const workerJSON = JSON.parse(workerText);
-           const payerJSON = JSON.parse(payerText);
-           const workerMap = buildQuestionMap(workerJSON.elements);
-           const payerMap = buildQuestionMap(payerJSON.elements);
-           const allIds = Array.from(new Set([...Object.keys(workerMap), ...Object.keys(payerMap)]));
-           tableData = [];
-           allIds.forEach(id => {
-             const w = workerMap[id];
-             const p = payerMap[id];
-             const wTitle = w?.titleEn || '[Missing]';
-             const pTitle = p?.titleEn || '[Missing]';
-             const wChoices = w?.choices?.map(c => c.en).join(', ') || '[None]';
-             const pChoices = p?.choices?.map(c => c.en).join(', ') || '[None]';
-             const match = wChoices === pChoices;
-             const existsInBoth = !!w && !!p;
-             tableData.push({ id, wTitle, pTitle, wChoices, pChoices, match, existsInBoth });
-           });
-           renderTable();
-         });
-     }
+   
      function buildQuestionMap(elements) {
        const map = {};
        elements.forEach(el => {
@@ -142,17 +101,7 @@
        // Trigger WET reinitialization
        window.wb?.init(document.getElementById('output'));
      }
-     function filterTable(type) {
-       const rows = document.querySelectorAll("#comparisonTable tbody tr");
-       rows.forEach(row => {
-         row.style.display = "table-row";
-         if (type === "match" && !row.classList.contains("match")) {
-           row.style.display = "none";
-         } else if (type === "mismatch" && !row.classList.contains("mismatch")) {
-           row.style.display = "none";
-         }
-       });
-     }
+    
      function toggleIdColumn() {
        const show = document.getElementById("toggleIdCol").checked;
        const cells = document.querySelectorAll(".id-col");
