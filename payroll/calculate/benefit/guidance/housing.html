@@ -189,6 +189,72 @@ details {
     31: "Section 1 - Information about this audit",
     38: "Section 1 - Information about this audit",
     32: "Section 1 - Information about this audit",
+
+	      39:  "Section 2 - Employee or shareholder information", 
+   40:  "Section 2 - Employee or shareholder information",  
+    2: "Section 2 - Employee or shareholder information",
+    4: "Section 2 - Employee or shareholder information",
+    6: "Section 2 - Employee or shareholder information",
+    5: "Section 2 - Employee or shareholder information",
+    121: "Section 2 - Employee or shareholder information", 
+    8: "Section 2 - Employee or shareholder information",
+    106: "Section 2 - Employee or shareholder information",
+    12: "Section 2 - Employee or shareholder information",
+    107: "Section 2 - Employee or shareholder information",
+    14: "Section 2 - Employee or shareholder information",
+    15: "Section 2 - Employee or shareholder information", 
+   
+  124: "Section 3 (2) - Housing and utilities benefit information",
+ 
+   63: "3a (1) - Fair market value (FMV) of the housing benefit",
+ 64: "3a (1) - Fair market value (FMV) of the housing benefit",   
+  129: "3a (1) - Fair market value (FMV) of the housing benefit",    
+	   
+  67: "3b (1) - Use and availability of the housing",     
+ 68: "3b (1) - Use and availability of the housing",   
+ 135: "3b (1) - Use and availability of the housing",  
+  105: "3b (1) - Use and availability of the housing",     
+  105: "3b (1) - Use and availability of the housing",    
+  74: "3b (1) - Use and availability of the housing",    
+	137: "3b (1) - Use and availability of the housing",    
+	     76: "3b (1) - Use and availability of the housing",    
+	     138: "3b (1) - Use and availability of the housing",    
+
+
+
+	   
+       104: "3c (1) - Reduction to the value of the housing benefit",      
+       78: "3c (1) - Reduction to the value of the housing benefit",   
+       134: "3c (1) - Reduction to the value of the housing benefit",   
+	   
+       72: "3d (1) - Special situations",   
+       73: "3d (1) - Special situations",   
+       103: "3d (1) - Special situations",   
+       80: "3d (1) - Special situations",   
+       81: "3d (1) - Special situations",   
+       
+    
+ 102: "3e (1) - Utilities provided with the housing benefit", 	   
+ 132: "3e (1) - Utilities provided with the housing benefit",    
+ 133: "3e (1) - Utilities provided with the housing benefit",    
+
+    
+127: "3f (1) - Additional housing and utilities benefit information",         
+117: "3f (1) - Additional housing and utilities benefit information",
+
+    
+ 102: "Section 4 - Other benefit information related to the housing or utilities", 
+ 82: "Section 4 - Other benefit information related to the housing or utilities",
+ 131: "Section 4 - Other benefit information related to the housing or utilities",  	   
+
+ 119: "Section 5 - Certification", 
+ 19: "Section 5 - Certification", 
+  20: "Section 5 - Certification", 
+     22: "Section 5 - Certification", 
+     24: "Section 5 - Certification", 
+     26: "Section 5 - Certification", 
+    29: "Section 5 - Certification", 
+
 	   
    340: "Section 1 - General information",
     341: "Section 1 - General information",
@@ -475,13 +541,13 @@ function handleSmartJsonUpload(file) {
 
 
       jsonData.forEach(entry => {
-        const q441 = entry.answers.find(a => a.questionId === 441);
-        const caseAns = entry.answers.find(a => a.questionId === 341);
+        const q39 = entry.answers.find(a => a.questionId === 39);
+        const caseAns = entry.answers.find(a => a.questionId === 31);
         const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
 
-        if (q441 && q441.answer.includes("Worker whose corporation")) {
+        if (q39 && q39.answer.includes("Worker whose corporation")) {
           workerCases.set(caseNumber, entry);
-        } else if (q441 && q441.answer.includes("Payer who made payments")) {
+        } else if (q39 && q39.answer.includes("Payer who made payments")) {
           payerCases.set(caseNumber, entry);
         }
       });
@@ -519,7 +585,7 @@ function tryRenderBoth() {
 function extractCaseNumbers(data) {
   const cases = new Map(); // Map of caseNumber -> entry
   data.forEach(entry => {
-    const caseAns = entry.answers.find(a => a.questionId === 341);
+    const caseAns = entry.answers.find(a => a.questionId === 31);
     if (caseAns && caseAns.answer) {
       cases.set(caseAns.answer.trim(), entry);
     }
@@ -2124,7 +2190,7 @@ if (headingContainer) {
 window.addEventListener('DOMContentLoaded', () => {
   // Only fetch remote JSON if no file has been uploaded
   if (!window.workerCases && !window.payerCases) {
-    fetch('https://test.canada.ca/cra-arc/payroll/emp-status/psb/June27forms.json')
+    fetch('https://test.canada.ca/cra-arc/payroll/calculate/benefit/guidance/housing_sept10.json')
       .then(response => {
         if (!response.ok) throw new Error('Failed to load JSON');
         return response.json();
@@ -2133,12 +2199,12 @@ window.addEventListener('DOMContentLoaded', () => {
         const workerMap = new Map();
         const payerMap = new Map();
         jsonData.forEach(entry => {
-          const q441 = entry.answers.find(a => a.questionId === 441);
-          const caseAns = entry.answers.find(a => a.questionId === 341);
+          const q39 = entry.answers.find(a => a.questionId === 39);
+          const caseAns = entry.answers.find(a => a.questionId === 31);
           const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
-          if (q441 && q441.answer.includes("Worker whose corporation")) {
+          if (q39 && q39.answer.includes("Worker whose corporation")) {
             workerMap.set(caseNumber, entry);
-          } else if (q441 && q441.answer.includes("Payer who made payments")) {
+          } else if (q39 && q39.answer.includes("Payer who made payments")) {
             payerMap.set(caseNumber, entry);
           }
         });
