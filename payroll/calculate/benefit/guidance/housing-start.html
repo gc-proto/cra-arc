@@ -157,7 +157,10 @@ details {
         try {
           const data = JSON.parse(e.target.result);
           const answers = data[0].answers;
-          let html = '<h2>Responses</h2><table><tr><th>Question</th><th>Answer</th></tr>';
+          let html = '<table id="comparisonTable" class="wb-tables table table-hover" data-wb-tables='{"ordering": true, "paging": true, "searching": true}'>
+		<tr>
+	   <th>Question</th>
+	   <th>Answer</th></tr>';
           answers.forEach(item => {
             const question = item.questionEn || 'Unknown Question';
             const answer = Array.isArray(item.answer) ? JSON.stringify(item.answer) : item.answer;
