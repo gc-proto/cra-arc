@@ -122,33 +122,8 @@ details {
 
   <input type="file" id="jsonFile" accept=".json">
   <div id="dataDisplay"></div>
-
-  <script>
-    document.getElementById('jsonFile').addEventListener('change', function(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const data = JSON.parse(e.target.result);
-          const answers = data[0].answers;
-          let html = '<h2>Responses</h2><table><tr><th>Question</th><th>Answer</th></tr>';
-          answers.forEach(item => {
-            const question = item.questionEn || 'Unknown Question';
-            const answer = Array.isArray(item.answer) ? JSON.stringify(item.answer) : item.answer;
-            html += `<tr><td>${question}</td><td>${answer}</td></tr>`;
-          });
-          html += '</table>';
-          document.getElementById('dataDisplay').innerHTML = html;
-        } catch (err) {
-          document.getElementById('dataDisplay').innerHTML = `<p style="color:red;">Error parsing JSON: ${err.message}</p>`;
-        }
-      };
-      reader.readAsText(file);
-    });
-
-
+ </div>
+ <script>
    const sectionMap = {
    
    30: "Section 1 - Information about this audit",
@@ -223,9 +198,43 @@ details {
    // Add more mappings as needed
  };
 
+function normalize(section) {
+  return (section || "")
+   .trim()
+.toLowerCase()
+.replace(/[’‘]/g, "'")
+.replace(/[\u2013\u2014\u2012\u2010]/g, '-')
+.replace(/\s+/g, ' ')
+.replace(/[^a-z0-9\s'/-]/g, ''); // strip unexpected punctuation
+}
 
 </script>
 
+ <script>
+    document.getElementById('jsonFile').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          const answers = data[0].answers;
+          let html = '<h2>Responses</h2><table><tr><th>Question</th><th>Answer</th></tr>';
+          answers.forEach(item => {
+            const question = item.questionEn || 'Unknown Question';
+            const answer = Array.isArray(item.answer) ? JSON.stringify(item.answer) : item.answer;
+            html += `<tr><td>${question}</td><td>${answer}</td></tr>`;
+          });
+          html += '</table>';
+          document.getElementById('dataDisplay').innerHTML = html;
+        } catch (err) {
+          document.getElementById('dataDisplay').innerHTML = `<p style="color:red;">Error parsing JSON: ${err.message}</p>`;
+        }
+      };
+      reader.readAsText(file);
+    });
+  </script>
 
 <div id="def-footer"></div>
 <div id="def-preFooter"></div>
