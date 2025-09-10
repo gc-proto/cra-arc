@@ -369,7 +369,7 @@ function updateCaseSelector(caseNumbers) {
     const option = document.createElement("option");
     option.value = cn;
 
-    const entry = workerCases.get(cn) || payerCases.get(cn);
+    const entry = workerCases.get(cn);
     let label = cn;
 
     if (entry) {
@@ -391,8 +391,6 @@ function updateCaseSelector(caseNumbers) {
 }
 
 
-
-
 function handleCaseSelection(workerCases) {
   const workerKeys = [...workerCases.keys()];
  
@@ -409,34 +407,14 @@ dropdown.onchange = () => {
 };
 
 
-  // Show dropdown if more than 1 matching case
-  
-if (matching.length > 1) {
-  updateCaseSelector(matching);
-  // Do not render anything yet
-}
-
-
-  // Exactly one match? Show it directly
-  else if (matching.length === 1) {
-    document.getElementById("caseSelectorContainer").style.display = "none";
-    renderSelectedCase(workerCases, matching[0]);
-  }
-
-  // Only one case in total? Just show it
-  else if (allKeys.length === 1) {
+  // Show dropdown 
+	
+	else if (allKeys.length === 1) {
     document.getElementById("caseSelectorContainer").style.display = "none";
     renderSelectedCase(workerCases, allKeys[0]);
   }
 
-  // Multiple worker or payer cases, but no match — show all
- 
-else if (allKeys.length > 1) {
-  updateCaseSelector(allKeys);
-  // Do not render anything yet
-}
-
-}
+ }
 
 
 function renderSelectedCase(workerCases, caseNumber) {
@@ -451,10 +429,7 @@ function renderSelectedCase(workerCases, caseNumber) {
   } else if (workerEntry) {
     container.appendChild(renderJSON([workerEntry], []));
     renderProbabilityScore([workerEntry], []);
-  } else if (payerEntry) {
-    container.appendChild(renderJSON([]));
-    renderProbabilityScore([]);
-  }
+  } 
 }
 	
 function renderJSON(workerData) {
