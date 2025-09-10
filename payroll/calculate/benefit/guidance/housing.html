@@ -542,7 +542,7 @@ function handleSmartJsonUpload(file) {
 
       jsonData.forEach(entry => {
         const q441 = entry.answers.find(a => a.questionId === 441);
-        const caseAns = entry.answers.find(a => a.questionId === 341);
+        const caseAns = entry.answers.find(a => a.questionId === 31);
         const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
 
         if (q441 && q441.answer.includes("Worker whose corporation")) {
@@ -585,7 +585,7 @@ function tryRenderBoth() {
 function extractCaseNumbers(data) {
   const cases = new Map(); // Map of caseNumber -> entry
   data.forEach(entry => {
-    const caseAns = entry.answers.find(a => a.questionId === 341);
+    const caseAns = entry.answers.find(a => a.questionId === 31);
     if (caseAns && caseAns.answer) {
       cases.set(caseAns.answer.trim(), entry);
     }
@@ -2190,7 +2190,7 @@ if (headingContainer) {
 window.addEventListener('DOMContentLoaded', () => {
   // Only fetch remote JSON if no file has been uploaded
   if (!window.workerCases && !window.payerCases) {
-    fetch('https://test.canada.ca/cra-arc/payroll/emp-status/psb/June27forms.json')
+    fetch('https://test.canada.ca/cra-arc/payroll/calculate/benefit/guidance/housing_sept10.json')
       .then(response => {
         if (!response.ok) throw new Error('Failed to load JSON');
         return response.json();
@@ -2200,7 +2200,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const payerMap = new Map();
         jsonData.forEach(entry => {
           const q441 = entry.answers.find(a => a.questionId === 441);
-          const caseAns = entry.answers.find(a => a.questionId === 341);
+          const caseAns = entry.answers.find(a => a.questionId === 31);
           const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
           if (q441 && q441.answer.includes("Worker whose corporation")) {
             workerMap.set(caseNumber, entry);
