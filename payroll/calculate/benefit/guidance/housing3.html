@@ -375,8 +375,8 @@ function updateCaseSelector(caseNumbers) {
     let label = cn;
 
     if (entry) {
-      const nameAnswer = entry.answers.find(a => a.questionId === 241);
-      const idAnswer = entry.answers.find(a => a.questionId === 243);
+      const nameAnswer = entry.answers.find(a => a.questionId === 31);
+      const idAnswer = entry.answers.find(a => a.questionId === 31);
       const name = nameAnswer ? nameAnswer.answer : "";
       const id = idAnswer ? idAnswer.answer : "";
 
@@ -395,17 +395,17 @@ function updateCaseSelector(caseNumbers) {
 
 
 
-function handleCaseSelection(workerCases, payerCases) {
+function handleCaseSelection(workerCases) {
   const workerKeys = [...workerCases.keys()];
-  const payerKeys = [...payerCases.keys()];
-  const allKeys = [...new Set([...workerKeys, ...payerKeys])];
+ 
+  const allKeys = [...new Set([...workerKeys])];
 
-  const matching = workerKeys.filter(k => payerCases.has(k));
+  const matching = workerKeys.filter;
 
  const dropdown = document.getElementById("caseSelector");
 dropdown.onchange = () => {
   if (dropdown.value) {
-    renderSelectedCase(workerCases, payerCases, dropdown.value);
+    renderSelectedCase(workerCases, dropdown.value);
     document.getElementById("step2").style.display = "block";
   }
 };
@@ -422,13 +422,13 @@ if (matching.length > 1) {
   // Exactly one match? Show it directly
   else if (matching.length === 1) {
     document.getElementById("caseSelectorContainer").style.display = "none";
-    renderSelectedCase(workerCases, payerCases, matching[0]);
+    renderSelectedCase(workerCases, matching[0]);
   }
 
   // Only one case in total? Just show it
   else if (allKeys.length === 1) {
     document.getElementById("caseSelectorContainer").style.display = "none";
-    renderSelectedCase(workerCases, payerCases, allKeys[0]);
+    renderSelectedCase(workerCases, allKeys[0]);
   }
 
   // Multiple worker or payer cases, but no match — show all
@@ -441,29 +441,27 @@ else if (allKeys.length > 1) {
 }
 
 
-function renderSelectedCase(workerCases, payerCases, caseNumber) {
+function renderSelectedCase(workerCases, caseNumber) {
   const container = document.getElementById("content");
   container.innerHTML = "";
 
   const workerEntry = workerCases.get(caseNumber);
-  const payerEntry = payerCases.get(caseNumber);
-
-  if (workerEntry && payerEntry) {
-    container.appendChild(renderJSON([workerEntry], [payerEntry]));
-    renderProbabilityScore([workerEntry], [payerEntry]);
+ 
+  if (workerEntry) {
+    container.appendChild(renderJSON([workerEntry]));
+    renderProbabilityScore([workerEntry]);
   } else if (workerEntry) {
     container.appendChild(renderJSON([workerEntry], []));
     renderProbabilityScore([workerEntry], []);
   } else if (payerEntry) {
-    container.appendChild(renderJSON([], [payerEntry]));
-    renderProbabilityScore([], [payerEntry]);
+    container.appendChild(renderJSON([]));
+    renderProbabilityScore([]);
   }
 }
 	
-function renderJSON(workerData, payerData) {
+function renderJSON(workerData) {
   const showWorker = workerData.length > 0;
-  const showPayer = payerData.length > 0;
-
+ 
    const sectioned = {};
 
    function addToSection(ans, isPayer = false) {
@@ -471,17 +469,14 @@ function renderJSON(workerData, payerData) {
     if (!sectioned[section]) sectioned[section] = {};
     if (!sectioned[section][ans.questionEn]) {
       sectioned[section][ans.questionEn] = {
-        worker: "", payer: "", rawWorker: "", rawPayer: ""
+        worker: "", rawWorker: "" 
       };
     }
     const formatted = formatAnswer(ans.answer);
     
 const raw = typeof ans.answer === 'string' ? normalizeAnswer(ans.answer) : JSON.stringify(ans.answer);
   
-    if (isPayer) {
-      sectioned[section][ans.questionEn].payer = formatted;
-      sectioned[section][ans.questionEn].rawPayer = raw;
-    } else {
+    if {
       sectioned[section][ans.questionEn].worker = formatted;
       sectioned[section][ans.questionEn].rawWorker = raw;
     }
@@ -511,9 +506,6 @@ function formatAnswer(answer) {
 	 const skipMismatchHighlighting = [
   "Section 1 - Information about this audit",
   "Section 2 - Employee or shareholder information",
-  "Section 3 (2) - Housing and utilities benefit information",
-  "3c (1) - Reduction to the value of the housing benefit",
-  "Section 3 - Payers (clients) information",
   "Section 6 - Certification"
       
 ];
@@ -521,35 +513,19 @@ function formatAnswer(answer) {
  
 
   workerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, false)));
-  payerData.forEach(entry => entry.answers.forEach(ans => addToSection(ans, true)));
   const container = document.createElement('div');
 
 for (const [section, questions] of Object.entries(sectioned)) {
   const table = document.createElement('table');
 
 let showWorker = workerData.length > 0;
-let showPayer = payerData.length > 0;
-
-// Special rules for column visibility
-if (section === "Section 1 - Information about this audit" && showWorker && showPayer) {
-  showPayer = false;
-}
-if (section === "Section 3 (2) - Housing and utilities benefit information" && showWorker && showPayer) {
-  showPayer = false;
-}
-if (section === "Section 3 - Payers (clients) information" && showWorker && showPayer) {
-  showPayer = false;
-}
-if (section === "3c (1) - Reduction to the value of the housing benefit" && showWorker && showPayer) {
-  showWorker = false;
-}
 
 
-   if (!showWorker && !showPayer) continue;
+ if (!showWorker) continue;
 
 let theadHTML = '<thead><tr><th>Question</th>';
 if (showWorker) {
- const label = (section === "Section 1 - Information about this audit" && workerData.length > 0 && payerData.length > 0) ? "Answer" : "Worker";
+ const label = (section === "Section 1 - Information about this audit" && workerData.length > 0) ? "Answer" : "Worker";
 
   theadHTML += `<th>${label}</th>`;
 }
