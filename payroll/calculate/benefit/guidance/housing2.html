@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSV Questionnaire Comparison</title>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+   body { font-family: Arial, sans-serif; padding: 20px; }
+   table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+   th, td { border: 1px solid #ccc; padding: 8px; text-align: left; font-size: 14px; }
+   th { background-color: #f4f4f4; }
+   .mismatch { background-color: #ffdddd; }
+   .section-header { background-color: #e0e0e0; font-weight: bold; }
+   #pdfButton { margin-top: 20px; }
+</style>
+</head>
+<body>
+<h2>Compare Worker and Payer Questionnaire CSVs</h2>
+<label>Worker CSV: <input type="file" id="workerFile" accept=".csv"></label><br><br>
+<label>Payer CSV: <input type="file" id="payerFile" accept=".csv"></label><br><br>
+<button onclick="compare()">Compare</button>
+<button id="pdfButton" onclick="downloadPDF()" style="display:none;">Download PDF</button>
+<div id="output"></div>
+<script>
+ let tableData = [];
+ function parseCSV(file, callback) {
+   Papa.parse(file, {
+     header: true,
+     skipEmptyLines: true,
+     complete: results => callback(results.data)
+   });
+ }
+ function compare() {
+   const workerFile = document.getElementById('workerFile').files[0];
+   const payerFile = document.getElementById('payerFile').files[0];
+   if (!workerFile || !payerFile) {
+     alert("Please select both CSV files.");
+     return;
+   }
+   parseCSV(workerFile, workerData => {
+     parseCSV(payerFile, payerData => {
+       const mapResponses = data => {
+         const map = {};
+         data.forEach(row => {
+           map[row["Question ID"]] = {
+             section: row["Section"],
+             label: row["Label"],
+             answer: row["Answer"]
+           };
+         });
+         return map;
+       };
+       const workerMap = mapResponses(workerData);
+       const payerMap = mapResponses(payerData);
+       const allKeys = Array.from(new Set([
+         ...Object.keys(workerMap),
+         ...Object.keys(payerMap)
+       ]));
+       tableData = [];
+       allKeys.forEach(id => {
+         const w = workerMap[id] || {};
+         const p = payerMap[id] || {};
+         tableData.push({
+           id: id,
+           section: w.section || p.section || '',
+           label: w.label || p.label || '',
+           worker: w.answer || '',
+           payer: p.answer || '',
+           match: w.answer === p.answer
+         });
+       });
+       tableData.sort((a, b) => {
+         if (a.section !== b.section) return a.section.localeCompare(b.section);
+         return a.id.localeCompare(b.id);
+       });
+       let currentSection = null;
+       let html = `<table><thead><tr>
+<th>Section</th>
+<th>Question ID</th>
+<th>Label</th>
+<th>Worker Answer</th>
+<th>Payer Answer</th>
+<th>Match</th>
+</tr></thead><tbody>`;
+       tableData.forEach(row => {
+         if (row.section !== currentSection) {
+           html += `<tr class="section-header"><td colspan="6">${row.section}</td></tr>`;
+           currentSection = row.section;
+         }
+         const rowClass = row.match ? "" : "mismatch";
+         html += `<tr class="${rowClass}">
+<td>${row.section}</td>
+<td>${row.id}</td>
+<td>${row.label}</td>
+<td>${row.worker}</td>
+<td>${row.payer}</td>
+<td>${row.match ? "Yes" : "No"}</td>
+</tr>`;
+       });
+       html += '</tbody></table>';
+       document.getElementById('output').innerHTML = html;
+       document.getElementById('pdfButton').style.display = 'inline-block';
+     });
+   });
+ }
+ function downloadPDF() {
+   const { jsPDF } = window.jspdf;
+   const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
+   const colWidths = [80, 70, 220, 100, 100, 50];
+   const startY = 50;
+   const lineHeight = 18;
+   let y = startY;
+   doc.setFontSize(14);
+   doc.text("Questionnaire Comparison", 40, 30);
+   let currentSection = null;
+   doc.setFontSize(10);
+   tableData.forEach(row => {
+     if (y > 530) {
+       doc.addPage();
+       y = startY;
+     }
+     if (row.section !== currentSection) {
+       doc.setFont("helvetica", "bold");
+       doc.setTextColor(80);
+       doc.text(row.section, 40, y);
+       y += lineHeight;
+       currentSection = row.section;
+     }
+     doc.setFont("helvetica", "normal");
+     doc.setTextColor(row.match ? 0 : [200, 0, 0]);
+     doc.text(row.id, 40, y);
+     doc.text(doc.splitTextToSize(row.label, colWidths[2]), 120, y);
+     doc.text(row.worker, 350, y);
+     doc.text(row.payer, 450, y);
+     doc.text(row.match ? "Yes" : "No", 550, y);
+     y += lineHeight;
+   });
+   doc.save("questionnaire-comparison.pdf");
+ }
+</script>
+</body>
+</html>
