@@ -527,10 +527,6 @@ if (showWorker) {
 
   theadHTML += `<th>${label}</th>`;
 }
-if (showPayer) theadHTML += '<th>Payer</th>';
-theadHTML += '</tr></thead>';
-
-
 	
   table.innerHTML = theadHTML;
 
@@ -538,11 +534,11 @@ theadHTML += '</tr></thead>';
   let rowCount = 0;
 
   for (const [question, data] of Object.entries(questions)) {
-    const { worker, payer, rawWorker, rawPayer } = data;
-    if (!worker && !payer) continue;
+    const { worker, rawWorker} = data;
+    if (!worker) continue;
 
     const isMismatch = !skipMismatchHighlighting.includes(section) &&
-      rawWorker && rawPayer && rawWorker !== rawPayer;
+      rawWorker && rawWorker;
 
 const isExcluded = excludedSections.has(normalize(section));
 
@@ -566,24 +562,6 @@ rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; positi
 
 }
 
-if (showPayer) {
-  const payerIcon = isExcluded ? '' : getScoreIcon(
-  Object.keys(sectionMap).find(id =>
-    sectionMap[id] === section &&
-    payerData.some(d => d.answers.some(a => a.questionEn === question && a.questionId == id))
-  ),
-  data.rawPayer
-);
-
-rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; position: relative;">
- <div class="td-wrapper">
-  <div style="margin-bottom: 1.5em;">${payer}</div>
-  ${payerIcon}
-</div>
-</td>`;
-
-
-}
 
     row.innerHTML = rowHTML;
     tbody.appendChild(row);
@@ -593,9 +571,6 @@ rowHTML += `<td style="${isMismatch ? 'background-color: #fff3cd;' : ''}; positi
   if (rowCount > 0) {
     const shouldCollapse = [
       "Section 2 - Employee or shareholder information",
-      "Section 3 (2) - Housing and utilities benefit information",
-      "3c (1) - Reduction to the value of the housing benefit",
-      "Section 3 - Payers (clients) information",
       "Section 6 - Certification"
     ].includes(section);
 
