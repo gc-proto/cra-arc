@@ -306,7 +306,7 @@ function handleSmartJsonUpload(file) {
 
       jsonData.forEach(entry => {
         const q31 = entry.answers.find(a => a.questionId === 31);
-        const caseAns = entry.answers.find(a => a.questionId === 341);
+        const caseAns = entry.answers.find(a => a.questionId === 31);
         const caseNumber = caseAns && caseAns.answer ? caseAns.answer.trim() : "Unknown";
 
         if (q31 && q31.answer.includes("Worker whose corporation")) {
@@ -346,7 +346,7 @@ function tryRenderBoth() {
 function extractCaseNumbers(data) {
   const cases = new Map(); // Map of caseNumber -> entry
   data.forEach(entry => {
-    const caseAns = entry.answers.find(a => a.questionId === 341);
+    const caseAns = entry.answers.find(a => a.questionId === 31);
     if (caseAns && caseAns.answer) {
       cases.set(caseAns.answer.trim(), entry);
     }
