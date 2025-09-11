@@ -747,13 +747,12 @@ const customScoringRules = {
    
   39: answer => {
      const normalized = normalizeAnswer(answer);   switch (normalized) {
-	   case "Your employee": return 1; // Employee
-      case "A shareholder": return -1; // Shareholder
-     case "A shareholder who is also your employee": return 0;  // PSB    
+	   case "your employee": return 1; // Employee
+      case "a shareholder": return -1; // Shareholder
+     case "a shareholder who is also your employee": return 0;  // PSB    
     }
   },
-
-  
+ 
 };
 
 
@@ -783,7 +782,7 @@ function getScoreIcon(questionId, answer) {
     title = 'Shareholder who is also your employee';
   }
  else if (score === -2) {
-    icon = '';
+    icon = 'fas fa-book';
     color = '#a2bffe';
     title = 'Information to help with the contract review';
   }	
