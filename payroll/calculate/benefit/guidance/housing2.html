@@ -778,7 +778,7 @@ function getScoreIcon(questionId, answer) {
     color = '#004085';
     title = 'Shareholder';
   } else if (score === 0) {
-    icon = 'fas fa-not-equal';
+    icon = 'fas fa-user-tie';
     color = 'grey';
     title = 'Shareholder who is also your employee';
   }
@@ -941,135 +941,8 @@ if (headingContainer) {
   details.appendChild(introContainer);
   headingContainer.appendChild(details);
 
+
 }
- // Clear and populate the probability section
-probabilityDiv.innerHTML = `
-<button onclick="printSummary()" class="btn btn-primary btn-lg btn-block mrgn-tp-lg">Print your summary/Save as PDF</button>
-
-   <h3>Resources</h3>
-  <details><summary>Canada.ca</summary>
-       <ul>
-<li><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/corporations/corporation-income-tax-return/tax-implications-personal-services-business.html">Worker who performs services on behalf of their own corporation (personal services business)</a> </li>
-<li><a href="https://test.canada.ca/cra-arc/subway/cppeirulings/index.html">Employment status: Employee or self-employed</a> </li>
-<li><a href="https://www.canada.ca/en/revenue-agency/services/tax/canada-pension-plan-cpp-employment-insurance-ei-rulings/cpp-ei-explained.html">CPP/EI explained: Specific professions/industries</a> </li>
-</ul></details>   
- 
-<details><summary>Infozone</summary>
-     <ul>
-<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_006-e.html">CPP/EI policy manual: How to determine where the contract was formed</a> </li>
-<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_007-e.html">CPP/EI policy manual: Contract formed in a province or territory other than Quebec</a> </li>
-<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/001_008-e.html">CPP/EI policy manual: Contract formed in the province of Quebec</a> </li>
-<li><a href="https://infozone.omega.dce-eir.net/english/r1360144/000/005/mnu/pol/002-e.html">CPP/EI policy manual: Specific employments/workers</a> </li>	
-</ul>    </details>   
-   
-   <h3>Total – Indicators</h3>
-<p >Totals are provided for <strong>information only</strong>. They are <strong>not</strong> provided to determine if the worker would have reasonably been considered an employee or self-employed if their corporation did not exist.</p>
-  `;
-
-  const worker = calculateSectionScores(workerData);
-  const payer = calculateSectionScores(payerData);
-
-  let totalQuestions = 0, workerCos = 0, payerCos = 0, workerNeutral = 0, payerNeutral = 0, workerCfs = 0, payerCfs = 0, workerInfo = 0, payerInfo = 0;
-
-  const allSections = new Set([
-    ...Object.keys(worker.cosScores),
-    ...Object.keys(payer.cosScores)
-  ]);
-
-  for (const section of allSections) {
-    const wTotal = worker.totalsScores[section] || 0;
-    const pTotal = payer.totalsScores[section] || 0;
-    const wCos = worker.cosScores[section] || 0;
-    const pCos = payer.cosScores[section] || 0;
-    const wNeutral = worker.neutralsScores[section] || 0;
-    const pNeutral = payer.neutralsScores[section] || 0;
-    const wCfs = worker.cfsScores[section] || 0;
-    const pCfs = payer.cfsScores[section] || 0;
-    const wInfo = worker.infoScores[section] || 0;
-    const pInfo = payer.infoScores[section] || 0;	  
-
-    if (wTotal > 0 || pTotal > 0) {
-      totalQuestions += Math.max(wTotal, pTotal);
-      workerCos += wCos;
-      payerCos += pCos;
-      workerNeutral += wNeutral;
-      payerNeutral += pNeutral;
-      workerCfs += wCfs;
-      payerCfs += pCfs;
-      workerInfo += wInfo;
-      payerInfo += pInfo;    
-    }
-  }
-
-const workerScoreText = (workerCos + workerCfs + workerNeutral + workerInfo) > 0
-  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${workerCos} of ${totalQuestions} <br>
-     ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${workerCfs || 0} <br>
-     ${getIndicatorIcon(0)} Neutral: ${workerNeutral || 0} <br>
-     ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${workerInfo || 0}`
-  : 'N/A';
-
-const payerScoreText = (payerCos + payerCfs + payerNeutral + payerInfo) > 0
-  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payerCos} of ${totalQuestions} <br>
-     ${getIndicatorIcon(-1)} <abbr title="Contract for services">CFS</abbr>: ${payerCfs || 0} <br>
-     ${getIndicatorIcon(0)} Neutral: ${payerNeutral || 0} <br>
-     ${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payerInfo || 0}`
-  : 'N/A';
-
-
-
-  probabilityDiv.innerHTML += `
-    <section class="panel panel-primary">
-      <header class="panel-heading"><h5 class="panel-title">All section 5</h5></header>
-      <div class="panel-body">
-      <p><strong>Worker's answers</strong><br>
-          <p>${workerScoreText}</p>
-	   <hr>
-     <p><strong>Payer's answers</strong><br>
-       <p>${payerScoreText}</p>
-      </div>
-    </section>
-  
-    <hr>
-    <h3>By section - Indicators</h3>
-  `;
-
-  for (const section of allSections) {
-    const wTotal = worker.totalsScores[section] || 0;
-    const pTotal = payer.totalsScores[section] || 0;
-
-    if (wTotal > 0 || pTotal > 0) {
-
-    const wScoreText = wTotal > 0
-  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${worker.cosScores[section]} of ${wTotal} <br>
-   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${worker.cfsScores[section] || 0} <br>
- ${getIndicatorIcon(0)} Neutral: ${worker.neutralsScores[section] || 0} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${worker.infoScores[section] || 0}
-`
-  : 'N/A';
-
-const pScoreText = pTotal > 0
-  ? `${getIndicatorIcon(1)} <abbr title="Contract of service">COS</abbr>: ${payer.cosScores[section]} of ${pTotal} <br>
-   ${getIndicatorIcon(-1)}   <abbr title="Contract for services">CFS</abbr>: ${payer.cfsScores[section] || 0}<br>
-${getIndicatorIcon(0)}  Neutral: ${payer.neutralsScores[section] || 0} <br>
-${getIndicatorIcon(-2)} <abbr title="Information to help with the contract review">Info</abbr>: ${payer.infoScores[section] || 0} 
-`
-  : 'N/A';
-
-      probabilityDiv.innerHTML += `
-        <section class="panel panel-info">
-          <header class="panel-heading"><h5 class="panel-title">${section}</h5></header>
-          <div class="panel-body">
-            <p><strong>Worker's answers</strong><br> ${wScoreText}</p>
-	    <hr>
-            <p><strong>Payer's answers</strong><br> ${pScoreText}</p>
-          </div>
-        </section>
-      `;
-    }
-  }
- 
-}
-
 </script>
 
 <script>
