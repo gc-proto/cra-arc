@@ -357,6 +357,20 @@ function extractCaseNumbers(data) {
   return cases;
 }
 
+
+function updateField(id, type) {
+  const input = document.getElementById(id);
+  console.log(`Checking ${id}:`, input);
+  if (input) {
+    if (type === 'percent' && !input.value.endsWith('%')) {
+      input.value += '%';
+    } else if (type === 'dollar' && !input.value.startsWith('$')) {
+      input.value = '$' + input.value;
+    }
+  }
+}
+
+
 function updateCaseSelector(caseNumbers) {
   console.log("Updating dropdown with cases:", caseNumbers);
   const dropdown = document.getElementById("caseSelector");
