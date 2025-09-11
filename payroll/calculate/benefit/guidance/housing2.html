@@ -159,14 +159,14 @@ details {
 <main class="container" property="mainContentOfPage" role="main">
 <div class="gc-font-2019">
 <h1>Housing and Utilities Questionnaire – Employer Compliance Audit (ECA) Review<br/>
-<small>Questionnaire to determine if </small>
+<small>Questionnaire to determine if the employer properly reported housing and utility taxable benefits or shareholder benefits</small>
 </h1>
 
-<p class="mrgn-tp-lg">Each case is unique and requires a thorough review of the facts to determine if </p>
+<p class="mrgn-tp-lg">Each case is unique and requires a thorough review of the facts.</p>
   
 <h3>Select your case number</h3>
 
-<p>To use this tool, you have to select the case number and the matching first and last employer name you want to review.  This will provide you with the answers from the employer.</p>
+<p>To use this tool, you have to select the <strong>case reference number</strong> and the <strong>name of the person who completed the questionnaire</strong> on behalf of the employer for employee/shareholder (1). If <strong>more than one</strong> questionnaire was completed for the same case reference number, it will provide the appropriate number (X). </p>
 <div id="caseSelectorContainer">
   <label for="caseSelector"></label>   <select id="caseSelector"></select>
 </div>
@@ -356,6 +356,43 @@ function extractCaseNumbers(data) {
   });
   return cases;
 }
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const percentFields = ['61', '13502'];
+    const dollarFields = [
+      '12905', '13102', '13302', '13303',
+      '13304', '13305', '13306', '13307'
+    ];
+
+    function updateField(id, type) {
+      const input = document.getElementById(id);
+      if (input) {
+        if (type === 'percent' && !input.value.endsWith('%')) {
+          input.value += '%';
+        } else if (type === 'dollar' && !input.value.startsWith('$')) {
+          input.value = '$' + input.value;
+        }
+      }
+    }
+
+    function tryUpdateFields() {
+      percentFields.forEach(id => updateField(id, 'percent'));
+      dollarFields.forEach(id => updateField(id, 'dollar'));
+    }
+
+    // Retry every 500ms for up to 10 seconds
+    let attempts = 0;
+    const maxAttempts = 20;
+    const interval = setInterval(() => {
+      tryUpdateFields();
+      attempts++;
+      if (attempts >= maxAttempts) {
+        clearInterval(interval);
+      }
+    }, 500);
+  });
+ 
 
 function updateCaseSelector(caseNumbers) {
   console.log("Updating dropdown with cases:", caseNumbers);
@@ -569,13 +606,13 @@ if (section === "Section 3 - Payee (worker) information" && showWorker && showPa
 
    if (!showWorker && !showPayer) continue;
 
-let theadHTML = '<thead><tr><th>Question</th>';
+let theadHTML = '<thead><tr><th style="white-space: nowrap;">Question</th>';
 if (showWorker) {
- const label = (section === "Section 1 - General information" && workerData.length > 0 && payerData.length > 0) ? "Answer" : "Answer - Employee 1";
+ const label = (section === "Section 1 - General information" && workerData.length > 0 && payerData.length > 0) ? "Answer" : "&nbsp;Employee/shareholder #1&nbsp;&nbsp;";
 
-  theadHTML += `<th>${label}</th>`;
+  theadHTML += `<th style="white-space: nowrap;">${label}</th>`;
 }
-if (showPayer) theadHTML += '<th>Answer - Employee 1</th>';
+if (showPayer) theadHTML += '<th style="white-space: nowrap;">&nbsp;Employee/shareholder #2&nbsp;&nbsp;</th>';
 theadHTML += '</tr></thead>';
 
 
@@ -1986,6 +2023,8 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
+ 
 
 
 <script>
