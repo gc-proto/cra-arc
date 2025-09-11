@@ -358,18 +358,41 @@ function extractCaseNumbers(data) {
 }
 
 
-function updateField(id, type) {
-  const input = document.getElementById(id);
-  console.log(`Checking ${id}:`, input);
-  if (input) {
-    if (type === 'percent' && !input.value.endsWith('%')) {
-      input.value += '%';
-    } else if (type === 'dollar' && !input.value.startsWith('$')) {
-      input.value = '$' + input.value;
-    }
-  }
-}
+  document.addEventListener('DOMContentLoaded', function () {
+    const percentFields = ['question61', 'question13502'];
+    const dollarFields = [
+      'question12905', 'question13102', 'question13302', 'question13303',
+      'question13304', 'question13305', 'question13306', 'question13307'
+    ];
 
+    function updateField(id, type) {
+      const input = document.getElementById(id);
+      if (input) {
+        if (type === 'percent' && !input.value.endsWith('%')) {
+          input.value += '%';
+        } else if (type === 'dollar' && !input.value.startsWith('$')) {
+          input.value = '$' + input.value;
+        }
+      }
+    }
+
+    function tryUpdateFields() {
+      percentFields.forEach(id => updateField(id, 'percent'));
+      dollarFields.forEach(id => updateField(id, 'dollar'));
+    }
+
+    // Retry every 500ms for up to 10 seconds
+    let attempts = 0;
+    const maxAttempts = 20;
+    const interval = setInterval(() => {
+      tryUpdateFields();
+      attempts++;
+      if (attempts >= maxAttempts) {
+        clearInterval(interval);
+      }
+    }, 500);
+  });
+ 
 
 function updateCaseSelector(caseNumbers) {
   console.log("Updating dropdown with cases:", caseNumbers);
@@ -2001,42 +2024,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const percentFields = ['question61', 'question13502'];
-    const dollarFields = [
-      'question12905', 'question13102', 'question13302', 'question13303',
-      'question13304', 'question13305', 'question13306', 'question13307'
-    ];
-
-    function updateField(id, type) {
-      const input = document.getElementById(id);
-      if (input) {
-        if (type === 'percent' && !input.value.endsWith('%')) {
-          input.value += '%';
-        } else if (type === 'dollar' && !input.value.startsWith('$')) {
-          input.value = '$' + input.value;
-        }
-      }
-    }
-
-    function tryUpdateFields() {
-      percentFields.forEach(id => updateField(id, 'percent'));
-      dollarFields.forEach(id => updateField(id, 'dollar'));
-    }
-
-    // Retry every 500ms for up to 10 seconds
-    let attempts = 0;
-    const maxAttempts = 20;
-    const interval = setInterval(() => {
-      tryUpdateFields();
-      attempts++;
-      if (attempts >= maxAttempts) {
-        clearInterval(interval);
-      }
-    }, 500);
-  });
-  </script>
+ 
 
 
 <script>
