@@ -245,19 +245,28 @@ transform: scale(1.5);
 <link href="https://design.canada.ca/css/beta/social-media.css" rel="stylesheet">
 <div>
 
-<hgroup>
+
 <h1 property="name" id="wb-cont">Learn about progressive tax rates and income brackets</h1>
-<p class="gc-byline">Information from tax year 2025 is used</p>
-</hgroup>
+
+
 <noscript><div class="alert alert-warning"><h2>This page requires JavaScript</h2>
 <p>The tool on this page requires JavaScript and a modern browser to operate.  Please make sure your browser is up to date and activate JavaScript.</p></noscript>	
- <div id="stickycontent"> 
-<p>The interactive chart below shows you how tax brackets and progressive tax rates work in Canada and in each province and territory (except Quebec).</p>
+
+ <p>The interactive chart below uses rates from the <strong>2025</strong> tax year.</p>
+	 
+	<p>The chart shows you how tax amounts are applied progressively in income brackets federally and in each province and territory (except Quebec).</p>
     <p><strong><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"></span>This is for educational purposes only:</strong> Do not use this to calculate your actual tax amount.</p>
-      <h2>Estimate your tax payable</h2>
+      <div class="row"><div class="col-xs-12">
+	 <section class="panel panel-default brdr-rds-0 mrgn-tp-lg nojs-hide">
+		 <header class="panel-heading">
+	 <h2 class="panel-title mrgn-tp-md mrgn-bttm-md">Estimating tax payable</h2>
+		 </header>
+		 <div class="fa-stack fa-fw text-muted center-block pstn-tp-xs pstn-lft-xs fa-lg full-width" aria-hidden="true"><span class="fas fa-circle fa-inverse fa-stack-2x"></span> <span class="far fa-circle fa-stack-2x"></span> <span class="far fa-chart-bar fa-stack-1x"></span> </div>
+		 <div class="panel-body pb-4 px-2">
+			  <div id="stickycontent"> 
     <form>
       <fieldset class="brdr-0">
-        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">1</span></span> <span class="wb-inv">First: </span>Select a province or territory</legend>
+        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">1</span></span> <span class="wb-inv">First step: </span>Select a province or territory</legend>
         <p class="mrgn-lft-xl">Provincial and territorial tax rates vary across Canada.</p>
 	      <div class="row panel-body mrgn-bttm-md mrgn-tp-md">
           <div class="dropdown-container col-md-4">
@@ -269,7 +278,7 @@ transform: scale(1.5);
         </div>
       </fieldset>
       <fieldset  id="incomeSliderDesign" class="brdr-0">
-        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second: </span>Enter an income amount</legend>
+        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second step: </span>Enter an income amount<span class="wb-inv"> with a range slider or an input box</span></legend>
 	   <p class="mrgn-lft-xl">Switch between the <strong>slider</strong> (increments of $2,000) or the <strong>input</strong> field to increase or decrease an amount.</p>    
         <div class="top-bar-stick">
          
@@ -278,8 +287,8 @@ transform: scale(1.5);
               <div class="px-2">
 		<div class="pt-3 hidden-xs"></div>      
                 <div class="btn-group d-flex" id="btnSelect">
-                  <button id="toggleSlider" class="btn btn-lg btn-default btn-primary btn-toggle" aria-pressed="true" type="button"><span class="h4">Slider</span></button>
-                  <button id="toggleInput" class="btn btn-lg btn-default btn-toggle" aria-pressed="false" type="button"><span class="h4">Input</span></button>
+                  <button id="toggleSlider" class="btn btn-lg btn-default btn-primary btn-toggle" aria-pressed="true" type="button" title="Range slider, tab forward to select input box"><span class="h4">Slider</span></button>
+                  <button id="toggleInput" class="btn btn-lg btn-default btn-toggle" aria-pressed="false" type="button" title="Input box, tab back to select range slider"><span class="h4">Input</span></button>
                 </div>
               </div>
               <div class="col-xs-10 col-sm-5 col-md-3 px-2 btn-toggle-value hidden" id="toggleInputValue">
@@ -293,12 +302,8 @@ transform: scale(1.5);
               <div class="full-width px-2 btn-toggle-value" id="toggleSliderValue">
                 <div class="slider-group align-self-center">
                   <div id="incomeTooltip" class="wb-input-range-tooltip" aria-hidden="true"  data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}"> $0 </div>
-			<label for="incomeSlider" class="wb-inv">Range slider for dollar amount (increment of $2,000)</label>
-                  <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="1200000" value="0" step="2000" list="amountTicks" name="incomeAmount" title="Range: $0 to $1,200,000"  data-wb-input-range="{&quot;target&quot;: [&quot;incomeSlider&quot;, &quot;incomeTooltip&quot;]}">
-                <!--<datalist id="amountTicks" class="hidden">
-                    <option value="0"></option>
-                    <option value="1200000"></option>
-		</datalist>//-->
+		
+                  <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="400000" value="0" step="2000" name="incomeAmount" title="Range slider from $0 to $400,000"  data-wb-input-range="{&quot;target&quot;: [&quot;incomeSlider&quot;, &quot;incomeTooltip&quot;]}" aria-labelledby="incomeTooltip" aria-valuenow="">
 		<div class="range-list">
 			<span>$0</span>
 			<span class="rangelist-max"></span>
@@ -309,8 +314,10 @@ transform: scale(1.5);
           </div>
         </div>
       </fieldset>
+	
     </form>
-      <p class="wb-inv"><a href="#results">Go to table results</a></p>
+		<p class="small invisible" id="resultsLink"><a href="#results"><span class="glyphicon glyphicon-arrow-down mrgn-rght-sm"></span>Go to results</a></p>
+     
     <!--Used to test scroll into view <button onclick='$("#federalTable td:nth-of-type(5)").addClass("active-cell")'>Highlight Column 5</button>//--> 
     <!--HIDE for now, may not need, delete from script if to be removed  <div id="chooseProvinceAlert">
         <div class="alert alert-info mrgn-tp-xl">
@@ -366,7 +373,7 @@ transform: scale(1.5);
     <div id="quebecNotice">
       <p><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-qc.png" alt="" class="mrgn-rght-md">For Quebec tax rates, please visit the official site: <a href="https://www.revenuquebec.ca/en/" target="_blank">Revenu Québec</a></p>
     </div>
-  </div>
+
   <section id="afterTaxWrapper">
 
       <h3>Summary</h3>
@@ -389,13 +396,13 @@ transform: scale(1.5);
                 <div class="mg-cell">Federal tax</div>
               </div>
               <div class="mg-row">
-                <div class="mg-cell h3 text-primary">&minus;</div>
-                <div class="mg-cell text-right fa-lg text-primary" id="provTaxCal"></div>
+                <div class="mg-cell mg-brdr-bttm h3 text-primary">&minus;</div>
+                <div class="mg-cell mg-brdr-bttm text-right fa-lg text-primary" id="provTaxCal"></div>
                 <div class="mg-cell"><span id="provTaxName">Provincial/Territorial</span> tax</div>
               </div>
               <div class="mg-row">
-                <div class="mg-cell mg-brdr-tp h3 text-primary">=</div>
-                <div class="mg-cell mg-brdr-tp text-right fa-lg text-primary" id="afterTaxIncome"></div>
+                <div class="mg-cell h3 text-primary">=</div>
+                <div class="mg-cell text-right fa-lg text-primary" id="afterTaxIncome"></div>
                 <div class="mg-cell">After tax amount</div>
               </div>
             </div>
@@ -434,8 +441,9 @@ transform: scale(1.5);
         </div>
       </div>
     </div>
+		
 <p><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"></span>These amounts may not accurately reflect what you pay in taxes.  Do not use to determine your actual tax payable.</p>	  
-  </section>
+	 </section>
 
 	
 	<section id="afterTaxHints" class="hidden">
@@ -462,8 +470,13 @@ transform: scale(1.5);
         <div class="row">
           <div class="col-xs-12">
             <div class="panel panel-primary panel-body mrgn-tp-lg eqht-trgt brdr-rds-0">
-              <h4 class="h3 mrgn-tp-sm text-primary">Where do your tax dollars go</h4>
-              <p>Learn what taxes are, why they are collected, and how our tax system works by studying the <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html">purpose of taxes</a>.</p>
+            <h4 class="h3 mrgn-tp-sm text-primary">Know where do your tax dollars go</h4>
+              <p>The government uses the taxes it collects to pay for public facilities, programs, and the services we use in Canada. </p>
+              <details class="mrgn-bttm-lg">
+                <summary>Examples of things taxes help pay for</summary>
+              <div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html#public-programs-services>.fa-ul"></div>
+              </details>
+              <p>To learn how our tax system works, refer to the <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html">purpose of taxes</a>.</p>
             </div>
           </div>
           <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-money-bill-wave fa-stack-1x"></span> </span></div>
@@ -472,6 +485,9 @@ transform: scale(1.5);
   
     
   </section>
+		
+	 </section>
+	  </div></div>
   <hr class="brdr-tp mrgn-tp-xl">
   <section id="errorMsg">
 <p><span class="fas fa-exclamation fa-lg mrgn-rght-sm"></span>Error with loading script, try <a href="?">refreshing page</a>.</p>
@@ -774,13 +790,19 @@ const langToggle = {
 	dataHiddenAndUp: {
 		en: "and up",
 		fr: "et plus"
+	},
+	dataSliderRange: {
+		en: "Range slider (increments of $2,000): $0 to ",
+		fr: "Curseur de plage (incréments de 2 000 $) : 0 à "
 	}
 } 
 let taxData = {};
 const incomeSlider = document.getElementById('incomeSlider');
 const incomeInput = document.getElementById('incomeInput');
+const incomeInputs = document.querySelectorAll('#incomeSlider, #incomeInput');	
 const provinceSelect = document.getElementById('provinceSelect');
 const basedIncome = document.querySelectorAll('.based-income');
+	 const resultsLink = document.getElementById('resultsLink');
 var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
   style: "currency",
   currency: "CAD",
@@ -877,7 +899,9 @@ elementsToHide.forEach(element => {
  //Set slider maximum
   const provinceMaxAmount  = taxData[selectedProvince].range_max;
 const rangeListMax = document.querySelectorAll('.rangelist-max');     	    
-   incomeSlider.setAttribute("max", provinceMaxAmount);   
+   incomeSlider.setAttribute("max", provinceMaxAmount);
+incomeSlider.setAttribute("title", langToggle.dataSliderRange[pagelang] + currencyFormatterChart.format(provinceMaxAmount));
+		
 	rangeListMax.forEach(listmax => {
 	listmax.textContent = currencyFormatterChart.format(provinceMaxAmount);      	
  });        
@@ -1168,7 +1192,8 @@ const buttonsValue = document.querySelectorAll(".btn-toggle-value");
     const mySlider = document.getElementById('incomeSlider');
 mySlider.value = 0;
 const myInput = document.getElementById('incomeInput');
-myInput.value = 0;               
+myInput.value = 0;
+resultsLink.classList.add('invisible'); 
                updateTables();
           $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");
            });
@@ -1193,7 +1218,14 @@ const observer = new IntersectionObserver(
 );
 
 observer.observe(el);
-    
+//Script to show/hide results link (disabled for now until can make link go to results and show under sticky header)
+    //  incomeInputs.forEach(inputElement => {
+// inputElement.addEventListener('input', function() {
+// resultsLink.classList.remove('invisible');
+//  });
+//  });
+
+	
   </script>
 </body>
 </html>
