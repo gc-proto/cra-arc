@@ -203,8 +203,8 @@ transform: scale(1.5);
     border-collapse: separate;
     border-spacing: 0px 5px;
 }
-.dollar-amt {width: 170px;}
-	.dollar-prc {width: 100px;}
+.dollar-amt {max-width: 100px;}
+	.dollar-prc {max-width: 50px;}
 	
 </style>
 	
@@ -398,8 +398,8 @@ transform: scale(1.5);
           </div>
           <div class="mg-row">
             <div class="mg-cell h6 pr-4">Estimated total tax</div>
-            <div class="mg-cell mg-brdr-tp h3 text-primary dollar-amt">=</div>
-            <div class="mg-cell mg-brdr-tp text-right fa-2x text-primary" id="totalTaxCal"></div>
+            <div class="mg-cell mg-brdr-tp h3 text-primary">=</div>
+            <div class="mg-cell mg-brdr-tp text-right fa-2x text-primary dollar-amt" id="totalTaxCal"></div>
             <div id="totalTaxPC" class="mg-cell fa-lg  text-primary nowrap dollar-prc">(0<sup>%</sup>)</div>
           </div>
         </div>
@@ -952,8 +952,7 @@ currencyUpdates.forEach(({ id, amount }) => updateCurrency(id, amount));
 
 // Text updates for math calculation
 const textUpdates = [
-  { id: 'provTaxName', text: selectedProvinceName },
-  { id: 'provTaxNamePC', text: selectedProvinceName }
+  { id: 'provTaxName', text: selectedProvinceName }
 ];
 textUpdates.forEach(({ id, text }) => updateText(id, text));
 
