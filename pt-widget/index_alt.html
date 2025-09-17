@@ -203,7 +203,9 @@ transform: scale(1.5);
     border-collapse: separate;
     border-spacing: 0px 5px;
 }
-    
+.dollar-amt {width: 170px;}
+	.dollar-prc {width: 100px;}
+	
 </style>
 	
 </head>
@@ -375,68 +377,30 @@ transform: scale(1.5);
     </div>
 
   <section id="afterTaxWrapper">
-
-      <h3>Summary</h3>
-    <div class="row wb-eqht-grd">
-      <div class="col-sm-10 col-md-5">
-        <div class="panel panel-primary brdr-rds-0">
-          <header class="panel-heading brdr-rds-0">
-            <h4 class="panel-title">Calculation of estimated total tax</h4>
-          </header>
-          <div class="panel-body eqht-trgt">
-            <div class="wb-math-grid mg-spcd">
-              <div class="mg-row">
-                <div class="mg-cell"></div>
-                <div class="mg-cell text-right fa-lg text-primary" id="preTaxIncomeCal"></div>
-                <div class="mg-cell">Pre tax amount</div>
-              </div>
-              <div class="mg-row">
-                <div class="mg-cell h3 text-primary">&minus;</div>
-                <div class="mg-cell text-right fa-lg text-primary" id="fedTaxCal"></div>
-                <div class="mg-cell">Federal tax</div>
-              </div>
-              <div class="mg-row">
-                <div class="mg-cell mg-brdr-bttm h3 text-primary">&minus;</div>
-                <div class="mg-cell mg-brdr-bttm text-right fa-lg text-primary" id="provTaxCal"></div>
-                <div class="mg-cell"><span id="provTaxName">Provincial/Territorial</span> tax</div>
-              </div>
-              <div class="mg-row">
-                <div class="mg-cell h3 text-primary">=</div>
-                <div class="mg-cell text-right fa-lg text-primary" id="afterTaxIncome"></div>
-                <div class="mg-cell">After tax amount</div>
-              </div>
-            </div>
+    <div class="panel panel-primary max-content mrgn-tp-lg">
+      <header class="panel-heading">
+        <h3 class="mrgn-bttm-0 panel-title">Summary</h3>
+        <p class="gc-byline mrgn-bttm-0">Rounded to the nearest dollar</p>
+      </header>
+      <div class="panel-body">
+        <div class="wb-math-grid mg-spcd">
+          <div class="mg-row">
+            <div class="mg-cell h6 pr-4">Federal tax</div>
+            <div class="mg-cell"></div>
+            <div class="mg-cell text-right fa-2x text-primary dollar-amt" id="fedTaxCal"></div>
+            <div id="fedTaxPC"  class="mg-cell fa-lg text-primary nowrap dollar-prc">(0<sup>%</sup>)</div>
           </div>
-        </div>
-      </div>
-      <div class="col-sm-10 col-md-7">
-        <div class="panel panel-primary brdr-rds-0">
-          <header class="panel-heading brdr-rds-0">
-            <h4 class="panel-title">Percentage of estimated total tax</h4>
-          </header>
-          <div class="panel-body eqht-trgt">
-            <div class="row mrgn-tp-md">
-			<div class="col-sm-4">
-                <div class="mrgn-tp-md"> <span class="fa-lg fa-3x mrgn-tp-0 text-primary nowrap" id="afterTaxPC">0<sup>%</sup></span><br>
-                  is what you keep</div>
-<hr class="brdr-bttm visible-xs">
-				
-              </div>	
-              <div class="col-sm-8 brdr-lft">
-                <div class="row">
-                  <div class="col-xs-5">
-                    <div class="mrgn-tp-md"> <span id="totalTaxPC" class="fa-lg fa-3x text-primary nowrap">0<sup>%</sup></span><br>
-                      goes to taxes</div>
-                  </div>
-                  <div class="col-xs-7 pl-4">
-                    <p class="mrgn-tp-0"><span id="fedTaxPC"  class="fa-lg text-primary nowrap">0<sup>%</sup></span> Federal tax</p>
-                    <hr class="brdr-tp mrgn-tp-sm mrgn-bttm-sm">
-                    <p class="mrgn-tp-0"><span id="provTaxPC" class="fa-lg  text-primary nowrap">0<sup>%</sup></span> <span id="provTaxNamePC">Provincial</span> tax</p>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
+          <div class="mg-row">
+            <div class="mg-cell h6 pr-4"><span id="provTaxName">Provincial</span> tax</div>
+            <div class="mg-cell h3 text-primary">+</div>
+            <div class="mg-cell text-right fa-2x text-primary dollar-amt" id="provTaxCal"></div>
+            <div id="provTaxPC" class="mg-cell fa-lg  text-primary nowrap dollar-prc">(0<sup>%</sup>)</div>
+          </div>
+          <div class="mg-row">
+            <div class="mg-cell h6 pr-4">Estimated total tax</div>
+            <div class="mg-cell mg-brdr-tp h3 text-primary dollar-amt">=</div>
+            <div class="mg-cell mg-brdr-tp text-right fa-2x text-primary" id="totalTaxCal"></div>
+            <div id="totalTaxPC" class="mg-cell fa-lg  text-primary nowrap dollar-prc">(0<sup>%</sup>)</div>
           </div>
         </div>
       </div>
@@ -447,12 +411,7 @@ transform: scale(1.5);
 
 	
 	<section id="afterTaxHints" class="hidden">
-    <div class="row wb-eqht-grd">
-      <div class="col-md-7">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="panel panel-primary panel-body mrgn-tp-lg eqht-trgt brdr-rds-0">
-              <h4 class="h3 mrgn-tp-sm text-primary">Reduce how much tax your may owe</h4>
+ <h3>Reduce how much tax your may owe</h3>
               <p>You may be eligible to claim various deductions, credits, and expenses to reduce the amount of tax you owe.</p>
               <details class="mrgn-bttm-lg" role="button">
                 <summary>Example: Basic personal amount (BPA)</summary>
@@ -461,34 +420,19 @@ transform: scale(1.5);
 				  <p>For more details, refer to <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-30000-basic-personal-amount.html">basic personal amount</a>.</p>
               </details>
               <p>For all deduction types, refer to <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses.html">claiming deductions, credits, and expenses</a>.</p>
-            </div>
-          </div>
-          <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x pr-2"></span><span class="fas fa-long-arrow-alt-down fa-stack-1x pl-3"></span> </span></div>
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="panel panel-primary panel-body mrgn-tp-lg eqht-trgt brdr-rds-0">
-            <h4 class="h3 mrgn-tp-sm text-primary">Know where do your tax dollars go</h4>
+         
+            <h3>Know where do your tax dollars go</h3>
               <p>The government uses the taxes it collects to pay for public facilities, programs, and the services we use in Canada. </p>
               <details class="mrgn-bttm-lg">
                 <summary>Examples of things taxes help pay for</summary>
-              <div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html#public-programs-services>.fa-ul"></div>
+              <ul data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html#public-programs-services>.fa-ul>" class="fa-ul colcount-sm-2 list-unstyled lst-spcd mrgn-lft-lg"></ul>
               </details>
               <p>To learn how our tax system works, refer to the <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html">purpose of taxes</a>.</p>
-            </div>
-          </div>
-          <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-money-bill-wave fa-stack-1x"></span> </span></div>
-        </div>
-      </div>
-  
-    
+
   </section>
-		
-	 </section>
-	  </div></div>
-  <hr class="brdr-tp mrgn-tp-xl">
+			  </div></section></div></div>
+	
+
   <section id="errorMsg">
 <p><span class="fas fa-exclamation fa-lg mrgn-rght-sm"></span>Error with loading script, try <a href="?">refreshing page</a>.</p>
   </section>
@@ -1000,10 +944,9 @@ function updateText(id, text) {
 
 // Currency updates for math calculation
 const currencyUpdates = [
-  { id: 'preTaxIncomeCal', amount: income },
+  { id: 'totalTaxCal', amount: federalTaxAmount + provincialTaxAmount},
  { id: 'fedTaxCal', amount: federalTaxAmount },
-  { id: 'provTaxCal', amount: provincialTaxAmount },
-  { id: 'afterTaxIncome', amount: afterTax }
+  { id: 'provTaxCal', amount: provincialTaxAmount }
 ];
 currencyUpdates.forEach(({ id, amount }) => updateCurrency(id, amount));
 
@@ -1018,8 +961,7 @@ textUpdates.forEach(({ id, text }) => updateText(id, text));
 const percentageUpdates = [
   { id: 'totalTaxPC', amount: federalTaxAmount + provincialTaxAmount },
   { id: 'fedTaxPC', amount: federalTaxAmount },
-  { id: 'provTaxPC', amount: provincialTaxAmount },
-  { id: 'afterTaxPC', amount: afterTax }
+  { id: 'provTaxPC', amount: provincialTaxAmount }
 ];
 percentageUpdates.forEach(({ id, amount }) => updatePercentage(id, amount, income));       
     }
