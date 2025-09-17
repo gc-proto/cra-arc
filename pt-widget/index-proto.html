@@ -316,7 +316,7 @@ transform: scale(1.5);
       </fieldset>
 	
     </form>
-		<p class="small hidden" id="resultsLink"><a href="#results"><span class="glyphicon glyphicon-arrow-down mrgn-rght-sm"></span>Go to results</a></p>
+		<p class="small invisible" id="resultsLink"><a href="#results"><span class="glyphicon glyphicon-arrow-down mrgn-rght-sm"></span>Go to results</a></p>
      
     <!--Used to test scroll into view <button onclick='$("#federalTable td:nth-of-type(5)").addClass("active-cell")'>Highlight Column 5</button>//--> 
     <!--HIDE for now, may not need, delete from script if to be removed  <div id="chooseProvinceAlert">
@@ -1193,7 +1193,7 @@ const buttonsValue = document.querySelectorAll(".btn-toggle-value");
 mySlider.value = 0;
 const myInput = document.getElementById('incomeInput');
 myInput.value = 0;
-resultsLink.classList.add('hidden'); 
+resultsLink.classList.add('invisible'); 
                updateTables();
           $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");
            });
@@ -1221,7 +1221,7 @@ observer.observe(el);
 //Script to show/hide results link
       incomeInputs.forEach(inputElement => {
   inputElement.addEventListener('input', function() {
- resultsLink.classList.remove('hidden');
+ resultsLink.classList.remove('invisible');
   });
   });
 
