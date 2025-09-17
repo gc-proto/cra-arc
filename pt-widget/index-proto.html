@@ -316,7 +316,7 @@ transform: scale(1.5);
       </fieldset>
 	
     </form>
-		<p class="small"><a href="#results"><span class="glyphicon glyphicon-arrow-down mrgn-rght-sm"></span>Go to results</a></p>
+		<p class="small hidden" id="resultsLink"><a href="#results"><span class="glyphicon glyphicon-arrow-down mrgn-rght-sm"></span>Go to results</a></p>
      
     <!--Used to test scroll into view <button onclick='$("#federalTable td:nth-of-type(5)").addClass("active-cell")'>Highlight Column 5</button>//--> 
     <!--HIDE for now, may not need, delete from script if to be removed  <div id="chooseProvinceAlert">
@@ -799,8 +799,10 @@ const langToggle = {
 let taxData = {};
 const incomeSlider = document.getElementById('incomeSlider');
 const incomeInput = document.getElementById('incomeInput');
+const incomeInputs = document.querySelectorAll('#incomeSlider, #incomeInput');	
 const provinceSelect = document.getElementById('provinceSelect');
 const basedIncome = document.querySelectorAll('.based-income');
+	 const resultsLink = document.getElementById('resultsLink');
 var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
   style: "currency",
   currency: "CAD",
@@ -1190,7 +1192,8 @@ const buttonsValue = document.querySelectorAll(".btn-toggle-value");
     const mySlider = document.getElementById('incomeSlider');
 mySlider.value = 0;
 const myInput = document.getElementById('incomeInput');
-myInput.value = 0;               
+myInput.value = 0;
+resultsLink.classList.add('hidden'); 
                updateTables();
           $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");
            });
@@ -1215,7 +1218,14 @@ const observer = new IntersectionObserver(
 );
 
 observer.observe(el);
-    
+//Script to show/hide results link
+      incomeInputs.forEach(inputElement => {
+  inputElement.addEventListener('input', function() {
+ resultsLink.classList.remove('hidden');
+  });
+  });
+
+	
   </script>
 </body>
 </html>
