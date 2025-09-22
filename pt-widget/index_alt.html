@@ -958,8 +958,7 @@ elementsToShow.forEach(element => {
 function updatePercentage(id, amount, income) {
     const percentage = calculatePercentage(amount, income);
     const formatted = percentFormatter.format(percentage / 100);
-    const numericPart = formatted.replace('%', '').trim();
-    document.getElementById(id).innerHTML = `(${numericPart})`;
+    document.getElementById(id).innerHTML = `(${formatted})`;
     return percentage;
 }
 
