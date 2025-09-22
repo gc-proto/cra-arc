@@ -1243,11 +1243,36 @@ const observer = new IntersectionObserver(
 
 observer.observe(el);
 //Script to show/hide results link (disabled for now until can make link go to results and show under sticky header)
-    //  incomeInputs.forEach(inputElement => {
-// inputElement.addEventListener('input', function() {
-// resultsLink.classList.remove('invisible');
-//  });
-//  });
+  incomeInputs.forEach(inputElement => {
+inputElement.addEventListener('input', function() {
+resultsLink.classList.remove('invisible');
+ });
+ });
+//Script to offset link when going to results and under header
+	document.addEventListener("DOMContentLoaded", function () {
+    const link = document.querySelector('#resultsLink a[href^="#"]');
+
+    if (link) {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                const header = document.querySelector(".top-bar-stick");
+                const headerHeight = header ? header.offsetHeight : 0;
+                const targetOffset = targetElement.offsetTop;
+                const scrollTo = targetOffset - headerHeight;
+
+                window.scrollTo({
+                    top: scrollTo,
+                    behavior: "smooth"
+                });
+            }
+        });
+    }
+});
 
 	
   </script>
