@@ -1242,37 +1242,20 @@ const observer = new IntersectionObserver(
 );
 
 observer.observe(el);
-//Script to show/hide results link (disabled for now until can make link go to results and show under sticky header)
-  incomeInputs.forEach(inputElement => {
-inputElement.addEventListener('input', function() {
-resultsLink.classList.remove('invisible');
- });
- });
-//Script to offset link when going to results and under header
-	document.addEventListener("DOMContentLoaded", function () {
-    const link = document.querySelector('#resultsLink a[href^="#"]');
-
-    if (link) {
-        link.addEventListener("click", function (e) {
+	//Test script for header scroll
+ $(document).ready(function() {
+        $('#resultsLink>a').on('click', function(e) {
             e.preventDefault();
+            var targetId = $(this).attr('href');
+            var headerHeight = $('.top-bar-stick').outerHeight(); // Get header height
+            var targetOffset = $(targetId).offset().top;
+            var scrollTo = targetOffset - headerHeight;
 
-            const targetId = this.getAttribute("href");
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                const header = document.querySelector(".top-bar-stick");
-                const headerHeight = header ? header.offsetHeight : 0;
-                const targetOffset = targetElement.offsetTop;
-                const scrollTo = targetOffset - headerHeight;
-
-                window.scrollTo({
-                    top: scrollTo,
-                    behavior: "smooth"
-                });
-            }
+            $('html, body').animate({
+                scrollTop: scrollTo
+            }, 500); // Scroll speed
         });
-    }
-});
+    });
 
 	
   </script>
