@@ -956,8 +956,11 @@ elementsToShow.forEach(element => {
 }
 
 function updatePercentage(id, amount, income) {
-  const percentage = calculatePercentage(amount, income);
-  document.getElementById(id).innerHTML = `(${percentage}<sup>%</sup>)`;
+    const percentage = calculatePercentage(amount, income);
+    const formatted = percentFormatter.format(percentage / 100);
+    const numericPart = formatted.replace('%', '').trim();
+    document.getElementById(id).innerHTML = `${numericPart}`;
+    return percentage;
 }
 
 function updateText(id, text) {
@@ -980,12 +983,20 @@ textUpdates.forEach(({ id, text }) => updateText(id, text));
 
 // Percentage updates
 const percentageUpdates = [
-  { id: 'totalTaxPC', amount: federalTaxAmount + provincialTaxAmount },
   { id: 'fedTaxPC', amount: federalTaxAmount },
   { id: 'provTaxPC', amount: provincialTaxAmount }
 ];
-percentageUpdates.forEach(({ id, amount }) => updatePercentage(id, amount, income));       
-    }
+		const percentageValues = {};
+        percentageUpdates.forEach(({ id, amount }) => {
+            const percentage = updatePercentage(id, amount, income);
+            percentageValues[id] = percentage;
+});
+//Calculation for total tax percentage based on fed and prov percentage 
+const totalTaxPercentage =
+  percentageValues.fedTaxPC + percentageValues.provTaxPC;    
+const formattedTotal = percentFormatter.format(totalTaxPercentage / 100).replace('%', '').trim();
+document.getElementById('totalTaxPC').innerHTML = `${formattedTotal}`;	
+	}
 
 function updateTable(idPrefix, data, income) {
   const headerRow = document.getElementById(`${idPrefix}Header`);
@@ -1175,11 +1186,13 @@ function smoothScrollTo(container, target, duration = 400) {
   });
 } 
 function calculatePercentage(part, total) {
-  if (total === 0) {
-    return 0; // Avoid division by zero
-  }
- const formattedString =  percentFormatter.format(part / total);
-    return formattedString.replace('%', '').trim();
+    if (total === 0) {
+        return 0; // Avoid division by zero
+    }
+    const formattedString = percentFormatter.format(part / total);
+    const numericString = formattedString.replace(',', '.'); // normalize comma to dot
+    const rawNumber = parseFloat(numericString);
+    return Math.round(rawNumber * 10) / 10; // round to one decimal
 }
  
  // Script for button toggle
