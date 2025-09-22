@@ -959,7 +959,7 @@ function updatePercentage(id, amount, income) {
     const percentage = calculatePercentage(amount, income);
     const formatted = percentFormatter.format(percentage / 100);
     const numericPart = formatted.replace('%', '').trim();
-    document.getElementById(id).innerHTML = `${numericPart}`;
+    document.getElementById(id).innerHTML = `(${numericPart})`;
     return percentage;
 }
 
@@ -995,7 +995,7 @@ const percentageUpdates = [
 const totalTaxPercentage =
   percentageValues.fedTaxPC + percentageValues.provTaxPC;    
 const formattedTotal = percentFormatter.format(totalTaxPercentage / 100).replace('%', '').trim();
-document.getElementById('totalTaxPC').innerHTML = `${formattedTotal}`;	
+document.getElementById('totalTaxPC').innerHTML = `(${formattedTotal})`;	
 	}
 
 function updateTable(idPrefix, data, income) {
