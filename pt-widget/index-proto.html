@@ -417,7 +417,7 @@ transform: scale(1.5);
           <div class="panel-body eqht-trgt">
             <div class="row mrgn-tp-md">
 			<div class="col-sm-4">
-                <div class="mrgn-tp-md"> <span class="fa-lg fa-3x mrgn-tp-0 text-primary nowrap" id="afterTaxPC">0<sup>%</sup></span><br>
+                <div class="mrgn-tp-md"><span class="fa-lg fa-3x mrgn-tp-0 text-primary nowrap"><span id="afterTaxPC">0</span><sup>%</sup></span><br>
                   is what you keep</div>
 <hr class="brdr-bttm visible-xs">
 				
@@ -425,13 +425,13 @@ transform: scale(1.5);
               <div class="col-sm-8 brdr-lft">
                 <div class="row">
                   <div class="col-xs-5">
-                    <div class="mrgn-tp-md"> <span id="totalTaxPC" class="fa-lg fa-3x text-primary nowrap">0<sup>%</sup></span><br>
+                    <div class="mrgn-tp-md"> <span class="class="fa-lg fa-3x text-primary nowrap"><span id="totalTaxPC">0</span><sup>%</sup></span><br>
                       goes to taxes</div>
                   </div>
                   <div class="col-xs-7 pl-4">
-                    <p class="mrgn-tp-0"><span id="fedTaxPC"  class="fa-lg text-primary nowrap">0<sup>%</sup></span> Federal tax</p>
+                    <p class="mrgn-tp-0"><span class="fa-lg text-primary nowrap"><span id="fedTaxPC">0</span><sup>%</sup></span> Federal tax</p>
                     <hr class="brdr-tp mrgn-tp-sm mrgn-bttm-sm">
-                    <p class="mrgn-tp-0"><span id="provTaxPC" class="fa-lg  text-primary nowrap">0<sup>%</sup></span> <span id="provTaxNamePC">Provincial</span> tax</p>
+                    <p class="mrgn-tp-0"><span class="fa-lg text-primary nowrap"><span id="provTaxPC">0</span><sup>%</sup></span> <span id="provTaxNamePC">Provincial</span> tax</p>
                   </div>
                 </div>
               </div>
@@ -947,8 +947,11 @@ elementsToShow.forEach(element => {
 }
 
 function updatePercentage(id, amount, income) {
-  const percentage = calculatePercentage(amount, income);
-  document.getElementById(id).innerHTML = `${percentage}<sup>%</sup>`;
+    const percentage = calculatePercentage(amount, income);
+    const formatted = percentFormatter.format(percentage / 100);
+    const numericPart = formatted.replace('%', '').trim();
+    document.getElementById(id).innerHTML = `${numericPart}`;
+    return percentage;
 }
 
 function updateText(id, text) {
@@ -973,13 +976,26 @@ textUpdates.forEach(({ id, text }) => updateText(id, text));
 
 // Percentage updates
 const percentageUpdates = [
-  { id: 'totalTaxPC', amount: federalTaxAmount + provincialTaxAmount },
   { id: 'fedTaxPC', amount: federalTaxAmount },
-  { id: 'provTaxPC', amount: provincialTaxAmount },
-  { id: 'afterTaxPC', amount: afterTax }
+  { id: 'provTaxPC', amount: provincialTaxAmount }
 ];
-percentageUpdates.forEach(({ id, amount }) => updatePercentage(id, amount, income));       
-    }
+ const percentageValues = {};    
+percentageUpdates.forEach(({ id, amount }) => 
+{
+  const percentage = updatePercentage(id, amount, income);
+  percentageValues[id] = percentage;
+});
+//Calculation for total and remaining tax percentage based on fed and prov percentage 
+const totalTaxPercentage =
+  percentageValues.fedTaxPC + percentageValues.provTaxPC;
+   const remainingPercentage = 100 - totalTaxPercentage;
+        
+const formattedRemaining = percentFormatter.format(remainingPercentage / 100).replace('%', '').trim();        
+const formattedTotal = percentFormatter.format(totalTaxPercentage / 100).replace('%', '').trim();
+             
+document.getElementById('totalTaxPC').innerHTML = `${formattedTotal}`;
+document.getElementById('afterTaxPC').innerHTML = `${formattedRemaining}`; 
+	}		
 
 function updateTable(idPrefix, data, income) {
   const headerRow = document.getElementById(`${idPrefix}Header`);
@@ -1169,11 +1185,13 @@ function smoothScrollTo(container, target, duration = 400) {
   });
 } 
 function calculatePercentage(part, total) {
-  if (total === 0) {
-    return 0; // Avoid division by zero
-  }
- const formattedString =  percentFormatter.format(part / total);
-    return formattedString.replace('%', '').trim();
+    if (total === 0) {
+        return 0; // Avoid division by zero
+    }
+    const formattedString = percentFormatter.format(part / total);
+    const numericString = formattedString.replace(',', '.'); // normalize comma to dot
+    const rawNumber = parseFloat(numericString);
+    return Math.round(rawNumber * 10) / 10; // round to one decimal
 }
  
  // Script for button toggle
