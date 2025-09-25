@@ -49,7 +49,7 @@ td > div.range meter {
   position: relative;
   writing-mode: vertical-lr;
   width: 50px;
-  height: 200px;
+  height: 180px;
 transform:scaleY(-1);
 }
 @-moz-document url-prefix() {
@@ -62,12 +62,12 @@ transform:scaleY(-1);
 }
 td > div.range meter::-webkit-meter-bar {
   width: 50px;
-  height: 200px;
+  height: 180px;
   border: 1px solid #333;
 }
 td > div.range meter::-moz-meter-bar {
   background: #2572b4;
-  height: 200px;
+  height: 180px;
   width: 50px;
   border-radius: 0px;
 }
@@ -88,7 +88,7 @@ td > div.range meter::-moz-meter-bar {
 .estimate-borders {
     border: 1px solid #2572b4;
     padding: 10px; 10px 10px 15px;
-    width: 200px;
+    width: 180px;
     display: inline-block;
     border-radius: 25px;   
 }   
@@ -203,7 +203,9 @@ transform: scale(1.5);
     border-collapse: separate;
     border-spacing: 0px 5px;
 }
-    
+#resultsLink>a:target {
+  scroll-margin-top: 170px;
+}    
 </style>
 	
 </head>
@@ -243,7 +245,7 @@ transform: scale(1.5);
 <main role="main" property="mainContentOfPage" class="container">
 <!--Need to move this CSS sheet to cra-arc.gc.ca //-->
 <link href="https://design.canada.ca/css/beta/social-media.css" rel="stylesheet">
-<div>
+
 
 
 <h1 property="name" id="wb-cont">Learn about progressive tax rates and income brackets</h1>
@@ -252,9 +254,9 @@ transform: scale(1.5);
 <noscript><div class="alert alert-warning"><h2>This page requires JavaScript</h2>
 <p>The tool on this page requires JavaScript and a modern browser to operate.  Please make sure your browser is up to date and activate JavaScript.</p></noscript>	
 
- <p>The interactive chart below uses rates from the <strong>2025</strong> tax year.</p>
+ <p>The interactive table chart below uses rates from the <strong>2025</strong> tax year.</p>
 	 
-	<p>The chart shows you how tax amounts are applied progressively in income brackets federally and in each province and territory (except Quebec).</p>
+	<p>The table chart shows you how tax amounts are applied progressively in income brackets federally and in each province and territory (except Quebec).</p>
     <p><strong><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"></span>This is for educational purposes only:</strong> Do not use this to calculate your actual tax amount.</p>
       <div class="row"><div class="col-xs-12">
 	 <section class="panel panel-default brdr-rds-0 mrgn-tp-lg nojs-hide">
@@ -296,15 +298,24 @@ transform: scale(1.5);
                 <div class="input-group align-self-center pt-3"> <span class="input-group-addon">$</span>
                   <input id="incomeInput" name="incomeAmount" type="number" class="form-control input-lg text-right" value="0" min="0" step="2000" aria-invalid="false" pattern="\d*">
                   <span class="input-group-addon">.00</span> </div>
-		       <p class="small" aria-hidden="true">The bar chart limit is <span class="rangelist-max"></span></p>
+		       <p class="small" aria-hidden="true">The table chart limit is <span class="rangelist-max"></span></p>
               </div>
               <div class="clearfix visible-xs mrgn-tp-md"></div>
               <div class="full-width px-2 btn-toggle-value" id="toggleSliderValue">
                 <div class="slider-group align-self-center">
                   <div id="incomeTooltip" class="wb-input-range-tooltip" aria-hidden="true"  data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}"> $0 </div>
 		
-                  <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="400000" value="0" step="2000" name="incomeAmount" title="Range slider from $0 to $400,000"  data-wb-input-range="{&quot;target&quot;: [&quot;incomeSlider&quot;, &quot;incomeTooltip&quot;]}" aria-labelledby="incomeTooltip" aria-valuenow="">
-		<div class="range-list">
+                  <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="400000" list="amountTicks" value="0" step="2000" name="incomeAmount" title="Range slider from $0 to $400,000"  data-wb-input-range="{&quot;target&quot;: [&quot;incomeSlider&quot;, &quot;incomeTooltip&quot;]}" aria-labelledby="incomeTooltip" aria-valuenow="">
+	<datalist id="amountTicks" class="hidden">
+                      <option value="0"></option>
+                      <option value="200000"></option>
+                      <option value="400000"></option>
+                      <option value="600000"></option>
+                      <option value="800000"></option>
+                      <option value="1000000"></option>
+                      <option value="1200000"></option>
+                    </datalist>
+					<div class="range-list">
 			<span>$0</span>
 			<span class="rangelist-max"></span>
 		</div>	
@@ -347,7 +358,7 @@ transform: scale(1.5);
           </table>
         </div>
         <div class="tax-total mrgn-tp-md" id="federalTotal"></div>
-	    <p class="small mrgn-tp-md">This amount does not include any federal credits, benefits or deductions you may be entitled to.</p>  
+	    <p class="small mrgn-tp-sm">This amount does not include any federal credits, benefits or deductions you may be entitled to.</p>  
       </div>
 
     <div id="provinceTableWrapper" class="hidden" >
@@ -368,7 +379,7 @@ transform: scale(1.5);
         </table>
       </div>
       <div class="tax-total mrgn-tp-md" id="provinceTotal"></div>
-	    <p class="small mrgn-tp-md">This amount does not include any provincial or territorial credits, benefits or deductions you may be entitled to.</p>
+	    <p class="small mrgn-tp-sm">This amount does not include any provincial or territorial credits, benefits or deductions you may be entitled to.</p>
     </div>
     <div id="quebecNotice">
       <p><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-qc.png" alt="" class="mrgn-rght-md">For Quebec tax rates, please visit the official site: <a href="https://www.revenuquebec.ca/en/" target="_blank">Revenu Québec</a></p>
@@ -417,7 +428,7 @@ transform: scale(1.5);
           <div class="panel-body eqht-trgt">
             <div class="row mrgn-tp-md">
 			<div class="col-sm-4">
-                <div class="mrgn-tp-md"> <span class="fa-lg fa-3x mrgn-tp-0 text-primary nowrap" id="afterTaxPC">0<sup>%</sup></span><br>
+                <div class="mrgn-tp-md"><span class="fa-lg fa-3x mrgn-tp-0 text-primary nowrap"><span id="afterTaxPC">0</span><sup>%</sup></span><br>
                   is what you keep</div>
 <hr class="brdr-bttm visible-xs">
 				
@@ -425,13 +436,13 @@ transform: scale(1.5);
               <div class="col-sm-8 brdr-lft">
                 <div class="row">
                   <div class="col-xs-5">
-                    <div class="mrgn-tp-md"> <span id="totalTaxPC" class="fa-lg fa-3x text-primary nowrap">0<sup>%</sup></span><br>
+                    <div class="mrgn-tp-md"> <span class="fa-lg fa-3x text-primary nowrap"><span id="totalTaxPC">0</span><sup>%</sup></span><br>
                       goes to taxes</div>
                   </div>
                   <div class="col-xs-7 pl-4">
-                    <p class="mrgn-tp-0"><span id="fedTaxPC"  class="fa-lg text-primary nowrap">0<sup>%</sup></span> Federal tax</p>
+                    <p class="mrgn-tp-0"><span class="fa-lg text-primary nowrap"><span id="fedTaxPC">0</span><sup>%</sup></span> Federal tax</p>
                     <hr class="brdr-tp mrgn-tp-sm mrgn-bttm-sm">
-                    <p class="mrgn-tp-0"><span id="provTaxPC" class="fa-lg  text-primary nowrap">0<sup>%</sup></span> <span id="provTaxNamePC">Provincial</span> tax</p>
+                    <p class="mrgn-tp-0"><span class="fa-lg text-primary nowrap"><span id="provTaxPC">0</span><sup>%</sup></span> <span id="provTaxNamePC">Provincial</span> tax</p>
                   </div>
                 </div>
               </div>
@@ -444,7 +455,7 @@ transform: scale(1.5);
 		
 <p><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"></span>These amounts may not accurately reflect what you pay in taxes.  Do not use to determine your actual tax payable.</p>	  
 	 </section>
-
+</div>
 	
 	<section id="afterTaxHints" class="hidden">
     <div class="row wb-eqht-grd">
@@ -482,18 +493,19 @@ transform: scale(1.5);
           <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-money-bill-wave fa-stack-1x"></span> </span></div>
         </div>
       </div>
-  
+	</div>
     
   </section>
-		
+		 </div>
 	 </section>
-	  </div></div>
+	  </div>
+	  </div>
   <hr class="brdr-tp mrgn-tp-xl">
   <section id="errorMsg">
 <p><span class="fas fa-exclamation fa-lg mrgn-rght-sm"></span>Error with loading script, try <a href="?">refreshing page</a>.</p>
   </section>
   <div id="def-preFooter"> </div>
-</div>
+
 <!-- Write closure template --> 
 <script type="text/javascript">
                var defPreFooter = document.getElementById("def-preFooter");
@@ -947,8 +959,11 @@ elementsToShow.forEach(element => {
 }
 
 function updatePercentage(id, amount, income) {
-  const percentage = calculatePercentage(amount, income);
-  document.getElementById(id).innerHTML = `${percentage}<sup>%</sup>`;
+    const percentage = calculatePercentage(amount, income);
+    const formatted = percentFormatter.format(percentage / 100);
+    const numericPart = formatted.replace('%', '').trim();
+    document.getElementById(id).innerHTML = `${numericPart}`;
+    return percentage;
 }
 
 function updateText(id, text) {
@@ -973,13 +988,26 @@ textUpdates.forEach(({ id, text }) => updateText(id, text));
 
 // Percentage updates
 const percentageUpdates = [
-  { id: 'totalTaxPC', amount: federalTaxAmount + provincialTaxAmount },
   { id: 'fedTaxPC', amount: federalTaxAmount },
-  { id: 'provTaxPC', amount: provincialTaxAmount },
-  { id: 'afterTaxPC', amount: afterTax }
+  { id: 'provTaxPC', amount: provincialTaxAmount }
 ];
-percentageUpdates.forEach(({ id, amount }) => updatePercentage(id, amount, income));       
-    }
+ const percentageValues = {};    
+percentageUpdates.forEach(({ id, amount }) => 
+{
+  const percentage = updatePercentage(id, amount, income);
+  percentageValues[id] = percentage;
+});
+//Calculation for total and remaining tax percentage based on fed and prov percentage 
+const totalTaxPercentage =
+  percentageValues.fedTaxPC + percentageValues.provTaxPC;
+   const remainingPercentage = 100 - totalTaxPercentage;
+        
+const formattedRemaining = percentFormatter.format(remainingPercentage / 100).replace('%', '').trim();        
+const formattedTotal = percentFormatter.format(totalTaxPercentage / 100).replace('%', '').trim();
+             
+document.getElementById('totalTaxPC').innerHTML = `${formattedTotal}`;
+document.getElementById('afterTaxPC').innerHTML = `${formattedRemaining}`; 
+	}		
 
 function updateTable(idPrefix, data, income) {
   const headerRow = document.getElementById(`${idPrefix}Header`);
@@ -1169,11 +1197,13 @@ function smoothScrollTo(container, target, duration = 400) {
   });
 } 
 function calculatePercentage(part, total) {
-  if (total === 0) {
-    return 0; // Avoid division by zero
-  }
- const formattedString =  percentFormatter.format(part / total);
-    return formattedString.replace('%', '').trim();
+    if (total === 0) {
+        return 0; // Avoid division by zero
+    }
+    const formattedString = percentFormatter.format(part / total);
+    const numericString = formattedString.replace(',', '.'); // normalize comma to dot
+    const rawNumber = parseFloat(numericString);
+    return Math.round(rawNumber * 10) / 10; // round to one decimal
 }
  
  // Script for button toggle
@@ -1218,14 +1248,33 @@ const observer = new IntersectionObserver(
 );
 
 observer.observe(el);
-//Script to show/hide results link (disabled for now until can make link go to results and show under sticky header)
-    //  incomeInputs.forEach(inputElement => {
-// inputElement.addEventListener('input', function() {
-// resultsLink.classList.remove('invisible');
-//  });
-//  });
+//Script to show/hide results link 
+    incomeInputs.forEach(inputElement => {
+ inputElement.addEventListener('input', function() {
+ resultsLink.classList.remove('invisible');
+ });
+  });
 
 	
   </script>
+	<script>
+
+		//Test script for header scroll
+ $(document).ready(function() {
+        $('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+            var targetId = $(this).attr('href');
+            var headerHeight = $('.top-bar-stick').outerHeight(); // Get header height
+            var targetOffset = $(targetId).offset().top;
+            var scrollTo = targetOffset - headerHeight;
+
+            $('html, body').animate({
+                scrollTop: scrollTo
+            }, 500); // Scroll speed
+        });
+    });
+
+		
+	</script>
 </body>
 </html>
