@@ -357,7 +357,7 @@ transform: scale(1.5);
             </tbody>
           </table>
         </div>
-        <div class="tax-total mrgn-tp-md d-sm-flex" id="federalTotal"></div>
+        <div class="tax-total d-sm-flex" id="federalTotal"></div>
       </div>
 
     <div id="provinceTableWrapper" class="hidden" >
@@ -377,7 +377,7 @@ transform: scale(1.5);
           </tbody>
         </table>
       </div>
-      <div class="tax-total mrgn-tp-md d-sm-flex" id="provinceTotal"></div>
+      <div class="tax-total d-sm-flex" id="provinceTotal"></div>
 	    
     </div>
     <div id="quebecNotice">
@@ -1119,7 +1119,7 @@ tableBody.appendChild(incomeRow);
 tableBody.appendChild(payableRow);
 
 
-totalDiv.innerHTML = `<div class="mrgn-rght-md">${langToggle.dataTotalEstimate[pagelang]}</div><div class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</div> `;    
+totalDiv.innerHTML = `<div class="mrgn-rght-md">${langToggle.dataTotalEstimate[pagelang]}</div><div class="estimate-borders fa-lg text-primary nowrap align-self-center">= ${currencyFormatterChart.format(totalTax)}</div> `;    
  //Duplicated...need to clean (possibly put in seperate function)
     const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
@@ -1127,7 +1127,7 @@ totalDiv.innerHTML = `<div class="mrgn-rght-md">${langToggle.dataTotalEstimate[p
     
     const customTotal = document.getElementById("provinceTotal");   
 if (customTotal) {
-    customTotal.innerHTML = `<div class="mrgn-rght-md">${langToggle.dataTotalEstimate[pagelang]}</div><div class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</div>`;
+    customTotal.innerHTML = `<div class="mrgn-rght-md">${langToggle.dataTotalEstimate[pagelang]}</div><div class="estimate-borders fa-lg text-primary nowrap align-self-center">= ${currencyFormatterChart.format(totalTax)}</div>`;
 }
 
     
