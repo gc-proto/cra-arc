@@ -357,8 +357,7 @@ transform: scale(1.5);
             </tbody>
           </table>
         </div>
-        <div class="tax-total mrgn-tp-md" id="federalTotal"></div>
-	    <p class="small mrgn-tp-sm">This amount does not include any federal credits, benefits or deductions you may be entitled to.</p>  
+        <div class="tax-total mrgn-tp-md d-sm-flex" id="federalTotal"></div>
       </div>
 
     <div id="provinceTableWrapper" class="hidden" >
@@ -378,8 +377,8 @@ transform: scale(1.5);
           </tbody>
         </table>
       </div>
-      <div class="tax-total mrgn-tp-md" id="provinceTotal"></div>
-	    <p class="small mrgn-tp-sm">This amount does not include any provincial or territorial credits, benefits or deductions you may be entitled to.</p>
+      <div class="tax-total mrgn-tp-md d-sm-flex" id="provinceTotal"></div>
+	    
     </div>
     <div id="quebecNotice">
       <p><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-qc.png" alt="" class="mrgn-rght-md">For Quebec tax rates, please visit the official site: <a href="https://www.revenuquebec.ca/en/" target="_blank">Revenu Québec</a></p>
@@ -471,7 +470,7 @@ transform: scale(1.5);
 				  <p>If you claim the credit on your tax return, both BPA amounts will reduce the tax on your income in the first tax bracket.</p>
 				  <p>For more details, refer to <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-30000-basic-personal-amount.html">basic personal amount</a>.</p>
               </details>
-              <p>For all deduction types, refer to <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses.html">claiming deductions, credits, and expenses</a>.</p>
+              <p>For all deduction types, refer to <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses.html">claiming deductions, credits, and expenses</a>.</p>
             </div>
           </div>
           <div class="col-xs-12 pstn-tp-xs text-right"> <span class="fa-stack fa-lg text-primary mrgn-rght-md"><span class="fa-stack-2x  fas fa-circle fa-inverse"></span> <span class="far fa-circle fa-stack-2x"></span><span class="fas fa-dollar-sign fa-stack-1x pr-2"></span><span class="fas fa-long-arrow-alt-down fa-stack-1x pl-3"></span> </span></div>
@@ -784,16 +783,16 @@ const langToggle = {
 		fr: "Range<span class=\"wb-inv\"> per tax rate</span> [Fr]"
 	},
 	dataTaxEstimate: {
-		en: "Estimated tax<span class=\"wb-inv\"> per tax rate</span>",
-		fr: "Estimated tax<span class=\"wb-inv\"> per tax rate</span> [Fr]"
+		en: "Tax payable per bracket",
+		fr: "Tax payable per bracket [Fr]"
 	},
 	dataMeterFill: {
     en: "meter bar is at: ",
     fr: "meter bar is at [Fr] :"
 	},  
 	dataTotalEstimate: {
-		en: "Estimated tax payable: ",
-		fr: "Estimated tax payable [Fr] : "
+		en: "Tax payable<br><small>before claiming deductions, credits and expenses</small>",
+		fr: "Tax payable<br><small>before claiming deductions, credits and expenses</small>"
 	},
 	dataHiddenTo: {
 		en: "to",
@@ -1058,16 +1057,16 @@ payableRow.appendChild(payableHeader);
   data.brackets.forEach((bracket, index) => {
     const threshold = bracket.threshold;
        const lowerBound = previousThreshold;
-  const upperBound = threshold;
+  const upperBound = threshold;
 
-  if (income >= lowerBound && income < upperBound && activeIndex === -1) {
-    activeIndex = index;
-  }
+  if (income >= lowerBound && income < upperBound && activeIndex === -1) {
+    activeIndex = index;
+  }
       
     let bracketIncome = Math.max(0, Math.min(income, threshold) - previousThreshold);
     
 if (index === 0) {
-  bracketIncome = Math.max(0, bracketIncome);
+  bracketIncome = Math.max(0, bracketIncome);
 }
 
     const taxEstimate = Math.round(bracketIncome * bracket.rate);
@@ -1120,7 +1119,7 @@ tableBody.appendChild(incomeRow);
 tableBody.appendChild(payableRow);
 
 
-totalDiv.innerHTML = `${langToggle.dataTotalEstimate[pagelang]} <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span> `;    
+totalDiv.innerHTML = `<div class="mrgn-rght-md">${langToggle.dataTotalEstimate[pagelang]}</div><div class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</div> `;    
  //Duplicated...need to clean (possibly put in seperate function)
     const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
@@ -1128,7 +1127,7 @@ totalDiv.innerHTML = `${langToggle.dataTotalEstimate[pagelang]} <span class="est
     
     const customTotal = document.getElementById("provinceTotal");   
 if (customTotal) {
-    customTotal.innerHTML = `${langToggle.dataTotalEstimate[pagelang]} <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span>`;
+    customTotal.innerHTML = `<div class="mrgn-rght-md">${langToggle.dataTotalEstimate[pagelang]}</div><div class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</div>`;
 }
 
     
