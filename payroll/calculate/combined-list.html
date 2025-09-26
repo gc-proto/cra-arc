@@ -59,9 +59,10 @@
               showPreContent: true
             });
          </script>
-<main class="container" property="mainContentOfPage" role="main">
-<h1 class="gc-thickline" id="wb-cont" property="name">List of benefits, other payment and special payments</h1>
 <div id="ajax-list"> 
+	<main class="container" property="mainContentOfPage" role="main">
+<h1 class="gc-thickline" id="wb-cont" property="name">List of benefits, other payment and special payments</h1>
+
 	<p>Special rules may apply to the calculation of source deductions and employer contributions in the situations and for the taxable benefits and types of employment and remuneration listed below.</p>
 
 
@@ -230,8 +231,19 @@
 </tbody>
 </table>
 </div>
-</div></div>
-<div id="def-preFooter"></div>
+</div>
+
+<script>
+document.querySelectorAll('form.wb-tables-filter input[type=checkbox]').forEach(function(checkbox) {
+  checkbox.addEventListener('change', function() {
+    $(checkbox).closest('form').trigger('submit');
+  });
+});
+</script>	
+</main>		
+</div>
+
+	<div id="def-preFooter"></div>
 <!-- Write closure template -->
 <script type="text/javascript">
                var defPreFooter = document.getElementById("def-preFooter");
@@ -242,7 +254,8 @@
                showShare: true
                });
             </script>
-</main>
+
+	
 <div id="def-footer">
 </div>
 <!-- Write closure template -->
@@ -259,11 +272,5 @@
             }));
          </script>
 <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
-<script>
-document.querySelectorAll('form.wb-tables-filter input[type=checkbox]').forEach(function(checkbox) {
-  checkbox.addEventListener('change', function() {
-    $(checkbox).closest('form').trigger('submit');
-  });
-});
-</script></body>
+</body>
 </html>
