@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,13 +54,21 @@
     <label for="amount">Withdrawal Amount ($):</label>
     <input type="number" id="amount" placeholder="Enter amount" />
 
-    <label for="province">Province:</label>
+    <label for="province">Province or Territory:</label>
     <select id="province">
-      <option value="QC">Quebec</option>
-      <option value="ON">Ontario</option>
-      <option value="BC">British Columbia</option>
       <option value="AB">Alberta</option>
-      <option value="Other">Other Provinces</option>
+      <option value="BC">British Columbia</option>
+      <option value="MB">Manitoba</option>
+      <option value="NB">New Brunswick</option>
+      <option value="NL">Newfoundland and Labrador</option>
+      <option value="NS">Nova Scotia</option>
+      <option value="NT">Northwest Territories</option>
+      value="NU">Nunavut</option>
+      <option value="ON">Ontario</option>
+      <option value="PE">Prince Edward Island</option>
+      <option value="QC">Quebec</option>
+      <option value="SK">Saskatchewan</option>
+      <option value="YT">Yukon</option>
     </select>
 
     <button onclick="calculateTax()">Calculate</button>
@@ -81,22 +88,38 @@
         return;
       }
 
-      // Federal withholding tax rates
+      // Determine federal rate
       let federalRate = 0;
       if (amount <= 5000) federalRate = 0.10;
       else if (amount <= 15000) federalRate = 0.20;
       else federalRate = 0.30;
 
-      // Provincial additional tax (Quebec has special rules)
       let provincialRate = 0;
+      let totalTax = 0;
+      let federalTax = 0;
+      let provincialTax = 0;
+
       if (province === "QC") {
-        federalRate = 0.05; // Quebec has lower federal rate
-        provincialRate = 0.15;
+        // Quebec: lower federal + added provincial
+        if (amount <= 5000) {
+          federalRate = 0.05;
+          provincialRate = 0.15;
+        } else if (amount <= 15000) {
+          federalRate = 0.10;
+          provincialRate = 0.15;
+        } else {
+          federalRate = 0.15;
+          provincialRate = 0.15;
+        }
+        federalTax = amount * federalRate;
+        provincialTax = amount * provincialRate;
+        totalTax = federalTax + provincialTax;
+      } else {
+        // All other provinces
+        totalTax = amount * federalRate;
+        federalTax = totalTax;
       }
 
-      const federalTax = amount * federalRate;
-      const provincialTax = amount * provincialRate;
-      const totalTax = federalTax + provincialTax;
       const netAmount = amount - totalTax;
 
       resultDiv.style.display = "block";
