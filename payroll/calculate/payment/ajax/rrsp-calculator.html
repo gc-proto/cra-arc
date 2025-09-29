@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RRSP Withholding Tax Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    .calculator {
+      background: #fff;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background: #0078d7;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 20px;
+      background: #e7f3ff;
+      padding: 15px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>RRSP Withholding Tax Calculator</h2>
+    <label for="amount">Withdrawal Amount ($):</label>
+    <input type="number" id="amount" placeholder="Enter amount" />
+
+    <label for="province">Province:</label>
+    <select id="province">
+      <option value="QC">Quebec</option>
+      <option value="ON">Ontario</option>
+      <option value="BC">British Columbia</option>
+      <option value="AB">Alberta</option>
+      <option value="Other">Other Provinces</option>
+    </select>
+
+    <button onclick="calculateTax()">Calculate</button>
+
+    <div class="result" id="result" style="display:none;"></div>
+  </div>
+
+  <script>
+    function calculateTax() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const province = document.getElementById("province").value;
+      const resultDiv = document.getElementById("result");
+
+      if (isNaN(amount) || amount <= 0) {
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = "Please enter a valid withdrawal amount.";
+        return;
+      }
+
+      // Federal withholding tax rates
+      let federalRate = 0;
+      if (amount <= 5000) federalRate = 0.10;
+      else if (amount <= 15000) federalRate = 0.20;
+      else federalRate = 0.30;
+
+      // Provincial additional tax (Quebec has special rules)
+      let provincialRate = 0;
+      if (province === "QC") {
+        federalRate = 0.05; // Quebec has lower federal rate
+        provincialRate = 0.15;
+      }
+
+      const federalTax = amount * federalRate;
+      const provincialTax = amount * provincialRate;
+      const totalTax = federalTax + provincialTax;
+      const netAmount = amount - totalTax;
+
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = `
+        <strong>Results:</strong><br/>
+        Federal Tax: $${federalTax.toFixed(2)}<br/>
+        ${province === "QC" ? `Provincial Tax (QC): $${provincialTax.toFixed(2)}<br/>` : ""}
+        <strong>Total Withholding Tax:</strong> $${totalTax.toFixed(2)}<br/>
+        <strong>Net Amount After Tax:</strong> $${netAmount.toFixed(2)}
+      `;
+    }
+  </script>
+</body>
+</html>
