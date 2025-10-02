@@ -277,7 +277,7 @@ transform: scale(1.5);
         </div>
       </fieldset>
       <fieldset  id="incomeSliderDesign" class="brdr-0">
-        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second step: </span>Enter an income amount<span class="wb-inv"> with a range slider or an input box</span></legend>
+        <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second step: </span>Enter the taxable income amount<span class="wb-inv"> with a range slider or an input box</span></legend>
 	   <p class="mrgn-lft-xl">Switch between the <strong>slider</strong> (increments of $2,000) or the <strong>input</strong> field to increase or decrease an amount.</p>    
         <div class="top-bar-stick">
          
@@ -325,6 +325,274 @@ transform: scale(1.5);
 	
     </form>
 		<p class="small invisible" id="resultsLink"><a href="#results"><span class="glyphicon glyphicon-arrow-down mrgn-rght-sm"></span>Go to results</a></p>
+
+	<div class="calculator">
+    <h2>RRSP Withholding Tax Calculator</h2>
+    <label for="amount">Withdrawal Amount ($):</label>
+    <input type="number" id="amount" placeholder="Enter amount" />
+
+    <label for="province">Province or Territory:</label>
+    <select id="province">
+      <option value="AB">Alberta</option>
+      <option value="BC">British Columbia</option>
+      <option value="MB">Manitoba</option>
+      <option value="NB">New Brunswick</option>
+      <option value="NL">Newfoundland and Labrador</option>
+      <option value="NS">Nova Scotia</option>
+      <option value="NT">Northwest Territories</option>
+      value="NU">Nunavut</option>
+      <option value="ON">Ontario</option>
+      <option value="PE">Prince Edward Island</option>
+      <option value="QC">Quebec</option>
+      <option value="SK">Saskatchewan</option>
+      <option value="YT">Yukon</option>
+    </select>
+
+    <button onclick="calculateTax()">Calculate</button>
+
+    <div class="result" id="result" style="display:none;"></div>
+  </div>
+
+  <div id="container_div">
+    	<div class="container_sub">
+            <table role="presentation">
+                <tbody><tr>
+                    <td class="province_title">
+                        <label for="province_dropdown">Where do you live?</label>
+                    </td>
+                    <td style="width:80px;">
+                        <select onchange="update_province_name(this);" id="province_dropdown">
+                            <option value="Alberta">AB</option>
+                            <option value="British Columbia">BC</option>
+                            <option value="Manitoba">MB</option>
+                            <option value="New Brunswick">NB</option>
+                            <option value="Newfoundland and Labrador">NL</option>
+                            <option value="Nova Scotia">NS</option>
+                            <option value="Ontario">ON</option>
+                            <option value="Prince Edward Island">PEI</option>
+                            <option value="Quebec">QC</option>
+                            <option value="Saskatchewan">SK</option>
+                            <option value="Northwest Territories">NT</option>
+                            <option value="Nunavut">NU</option>
+                            <option value="Yukon">YT</option>
+                        </select>
+                    </td>
+                    <td class="province_current">
+                        <span id="province_name" style="font-weight:bold;">Ontario</span>
+                    </td>
+                </tr>
+            </tbody></table>
+
+            <div class="divider_line"></div>
+
+            Taxable income (maximum value $1,000,000)
+
+            <table role="presentation">
+                <tbody><tr>
+                    <td class="table_slider">
+                        <div class="slider_outer">
+                            <div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider_0" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 46.8468%; background: rgb(33, 52, 105);"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" aria-label="Taxable income (maximum value $1,000,000)" style="left: 46.8468%;"></a></div>
+                        </div>
+                    </td>
+                    <td class="table_input">
+                        <div class="value_box">
+                            <div class="value_box_inner" id="value_box_0" aria-label="Taxable income (maximum value $1,000,000)" contenteditable="" data-orig="
+                                75,000
+                            " aria-multiline="false">469,000</div>
+                        </div>
+                        <div class="table_popup">
+                            <a href="javascript:;" onmouseover="info_popup(0, true);" onmouseout="info_popup(0, false);" onclick="info_popup(0, true);" onfocus="info_popup(0, true);" onblur="info_popup(0, false);">
+								<img src="../resources/info_button.png" class="button" alt="Info">
+							</a>
+                            <div class="info_popup" id="info_popup_0" onclick="info_popup(0, false);">
+                                <b>Taxable Income</b>
+                                <br><br>
+                                Enter the taxable income amount from line 260 of your personal income tax return.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody></table>
+
+            <div class="divider_line"></div>
+
+            Amount withdrawn from RRSP (maximum value $100,000)
+
+            <table role="presentation">
+                <tbody><tr>
+                    <td class="table_slider">
+                        <div class="slider_outer">
+                            <div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider_1" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 2.0202%; background: rgb(33, 52, 105);"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" aria-label="Amount withdrawn from RRSP (maximum value $100,000)" style="left: 2.0202%;"></a></div>
+                        </div>
+                    </td>
+                    <td class="table_input">
+                        <div class="value_box" style="margin-right:24px;">
+                            <div class="value_box_inner" id="value_box_1" aria-label="Amount withdrawn from RRSP (maximum value $100,000)" contenteditable="" data-orig="
+                                10,000
+                            " aria-multiline="false">3,000</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody></table>
+
+			<br><br>
+
+			<div id="info_div">
+
+			If you withdraw <span class="withdrawal_amount">$3,000</span>, you will only actually receive <span class="receive_amount">$2,700</span> because <span class="taxes_amount">$300</span> in taxes will be withheld.								
+			
+			<br><br>
+					
+			<table role="presentation">
+				<tbody><tr style="background:#ccc;">
+					<td style="font-weight:bold;">Net Withdrawal Amount</td><td></td>
+				</tr>
+				<tr>
+					<td id="table_1_1" style="border-bottom:1px solid #ccc;">Total amount withdrawn from RRSP</td><td style="text-align:right;border-bottom:1px solid #ccc;" class="withdrawal_amount" id="table_1_2">$3,000</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:1px solid #ccc;">Less tax withheld at <span class="tax_withheld">10%</span></td><td style="text-align:right;border-bottom:1px solid #ccc;" class="taxes_amount">$300</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:1px solid #ccc;">Equals net withdrawal</td><td style="text-align:right;border-bottom:1px solid #ccc;" class="receive_amount">$2,700</td>
+				</tr>
+			</tbody></table>
+			
+			<br>
+			
+			Since you must report this withdrawal as income when you file your income tax return, you will
+			<span class="tax_owing_text_2"> owe an additional <span class="tax_owing">$1,306</span> in taxes.</span>
+			<br><br>
+		
+			<table role="presentation">
+				<tbody><tr style="background:#ccc;">
+					<td style="font-weight:bold;" id="table_2_1">Additional Taxes Owing</td><td id="table_2_2"></td><td id="table_2_3"></td>
+				</tr>
+				<tr>
+					<td style="border-bottom:1px solid #ccc;">Tax on <span class="extra_amount">$472,000</span> of income (including the <span class="withdrawal_amount">$3,000</span> withdrawal)</td><td style="border-bottom:1px solid #ccc;">A</td><td style="text-align:right;border-bottom:1px solid #ccc;" class="_tax1">$208,599</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:1px solid #ccc;">Tax on <span class="income_amount">$469,000</span> of income without the withdrawal</td><td style="border-bottom:1px solid #ccc;">B</td><td style="text-align:right;border-bottom:1px solid #ccc;" class="tax">$206,993</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:1px solid #ccc;">Tax on <span class="withdrawal_amount">$3,000</span> withdrawal</td><td style="border-bottom:1px solid #ccc;">A-B</td><td style="text-align:right;border-bottom:1px solid #ccc;" class="tax_owed">$1,606</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:1px solid #ccc;">Less taxes already withheld</td><td style="border-bottom:1px solid #ccc;"></td><td style="text-align:right;border-bottom:1px solid #ccc;" class="taxes_amount">$300</td>
+				</tr>
+				<tr style="font-weight:bold;">
+					<td style="border-bottom:1px solid #ccc;" class="tax_owing_text">Equals tax owing</td><td style="border-bottom:1px solid #ccc;"></td><td style="text-align:right;border-bottom:1px solid #ccc;" class="tax_owing">$1,306</td>
+				</tr>
+			</tbody></table>
+			
+			<br><br>								
+	
+			<table role="presentation">
+				<tbody><tr style="background:#ccc;">
+					<td id="table_3_1">
+						<b>RRSP Withholding Tax Rates</b>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						The withholding tax varies depending on the amount withdrawn and your province of residence.
+					</td>
+				</tr>
+			</tbody></table>
+			
+			<table style="margin-top:30px;" role="presentation">
+				<tbody><tr style="font-weight:bold;">
+					<td id="table_4_1"></td><td class="table_4_2">Outside</td><td class="table_4_3"></td>
+				</tr>
+				<tr style="font-weight:bold;">
+					<td>Withdrawal Amount</td><td class="table_4_2" style="">Quebec</td><td class="table_4_3" style="text-align:right;">Quebec</td>
+				</tr>
+				<tr>
+					<td>Up to $5,000</td><td class="table_4_2" style="">10.00%</td><td class="table_4_3" style="text-align:right;">20.00%</td>
+				</tr>
+				<tr>
+					<td>$5,001 to $15,000</td><td class="table_4_2" style="">20.00%</td><td class="table_4_3" style="text-align:right;">25.00%</td>
+				</tr>
+				<tr>
+					<td>$15,001 &amp; over</td><td class="table_4_2" style="">30.00%</td><td class="table_4_3" style="text-align:right;">30.00%</td>
+				</tr>
+			</tbody></table>
+											
+			</div>
+
+        </div>
+			
+	<br>
+	
+	<div class="dark-teal hollow button2" style="margin-left:12px;" onclick="print_results();" onkeydown="if(event.which==13)print_results(0);" id="print_button" title="Print" tabindex="0">
+		PRINT
+	</div>
+	&nbsp;
+	<a href="about:blank" target="0" class="pdf_tab" onkeydown="if(event.which==13)pdf_results(0);" tabindex="0">
+		<div class="dark-teal hollow button2" style="margin-left:21px;" onclick="pdf_results()" title="PDF">
+			PDF
+		</div>
+	</a>
+	
+	
+</div>
+
+  <script>
+    function calculateTax() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const province = document.getElementById("province").value;
+      const resultDiv = document.getElementById("result");
+
+      if (isNaN(amount) || amount <= 0) {
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = "Please enter a valid withdrawal amount.";
+        return;
+      }
+
+      // Determine federal rate
+      let federalRate = 0;
+      if (amount <= 5000) federalRate = 0.10;
+      else if (amount <= 15000) federalRate = 0.20;
+      else federalRate = 0.30;
+
+      let provincialRate = 0;
+      let totalTax = 0;
+      let federalTax = 0;
+      let provincialTax = 0;
+
+      if (province === "QC") {
+        // Quebec: lower federal + added provincial
+        if (amount <= 5000) {
+          federalRate = 0.05;
+          provincialRate = 0.15;
+        } else if (amount <= 15000) {
+          federalRate = 0.10;
+          provincialRate = 0.15;
+        } else {
+          federalRate = 0.15;
+          provincialRate = 0.15;
+        }
+        federalTax = amount * federalRate;
+        provincialTax = amount * provincialRate;
+        totalTax = federalTax + provincialTax;
+      } else {
+        // All other provinces
+        totalTax = amount * federalRate;
+        federalTax = totalTax;
+      }
+
+      const netAmount = amount - totalTax;
+
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = `
+        <strong>Results:</strong><br/>
+        Federal Tax: $${federalTax.toFixed(2)}<br/>
+        ${province === "QC" ? `Provincial Tax (QC): $${provincialTax.toFixed(2)}<br/>` : ""}
+        <strong>Total Withholding Tax:</strong> $${totalTax.toFixed(2)}<br/>
+        <strong>Net Amount After Tax:</strong> $${netAmount.toFixed(2)}
+      `;
+    }
+  </script>		  
      
     <!--Used to test scroll into view <button onclick='$("#federalTable td:nth-of-type(5)").addClass("active-cell")'>Highlight Column 5</button>//--> 
     <!--HIDE for now, may not need, delete from script if to be removed  <div id="chooseProvinceAlert">
