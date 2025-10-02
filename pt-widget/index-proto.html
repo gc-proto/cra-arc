@@ -205,7 +205,19 @@ transform: scale(1.5);
 }
 #resultsLink>a:target {
   scroll-margin-top: 170px;
-}    
+}   
+/***Sizing of result***/
+	.grid-label  {font-size: 0.9em;}
+.grid-amount {font-size: 1em;}
+.grid-percent {font-size: 0.8em;}
+@media (min-width: 768px) 
+	{
+.wb-math-grid div.mg-row > div.mg-cell {padding: 10px 0px 10px 0px;} 		
+.grid-label  {font-size: 1.2em;}
+.grid-amount {font-size: 2em;}
+.grid-percent {font-size: 1.3em;}	
+	}
+	
 </style>
 	
 </head>
@@ -386,71 +398,39 @@ transform: scale(1.5);
 
   <section id="afterTaxWrapper">
 
-      <h3>Summary</h3>
-    <div class="row wb-eqht-grd">
-      <div class="col-sm-10 col-md-5">
-        <div class="panel panel-primary brdr-rds-0">
-          <header class="panel-heading brdr-rds-0">
-            <h4 class="panel-title">Calculation of estimated total tax</h4>
-          </header>
-          <div class="panel-body eqht-trgt">
-            <div class="wb-math-grid mg-spcd">
-              <div class="mg-row">
-                <div class="mg-cell"></div>
-                <div class="mg-cell text-right fa-lg text-primary" id="preTaxIncomeCal"></div>
-                <div class="mg-cell">Pre tax amount</div>
-              </div>
-              <div class="mg-row">
-                <div class="mg-cell h3 text-primary">&minus;</div>
-                <div class="mg-cell text-right fa-lg text-primary" id="fedTaxCal"></div>
-                <div class="mg-cell">Federal tax</div>
-              </div>
-              <div class="mg-row">
-                <div class="mg-cell mg-brdr-bttm h3 text-primary">&minus;</div>
-                <div class="mg-cell mg-brdr-bttm text-right fa-lg text-primary" id="provTaxCal"></div>
-                <div class="mg-cell"><span id="provTaxName">Provincial/Territorial</span> tax</div>
-              </div>
-              <div class="mg-row">
-                <div class="mg-cell h3 text-primary">=</div>
-                <div class="mg-cell text-right fa-lg text-primary" id="afterTaxIncome"></div>
-                <div class="mg-cell">After tax amount</div>
-              </div>
-            </div>
+   	  <div class="row">
+		  <div class="col-sm-10 col-md-7">
+    <div class="panel panel-primary mrgn-tp-lg">
+      <header class="panel-heading">
+        <h3 class="mrgn-bttm-0 panel-title">Summary</h3>
+        <p class="gc-byline mrgn-bttm-0">Rounded to the nearest dollar</p>
+      </header>
+      <div class="panel-body">
+        <div class="wb-math-grid mg-spcd">
+          <div class="mg-row">
+            <div class="mg-cell pr-1 grid-label">Federal tax</div>
+            <div class="mg-cell"></div>
+            <div class="mg-cell text-right text-primary grid-amount" id="fedTaxCal"></div>
+            <div id="fedTaxPC"  class="mg-cell grid-percent text-right text-primary nowrap pl-1">(0<sup>%</sup>)</div>
+          </div>
+          <div class="mg-row">
+            <div class="mg-cell grid-label pr-1 align-bottom"><span id="provTaxName">Provincial</span> tax</div>
+            <div class="mg-cell grid-amount text-primary align-bottom pr-1">+</div>
+            <div class="mg-cell text-right grid-amount text-primary align-bottom pb-1" id="provTaxCal"></div>
+            <div id="provTaxPC" class="mg-cell grid-percent text-right text-primary align-bottom nowrap pl-1">(0<sup>%</sup>)</div>
+          </div>
+          <div class="mg-row">
+            <div class="mg-cell grid-label pr-1">Total tax</div>
+            <div class="mg-cell mg-brdr-tp grid-amount text-primary pr-1">=</div>
+            <div class="mg-cell pt-2 mg-brdr-tp text-right grid-amount text-primary" id="totalTaxCal"></div>
+            <div id="totalTaxPC" class="mg-cell grid-percent text-right text-primary nowrap pl-1">(0<sup>%</sup>)</div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-10 col-md-7">
-        <div class="panel panel-primary brdr-rds-0">
-          <header class="panel-heading brdr-rds-0">
-            <h4 class="panel-title">Percentage of estimated total tax</h4>
-          </header>
-          <div class="panel-body eqht-trgt">
-            <div class="row mrgn-tp-md">
-			<div class="col-sm-4">
-                <div class="mrgn-tp-md"><span class="fa-lg fa-3x mrgn-tp-0 text-primary nowrap"><span id="afterTaxPC">0</span><sup>%</sup></span><br>
-                  is what you keep</div>
-<hr class="brdr-bttm visible-xs">
-				
-              </div>	
-              <div class="col-sm-8 brdr-lft">
-                <div class="row">
-                  <div class="col-xs-5">
-                    <div class="mrgn-tp-md"> <span class="fa-lg fa-3x text-primary nowrap"><span id="totalTaxPC">0</span><sup>%</sup></span><br>
-                      goes to taxes</div>
-                  </div>
-                  <div class="col-xs-7 pl-4">
-                    <p class="mrgn-tp-0"><span class="fa-lg text-primary nowrap"><span id="fedTaxPC">0</span><sup>%</sup></span> Federal tax</p>
-                    <hr class="brdr-tp mrgn-tp-sm mrgn-bttm-sm">
-                    <p class="mrgn-tp-0"><span class="fa-lg text-primary nowrap"><span id="provTaxPC">0</span><sup>%</sup></span> <span id="provTaxNamePC">Provincial</span> tax</p>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
+		  <p class="small mrgn-tp-md">This amount does not include any provincial or territorial credits, benefits or deductions you may be entitled to.</p>
       </div>
     </div>
+		  </div>	
+	  </div>
 		
 <p><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"></span>These amounts may not accurately reflect what you pay in taxes.  Do not use to determine your actual tax payable.</p>	  
 	 </section>
@@ -985,27 +965,21 @@ const textUpdates = [
 ];
 textUpdates.forEach(({ id, text }) => updateText(id, text));
 
-// Percentage updates
+// Percentage updates		
 const percentageUpdates = [
   { id: 'fedTaxPC', amount: federalTaxAmount },
   { id: 'provTaxPC', amount: provincialTaxAmount }
 ];
- const percentageValues = {};    
-percentageUpdates.forEach(({ id, amount }) => 
-{
-  const percentage = updatePercentage(id, amount, income);
-  percentageValues[id] = percentage;
+		const percentageValues = {};
+        percentageUpdates.forEach(({ id, amount }) => {
+            const percentage = updatePercentage(id, amount, income);
+            percentageValues[id] = percentage;
 });
-//Calculation for total and remaining tax percentage based on fed and prov percentage 
+//Calculation for total tax percentage based on fed and prov percentage 
 const totalTaxPercentage =
-  percentageValues.fedTaxPC + percentageValues.provTaxPC;
-   const remainingPercentage = 100 - totalTaxPercentage;
-        
-const formattedRemaining = percentFormatter.format(remainingPercentage / 100).replace('%', '').trim();        
-const formattedTotal = percentFormatter.format(totalTaxPercentage / 100).replace('%', '').trim();
-             
-document.getElementById('totalTaxPC').innerHTML = `${formattedTotal}`;
-document.getElementById('afterTaxPC').innerHTML = `${formattedRemaining}`; 
+  percentageValues.fedTaxPC + percentageValues.provTaxPC;    
+const formattedTotal = percentFormatter.format(totalTaxPercentage / 100);
+document.getElementById('totalTaxPC').innerHTML = `(${formattedTotal})`;	
 	}		
 
 function updateTable(idPrefix, data, income) {
