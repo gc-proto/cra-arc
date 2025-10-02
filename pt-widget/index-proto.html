@@ -807,9 +807,18 @@ var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
   minimumFractionDigits: 1,
   maximumFractionDigits: 1,
  });      
-    fetch('canada_tax_rates.json')
+  fetch('canada_tax_rates_alt.json')
       .then(response => response.json())
-      .then(data => {
+      .then(json => {
+        const dateValue = json.date;
+       // let fullDate = document.getElementById('jsonDate');
+        let yearDate = document.getElementById('jsonYear');
+        yearDate.textContent = dateFormatter(dateValue, "year");
+       // fullDate.textContent = dateFormatter(dateValue);   
+        
+        
+        const data = json.data;
+        
         for (const region in data) {
           data[region].brackets.forEach(bracket => {
             if (bracket.threshold === "Infinity") {
@@ -940,8 +949,7 @@ elementsToShow.forEach(element => {
 function updatePercentage(id, amount, income) {
     const percentage = calculatePercentage(amount, income);
     const formatted = percentFormatter.format(percentage / 100);
-    const numericPart = formatted.replace('%', '').trim();
-    document.getElementById(id).innerHTML = `${numericPart}`;
+     document.getElementById(id).innerHTML = `(${formatted})`;
     return percentage;
 }
 
@@ -951,17 +959,15 @@ function updateText(id, text) {
 
 // Currency updates for math calculation
 const currencyUpdates = [
-  { id: 'preTaxIncomeCal', amount: income },
  { id: 'fedTaxCal', amount: federalTaxAmount },
   { id: 'provTaxCal', amount: provincialTaxAmount },
-  { id: 'afterTaxIncome', amount: afterTax }
+  { id: 'totalTaxCal', amount: federalTaxAmount + provincialTaxAmount}
 ];
 currencyUpdates.forEach(({ id, amount }) => updateCurrency(id, amount));
 
 // Text updates for math calculation
 const textUpdates = [
-  { id: 'provTaxName', text: selectedProvinceName },
-  { id: 'provTaxNamePC', text: selectedProvinceName }
+  { id: 'provTaxName', text: selectedProvinceName }
 ];
 textUpdates.forEach(({ id, text }) => updateText(id, text));
 
