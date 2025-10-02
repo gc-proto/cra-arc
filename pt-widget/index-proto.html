@@ -806,7 +806,42 @@ var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
   style: "percent",
   minimumFractionDigits: 1,
   maximumFractionDigits: 1,
- });      
+ });    
+//Function to dynamically add date
+ function dateFormatter(ymdDateString, mode = 'full') {
+  // Create a Date object from the YYYY-MM-DD string.
+  // The Date constructor can parse this format directly.
+  const dateObject = new Date(ymdDateString);
+
+  // Check if the dateObject is valid (in case of invalid input string)
+  if (isNaN(dateObject.getTime())) {
+    return "Invalid Date";
+  }
+
+if (mode === 'year') {
+    return dateObject.getUTCFullYear(); // Just the year
+  }
+
+  // Define options for locale-sensitive formatting
+  const options = {
+    timeZone: 'UTC',
+      year: 'numeric',
+    month: 'long', // e.g., "September"
+    day: 'numeric', // e.g., "9"
+   // weekday: 'long' // e.g., "Tuesday"
+  };
+
+  // Format the date using toLocaleDateString() with a specific locale (e.g., 'en-US')
+  // You can change 'en-US' to other locales like 'en-GB', 'fr-FR', etc.
+if (pagelang == "fr") {   
+    
+  return dateObject.toLocaleDateString('fr-CA', options);
+}
+    else { return dateObject.toLocaleDateString('en-CA', options);};
+} 
+
+
+	
   fetch('canada_tax_rates_alt.json')
       .then(response => response.json())
       .then(json => {
