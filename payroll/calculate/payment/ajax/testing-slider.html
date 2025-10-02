@@ -276,6 +276,34 @@ transform: scale(1.5);
           </div>
         </div>
       </fieldset>
+
+<div class="calculator">
+    <h2>RRSP Withholding Tax Calculator</h2>
+    <label for="amount">Withdrawal Amount ($):</label>
+    <input type="number" id="amount" placeholder="Enter amount" />
+
+    <label for="province">Province or Territory:</label>
+    <select id="province">
+      <option value="AB">Alberta</option>
+      <option value="BC">British Columbia</option>
+      <option value="MB">Manitoba</option>
+      <option value="NB">New Brunswick</option>
+      <option value="NL">Newfoundland and Labrador</option>
+      <option value="NS">Nova Scotia</option>
+      <option value="NT">Northwest Territories</option>
+      value="NU">Nunavut</option>
+      <option value="ON">Ontario</option>
+      <option value="PE">Prince Edward Island</option>
+      <option value="QC">Quebec</option>
+      <option value="SK">Saskatchewan</option>
+      <option value="YT">Yukon</option>
+    </select>
+
+    <button onclick="calculateTax()">Calculate</button>
+
+    <div class="result" id="result" style="display:none;"></div>
+  </div>
+		
       <fieldset  id="incomeSliderDesign" class="brdr-0">
         <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">2</span></span> <span class="wb-inv">Second step: </span>Enter the taxable income amount<span class="wb-inv"> with a range slider or an input box</span></legend>
 	   <p class="mrgn-lft-xl">Switch between the <strong>slider</strong> (increments of $2,000) or the <strong>input</strong> field to increase or decrease an amount.</p>    
@@ -373,32 +401,7 @@ transform: scale(1.5);
     </form>
 		<p class="small invisible" id="resultsLink"><a href="#results"><span class="glyphicon glyphicon-arrow-down mrgn-rght-sm"></span>Go to results</a></p>
 
-	<div class="calculator">
-    <h2>RRSP Withholding Tax Calculator</h2>
-    <label for="amount">Withdrawal Amount ($):</label>
-    <input type="number" id="amount" placeholder="Enter amount" />
-
-    <label for="province">Province or Territory:</label>
-    <select id="province">
-      <option value="AB">Alberta</option>
-      <option value="BC">British Columbia</option>
-      <option value="MB">Manitoba</option>
-      <option value="NB">New Brunswick</option>
-      <option value="NL">Newfoundland and Labrador</option>
-      <option value="NS">Nova Scotia</option>
-      <option value="NT">Northwest Territories</option>
-      value="NU">Nunavut</option>
-      <option value="ON">Ontario</option>
-      <option value="PE">Prince Edward Island</option>
-      <option value="QC">Quebec</option>
-      <option value="SK">Saskatchewan</option>
-      <option value="YT">Yukon</option>
-    </select>
-
-    <button onclick="calculateTax()">Calculate</button>
-
-    <div class="result" id="result" style="display:none;"></div>
-  </div>
+	
 
   <div id="container_div">
     	<div class="container_sub">
@@ -587,7 +590,7 @@ transform: scale(1.5);
   <script>
     function calculateTax() {
       const amount = parseFloat(document.getElementById("amount").value);
-      const province = document.getElementById("province").value;
+      const province = document.getElementById("provinceSelect").value;
       const resultDiv = document.getElementById("result");
 
       if (isNaN(amount) || amount <= 0) {
