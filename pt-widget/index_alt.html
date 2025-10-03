@@ -1273,12 +1273,13 @@ resultsLink.classList.remove('invisible');
 	//Test script for header scroll
  $(document).ready(function() {
         $('#resultsLink>a').on('click', function(e) {
-        //    e.preventDefault();
+      
             var targetId = $(this).attr('href');
             var headerHeight = $('.top-bar-stick').outerHeight(); // Get header height
             var targetOffset = $(targetId).offset().top;
             var scrollTo = targetOffset - headerHeight;
-
+history.replaceState("", document.title, window.location.pathname);
+  
             $('html, body').animate({
                 scrollTop: scrollTo
             }, 500); // Scroll speed
