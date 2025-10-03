@@ -1278,7 +1278,9 @@ resultsLink.classList.remove('invisible');
             var headerHeight = $('.top-bar-stick').outerHeight(); // Get header height
             var targetOffset = $(targetId).offset().top;
             var scrollTo = targetOffset - headerHeight;
-history.replaceState("", document.title, window.location.pathname);
+ setTimeout(function(){
+            history.replaceState("", document.title, window.location.pathname);
+        }, 1);
   
             $('html, body').animate({
                 scrollTop: scrollTo
