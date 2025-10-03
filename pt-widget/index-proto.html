@@ -278,7 +278,7 @@ transform: scale(1.5);
 		 <div class="fa-stack fa-fw text-muted center-block pstn-tp-xs pstn-lft-xs fa-lg full-width" aria-hidden="true"><span class="fas fa-circle fa-inverse fa-stack-2x"></span> <span class="far fa-circle fa-stack-2x"></span> <span class="far fa-chart-bar fa-stack-1x"></span> </div>
 		 <div class="panel-body pb-4 px-2">
 			  <div id="stickycontent"> 
-    <form>
+    <form id="barChart">
       <fieldset class="brdr-0">
         <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">1</span></span> <span class="wb-inv">First step: </span>Select a province or territory</legend>
         <p class="mrgn-lft-xl">Provincial and territorial tax rates vary across Canada.</p>
@@ -736,6 +736,10 @@ transform: scale(1.5);
 			event.stopPropagation();
 		});
 
+// prevent form submission from input element
+	 $("#barChart").submit(function(e){
+        e.preventDefault();
+    });
 		$document.on("update" + selector, function (event) {
 			setRangeValue(event.target);
 		});
