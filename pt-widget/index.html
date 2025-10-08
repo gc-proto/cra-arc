@@ -205,7 +205,19 @@ transform: scale(1.5);
 }
 #resultsLink>a:target {
   scroll-margin-top: 170px;
-}    
+}   
+/***Sizing of result***/
+	.grid-label  {font-size: 0.9em;}
+.grid-amount {font-size: 1em;}
+.grid-percent {font-size: 0.8em;}
+@media (min-width: 768px) 
+	{
+.wb-math-grid div.mg-row > div.mg-cell {padding: 10px 0px 10px 0px;} 		
+.grid-label  {font-size: 1.2em;}
+.grid-amount {font-size: 2em;}
+.grid-percent {font-size: 1.3em;}	
+	}
+	
 </style>
 	
 </head>
@@ -254,10 +266,10 @@ transform: scale(1.5);
 <noscript><div class="alert alert-warning"><h2>This page requires JavaScript</h2>
 <p>The tool on this page requires JavaScript and a modern browser to operate.  Please make sure your browser is up to date and activate JavaScript.</p></noscript>	
 
- <p>The interactive table chart below uses rates from the <strong>2025</strong> tax year.</p>
+ <p>The interactive chart below uses rates from the <strong id="jsonYear"></strong> tax year.</p>
 	 
-	<p>The table chart shows you how tax amounts are applied progressively in income brackets federally and in each province and territory (except Quebec).</p>
-    <p><strong><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"></span>This is for educational purposes only:</strong> Do not use this to calculate your actual tax amount.</p>
+	<p>The table chart shows you how tax brackets and progressive tax rates work in Canada and in each province and territory (except Quebec).</p>
+    <p><strong><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"><span class="wb-inv">Attention:</span></span>This is for educational purposes only:</strong> Do not use this to calculate your actual tax amount.</p>
       <div class="row"><div class="col-xs-12">
 	 <section class="panel panel-default brdr-rds-0 mrgn-tp-lg nojs-hide">
 		 <header class="panel-heading">
@@ -266,7 +278,7 @@ transform: scale(1.5);
 		 <div class="fa-stack fa-fw text-muted center-block pstn-tp-xs pstn-lft-xs fa-lg full-width" aria-hidden="true"><span class="fas fa-circle fa-inverse fa-stack-2x"></span> <span class="far fa-circle fa-stack-2x"></span> <span class="far fa-chart-bar fa-stack-1x"></span> </div>
 		 <div class="panel-body pb-4 px-2">
 			  <div id="stickycontent"> 
-    <form>
+    <form id="barChart">
       <fieldset class="brdr-0">
         <legend class="h4"><span class="fa-stack" aria-hidden="true"><span class="far fa-circle fa-stack-2x"></span><span class="fa-stack-1x">1</span></span> <span class="wb-inv">First step: </span>Select a province or territory</legend>
         <p class="mrgn-lft-xl">Provincial and territorial tax rates vary across Canada.</p>
@@ -357,8 +369,7 @@ transform: scale(1.5);
             </tbody>
           </table>
         </div>
-        <div class="tax-total mrgn-tp-md" id="federalTotal"></div>
-	    <p class="small mrgn-tp-sm">This amount does not include any federal credits, benefits or deductions you may be entitled to.</p>  
+        <div class="tax-total d-sm-flex" id="federalTotal"></div>
       </div>
 
     <div id="provinceTableWrapper" class="hidden" >
@@ -378,8 +389,8 @@ transform: scale(1.5);
           </tbody>
         </table>
       </div>
-      <div class="tax-total mrgn-tp-md" id="provinceTotal"></div>
-	    <p class="small mrgn-tp-sm">This amount does not include any provincial or territorial credits, benefits or deductions you may be entitled to.</p>
+      <div class="tax-total d-sm-flex" id="provinceTotal"></div>
+	    
     </div>
     <div id="quebecNotice">
       <p><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-qc.png" alt="" class="mrgn-rght-md">For Quebec tax rates, please visit the official site: <a href="https://www.revenuquebec.ca/en/" target="_blank">Revenu Québec</a></p>
@@ -387,73 +398,41 @@ transform: scale(1.5);
 
   <section id="afterTaxWrapper">
 
-      <h3>Summary</h3>
-    <div class="row wb-eqht-grd">
-      <div class="col-sm-10 col-md-5">
-        <div class="panel panel-primary brdr-rds-0">
-          <header class="panel-heading brdr-rds-0">
-            <h4 class="panel-title">Calculation of estimated total tax</h4>
-          </header>
-          <div class="panel-body eqht-trgt">
-            <div class="wb-math-grid mg-spcd">
-              <div class="mg-row">
-                <div class="mg-cell"></div>
-                <div class="mg-cell text-right fa-lg text-primary" id="preTaxIncomeCal"></div>
-                <div class="mg-cell">Pre tax amount</div>
-              </div>
-              <div class="mg-row">
-                <div class="mg-cell h3 text-primary">&minus;</div>
-                <div class="mg-cell text-right fa-lg text-primary" id="fedTaxCal"></div>
-                <div class="mg-cell">Federal tax</div>
-              </div>
-              <div class="mg-row">
-                <div class="mg-cell mg-brdr-bttm h3 text-primary">&minus;</div>
-                <div class="mg-cell mg-brdr-bttm text-right fa-lg text-primary" id="provTaxCal"></div>
-                <div class="mg-cell"><span id="provTaxName">Provincial/Territorial</span> tax</div>
-              </div>
-              <div class="mg-row">
-                <div class="mg-cell h3 text-primary">=</div>
-                <div class="mg-cell text-right fa-lg text-primary" id="afterTaxIncome"></div>
-                <div class="mg-cell">After tax amount</div>
-              </div>
-            </div>
+   	  <div class="row">
+		  <div class="col-sm-10 col-md-7">
+    <div class="panel panel-primary mrgn-tp-lg">
+      <header class="panel-heading">
+        <h3 class="mrgn-bttm-0 panel-title">Summary</h3>
+        <p class="gc-byline mrgn-bttm-0">Rounded to the nearest dollar</p>
+      </header>
+      <div class="panel-body">
+        <div class="wb-math-grid mg-spcd">
+          <div class="mg-row">
+            <div class="mg-cell pr-1 grid-label">Federal tax</div>
+            <div class="mg-cell"></div>
+            <div class="mg-cell text-right text-primary grid-amount" id="fedTaxCal">$0</div>
+            <div id="fedTaxPC"  class="mg-cell grid-percent text-right text-primary nowrap pl-1">(0<sup>%</sup>)</div>
+          </div>
+          <div class="mg-row">
+            <div class="mg-cell grid-label pr-1 align-bottom pb-1"><span id="provTaxName">Provincial</span> tax</div>
+            <div class="mg-cell grid-amount text-primary align-bottom pr-1 pb-1">+</div>
+            <div class="mg-cell text-right grid-amount text-primary align-bottom pb-1" id="provTaxCal">$0</div>
+            <div id="provTaxPC" class="mg-cell grid-percent text-right text-primary align-bottom nowrap pl-1 pb-1">(0<sup>%</sup>)</div>
+          </div>
+          <div class="mg-row">
+            <div class="mg-cell grid-label pr-1">Total tax</div>
+            <div class="mg-cell mg-brdr-tp grid-amount text-primary pr-1">=</div>
+            <div class="mg-cell pt-2 mg-brdr-tp text-right grid-amount text-primary" id="totalTaxCal">$0</div>
+            <div id="totalTaxPC" class="mg-cell grid-percent text-right text-primary nowrap pl-1">(0<sup>%</sup>)</div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-10 col-md-7">
-        <div class="panel panel-primary brdr-rds-0">
-          <header class="panel-heading brdr-rds-0">
-            <h4 class="panel-title">Percentage of estimated total tax</h4>
-          </header>
-          <div class="panel-body eqht-trgt">
-            <div class="row mrgn-tp-md">
-			<div class="col-sm-4">
-                <div class="mrgn-tp-md"><span class="fa-lg fa-3x mrgn-tp-0 text-primary nowrap"><span id="afterTaxPC">0</span><sup>%</sup></span><br>
-                  is what you keep</div>
-<hr class="brdr-bttm visible-xs">
-				
-              </div>	
-              <div class="col-sm-8 brdr-lft">
-                <div class="row">
-                  <div class="col-xs-5">
-                    <div class="mrgn-tp-md"> <span class="fa-lg fa-3x text-primary nowrap"><span id="totalTaxPC">0</span><sup>%</sup></span><br>
-                      goes to taxes</div>
-                  </div>
-                  <div class="col-xs-7 pl-4">
-                    <p class="mrgn-tp-0"><span class="fa-lg text-primary nowrap"><span id="fedTaxPC">0</span><sup>%</sup></span> Federal tax</p>
-                    <hr class="brdr-tp mrgn-tp-sm mrgn-bttm-sm">
-                    <p class="mrgn-tp-0"><span class="fa-lg text-primary nowrap"><span id="provTaxPC">0</span><sup>%</sup></span> <span id="provTaxNamePC">Provincial</span> tax</p>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
+		  <p class="small mrgn-tp-md">This amount does not include any provincial or territorial credits, benefits or deductions you may be entitled to.</p>
       </div>
     </div>
+		  </div>	
+	  </div>
 		
-<p><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"></span>These amounts may not accurately reflect what you pay in taxes.  Do not use to determine your actual tax payable.</p>	  
+<p><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"><span class="wb-inv">Attention:</span></span>These amounts may not accurately reflect what you pay in taxes.  Do not use to determine your actual tax payable.</p>	  
 	 </section>
 </div>
 	
@@ -463,7 +442,7 @@ transform: scale(1.5);
         <div class="row">
           <div class="col-xs-12">
             <div class="panel panel-primary panel-body mrgn-tp-lg eqht-trgt brdr-rds-0">
-              <h4 class="h3 mrgn-tp-sm text-primary">Reduce how much tax your may owe</h4>
+              <h4 class="h3 mrgn-tp-sm text-primary">Reduce how much tax you may owe</h4>
               <p>You may be eligible to claim various deductions, credits, and expenses to reduce the amount of tax you owe.</p>
               <details class="mrgn-bttm-lg" role="button">
                 <summary>Example: Basic personal amount (BPA)</summary>
@@ -481,9 +460,9 @@ transform: scale(1.5);
         <div class="row">
           <div class="col-xs-12">
             <div class="panel panel-primary panel-body mrgn-tp-lg eqht-trgt brdr-rds-0">
-            <h4 class="h3 mrgn-tp-sm text-primary">Know where do your tax dollars go</h4>
+            <h4 class="h3 mrgn-tp-sm text-primary">Know where your tax dollars go</h4>
               <p>The government uses the taxes it collects to pay for public facilities, programs, and the services we use in Canada. </p>
-              <details class="mrgn-bttm-lg">
+              <details class="mrgn-bttm-lg" role="button">
                 <summary>Examples of things taxes help pay for</summary>
               <div data-ajax-replace="https://www.canada.ca/en/revenue-agency/services/tax/individuals/educational-programs/purpose-taxes.html#public-programs-services>.fa-ul"></div>
               </details>
@@ -757,6 +736,10 @@ transform: scale(1.5);
 			event.stopPropagation();
 		});
 
+// prevent form submission from input element
+	 $("#barChart").submit(function(e){
+        e.preventDefault();
+    });
 		$document.on("update" + selector, function (event) {
 			setRangeValue(event.target);
 		});
@@ -784,16 +767,16 @@ const langToggle = {
 		fr: "Range<span class=\"wb-inv\"> per tax rate</span> [Fr]"
 	},
 	dataTaxEstimate: {
-		en: "Estimated tax<span class=\"wb-inv\"> per tax rate</span>",
-		fr: "Estimated tax<span class=\"wb-inv\"> per tax rate</span> [Fr]"
+		en: "Tax payable per bracket",
+		fr: "Tax payable per bracket [Fr]"
 	},
 	dataMeterFill: {
     en: "meter bar is at: ",
     fr: "meter bar is at [Fr] :"
 	},  
 	dataTotalEstimate: {
-		en: "Estimated tax payable: ",
-		fr: "Estimated tax payable [Fr] : "
+		en: "Tax payable<br><small>before claiming deductions, credits and expenses</small>",
+		fr: "Tax payable<br><small>before claiming deductions, credits and expenses</small>"
 	},
 	dataHiddenTo: {
 		en: "to",
@@ -827,10 +810,54 @@ var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
   style: "percent",
   minimumFractionDigits: 1,
   maximumFractionDigits: 1,
- });      
-    fetch('canada_tax_rates.json')
+ });    
+//Function to dynamically add date
+ function dateFormatter(ymdDateString, mode = 'full') {
+  // Create a Date object from the YYYY-MM-DD string.
+  // The Date constructor can parse this format directly.
+  const dateObject = new Date(ymdDateString);
+
+  // Check if the dateObject is valid (in case of invalid input string)
+  if (isNaN(dateObject.getTime())) {
+    return "Invalid Date";
+  }
+
+if (mode === 'year') {
+    return dateObject.getUTCFullYear(); // Just the year
+  }
+
+  // Define options for locale-sensitive formatting
+  const options = {
+    timeZone: 'UTC',
+      year: 'numeric',
+    month: 'long', // e.g., "September"
+    day: 'numeric', // e.g., "9"
+   // weekday: 'long' // e.g., "Tuesday"
+  };
+
+  // Format the date using toLocaleDateString() with a specific locale (e.g., 'en-US')
+  // You can change 'en-US' to other locales like 'en-GB', 'fr-FR', etc.
+if (pagelang == "fr") {   
+    
+  return dateObject.toLocaleDateString('fr-CA', options);
+}
+    else { return dateObject.toLocaleDateString('en-CA', options);};
+} 
+
+
+	
+  fetch('canada_tax_rates_alt.json')
       .then(response => response.json())
-      .then(data => {
+      .then(json => {
+        const dateValue = json.date;
+       // let fullDate = document.getElementById('jsonDate');
+        let yearDate = document.getElementById('jsonYear');
+        yearDate.textContent = dateFormatter(dateValue, "year");
+       // fullDate.textContent = dateFormatter(dateValue);   
+        
+        
+        const data = json.data;
+        
         for (const region in data) {
           data[region].brackets.forEach(bracket => {
             if (bracket.threshold === "Infinity") {
@@ -961,8 +988,7 @@ elementsToShow.forEach(element => {
 function updatePercentage(id, amount, income) {
     const percentage = calculatePercentage(amount, income);
     const formatted = percentFormatter.format(percentage / 100);
-    const numericPart = formatted.replace('%', '').trim();
-    document.getElementById(id).innerHTML = `${numericPart}`;
+     document.getElementById(id).innerHTML = `(${formatted})`;
     return percentage;
 }
 
@@ -972,41 +998,33 @@ function updateText(id, text) {
 
 // Currency updates for math calculation
 const currencyUpdates = [
-  { id: 'preTaxIncomeCal', amount: income },
  { id: 'fedTaxCal', amount: federalTaxAmount },
   { id: 'provTaxCal', amount: provincialTaxAmount },
-  { id: 'afterTaxIncome', amount: afterTax }
+  { id: 'totalTaxCal', amount: federalTaxAmount + provincialTaxAmount}
 ];
 currencyUpdates.forEach(({ id, amount }) => updateCurrency(id, amount));
 
 // Text updates for math calculation
 const textUpdates = [
-  { id: 'provTaxName', text: selectedProvinceName },
-  { id: 'provTaxNamePC', text: selectedProvinceName }
+  { id: 'provTaxName', text: selectedProvinceName }
 ];
 textUpdates.forEach(({ id, text }) => updateText(id, text));
 
-// Percentage updates
+// Percentage updates		
 const percentageUpdates = [
   { id: 'fedTaxPC', amount: federalTaxAmount },
   { id: 'provTaxPC', amount: provincialTaxAmount }
 ];
- const percentageValues = {};    
-percentageUpdates.forEach(({ id, amount }) => 
-{
-  const percentage = updatePercentage(id, amount, income);
-  percentageValues[id] = percentage;
+		const percentageValues = {};
+        percentageUpdates.forEach(({ id, amount }) => {
+            const percentage = updatePercentage(id, amount, income);
+            percentageValues[id] = percentage;
 });
-//Calculation for total and remaining tax percentage based on fed and prov percentage 
+//Calculation for total tax percentage based on fed and prov percentage 
 const totalTaxPercentage =
-  percentageValues.fedTaxPC + percentageValues.provTaxPC;
-   const remainingPercentage = 100 - totalTaxPercentage;
-        
-const formattedRemaining = percentFormatter.format(remainingPercentage / 100).replace('%', '').trim();        
-const formattedTotal = percentFormatter.format(totalTaxPercentage / 100).replace('%', '').trim();
-             
-document.getElementById('totalTaxPC').innerHTML = `${formattedTotal}`;
-document.getElementById('afterTaxPC').innerHTML = `${formattedRemaining}`; 
+  percentageValues.fedTaxPC + percentageValues.provTaxPC;    
+const formattedTotal = percentFormatter.format(totalTaxPercentage / 100);
+document.getElementById('totalTaxPC').innerHTML = `(${formattedTotal})`;	
 	}		
 
 function updateTable(idPrefix, data, income) {
@@ -1120,7 +1138,7 @@ tableBody.appendChild(incomeRow);
 tableBody.appendChild(payableRow);
 
 
-totalDiv.innerHTML = `${langToggle.dataTotalEstimate[pagelang]} <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span> `;    
+totalDiv.innerHTML = `<div class="mrgn-rght-md"><p class="mrgn-bttm-0">${langToggle.dataTotalEstimate[pagelang]}</p></div><div class="estimate-borders fa-lg text-primary nowrap align-self-center">= ${currencyFormatterChart.format(totalTax)}</div> `;    
  //Duplicated...need to clean (possibly put in seperate function)
     const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected .getAttribute('name');
@@ -1128,7 +1146,7 @@ totalDiv.innerHTML = `${langToggle.dataTotalEstimate[pagelang]} <span class="est
     
     const customTotal = document.getElementById("provinceTotal");   
 if (customTotal) {
-    customTotal.innerHTML = `${langToggle.dataTotalEstimate[pagelang]} <span class="estimate-borders fa-lg text-primary nowrap">= ${currencyFormatterChart.format(totalTax)}</span>`;
+    customTotal.innerHTML = `<div class="mrgn-rght-md"><p class="mrgn-bttm-0">${langToggle.dataTotalEstimate[pagelang]}</p></div><div class="estimate-borders fa-lg text-primary nowrap align-self-center">= ${currencyFormatterChart.format(totalTax)}</div>`;
 }
 
     
@@ -1262,12 +1280,14 @@ observer.observe(el);
 		//Test script for header scroll
  $(document).ready(function() {
         $('a[href^="#"]').on('click', function(e) {
-            e.preventDefault();
+      
             var targetId = $(this).attr('href');
             var headerHeight = $('.top-bar-stick').outerHeight(); // Get header height
             var targetOffset = $(targetId).offset().top;
             var scrollTo = targetOffset - headerHeight;
-
+ setTimeout(function(){
+            history.replaceState("", document.title, window.location.pathname);
+        }, 1);
             $('html, body').animate({
                 scrollTop: scrollTo
             }, 500); // Scroll speed
