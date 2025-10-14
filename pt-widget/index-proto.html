@@ -361,7 +361,7 @@ transform: scale(1.5);
             <caption class="wb-inv">
             Federal tax
             </caption>
-            <thead class="wb-inv">
+            <thead>
               <tr id="federalHeader">
                 <th scope="col">Tax bracket</th>
               </tr>
@@ -1113,11 +1113,11 @@ if (index === 0) {
 	  
 
 // === Rate Header ===
-  const rateHeaderCol = document.createElement('th');
-	  rateHeaderCol.setAttribute('scope', 'col');  
+  const headerRow = document.createElement('th');
+	  headerRow.setAttribute('scope', 'col');  
   //rateCell.innerHTML = `${percentFormatter.format(bracket.rate)}`;
-	rateHeaderCol.innerHTML = `${percentFormatter.format(bracket.rate)} <span class="wb-inv">langToggle.dataTaxBracket[pagelang]</span>`;  
-  rateRow.appendChild(rateHeaderCol);
+	headerRow.innerHTML = `${percentFormatter.format(bracket.rate)} <span class="wb-inv">langToggle.dataTaxBracket[pagelang]</span>`;  
+  rateRow.appendChild(headerRow);
 
       // === Income range Cell (clean up inner HTML) ===
       const incomeCell = document.createElement('td');
