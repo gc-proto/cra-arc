@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Option 1 – Calculating the indexing of personal amounts</title>
+<title>Personal tax credits returns (Form TD1)</title>
 <style>
   body { font-family: Arial, sans-serif; margin: 40px; max-width: 700px; }
   label { display: block; margin-top: 15px; }
@@ -19,7 +19,7 @@
 <h2>Personal tax credits returns (Form TD1)</h2>
 <p>Each year, certain personal tax credit amounts are indexed based on changes to the Consumer Price Index (CPI). Since only some of the amounts are indexed, the CRA recommends that you record separately in your payroll records each item shown on your employee’s TD1 form. This will allow you to automatically increase the applicable indexed claim amounts when necessary. This also means you will not have to ask your employees to file a new TD1 form when indexing applies.</p>
 
-<label>Do you have a Form TD1 on file for this employee?</label>
+<label>Do you have a federal Form TD1 on file for this employee?</label>
 <input type="radio" name="td1" value="yes" onclick="toggleTD1(true)"> Yes
 <input type="radio" name="td1" value="no" onclick="toggleTD1(false)"> No
 
@@ -62,6 +62,7 @@
 </div>
 
 <div id="calculator" class="hidden">
+  <h3>Federal Form TD1</h3>
   <label>Enter the total claim amount reported on line 13 of the federal Form TD1 ($)
     <input type="number" id="line1" step="0.01">
   </label>
@@ -73,12 +74,12 @@
   </div>
 
   <div id="line3Section">
-    <label>Enter any pension income amount, tuition fees, and full-time or part-time education amounts claimed on Form TD1 ($)
+    <label>Enter the pension income amount reported on line 4 and the tuition (full-time and part-time) reported on line 5 of the federal Form TD1 ($)
       <input type="number" id="line3" step="0.01">
     </label>
   </div>
 
-  <button onclick="calculateTCP()">Calculate</button>
+  <button onclick="calculateTCP()">Calculate using the federal TD1 form</button>
   <div class="result" id="result"></div>
 </div>
 
@@ -156,7 +157,7 @@ function calculateTCP() {
   document.getElementById('result').innerHTML = `
     ${yukonNote}
     <h4>Calculation breakdown</h4>
-    <p>Line 1: Total claim amount = $${line1.toFixed(2)}</p>
+    <p>Line 1: Total claim amount reported on line 13 of the federal Form TD1 = $${line1.toFixed(2)}</p>
     <p>Line 2: Minus prior year BPANS = $${actualLine2.toFixed(2)} (Nova Scotia only)</p>
     <p>Line 3: Minus non-indexed amounts = $${actualLine3.toFixed(2)}</p>
     <p>Line 4: Amount subject to indexing = $${line4.toFixed(2)} (line 1 minus line 2 and 3) </p>
