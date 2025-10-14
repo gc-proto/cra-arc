@@ -208,58 +208,98 @@ const indexingRates = {
 };
 
 function toggleTD1(hasTD1) {
+  document.getElementById('provincialTD1Question').classList.toggle('hidden', !hasTD1);
+  document.getElementById('noMessage').classList.toggle('hidden', hasTD1);
 
-document.getElementById('provincialTD1Question').classList.toggle('hidden', !hasTD1);
-document.getElementById('noMessage').classList.toggle('hidden', hasTD1);  
+  // Always reset when user changes answer
+  if (!hasTD1) {
+    window.hasProvincialTD1 = false;
+    document.getElementById('provinceSection').classList.add('hidden');
+    document.getElementById('yearSection').classList.add('hidden');
+    document.getElementById('peiMessage').classList.add('hidden');
+    document.getElementById('calculator').classList.add('hidden');
+    document.getElementById('calculator2').classList.add('hidden');
+
+    resetFormSection('calculator');
+    resetFormSection('calculator2');
+  }
 }
 
 function toggleprovTD1(hasTD1) {
   window.hasProvincialTD1 = hasTD1;
 
-  // Show or hide the province selector based on answer
   document.getElementById('provinceSection').classList.toggle('hidden', !hasTD1);
-
-  // Always reset/hide the following sections when toggling this
   document.getElementById('yearSection').classList.add('hidden');
-  document.getElementById('calculator').classList.add('hidden');
   document.getElementById('calculator2').classList.add('hidden');
   document.getElementById('peiMessage').classList.add('hidden');
+
+  resetFormSection('calculator2');
 }
 
    
 function handleProvince() {
   const province = document.getElementById('province').value;
   const isPEI = province === 'Prince Edward Island';
+
   document.getElementById('peiMessage').classList.toggle('hidden', !isPEI);
   document.getElementById('yearSection').classList.toggle('hidden', isPEI || province === '');
-  document.getElementById('calculator').classList.toggle('hidden', hasTD1);
-   document.getElementById('calculator2').classList.add('hidden');
+
+  // Reset calculators whenever province changes
+  resetFormSection('calculator');
+  resetFormSection('calculator2');
+  document.getElementById('calculator').classList.add('hidden');
+  document.getElementById('calculator2').classList.add('hidden');
 }
 
 function showCalculator() {
   const province = document.getElementById('province').value;
-  const year = document.getElementById('year').value;
   const showLine2 = province === 'Nova Scotia';
   const hideLine3 = province === 'Ontario';
 
   document.getElementById('line2Section').classList.toggle('hidden', !showLine2);
   document.getElementById('line3Section').classList.toggle('hidden', hideLine3);
   document.getElementById('calculator').classList.remove('hidden');
+
+  // Reset result area
   document.getElementById('result').innerHTML = '';
 }
 
- function showCalculator2() {
-if (!window.hasProvincialTD1) return;
+function showCalculator2() {
+  if (!window.hasProvincialTD1) return;
+
   const province = document.getElementById('province').value;
-  const year = document.getElementById('year').value;
   const showLine2prov = province === 'Nova Scotia';
   const hideLine3prov = province === 'Ontario';
 
   document.getElementById('line2Sectionprov').classList.toggle('hidden', !showLine2prov);
   document.getElementById('line3Sectionprov').classList.toggle('hidden', hideLine3prov);
   document.getElementById('calculator2').classList.remove('hidden');
+
+  // Reset result area
   document.getElementById('resultprov').innerHTML = '';
-} 
+}
+
+function resetFormSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+
+  // Reset all inputs in the section
+  const inputs = section.querySelectorAll('input');
+  inputs.forEach(input => {
+    input.value = '';
+  });
+
+  // Reset results
+  const result = section.querySelector('.result');
+  if (result) {
+    result.innerHTML = '';
+  }
+
+  // Hide optional sections (like line2/line3)
+  const toggles = section.querySelectorAll('.hidden');
+  toggles.forEach(el => el.classList.add('hidden'));
+}
+   
 
 function calculateTCP() {
   const province = document.getElementById('province').value;
