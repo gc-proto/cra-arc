@@ -187,7 +187,7 @@ function showCalculator() {
 function calculateTCP() {
   const province = document.getElementById('province').value;
   const year = document.getElementById('year').value;
-  const line1 = parseFloat(document.getElementById('line1').value) || 0;
+  const line1 = parseFloat(document.getElementById('line1').value) || 0;  
   const line2 = parseFloat(document.getElementById('line2').value) || 0;
   const line3 = parseFloat(document.getElementById('line3').value) || 0;
 
@@ -217,6 +217,42 @@ function calculateTCP() {
     <p>Line 7: Current year BPANS = $${line7.toFixed(2)} (to account for 2025 indexation)</p>
     <p>Line 8: Non-indexed amounts = $${line8.toFixed(2)} (amount from line 3)</p>
     <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9.toFixed(2)}</strong> (line 6 plus line 7 and 8)</p>
+  `;
+}
+
+  function calculateTCPprov() {
+  const province = document.getElementById('province').value;
+  const year = document.getElementById('year').value;
+  const line1prov = parseFloat(document.getElementById('line1prov').value) || 0;  
+  const line2prov = parseFloat(document.getElementById('line2prov').value) || 0;
+  const line3prov = parseFloat(document.getElementById('line3prov').value) || 0;
+
+  const useLine2prov = province === 'Nova Scotia';
+  const useLine3prov = province !== 'Ontario';
+  const actualLine2prov = useLine2prov ? line2prov : 0;
+  const actualLine3prov = useLine3prov ? line3prov : 0;
+  const line4prov = line1prov - actualLine2prov - actualLine3prov;
+
+  const indexFactor = indexingRates[year][province] || 0;
+  const line6prov = Math.round(line4prov * indexFactor);
+  const line7prov = actualLine2prov + 263.00;
+  const line8prov = actualLine3prov;
+  const line9prov = line6prov + line7prov + line8prov;
+
+  let yukonNote = province === 'Yukon' ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>' : '';
+
+  document.getElementById('resultprov').innerHTML = `
+    ${yukonNote}
+    <h4>Provincial - Calculation breakdown</h4>
+    <p>Line 1: Total claim amount reported on line 13 of the provincial Form TD1 = $${line1prov.toFixed(2)}</p>
+    <p>Line 2: Minus prior year BPANS = $${actualLine2prov.toFixed(2)} (Nova Scotia only)</p>
+    <p>Line 3: Minus non-indexed amounts = $${actualLine3prov.toFixed(2)}</p>
+    <p>Line 4: Amount subject to indexing = $${line4prov.toFixed(2)} (line 1 minus line 2 and 3) </p>
+    <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
+    <p>Line 6: Indexed amount = $${line6prov.toFixed(2)} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
+    <p>Line 7: Current year BPANS = $${line7prov.toFixed(2)} (to account for 2025 indexation)</p>
+    <p>Line 8: Non-indexed amounts = $${line8prov.toFixed(2)} (amount from line 3)</p>
+    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9prov.toFixed(2)}</strong> (line 6 plus line 7 and 8)</p>
   `;
 }
 </script>
