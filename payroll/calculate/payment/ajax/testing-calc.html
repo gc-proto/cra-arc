@@ -174,7 +174,7 @@
 </section>
 <div class="hidden mrgn-tp-lg" id="yearSection">
 <label>Select the calendar year</label>
-<select id="year" onchange="showCalculator(); showCalculator2();">
+<select id="year" onchange="showCalculator(); if (window.hasProvincialTD1) showCalculator2();">
 <option value="">-- Make your selection --</option>
 <option value="2025">2025</option>
 <option value="2024">2024</option>
@@ -211,16 +211,19 @@ document.getElementById('provincialTD1Question').classList.toggle('hidden', !has
 document.getElementById('noMessage').classList.toggle('hidden', hasTD1);  
 }
 
- function toggleprovTD1(hasTD1) {
-window.hasProvincialTD1 = hasTD1;
+ 
+function toggleprovTD1(hasTD1) {
+  window.hasProvincialTD1 = hasTD1;
 
   document.getElementById('provinceSection').classList.toggle('hidden', !hasTD1);
   document.getElementById('yearSection').classList.add('hidden');
   document.getElementById('calculator2').classList.add('hidden');
-  document.getElementById('calculator').classList.add('hidden'); 
+  document.getElementById('calculator').classList.add('hidden');
   document.getElementById('peiMessage').classList.add('hidden');
+}
+   
+   
   
-} 
 
 function handleProvince() {
   const province = document.getElementById('province').value;
