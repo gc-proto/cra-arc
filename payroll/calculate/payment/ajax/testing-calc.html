@@ -211,15 +211,19 @@ document.getElementById('provincialTD1Question').classList.toggle('hidden', !has
 document.getElementById('noMessage').classList.toggle('hidden', hasTD1);  
 }
 
-
 function toggleprovTD1(hasTD1) {
   window.hasProvincialTD1 = hasTD1;
 
+  // Show or hide the province selector based on answer
   document.getElementById('provinceSection').classList.toggle('hidden', !hasTD1);
+
+  // Always reset/hide the following sections when toggling this
   document.getElementById('yearSection').classList.add('hidden');
-  document.getElementById('calculator2').classList.add('hidden'); // Ensure it's hidden if No
+  document.getElementById('calculator').classList.add('hidden');
+  document.getElementById('calculator2').classList.add('hidden');
   document.getElementById('peiMessage').classList.add('hidden');
 }
+
    
 function handleProvince() {
   const province = document.getElementById('province').value;
