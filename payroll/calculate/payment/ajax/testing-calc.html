@@ -1,12 +1,12 @@
 
 
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Personal tax credits returns (Form TD1)</title>
-  <style>
+<meta charset="utf-8"/>
+<title>Option 1 – Calculating the indexing of personal amounts</title>
+<style>
     body { font-family: Arial, sans-serif; margin: 40px; max-width: 700px; }
     label { display: block; margin-top: 15px; }
     input[type="number"], select { width: 100%; padding: 8px; margin-top: 5px; }
@@ -17,73 +17,68 @@
   </style>
 </head>
 <body>
-  <h2>Personal tax credits returns (Form TD1)</h2>
-
+<h2>Personal tax credits returns (Form TD1)</h2>
 <p>Each year, certain personal tax credit amounts are indexed based on changes to the Consumer Price Index (CPI). Since only some of the amounts are indexed, the CRA recommends that you record separately in your payroll records each item shown on your employee’s TD1 form. This will allow you to automatically increase the applicable indexed claim amounts when necessary. This also means you will not have to ask your employees to file a new TD1 form when indexing applies.</p>
+<label>Do you have a Form TD1 on file for this employee?</label>
+<input name="td1" onclick="toggleTD1(true)" type="radio" value="yes"/> Yes
+  <input name="td1" onclick="toggleTD1(false)" type="radio" value="no"/> No
 
-  
-  <label>Do you have a Form TD1 on file for this employee?</label>
-  <input type="radio" name="td1" value="yes" onclick="toggleTD1(true)"> Yes
-  <input type="radio" name="td1" value="no" onclick="toggleTD1(false)"> No
-
-  <div id="noMessage" class="hidden result warning">
-    <p>You <strong>cannot</strong> use the option 1 – Indexing of personal amounts if you <strong>do not have a Form TD1 on file</strong> for your employee.</p>
-  </div>
-
-  <div id="provinceSection" class="hidden">
+  <div class="hidden result warning" id="noMessage">
+<p>You <strong>cannot</strong> use the option 1 – Indexing of personal amounts if you <strong>do not have a Form TD1 on file</strong> for your employee.</p>
+</div>
+<div class="hidden" id="provinceSection">
 <h3>Option 1 – Calculating the indexing of personal amounts</h3>
-    <p>You can use the following method to calculate the value of personal tax credits amount when  you <strong>have a Form TD1 on file</strong> for your employee:</p>
-
-    <label>Select Province or Territory:</label>
-    <select id="province" onchange="handleProvince()">
-      <option value="">-- Select --</option>
-      <option value="Alberta">Alberta</option>
-      <option value="British Columbia">British Columbia</option>
-      <option value="Manitoba">Manitoba</option>
-      <option value="New Brunswick">New Brunswick</option>
-      <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-      <option value="Nova Scotia">Nova Scotia</option>
-      <option value="Ontario">Ontario</option>
-      <option value="Prince Edward Island">Prince Edward Island</option>
-      <option value="Quebec">Quebec</option>
-      <option value="Saskatchewan">Saskatchewan</option>
-      <option value="Northwest Territories">Northwest Territories</option>
-      <option value="Nunavut">Nunavut</option>
-      <option value="Yukon">Yukon</option>
-    </select>
-  </div>
-
-  <div id="peiMessage" class="hidden result">
-    <p><strong>No indexing applies to Prince Edward Island. The calculator is not applicable.</strong></p>
-  </div>
-
-  <div id="calculator" class="hidden">
-    <label>Enter the total claim amount reported on line 13 of the federal Form TD1 ($)
-      <input type="number" id="line1" step="0.01">
-    </label>
-
-    <div id="line2Section" class="hidden">
-      <label>Enter the prior year BPANS (Nova Scotia only) ($)
-        <input type="number" id="line2" step="0.01">
-      </label>
-    </div>
-
-    <div id="line3Section">
-      <label>Enter any pension income amount, tuition fees, and full-time or part-time education amounts claimed on Form TD1 ($)
-        <input type="number" id="line3" step="0.01">
-      </label>
-    </div>
-
-    <label>Enter the indexing factor for the year
-      <input type="number" id="line5" step="0.0001">
-    </label>
-
-    <button onclick="calculateTCP()">Calculate</button>
-
-    <div class="result" id="result"></div>
-  </div>
-
-  <script>
+<p>You can use the following method to calculate the value of personal tax credits amount when  you <strong>have a Form TD1 on file</strong> for your employee:</p>
+<label>Select the province or territory:</label>
+<select id="province" onchange="handleProvince()">
+<option value="">-- Make your selection --</option>
+<option value="Alberta">Alberta</option>
+<option value="British Columbia">British Columbia</option>
+<option value="Manitoba">Manitoba</option>
+<option value="New Brunswick">New Brunswick</option>
+<option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+<option value="Nova Scotia">Nova Scotia</option>
+<option value="Ontario">Ontario</option>
+<option value="Prince Edward Island">Prince Edward Island</option>
+<option value="Quebec">Quebec</option>
+<option value="Saskatchewan">Saskatchewan</option>
+<option value="Northwest Territories">Northwest Territories</option>
+<option value="Nunavut">Nunavut</option>
+<option value="Yukon">Yukon</option>
+</select>
+  
+  <label>Select the calendar year</label>
+  <select id="year">
+    <option value="">-- Make your selection --</option>
+    <option value="2023">2023</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+  </select>
+</div>
+<div class="hidden result" id="peiMessage">
+<p><strong>No indexing applies to Prince Edward Island. The calculator is not applicable.</strong></p>
+</div>
+<div class="hidden" id="calculator">
+<label>Enter the total claim amount reported on line 13 of the federal Form TD1 ($)
+      <input id="line1" step="0.01" type="number"/>
+</label>
+<div class="hidden" id="line2Section">
+<label>Enter the prior year BPANS (Nova Scotia only) ($)
+        <input id="line2" step="0.01" type="number"/>
+</label>
+</div>
+<div id="line3Section">
+<label>Enter any pension income amount, tuition fees, and full-time or part-time education amounts claimed on Form TD1 ($)
+        <input id="line3" step="0.01" type="number"/>
+</label>
+</div>
+<label>Enter the indexing factor for the year
+      <input id="line5" step="0.0001" type="number"/>
+</label>
+<button onclick="calculateTCP()">Calculate</button>
+<div class="result" id="result"></div>
+</div>
+<script>
     function toggleTD1(hasTD1) {
       document.getElementById('provinceSection').classList.toggle('hidden', !hasTD1);
       document.getElementById('calculator').classList.add('hidden');
