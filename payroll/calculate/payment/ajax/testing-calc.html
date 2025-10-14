@@ -224,7 +224,7 @@ function handleProvince() {
   document.getElementById('peiMessage').classList.toggle('hidden', !isPEI);
   document.getElementById('yearSection').classList.toggle('hidden', isPEI || province === '');
   document.getElementById('calculator').classList.toggle('hidden', hasTD1);
-   document.getElementById('calculator2').classList.add('hidden');
+  document.getElementById('calculator2').classList.add('hidden');
 }
 
 function showCalculator() {
@@ -236,6 +236,7 @@ function showCalculator() {
   document.getElementById('line2Section').classList.toggle('hidden', !showLine2);
   document.getElementById('line3Section').classList.toggle('hidden', hideLine3);
   document.getElementById('calculator').classList.remove('hidden');
+   document.getElementById('calculator').classList.toggle('hidden', hasTD1); 
   document.getElementById('result').innerHTML = '';
 }
 
@@ -248,6 +249,7 @@ function showCalculator() {
   document.getElementById('line2Sectionprov').classList.toggle('hidden', !showLine2prov);
   document.getElementById('line3Sectionprov').classList.toggle('hidden', hideLine3prov);
   document.getElementById('calculator2').classList.remove('hidden');
+  document.getElementById('calculator2').classList.toggle('hidden', hasTD1);  
   document.getElementById('resultprov').innerHTML = '';
 } 
 
