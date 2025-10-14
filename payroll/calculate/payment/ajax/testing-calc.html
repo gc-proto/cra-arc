@@ -33,6 +33,11 @@
   .result { margin-top: 30px; padding: 15px; background-color: #f4f4f4; border-left: 4px solid #0078D4; }
   .result p { margin: 8px 0; }
   .hidden { display: none; }
+
+  /* Make provincial calculator full-width when federal is hidden */
+  #calculator li.full-width {
+    flex: 1 1 100%;
+  }
 </style>
 </head>
 <body class="experimental" typeof="WebPage" vocab="http://schema.org/">
@@ -115,7 +120,6 @@
 </nav>
 <h1 class="gc-thickline" id="wb-cont" property="name">Calculate income tax deductions using formulas</h1>
 <h2>Personal tax credits returns (Form TD1)</h2>
-    <h2>Personal tax credits returns (Form TD1)</h2>
 
     <p>
       Each year, certain personal tax credit amounts are indexed based on changes to the Consumer Price Index (CPI).
@@ -336,21 +340,30 @@
       if (res) res.innerHTML = '';
     }
 
-    function showCalculator2() {
-      if (!window.hasProvincialTD1) return;
+   function showCalculator2() {
+  if (!window.hasProvincialTD1) return;
 
-      const province = document.getElementById('province').value;
-      const showLine2prov = province === 'Nova Scotia';
-      const hideLine3prov = province === 'Ontario';
+  const province = document.getElementById('province').value;
+  const showLine2prov = province === 'Nova Scotia';
+  const hideLine3prov = province === 'Ontario';
 
-      document.getElementById('line2Sectionprov').classList.toggle('hidden', !showLine2prov);
-      document.getElementById('line3Sectionprov').classList.toggle('hidden', hideLine3prov);
-      document.getElementById('calculator2').classList.remove('hidden');
+  document.getElementById('line2Sectionprov').classList.toggle('hidden', !showLine2prov);
+  document.getElementById('line3Sectionprov').classList.toggle('hidden', hideLine3prov);
+  document.getElementById('calculator2').classList.remove('hidden');
 
-      const resProv = document.getElementById('resultprov');
-      if (resProv) resProv.innerHTML = '';
-    }
+  // Make provincial full-width if federal calculator is hidden
+  const liProv = document.getElementById('calculator2').parentElement;
+  const liFederal = document.getElementById('calculator').querySelector('.cnjnctn-col:first-child');
 
+  if (liFederal && liFederal.classList.contains('hidden')) {
+    liProv.classList.add('full-width');
+  } else {
+    liProv.classList.remove('full-width');
+  }
+
+  const resProv = document.getElementById('resultprov');
+  if (resProv) resProv.innerHTML = '';
+}
     function resetFormSection(sectionId) {
       const section = document.getElementById(sectionId);
       if (!section) return;
