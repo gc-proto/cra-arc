@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Personal tax credits returns (Form TD1)</title>
 <style>
-  body { font-family: Arial, sans-serif; margin: 40px; max-width: 700px; }
+  body { font-family: Arial, sans-serif; margin: 40px; max-width: 800px; }
   label { display: block; margin-top: 15px; }
   input[type="number"], select { width: 100%; padding: 8px; margin-top: 5px; }
   button { margin-top: 20px; padding: 10px 15px; }
@@ -20,9 +20,13 @@
 <p>Each year, certain personal tax credit amounts are indexed based on changes to the Consumer Price Index (CPI). Since only some of the amounts are indexed, the CRA recommends that you record separately in your payroll records each item shown on your employee’s TD1 form. This will allow you to automatically increase the applicable indexed claim amounts when necessary. This also means you will not have to ask your employees to file a new TD1 form when indexing applies.</p>
 
 <label>Do you have a federal Form TD1 on file for this employee?</label>
-<input type="radio" name="td1" value="yes" onclick="toggleTD1(true)"> Yes
-<input type="radio" name="td1" value="no" onclick="toggleTD1(false)"> No
+<input type="radio" name="td1" value="yes" onclick="toggleFederal(true)"> Yes
+<input type="radio" name="td1" value="no" onclick="toggleFederal(false)"> No
 
+<label>Do you also have a provincial Form TD1 on file for this employee?</label>
+  <input type="radio" name="provtd1" value="yes" onclick="toggleProvincial(true)"> Yes
+  <input type="radio" name="provtd1" value="no" onclick="toggleProvincial(false)"> No
+  
 <div id="noMessage" class="hidden result">
  <p>You <strong>cannot</strong> use the option 1 – Indexing of personal amounts if you <strong>do not have a Form TD1 on file</strong> for your employee.</p>
 </div>
@@ -53,7 +57,7 @@
 
 <div id="yearSection" class="hidden">
   <label>Select the calendar year:</label>
-  <select id="year" onchange="showCalculator()">
+  <select id="year" onchange="federalSection();  provincialSection();">
     <option value="">-- Make your selection --</option>
     <option value="2025">2025</option>
     <option value="2024">2024</option>
@@ -61,26 +65,48 @@
   </select>
 </div>
 
-<div id="calculator" class="hidden">
+<div id="federalSection" class="hidden">
   <h3>Federal Form TD1</h3>
   <label>Enter the total claim amount reported on line 13 of the federal Form TD1 ($)
-    <input type="number" id="line1" step="0.01">
+    <input type="number" id="fed1" step="0.01">
   </label>
 
   <div id="line2Section" class="hidden">
     <label>Enter the prior year BPANS (Nova Scotia only) ($)
-      <input type="number" id="line2" step="0.01">
+      <input type="number" id="fed2" step="0.01">
     </label>
   </div>
 
   <div id="line3Section">
     <label>Enter the pension income amount reported on line 4 and the tuition (full-time and part-time) reported on line 5 of the federal Form TD1 ($)
-      <input type="number" id="line3" step="0.01">
+      <input type="number" id="fed3" step="0.01">
     </label>
   </div>
 
-  <button onclick="calculateTCP()">Calculate using the federal TD1 form</button>
-  <div class="result" id="result"></div>
+  <button onclick="calculateFederal()">Calculate using the federal TD1 form</button>
+ <div class="result" id="federalResult"></div>
+</div>
+
+  <div id="provincialSection" class="hidden">
+  <h3>Provincial Form TD1 (if applicable)</h3>
+  <label>Enter the total claim amount reported on line 13 of the provincial Form TD1 ($)
+    <input type="number" id="prov1" step="0.01">
+  </label>
+
+  <div id="line2SectionProv" class="hidden">
+    <label>Enter the prior year BPANS (Nova Scotia only) ($)
+      <input type="number" id="prov2" step="0.01">
+    </label>
+  </div>
+
+  <div id="line3SectionProv">
+    <label>Enter the pension income amount reported on line 4 and the tuition (full-time and part-time) reported on line 5 of the provincial Form TD1 ($)
+      <input type="number" id="prov3" step="0.01">
+    </label>
+  </div>
+
+  <button onclick="calculateProvincial()">Calculate using the provincial TD1 form</button>
+ <div class="result" id="provincialResult"></div>
 </div>
 
 <script>
@@ -105,10 +131,10 @@ const indexingRates = {
   }
 };
 
-function toggleTD1(hasTD1) {
+function toggleFederal(hasTD1) {
   document.getElementById('provinceSection').classList.toggle('hidden', !hasTD1);
   document.getElementById('yearSection').classList.add('hidden');
-  document.getElementById('calculator').classList.add('hidden');
+  document.getElementById('federalSection').classList.add('hidden');
   document.getElementById('peiMessage').classList.add('hidden');
   document.getElementById('noMessage').classList.toggle('hidden', hasTD1);
 }
@@ -118,54 +144,54 @@ function handleProvince() {
   const isPEI = province === 'Prince Edward Island';
   document.getElementById('peiMessage').classList.toggle('hidden', !isPEI);
   document.getElementById('yearSection').classList.toggle('hidden', isPEI || province === '');
-  document.getElementById('calculator').classList.add('hidden');
+  document.getElementById('federalSection').classList.add('hidden');
 }
 
-function showCalculator() {
+function showFederalSection() {
   const province = document.getElementById('province').value;
   const year = document.getElementById('year').value;
-  const showLine2 = province === 'Nova Scotia';
-  const hideLine3 = province === 'Ontario';
+  const showFed2 = province === 'Nova Scotia';
+  const hideFed3 = province === 'Ontario';
 
-  document.getElementById('line2Section').classList.toggle('hidden', !showLine2);
-  document.getElementById('line3Section').classList.toggle('hidden', hideLine3);
-  document.getElementById('calculator').classList.remove('hidden');
-  document.getElementById('result').innerHTML = '';
+  document.getElementById('fed2Section').classList.toggle('hidden', !showLine2);
+  document.getElementById('fed3Section').classList.toggle('hidden', hideLine3);
+  document.getElementById('federalSection').classList.remove('hidden');
+  document.getElementById('federalResult').innerHTML = '';
 }
 
-function calculateTCP() {
+function federalSectionTCP() {
   const province = document.getElementById('province').value;
   const year = document.getElementById('year').value;
-  const line1 = parseFloat(document.getElementById('line1').value) || 0;
-  const line2 = parseFloat(document.getElementById('line2').value) || 0;
-  const line3 = parseFloat(document.getElementById('line3').value) || 0;
+  const fed1 = parseFloat(document.getElementById('fed1').value) || 0;
+  const fed2 = parseFloat(document.getElementById('fed2').value) || 0;
+  const fed3 = parseFloat(document.getElementById('fed3').value) || 0;
 
-  const useLine2 = province === 'Nova Scotia';
-  const useLine3 = province !== 'Ontario';
-  const actualLine2 = useLine2 ? line2 : 0;
-  const actualLine3 = useLine3 ? line3 : 0;
-  const line4 = line1 - actualLine2 - actualLine3;
+  const useFed2 = province === 'Nova Scotia';
+  const useFed3 = province !== 'Ontario';
+  const actualFed2 = useFed2 ? fed2 : 0;
+  const actualFed3 = useFed3 ? fed3 : 0;
+  const fed4 = fed1 - actualFed2 - actualFed3;
 
   const indexFactor = indexingRates[year][province] || 0;
-  const line6 = Math.round(line4 * indexFactor);
-  const line7 = actualLine2 + 263.00;
-  const line8 = actualLine3;
-  const line9 = line6 + line7 + line8;
+  const fed6 = Math.round(fed4 * indexFactor);
+  const fed7 = actualFed2 + 263.00;
+  const fed8 = actualFed3;
+  const fed9 = fed6 + fed7 + fed8;
 
   let yukonNote = province === 'Yukon' ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>' : '';
 
-  document.getElementById('result').innerHTML = `
+  document.getElementById('federalResult').innerHTML = `
     ${yukonNote}
     <h4>Calculation breakdown</h4>
-    <p>Line 1: Total claim amount reported on line 13 of the federal Form TD1 = $${line1.toFixed(2)}</p>
-    <p>Line 2: Minus prior year BPANS = $${actualLine2.toFixed(2)} (Nova Scotia only)</p>
-    <p>Line 3: Minus non-indexed amounts = $${actualLine3.toFixed(2)}</p>
-    <p>Line 4: Amount subject to indexing = $${line4.toFixed(2)} (line 1 minus line 2 and 3) </p>
+    <p>Line 1: Total claim amount reported on line 13 of the federal Form TD1 = $${fed1.toFixed(2)}</p>
+    <p>Line 2: Minus prior year BPANS = $${actualfed2.toFixed(2)} (Nova Scotia only)</p>
+    <p>Line 3: Minus non-indexed amounts = $${actualfed3.toFixed(2)}</p>
+    <p>Line 4: Amount subject to indexing = $${fed4.toFixed(2)} (line 1 minus line 2 and 3) </p>
     <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
-    <p>Line 6: Indexed amount = $${line6.toFixed(2)} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
-    <p>Line 7: Current year BPANS = $${line7.toFixed(2)} (to account for 2025 indexation)</p>
-    <p>Line 8: Non-indexed amounts = $${line8.toFixed(2)} (amount from line 3)</p>
-    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9.toFixed(2)}</strong> (line 6 plus line 7and 8)</p>
+    <p>Line 6: Indexed amount = $${fed6.toFixed(2)} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
+    <p>Line 7: Current year BPANS = $${fed7.toFixed(2)} (to account for 2025 indexation)</p>
+    <p>Line 8: Non-indexed amounts = $${fed8.toFixed(2)} (amount from line 3)</p>
+    <p><strong>Line 9: Revised total of personal tax credits amounts = $${fed9.toFixed(2)}</strong> (line 6 plus line 7and 8)</p>
   `;
 }
 </script>
