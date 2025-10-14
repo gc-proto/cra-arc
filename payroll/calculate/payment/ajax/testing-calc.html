@@ -231,15 +231,21 @@
       }
     }
 
-    function toggleprovTD1(hasProv) {
-      window.hasProvincialTD1 = !!hasProv;
-      document.getElementById('provinceSection').classList.toggle('hidden', !hasProv);
-      document.getElementById('yearSection').classList.add('hidden');
-      document.getElementById('calculator2').classList.add('hidden');
-      document.getElementById('peiMessage').classList.add('hidden');
+   function toggleprovTD1(hasProv) {
+  window.hasProvincialTD1 = !!hasProv;
 
-      resetFormSection('calculator2');
-    }
+  // Always show province dropdown if federal TD1 exists
+  document.getElementById('provinceSection').classList.remove('hidden');
+
+  // Hide provincial calculator if user selects "No"
+  if (!hasProv) {
+    document.getElementById('calculator2').classList.add('hidden');
+    resetFormSection('calculator2');
+  }
+
+  // Ensure year section remains available for federal-only calculation
+  document.getElementById('yearSection').classList.remove('hidden');
+} 
 
     function handleProvince() {
       const province = document.getElementById('province').value;
