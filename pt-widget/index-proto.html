@@ -36,6 +36,9 @@
     vertical-align: middle;
       width: 20%; 
 } 
+   .table>thead>tr>th[scope=col] {
+    text-align: center;    
+    } 	
 td > div.range {
   display: flex;
   flex-direction: column-reverse;
@@ -361,9 +364,8 @@ transform: scale(1.5);
             <caption class="wb-inv">
             Federal tax
             </caption>
-            <thead>
-              <tr id="federalHeader">
-                <th scope="col">Tax bracket</th>
+            <thead id="federalHeader">
+              <tr>
               </tr>
             </thead>
             <tbody id="federalBody">
@@ -381,9 +383,8 @@ transform: scale(1.5);
           <caption class="wb-inv">
           Selected provincial or territorial tax
           </caption>
-          <thead class="wb-inv">
-            <tr id="provinceHeader">
-                <th scope="col">Tax bracket</th>
+          <thead id="provinceHeader">
+            <tr>
             </tr>
           </thead>
           <tbody id="provinceBody">
@@ -761,8 +762,8 @@ const langToggle = {
 		fr: "based on: [Fr]"
 	},
 	dataTaxBracket: {
-		"en": "Tax bracket",
-		"fr": "Tax bracket [Fr]"
+		"en": "bracket",
+		"fr": "bracket [Fr]"
 	},
 	dataTaxRate: {
 		en: "Tax rate",
@@ -1041,10 +1042,9 @@ function updateTable(idPrefix, data, income) {
   const minIncome = parseInt(incomeSlider.min);
   const maxIncome = parseInt(incomeSlider.max);
 
- // headerRow.innerHTML = '<td></td>';   
-
+headerRow.innerHTML = '';   
 	tableBody.innerHTML = ''; 
-//let taxCount = 1;
+
   let totalTax = 0;
   let previousThreshold = 0;
   let currentTaxValues = [];
@@ -1059,7 +1059,6 @@ previousThreshold = 0;
     const rateRow = document.createElement('tr');
 const rateHeader = document.createElement('th');
   rateHeader.setAttribute('scope', 'row')   
-//rateHeader.innerHTML += `${langToggle.dataTaxRate[pagelang]}`;  
 rateHeader.textContent += `${langToggle.dataTaxRate[pagelang]}`;	
  rateRow.appendChild(rateHeader);   
  
@@ -1113,11 +1112,10 @@ if (index === 0) {
 	  
 
 // === Rate Header ===
-  const headerRow = document.createElement('th');
-	  headerRow.setAttribute('scope', 'col');  
-  //rateCell.innerHTML = `${percentFormatter.format(bracket.rate)}`;
-	headerRow.innerHTML = `${percentFormatter.format(bracket.rate)} <span class="wb-inv">langToggle.dataTaxBracket[pagelang]</span>`;  
- // rateRow.appendChild(headerRow);
+ const rateCell = document.createElement('th');
+	  rateCell.setAttribute('scope', 'col');  
+	rateCell.innerHTML = `${percentFormatter.format(bracket.rate)} <span class="wb-inv"> ${langToggle.dataTaxBracket[pagelang]}</span>`;  
+  rateRow.appendChild(rateCell);
 
       // === Income range Cell (clean up inner HTML) ===
       const incomeCell = document.createElement('td');
