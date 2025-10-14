@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TC/TCP Indexing Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      max-width: 600px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>TC/TCP Indexing Calculator</h2>
+
+  <label>1. Total claim amount reported on Form TD1 ($)
+    <input type="number" id="line1" step="0.01">
+  </label>
+
+  <label>2. Prior year BPANS (Nova Scotia only) ($)
+    <input type="number" id="line2" step="0.01">
+  </label>
+
+  <label>3. Pension income, tuition fees, education amounts ($)
+    <input type="number" id="line3" step="0.01">
+  </label>
+
+  <label>5. Indexing factor for the year
+    <input type="number" id="line5" step="0.0001">
+  </label>
+
+  <button onclick="calculateTCP()">Calculate</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function calculateTCP() {
+      const line1 = parseFloat(document.getElementById('line1').value) || 0;
+      const line2 = parseFloat(document.getElementById('line2').value) || 0;
+      const line3 = parseFloat(document.getElementById('line3').value) || 0;
+      const line5 = parseFloat(document.getElementById('line5').value) || 0;
+
+      const line4 = line1 - line2 - line3;
+      const line6 = Math.round(line4 * line5);
+      const line7 = line2 + 263.00; // Current year BPANS
+      const line8 = line3;
+      const line9 = line6 + line7 + line8;
+
+      document.getElementById('result').innerText =
+        `Revised TC/TCP amount: $${line9.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
