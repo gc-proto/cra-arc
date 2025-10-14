@@ -110,7 +110,7 @@
   </div>
  
   <button onclick="calculateTCPprov()">Calculate using the provincial TD1 form</button>
-  <div class="result" id="result"></div>
+  <div class="result" id="resultprov"></div>
 </div>
  
 
@@ -146,6 +146,7 @@ document.getElementById('provincialTD1Question').classList.toggle('hidden', !has
   document.getElementById('provinceSection').classList.toggle('hidden', !hasTD1);
   document.getElementById('yearSection').classList.add('hidden');
   document.getElementById('calculator').classList.add('hidden');
+  document.getElementById('calculator2').classList.add('hidden'); 
   document.getElementById('peiMessage').classList.add('hidden');
   document.getElementById('noMessage').classList.toggle('hidden', hasTD1);
 } 
@@ -156,6 +157,7 @@ function handleProvince() {
   document.getElementById('peiMessage').classList.toggle('hidden', !isPEI);
   document.getElementById('yearSection').classList.toggle('hidden', isPEI || province === '');
   document.getElementById('calculator').classList.add('hidden');
+   document.getElementById('calculator2').classList.add('hidden');
 }
 
 function showCalculator() {
@@ -169,6 +171,18 @@ function showCalculator() {
   document.getElementById('calculator').classList.remove('hidden');
   document.getElementById('result').innerHTML = '';
 }
+
+ function showCalculator2() {
+  const province = document.getElementById('province').value;
+  const year = document.getElementById('year').value;
+  const showLine2prov = province === 'Nova Scotia';
+  const hideLine3prov = province === 'Ontario';
+
+  document.getElementById('line2Sectionprov').classList.toggle('hidden', !showLine2);
+  document.getElementById('line3Sectionprov').classList.toggle('hidden', hideLine3);
+  document.getElementById('calculator2').classList.remove('hidden');
+  document.getElementById('resultprov').innerHTML = '';
+} 
 
 function calculateTCP() {
   const province = document.getElementById('province').value;
