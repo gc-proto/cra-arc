@@ -126,9 +126,22 @@
 <h2>Personal tax credits returns (Form TD1)</h2>
 <p>Each year, certain personal tax credit amounts are indexed based on changes to the Consumer Price Index (CPI). Since only some of the amounts are indexed, the CRA recommends that you record separately in your payroll records each item shown on your employee’s TD1 form. This will allow you to automatically increase the applicable indexed claim amounts when necessary. This also means you will not have to ask your employees to file a new TD1 form when indexing applies.</p>
 
-<label>Do you have a federal Form TD1 on file for this employee?</label>
-<input type="radio" name="td1" value="yes" onclick="toggleTD1(true)"> Yes
-<input type="radio" name="td1" value="no" onclick="toggleTD1(false)"> No
+<fieldset name="quest" id="question1" class="gc-chckbxrdio">
+	<label class="mrgn-tp-sm">Do you have a federal Form TD1 on file for this employee?</label>
+		
+   <ul class="list-unstyled lst-spcd-2">
+		 <li class="radio">
+                                        <input type="radio" name="td1" id="q1-true" value="yes" data-q1="true" data-rule-required="true" onclick="toggleTD1(true)">
+                                        <label for="q1-true">Yes</label>
+                                    </li>
+			 <li class="radio">
+                                        <input type="radio" name="td1" id="q1-false" value="no" data-q1="false" data-rule-required="true" onclick="toggleTD1(false)">
+                                        <label for="q1-false">No</label>
+                                    </li>
+			  </ul>
+		
+	</fieldset>
+			 
 
 <div id="provincialTD1Question" class="hidden">
   <label>Do you also have a provincial Form TD1 on file for this employee?</label>
