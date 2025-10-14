@@ -82,7 +82,7 @@ td > div.range meter::-moz-meter-bar {
     background: #f4f6f6;
   }
 }
-.active-cell, .prev-active, .tax-rate-cell {
+.active-cell, .prev-active {
     font-weight: bold;
 }    
 .estimate-borders {
@@ -760,6 +760,10 @@ const langToggle = {
 		en: "based on:",
 		fr: "based on: [Fr]"
 	},
+	dataTaxBracket: {
+		"en": "Tax bracket",
+		"fr": "Tax bracket [Fr]"
+	},
 	dataTaxRate: {
 		en: "Tax rate",
 		fr: "Tax rate [Fr]"
@@ -1037,10 +1041,10 @@ function updateTable(idPrefix, data, income) {
   const minIncome = parseInt(incomeSlider.min);
   const maxIncome = parseInt(incomeSlider.max);
 
-  headerRow.innerHTML = '<td></td>';
-    
-tableBody.innerHTML = ''; 
-let taxCount = 1;
+ // headerRow.innerHTML = '<td></td>';   
+
+	tableBody.innerHTML = ''; 
+//let taxCount = 1;
   let totalTax = 0;
   let previousThreshold = 0;
   let currentTaxValues = [];
@@ -1094,7 +1098,8 @@ if (index === 0) {
     const taxEstimate = Math.round(bracketIncome * bracket.rate);
     totalTax += taxEstimate;
 
-	  headerRow.innerHTML += `<th scope="col">Tax bracket ${taxCount++}</th>`;
+	  //headerRow.innerHTML += `<th scope="col">Tax bracket ${taxCount++}</th>`;
+	  
 //Meter fill calculation      
   function meterFill() {
     if (income < previousThreshold) {
@@ -1107,12 +1112,12 @@ if (index === 0) {
 }
 	  
 
-// === Rate Cell ===
-  const rateCell = document.createElement('td');
-	  rateCell.setAttribute('class', 'tax-rate-cell');  
+// === Rate Header ===
+  const rateHeaderCol = document.createElement('th');
+	  rateHeaderCol.setAttribute('scope', 'col');  
   //rateCell.innerHTML = `${percentFormatter.format(bracket.rate)}`;
-	rateCell.textContent = `${percentFormatter.format(bracket.rate)}`;  
-  rateRow.appendChild(rateCell);
+	rateHeaderCol.innerHTML = `${percentFormatter.format(bracket.rate)} <span class="wb-inv">langToggle.dataTaxBracket[pagelang]</span>`;  
+  rateRow.appendChild(rateHeaderCol);
 
       // === Income range Cell (clean up inner HTML) ===
       const incomeCell = document.createElement('td');
@@ -1136,7 +1141,7 @@ ${currencyFormatterChart.format(taxEstimate)}`;
    previousThreshold = threshold;
   });
  
-tableBody.appendChild(rateRow);
+//tableBody.appendChild(rateRow);
 tableBody.appendChild(incomeRow);
 tableBody.appendChild(payableRow);
 
