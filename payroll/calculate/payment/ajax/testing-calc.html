@@ -448,11 +448,9 @@ function resetFormSection(sectionId) {
 function calculateTCP() {
   const province = document.getElementById('province').value || 'Federal';
   const year = document.getElementById('year').value;
-
-  // Remove commas before parsing
-  const line1 = parseFloat(document.getElementById('line1').value.replace(/,/g, '')) || 0;
-  const line2 = parseFloat(document.getElementById('line2').value.replace(/,/g, '')) || 0;
-  const line3 = parseFloat(document.getElementById('line3').value.replace(/,/g, '')) || 0;
+  const line1 = parseFloat(document.getElementById('line1').value) || 0;
+  const line2 = parseFloat(document.getElementById('line2').value) || 0;
+  const line3 = parseFloat(document.getElementById('line3').value) || 0;
 
   const useLine2 = province === 'Nova Scotia';
   const useLine3 = province !== 'Ontario';
@@ -466,7 +464,9 @@ function calculateTCP() {
   const line8 = actualLine3;
   const line9 = line6 + line7 + line8;
 
-  const yukonNote = province === 'Yukon' ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>' : '';
+  const yukonNote = province === 'Yukon'
+    ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>'
+    : '';
 
   document.getElementById('result').innerHTML = `
     ${yukonNote}
@@ -486,11 +486,9 @@ function calculateTCP() {
 function calculateTCPprov() {
   const province = document.getElementById('province').value || '';
   const year = document.getElementById('year').value;
-
-  // Remove commas before parsing
-  const line1prov = parseFloat(document.getElementById('line1prov').value.replace(/,/g, '')) || 0;
-  const line2prov = parseFloat(document.getElementById('line2prov').value.replace(/,/g, '')) || 0;
-  const line3prov = parseFloat(document.getElementById('line3prov').value.replace(/,/g, '')) || 0;
+  const line1prov = parseFloat(document.getElementById('line1prov').value) || 0;
+  const line2prov = parseFloat(document.getElementById('line2prov').value) || 0;
+  const line3prov = parseFloat(document.getElementById('line3prov').value) || 0;
 
   const useLine2prov = province === 'Nova Scotia';
   const useLine3prov = province !== 'Ontario';
@@ -504,7 +502,9 @@ function calculateTCPprov() {
   const line8prov = actualLine3prov;
   const line9prov = line6prov + line7prov + line8prov;
 
-  const yukonNote = province === 'Yukon' ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>' : '';
+  const yukonNote = province === 'Yukon'
+    ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>'
+    : '';
 
   document.getElementById('resultprov').innerHTML = `
     ${yukonNote}
@@ -521,38 +521,15 @@ function calculateTCPprov() {
   `;
 }
 
-     function formatCurrencyInput(input) {
-  input.addEventListener('input', () => {
-    let value = input.value.replace(/,/g, '').replace(/[^\d.]/g, ''); // remove commas & non-numeric
-    if (value) {
-      const parts = value.split('.');
-      // Limit to 2 decimal places
-      if (parts[1]) parts[1] = parts[1].substring(0, 2);
-      value = parts.join('.');
-      // Format with commas
-      input.value = Number(value).toLocaleString('en-CA', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-    } else {
-      input.value = '';
-    }
-  });
-}
 
     document.addEventListener('DOMContentLoaded', () => {
       // Wire up inputs (use defensive checks)
       const federalLine1 = document.getElementById('line1');
       const federalLine2 = document.getElementById('line2');
       const federalLine3 = document.getElementById('line3');
-       const inputs = [
-    'line1', 'line2', 'line3',
-    'line1prov', 'line2prov', 'line3prov'
-  ]; 
       if (federalLine1) federalLine1.addEventListener('input', checkFederalInputs);
       if (federalLine2) federalLine2.addEventListener('input', checkFederalInputs);
       if (federalLine3) federalLine3.addEventListener('input', checkFederalInputs);
-      inputs.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) formatCurrencyInput(el);
-  }); 
 
       const provLine1 = document.getElementById('line1prov');
       const provLine2 = document.getElementById('line2prov');
