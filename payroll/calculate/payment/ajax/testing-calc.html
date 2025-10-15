@@ -278,19 +278,22 @@
       }
     };
 
+
 function toggleTD1(hasTD1) {
   // Show/hide provincial question
   document.getElementById('provincialTD1Question').classList.toggle('hidden', !hasTD1);
-
-  // Show noMessage only if federal TD1 = No
   document.getElementById('noMessage').classList.toggle('hidden', hasTD1);
 
   if (!hasTD1) {
-    // Reset downstream inputs/calculators
+    // Reset federal & provincial calculators
     resetFormSection('calculator');
     resetFormSection('calculator2');
     document.getElementById('calculator').classList.add('hidden');
     document.getElementById('calculator2').classList.add('hidden');
+
+    // Reset provincial TD1 selection
+    const provRadios = document.querySelectorAll('input[name="provincial_td1"]');
+    provRadios.forEach(r => r.checked = false);
 
     // Reset province/year selectors
     document.getElementById('province').value = '';
@@ -306,22 +309,40 @@ function toggleTD1(hasTD1) {
 function toggleprovTD1(hasProv) {
   window.hasProvincialTD1 = !!hasProv;
 
-  // Always show province/year dropdowns
+  // Show province/year dropdowns
   document.getElementById('provinceSection').classList.remove('hidden');
   document.getElementById('yearSection').classList.remove('hidden');
 
   if (!hasProv) {
-    // Reset provincial calculator & selectors if "No"
+    // Reset provincial calculator & inputs
     resetFormSection('calculator2');
     document.getElementById('calculator2').classList.add('hidden');
+
+    // Reset province/year selections
     document.getElementById('province').value = '';
     document.getElementById('year').value = '';
   } else {
-    // Clear old inputs if "Yes" but keep dropdowns visible
+    // Clear old inputs but keep dropdowns visible
     resetFormSection('calculator2');
   }
 }
 
+function resetFormSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+
+  // Reset inputs
+  section.querySelectorAll('input').forEach(input => input.value = '');
+
+  // Reset results
+  const result = section.querySelector('.result');
+  if (result) result.innerHTML = '';
+
+  // Hide all optional subsections
+  section.querySelectorAll('div, section').forEach(el => el.classList.add('hidden'));
+}
+
+     
     function handleProvince() {
       const province = document.getElementById('province').value;
       const isPEI = province === 'Prince Edward Island';
