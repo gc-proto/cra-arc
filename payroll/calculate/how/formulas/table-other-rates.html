@@ -67,11 +67,10 @@
 	<main class="container" property="mainContentOfPage" role="main">
 <h1 class="gc-thickline" id="wb-cont" property="name">Tax rates and thresholds</h1>
 
-
-  <table id="ratesTable" class="display">
+ <table id="ratesTable" class="display" style="width:100%">
     <thead>
       <tr>
-        <th></th>
+        <th>Unnamed: 0</th>
         <th>Basic amount</th>
         <th>Index rate</th>
         <th>LCP rate</th>
@@ -84,30 +83,28 @@
         <th>Surtax</th>
       </tr>
     </thead>
-    <tbody>
-      <!-- Table rows go here, dynamically generated from CSV -->
-      
-    </tbody>
+    <tbody></tbody>
   </table>
 
- <script>
+  <script>
     fetch('other-rates.json')
       .then(response => response.json())
       .then(data => {
         const tbody = document.querySelector('#ratesTable tbody');
         data.forEach(row => {
           const tr = document.createElement('tr');
-          tr.innerHTML += `<td>${row["Unnamed: 0"] || ""}</td>`;
-          tr.innerHTML += `<td>${row["Basic amount"] || ""}</td>`;
-          tr.innerHTML += `<td>${row["Index rate"] || ""}</td>`;
-          tr.innerHTML += `<td>${row["LCP rate"] || ""}</td>`;
-          tr.innerHTML += `<td>${row["LCP amount"] || ""}</td>`;
-          tr.innerHTML += `<td>${row["CEA"] || ""}</td>`;
-          tr.innerHTML += `<td>${row["S2"] || ""}</td>`;
-          tr.innerHTML += `<td>${row["T4 to V1"] || ""}</td>`;
-          tr.innerHTML += `<td>${row["V1 rate"] || ""}</td>`;
-          tr.innerHTML += `<td>${row["Abatement"] || ""}</td>`;
-          tr.innerHTML += `<td>${row["Surtax"] || ""}</td>`;
+          tr.innerHTML += `<td>${row["Unnamed: 0"]}</td>`;
+          tr.innerHTML += `<td>${row["Basic amount"]}</td>`;
+          tr.innerHTML += `<td>${row["Index rate"]}</td>`;
+          tr.innerHTML += `<td>${row["LCP rate"]}</td>`;
+          tr.innerHTML += `<td>${row["LCP amount"]}</td>`;
+          tr.innerHTML += `<td>${row["CEA"]}</td>`;
+          tr.innerHTML += `<td>${row["S2"]}</td>`;
+          tr.innerHTML += `<td>${row["T4 to V1"]}</td>`;
+          tr.innerHTML += `<td>${row["V1 rate"]}</td>`;
+          tr.innerHTML += `<td>${row["Abatement"]}</td>`;
+          tr.innerHTML += `<td>${row["Surtax"]}</td>`;
+
           tbody.appendChild(tr);
         });
         $('#ratesTable').DataTable();
