@@ -517,7 +517,301 @@
         </section>
       </li>
     </ul>
+			<!-- Local application script (kept in-body for predictable DOM availability) -->
+  <script>
+    // Initialization
+    window.hasProvincialTD1 = false;
 
+    const indexingRates = {
+      "2023": {
+        "Federal": 0.063, "Alberta": 0.06, "British Columbia": 0.06, "Manitoba": 0.07,
+        "New Brunswick": 0.063, "Newfoundland and Labrador": 0.059, "Nova Scotia": null,
+        "Northwest Territories": 0.063, "Nunavut": 0.063, "Ontario": 0.065,
+        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.063, "Yukon": 0.063
+      },
+      "2024": {
+        "Federal": 0.047, "Alberta": 0.042, "British Columbia": 0.05, "Manitoba": 0.052,
+        "New Brunswick": 0.047, "Newfoundland and Labrador": 0.042, "Nova Scotia": null,
+        "Northwest Territories": 0.047, "Nunavut": 0.047, "Ontario": 0.045,
+        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.047, "Yukon": 0.047
+      },
+      "2025": {
+        "Federal": 0.027, "Alberta": 0.02, "British Columbia": 0.028, "Manitoba": 0.012,
+        "New Brunswick": 0.027, "Newfoundland and Labrador": 0.023, "Nova Scotia": 0.031,
+        "Northwest Territories": 0.027, "Nunavut": 0.027, "Ontario": 0.028,
+        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.027, "Yukon": 0.027
+      }
+    };
+
+
+function toggleTD1(hasTD1) {
+  // Show/hide provincial question
+  document.getElementById('provincialTD1Question').classList.toggle('hidden', !hasTD1);
+  document.getElementById('noMessage').classList.toggle('hidden', hasTD1);
+
+  if (!hasTD1) {
+    // Reset federal & provincial calculators
+    resetFormSection('calculator');
+    resetFormSection('calculator2');
+    document.getElementById('calculator').classList.add('hidden');
+    document.getElementById('calculator2').classList.add('hidden');
+
+    // Reset provincial TD1 selection
+    const provRadios = document.querySelectorAll('input[name="provincial_td1"]');
+    provRadios.forEach(r => r.checked = false);
+
+    // Reset province/year selectors
+    document.getElementById('province').value = '';
+    document.getElementById('provinceSection').classList.add('hidden');
+    document.getElementById('year').value = '';
+    document.getElementById('yearSection').classList.add('hidden');
+    document.getElementById('peiMessage').classList.add('hidden');
+
+    window.hasProvincialTD1 = false;
+  }
+}
+
+function toggleprovTD1(hasProv) {
+  window.hasProvincialTD1 = !!hasProv;
+
+  // Show province/year dropdowns
+  document.getElementById('provinceSection').classList.remove('hidden');
+  document.getElementById('yearSection').classList.remove('hidden');
+
+  if (!hasProv) {
+    // Reset provincial calculator & inputs
+    resetFormSection('calculator2');
+    document.getElementById('calculator2').classList.add('hidden');
+
+    // Reset province/year selections
+    document.getElementById('province').value = '';
+    document.getElementById('year').value = '';
+  } else {
+    // Clear old inputs but keep dropdowns visible
+    resetFormSection('calculator2');
+  }
+}
+
+function resetFormSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+
+  // Reset inputs
+  section.querySelectorAll('input').forEach(input => input.value = '');
+
+  // Reset results
+  const result = section.querySelector('.result');
+  if (result) result.innerHTML = '';
+
+  // Hide all optional subsections
+  section.querySelectorAll('div, section').forEach(el => el.classList.add('hidden'));
+}
+
+     
+    function handleProvince() {
+      const province = document.getElementById('province').value;
+      const isPEI = province === 'Prince Edward Island';
+
+      document.getElementById('peiMessage').classList.toggle('hidden', !isPEI);
+      // The year selection is shown when not PEI and a province is selected
+      document.getElementById('yearSection').classList.toggle('hidden', isPEI || province === '');
+
+      // Reset calculators whenever province changes
+      resetFormSection('calculator');
+      resetFormSection('calculator2');
+      document.getElementById('calculator').classList.add('hidden');
+      document.getElementById('calculator2').classList.add('hidden');
+    }
+
+    function showCalculator() {
+      const province = document.getElementById('province').value;
+      const showLine2 = province === 'Nova Scotia';
+      const hideLine3 = province === 'Ontario';
+
+      document.getElementById('line2Section').classList.toggle('hidden', !showLine2);
+      document.getElementById('line3Section').classList.toggle('hidden', hideLine3);
+      document.getElementById('calculator').classList.remove('hidden');
+
+      // clear previous result
+      const res = document.getElementById('result');
+      if (res) res.innerHTML = '';
+    }
+
+   function showCalculator2() {
+  if (!window.hasProvincialTD1) return;
+
+  const province = document.getElementById('province').value;
+  const showLine2prov = province === 'Nova Scotia';
+  const hideLine3prov = province === 'Ontario';
+
+  document.getElementById('line2Sectionprov').classList.toggle('hidden', !showLine2prov);
+  document.getElementById('line3Sectionprov').classList.toggle('hidden', hideLine3prov);
+  document.getElementById('calculator2').classList.remove('hidden');
+
+  // Make provincial full-width if federal calculator is hidden
+  const liProv = document.getElementById('calculator2').parentElement;
+  const liFederal = document.getElementById('calculator').querySelector('.cnjnctn-col:first-child');
+
+  if (liFederal && liFederal.classList.contains('hidden')) {
+    liProv.classList.add('full-width');
+  } else {
+    liProv.classList.remove('full-width');
+  }
+
+  const resProv = document.getElementById('resultprov');
+  if (resProv) resProv.innerHTML = '';
+}
+    function resetFormSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      const inputs = section.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.value = '';
+      });
+
+      const result = section.querySelector('.result');
+      if (result) result.innerHTML = '';
+
+      // Ensure optional subsections are hidden
+      const toggles = section.querySelectorAll('.hidden');
+      toggles.forEach(el => el.classList.add('hidden'));
+    }
+
+    function checkFederalInputs() {
+      const line1 = (document.getElementById('line1') && document.getElementById('line1').value || '').trim();
+      const line2Visible = !document.getElementById('line2Section').classList.contains('hidden');
+      const line2 = (document.getElementById('line2') && document.getElementById('line2').value || '').trim();
+      const line3Visible = !document.getElementById('line3Section').classList.contains('hidden');
+      const line3 = (document.getElementById('line3') && document.getElementById('line3').value || '').trim();
+
+      const button = document.querySelector('#calculator button');
+      const valid =
+        line1 !== '' &&
+        (!line2Visible || line2 !== '') &&
+        (!line3Visible || line3 !== '');
+
+      if (button) button.disabled = !valid;
+    }
+
+    function checkProvincialInputs() {
+      const line1 = (document.getElementById('line1prov') && document.getElementById('line1prov').value || '').trim();
+      const line2Visible = !document.getElementById('line2Sectionprov').classList.contains('hidden');
+      const line2 = (document.getElementById('line2prov') && document.getElementById('line2prov').value || '').trim();
+      const line3Visible = !document.getElementById('line3Sectionprov').classList.contains('hidden');
+      const line3 = (document.getElementById('line3prov') && document.getElementById('line3prov').value || '').trim();
+
+      const button = document.querySelector('#calculator2 button');
+      const valid =
+        line1 !== '' &&
+        (!line2Visible || line2 !== '') &&
+        (!line3Visible || line3 !== '');
+
+      if (button) button.disabled = !valid;
+    }
+
+function calculateTCP() {
+  const province = document.getElementById('province').value || 'Federal';
+  const year = document.getElementById('year').value;
+  const line1 = parseFloat(document.getElementById('line1').value) || 0;
+  const line2 = parseFloat(document.getElementById('line2').value) || 0;
+  const line3 = parseFloat(document.getElementById('line3').value) || 0;
+
+  const useLine2 = province === 'Nova Scotia';
+  const useLine3 = province !== 'Ontario';
+  const actualLine2 = useLine2 ? line2 : 0;
+  const actualLine3 = useLine3 ? line3 : 0;
+  const line4 = line1 - actualLine2 - actualLine3;
+
+  const indexFactor = (indexingRates[year] && indexingRates[year][province]) || 0;
+  const line6 = Math.round(line4 * indexFactor);
+  const line7 = actualLine2 + 263.00;
+  const line8 = actualLine3;
+  const line9 = line6 + line7 + line8;
+
+  const yukonNote = province === 'Yukon'
+    ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>'
+    : '';
+
+  document.getElementById('result').innerHTML = `
+    ${yukonNote}
+    <h4>Federal - Calculation breakdown</h4>
+    <p>Line 1: Total claim amount reported on line 13 of the federal Form TD1 = $${line1.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p>Line 2: Minus prior year BPANS = $${actualLine2.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
+    <p>Line 3: Minus non-indexed amounts = $${actualLine3.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p>Line 4: Amount subject to indexing = $${line4.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
+    <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
+    <p>Line 6: Indexed amount = $${line6.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
+    <p>Line 7: Current year BPANS = $${line7.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
+    <p>Line 8: Non-indexed amounts = $${line8.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (amount from line 3)</p>
+    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
+  `;
+}
+
+function calculateTCPprov() {
+  const province = document.getElementById('province').value || '';
+  const year = document.getElementById('year').value;
+  const line1prov = parseFloat(document.getElementById('line1prov').value) || 0;
+  const line2prov = parseFloat(document.getElementById('line2prov').value) || 0;
+  const line3prov = parseFloat(document.getElementById('line3prov').value) || 0;
+
+  const useLine2prov = province === 'Nova Scotia';
+  const useLine3prov = province !== 'Ontario';
+  const actualLine2prov = useLine2prov ? line2prov : 0;
+  const actualLine3prov = useLine3prov ? line3prov : 0;
+  const line4prov = line1prov - actualLine2prov - actualLine3prov;
+
+  const indexFactor = (indexingRates[year] && indexingRates[year][province]) || 0;
+  const line6prov = Math.round(line4prov * indexFactor);
+  const line7prov = actualLine2prov + 263.00;
+  const line8prov = actualLine3prov;
+  const line9prov = line6prov + line7prov + line8prov;
+
+  const yukonNote = province === 'Yukon'
+    ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>'
+    : '';
+
+  document.getElementById('resultprov').innerHTML = `
+    ${yukonNote}
+    <h4>Provincial - Calculation breakdown</h4>
+    <p>Line 1: Total claim amount reported on the provincial Form TD1 = $${line1prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p>Line 2: Minus prior year BPANS = $${actualLine2prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
+    <p>Line 3: Minus non-indexed amounts = $${actualLine3prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p>Line 4: Amount subject to indexing = $${line4prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
+    <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
+    <p>Line 6: Indexed amount = $${line6prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
+    <p>Line 7: Current year BPANS = $${line7prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
+    <p>Line 8: Non-indexed amounts = $${line8prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (amount from line 3)</p>
+    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
+  `;
+}
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Wire up inputs (use defensive checks)
+      const federalLine1 = document.getElementById('line1');
+      const federalLine2 = document.getElementById('line2');
+      const federalLine3 = document.getElementById('line3');
+      if (federalLine1) federalLine1.addEventListener('input', checkFederalInputs);
+      if (federalLine2) federalLine2.addEventListener('input', checkFederalInputs);
+      if (federalLine3) federalLine3.addEventListener('input', checkFederalInputs);
+
+      const provLine1 = document.getElementById('line1prov');
+      const provLine2 = document.getElementById('line2prov');
+      const provLine3 = document.getElementById('line3prov');
+      if (provLine1) provLine1.addEventListener('input', checkProvincialInputs);
+      if (provLine2) provLine2.addEventListener('input', checkProvincialInputs);
+      if (provLine3) provLine3.addEventListener('input', checkProvincialInputs);
+
+      // ensure all calculators are hidden initially
+      document.getElementById('calculator').classList.add('hidden');
+      document.getElementById('calculator2').classList.add('hidden');
+      document.getElementById('provinceSection').classList.add('hidden');
+      document.getElementById('yearSection').classList.add('hidden');
+      document.getElementById('noMessage').classList.add('hidden');
+
+    });
+  </script>   
                       
    </details>
 
@@ -1290,301 +1584,7 @@
                showShare: true
                });
             </script>
-			<!-- Local application script (kept in-body for predictable DOM availability) -->
-  <script>
-    // Initialization
-    window.hasProvincialTD1 = false;
 
-    const indexingRates = {
-      "2023": {
-        "Federal": 0.063, "Alberta": 0.06, "British Columbia": 0.06, "Manitoba": 0.07,
-        "New Brunswick": 0.063, "Newfoundland and Labrador": 0.059, "Nova Scotia": null,
-        "Northwest Territories": 0.063, "Nunavut": 0.063, "Ontario": 0.065,
-        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.063, "Yukon": 0.063
-      },
-      "2024": {
-        "Federal": 0.047, "Alberta": 0.042, "British Columbia": 0.05, "Manitoba": 0.052,
-        "New Brunswick": 0.047, "Newfoundland and Labrador": 0.042, "Nova Scotia": null,
-        "Northwest Territories": 0.047, "Nunavut": 0.047, "Ontario": 0.045,
-        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.047, "Yukon": 0.047
-      },
-      "2025": {
-        "Federal": 0.027, "Alberta": 0.02, "British Columbia": 0.028, "Manitoba": 0.012,
-        "New Brunswick": 0.027, "Newfoundland and Labrador": 0.023, "Nova Scotia": 0.031,
-        "Northwest Territories": 0.027, "Nunavut": 0.027, "Ontario": 0.028,
-        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.027, "Yukon": 0.027
-      }
-    };
-
-
-function toggleTD1(hasTD1) {
-  // Show/hide provincial question
-  document.getElementById('provincialTD1Question').classList.toggle('hidden', !hasTD1);
-  document.getElementById('noMessage').classList.toggle('hidden', hasTD1);
-
-  if (!hasTD1) {
-    // Reset federal & provincial calculators
-    resetFormSection('calculator');
-    resetFormSection('calculator2');
-    document.getElementById('calculator').classList.add('hidden');
-    document.getElementById('calculator2').classList.add('hidden');
-
-    // Reset provincial TD1 selection
-    const provRadios = document.querySelectorAll('input[name="provincial_td1"]');
-    provRadios.forEach(r => r.checked = false);
-
-    // Reset province/year selectors
-    document.getElementById('province').value = '';
-    document.getElementById('provinceSection').classList.add('hidden');
-    document.getElementById('year').value = '';
-    document.getElementById('yearSection').classList.add('hidden');
-    document.getElementById('peiMessage').classList.add('hidden');
-
-    window.hasProvincialTD1 = false;
-  }
-}
-
-function toggleprovTD1(hasProv) {
-  window.hasProvincialTD1 = !!hasProv;
-
-  // Show province/year dropdowns
-  document.getElementById('provinceSection').classList.remove('hidden');
-  document.getElementById('yearSection').classList.remove('hidden');
-
-  if (!hasProv) {
-    // Reset provincial calculator & inputs
-    resetFormSection('calculator2');
-    document.getElementById('calculator2').classList.add('hidden');
-
-    // Reset province/year selections
-    document.getElementById('province').value = '';
-    document.getElementById('year').value = '';
-  } else {
-    // Clear old inputs but keep dropdowns visible
-    resetFormSection('calculator2');
-  }
-}
-
-function resetFormSection(sectionId) {
-  const section = document.getElementById(sectionId);
-  if (!section) return;
-
-  // Reset inputs
-  section.querySelectorAll('input').forEach(input => input.value = '');
-
-  // Reset results
-  const result = section.querySelector('.result');
-  if (result) result.innerHTML = '';
-
-  // Hide all optional subsections
-  section.querySelectorAll('div, section').forEach(el => el.classList.add('hidden'));
-}
-
-     
-    function handleProvince() {
-      const province = document.getElementById('province').value;
-      const isPEI = province === 'Prince Edward Island';
-
-      document.getElementById('peiMessage').classList.toggle('hidden', !isPEI);
-      // The year selection is shown when not PEI and a province is selected
-      document.getElementById('yearSection').classList.toggle('hidden', isPEI || province === '');
-
-      // Reset calculators whenever province changes
-      resetFormSection('calculator');
-      resetFormSection('calculator2');
-      document.getElementById('calculator').classList.add('hidden');
-      document.getElementById('calculator2').classList.add('hidden');
-    }
-
-    function showCalculator() {
-      const province = document.getElementById('province').value;
-      const showLine2 = province === 'Nova Scotia';
-      const hideLine3 = province === 'Ontario';
-
-      document.getElementById('line2Section').classList.toggle('hidden', !showLine2);
-      document.getElementById('line3Section').classList.toggle('hidden', hideLine3);
-      document.getElementById('calculator').classList.remove('hidden');
-
-      // clear previous result
-      const res = document.getElementById('result');
-      if (res) res.innerHTML = '';
-    }
-
-   function showCalculator2() {
-  if (!window.hasProvincialTD1) return;
-
-  const province = document.getElementById('province').value;
-  const showLine2prov = province === 'Nova Scotia';
-  const hideLine3prov = province === 'Ontario';
-
-  document.getElementById('line2Sectionprov').classList.toggle('hidden', !showLine2prov);
-  document.getElementById('line3Sectionprov').classList.toggle('hidden', hideLine3prov);
-  document.getElementById('calculator2').classList.remove('hidden');
-
-  // Make provincial full-width if federal calculator is hidden
-  const liProv = document.getElementById('calculator2').parentElement;
-  const liFederal = document.getElementById('calculator').querySelector('.cnjnctn-col:first-child');
-
-  if (liFederal && liFederal.classList.contains('hidden')) {
-    liProv.classList.add('full-width');
-  } else {
-    liProv.classList.remove('full-width');
-  }
-
-  const resProv = document.getElementById('resultprov');
-  if (resProv) resProv.innerHTML = '';
-}
-    function resetFormSection(sectionId) {
-      const section = document.getElementById(sectionId);
-      if (!section) return;
-
-      const inputs = section.querySelectorAll('input');
-      inputs.forEach(input => {
-        input.value = '';
-      });
-
-      const result = section.querySelector('.result');
-      if (result) result.innerHTML = '';
-
-      // Ensure optional subsections are hidden
-      const toggles = section.querySelectorAll('.hidden');
-      toggles.forEach(el => el.classList.add('hidden'));
-    }
-
-    function checkFederalInputs() {
-      const line1 = (document.getElementById('line1') && document.getElementById('line1').value || '').trim();
-      const line2Visible = !document.getElementById('line2Section').classList.contains('hidden');
-      const line2 = (document.getElementById('line2') && document.getElementById('line2').value || '').trim();
-      const line3Visible = !document.getElementById('line3Section').classList.contains('hidden');
-      const line3 = (document.getElementById('line3') && document.getElementById('line3').value || '').trim();
-
-      const button = document.querySelector('#calculator button');
-      const valid =
-        line1 !== '' &&
-        (!line2Visible || line2 !== '') &&
-        (!line3Visible || line3 !== '');
-
-      if (button) button.disabled = !valid;
-    }
-
-    function checkProvincialInputs() {
-      const line1 = (document.getElementById('line1prov') && document.getElementById('line1prov').value || '').trim();
-      const line2Visible = !document.getElementById('line2Sectionprov').classList.contains('hidden');
-      const line2 = (document.getElementById('line2prov') && document.getElementById('line2prov').value || '').trim();
-      const line3Visible = !document.getElementById('line3Sectionprov').classList.contains('hidden');
-      const line3 = (document.getElementById('line3prov') && document.getElementById('line3prov').value || '').trim();
-
-      const button = document.querySelector('#calculator2 button');
-      const valid =
-        line1 !== '' &&
-        (!line2Visible || line2 !== '') &&
-        (!line3Visible || line3 !== '');
-
-      if (button) button.disabled = !valid;
-    }
-
-function calculateTCP() {
-  const province = document.getElementById('province').value || 'Federal';
-  const year = document.getElementById('year').value;
-  const line1 = parseFloat(document.getElementById('line1').value) || 0;
-  const line2 = parseFloat(document.getElementById('line2').value) || 0;
-  const line3 = parseFloat(document.getElementById('line3').value) || 0;
-
-  const useLine2 = province === 'Nova Scotia';
-  const useLine3 = province !== 'Ontario';
-  const actualLine2 = useLine2 ? line2 : 0;
-  const actualLine3 = useLine3 ? line3 : 0;
-  const line4 = line1 - actualLine2 - actualLine3;
-
-  const indexFactor = (indexingRates[year] && indexingRates[year][province]) || 0;
-  const line6 = Math.round(line4 * indexFactor);
-  const line7 = actualLine2 + 263.00;
-  const line8 = actualLine3;
-  const line9 = line6 + line7 + line8;
-
-  const yukonNote = province === 'Yukon'
-    ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>'
-    : '';
-
-  document.getElementById('result').innerHTML = `
-    ${yukonNote}
-    <h4>Federal - Calculation breakdown</h4>
-    <p>Line 1: Total claim amount reported on line 13 of the federal Form TD1 = $${line1.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 2: Minus prior year BPANS = $${actualLine2.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
-    <p>Line 3: Minus non-indexed amounts = $${actualLine3.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 4: Amount subject to indexing = $${line4.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
-    <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
-    <p>Line 6: Indexed amount = $${line6.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
-    <p>Line 7: Current year BPANS = $${line7.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
-    <p>Line 8: Non-indexed amounts = $${line8.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (amount from line 3)</p>
-    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
-  `;
-}
-
-function calculateTCPprov() {
-  const province = document.getElementById('province').value || '';
-  const year = document.getElementById('year').value;
-  const line1prov = parseFloat(document.getElementById('line1prov').value) || 0;
-  const line2prov = parseFloat(document.getElementById('line2prov').value) || 0;
-  const line3prov = parseFloat(document.getElementById('line3prov').value) || 0;
-
-  const useLine2prov = province === 'Nova Scotia';
-  const useLine3prov = province !== 'Ontario';
-  const actualLine2prov = useLine2prov ? line2prov : 0;
-  const actualLine3prov = useLine3prov ? line3prov : 0;
-  const line4prov = line1prov - actualLine2prov - actualLine3prov;
-
-  const indexFactor = (indexingRates[year] && indexingRates[year][province]) || 0;
-  const line6prov = Math.round(line4prov * indexFactor);
-  const line7prov = actualLine2prov + 263.00;
-  const line8prov = actualLine3prov;
-  const line9prov = line6prov + line7prov + line8prov;
-
-  const yukonNote = province === 'Yukon'
-    ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>'
-    : '';
-
-  document.getElementById('resultprov').innerHTML = `
-    ${yukonNote}
-    <h4>Provincial - Calculation breakdown</h4>
-    <p>Line 1: Total claim amount reported on the provincial Form TD1 = $${line1prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 2: Minus prior year BPANS = $${actualLine2prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
-    <p>Line 3: Minus non-indexed amounts = $${actualLine3prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 4: Amount subject to indexing = $${line4prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
-    <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
-    <p>Line 6: Indexed amount = $${line6prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
-    <p>Line 7: Current year BPANS = $${line7prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
-    <p>Line 8: Non-indexed amounts = $${line8prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (amount from line 3)</p>
-    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
-  `;
-}
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Wire up inputs (use defensive checks)
-      const federalLine1 = document.getElementById('line1');
-      const federalLine2 = document.getElementById('line2');
-      const federalLine3 = document.getElementById('line3');
-      if (federalLine1) federalLine1.addEventListener('input', checkFederalInputs);
-      if (federalLine2) federalLine2.addEventListener('input', checkFederalInputs);
-      if (federalLine3) federalLine3.addEventListener('input', checkFederalInputs);
-
-      const provLine1 = document.getElementById('line1prov');
-      const provLine2 = document.getElementById('line2prov');
-      const provLine3 = document.getElementById('line3prov');
-      if (provLine1) provLine1.addEventListener('input', checkProvincialInputs);
-      if (provLine2) provLine2.addEventListener('input', checkProvincialInputs);
-      if (provLine3) provLine3.addEventListener('input', checkProvincialInputs);
-
-      // ensure all calculators are hidden initially
-      document.getElementById('calculator').classList.add('hidden');
-      document.getElementById('calculator2').classList.add('hidden');
-      document.getElementById('provinceSection').classList.add('hidden');
-      document.getElementById('yearSection').classList.add('hidden');
-      document.getElementById('noMessage').classList.add('hidden');
-
-    });
-  </script>   
         
          <div id="def-footer">
          </div>
