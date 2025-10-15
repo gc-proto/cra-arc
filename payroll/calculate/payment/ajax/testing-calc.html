@@ -316,6 +316,7 @@ function toggleTD1(hasTD1) {
   }
 }
 
+
 function toggleprovTD1(hasProv) {
   window.hasProvincialTD1 = !!hasProv;
 
@@ -327,12 +328,11 @@ function toggleprovTD1(hasProv) {
   resetFormSection('calculator2');
   document.getElementById('calculator2').classList.add('hidden');
 
-  if (!hasProv) {
-    // Reset province/year if user selects "No"
-    document.getElementById('province').value = '';
-    document.getElementById('year').value = '';
-  }
+  // Always reset province and year whenever user changes the provincial TD1 question
+  document.getElementById('province').value = '';
+  document.getElementById('year').value = '';
 }
+   
 
 function handleProvince() {
   const province = document.getElementById('province').value;
