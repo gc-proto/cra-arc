@@ -279,33 +279,45 @@
     };
 
 function toggleTD1(hasTD1) {
+  // Show/hide provincial question
   document.getElementById('provincialTD1Question').classList.toggle('hidden', !hasTD1);
-  document.getElementById('noMessage').classList.toggle('hidden', hasTD1); // show only if No
 
-  // Reset downstream inputs/calculators
-  resetFormSection('calculator');
-  resetFormSection('calculator2');
-  document.getElementById('calculator').classList.add('hidden');
-  document.getElementById('calculator2').classList.add('hidden');
-  document.getElementById('provinceSection').classList.add('hidden');
-  document.getElementById('yearSection').classList.add('hidden');
-  document.getElementById('peiMessage').classList.add('hidden');
+  // Show noMessage only if federal TD1 = No
+  document.getElementById('noMessage').classList.toggle('hidden', hasTD1);
 
-  window.hasProvincialTD1 = false;
+  if (!hasTD1) {
+    // Reset downstream inputs/calculators
+    resetFormSection('calculator');
+    resetFormSection('calculator2');
+    document.getElementById('calculator').classList.add('hidden');
+    document.getElementById('calculator2').classList.add('hidden');
+
+    // Reset province/year selectors
+    document.getElementById('province').value = '';
+    document.getElementById('provinceSection').classList.add('hidden');
+    document.getElementById('year').value = '';
+    document.getElementById('yearSection').classList.add('hidden');
+    document.getElementById('peiMessage').classList.add('hidden');
+
+    window.hasProvincialTD1 = false;
+  }
 }
 
-
-     
 function toggleprovTD1(hasProv) {
   window.hasProvincialTD1 = !!hasProv;
 
+  // Always show province/year dropdowns
   document.getElementById('provinceSection').classList.remove('hidden');
   document.getElementById('yearSection').classList.remove('hidden');
 
   if (!hasProv) {
-    document.getElementById('calculator2').classList.add('hidden');
+    // Reset provincial calculator & selectors if "No"
     resetFormSection('calculator2');
+    document.getElementById('calculator2').classList.add('hidden');
+    document.getElementById('province').value = '';
+    document.getElementById('year').value = '';
   } else {
+    // Clear old inputs if "Yes" but keep dropdowns visible
     resetFormSection('calculator2');
   }
 }
