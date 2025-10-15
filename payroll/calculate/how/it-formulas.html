@@ -1616,16 +1616,72 @@ function calculateTCPprov() {
   document.getElementById('resultprov').innerHTML = `
     ${yukonNote}
     <h4>Provincial - Calculation breakdown</h4>
-    <p>Line 1: Total claim amount reported on the provincial Form TD1 = $${line1prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 2: Minus prior year BPANS = $${actualLine2prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
-    <p>Line 3: Minus non-indexed amounts = $${actualLine3prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 4: Amount subject to indexing = $${line4prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
-    <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
-    <p>Line 6: Indexed amount = $${line6prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
-    <p>Line 7: Current year BPANS = $${line7prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
-    <p>Line 8: Non-indexed amounts = $${line8prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 3)</p>
-    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 6 plus line 7 and 8)</strong></p>
-  `;
+    `
+	 <ul class="fa-ul lst-spcd mrgn-tp-md mrgn-bttm-lg mrgn-lft-lg">
+                                 <li><span class="fa-stack text-success">
+                                    <span class="far fa-circle fa-stack-2x"></span>
+                                    <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                    </span><span class="mrgn-tp-0 text-muted h5"> >Line 1: Total claim amount reported on the provincial Form TD1 = $${line1prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span> 
+                                 </li>
+		  <li>
+                                    <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                    <span class="far fa-circle fa-stack-2x"></span>
+                                    <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                    </span>  <span class="mrgn-tp-0 text-muted h5"> Line 2: Minus prior year BPANS = $${actualLine2prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</span>
+                                    <div class="mrgn-tp-md"></div>
+                                 </li>
+
+		  <li class="brdr-bttm">
+                                    <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
+                                    <span class="far fa-circle fa-stack-2x"></span>
+                                    <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                    </span>  <span class="mrgn-tp-0 text-muted h5">Line 3: Minus non-indexed amounts = $${actualLine3prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                                    <div class="mrgn-tp-md"></div>
+                                 </li> 
+
+		  <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                    <span class="fas fa-circle fa-stack-2x"></span>
+                                    <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
+                                    </span> <span class="mrgn-tp-0 text-muted h5"> Line 4: Amount subject to indexing = $${line4prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}     </span></span>
+		  </li>
+
+		 <li class="brdr-bttm">
+                                 <span class="fas  fa-li"><span class="fas fa-divide"></span><span class="wb-inv">divide by</span></span> <span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <span class="fas fa-hashtag fa-stack-1x"></span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5"> Line 5: Indexing factor that applies for the year = ${indexFactor}</span>
+                                 <div class="mrgn-tp-md"></div>
+                              </li>
+
+		
+ 	<li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                    <span class="fas fa-circle fa-stack-2x"></span>
+                                    <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
+                                    </span> <span class="mrgn-tp-0 text-muted h5"> Line 6: Indexed amount = $${line6prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (rounded to the nearest dollar)</span></span></li>
+
+
+		<li >
+                                 <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5">Line 7: Current year BPANS = $${line7prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</span>
+                                 <div class="mrgn-tp-md"></div>
+                              </li>
+		<li class="brdr-bttm">
+                                 <span class="fas  fa-li"><span class="fas fa-plus"></span> <span class="wb-inv">plus</span></span> <span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <span class="fas fa-dollar-sign fa-stack-1x"></span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5">Line 8: Non-indexed amounts = $${line8prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 3)</span>
+                                 <div class="mrgn-tp-md"></div>
+                              </li> 
+		 
+                                 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
+                                    <span class="fas fa-circle fa-stack-2x"></span>
+                                    <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
+                                    </span> <span class="mrgn-tp-0 text-muted h5"> Line 9: Revised total of personal tax credits amounts = $${line9prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}   
+                                    </span></span> </li>
+</ul>  
+	  ;
 }
 
 
