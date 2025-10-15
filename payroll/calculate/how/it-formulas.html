@@ -164,7 +164,7 @@
 	<p>Calculate income tax deductions based on the type of formula:</p>
             <ul class="mrgn-bttm-lg">
                <li><a href="#tab-1" class="wb-tabs-ext"> Tab 1</a></li>
-   	       <li><a href="#tab-2" class="wb-tabs-ext">Tab 2</a></li>
+   	       <li><a href="#tab-2" class="wb-tabs-ext">Indexing - Previous TD1</a></li>
                <li><a href="#tab-3" class="wb-tabs-ext">Tab 3</a></li>
 	      
               
@@ -387,15 +387,27 @@
    </details>
 
  <details id="tab-2" >
-                     <summary><br class="visible-lg">Tab 2</summary>
+                     <summary><br class="visible-lg">Indexing - Previous TD1</summary>
                      <p class="mrgn-tp-md">In addition to regular types of payments, you must deduct income tax from bonuses or other types of irregular payments. </p>
             <h3>Steps</h3>
     <h2>Option 1 - Indexing based on previous personal tax credits returns (Form TD1)</h2>
 
     <p>
       Each year, certain personal tax credit amounts are indexed based on changes to the Consumer Price Index (CPI).
-      Since only some of the amounts are indexed, the CRA recommends recording separately each item shown on your employee’s TD1 form.
-    </p>
+      Since only some of the amounts are indexed, the CRA recommends recording separately each item shown on your employee’s TD1 form.   </p>
+   <p>This allows you to automatically increase the applicable indexed claim amounts when required. You will not be required to ask your employees to complete a new TD1 form when indexing applies.</p>
+
+ <details><summary>Method to calculate the value of the total personal tax credits amounts</summary>
+        <p>Line 1: Total claim amount reported on the Form TD1</p>
+        <p>Line 2: Minus prior year BPANS (Nova Scotia only)</p>
+        <p>Line 3: Minus non-indexed amounts</p>
+        <p>Line 4: Amount subject to indexing (line 1 minus line 2 and 3)</p>
+        <p>Line 5: Indexing factor that applies for the year </p>
+        <p>Line 6: Indexed amount (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
+        <p>Line 7: Current year BPANS (to account for 2025 indexation)</p>
+        <p>Line 8: Non-indexed amounts (amount from line 3)</p>
+        <p><strong>Line 9: Revised total of personal tax credits amounts (line 6 plus line 7 and 8)</strong></p>
+</details>   
 
     <fieldset class="gc-chckbxrdio" id="question1" name="quest">
       <legend class="mrgn-tp-sm">Do you have a federal Form TD1 on file for this employee?</legend>
@@ -467,7 +479,7 @@
     <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm hidden" id="calculator" name="result">
       <li class="cnjnctn-col mrgn-tp-xs">
         <section aria-labelledby="federalTitle">
-          <p id="federalTitle" class="h5 mrgn-tp-md text-info">
+          <p id="federalTitle" class="h4 mrgn-tp-md text-info">
             <span class="text-muted">You indicated that</span><br />
             <strong>You have a federal Form TD1 on file for this employee</strong>
           </p>
@@ -485,7 +497,7 @@
             <input id="line3" step="0.01" type="number" inputmode="decimal" />
           </div>
 
-          <button class="btn btn-primary btn-lg" type="button" onclick="calculateTCP()" disabled>Calculate the federal amount</button>
+          <button class="btn btn-primary btn-lg mrgn-tp-md" type="button" onclick="calculateTCP()">Calculate the federal amount</button>
 
           <div class="result" id="result" aria-live="polite"></div>
         </section>
@@ -493,7 +505,7 @@
 
       <li class="cnjnctn-col">
         <section class="hidden" id="calculator2" aria-labelledby="provTitle">
-          <p id="provTitle" class="h5 mrgn-tp-md text-info">
+          <p id="provTitle" class="h4 mrgn-tp-md text-info">
             <span class="text-muted">You indicated that</span><br />
             <strong>You have a provincial Form TD1 on file for this employee</strong>
           </p>
@@ -511,310 +523,14 @@
             <input id="line3prov" step="0.01" type="number" inputmode="decimal" />
           </div>
 
-          <button class="btn btn-primary btn-lg" type="button" onclick="calculateTCPprov()" disabled>Calculate the provincial amount</button>
+          <button class="btn btn-primary btn-lg mrgn-tp-md" type="button" onclick="calculateTCPprov()">Calculate the provincial amount</button>
 
           <div class="result" id="resultprov" aria-live="polite"></div>
         </section>
       </li>
     </ul>
- 
-
-
-  <!-- Local application script (kept in-body for predictable DOM availability) -->
-  <script>
-    // Initialization
-    window.hasProvincialTD1 = false;
-
-    const indexingRates = {
-      "2023": {
-        "Federal": 0.063, "Alberta": 0.06, "British Columbia": 0.06, "Manitoba": 0.07,
-        "New Brunswick": 0.063, "Newfoundland and Labrador": 0.059, "Nova Scotia": null,
-        "Northwest Territories": 0.063, "Nunavut": 0.063, "Ontario": 0.065,
-        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.063, "Yukon": 0.063
-      },
-      "2024": {
-        "Federal": 0.047, "Alberta": 0.042, "British Columbia": 0.05, "Manitoba": 0.052,
-        "New Brunswick": 0.047, "Newfoundland and Labrador": 0.042, "Nova Scotia": null,
-        "Northwest Territories": 0.047, "Nunavut": 0.047, "Ontario": 0.045,
-        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.047, "Yukon": 0.047
-      },
-      "2025": {
-        "Federal": 0.027, "Alberta": 0.02, "British Columbia": 0.028, "Manitoba": 0.012,
-        "New Brunswick": 0.027, "Newfoundland and Labrador": 0.023, "Nova Scotia": 0.031,
-        "Northwest Territories": 0.027, "Nunavut": 0.027, "Ontario": 0.028,
-        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.027, "Yukon": 0.027
-      }
-    };
-
-
-function toggleTD1(hasTD1) {
-  // Show/hide provincial question
-  document.getElementById('provincialTD1Question').classList.toggle('hidden', !hasTD1);
-  document.getElementById('noMessage').classList.toggle('hidden', hasTD1);
-
-  if (!hasTD1) {
-    // Reset federal & provincial calculators
-    resetFormSection('calculator');
-    resetFormSection('calculator2');
-    document.getElementById('calculator').classList.add('hidden');
-    document.getElementById('calculator2').classList.add('hidden');
-
-    // Reset provincial TD1 selection
-    const provRadios = document.querySelectorAll('input[name="provincial_td1"]');
-    provRadios.forEach(r => r.checked = false);
-
-    // Reset province/year selectors
-    document.getElementById('province').value = '';
-    document.getElementById('provinceSection').classList.add('hidden');
-    document.getElementById('year').value = '';
-    document.getElementById('yearSection').classList.add('hidden');
-    document.getElementById('peiMessage').classList.add('hidden');
-
-    window.hasProvincialTD1 = false;
-  }
-}
-
-function toggleprovTD1(hasProv) {
-  window.hasProvincialTD1 = !!hasProv;
-
-  // Show province/year dropdowns
-  document.getElementById('provinceSection').classList.remove('hidden');
-  document.getElementById('yearSection').classList.remove('hidden');
-
-  if (!hasProv) {
-    // Reset provincial calculator & inputs
-    resetFormSection('calculator2');
-    document.getElementById('calculator2').classList.add('hidden');
-
-    // Reset province/year selections
-    document.getElementById('province').value = '';
-    document.getElementById('year').value = '';
-  } else {
-    // Clear old inputs but keep dropdowns visible
-    resetFormSection('calculator2');
-  }
-}
-
-function resetFormSection(sectionId) {
-  const section = document.getElementById(sectionId);
-  if (!section) return;
-
-  // Reset inputs
-  section.querySelectorAll('input').forEach(input => input.value = '');
-
-  // Reset results
-  const result = section.querySelector('.result');
-  if (result) result.innerHTML = '';
-
-  // Hide all optional subsections
-  section.querySelectorAll('div, section').forEach(el => el.classList.add('hidden'));
-}
-
-     
-    function handleProvince() {
-      const province = document.getElementById('province').value;
-      const isPEI = province === 'Prince Edward Island';
-
-      document.getElementById('peiMessage').classList.toggle('hidden', !isPEI);
-      // The year selection is shown when not PEI and a province is selected
-      document.getElementById('yearSection').classList.toggle('hidden', isPEI || province === '');
-
-      // Reset calculators whenever province changes
-      resetFormSection('calculator');
-      resetFormSection('calculator2');
-      document.getElementById('calculator').classList.add('hidden');
-      document.getElementById('calculator2').classList.add('hidden');
-    }
-
-    function showCalculator() {
-      const province = document.getElementById('province').value;
-      const showLine2 = province === 'Nova Scotia';
-      const hideLine3 = province === 'Ontario';
-
-      document.getElementById('line2Section').classList.toggle('hidden', !showLine2);
-      document.getElementById('line3Section').classList.toggle('hidden', hideLine3);
-      document.getElementById('calculator').classList.remove('hidden');
-
-      // clear previous result
-      const res = document.getElementById('result');
-      if (res) res.innerHTML = '';
-    }
-
-   function showCalculator2() {
-  if (!window.hasProvincialTD1) return;
-
-  const province = document.getElementById('province').value;
-  const showLine2prov = province === 'Nova Scotia';
-  const hideLine3prov = province === 'Ontario';
-
-  document.getElementById('line2Sectionprov').classList.toggle('hidden', !showLine2prov);
-  document.getElementById('line3Sectionprov').classList.toggle('hidden', hideLine3prov);
-  document.getElementById('calculator2').classList.remove('hidden');
-
-  // Make provincial full-width if federal calculator is hidden
-  const liProv = document.getElementById('calculator2').parentElement;
-  const liFederal = document.getElementById('calculator').querySelector('.cnjnctn-col:first-child');
-
-  if (liFederal && liFederal.classList.contains('hidden')) {
-    liProv.classList.add('full-width');
-  } else {
-    liProv.classList.remove('full-width');
-  }
-
-  const resProv = document.getElementById('resultprov');
-  if (resProv) resProv.innerHTML = '';
-}
-    function resetFormSection(sectionId) {
-      const section = document.getElementById(sectionId);
-      if (!section) return;
-
-      const inputs = section.querySelectorAll('input');
-      inputs.forEach(input => {
-        input.value = '';
-      });
-
-      const result = section.querySelector('.result');
-      if (result) result.innerHTML = '';
-
-      // Ensure optional subsections are hidden
-      const toggles = section.querySelectorAll('.hidden');
-      toggles.forEach(el => el.classList.add('hidden'));
-    }
-
-    function checkFederalInputs() {
-      const line1 = (document.getElementById('line1') && document.getElementById('line1').value || '').trim();
-      const line2Visible = !document.getElementById('line2Section').classList.contains('hidden');
-      const line2 = (document.getElementById('line2') && document.getElementById('line2').value || '').trim();
-      const line3Visible = !document.getElementById('line3Section').classList.contains('hidden');
-      const line3 = (document.getElementById('line3') && document.getElementById('line3').value || '').trim();
-
-      const button = document.querySelector('#calculator button');
-      const valid =
-        line1 !== '' &&
-        (!line2Visible || line2 !== '') &&
-        (!line3Visible || line3 !== '');
-
-      if (button) button.disabled = !valid;
-    }
-
-    function checkProvincialInputs() {
-      const line1 = (document.getElementById('line1prov') && document.getElementById('line1prov').value || '').trim();
-      const line2Visible = !document.getElementById('line2Sectionprov').classList.contains('hidden');
-      const line2 = (document.getElementById('line2prov') && document.getElementById('line2prov').value || '').trim();
-      const line3Visible = !document.getElementById('line3Sectionprov').classList.contains('hidden');
-      const line3 = (document.getElementById('line3prov') && document.getElementById('line3prov').value || '').trim();
-
-      const button = document.querySelector('#calculator2 button');
-      const valid =
-        line1 !== '' &&
-        (!line2Visible || line2 !== '') &&
-        (!line3Visible || line3 !== '');
-
-      if (button) button.disabled = !valid;
-    }
-
-function calculateTCP() {
-  const province = document.getElementById('province').value || 'Federal';
-  const year = document.getElementById('year').value;
-  const line1 = parseFloat(document.getElementById('line1').value) || 0;
-  const line2 = parseFloat(document.getElementById('line2').value) || 0;
-  const line3 = parseFloat(document.getElementById('line3').value) || 0;
-
-  const useLine2 = province === 'Nova Scotia';
-  const useLine3 = province !== 'Ontario';
-  const actualLine2 = useLine2 ? line2 : 0;
-  const actualLine3 = useLine3 ? line3 : 0;
-  const line4 = line1 - actualLine2 - actualLine3;
-
-  const indexFactor = (indexingRates[year] && indexingRates[year][province]) || 0;
-  const line6 = Math.round(line4 * indexFactor);
-  const line7 = actualLine2 + 263.00;
-  const line8 = actualLine3;
-  const line9 = line6 + line7 + line8;
-
-  const yukonNote = province === 'Yukon'
-    ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>'
-    : '';
-
-  document.getElementById('result').innerHTML = `
-    ${yukonNote}
-    <h4>Federal - Calculation breakdown</h4>
-    <p>Line 1: Total claim amount reported on line 13 of the federal Form TD1 = $${line1.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 2: Minus prior year BPANS = $${actualLine2.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
-    <p>Line 3: Minus non-indexed amounts = $${actualLine3.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 4: Amount subject to indexing = $${line4.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
-    <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
-    <p>Line 6: Indexed amount = $${line6.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
-    <p>Line 7: Current year BPANS = $${line7.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
-    <p>Line 8: Non-indexed amounts = $${line8.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (amount from line 3)</p>
-    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
-  `;
-}
-
-function calculateTCPprov() {
-  const province = document.getElementById('province').value || '';
-  const year = document.getElementById('year').value;
-  const line1prov = parseFloat(document.getElementById('line1prov').value) || 0;
-  const line2prov = parseFloat(document.getElementById('line2prov').value) || 0;
-  const line3prov = parseFloat(document.getElementById('line3prov').value) || 0;
-
-  const useLine2prov = province === 'Nova Scotia';
-  const useLine3prov = province !== 'Ontario';
-  const actualLine2prov = useLine2prov ? line2prov : 0;
-  const actualLine3prov = useLine3prov ? line3prov : 0;
-  const line4prov = line1prov - actualLine2prov - actualLine3prov;
-
-  const indexFactor = (indexingRates[year] && indexingRates[year][province]) || 0;
-  const line6prov = Math.round(line4prov * indexFactor);
-  const line7prov = actualLine2prov + 263.00;
-  const line8prov = actualLine3prov;
-  const line9prov = line6prov + line7prov + line8prov;
-
-  const yukonNote = province === 'Yukon'
-    ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>'
-    : '';
-
-  document.getElementById('resultprov').innerHTML = `
-    ${yukonNote}
-    <h4>Provincial - Calculation breakdown</h4>
-    <p>Line 1: Total claim amount reported on the provincial Form TD1 = $${line1prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 2: Minus prior year BPANS = $${actualLine2prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
-    <p>Line 3: Minus non-indexed amounts = $${actualLine3prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 4: Amount subject to indexing = $${line4prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
-    <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
-    <p>Line 6: Indexed amount = $${line6prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
-    <p>Line 7: Current year BPANS = $${line7prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
-    <p>Line 8: Non-indexed amounts = $${line8prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (amount from line 3)</p>
-    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
-  `;
-}
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Wire up inputs (use defensive checks)
-      const federalLine1 = document.getElementById('line1');
-      const federalLine2 = document.getElementById('line2');
-      const federalLine3 = document.getElementById('line3');
-      if (federalLine1) federalLine1.addEventListener('input', checkFederalInputs);
-      if (federalLine2) federalLine2.addEventListener('input', checkFederalInputs);
-      if (federalLine3) federalLine3.addEventListener('input', checkFederalInputs);
-
-      const provLine1 = document.getElementById('line1prov');
-      const provLine2 = document.getElementById('line2prov');
-      const provLine3 = document.getElementById('line3prov');
-      if (provLine1) provLine1.addEventListener('input', checkProvincialInputs);
-      if (provLine2) provLine2.addEventListener('input', checkProvincialInputs);
-      if (provLine3) provLine3.addEventListener('input', checkProvincialInputs);
-
-      // ensure all calculators are hidden initially
-      document.getElementById('calculator').classList.add('hidden');
-      document.getElementById('calculator2').classList.add('hidden');
-      document.getElementById('provinceSection').classList.add('hidden');
-      document.getElementById('yearSection').classList.add('hidden');
-      document.getElementById('noMessage').classList.add('hidden');
-
-    });
-  </script>                      
+	
+                      
    </details>
 
 <details id="tab-3" >
@@ -835,10 +551,168 @@ function calculateTCPprov() {
 
 <h2 id="h_5">References</h2>
 
-<h3 id="h_8_2">Multimedia</h3>
-           <ul>
-                 <li>Webinar - <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/t4032-payroll-deductions-tables.html#pyrlltbl">How to use the payroll deductions tables</a> | <span class="far fa-clock text-muted mrgn-rght-sm"></span>&nbsp;18 minutes </li>
-            </ul>
+<h3 id="h_8_2">Glossary</h3>
+        
+<details><summary>Glossary description</summary> 
+			 <table class="table small table-bordered table-responsive">
+<caption class="wb-inv">Glossary</caption>
+<thead><tr><th scope="col">Factor</th>
+<th scope="col">Description</th>
+</tr></thead><tbody><tr><th scope="row">A</th>
+<td>Annual taxable income</td>
+</tr><tr><th scope="row">B</th>
+<td>Gross bonus, retroactive pay increase, vacation pay when vacation is not taken, accumulated overtime payment or other non-periodic payment</td>
+</tr><tr><th scope="row">B1</th>
+<td>Gross bonuses, retroactive pay increases, vacation pay when vacation is not taken, accumulated overtime payments or other non-periodic payments year-to-date&nbsp;(before the pay period)</td>
+</tr><tr><th scope="row"><strong>BPAF</strong></th>
+<td>Federal Basic Personal Amount</td>
+</tr><tr><th scope="row">BPAMB&nbsp;</th>
+<td>Basic Personal Amount for Manitoba</td>
+</tr><tr><th scope="row">BPANS</th>
+<td>Basic Personal Amount for Nova Scotia</td>
+</tr><tr><th scope="row">BPAYT</th>
+<td>Basic Personal Amount for Yukon</td>
+</tr><tr><th scope="row">C</th>
+<td>Canada (or Quebec) Pension Plan contributions for the pay period</td>
+</tr><tr><th scope="row">C2</th>
+<td>Second additional Canada (or Quebec) Pension Plan contributions for the pay period</td>
+</tr><tr><th scope="row">CEA</th>
+<td>Canada Employment Amount, a non-refundable tax credit used in the calculation for K4 and K4P</td>
+</tr><tr><th scope="row">D</th>
+<td>Employee’s year-to-date (before the pay period) Canada Pension Plan contribution with the employer</td>
+</tr><tr><th scope="row">DQ</th>
+<td>Employee’s year-to-date (before the pay period) Quebec Pension Plan contribution with the employer&nbsp;</td>
+</tr><tr><th scope="row">D1</th>
+<td>Employee’s year-to-date (before the pay period) employment insurance premium with the employer</td>
+</tr><tr><th>D2</th>
+<td>Employee’s year-to-date (before the pay period) second additional Canada Pension Plan contribution with the employer</td>
+</tr><tr><th>D2Q</th>
+<td>Employee’s year-to-date (before the pay period) second additional Quebec Pension Plan contribution with the employer&nbsp;</td>
+</tr><tr><th scope="row">E</th>
+<td>Total commission expenses deductions reported on Form TD1X</td>
+</tr><tr><th scope="row">EI</th>
+<td>Employment insurance premiums for the pay period</td>
+</tr><tr><th scope="row">F</th>
+<td>Payroll deductions for the pay period for employee contributions to a registered pension plan (RPP) for current and past services, a registered retirement savings plan (RRSP), to a pooled registered pension plan (PRPP), or a retirement compensation arrangement (RCA). For tax deduction purposes, employers can deduct amounts contributed to an RPP, RRSP, PRPP, or RCA by or on behalf of an employee to determine the employee's taxable income</td>
+</tr><tr><th scope="row">F1</th>
+<td>Annual deductions such as child care expenses and support payments requested by an employee or pensioner and authorized by a tax services office or tax centre</td>
+</tr><tr><th scope="row">F2</th>
+<td>Alimony or maintenance payments required by a legal document dated before May 1, 1997, to be payroll-deducted authorized by a tax services office or tax centre</td>
+</tr><tr><th scope="row">F3</th>
+<td>Employee registered pension plan or registered retirement savings plan contributions deducted from the current non-periodic payment. You can also use this field or design another to apply other tax-deductible amounts to the non-periodic payment, such as union dues</td>
+</tr><tr><th scope="row">F4</th>
+<td>Employee registered pension plan or registered retirement savings plan contributions deducted from the year-to-date non-periodic payments. You can also use this field or design another to apply other tax-deductible amounts to the non-periodic payment, such as union dues</td>
+</tr><tr><th>F5</th>
+<td>Deductions for Canada Pension Plan additional contributions for the pay period</td>
+</tr><tr><th>F5A</th>
+<td>Deductions for Canada (or Quebec) Pension Plan additional&nbsp;contributions for the pay period deducted from the&nbsp;<span style="background-color: transparent;">periodic income</span></td>
+</tr><tr><th>F5B</th>
+<td>Deductions for Canada (or Quebec) Pension Plan additional contributions for the pay period deducted from the non-periodic payment</td>
+</tr><tr><th>F5Q</th>
+<td>Deductions for Quebec Pension Plan additional contributions for the pay period</td>
+</tr><tr><th scope="row">G</th>
+<td>Gross commission amount including gross salary at the time of payment, plus any taxable benefits for commission-remunerated employees who have filled out Form TD1X. When an employee has not filed Form TD1X, tax is calculated the regular way</td>
+</tr><tr><th scope="row">HD</th>
+<td>Annual deduction for living in a prescribed zone, as shown on Form TD1</td>
+</tr><tr><th scope="row">I</th>
+<td>Gross remuneration for the pay period. This includes overtime earned and paid in the same pay period, pension income, qualified pension income, and taxable benefits, but does not include bonuses, retroactive pay increases, or other non-periodic payments</td>
+</tr><tr><th scope="row">I1</th>
+<td>Total remuneration for the year reported on Form TD1X. This includes commission payments, salary (where applicable), non-periodic payments, and taxable benefits</td>
+</tr><tr><th scope="row">IE</th>
+<td>Insurable earnings for the pay period, including insurable taxable benefits, bonuses, and retroactive pay increases</td>
+</tr><tr><th scope="row">K</th>
+<td>Federal constant. The constant is the tax overcharged when applying the 20.5%, 26%, 29%, and 33% rates to the annual taxable income A</td>
+</tr><tr><th scope="row">KP</th>
+<td>Provincial or territorial constant</td>
+</tr><tr><th scope="row">K1</th>
+<td>Federal non-refundable personal tax credit (the lowest federal tax rate is used to calculate this credit)</td>
+</tr><tr><th scope="row">K1P</th>
+<td>Provincial or territorial non-refundable personal tax credit (the lowest tax rate of the province or territory is used to calculate this credit)</td>
+</tr><tr><th scope="row">K2</th>
+<td>Base Canada Pension Plan contributions and employment insurance premiums federal tax credits for the year (the lowest federal tax rate is used to calculate this credit). Note: If an employee has already contributed the maximum CPP and EI, for the year with the employer, use the maximum base CPP contribution and the maximum EI premium to calculate the credit for the rest of the year. If, during the pay period in which the employee reaches the maximum, the CPP and &nbsp;EI, when annualized, is less than the annual maximum, use the maximum base CPP contribution and the maximum EI premium in that pay period</td>
+</tr><tr><th scope="row">K2P</th>
+<td>Provincial or territorial base Canada Pension Plan contributions and employment insurance premiums tax credits for the year (the lowest provincial or territorial tax rate is used to calculate this credit). If an employee reaches the maximum CPP or EI for the year with an employer, the instructions in the note for the K2 factor also apply to the K2P factor. For employees paid by commission, use the federal K2 formula for commissions and replace the lowest federal rate in the K2 formula with the lowest provincial or territorial tax rate</td>
+</tr><tr><th scope="row">K2Q</th>
+<td>Base Quebec Pension Plan contributions, employment insurance premiums, and Quebec Parental Insurance Plan premiums federal tax credits for the year (the lowest federal tax rate is used to calculate this credit)</td>
+</tr><tr><th>K2R</th>
+<td>Base Canada Pension Plan contributions and employment insurance premiums tax credits for the year (the lowest federal tax rate is used to calculate this credit), for employees that are transferred from Quebec to a location outside Quebec. The term “location outside Quebec” refers to a province or territory outside Quebec</td>
+</tr><tr><th>K2RQ</th>
+<td>Base Quebec Pension Plan contributions, employment insurance premiums, and Quebec Parental Insurance Plan&nbsp;premiums federal tax credits for the year (the lowest federal tax rate is used to calculate this credit), for employees&nbsp;that are transferred to Quebec from a location outside Quebec. The term “location outside Quebec” refers to a province or territory outside Quebec&nbsp;</td>
+</tr><tr><th scope="row">K3</th>
+<td>Other federal non-refundable tax credits (such as medical expenses and charitable donations) authorized by a tax services office or tax centre</td>
+</tr><tr><th scope="row">K3P</th>
+<td>Other provincial or territorial non-refundable tax credits (such as medical expenses and charitable donations) authorized by a tax services office or tax centre</td>
+</tr><tr><th scope="row">K4</th>
+<td>Federal non-refundable tax credit calculated using the Canada employment amount (the lowest federal tax rate is used to calculate this credit)</td>
+</tr><tr><th scope="row">K4P</th>
+<td>Territorial non-refundable tax credit calculated using the provincial or territorial Canada employment amount (the lowest territorial tax rate is used to calculate this credit)</td>
+</tr><tr><th scope="row">L</th>
+<td>Additional tax deductions for the pay period requested by the employee or pensioner as shown on Form TD1</td>
+</tr><tr><th scope="row">LCF</th>
+<td>Federal labour-sponsored funds tax credit</td>
+</tr><tr><th scope="row">LCP</th>
+<td>Provincial or territorial labour-sponsored funds tax credit&nbsp;</td>
+</tr><tr><th scope="row">M</th>
+<td>Accumulated federal and provincial or territorial tax deductions (if any) to the end of the last pay period</td>
+</tr><tr><th scope="row">M1</th>
+<td>Year-to-date tax deducted on all payments included in B1</td>
+</tr><tr><th scope="row">N</th>
+<td>The number of days&nbsp;in the current year since the last payment. The minimum basic exemption amount of $67.30 is included in the formula in line with CPP legislation</td>
+</tr><tr><td><strong>NI</strong></td>
+<td>Net income for the year&nbsp;from the employer. NI = A + HD</td>
+</tr><tr><th scope="row">P</th>
+<td>The number of pay periods in the year</td>
+</tr><tr><th scope="row">PI</th>
+<td>Pensionable earnings for the pay period, or the gross income plus any taxable benefits for the pay period, including bonuses and retroactive pay increases where applicable</td>
+</tr><tr><th>PM</th>
+<td>The total number of months during which CPP and/or QPP contributions are required to be deducted (used in the proration of maximum contribution). For detailed information and examples, refer to <a href="/en/revenue-agency/services/forms-publications/publications/t4001.html">T4001 Employers’ Guide – Payroll Deductions and Remittances</a></td>
+</tr><tr><th scope="row">PR</th>
+<td>The number of pay periods left in the year (including the current pay period)</td>
+</tr><tr><th scope="row">R</th>
+<td>Federal tax rate that applies to the annual taxable income A</td>
+</tr><tr><th scope="row">S</th>
+<td>Provincial tax reduction (only applies to Ontario and British Columbia)</td>
+</tr><tr><th scope="row">S1</th>
+<td>Annualizing factor</td>
+</tr><tr><th>S2</th>
+<td>Basic amount used in the calculation of Factor S (only applies to Ontario and British&nbsp;Columbia)</td>
+</tr><tr><th scope="row">T</th>
+<td>Estimated federal and provincial or territorial tax deductions for the pay period</td>
+</tr><tr><th scope="row">T1</th>
+<td>Annual federal tax deduction</td>
+</tr><tr><th scope="row">T2</th>
+<td>Annual provincial or territorial tax deduction (except Quebec)</td>
+</tr><tr><th scope="row">T3</th>
+<td>Annual basic federal tax</td>
+</tr><tr><th scope="row">T4</th>
+<td>Annual basic provincial or territorial tax</td>
+</tr><tr><th scope="row">TB</th>
+<td>Tax deductions, i.e., bonuses or retroactive pay increases, payable now</td>
+</tr><tr><th scope="row">TC</th>
+<td>“Total claim amount,” reported on federal Form&nbsp;TD1. If Form&nbsp;TD1 is not filed by the employee or pensioner, calculate TC using BPAF formula, and for non-resident individuals, TC is $0. If the claim code is E, T =&nbsp;$0. If the province is Ontario, even if the claim code is E, the Ontario Health Premium is payable on annual income over&nbsp;$20,000</td>
+</tr><tr><th scope="row">TCP</th>
+<td>"Total claim amount," reported on the provincial or territorial Form TD1. If this form is not filed, TCP is the provincial or territorial basic personal amount,&nbsp;refer to Table 8.2. For Manitoba, Nova Scotia and Yukon, use BPAMB, BPANS and BPAYT formulas respectively</td>
+</tr><tr><th scope="row">U1</th>
+<td>Union dues for the pay period paid to a trade union, an association of public servants, or dues required under the law of a province to a parity or advisory committee or similar body</td>
+</tr><tr><th scope="row">V</th>
+<td>Provincial or territorial tax rate for the year (does not apply to Quebec, outside Canada, or in Canada beyond the limits of any province or territory)</td>
+</tr><tr><th scope="row">V1</th>
+<td>Provincial surtax calculated on the basic provincial tax (only applies to Ontario)</td>
+</tr><tr><th scope="row">V2</th>
+<td>Additional tax calculated on taxable income (only applies to the Ontario Health Premium)</td>
+</tr><tr><th>W</th>
+<td>The greater of year-to-date (before the pay period) pensionable earnings (PI<sub>YTD</sub> or G<sub>YTD</sub>) and employee’s Year’s Maximum Pensionable Earnings (YMPE). This is used to calculate Factor C2</td>
+</tr><tr><th scope="row">Y</th>
+<td>Additional provincial tax reduction amount based on the number of eligible dependents used in the calculation of Factor S (only applies to Ontario)</td>
+</tr><tr><th>YAMPE</th>
+<td>Year’s Additional Maximum Pensionable Earnings</td>
+</tr><tr><th>YMPE</th>
+<td>Year’s Maximum Pensionable Earnings</td>
+</tr><tr><th scope="row">YTD</th>
+<td>Year-to-date, not including current pay period</td>
+</tr></tbody></table></details>
+
+    
 
 <h3 id="h_3_2">Legislation</h3>
 <div class="row">
@@ -930,7 +804,7 @@ function calculateTCPprov() {
 </div>
 </div>
 
-
+ </main>
 
 <section id="eirate" class="mfp-hide modal-dialog modal-content overlay-def modal-xl">
   <header class="modal-header"><h2 class="modal-title">EI premium rates and maximums</h2></header>
@@ -1428,7 +1302,302 @@ function calculateTCPprov() {
                showShare: true
                });
             </script>
-         </main>
+		<!-- Local application script (kept in-body for predictable DOM availability) -->
+  <script>
+    // Initialization
+    window.hasProvincialTD1 = false;
+
+    const indexingRates = {
+      "2023": {
+        "Federal": 0.063, "Alberta": 0.06, "British Columbia": 0.06, "Manitoba": 0.07,
+        "New Brunswick": 0.063, "Newfoundland and Labrador": 0.059, "Nova Scotia": null,
+        "Northwest Territories": 0.063, "Nunavut": 0.063, "Ontario": 0.065,
+        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.063, "Yukon": 0.063
+      },
+      "2024": {
+        "Federal": 0.047, "Alberta": 0.042, "British Columbia": 0.05, "Manitoba": 0.052,
+        "New Brunswick": 0.047, "Newfoundland and Labrador": 0.042, "Nova Scotia": null,
+        "Northwest Territories": 0.047, "Nunavut": 0.047, "Ontario": 0.045,
+        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.047, "Yukon": 0.047
+      },
+      "2025": {
+        "Federal": 0.027, "Alberta": 0.02, "British Columbia": 0.028, "Manitoba": 0.012,
+        "New Brunswick": 0.027, "Newfoundland and Labrador": 0.023, "Nova Scotia": 0.031,
+        "Northwest Territories": 0.027, "Nunavut": 0.027, "Ontario": 0.028,
+        "Prince Edward Island": null, "Quebec": null, "Saskatchewan": 0.027, "Yukon": 0.027
+      }
+    };
+
+
+function toggleTD1(hasTD1) {
+  // Show/hide provincial question
+  document.getElementById('provincialTD1Question').classList.toggle('hidden', !hasTD1);
+  document.getElementById('noMessage').classList.toggle('hidden', hasTD1);
+
+  if (!hasTD1) {
+    // Reset federal & provincial calculators
+    resetFormSection('calculator');
+    resetFormSection('calculator2');
+    document.getElementById('calculator').classList.add('hidden');
+    document.getElementById('calculator2').classList.add('hidden');
+
+    // Reset provincial TD1 selection
+    const provRadios = document.querySelectorAll('input[name="provincial_td1"]');
+    provRadios.forEach(r => r.checked = false);
+
+    // Reset province/year selectors
+    document.getElementById('province').value = '';
+    document.getElementById('provinceSection').classList.add('hidden');
+    document.getElementById('year').value = '';
+    document.getElementById('yearSection').classList.add('hidden');
+    document.getElementById('peiMessage').classList.add('hidden');
+
+    window.hasProvincialTD1 = false;
+  }
+}
+
+function toggleprovTD1(hasProv) {
+  window.hasProvincialTD1 = !!hasProv;
+
+  // Show province/year dropdowns
+  document.getElementById('provinceSection').classList.remove('hidden');
+  document.getElementById('yearSection').classList.remove('hidden');
+
+  if (!hasProv) {
+    // Reset provincial calculator & inputs
+    resetFormSection('calculator2');
+    document.getElementById('calculator2').classList.add('hidden');
+
+    // Reset province/year selections
+    document.getElementById('province').value = '';
+    document.getElementById('year').value = '';
+  } else {
+    // Clear old inputs but keep dropdowns visible
+    resetFormSection('calculator2');
+  }
+}
+
+function resetFormSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+
+  // Reset inputs
+  section.querySelectorAll('input').forEach(input => input.value = '');
+
+  // Reset results
+  const result = section.querySelector('.result');
+  if (result) result.innerHTML = '';
+
+  // Hide all optional subsections
+  section.querySelectorAll('div, section').forEach(el => el.classList.add('hidden'));
+}
+
+     
+    function handleProvince() {
+      const province = document.getElementById('province').value;
+      const isPEI = province === 'Prince Edward Island';
+
+      document.getElementById('peiMessage').classList.toggle('hidden', !isPEI);
+      // The year selection is shown when not PEI and a province is selected
+      document.getElementById('yearSection').classList.toggle('hidden', isPEI || province === '');
+
+      // Reset calculators whenever province changes
+      resetFormSection('calculator');
+      resetFormSection('calculator2');
+      document.getElementById('calculator').classList.add('hidden');
+      document.getElementById('calculator2').classList.add('hidden');
+    }
+
+    function showCalculator() {
+      const province = document.getElementById('province').value;
+      const showLine2 = province === 'Nova Scotia';
+      const hideLine3 = province === 'Ontario';
+
+      document.getElementById('line2Section').classList.toggle('hidden', !showLine2);
+      document.getElementById('line3Section').classList.toggle('hidden', hideLine3);
+      document.getElementById('calculator').classList.remove('hidden');
+
+      // clear previous result
+      const res = document.getElementById('result');
+      if (res) res.innerHTML = '';
+    }
+
+   function showCalculator2() {
+  if (!window.hasProvincialTD1) return;
+
+  const province = document.getElementById('province').value;
+  const showLine2prov = province === 'Nova Scotia';
+  const hideLine3prov = province === 'Ontario';
+
+  document.getElementById('line2Sectionprov').classList.toggle('hidden', !showLine2prov);
+  document.getElementById('line3Sectionprov').classList.toggle('hidden', hideLine3prov);
+  document.getElementById('calculator2').classList.remove('hidden');
+
+  // Make provincial full-width if federal calculator is hidden
+  const liProv = document.getElementById('calculator2').parentElement;
+  const liFederal = document.getElementById('calculator').querySelector('.cnjnctn-col:first-child');
+
+  if (liFederal && liFederal.classList.contains('hidden')) {
+    liProv.classList.add('full-width');
+  } else {
+    liProv.classList.remove('full-width');
+  }
+
+  const resProv = document.getElementById('resultprov');
+  if (resProv) resProv.innerHTML = '';
+}
+    function resetFormSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      const inputs = section.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.value = '';
+      });
+
+      const result = section.querySelector('.result');
+      if (result) result.innerHTML = '';
+
+      // Ensure optional subsections are hidden
+      const toggles = section.querySelectorAll('.hidden');
+      toggles.forEach(el => el.classList.add('hidden'));
+    }
+
+    function checkFederalInputs() {
+      const line1 = (document.getElementById('line1') && document.getElementById('line1').value || '').trim();
+      const line2Visible = !document.getElementById('line2Section').classList.contains('hidden');
+      const line2 = (document.getElementById('line2') && document.getElementById('line2').value || '').trim();
+      const line3Visible = !document.getElementById('line3Section').classList.contains('hidden');
+      const line3 = (document.getElementById('line3') && document.getElementById('line3').value || '').trim();
+
+      const button = document.querySelector('#calculator button');
+      const valid =
+        line1 !== '' &&
+        (!line2Visible || line2 !== '') &&
+        (!line3Visible || line3 !== '');
+
+      if (button) button.disabled = !valid;
+    }
+
+    function checkProvincialInputs() {
+      const line1 = (document.getElementById('line1prov') && document.getElementById('line1prov').value || '').trim();
+      const line2Visible = !document.getElementById('line2Sectionprov').classList.contains('hidden');
+      const line2 = (document.getElementById('line2prov') && document.getElementById('line2prov').value || '').trim();
+      const line3Visible = !document.getElementById('line3Sectionprov').classList.contains('hidden');
+      const line3 = (document.getElementById('line3prov') && document.getElementById('line3prov').value || '').trim();
+
+      const button = document.querySelector('#calculator2 button');
+      const valid =
+        line1 !== '' &&
+        (!line2Visible || line2 !== '') &&
+        (!line3Visible || line3 !== '');
+
+      if (button) button.disabled = !valid;
+    }
+
+function calculateTCP() {
+  const province = document.getElementById('province').value || 'Federal';
+  const year = document.getElementById('year').value;
+  const line1 = parseFloat(document.getElementById('line1').value) || 0;
+  const line2 = parseFloat(document.getElementById('line2').value) || 0;
+  const line3 = parseFloat(document.getElementById('line3').value) || 0;
+
+  const useLine2 = province === 'Nova Scotia';
+  const useLine3 = province !== 'Ontario';
+  const actualLine2 = useLine2 ? line2 : 0;
+  const actualLine3 = useLine3 ? line3 : 0;
+  const line4 = line1 - actualLine2 - actualLine3;
+
+  const indexFactor = (indexingRates[year] && indexingRates[year][province]) || 0;
+  const line6 = Math.round(line4 * indexFactor);
+  const line7 = actualLine2 + 263.00;
+  const line8 = actualLine3;
+  const line9 = line6 + line7 + line8;
+
+  const yukonNote = province === 'Yukon'
+    ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>'
+    : '';
+
+  document.getElementById('result').innerHTML = `
+    ${yukonNote}
+    <h4>Federal - Calculation breakdown</h4>
+    <p>Line 1: Total claim amount reported on line 13 of the federal Form TD1 = $${line1.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p>Line 2: Minus prior year BPANS = $${actualLine2.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
+    <p>Line 3: Minus non-indexed amounts = $${actualLine3.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p>Line 4: Amount subject to indexing = $${line4.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
+    <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
+    <p>Line 6: Indexed amount = $${line6.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
+    <p>Line 7: Current year BPANS = $${line7.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
+    <p>Line 8: Non-indexed amounts = $${line8.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (amount from line 3)</p>
+    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
+  `;
+}
+
+function calculateTCPprov() {
+  const province = document.getElementById('province').value || '';
+  const year = document.getElementById('year').value;
+  const line1prov = parseFloat(document.getElementById('line1prov').value) || 0;
+  const line2prov = parseFloat(document.getElementById('line2prov').value) || 0;
+  const line3prov = parseFloat(document.getElementById('line3prov').value) || 0;
+
+  const useLine2prov = province === 'Nova Scotia';
+  const useLine3prov = province !== 'Ontario';
+  const actualLine2prov = useLine2prov ? line2prov : 0;
+  const actualLine3prov = useLine3prov ? line3prov : 0;
+  const line4prov = line1prov - actualLine2prov - actualLine3prov;
+
+  const indexFactor = (indexingRates[year] && indexingRates[year][province]) || 0;
+  const line6prov = Math.round(line4prov * indexFactor);
+  const line7prov = actualLine2prov + 263.00;
+  const line8prov = actualLine3prov;
+  const line9prov = line6prov + line7prov + line8prov;
+
+  const yukonNote = province === 'Yukon'
+    ? '<p><em>Note: Yukon personal amounts are harmonized with federal values. Indexing does not directly apply.</em></p>'
+    : '';
+
+  document.getElementById('resultprov').innerHTML = `
+    ${yukonNote}
+    <h4>Provincial - Calculation breakdown</h4>
+    <p>Line 1: Total claim amount reported on the provincial Form TD1 = $${line1prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p>Line 2: Minus prior year BPANS = $${actualLine2prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
+    <p>Line 3: Minus non-indexed amounts = $${actualLine3prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p>Line 4: Amount subject to indexing = $${line4prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
+    <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
+    <p>Line 6: Indexed amount = $${line6prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
+    <p>Line 7: Current year BPANS = $${line7prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
+    <p>Line 8: Non-indexed amounts = $${line8prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (amount from line 3)</p>
+    <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
+  `;
+}
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Wire up inputs (use defensive checks)
+      const federalLine1 = document.getElementById('line1');
+      const federalLine2 = document.getElementById('line2');
+      const federalLine3 = document.getElementById('line3');
+      if (federalLine1) federalLine1.addEventListener('input', checkFederalInputs);
+      if (federalLine2) federalLine2.addEventListener('input', checkFederalInputs);
+      if (federalLine3) federalLine3.addEventListener('input', checkFederalInputs);
+
+      const provLine1 = document.getElementById('line1prov');
+      const provLine2 = document.getElementById('line2prov');
+      const provLine3 = document.getElementById('line3prov');
+      if (provLine1) provLine1.addEventListener('input', checkProvincialInputs);
+      if (provLine2) provLine2.addEventListener('input', checkProvincialInputs);
+      if (provLine3) provLine3.addEventListener('input', checkProvincialInputs);
+
+      // ensure all calculators are hidden initially
+      document.getElementById('calculator').classList.add('hidden');
+      document.getElementById('calculator2').classList.add('hidden');
+      document.getElementById('provinceSection').classList.add('hidden');
+      document.getElementById('yearSection').classList.add('hidden');
+      document.getElementById('noMessage').classList.add('hidden');
+
+    });
+  </script>   
+        
          <div id="def-footer">
          </div>
          <!-- Write closure template -->
