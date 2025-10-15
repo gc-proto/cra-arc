@@ -469,15 +469,16 @@ function resetFormSection(sectionId) {
       document.getElementById('result').innerHTML = `
         ${yukonNote}
         <h4>Federal - Calculation breakdown</h4>
-        <p>Line 1: Total claim amount reported on line 13 of the federal Form TD1 = $${line1.toFixed(2)}</p>
-        <p>Line 2: Minus prior year BPANS = $${actualLine2.toFixed(2)} (Nova Scotia only)</p>
-        <p>Line 3: Minus non-indexed amounts = $${actualLine3.toFixed(2)}</p>
-        <p>Line 4: Amount subject to indexing = $${line4.toFixed(2)} (line 1 minus line 2 and 3)</p>
+        <p>Line 1: Total claim amount reported on line 13 of the federal Form TD1 = $${line1.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+</p>
+        <p>Line 2: Minus prior year BPANS = $${actualLine2.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) (Nova Scotia only)</p>
+        <p>Line 3: Minus non-indexed amounts = $${actualLine3.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })</p>
+        <p>Line 4: Amount subject to indexing = $${line4.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) (line 1 minus line 2 and 3)</p>
         <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
-        <p>Line 6: Indexed amount = $${line6.toFixed(2)} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
-        <p>Line 7: Current year BPANS = $${line7.toFixed(2)} (to account for 2025 indexation)</p>
-        <p>Line 8: Non-indexed amounts = $${line8.toFixed(2)} (amount from line 3)</p>
-        <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9.toFixed(2)}</strong></p>
+        <p>Line 6: Indexed amount = $${line6.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
+        <p>Line 7: Current year BPANS = $${line7.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) (to account for 2025 indexation)</p>
+        <p>Line 8: Non-indexed amounts = $${line8.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) (amount from line 3)</p>
+        <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })</strong></p>
       `;
     }
 
@@ -505,15 +506,15 @@ function resetFormSection(sectionId) {
       document.getElementById('resultprov').innerHTML = `
         ${yukonNote}
         <h4>Provincial - Calculation breakdown</h4>
-        <p>Line 1: Total claim amount reported on the provincial Form TD1 = $${line1prov.toFixed(2)}</p>
-        <p>Line 2: Minus prior year BPANS = $${actualLine2prov.toFixed(2)} (Nova Scotia only)</p>
-        <p>Line 3: Minus non-indexed amounts = $${actualLine3prov.toFixed(2)}</p>
-        <p>Line 4: Amount subject to indexing = $${line4prov.toFixed(2)} (line 1 minus line 2 and 3)</p>
+        <p>Line 1: Total claim amount reported on the provincial Form TD1 = $${line1prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })</p>
+        <p>Line 2: Minus prior year BPANS = $${actualLine2prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) (Nova Scotia only)</p>
+        <p>Line 3: Minus non-indexed amounts = $${actualLine3prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })</p>
+        <p>Line 4: Amount subject to indexing = $${line4prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) (line 1 minus line 2 and 3)</p>
         <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
-        <p>Line 6: Indexed amount = $${line6prov.toFixed(2)} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
-        <p>Line 7: Current year BPANS = $${line7prov.toFixed(2)} (to account for 2025 indexation)</p>
-        <p>Line 8: Non-indexed amounts = $${line8prov.toFixed(2)} (amount from line 3)</p>
-        <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9prov.toFixed(2)}</strong></p>
+        <p>Line 6: Indexed amount = $${line6prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
+        <p>Line 7: Current year BPANS = $${line7prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) (to account for 2025 indexation)</p>
+        <p>Line 8: Non-indexed amounts = $${line8prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) (amount from line 3)</p>
+        <p><strong>Line 9: Revised total of personal tax credits amounts = $${line9prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })</strong></p>
       `;
     }
 
