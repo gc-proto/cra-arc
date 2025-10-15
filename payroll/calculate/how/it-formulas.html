@@ -1471,10 +1471,11 @@ function resetFormSection(sectionId) {
       const province = document.getElementById('province').value;
       const showLine2 = province === 'Nova Scotia';
       const hideLine3 = province === 'Ontario';
-
+		
+	
       document.getElementById('line2Section').classList.toggle('hidden', !showLine2);
       document.getElementById('line3Section').classList.toggle('hidden', hideLine3);
-      document.getElementById('calculator').classList.remove('hidden');
+	  document.getElementById('calculator').classList.remove('hidden');
 
       // clear previous result
       const res = document.getElementById('result');
@@ -1563,13 +1564,15 @@ function calculateTCP() {
 
   const useLine2 = province === 'Nova Scotia';
   const useLine3 = province !== 'Ontario';
+  const useLine7 = province === 'Nova Scotia';
+	
   const actualLine2 = useLine2 ? line2 : 0;
   const actualLine3 = useLine3 ? line3 : 0;
   const line4 = line1 - actualLine2 - actualLine3;
 
   const indexFactor = (indexingRates[year] && indexingRates[year][province]) || 0;
   const line6 = Math.round(line4 * indexFactor);
-  const line7 = actualLine2 + 263.00;
+   const line7 = useLine7 ? actualLine2 + 263.00 : 0;
   const line8 = actualLine3;
   const line9 = line6 + line7 + line8;
 
@@ -1601,13 +1604,15 @@ function calculateTCPprov() {
 
   const useLine2prov = province === 'Nova Scotia';
   const useLine3prov = province !== 'Ontario';
-  const actualLine2prov = useLine2prov ? line2prov : 0;
+  const useLine7prov = province === 'Nova Scotia';	
+  
+	const actualLine2prov = useLine2prov ? line2prov : 0;
   const actualLine3prov = useLine3prov ? line3prov : 0;
   const line4prov = line1prov - actualLine2prov - actualLine3prov;
 
   const indexFactor = (indexingRates[year] && indexingRates[year][province]) || 0;
   const line6prov = Math.round(line4prov * indexFactor);
-  const line7prov = actualLine2prov + 263.00;
+  const line7prov = useLine7prov ? actualLine2prov + 263.00 : 0;
   const line8prov = actualLine3prov;
   const line9prov = line6prov + line7prov + line8prov;
 
