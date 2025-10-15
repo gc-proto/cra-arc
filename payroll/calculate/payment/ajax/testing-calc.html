@@ -521,15 +521,38 @@ function calculateTCPprov() {
   `;
 }
 
+     function formatCurrencyInput(input) {
+  input.addEventListener('input', () => {
+    let value = input.value.replace(/,/g, '').replace(/[^\d.]/g, ''); // remove commas & non-numeric
+    if (value) {
+      const parts = value.split('.');
+      // Limit to 2 decimal places
+      if (parts[1]) parts[1] = parts[1].substring(0, 2);
+      value = parts.join('.');
+      // Format with commas
+      input.value = Number(value).toLocaleString('en-CA', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+    } else {
+      input.value = '';
+    }
+  });
+}
 
     document.addEventListener('DOMContentLoaded', () => {
       // Wire up inputs (use defensive checks)
       const federalLine1 = document.getElementById('line1');
       const federalLine2 = document.getElementById('line2');
       const federalLine3 = document.getElementById('line3');
+       const inputs = [
+    'line1', 'line2', 'line3',
+    'line1prov', 'line2prov', 'line3prov'
+  ]; 
       if (federalLine1) federalLine1.addEventListener('input', checkFederalInputs);
       if (federalLine2) federalLine2.addEventListener('input', checkFederalInputs);
       if (federalLine3) federalLine3.addEventListener('input', checkFederalInputs);
+      inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) formatCurrencyInput(el);
+  }); 
 
       const provLine1 = document.getElementById('line1prov');
       const provLine2 = document.getElementById('line2prov');
