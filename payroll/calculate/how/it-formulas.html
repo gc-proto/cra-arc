@@ -189,7 +189,7 @@
                                     <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
                                     <span class="far fa-circle fa-stack-2x"></span>
                                     <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                    </span>  <span class="mrgn-tp-0 text-muted h5"> Line 2: Prior year <a href="#def-BPANS" aria-controls="def-BPANS" class="overlay-lnk" role="button">BPANS&nbsp;<span class="far fa-question-circle"></span></a> - For Nova Scotia only</span>
+                                    </span>  <span class="mrgn-tp-0 text-muted h5"> : Prior year <a href="#def-BPANS" aria-controls="def-BPANS" class="overlay-lnk" role="button">BPANS&nbsp;<span class="far fa-question-circle"></span></a> - For Nova Scotia only</span>
                                     <div class="mrgn-tp-md"></div>
                                  </li>
 
@@ -333,7 +333,7 @@
           </div>
 
           <div id="line3Section">
-            <label class="mrgn-tp-mg" for="line3">Enter the pension income amount reported on line 4 and the tuition (line 5) of the federal Form TD1 ($)</label>
+            <label class="mrgn-tp-mg" for="line3">Enter the pension income amount reported on line 4 and the tuition (full-time and part-time) reported on line 5 of the federal Form TD1 ($)</label>
             <input id="line3" step="0.01" type="number" inputmode="decimal" />
           </div>
 
@@ -359,7 +359,7 @@
           </div>
 
           <div id="line3Sectionprov">
-            <label for="line3prov">Enter the pension income amount reported on line 4 and the tuition (line 5) of the provincial Form TD1 ($)</label>
+            <label for="line3prov">Enter the pension income amount reported on line 4 and the tuition (full-time and part-time) reported on line 5 of the provincial Form TD1 ($)</label>
             <input id="line3prov" step="0.01" type="number" inputmode="decimal" />
           </div>
 
@@ -1577,12 +1577,12 @@ function calculateTCP() {
     ${yukonNote}
     <h4>Federal - Calculation breakdown</h4>
     <p>Line 1: Total claim amount reported on line 13 of the federal Form TD1 = $${line1.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 2: Minus prior year <a href="#def-BPANS" aria-controls="def-BPANS" class="overlay-lnk" role="button">BPANS&nbsp;<span class="far fa-question-circle"></span></a> = $${actualLine2.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
-    <p>Line 3: Minus non-indexed amounts = $${actualLine3.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p>Line 2: Minus prior year <a href="#def-BPANS" aria-controls="def-BPANS" class="overlay-lnk" role="button">BPANS&nbsp;<span class="far fa-question-circle"></span></a> = $${actualLine2.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} - For Nova Scotia only</p>
+    <p>Line 3: Minus non-indexed amounts = $${actualLine3.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} - Do not include amounts for Ontario</p>
     <p>Line 4: Amount subject to indexing = $${line4.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
     <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
     <p>Line 6: Indexed amount = $${line6.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
-    <p>Line 7: Current year BPANS = $${line7.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
+    <p>Line 7: Current year BPANS = $${line7.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 2 + $263.00, to account for 2025 indexation) - For Nova Scotia only</p>
     <p>Line 8: Non-indexed amounts = $${line8.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 3)</p>
     <p><strong>Line 9: Revised factor <a href="#def-TC" aria-controls="def-TC" class="overlay-lnk" role="button">TC&nbsp;<span class="far fa-question-circle"></span></a> (total of personal tax credits amounts) = $${line9.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 6 plus line 7 and 8)</strong></p>
   `;
@@ -1615,12 +1615,12 @@ function calculateTCPprov() {
     ${yukonNote}
     <h4>Provincial - Calculation breakdown</h4>
     <p>Line 1: Total claim amount reported on the provincial Form TD1 = $${line1prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-    <p>Line 2: Minus prior year <a href="#def-BPANS" aria-controls="def-BPANS" class="overlay-lnk" role="button">BPANS&nbsp;<span class="far fa-question-circle"></span></a> = $${actualLine2prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (Nova Scotia only)</p>
-    <p>Line 3: Minus non-indexed amounts = $${actualLine3prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+    <p>Line 2: Minus prior year <a href="#def-BPANS" aria-controls="def-BPANS" class="overlay-lnk" role="button">BPANS&nbsp;<span class="far fa-question-circle"></span></a> = $${actualLine2prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} - For Nova Scotia only</p>
+    <p>Line 3: Minus non-indexed amounts = $${actualLine3prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} - Do not include amounts for Ontario</p>
     <p>Line 4: Amount subject to indexing = $${line4prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 1 minus line 2 and 3)</p>
     <p>Line 5: Indexing factor that applies for the year = ${indexFactor}</p>
     <p>Line 6: Indexed amount = $${line6prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 4 multiplied by line 5, rounded to the nearest dollar)</p>
-    <p>Line 7: Current year BPANS = $${line7prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (to account for 2025 indexation)</p>
+    <p>Line 7: Current year BPANS = $${line7prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 2 + $263.00, to account for 2025 indexation) - For Nova Scotia only</p>
     <p>Line 8: Non-indexed amounts = $${line8prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 3)</p>
     <p><strong>Line 9: Revised factor <a href="#def-TCP" aria-controls="def-TCP" class="overlay-lnk" role="button">TCP&nbsp;<span class="far fa-question-circle"></span></a> (total of personal tax credits amounts) = $${line9prov.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (line 6 plus line 7 and 8)</strong></p>
   `;
