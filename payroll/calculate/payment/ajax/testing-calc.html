@@ -184,12 +184,7 @@
 
     <div class="hidden mrgn-tp-lg" id="yearSection">
       <label for="year">Select the calendar year</label>
-    <select id="year" onchange="
-  resetFormSection('calculator'); 
-  resetFormSection('calculator2'); 
-  showCalculator(); 
-  if (window.hasProvincialTD1) showCalculator2();
-">
+      <select id="year" onchange="showCalculator(); if (window.hasProvincialTD1) showCalculator2();">
         <option value="">-- Make your selection --</option>
         <option value="2025">2025</option>
         <option value="2024">2024</option>
@@ -284,20 +279,21 @@
     };
 
 
-// Initialization
-window.hasProvincialTD1 = false;
-
 function toggleTD1(hasTD1) {
   // Show/hide provincial question
   document.getElementById('provincialTD1Question').classList.toggle('hidden', !hasTD1);
-  document.getElementById('noMessage').classList.toggle('hidden', hasTD1); // show only if No
+  document.getElementById('noMessage').classList.toggle('hidden', hasTD1);
 
   if (!hasTD1) {
-    // Reset all downstream inputs/calculators
+    // Reset federal & provincial calculators
     resetFormSection('calculator');
     resetFormSection('calculator2');
     document.getElementById('calculator').classList.add('hidden');
     document.getElementById('calculator2').classList.add('hidden');
+
+    // Reset provincial TD1 selection
+    const provRadios = document.querySelectorAll('input[name="provincial_td1"]');
+    provRadios.forEach(r => r.checked = false);
 
     // Reset province/year selectors
     document.getElementById('province').value = '';
@@ -306,16 +302,9 @@ function toggleTD1(hasTD1) {
     document.getElementById('yearSection').classList.add('hidden');
     document.getElementById('peiMessage').classList.add('hidden');
 
-    // Reset provincial question
     window.hasProvincialTD1 = false;
-    document.querySelectorAll('input[name="provincial_td1"]').forEach(r => r.checked = false);
-  } else {
-    // Just reset federal calculator if switching from No → Yes
-    resetFormSection('calculator');
-    document.getElementById('calculator').classList.add('hidden');
   }
 }
-
 
 function toggleprovTD1(hasProv) {
   window.hasProvincialTD1 = !!hasProv;
@@ -324,47 +313,52 @@ function toggleprovTD1(hasProv) {
   document.getElementById('provinceSection').classList.remove('hidden');
   document.getElementById('yearSection').classList.remove('hidden');
 
-  // Reset provincial calculator and related inputs
-  resetFormSection('calculator2');
-  document.getElementById('calculator2').classList.add('hidden');
+  if (!hasProv) {
+    // Reset provincial calculator & inputs
+    resetFormSection('calculator2');
+    document.getElementById('calculator2').classList.add('hidden');
 
-  // Always reset province and year whenever user changes the provincial TD1 question
-  document.getElementById('province').value = '';
-  document.getElementById('year').value = '';
-}
-   
-
-function handleProvince() {
-  const province = document.getElementById('province').value;
-  const isPEI = province === 'Prince Edward Island';
-
-  document.getElementById('peiMessage').classList.toggle('hidden', !isPEI);
-  document.getElementById('yearSection').classList.toggle('hidden', isPEI || province === '');
-
-  // Reset calculators when province changes
-  resetFormSection('calculator');
-  resetFormSection('calculator2');
-  document.getElementById('calculator').classList.add('hidden');
-  document.getElementById('calculator2').classList.add('hidden');
+    // Reset province/year selections
+    document.getElementById('province').value = '';
+    document.getElementById('year').value = '';
+  } else {
+    // Clear old inputs but keep dropdowns visible
+    resetFormSection('calculator2');
+  }
 }
 
 function resetFormSection(sectionId) {
   const section = document.getElementById(sectionId);
   if (!section) return;
 
-  // Clear inputs
+  // Reset inputs
   section.querySelectorAll('input').forEach(input => input.value = '');
 
-  // Clear results
+  // Reset results
   const result = section.querySelector('.result');
   if (result) result.innerHTML = '';
 
-  // Hide optional subsections
-  const toggles = section.querySelectorAll('div, section');
-  toggles.forEach(el => el.classList.add('hidden'));
-}     
-  
-     function showCalculator() {
+  // Hide all optional subsections
+  section.querySelectorAll('div, section').forEach(el => el.classList.add('hidden'));
+}
+
+     
+    function handleProvince() {
+      const province = document.getElementById('province').value;
+      const isPEI = province === 'Prince Edward Island';
+
+      document.getElementById('peiMessage').classList.toggle('hidden', !isPEI);
+      // The year selection is shown when not PEI and a province is selected
+      document.getElementById('yearSection').classList.toggle('hidden', isPEI || province === '');
+
+      // Reset calculators whenever province changes
+      resetFormSection('calculator');
+      resetFormSection('calculator2');
+      document.getElementById('calculator').classList.add('hidden');
+      document.getElementById('calculator2').classList.add('hidden');
+    }
+
+    function showCalculator() {
       const province = document.getElementById('province').value;
       const showLine2 = province === 'Nova Scotia';
       const hideLine3 = province === 'Ontario';
@@ -402,7 +396,22 @@ function resetFormSection(sectionId) {
   const resProv = document.getElementById('resultprov');
   if (resProv) resProv.innerHTML = '';
 }
-   
+    function resetFormSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      const inputs = section.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.value = '';
+      });
+
+      const result = section.querySelector('.result');
+      if (result) result.innerHTML = '';
+
+      // Ensure optional subsections are hidden
+      const toggles = section.querySelectorAll('.hidden');
+      toggles.forEach(el => el.classList.add('hidden'));
+    }
 
     function checkFederalInputs() {
       const line1 = (document.getElementById('line1') && document.getElementById('line1').value || '').trim();
