@@ -65,7 +65,7 @@
 <div id="ajax-table">
 	  <!-- Dropdown and button -->
 <label for="tableSelect">Select a table to export:</label>
-<select id="tableSelect" multiple style="height: 300px; overflow-y: auto;"></select>
+<select id="tableSelect" multiple></select>
 <button onclick="downloadSelectedTable()">Download CSV</button>
 	
   <section class="mrgn-tp-md" id="details-elements">
@@ -2989,36 +2989,46 @@ document.addEventListener("DOMContentLoaded", () => {
   defaultOption.disabled = true;
   select.appendChild(defaultOption);
 
+  // Populate dropdown with table IDs and titles
   tables.forEach((table, index) => {
     const option = document.createElement("option");
     option.value = table.id;
     option.textContent = table.previousElementSibling
-      ? table.previousElementSibling.textContent
+      ? table.previousElementSibling.textContent.trim()
       : `Table ${index + 1}`;
     select.appendChild(option);
   });
 });
 
-
-function downloadSelectedTable() {
+function downloadSelectedTables() {
   const select = document.getElementById("tableSelect");
-  const tableId = select.value;
-  if (!tableId) return;
+  const selectedOptions = Array.from(select.selectedOptions).filter(opt => opt.value);
+  if (selectedOptions.length === 0) return;
 
-  const table = document.getElementById(tableId);
+  let combinedCSV = "";
 
-  // If the table is inside a <details>, open it
-  const details = table.closest("details");
-  if (details && !details.open) {
-    details.open = true;
-  }
+  selectedOptions.forEach((opt, idx) => {
+    const table = document.getElementById(opt.value);
 
-  const fileName = `${select.options[select.selectedIndex].text}.csv`;
-  downloadTableAsCSV(table, fileName);
+    // Expand if inside <details>
+    const details = table.closest("details");
+    if (details && !details.open) {
+      details.open = true;
+    }
+
+    combinedCSV += `"${opt.textContent}"\n`; // Table title
+    combinedCSV += getTableCSV(table);
+    combinedCSV += "\n\n"; // Spacer between tables
+  });
+
+  const blob = new Blob([combinedCSV], { type: "text/csv" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "Selected_Tables.csv";
+  link.click();
 }
 
-
-function downloadTableAsCSV(table, filename) {
+function getTableCSV(table) {
   const rows = table.querySelectorAll("tr");
   let csv = [];
 
@@ -3031,11 +3041,7 @@ function downloadTableAsCSV(table, filename) {
     csv.push(data.join(","));
   }
 
-  const blob = new Blob([csv.join("\n")], { type: "text/csv" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = filename;
-  link.click();
+  return csv.join("\n");
 }
 </script>
 
