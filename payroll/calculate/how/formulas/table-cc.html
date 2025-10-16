@@ -3003,11 +3003,20 @@ document.addEventListener("DOMContentLoaded", () => {
 function downloadSelectedTable() {
   const select = document.getElementById("tableSelect");
   const tableId = select.value;
-  if (!tableId) return; // Prevent action if no selection
+  if (!tableId) return;
+
   const table = document.getElementById(tableId);
+
+  // If the table is inside a <details>, open it
+  const details = table.closest("details");
+  if (details && !details.open) {
+    details.open = true;
+  }
+
   const fileName = `${select.options[select.selectedIndex].text}.csv`;
   downloadTableAsCSV(table, fileName);
 }
+
 
 function downloadTableAsCSV(table, filename) {
   const rows = table.querySelectorAll("tr");
