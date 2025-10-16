@@ -3054,46 +3054,55 @@
 		
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-// Populate dropdown with table IDs and titles
-const tables = document.querySelectorAll("table");
-const select = document.getElementById("tableSelect");
+  const tables = document.querySelectorAll("table");
+  const select = document.getElementById("tableSelect");
 
-tables.forEach((table, index) => {
-const option = document.createElement("option");
-option.value = table.id;
-option.textContent = table.previousElementSibling
-? table.previousElementSibling.textContent
-: `Table ${index + 1}`;
-select.appendChild(option);
-});
+  // Add default option
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Make your selection";
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  select.appendChild(defaultOption);
+
+  // Populate dropdown with table IDs and titles
+  tables.forEach((table, index) => {
+    const option = document.createElement("option");
+    option.value = table.id;
+    option.textContent = table.previousElementSibling
+      ? table.previousElementSibling.textContent
+      : `Table ${index + 1}`;
+    select.appendChild(option);
+  });
 });
 
 function downloadSelectedTable() {
-const select = document.getElementById("tableSelect");
-const tableId = select.value;
-const table = document.getElementById(tableId);
-const fileName = `${select.options[select.selectedIndex].text}.csv`;
-downloadTableAsCSV(table, fileName);
+  const select = document.getElementById("tableSelect");
+  const tableId = select.value;
+  if (!tableId) return; // Prevent action if no selection
+  const table = document.getElementById(tableId);
+  const fileName = `${select.options[select.selectedIndex].text}.csv`;
+  downloadTableAsCSV(table, fileName);
 }
 
 function downloadTableAsCSV(table, filename) {
-const rows = table.querySelectorAll("tr");
-let csv = [];
+  const rows = table.querySelectorAll("tr");
+  let csv = [];
 
-for (const row of rows) {
-const cols = row.querySelectorAll("th, td");
-const data = Array.from(cols).map(col => {
-let text = col.innerText.replace(/"/g, '""');
-return /[",\n]/.test(text) ? `"${text}"` : text;
-});
-csv.push(data.join(","));
-}
+  for (const row of rows) {
+    const cols = row.querySelectorAll("th, td");
+    const data = Array.from(cols).map(col => {
+      let text = col.innerText.replace(/"/g, '""');
+      return /[",\n]/.test(text) ? `"${text}"` : text;
+    });
+    csv.push(data.join(","));
+  }
 
-const blob = new Blob([csv.join("\n")], { type: "text/csv" });
-const link = document.createElement("a");
-link.href = URL.createObjectURL(blob);
-link.download = filename;
-link.click();
+  const blob = new Blob([csv.join("\n")], { type: "text/csv" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
 }
 </script>
 
