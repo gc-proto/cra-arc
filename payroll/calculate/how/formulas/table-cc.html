@@ -62,7 +62,7 @@
             <h1 property="name" id="wb-cont" class="gc-thickline">Federal, provincial and territorial claim clodes</h1>
 
 		 
-<div id="ajax-table">
+<div id="ajax-table" class="wb-tagfilter provisional">
 
  <details class="provisional wb-details-close" open><summary class="mrgn-lft-0 mrgn-rght-0">Filter and export tables in CSV format</summary>
 <div class="row">
@@ -94,23 +94,29 @@
 		</div></div>
 					 </details>	
 
-	
-  <section class="mrgn-tp-md" id="details-elements">
-	  
-	 <p>You can filter by key words to find the specific table.</p>
-	  
-			<ul class="wb-filter list-unstyled" data-wb-filter='{
-		"selector": ".code-num"
+  <div class="col-md-8 wb-tagfilter provisional wb-filter" id="filteredFAQ"  data-wb-filter='{
+		"selector": ".link-list>li",
+		"section": ".wb-tagfilter-items",
+		"uiTemplate": "#searchFilter"
 	}'>
-
-			
- <div class="btn-group">
+        <div id="searchFilter">
+<p class="wb-fltr-info small">You can filter by key words to find the specific table <input type="search" id="customSearchUI"> &nbsp; &nbsp; Showing <span data-nbitem></span> out of <span data-total></span> items</p>
+	         
+      </div>
+	  
+	  <div class="btn-group">
             <button class="btn btn-default btn-sm wb-toggle" data-toggle="{&quot;selector&quot;: &quot;details&quot;, &quot;parent&quot;: &quot;#details-elements&quot;, 
                &quot;print&quot;: &quot;on&quot;, &quot;type&quot;: &quot;on&quot;}" type="button">Expand all</button>
             <button class="btn btn-default btn-sm wb-toggle" data-toggle="{&quot;selector&quot;: &quot;details&quot;, &quot;parent&quot;: &quot;#details-elements&quot;, 
                &quot;print&quot;: &quot;on&quot;, &quot;type&quot;: &quot;off&quot;}" type="button">Collapse all</button>
             </div> 
-				
+	  
+        <div class="wb-tagfilter-items">
+	
+	 <ul class="list-unstyled link-list">
+
+			
+ 			
 
 
 <h4>Federal claim codes</h4> 
@@ -2997,9 +3003,9 @@
                   <summary>2023 Outside Canada claim codes</summary>
                   <p>Only use the federal claim codes when your employee’s province of employment is outside Canada.</p>
                </details></li></ul>
-
- </section>   	  
-      </div>   
+ </div>  
+  	  
+      </div>    </div>
    
 		
 <script>
