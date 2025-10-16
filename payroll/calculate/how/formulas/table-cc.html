@@ -66,8 +66,9 @@
 	  <!-- Dropdown and button -->
  <div class="form-group form-inline"> 
 <label for="tableSelect">Tables to export to CVS format:</label>
-<select class="form-control input-lg" id="tableSelect">	</select>
-<button class="btn btn-primary btn-lg" onclick="downloadSelectedTable()"><span class="fa fa-download"></span> Selected tables (CSV)</button>
+<select class="form-control input-lg" id="tableSelect" multiple="multiple"></select>	 
+<button class="btn btn-primary btn-lg" onclick="downloadSelectedTables()"><span class="fa fa-download"></span> Selected tables (CSV)</button>
+``
 </div> 	
   <section class="mrgn-tp-md" id="details-elements">
 	  
@@ -2994,31 +2995,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const option = document.createElement("option");
     option.value = table.id;
     option.textContent = table.previousElementSibling
-      ? table.previousElementSibling.textContent
+      ? table.previousElementSibling.textContent.trim()
       : `Table ${index + 1}`;
     select.appendChild(option);
   });
+
+  // Enable multiple selection
+  select.setAttribute("multiple", "multiple");
+  select.style.height = "200px"; // Optional: make it scrollable
 });
 
-function downloadSelectedTable() {
+function downloadSelectedTables() {
   const select = document.getElementById("tableSelect");
-  const tableId = select.value;
-  if (!tableId) return;
+  const selectedOptions = Array.from(select.selectedOptions).filter(opt => opt.value);
+  if (selectedOptions.length === 0) return;
 
-  const table = document.getElementById(tableId);
+  let combinedCSV = "";
 
-  // If the table is inside a <details>, open it
-  const details = table.closest("details");
-  if (details && !details.open) {
-    details.open = true;
-  }
+  selectedOptions.forEach((opt) => {
+    const table = document.getElementById(opt.value);
 
-  const fileName = `${select.options[select.selectedIndex].text}.csv`;
-  downloadTableAsCSV(table, fileName);
+    // Expand if inside <details>
+    const details = table.closest("details");
+    if (details && !details.open) {
+      details.open = true;
+    }
+
+    combinedCSV += `"${opt.textContent}"\n`; // Table title
+    combinedCSV += getTableCSV(table);
+    combinedCSV += "\n\n"; // Spacer between tables
+  });
+
+  const blob = new Blob([combinedCSV], { type: "text/csv" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "Selected_Tables.csv";
+  link.click();
 }
 
-
-function downloadTableAsCSV(table, filename) {
+function getTableCSV(table) {
   const rows = table.querySelectorAll("tr");
   let csv = [];
 
@@ -3031,11 +3046,7 @@ function downloadTableAsCSV(table, filename) {
     csv.push(data.join(","));
   }
 
-  const blob = new Blob([csv.join("\n")], { type: "text/csv" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = filename;
-  link.click();
+  return csv.join("\n");
 }
 </script>
 
