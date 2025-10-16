@@ -2980,13 +2980,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const tables = document.querySelectorAll("table");
   const select = document.getElementById("tableSelect");
 
-  // Set size to match number of tables
-  select.size = tables.length;
-
-  // Optional default message
+  // Add default option
   const defaultOption = document.createElement("option");
-  defaultOption.textContent = "Hold Ctrl or Cmd to select multiple tables";
+  defaultOption.value = "";
+  defaultOption.textContent = "Make your selection";
   defaultOption.disabled = true;
+  defaultOption.selected = true;
   select.appendChild(defaultOption);
 
   // Populate dropdown with table IDs and titles
@@ -2994,41 +2993,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const option = document.createElement("option");
     option.value = table.id;
     option.textContent = table.previousElementSibling
-      ? table.previousElementSibling.textContent.trim()
+      ? table.previousElementSibling.textContent
       : `Table ${index + 1}`;
     select.appendChild(option);
   });
 });
 
-function downloadSelectedTables() {
+function downloadSelectedTable() {
   const select = document.getElementById("tableSelect");
-  const selectedOptions = Array.from(select.selectedOptions).filter(opt => opt.value);
-  if (selectedOptions.length === 0) return;
-
-  let combinedCSV = "";
-
-  selectedOptions.forEach((opt, idx) => {
-    const table = document.getElementById(opt.value);
-
-    // Expand if inside <details>
-    const details = table.closest("details");
-    if (details && !details.open) {
-      details.open = true;
-    }
-
-    combinedCSV += `"${opt.textContent}"\n`; // Table title
-    combinedCSV += getTableCSV(table);
-    combinedCSV += "\n\n"; // Spacer between tables
-  });
-
-  const blob = new Blob([combinedCSV], { type: "text/csv" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "Selected_Tables.csv";
-  link.click();
+  const tableId = select.value;
+  if (!tableId) return; // Prevent action if no selection
+  const table = document.getElementById(tableId);
+  const fileName = `${select.options[select.selectedIndex].text}.csv`;
+  downloadTableAsCSV(table, fileName);
 }
 
-function getTableCSV(table) {
+function downloadTableAsCSV(table, filename) {
   const rows = table.querySelectorAll("tr");
   let csv = [];
 
@@ -3041,7 +3021,11 @@ function getTableCSV(table) {
     csv.push(data.join(","));
   }
 
-  return csv.join("\n");
+  const blob = new Blob([csv.join("\n")], { type: "text/csv" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
 }
 </script>
 
