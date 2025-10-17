@@ -7690,7 +7690,7 @@
 
 <li data-wb-tags="formulas" class="code-num mrgn-lft-md"><details><summary>2024 Employment Insurance rates and amounts (table 8.28)</summary>				
 <table class="table table-striped small table-condensed" id="tb8-28">
-<caption class="wb-inv">2024 Employment Insurance rates and amounts (table 8.28)</caption>
+<caption class="h3">2024 Employment Insurance rates and amounts (table 8.28)</caption>
 <thead><tr><th scope="col"><strong>EI</strong></th>
 <th scope="col"><strong>Annual maximum insurable earnings</strong></th>
 <th scope="col"><strong>Employee contribution rate</strong></th>
@@ -7713,7 +7713,7 @@
 
 <li data-wb-tags="formulas" class="code-num mrgn-lft-md"><details><summary>2024 QPP insurance rates and amounts (table 8.29)</summary>						
 <table class="table table-striped small table-condensed" id="tb8-29">
-<caption class="wb-inv">2024 QPP insurance rates and amounts (table 8.29)</caption>
+<caption class="h3">2024 QPP insurance rates and amounts (table 8.29)</caption>
 <thead><tr><th scope="col"><strong>QPIP</strong></th>
 <th scope="col"><strong>Annual maximum insurable earnings</strong></th>
 <th scope="col"><strong>Employee contribution rate</strong></th>
@@ -7745,7 +7745,18 @@
    
 		
 <script>
+
 document.addEventListener("DOMContentLoaded", () => {
+  // 1. Expand all <details> elements to ensure all tables are visible
+  document.querySelectorAll("details").forEach(detail => {
+    detail.open = true;
+  });
+
+  // 2. Show all rows in all tables
+  document.querySelectorAll("table tr").forEach(row => {
+    row.style.display = "";
+  });
+
   const tables = document.querySelectorAll("table");
   const select = document.getElementById("tableSelect");
 
