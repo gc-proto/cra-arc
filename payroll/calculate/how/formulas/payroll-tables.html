@@ -7745,9 +7745,7 @@
    
 		
 <script>
-
 document.addEventListener("DOMContentLoaded", () => {
-  const tables = document.querySelectorAll("table");
   const select = document.getElementById("tableSelect");
 
   // Add default option
@@ -7758,19 +7756,26 @@ document.addEventListener("DOMContentLoaded", () => {
   defaultOption.selected = true;
   select.appendChild(defaultOption);
 
-  // Populate dropdown with table IDs and titles
-  tables.forEach((table, index) => {
-    const option = document.createElement("option");
-    option.value = table.id;
-    option.textContent = table.previousElementSibling
-      ? table.previousElementSibling.textContent.trim()
-      : `Table ${index + 1}`;
-    select.appendChild(option);
+  // ✅ Only include <details> that contain a <table>
+  document.querySelectorAll("details").forEach((detail, index) => {
+    const table = detail.querySelector("table");
+    if (table) {
+      const option = document.createElement("option");
+      option.value = table.id || `table-${index}`;
+      table.id = option.value; // assign ID if missing
+
+      const title = detail.querySelector("summary")?.textContent.trim() ||
+                    table.previousElementSibling?.textContent.trim() ||
+                    `Table ${index + 1}`;
+
+      option.textContent = title;
+      select.appendChild(option);
+    }
   });
 
   // Enable multiple selection
   select.setAttribute("multiple", "multiple");
-  select.style.height = "200px"; // Optional: make it scrollable
+  select.style.height = "200px";
 });
 
 function downloadSelectedTables() {
@@ -7789,6 +7794,11 @@ function downloadSelectedTables() {
       details.open = true;
     }
 
+    // Show all rows in the selected table
+    table.querySelectorAll("tr").forEach(row => {
+      row.style.display = "";
+    });
+
     combinedCSV += `"${opt.textContent}"\n`; // Table title
     combinedCSV += getTableCSV(table);
     combinedCSV += "\n\n"; // Spacer between tables
@@ -7802,7 +7812,7 @@ function downloadSelectedTables() {
 }
 
 function getTableCSV(table) {
-  const rows = table.querySelectorAll("tr");
+  const rows = table.querySelectorAll("tr:not([style*='display: none'])");
   let csv = [];
 
   for (const row of rows) {
