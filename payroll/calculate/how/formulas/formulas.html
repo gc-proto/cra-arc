@@ -1181,8 +1181,7 @@
                                  <li class="mrgn-tp-xs"><span><span class="fa-stack text-success">
                                     <span class="far fa-circle fa-stack-2x"></span>
                                     <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                    </span><span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/how/formulas/payroll-tables.html #basei2026"></span> - Maximum annual
-employee premium 										</span> </span>
+                                    </span><span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/how/formulas/payroll-tables.html #basei2026"></span> - <a href="#ei-prem" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max", "class": "hidden"}, {"action": "addClass", "source": "#max1, #eirate", "class": "hidden"}, {"action": "removeClass", "source": "#tb1>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb1>tbody>tr>td:nth-child(1), #tb1>tbody>tr>td:nth-child(4)", "class": "info"}]'>Maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>									</span> </span>
                                  </li>
                                  <li class="brdr-bttm"><span>
                                     <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
@@ -1216,10 +1215,8 @@ employee premium 										</span> </span>
 <li class="mrgn-tp-xs"><span><span class="fa-stack text-success">
                                     <span class="far fa-circle fa-stack-2x"></span>
                                     <span class="fas fa-dollar-sign fa-stack-1x"></span>
-                                    </span><span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/how/formulas/payroll-tables.html #baseiq2026"></span>	- Maximum annual
-employee premium 									</span> </span>
+                                    </span><span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/how/formulas/payroll-tables.html #baseiq2026"></span>	- <a href="#redrate" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max", "class": "hidden"}, {"action": "addClass", "source": "#max1, #eirate", "class": "hidden"}, {"action": "removeClass", "source": "#tb1>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb1>tbody>tr>td:nth-child(1), #tb1>tbody>tr>td:nth-child(4)", "class": "info"}]'>Maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>								</span> </span>
                                  </li>
-
                                 
  <li class="brdr-bttm"><span>
                                     <span class="fas  fa-li"><span class="fas fa-minus"></span> <span class="wb-inv">minus</span></span> <span class="fa-stack text-success">
@@ -1255,6 +1252,33 @@ employee premium 									</span> </span>
 			     
  </main>
 
+ <section id="ei-prem" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
+               <header class="modal-header">
+                  <h2 class="modal-title">EI premium rates and maximums</h2>
+               </header>
+               <div class="modal-body">
+	<p class="lead hidden" id="max"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual employee premium" (<strong>column&nbsp;4)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
+	<p class="lead hidden" id="max1"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual insurable earnings" (<strong>column&nbsp;2)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong></p>
+	<p class="lead hidden" id="eirate"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Rate" (<strong>column 3</strong>) that matches the "Year" (<strong>column 1</strong>) </p>			   
+                  <div data-ajax-replace="/cra-arc/payroll/calculate/when/eirates.html #ajax-eirate"></div>
+				  <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-terms"></div> 
+				  <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-quebec"></div>  
+               </div>
+            </section>
+
+
+
+<section id="redrate" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
+               <header class="modal-header">
+                  <h2 class="modal-title">EI Premium Reduction Program</h2>
+               </header>
+               <div class="modal-body">
+	           <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-redrate"></div>
+				<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-terms"></div> 
+				<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-quebec"></div>    
+               </div>
+            </section>
+		  
 <section id="eirate" class="mfp-hide modal-dialog modal-content overlay-def modal-xl">
   <header class="modal-header"><h2 class="modal-title">EI premium rates and maximums</h2></header>
   <div class="modal-body">
