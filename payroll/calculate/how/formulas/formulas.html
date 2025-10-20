@@ -1221,7 +1221,7 @@
                                  <span class="fas fa-dollar-sign fa-stack-1x"></span>
                                  </span>
 	  
-                                <span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #rateei2026"></span></span>
+                                <span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #rateei2026"></span> <div id="display-rateei2026"></div> </span>
                                 
                               </li>
 	   
@@ -1273,7 +1273,7 @@
                                  <span class="fas fa-dollar-sign fa-stack-1x"></span>
                                  </span>
 	  
-                                <span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #rateeiq2026"></span> </span>
+                                <span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #rateeiq2026"></span> <div id="display-rateeiq2026"></div> </span>
                                 
                               </li>
 	   
@@ -1799,6 +1799,39 @@
                showShare: true
                });
             </script>
+
+<script>
+  // Fetch the page containing the table
+  fetch('original-page.html') // Replace with the actual URL
+    .then(response => response.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      // List of IDs you want to extract and convert
+      const ids = ['rateei2026', 'rateeiq2026']; // Add all your IDs here
+
+      ids.forEach(id => {
+        const rawValue = doc.getElementById(id)?.textContent;
+        if (rawValue) {
+          const decimalValue = (parseFloat(rawValue) / 100).toFixed(6);
+          console.log(`${id}: ${decimalValue}`);
+
+          // Optionally display it somewhere on your page
+          const displayElement = document.getElementById(`display-${id}`);
+          if (displayElement) {
+            displayElement.textContent = decimalValue;
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching or converting rate:', error);
+    });
+</script>
+
+
+		  
 		<!-- Local application script (kept in-body for predictable DOM availability) -->
   <script>
     // Initialization
