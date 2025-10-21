@@ -1795,17 +1795,9 @@
 
 
 function hideRateClasses() {
-  if (window.wb && window.wb.doAction) {
-    window.wb.doAction([
-      { "action": "addClass", "source": ".rateei", "class": "hidden" },
-      { "action": "addClass", "source": ".rateeiq", "class": "hidden" }
-    ]);
-  } else {
-    // Fallback if WET is not available
-    document.querySelectorAll('.rateei, .rateeiq').forEach(function(el) {
-      el.classList.add('hidden');
-    });
-  }
+  document.querySelectorAll('.rateei, .rateeiq').forEach(function(el) {
+    el.remove(); // This removes the element from the DOM completely
+  });
 }
 
 
