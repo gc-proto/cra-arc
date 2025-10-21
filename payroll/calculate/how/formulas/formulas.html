@@ -797,7 +797,7 @@
 <li><a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max", "class": "hidden"}, {"action": "addClass", "source": "#max1, #cpprate", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(6)", "class": "info"}]'>Maximum annual employee CPP contributions&nbsp;<span class="far fa-question-circle"></span></a></li>
 <li><a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max1", "class": "hidden"}, {"action": "addClass", "source": "#max, #cpprate", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(2)", "class": "info"}]'>	Maximum annual pensionable earnings&nbsp;<span class="far fa-question-circle"></span></a></li>
 <li> <a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#cpprate", "class": "hidden"}, {"action": "addClass", "source": "#max, #max1", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(5)", "class": "info"}]'>CPP rate&nbsp;<span class="far fa-question-circle"></span></a></li>
-<li><a href="#exemption" aria-controls="mid-screen" class="overlay-lnk" role="button">basic exemption amount&nbsp;<span class="far fa-question-circle"></span></a></li>
+<li><a href="#exemption" aria-controls="mid-screen" class="overlay-lnk" role="button">Basic exemption amount&nbsp;<span class="far fa-question-circle"></span></a></li>
 <li></li>
 <li></li>
 <li></li>
@@ -1800,14 +1800,14 @@
 
 <script>
   // Fetch the page containing the table
-  fetch('https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html', 'https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html') // Replace with the actual URL
+  fetch('https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html') // Replace with the actual URL
     .then(response => response.text())
     .then(html => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
 
       // List of IDs you want to extract and convert
-      const ids = ['ratecpp20xx', 'rateei20xx', 'eratecpp20xx', 'erateei20xx', 'rateeiq20xx', 'erateeiq20xx', 'rateei2025','rateeiq2025']; // Add all your IDs here
+      const ids = ['rateei20xx', 'erateei20xx', 'rateeiq20xx', 'erateeiq20xx', 'rateei2025','rateeiq2025']; // Add all your IDs here
 
       ids.forEach(id => {
         const rawValue = doc.getElementById(id)?.textContent;
@@ -1833,7 +1833,7 @@
 
 
 function hideRateClasses() {
-  document.querySelectorAll('.rateei, .rateeiq, .ratecpp').forEach(function(el) {
+  document.querySelectorAll('.rateei, .rateeiq').forEach(function(el) {
     el.remove(); // This removes the element from the DOM completely
   });
 }
