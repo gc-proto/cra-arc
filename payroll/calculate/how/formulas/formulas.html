@@ -1298,7 +1298,7 @@
                                  <span class="fas fa-hashtag fa-stack-1x"></span>
                                  </span>
 	  
-                                <span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #rateei20xx"></span> </span>
+                                <span class="mrgn-tp-0 text-muted h5"><span id="display-rateeie20xx"></span> </span>
                                 
                               </li>
 	   
@@ -1866,7 +1866,7 @@
       const doc = parser.parseFromString(html, 'text/html');
 
       // List of IDs you want to extract and convert
-      const ids = ['rateei20xx', 'rateeiq20xx', 'rateei2025','rateeiq2025']; // Add all your IDs here
+      const ids = ['rateei20xx', 'rateeie20xx', 'rateeiq20xx', 'rateei2025','rateeiq2025']; // Add all your IDs here
 
       ids.forEach(id => {
         const rawValue = doc.getElementById(id)?.textContent;
