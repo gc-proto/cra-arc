@@ -244,7 +244,7 @@
 
 
 <h4 id="h4cpprates">CPP, CPP2, QPP and QPP2 rates</h4>	
-<button class="btn btn-primary btn-lg pull-right" onclick="hideRateClasses(); downloadSelectedTables();">
+<button class="btn btn-primary btn-lg pull-right" onclick="hidecppRateClasses(); downloadSelectedTables();">
   <span class="fa fa-download"></span> Export the tables (CSV)
 </button>	
 <ul>
@@ -1522,9 +1522,38 @@
     });
 </script>
 
+<script>
+  // Fetch the page containing the table
+  fetch('https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html') // Replace with the actual URL
+    .then(response => response.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      // List of IDs you want to extract and convert
+      const ids = ['ratecpp20xx', 'eratecpp20xx', 'ratecppq20xx', 'eratecppq20xx', 'ratecpp2025','ratecppq2025']; // Add all your IDs here
+
+      ids.forEach(id => {
+        const rawValue = doc.getElementById(id)?.textContent;
+        if (rawValue) {
+          const decimalValue = (parseFloat(rawValue) / 100).toFixed(4);
+          console.log(`${id}: ${decimalValue}`);
+
+          // Optionally display it somewhere on your page
+          const displayElement = document.getElementById(`display-${id}`);
+          if (displayElement) {
+            displayElement.textContent = decimalValue;
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching or converting rate:', error);
+    });
+</script>		  
+
 
 <script>
-
 
 function hideRateClasses() {
   document.querySelectorAll('.rateei, .rateeiq').forEach(function(el) {
@@ -1532,6 +1561,12 @@ function hideRateClasses() {
   });
 }
 
+function hidecppRateClasses() {
+  document.querySelectorAll('.ratecpp, .ratecppq').forEach(function(el) {
+    el.remove(); // This removes the element from the DOM completely
+  });
+}
+	
 
 
 function downloadSelectedTables() {
