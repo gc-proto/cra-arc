@@ -1800,14 +1800,14 @@
 
 <script>
   // Fetch the page containing the table
-  fetch('https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html') // Replace with the actual URL
+  fetch('https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html', 'https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html') // Replace with the actual URL
     .then(response => response.text())
     .then(html => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
 
       // List of IDs you want to extract and convert
-      const ids = ['rateei20xx', 'erateei20xx', 'rateeiq20xx', 'erateeiq20xx', 'rateei2025','rateeiq2025']; // Add all your IDs here
+      const ids = ['ratecpp20xx', 'rateei20xx', 'eratecpp20xx', 'erateei20xx', 'rateeiq20xx', 'erateeiq20xx', 'rateei2025','rateeiq2025']; // Add all your IDs here
 
       ids.forEach(id => {
         const rawValue = doc.getElementById(id)?.textContent;
@@ -1833,7 +1833,7 @@
 
 
 function hideRateClasses() {
-  document.querySelectorAll('.rateei, .rateeiq').forEach(function(el) {
+  document.querySelectorAll('.rateei, .rateeiq, .ratecpp').forEach(function(el) {
     el.remove(); // This removes the element from the DOM completely
   });
 }
@@ -1871,228 +1871,7 @@ function downloadSelectedTables() {
   document.body.removeChild(link);
 }
 </script>
- 
-<script>
-(function () {
-  const container = document.getElementById('ei-formula');
-  const btn = document.getElementById('copy-ei-btn');
-  const status = document.getElementById('copy-ei-status');
-
-  if (!container || !btn) return;
-
-  // Helper: extract ONLY the text that lives inside the target spans.
-  function getFormulaText(scope) {
-    const nodes = scope.querySelectorAll('.mrgn-tp-0.text-muted.h5');
-    const parts = [];
-    nodes.forEach((node) => {
-      // Clone so we can strip interactive bits if needed
-      const clone = node.cloneNode(true);
-
-      // Optional: replace any in-span links with their visible text only
-      // (e.g., "D1" and "IE" without the icon)
-      clone.querySelectorAll('a').forEach((a) => {
-        // Keep the anchor's readable text; drop icons
-        a.querySelectorAll('.far, .fas, .fa, .fa-*').forEach((icon) => icon.remove());
-        a.replaceWith(document.createTextNode(a.textContent.trim()));
-      });
-
-      // Normalize whitespace
-      const text = clone.textContent.replace(/\s+/g, ' ').trim();
-      if (text) parts.push(text);
-    });
-
-    // Join with spaces; adjust if you prefer newlines.
-    return parts.join(' ');
-  }
-
-  // Clipboard write with fallback.
-  async function copyText(text) {
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        // Fallback for older browsers
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.setAttribute('readonly', '');
-        ta.style.position = 'absolute';
-        ta.style.left = '-9999px';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        ta.remove();
-      }
-      return true;
-    } catch (e) {
-      console.error('Copy failed:', e);
-      return false;
-    }
-  }
-
-  function enableButtonIfReady() {
-    const text = getFormulaText(container);
-    // Enable once we actually have something meaningful to copy
-    if (text && text.length > 2) {
-      btn.disabled = false;
-      btn.setAttribute('aria-disabled', 'false');
-      return true;
-    }
-    return false;
-  }
-
-  // Click handler
-  btn.addEventListener('click', async function () {
-    const text = getFormulaText(container)
-      // Optional: if your page uses "20xx" placeholders, swap for 2026
-      .replace(/\b20xx\b/gi, '2026'); 
-
-    const ok = await copyText(text);
-    if (ok) {
-      btn.classList.remove('btn-default');
-      btn.classList.add('btn-success');
-      status.textContent = 'Copied.';
-      setTimeout(() => {
-        btn.classList.remove('btn-success');
-        btn.classList.add('btn-default');
-        status.textContent = '';
-      }, 2000);
-    } else {
-      status.textContent = 'Copy failed. Please try again.';
-    }
-  });
-
-  // 1) Try enabling immediately (in case content is already there)
-  if (enableButtonIfReady()) return;
-
-  // 2) Watch for dynamic content (e.g., WET data-ajax-replace inserts)
-  const mo = new MutationObserver(() => enableButtonIfReady() && mo.disconnect());
-  mo.observe(container, { childList: true, subtree: true, characterData: true });
-
-  // 3) Fallback: try again after a short delay in case events don’t fire
-  setTimeout(enableButtonIfReady, 2000);
-})();
-</script>
-
-<script>
-(function () {
-  const btn = document.getElementById('copy-ei-btn');
-  const status = document.getElementById('copy-ei-status');
-  const containers = [
-    { id: 'ei-formula', title: 'Employees outside Quebec' },
-    { id: 'eiq-formula', title: 'Employees in Quebec only' }
-  ];
-
-  if (!btn || !status) return;
-
-  function extractSpanText(scope) {
-    // Only the requested spans
-    const nodes = scope.querySelectorAll('.mrgn-tp-0.text-muted.h5');
-    const parts = [];
-    nodes.forEach((node) => {
-      // Clone so we can safely remove icons and keep visible text
-      const clone = node.cloneNode(true);
-
-      // Remove font-awesome icons inside the cloned span
-      clone.querySelectorAll('.fa, .fas, .far, [class*="fa-"]').forEach(el => el.remove());
-
-      // For any links, keep only their text content
-      clone.querySelectorAll('a').forEach(a => {
-        a.replaceWith(document.createTextNode(a.textContent.trim()));
-      });
-
-      // Normalize whitespace
-      const text = clone.textContent.replace(/\s+/g, ' ').trim();
-      if (text) parts.push(text);
-    });
-
-    // Join as a compact single-line; switch to '\n' if you prefer line breaks
-    return parts.join(' ');
-  }
-
-  function getClipboardPayload() {
-    let sections = [];
-
-    containers.forEach(cfg => {
-      const el = document.getElementById(cfg.id);
-      if (!el) return;
-
-      const text = extractSpanText(el)
-        // If placeholders like "20xx" still appear, force 2026.
-        .replace(/\b20xx\b/gi, '2026');
-
-      if (text) {
-        sections.push(`${cfg.title}\n${text}`);
-      }
-    });
-
-    // Join sections with a blank line between them
-    return sections.join('\n\n');
-  }
-
-  async function copyText(text) {
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.setAttribute('readonly', '');
-        ta.style.position = 'absolute';
-        ta.style.left = '-9999px';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        ta.remove();
-      }
-      return true;
-    } catch (e) {
-      console.error('Copy failed:', e);
-      return false;
-    }
-  }
-
-  btn.addEventListener('click', async () => {
-    const payload = getClipboardPayload();
-
-    if (!payload) {
-      status.textContent = 'Nothing to copy yet. Is the page content still loading?';
-      return;
-    }
-
-    const ok = await copyText(payload);
-    if (ok) {
-      // Visual & SR feedback
-      btn.classList.remove('btn-default');
-      btn.classList.add('btn-success');
-      status.textContent = 'Copied.';
-      setTimeout(() => {
-        btn.classList.remove('btn-success');
-        btn.classList.add('btn-default');
-        status.textContent = '';
-      }, 2000);
-    } else {
-      status.textContent = 'Copy failed. Please try again.';
-    }
-  });
-
-  // Optional: auto-enable button once content appears
-  // (Your button isn’t disabled, but you may want to prevent empty copies.)
-  const moTargets = containers
-    .map(c => document.getElementById(c.id))
-    .filter(Boolean);
-
-  if (moTargets.length) {
-    const mo = new MutationObserver(() => {
-      // No-op, but could be used to enable a disabled button if you choose to disable it initially.
-      // Example:
-      // if (getClipboardPayload()) btn.disabled = false;
-    });
-    moTargets.forEach(t => mo.observe(t, { childList: true, subtree: true, characterData: true }));
-    // If you want the button disabled until content is ready:
-    // btn.disabled = !getClipboardPayload();
-  }
-})();
-</script>		  
+	  
 
 <section id="def-A" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
 <header class="modal-header">
