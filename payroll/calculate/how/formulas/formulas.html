@@ -1289,6 +1289,32 @@
 <p>In Quebec: $35,700& × 1.31%= $467.67</p>
 <p>Totals: $65,700 = $959.67</p>
 
+<form class="wb-frmvld">
+<div class="form-group">
+<label for="amount">Amount</label>
+<input id="amount" type="number" value="30000" class="form-control">
+</div>
+
+<div class="form-group">
+<label for="rate">Rate</label>
+<input id="rate" type="number" step="0.001" class="form-control">
+</div>
+
+<div class="form-group">
+<label for="result">Result</label>
+<input id="result" type="text" readonly class="form-control">
+</div>
+</form>
+
+<div data-wb-json='{
+"url": "rates.json",
+"mapping": [
+{ "selector": "#rate", "value": "rateValue" }
+]
+}'></div>
+	
+
+	
  <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col mrgn-tp-xs"><h4>Ontario</h4>
 
@@ -1857,6 +1883,15 @@
                });
             </script>
 
+<script>
+$(document).on('input', '#amount, #rate', function() {
+var amount = parseFloat($('#amount').val()) || 0;
+var rate = parseFloat($('#rate').val()) || 0;
+$('#result').val((amount * rate).toFixed(2));
+});
+</script>
+
+		  
 <script>
   // Fetch the page containing the table
   fetch('https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html') // Replace with the actual URL
