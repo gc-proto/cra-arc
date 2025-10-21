@@ -244,20 +244,25 @@
 
 
 <h4 id="h4cpprates">CPP, CPP2, QPP and QPP2 rates</h4>	
-<button class="btn btn-primary btn-lg pull-right" onclick="hidecppRateClasses(); downloadSelectedTables();">
+<button class="btn btn-primary btn-lg pull-right" onclick="hidecppRateClasses(); downloadSelectedcppTables();">
   <span class="fa fa-download"></span> Export the tables (CSV)
 </button>	
 <ul>
-<li><a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#maxcpp", "class": "hidden"}, {"action": "addClass", "source": "#max1cpp, #cpprate", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(6)", "class": "info"}]'>Maximum annual employee CPP contributions&nbsp;<span class="far fa-question-circle"></span></a></li>
+<li><a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[
+		{"action": "removeClass", "source": "#cpprate", "class": "hidden"}, 
+		{"action": "removeClass", "source": ".decimal", "class": "hidden"},
+		{"action": "addClass", "source": ".ratecpp", "class": "hidden"},
+		{"action": "removeClass", "source": "#maxcpp", "class": "hidden"}, 
+		{"action": "addClass", "source": "#max1cpp, #cpprate", "class": "hidden"}, 
+		{"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, 
+		{"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(6)", "class": "info"}
+		]'>Maximum annual employee CPP contributions&nbsp;<span class="far fa-question-circle"></span></a></li>
 <li><a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max1cpp", "class": "hidden"}, {"action": "addClass", "source": "#maxcpp, #cpprate", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(2)", "class": "info"}]'>	Maximum annual pensionable earnings&nbsp;<span class="far fa-question-circle"></span></a></li>
 <li> <a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#cpprate", "class": "hidden"}, {"action": "addClass", "source": "#maxcpp, #max1cpp", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(5)", "class": "info"}]'>CPP rate&nbsp;<span class="far fa-question-circle"></span></a></li>
 <li><a href="#exemption" aria-controls="mid-screen" class="overlay-lnk" role="button">Basic exemption amount&nbsp;<span class="far fa-question-circle"></span></a></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>	
 </ul>	
-	
+
+		
 <h4 id="h4cppformulas">CPP, CPP2, QPP and QPP2 formulas</h4>		
 <p>For all the following formulas, round the result of the amounts to the nearest $0.01.</p>	
 <div class="col-md-12 wb-tagfilter provisional wb-filter" id="filteredFAQ"  data-wb-filter='{
@@ -1568,6 +1573,36 @@ function hidecppRateClasses() {
 }
 	
 
+function downloadSelectedcppTables() {
+  const tables = [document.getElementById('ajax-cpprate-tbl')];
+  let csvContent = '';
+
+  tables.forEach(function(table, index) {
+    if (!table) return;
+
+    csvContent += `Table ${index + 1}\n`;
+
+    const rows = table.querySelectorAll('tr');
+    rows.forEach(function(row) {
+      const cols = row.querySelectorAll('td, th');
+      const rowData = Array.from(cols).map(function(col) {
+        return `"${col.textContent.trim()}"`;
+      }).join(',');
+      csvContent += rowData + '\n';
+    });
+
+    csvContent += '\n'; // Add spacing between tables
+  });
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'selected_tables.csv';
+  link.style.display = 'none';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}	
 
 function downloadSelectedTables() {
   const tables = [document.getElementById('tb1'), document.getElementById('tb2')];
