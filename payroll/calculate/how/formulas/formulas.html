@@ -275,7 +275,7 @@
 <dt>N</dt><dd><a id="ajax-def-N">The number of days in the current year since the last payment. The minimum basic exemption amount of $67.30 is included in the formula in line with CPP legislation</a></dd>
 <dt>P</dt><dd><a id="ajax-def-P">The number of pay periods in the year</a></dd>
 <dt>PI</dt><dd><a id="ajax-def-PI">Pensionable earnings for the pay period, or the gross income plus any taxable benefits for the pay period, including bonuses and retroactive pay increases where applicable</a></dd>
-<dt>PM</dt><dd><a id="ajax-def-PM">The total number of months during which CPP and/or QPP contributions are required to be deducted (used in the proration of maximum contribution). For detailed information and examples, refer to <a href="/en/revenue-agency/services/forms-publications/publications/t4001.html">T4001 Employers’ Guide – Payroll Deductions and Remittances</a></a></dd>
+<dt>PM</dt><dd><a id="ajax-def-PM">The total number of months during which CPP and/or QPP contributions are required to be deducted (used in the proration of maximum contribution).</dd>
 <dt>PR</dt><dd><a id="ajax-def-PR">The number of pay periods left in the year (including the current pay period)</a></dd>
 <dt>R</dt><dd><a id="ajax-def-R">Federal tax rate that applies to the annual taxable income A</a></dd>
 <dt>S</dt><dd><a id="ajax-def-S">Provincial tax reduction (only applies to Ontario and British Columbia)</a></dd>
@@ -506,7 +506,7 @@
 <p style="margin-left: 80px;">                     (D × (0.0495/0.0595))))) + (0.15 × (0.0131 × I1, maximum $860.67)) + (0.15 × (0.00494 × I1, maximum                     $484.12))]</p>
 <p style="margin-left: 80px;">                    * If the resulting amount is negative, enter $0.</p>
 <div class="alert alert-info">
-<p><strong>Note:</strong> <span style="background-color: inherit;">The preceding is subject to the rules in Chapter 6 – “Canada Pension Plan (CPP)” and Chapter 7 – “Employment Insurance (EI)” of this document and the instructions in Guide <a href="/en/revenue-agency/services/forms-publications/publications/t4001.html">T4001 Employers’ Guide – Payroll Deductions and Remittances</a>.</span></p>
+<p><strong>Note:</strong> <span style="background-color: inherit;">The preceding is subject to the rules in Chapter 6 – “Canada Pension Plan (CPP)” and Chapter 7 – “Employment Insurance (EI)” of this document.</span></p>
 </div>
 <p><strong>K3</strong>        =        If the K3 amount is implemented after the first pay period in the year, K3 must be adjusted using the                        following formula:</p>
 <p>                        (P × K3) / PR.</p>
@@ -873,7 +873,7 @@
 <p>                       Where:</p>
 <p>                       PE   =   Pensionable earnings for the pay period, or the gross income plus any taxable benefits for the pay                                     period, plus PE<sub>YTD</sub></p>
 <p>                       <a href="#def-IE" aria-controls="def-IE" class="overlay-lnk" role="button">IE&nbsp;<span class="far fa-question-circle"></span></a>    =   Insurable earnings for the pay period, including insurable taxable benefits for the pay period,                                     plus <a href="#def-IE" aria-controls="def-IE" class="overlay-lnk" role="button">IE&nbsp;<span class="far fa-question-circle"></span></a><sub>YTD</sub></p>
-<p>                      The above has to follow the rules in Chapter 6 – “Canada Pension Plan (CPP)” and Chapter 7 – “Employment                        Insurance (EI)” of this publication and the instructions contained in Guide T4001, Employers’ Guide – <a href="/en/revenue-agency/services/forms-publications/publications/t4001.html">Payroll</a>                        <a href="/en/revenue-agency/services/forms-publications/publications/t4001.html">Deductions and Remittances</a></p>
+<p>                      The above has to follow the rules in Chapter 6 – “Canada Pension Plan (CPP)” and Chapter 7 – “Employment                        Insurance (EI)” of this publication </p>
 <p><strong>K4 </strong>       =        The lesser of:</p>
 <p>                       (i)    0.15 × A*;  </p>
 <p>                       (ii)   0.15 × CEA</p>
@@ -1041,7 +1041,7 @@
 <p><strong>Your employee turns 18</strong> – Start deducting CPP contributions for the first pay dated in the month after the employee turns 18.</p>
 <p><strong>Your employee turns 70</strong> – Deduct CPP contributions up to and including the last pay dated in the month in which the employee turns 70.</p>
 <p><strong>Your employee gives you a completed Form CPT30</strong> – The employee can either stop or restart contributing to CPP by filling out Form CPT30, Election to Stop Contributing to the Canada Pension Plan, or a Revocation of a Prior Election. This election is effective on the first day of the month following the receipt of the completed form.</p>
-<p>For detailed information and examples, refer to <a href="/en/revenue-agency/services/forms-publications/publications/t4001.htm">T4001 Employers’ Guide – Payroll Deductions and Remittances</a>.</p>
+
 <p>Use the same PM throughout the year, unless an election to stop contributing to the Canada Pension Plan, or a revocation of a prior election is made.</p>
 </details> 
 	
@@ -1788,6 +1788,9 @@
 
 <script>
 function downloadSelectedTables() {
+  // Hide both .rateei and .rateeiq elements
+  document.querySelectorAll('.rateei, .rateeiq').forEach(el => el.classList.add('hidden'));
+
   const tables = [document.getElementById('tb1'), document.getElementById('tb2')];
   let csvContent = '';
 
