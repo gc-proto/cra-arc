@@ -1086,13 +1086,26 @@
 
 
 	
-<h4>2026 formula</h4>		
+<h4 id="eiformulas">EI formulas</h4>	
+
+<div class="mrgn-bttm-md">
+  <button type="button"
+          id="copy-ei-btn"
+          class="btn btn-default btn-sm"
+          disabled
+          aria-describedby="copy-ei-status">
+    <span class="far fa-copy" aria-hidden="true"></span>
+    Copy 2026 formula
+  </button>
+  <span id="copy-ei-status" class="wb-inv" aria-live="polite"></span>
+</div>
+	
 <p>The following formula will help you calculate your <abbr title="Employment Insurance">EI</abbr> premium payable for <strong>calendar year 2026</strong>:</p>
 	
  <ul class="list-unstyled cnjnctn-type-and ">
 <li class="cnjnctn-col mrgn-tp-xs"><h4>Employees in provinces or territories other than Quebec</h4>
 <p>The <abbr title="Employment Insurance">EI</abbr> is the lesser of the following amount:</p>
-
+<div id="ei-formula">
 <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col mrgn-tp-xs">
  <ul class="fa-ul lst-spcd  ">
@@ -1130,11 +1143,11 @@
 	  
 </li>
  
-</ul></li>
+</ul></div></li>
 	 
 <li class="cnjnctn-col"><h4>Employees in Quebec only <img src="https://test.canada.ca/cra-arc/payroll/images/flag-qc.png" alt=""> </h4>
 <p>The <abbr title="Employment Insurance">EI</abbr> is the lesser of the following amount:</p>
-                  
+ <div id="eiq-formula">                 
  <ul class="list-unstyled cnjnctn-type-or cnjnctn-sm">
 <li class="cnjnctn-col mrgn-tp-xs">
  <ul class="fa-ul lst-spcd">
@@ -1182,7 +1195,7 @@
 	<p class="text-muted h5">Round the result of this amount to the nearest $0.01</p>
 	  
 </li> 
-</ul>
+</ul></div>
 </li> </ul>	
 <details><summary>Example</summary>
 <p>In 2026, an employee makes $30,000 of insurable earnings in Ontario, changes their province of employment to Quebec, and makes an extra $52,000 with the same employer. The maximum annual insurable earnings for calendar year 2026 is <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #maxei20xx"></span>.</p>
@@ -1834,7 +1847,106 @@ function downloadSelectedTables() {
 }
 </script>
  
+<script>
+(function () {
+  const container = document.getElementById('ei-formula');
+  const btn = document.getElementById('copy-ei-btn');
+  const status = document.getElementById('copy-ei-status');
 
+  if (!container || !btn) return;
+
+  // Helper: extract ONLY the text that lives inside the target spans.
+  function getFormulaText(scope) {
+    const nodes = scope.querySelectorAll('.mrgn-tp-0.text-muted.h5');
+    const parts = [];
+    nodes.forEach((node) => {
+      // Clone so we can strip interactive bits if needed
+      const clone = node.cloneNode(true);
+
+      // Optional: replace any in-span links with their visible text only
+      // (e.g., "D1" and "IE" without the icon)
+      clone.querySelectorAll('a').forEach((a) => {
+        // Keep the anchor's readable text; drop icons
+        a.querySelectorAll('.far, .fas, .fa, .fa-*').forEach((icon) => icon.remove());
+        a.replaceWith(document.createTextNode(a.textContent.trim()));
+      });
+
+      // Normalize whitespace
+      const text = clone.textContent.replace(/\s+/g, ' ').trim();
+      if (text) parts.push(text);
+    });
+
+    // Join with spaces; adjust if you prefer newlines.
+    return parts.join(' ');
+  }
+
+  // Clipboard write with fallback.
+  async function copyText(text) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      return true;
+    } catch (e) {
+      console.error('Copy failed:', e);
+      return false;
+    }
+  }
+
+  function enableButtonIfReady() {
+    const text = getFormulaText(container);
+    // Enable once we actually have something meaningful to copy
+    if (text && text.length > 2) {
+      btn.disabled = false;
+      btn.setAttribute('aria-disabled', 'false');
+      return true;
+    }
+    return false;
+  }
+
+  // Click handler
+  btn.addEventListener('click', async function () {
+    const text = getFormulaText(container)
+      // Optional: if your page uses "20xx" placeholders, swap for 2026
+      .replace(/\b20xx\b/gi, '2026'); 
+
+    const ok = await copyText(text);
+    if (ok) {
+      btn.classList.remove('btn-default');
+      btn.classList.add('btn-success');
+      status.textContent = 'Copied.';
+      setTimeout(() => {
+        btn.classList.remove('btn-success');
+        btn.classList.add('btn-default');
+        status.textContent = '';
+      }, 2000);
+    } else {
+      status.textContent = 'Copy failed. Please try again.';
+    }
+  });
+
+  // 1) Try enabling immediately (in case content is already there)
+  if (enableButtonIfReady()) return;
+
+  // 2) Watch for dynamic content (e.g., WET data-ajax-replace inserts)
+  const mo = new MutationObserver(() => enableButtonIfReady() && mo.disconnect());
+  mo.observe(container, { childList: true, subtree: true, characterData: true });
+
+  // 3) Fallback: try again after a short delay in case events don’t fire
+  setTimeout(enableButtonIfReady, 2000);
+})();
+</script>
 
 <section id="def-A" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
 <header class="modal-header">
