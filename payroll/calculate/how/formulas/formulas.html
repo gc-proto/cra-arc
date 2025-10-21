@@ -217,6 +217,133 @@
 	 
 
        </li></ol>	
+ <details><summary><h3><span class="fas fa-calculator fa-lg text-primary"></span>  Option 1 calculator</h3></summary>
+       <h3>Answer a few questions to calculate when indexing based on previous personal tax credits returns (Form TD1)</h3>
+<p class="small">Make a selection and <strong>scroll down</strong> for further questions or results. This tool will help you calculate using the option 1 formula based on the answers you provide below. This tool is only intended for general guidance and reference purposes.</p>
+	 
+	 
+    <fieldset class="gc-chckbxrdio" id="question1" name="quest">
+      <legend class="mrgn-tp-sm">Do you have a federal Form TD1 on file for this employee?</legend>
+      <ul class="list-unstyled lst-spcd-2" role="radiogroup" aria-labelledby="question1">
+        <li class="radio">
+          <input data-q1="true" data-rule-required="true" id="q1-true" name="td1" onclick="toggleTD1(true)" type="radio" value="yes" />
+          <label for="q1-true">Yes</label>
+        </li>
+        <li class="radio">
+          <input data-q1="false" data-rule-required="true" id="q1-false" name="td1" onclick="toggleTD1(false)" type="radio" value="no" />
+          <label for="q1-false">No</label>
+        </li>
+      </ul>
+    </fieldset>
+
+    <fieldset class="hidden gc-chckbxrdio" id="provincialTD1Question" name="quest">
+      <legend class="mrgn-tp-md">Do you also have a provincial Form TD1 on file for this employee?</legend>
+      <ul class="list-unstyled lst-spcd-2" role="radiogroup" aria-labelledby="provincialTD1Question">
+        <li class="radio">
+          <input data-q2="true" data-rule-required="true" id="q2-true" name="provincial_td1" onclick="toggleprovTD1(true)" type="radio" value="yes" />
+          <label for="q2-true">Yes</label>
+        </li>
+        <li class="radio">
+          <input data-q2="false" data-rule-required="true" id="q2-false" name="provincial_td1" onclick="toggleprovTD1(false)" type="radio" value="no" />
+          <label for="q2-false">No</label>
+        </li>
+      </ul>
+    </fieldset>
+
+    <section class="alert alert-warning hidden" id="noMessage" role="status" aria-live="polite">
+      <p>You <strong>cannot</strong> use the calculation formula to index the personal amounts if you <strong>do not have a Form TD1 on file</strong> for your employee.</p>
+    </section>
+
+    <div class="hidden" id="provinceSection">
+      <label for="province">Select the province or territory</label>
+      <select class="form-control input-lg mrgn-tp-md" id="province" onchange="handleProvince()">
+        <option value="">-- Make your selection --</option>
+        <option value="Alberta">Alberta</option>
+        <option value="British Columbia">British Columbia</option>
+        <option value="Manitoba">Manitoba</option>
+        <option value="New Brunswick">New Brunswick</option>
+        <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+        <option value="Nova Scotia">Nova Scotia</option>
+        <option value="Ontario">Ontario</option>
+        <option value="Prince Edward Island">Prince Edward Island</option>
+        <option value="Quebec">Quebec</option>
+        <option value="Saskatchewan">Saskatchewan</option>
+        <option value="Northwest Territories">Northwest Territories</option>
+        <option value="Nunavut">Nunavut</option>
+        <option value="Yukon">Yukon</option>
+      </select>
+    </div>
+
+    <section class="alert alert-warning hidden" id="peiMessage" role="status" aria-live="polite">
+      <p><strong>No indexing applies to Prince Edward Island. The calculator is not applicable.</strong></p>
+    </section>
+
+    <div class="hidden mrgn-tp-lg" id="yearSection">
+      <label for="year">Select the calendar year</label>
+      <select class="form-control input-lg mrgn-tp-md" id="year" onchange="showCalculator(); if (window.hasProvincialTD1) showCalculator2();">
+        <option value="">-- Make your selection --</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+      </select>
+    </div>
+
+    <!-- Calculator UI (hidden by default) -->
+	<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm hidden" id="calculator" name="result">
+      <li class="cnjnctn-col mrgn-tp-xs">
+        <section aria-labelledby="federalTitle">
+          <p id="federalTitle" class="h4 mrgn-tp-md text-info">
+            <span class="text-muted">You indicated that</span><br />
+            <strong>You have a federal Form TD1 on file for this employee</strong>
+          </p>
+
+          <label for="line1">Enter the total claim amount reported on line 13 of the federal Form TD1 ($)</label>
+          <input id="line1" step="0.01" type="number" inputmode="decimal" />
+
+          <div class="hidden" id="line2Section">
+            <label class="mrgn-tp-mg" for="line2">Enter the prior year BPANS (Nova Scotia only) ($)</label>
+            <input id="line2" step="0.01" type="number" inputmode="decimal" />
+          </div>
+
+          <div id="line3Section">
+            <label class="mrgn-tp-mg" for="line3">Enter the pension income amount reported on line 4 and the tuition (full-time and part-time) reported on line 5 of the federal Form TD1 ($)</label>
+            <input id="line3" step="0.01" type="number" inputmode="decimal" />
+          </div>
+
+          <button class="btn btn-primary btn-lg mrgn-tp-md" type="button" onclick="calculateTCP()">Calculate the federal amount</button>
+
+          <div class="result" id="result" aria-live="polite"></div>
+        </section>
+      </li>
+
+      <li class="cnjnctn-col">
+        <section class="hidden" id="calculator2" aria-labelledby="provTitle">
+          <p id="provTitle" class="h4 mrgn-tp-md text-info">
+            <span class="text-muted">You indicated that</span><br />
+            <strong>You have a provincial Form TD1 on file for this employee</strong>
+          </p>
+
+          <label for="line1prov">Enter the total claim amount reported on the provincial Form TD1 ($)</label>
+          <input id="line1prov" step="0.01" type="number" inputmode="decimal" />
+
+          <div class="hidden" id="line2Sectionprov">
+            <label for="line2prov">Enter the prior year BPANS (Nova Scotia only) ($)</label>
+            <input id="line2prov" step="0.01" type="number" inputmode="decimal" />
+          </div>
+
+          <div id="line3Sectionprov">
+            <label for="line3prov">Enter the pension income amount reported on line 4 and the tuition (full-time and part-time) reported on line 5 of the provincial Form TD1 ($)</label>
+            <input id="line3prov" step="0.01" type="number" inputmode="decimal" />
+          </div>
+
+          <button class="btn btn-primary btn-lg mrgn-tp-md" type="button" onclick="calculateTCPprov()">Calculate the provincial amount</button>
+
+          <div class="result" id="resultprov" aria-live="polite"></div>
+        </section>
+      </li>
+    </ul>
+	</details> 
+	 
    </details>
 <details><summary>Glossary description</summary> 
 <div class="row">
@@ -1050,59 +1177,29 @@
 <p class="mrgn-tp-md">You (as an employer) have to remit these deductions along with your share of <abbr title="Employment Insurance">EI</abbr> premiums.</p> 
 
 <h4>Rates</h4>	
-<details> <summary>Federal maximum annual employee EI premiums </summary>
+<ul>
+<li><a href="#ei-prem" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max", "class": "hidden"}, {"action": "addClass", "source": "#max1, #eirate", "class": "hidden"}, {"action": "removeClass", "source": "#tb1>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb1>tbody>tr>td:nth-child(1), #tb1>tbody>tr>td:nth-child(4)", "class": "info"}]'>Federal maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>		 </li> 
 
-<p class="lead hidden" id="max"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual employee premium" (<strong>column&nbsp;4)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
-	              <div data-ajax-replace="/cra-arc/payroll/calculate/when/eirates.html #ajax-eirate"></div>
-				  <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-terms"></div> 
-				  <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-quebec"></div> 
-	
-<a href="#ei-prem" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max", "class": "hidden"}, {"action": "addClass", "source": "#max1, #eirate", "class": "hidden"}, {"action": "removeClass", "source": "#tb1>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb1>tbody>tr>td:nth-child(1), #tb1>tbody>tr>td:nth-child(4)", "class": "info"}]'>Federal maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>		  	
-</details>	
-	
-<details> <summary>Federal EI premium rates </summary>
-	<p class="lead hidden" id="eirate"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Rate" (<strong>column 3</strong>) that matches the "Year" (<strong>column 1</strong>) </p>			   
-
-				<div data-ajax-replace="/cra-arc/payroll/calculate/when/eirates.html #ajax-eirate"></div>
-				  <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-terms"></div> 
-				  <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-quebec"></div> 	
-
-<a href="#ei-prem" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[
+<li><a href="#ei-prem" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[
 		{"action": "removeClass", "source": "#eirate", "class": "hidden"}, 
 		{"action": "removeClass", "source": ".decimal", "class": "hidden"},
 		{"action": "addClass", "source": ".rateei", "class": "hidden"},
 		{"action": "addClass", "source": "#max, #max1", "class": "hidden"}, 
 		{"action": "removeClass", "source": "#tb1>tbody>tr>td", "class": "info"}, 
 		{"action": "addClass", "source": "#tb1>tbody>tr>td:nth-child(1), #tb1>tbody>tr>td:nth-child(3)", "class": "info"}
-		]'>Federal EI premium rates&nbsp;<span class="far fa-question-circle"></span></a>
-	
-</details>
-<details> <summary>Quebec maximum annual employee EI premiums</summary>
-	<p class="lead hidden" id="max2"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual employee premium" (<strong>column&nbsp;4)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
-				   
-	           <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-redrate"></div>
-				<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-terms"></div> 
-				<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-quebec"></div>    
-	
-<a href="#redrate" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max2", "class": "hidden"}, {"action": "addClass", "source": "#max3, #max4", "class": "hidden"}, {"action": "removeClass", "source": "#tb2>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb2>tbody>tr>td:nth-child(1), #tb2>tbody>tr>td:nth-child(4)", "class": "info"}]'>Quebec maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>		
-</details>
-<details> <summary>Quebec EI rate</summary>
+		]'>Federal EI premium rates&nbsp;<span class="far fa-question-circle"></span></a></li>
 
-	<p class="lead hidden" id="max4"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Rate" (<strong>column 3</strong>) that matches the "Year" (<strong>column 1</strong>) </p>				   
-	           <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-redrate"></div>
-				<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-terms"></div> 
-				<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-quebec"></div>    	
-
-	<a href="#redrate" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[
+<li><a href="#redrate" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max2", "class": "hidden"}, {"action": "addClass", "source": "#max3, #max4", "class": "hidden"}, {"action": "removeClass", "source": "#tb2>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb2>tbody>tr>td:nth-child(1), #tb2>tbody>tr>td:nth-child(4)", "class": "info"}]'>Quebec maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>		 </li> 
+	
+<li><a href="#redrate" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[
 		{"action": "removeClass", "source": "#max4", "class": "hidden"}, 
 		{"action": "removeClass", "source": ".decimal", "class": "hidden"},
 		{"action": "addClass", "source": ".rateeiq", "class": "hidden"},
 		{"action": "addClass", "source": "#max2, #max3", "class": "hidden"}, 
 		{"action": "removeClass", "source": "#tb2>tbody>tr>td", "class": "info"}, 
 		{"action": "addClass", "source": "#tb2>tbody>tr>td:nth-child(1), #tb2>tbody>tr>td:nth-child(3)", "class": "info"}
-		]'>Quebec EI rate&nbsp;<span class="far fa-question-circle"></span></a> 		
-</details>	
-
+		]'>Quebec EI rate&nbsp;<span class="far fa-question-circle"></span></a> </li> 	
+</ul> 	
 <h4>2026 formula</h4>		
 <p>The following formula will help you calculate your <abbr title="Employment Insurance">EI</abbr> premium payable for <strong>calendar year 2026</strong>:</p>
 	
@@ -1280,7 +1377,49 @@
 			     
  </main>
 
+ <section id="ei-prem" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
+               <header class="modal-header">
+                  <h2 class="modal-title">EI premium rates and maximums</h2>
+               </header>
+               <div class="modal-body">
+	<p class="lead hidden" id="max"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual employee premium" (<strong>column&nbsp;4)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
+	<p class="lead hidden" id="max1"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual insurable earnings" (<strong>column&nbsp;2)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong></p>
+	<p class="lead hidden" id="eirate"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Rate" (<strong>column 3</strong>) that matches the "Year" (<strong>column 1</strong>) </p>			   
+                  <div data-ajax-replace="/cra-arc/payroll/calculate/when/eirates.html #ajax-eirate"></div>
+				  <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-terms"></div> 
+				  <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-quebec"></div>  
+               </div>
+            </section>
 
+
+
+<section id="redrate" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
+               <header class="modal-header">
+                  <h2 class="modal-title">EI Premium Reduction Program</h2>
+               </header>
+               <div class="modal-body">
+	<p class="lead hidden" id="max2"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual employee premium" (<strong>column&nbsp;4)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
+	<p class="lead hidden" id="max3"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual insurable earnings" (<strong>column&nbsp;2)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong></p>
+	<p class="lead hidden" id="max4"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Rate" (<strong>column 3</strong>) that matches the "Year" (<strong>column 1</strong>) </p>				   
+	           <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-redrate"></div>
+				<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-terms"></div> 
+				<div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-quebec"></div>    
+               </div>
+            </section>
+		  
+<section id="eirate" class="mfp-hide modal-dialog modal-content overlay-def modal-xl">
+  <header class="modal-header"><h2 class="modal-title">EI premium rates and maximums</h2></header>
+  <div class="modal-body">
+       <div data-ajax-replace="#ajax-eirate"></div>
+  </div>
+</section>
+
+<section id="eitables" class="mfp-hide modal-dialog modal-content overlay-def modal-xl">
+  <header class="modal-header"><h2 class="modal-title">EI premiums tables</h2></header>
+  <div class="modal-body">
+       <div data-ajax-replace="#ajax-eitables"></div>
+  </div>
+</section>
 
 
 <section id="itratefed" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
