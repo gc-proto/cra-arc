@@ -362,7 +362,7 @@ transform: scale(1.5);
         <div id="federalScroll" class="table-responsive table-scroll">
           <table class="table pb-2 text-center" id="federalTable" aria-describedby="federalTableCaption">
             <caption class="wb-inv">
-            Federal tax
+            Federal
             </caption>
             <thead id="federalHeader">
               <tr>
@@ -405,19 +405,19 @@ transform: scale(1.5);
 		  <div class="col-sm-10 col-md-7">
     <div class="panel panel-primary mrgn-tp-lg">
       <header class="panel-heading">
-        <h3 class="mrgn-bttm-0 panel-title">Breakdown</h3>
+        <h3 class="mrgn-bttm-0 panel-title">Tax breakdown</h3>
         <p class="gc-byline mrgn-bttm-0">Rounded to the nearest dollar</p>
       </header>
       <div class="panel-body">
         <div class="wb-math-grid mg-spcd">
           <div class="mg-row">
-            <div class="mg-cell pr-1 grid-label">Federal tax</div>
+            <div class="mg-cell pr-1 grid-label">Federal</div>
             <div class="mg-cell"></div>
             <div class="mg-cell text-right text-primary grid-amount" id="fedTaxCal">$0</div>
             <div id="fedTaxPC"  class="mg-cell grid-percent text-right text-primary nowrap pl-1">(0<sup>%</sup>)</div>
           </div>
           <div class="mg-row">
-            <div class="mg-cell grid-label pr-1 align-bottom pb-1"><span id="provTaxName">Provincial</span> tax</div>
+            <div class="mg-cell grid-label pr-1 align-bottom pb-1" id="provTaxName">Provincial</div>
             <div class="mg-cell grid-amount text-primary align-bottom pr-1 pb-1">+</div>
             <div class="mg-cell text-right grid-amount text-primary align-bottom pb-1" id="provTaxCal">$0</div>
             <div id="provTaxPC" class="mg-cell grid-percent text-right text-primary align-bottom nowrap pl-1 pb-1">(0<sup>%</sup>)</div>
@@ -755,14 +755,14 @@ transform: scale(1.5);
 </script> 
 <script>
 var  pagelang = document.documentElement.lang;
-//pagelang toggle for inline sentences
-var pagelang_alt;
+//pagelang toggle for inline sentences delete if not needed
+//var pagelang_alt;
 
-if (pagelang === "fr" && typeof pagelang_alt !== 'undefined') {
-    pagelang_alt = "fr_alt";
-} else {
-    pagelang_alt = "en";
-}
+//if (pagelang === "fr" && typeof pagelang_alt !== 'undefined') {
+//    pagelang_alt = "fr_alt";
+//} else {
+//    pagelang_alt = "en";
+//}
 
 	
 
@@ -770,8 +770,8 @@ if (pagelang === "fr" && typeof pagelang_alt !== 'undefined') {
 //Langauge arrays
 const langToggle = {
 	dataTableHeader: {
-		en: "based on:",
-		fr: "based on: [Fr]"
+		en: "based on",
+		fr: "basé sur"
 	},
 	dataTaxBracket: {
 		"en": "bracket",
@@ -969,7 +969,7 @@ const incomeSliderLabel = document.getElementById("incomeSliderLabel");
      
       document.getElementById('provinceFlag').innerHTML = `<img src="${selectedProvinceFlag}" alt="" class="mrgn-rght-md">`;
         
-      document.getElementById('provinceTitle').textContent = `${selectedProvinceName} tax`;
+      document.getElementById('provinceTitle').textContent = `${selectedProvinceName}`;
 	    
 	    let federalTaxAmount = 0;
 	    let provincialTaxAmount = 0;
