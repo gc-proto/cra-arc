@@ -33,6 +33,11 @@
         display: none !important;
       }
     }
+	
+.hidden {
+  display: none !important;
+}
+
   </style>
 
 
@@ -1787,11 +1792,21 @@
 
 <script>
 
+
 function hideRateClasses() {
-  document.querySelectorAll('.rateei, .rateeiq').forEach(function(el) {
-    el.style.display = 'none';
-  });
+  if (window.wb && window.wb.doAction) {
+    window.wb.doAction([
+      { "action": "addClass", "source": ".rateei", "class": "hidden" },
+      { "action": "addClass", "source": ".rateeiq", "class": "hidden" }
+    ]);
+  } else {
+    // Fallback if WET is not available
+    document.querySelectorAll('.rateei, .rateeiq').forEach(function(el) {
+      el.classList.add('hidden');
+    });
+  }
 }
+
 
 
 function downloadSelectedTables() {
