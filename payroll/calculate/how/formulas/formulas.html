@@ -1076,10 +1076,9 @@
 </ul> 
 
 
-<button class="btn btn-primary btn-lg mrgn-tp-md" onclick="downloadSelectedTables()">
+<button class="btn btn-primary btn-lg mrgn-tp-md" onclick="hideRateClasses(); downloadSelectedTables();">
   <span class="fa fa-download"></span> Export the tables (CSV)
 </button>
-
 	
 <h4>2026 formula</h4>		
 <p>The following formula will help you calculate your <abbr title="Employment Insurance">EI</abbr> premium payable for <strong>calendar year 2026</strong>:</p>
@@ -1787,22 +1786,27 @@
 
 
 <script>
-function downloadSelectedTables() {
-  // Hide both .rateei and .rateeiq elements
-  document.querySelectorAll('.rateei, .rateeiq').forEach(el => el.classList.add('hidden'));
+function hideRateClasses() {
+  document.querySelectorAll('.rateei, .rateeiq').forEach(function(el) {
+    el.classList.add('hidden');
+  });
+}
 
+function downloadSelectedTables() {
   const tables = [document.getElementById('tb1'), document.getElementById('tb2')];
   let csvContent = '';
 
-  tables.forEach((table, index) => {
+  tables.forEach(function(table, index) {
     if (!table) return;
 
     csvContent += `Table ${index + 1}\n`;
 
     const rows = table.querySelectorAll('tr');
-    rows.forEach(row => {
+    rows.forEach(function(row) {
       const cols = row.querySelectorAll('td, th');
-      const rowData = Array.from(cols).map(col => `"${col.textContent.trim()}"`).join(',');
+      const rowData = Array.from(cols).map(function(col) {
+        return `"${col.textContent.trim()}"`;
+      }).join(',');
       csvContent += rowData + '\n';
     });
 
