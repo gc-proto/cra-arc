@@ -33,6 +33,11 @@
         display: none !important;
       }
     }
+	
+.hidden {
+  display: none !important;
+}
+
   </style>
 
 
@@ -217,133 +222,7 @@
 	 
 
        </li></ol>	
- <details><summary><h3><span class="fas fa-calculator fa-lg text-primary"></span>  Option 1 calculator</h3></summary>
-       <h3>Answer a few questions to calculate when indexing based on previous personal tax credits returns (Form TD1)</h3>
-<p class="small">Make a selection and <strong>scroll down</strong> for further questions or results. This tool will help you calculate using the option 1 formula based on the answers you provide below. This tool is only intended for general guidance and reference purposes.</p>
-	 
-	 
-    <fieldset class="gc-chckbxrdio" id="question1" name="quest">
-      <legend class="mrgn-tp-sm">Do you have a federal Form TD1 on file for this employee?</legend>
-      <ul class="list-unstyled lst-spcd-2" role="radiogroup" aria-labelledby="question1">
-        <li class="radio">
-          <input data-q1="true" data-rule-required="true" id="q1-true" name="td1" onclick="toggleTD1(true)" type="radio" value="yes" />
-          <label for="q1-true">Yes</label>
-        </li>
-        <li class="radio">
-          <input data-q1="false" data-rule-required="true" id="q1-false" name="td1" onclick="toggleTD1(false)" type="radio" value="no" />
-          <label for="q1-false">No</label>
-        </li>
-      </ul>
-    </fieldset>
-
-    <fieldset class="hidden gc-chckbxrdio" id="provincialTD1Question" name="quest">
-      <legend class="mrgn-tp-md">Do you also have a provincial Form TD1 on file for this employee?</legend>
-      <ul class="list-unstyled lst-spcd-2" role="radiogroup" aria-labelledby="provincialTD1Question">
-        <li class="radio">
-          <input data-q2="true" data-rule-required="true" id="q2-true" name="provincial_td1" onclick="toggleprovTD1(true)" type="radio" value="yes" />
-          <label for="q2-true">Yes</label>
-        </li>
-        <li class="radio">
-          <input data-q2="false" data-rule-required="true" id="q2-false" name="provincial_td1" onclick="toggleprovTD1(false)" type="radio" value="no" />
-          <label for="q2-false">No</label>
-        </li>
-      </ul>
-    </fieldset>
-
-    <section class="alert alert-warning hidden" id="noMessage" role="status" aria-live="polite">
-      <p>You <strong>cannot</strong> use the calculation formula to index the personal amounts if you <strong>do not have a Form TD1 on file</strong> for your employee.</p>
-    </section>
-
-    <div class="hidden" id="provinceSection">
-      <label for="province">Select the province or territory</label>
-      <select class="form-control input-lg mrgn-tp-md" id="province" onchange="handleProvince()">
-        <option value="">-- Make your selection --</option>
-        <option value="Alberta">Alberta</option>
-        <option value="British Columbia">British Columbia</option>
-        <option value="Manitoba">Manitoba</option>
-        <option value="New Brunswick">New Brunswick</option>
-        <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-        <option value="Nova Scotia">Nova Scotia</option>
-        <option value="Ontario">Ontario</option>
-        <option value="Prince Edward Island">Prince Edward Island</option>
-        <option value="Quebec">Quebec</option>
-        <option value="Saskatchewan">Saskatchewan</option>
-        <option value="Northwest Territories">Northwest Territories</option>
-        <option value="Nunavut">Nunavut</option>
-        <option value="Yukon">Yukon</option>
-      </select>
-    </div>
-
-    <section class="alert alert-warning hidden" id="peiMessage" role="status" aria-live="polite">
-      <p><strong>No indexing applies to Prince Edward Island. The calculator is not applicable.</strong></p>
-    </section>
-
-    <div class="hidden mrgn-tp-lg" id="yearSection">
-      <label for="year">Select the calendar year</label>
-      <select class="form-control input-lg mrgn-tp-md" id="year" onchange="showCalculator(); if (window.hasProvincialTD1) showCalculator2();">
-        <option value="">-- Make your selection --</option>
-        <option value="2025">2025</option>
-        <option value="2024">2024</option>
-        <option value="2023">2023</option>
-      </select>
-    </div>
-
-    <!-- Calculator UI (hidden by default) -->
-	<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm hidden" id="calculator" name="result">
-      <li class="cnjnctn-col mrgn-tp-xs">
-        <section aria-labelledby="federalTitle">
-          <p id="federalTitle" class="h4 mrgn-tp-md text-info">
-            <span class="text-muted">You indicated that</span><br />
-            <strong>You have a federal Form TD1 on file for this employee</strong>
-          </p>
-
-          <label for="line1">Enter the total claim amount reported on line 13 of the federal Form TD1 ($)</label>
-          <input id="line1" step="0.01" type="number" inputmode="decimal" />
-
-          <div class="hidden" id="line2Section">
-            <label class="mrgn-tp-mg" for="line2">Enter the prior year BPANS (Nova Scotia only) ($)</label>
-            <input id="line2" step="0.01" type="number" inputmode="decimal" />
-          </div>
-
-          <div id="line3Section">
-            <label class="mrgn-tp-mg" for="line3">Enter the pension income amount reported on line 4 and the tuition (full-time and part-time) reported on line 5 of the federal Form TD1 ($)</label>
-            <input id="line3" step="0.01" type="number" inputmode="decimal" />
-          </div>
-
-          <button class="btn btn-primary btn-lg mrgn-tp-md" type="button" onclick="calculateTCP()">Calculate the federal amount</button>
-
-          <div class="result" id="result" aria-live="polite"></div>
-        </section>
-      </li>
-
-      <li class="cnjnctn-col">
-        <section class="hidden" id="calculator2" aria-labelledby="provTitle">
-          <p id="provTitle" class="h4 mrgn-tp-md text-info">
-            <span class="text-muted">You indicated that</span><br />
-            <strong>You have a provincial Form TD1 on file for this employee</strong>
-          </p>
-
-          <label for="line1prov">Enter the total claim amount reported on the provincial Form TD1 ($)</label>
-          <input id="line1prov" step="0.01" type="number" inputmode="decimal" />
-
-          <div class="hidden" id="line2Sectionprov">
-            <label for="line2prov">Enter the prior year BPANS (Nova Scotia only) ($)</label>
-            <input id="line2prov" step="0.01" type="number" inputmode="decimal" />
-          </div>
-
-          <div id="line3Sectionprov">
-            <label for="line3prov">Enter the pension income amount reported on line 4 and the tuition (full-time and part-time) reported on line 5 of the provincial Form TD1 ($)</label>
-            <input id="line3prov" step="0.01" type="number" inputmode="decimal" />
-          </div>
-
-          <button class="btn btn-primary btn-lg mrgn-tp-md" type="button" onclick="calculateTCPprov()">Calculate the provincial amount</button>
-
-          <div class="result" id="resultprov" aria-live="polite"></div>
-        </section>
-      </li>
-    </ul>
-	</details> 
-	 
+  
    </details>
 <details><summary>Glossary description</summary> 
 <div class="row">
@@ -401,7 +280,7 @@
 <dt>N</dt><dd><a id="ajax-def-N">The number of days in the current year since the last payment. The minimum basic exemption amount of $67.30 is included in the formula in line with CPP legislation</a></dd>
 <dt>P</dt><dd><a id="ajax-def-P">The number of pay periods in the year</a></dd>
 <dt>PI</dt><dd><a id="ajax-def-PI">Pensionable earnings for the pay period, or the gross income plus any taxable benefits for the pay period, including bonuses and retroactive pay increases where applicable</a></dd>
-<dt>PM</dt><dd><a id="ajax-def-PM">The total number of months during which CPP and/or QPP contributions are required to be deducted (used in the proration of maximum contribution). For detailed information and examples, refer to <a href="/en/revenue-agency/services/forms-publications/publications/t4001.html">T4001 Employers’ Guide – Payroll Deductions and Remittances</a></a></dd>
+<dt>PM</dt><dd><a id="ajax-def-PM">The total number of months during which CPP and/or QPP contributions are required to be deducted (used in the proration of maximum contribution).</dd>
 <dt>PR</dt><dd><a id="ajax-def-PR">The number of pay periods left in the year (including the current pay period)</a></dd>
 <dt>R</dt><dd><a id="ajax-def-R">Federal tax rate that applies to the annual taxable income A</a></dd>
 <dt>S</dt><dd><a id="ajax-def-S">Provincial tax reduction (only applies to Ontario and British Columbia)</a></dd>
@@ -632,7 +511,7 @@
 <p style="margin-left: 80px;">                     (D × (0.0495/0.0595))))) + (0.15 × (0.0131 × I1, maximum $860.67)) + (0.15 × (0.00494 × I1, maximum                     $484.12))]</p>
 <p style="margin-left: 80px;">                    * If the resulting amount is negative, enter $0.</p>
 <div class="alert alert-info">
-<p><strong>Note:</strong> <span style="background-color: inherit;">The preceding is subject to the rules in Chapter 6 – “Canada Pension Plan (CPP)” and Chapter 7 – “Employment Insurance (EI)” of this document and the instructions in Guide <a href="/en/revenue-agency/services/forms-publications/publications/t4001.html">T4001 Employers’ Guide – Payroll Deductions and Remittances</a>.</span></p>
+<p><strong>Note:</strong> <span style="background-color: inherit;">The preceding is subject to the rules in Chapter 6 – “Canada Pension Plan (CPP)” and Chapter 7 – “Employment Insurance (EI)” of this document.</span></p>
 </div>
 <p><strong>K3</strong>        =        If the K3 amount is implemented after the first pay period in the year, K3 must be adjusted using the                        following formula:</p>
 <p>                        (P × K3) / PR.</p>
@@ -999,7 +878,7 @@
 <p>                       Where:</p>
 <p>                       PE   =   Pensionable earnings for the pay period, or the gross income plus any taxable benefits for the pay                                     period, plus PE<sub>YTD</sub></p>
 <p>                       <a href="#def-IE" aria-controls="def-IE" class="overlay-lnk" role="button">IE&nbsp;<span class="far fa-question-circle"></span></a>    =   Insurable earnings for the pay period, including insurable taxable benefits for the pay period,                                     plus <a href="#def-IE" aria-controls="def-IE" class="overlay-lnk" role="button">IE&nbsp;<span class="far fa-question-circle"></span></a><sub>YTD</sub></p>
-<p>                      The above has to follow the rules in Chapter 6 – “Canada Pension Plan (CPP)” and Chapter 7 – “Employment                        Insurance (EI)” of this publication and the instructions contained in Guide T4001, Employers’ Guide – <a href="/en/revenue-agency/services/forms-publications/publications/t4001.html">Payroll</a>                        <a href="/en/revenue-agency/services/forms-publications/publications/t4001.html">Deductions and Remittances</a></p>
+<p>                      The above has to follow the rules in Chapter 6 – “Canada Pension Plan (CPP)” and Chapter 7 – “Employment                        Insurance (EI)” of this publication </p>
 <p><strong>K4 </strong>       =        The lesser of:</p>
 <p>                       (i)    0.15 × A*;  </p>
 <p>                       (ii)   0.15 × CEA</p>
@@ -1167,7 +1046,7 @@
 <p><strong>Your employee turns 18</strong> – Start deducting CPP contributions for the first pay dated in the month after the employee turns 18.</p>
 <p><strong>Your employee turns 70</strong> – Deduct CPP contributions up to and including the last pay dated in the month in which the employee turns 70.</p>
 <p><strong>Your employee gives you a completed Form CPT30</strong> – The employee can either stop or restart contributing to CPP by filling out Form CPT30, Election to Stop Contributing to the Canada Pension Plan, or a Revocation of a Prior Election. This election is effective on the first day of the month following the receipt of the completed form.</p>
-<p>For detailed information and examples, refer to <a href="/en/revenue-agency/services/forms-publications/publications/t4001.htm">T4001 Employers’ Guide – Payroll Deductions and Remittances</a>.</p>
+
 <p>Use the same PM throughout the year, unless an election to stop contributing to the Canada Pension Plan, or a revocation of a prior election is made.</p>
 </details> 
 	
@@ -1177,6 +1056,9 @@
 <p class="mrgn-tp-md">You (as an employer) have to remit these deductions along with your share of <abbr title="Employment Insurance">EI</abbr> premiums.</p> 
 
 <h4>Rates</h4>	
+<button class="btn btn-primary btn-lg pull-right" onclick="hideRateClasses(); downloadSelectedTables();">
+  <span class="fa fa-download"></span> Export the tables (CSV)
+</button>	
 <ul>
 <li><a href="#ei-prem" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max", "class": "hidden"}, {"action": "addClass", "source": "#max1, #eirate", "class": "hidden"}, {"action": "removeClass", "source": "#tb1>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb1>tbody>tr>td:nth-child(1), #tb1>tbody>tr>td:nth-child(4)", "class": "info"}]'>Federal maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>		 </li> 
 
@@ -1199,7 +1081,11 @@
 		{"action": "removeClass", "source": "#tb2>tbody>tr>td", "class": "info"}, 
 		{"action": "addClass", "source": "#tb2>tbody>tr>td:nth-child(1), #tb2>tbody>tr>td:nth-child(3)", "class": "info"}
 		]'>Quebec EI rate&nbsp;<span class="far fa-question-circle"></span></a> </li> 	
-</ul> 	
+</ul> 
+
+
+
+	
 <h4>2026 formula</h4>		
 <p>The following formula will help you calculate your <abbr title="Employment Insurance">EI</abbr> premium payable for <strong>calendar year 2026</strong>:</p>
 	
@@ -1904,6 +1790,49 @@
     });
 </script>
 
+
+<script>
+
+
+function hideRateClasses() {
+  document.querySelectorAll('.rateei, .rateeiq').forEach(function(el) {
+    el.remove(); // This removes the element from the DOM completely
+  });
+}
+
+
+
+function downloadSelectedTables() {
+  const tables = [document.getElementById('tb1'), document.getElementById('tb2')];
+  let csvContent = '';
+
+  tables.forEach(function(table, index) {
+    if (!table) return;
+
+    csvContent += `Table ${index + 1}\n`;
+
+    const rows = table.querySelectorAll('tr');
+    rows.forEach(function(row) {
+      const cols = row.querySelectorAll('td, th');
+      const rowData = Array.from(cols).map(function(col) {
+        return `"${col.textContent.trim()}"`;
+      }).join(',');
+      csvContent += rowData + '\n';
+    });
+
+    csvContent += '\n'; // Add spacing between tables
+  });
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'selected_tables.csv';
+  link.style.display = 'none';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
 
 		  
 		<!-- Local application script (kept in-body for predictable DOM availability) -->
