@@ -1180,11 +1180,9 @@
 <ul>
 <li><a href="#ei-prem" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max", "class": "hidden"}, {"action": "addClass", "source": "#max1, #eirate", "class": "hidden"}, {"action": "removeClass", "source": "#tb1>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb1>tbody>tr>td:nth-child(1), #tb1>tbody>tr>td:nth-child(4)", "class": "info"}]'>Federal maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>		 </li> 
 
-
 <li><a href="#ei-prem" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#eirate", "class": "hidden"}, {"action": "addClass", "source": "#max, #max1", "class": "hidden"}, {"action": "removeClass", "source": "#tb1>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb1>tbody>tr>td:nth-child(1), #tb1>tbody>tr>td:nth-child(3)", "class": "info"}]'>Federal EI premium rates&nbsp;<span class="far fa-question-circle"></span></a></li>
 
 <li><a href="#redrate" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max2", "class": "hidden"}, {"action": "addClass", "source": "#max3, #max4", "class": "hidden"}, {"action": "removeClass", "source": "#tb2>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb2>tbody>tr>td:nth-child(1), #tb2>tbody>tr>td:nth-child(4)", "class": "info"}]'>Quebec maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>		 </li> 
-	
 <li><a href="#redrate" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max4", "class": "hidden"}, {"action": "addClass", "source": "#max2, #max3", "class": "hidden"}, {"action": "removeClass", "source": "#tb2>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb2>tbody>tr>td:nth-child(1), #tb2>tbody>tr>td:nth-child(3)", "class": "info"}]'>Quebec EI rate&nbsp;<span class="far fa-question-circle"></span></a> </li> 	
 </ul> 	
 <h4>2026 formula</h4>		
@@ -1291,19 +1289,18 @@
 <p>In Quebec: $35,700& × 1.31%= $467.67</p>
 <p>Totals: $65,700 = $959.67</p>
 
-	
  <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
 <li class="cnjnctn-col mrgn-tp-xs"><h4>Ontario</h4>
 
    <ul class="fa-ul lst-spcd ">
-
- <li><span class="fa-stack text-success">
-                                    <span class="far fa-circle fa-stack-2x"></span>
-                                    <span class="fas fa-hashtag fa-stack-1x"></span>
-                                    </span><span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #rateei20xx"></span> </span>
-                                 </li>
-	   
-	
+	   <li><span class="fa-stack text-success">
+                                 <span class="far fa-circle fa-stack-2x"></span>
+                                 <span class="fas fa-hashtag fa-stack-1x"></span>
+                                 </span>
+	  
+                                <span class="mrgn-tp-0 text-muted h5"><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #display-rateei20xx"></span> </span>
+                                
+                              </li>
 	   
           <li class="brdr-bttm"><span class="fas  fa-li"><span class="fas fa-times"></span><span class="wb-inv">multiply by</span></span> <span class="fa-stack text-success">
                                  <span class="far fa-circle fa-stack-2x"></span>
@@ -1314,7 +1311,7 @@
 	    <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
                                     <span class="fas fa-circle fa-stack-2x"></span>
                                     <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                    </span> <span class="mrgn-tp-0 text-muted h5"> $489.00
+                                    </span> <span class="mrgn-tp-0 text-muted h5"> $492.00
                                      </span></span> </li>
                            </ul>
 	  
@@ -1342,7 +1339,7 @@
                 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
                                     <span class="fas fa-circle fa-stack-2x"></span>
                                     <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                    </span> <span class="mrgn-tp-0 text-muted h5"> $464.10
+                                    </span> <span class="mrgn-tp-0 text-muted h5"> $467.67
                                      </span></span> </li>               
                             
                             
@@ -1860,24 +1857,6 @@
                });
             </script>
 
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const eiLink = document.querySelector('a[href="#ei-prem"]');
-    if (eiLink) {
-      eiLink.addEventListener("click", function () {
-        const tdElements = document.querySelectorAll("#tb1 > tbody > tr > td:nth-child(3)");
-        tdElements.forEach(td => {
-          const rawValue = td.textContent.trim();
-          const decimalValue = (parseFloat(rawValue) / 100).toFixed(4);
-          td.textContent = decimalValue;
-          td.classList.add("info");
-        });
-      });
-    }
-  });
-</script>
-		  
 <script>
   // Fetch the page containing the table
   fetch('https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html') // Replace with the actual URL
@@ -2825,11 +2804,7 @@ function calculateTCPprov() {
 
 <!--[if gte IE 9 | !IE ]><!-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>		  
 <script src="/etc/designs/canada/wet-boew/js/wet-boew.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-		  
 <!--<![endif]-->
 		  
          <div id="def-footer">
