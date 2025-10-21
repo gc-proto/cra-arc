@@ -1180,9 +1180,11 @@
 <ul>
 <li><a href="#ei-prem" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max", "class": "hidden"}, {"action": "addClass", "source": "#max1, #eirate", "class": "hidden"}, {"action": "removeClass", "source": "#tb1>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb1>tbody>tr>td:nth-child(1), #tb1>tbody>tr>td:nth-child(4)", "class": "info"}]'>Federal maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>		 </li> 
 
+
 <li><a href="#ei-prem" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#eirate", "class": "hidden"}, {"action": "addClass", "source": "#max, #max1", "class": "hidden"}, {"action": "removeClass", "source": "#tb1>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb1>tbody>tr>td:nth-child(1), #tb1>tbody>tr>td:nth-child(3)", "class": "info"}]'>Federal EI premium rates&nbsp;<span class="far fa-question-circle"></span></a></li>
 
 <li><a href="#redrate" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max2", "class": "hidden"}, {"action": "addClass", "source": "#max3, #max4", "class": "hidden"}, {"action": "removeClass", "source": "#tb2>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb2>tbody>tr>td:nth-child(1), #tb2>tbody>tr>td:nth-child(4)", "class": "info"}]'>Quebec maximum annual employee EI premiums&nbsp;<span class="far fa-question-circle"></span></a>		 </li> 
+	
 <li><a href="#redrate" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max4", "class": "hidden"}, {"action": "addClass", "source": "#max2, #max3", "class": "hidden"}, {"action": "removeClass", "source": "#tb2>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#tb2>tbody>tr>td:nth-child(1), #tb2>tbody>tr>td:nth-child(3)", "class": "info"}]'>Quebec EI rate&nbsp;<span class="far fa-question-circle"></span></a> </li> 	
 </ul> 	
 <h4>2026 formula</h4>		
@@ -1288,31 +1290,6 @@
 <p>In Ontario: $30,000 × 1.64% =$492.00</p>
 <p>In Quebec: $35,700& × 1.31%= $467.67</p>
 <p>Totals: $65,700 = $959.67</p>
-
-<form class="wb-frmvld">
-<div class="form-group">
-<label for="amount">Amount</label>
-<input id="amount" type="number" value="30000" class="form-control">
-</div>
-
-<div class="form-group">
-<label for="rate">Rate</label>
-<input id="rate" type="number" step="0.001" class="form-control">
-</div>
-
-<div class="form-group">
-<label for="result">Result</label>
-<input id="result" type="text" readonly class="form-control">
-</div>
-</form>
-
-<div data-wb-json='{
-"url": "rates.json",
-"mapping": [
-{ "selector": "#rate", "value": "rateValue" }
-]
-}'></div>
-	
 
 	
  <ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">
@@ -1883,14 +1860,23 @@
                });
             </script>
 
-<script>
-$(document).on('input', '#amount, #rate', function() {
-var amount = parseFloat($('#amount').val()) || 0;
-var rate = parseFloat($('#rate').val()) || 0;
-$('#result').val((amount * rate).toFixed(2));
-});
-</script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const eiLink = document.querySelector('a[href="#ei-prem"]');
+    if (eiLink) {
+      eiLink.addEventListener("click", function () {
+        const tdElements = document.querySelectorAll("#tb1 > tbody > tr > td:nth-child(3)");
+        tdElements.forEach(td => {
+          const rawValue = td.textContent.trim();
+          const decimalValue = (parseFloat(rawValue) / 100).toFixed(4);
+          td.textContent = decimalValue;
+          td.classList.add("info");
+        });
+      });
+    }
+  });
+</script>
 		  
 <script>
   // Fetch the page containing the table
