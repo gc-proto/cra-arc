@@ -793,7 +793,16 @@
 <button class="btn btn-primary btn-lg pull-right" onclick="hideRateClasses(); downloadSelectedTables();">
   <span class="fa fa-download"></span> Export the tables (CSV)
 </button>	
-<p>add links to all appropriate tables here</p>	
+<ul>
+<li><a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max", "class": "hidden"}, {"action": "addClass", "source": "#max1, #cpprate", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(6)", "class": "info"}]'>Maximum annual employee CPP contributions&nbsp;<span class="far fa-question-circle"></span></a></li>
+<li><a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#max1", "class": "hidden"}, {"action": "addClass", "source": "#max, #cpprate", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(2)", "class": "info"}]'>	Maximum annual pensionable earnings&nbsp;<span class="far fa-question-circle"></span></a></li>
+<li> <a href="#cpp-contrib" aria-controls="mid-screen" class="overlay-lnk" role="button" data-wb-doaction='[{"action": "removeClass", "source": "#cpprate", "class": "hidden"}, {"action": "addClass", "source": "#max, #max1", "class": "hidden"}, {"action": "removeClass", "source": "#ajax-cpprate-tbl>tbody>tr>td", "class": "info"}, {"action": "addClass", "source": "#ajax-cpprate-tbl>tbody>tr>td:nth-child(1), #ajax-cpprate-tbl>tbody>tr>td:nth-child(5)", "class": "info"}]'>CPP rate&nbsp;<span class="far fa-question-circle"></span></a></li>
+<li><a href="#exemption" aria-controls="mid-screen" class="overlay-lnk" role="button">basic exemption amount&nbsp;<span class="far fa-question-circle"></span></a></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>	
+</ul>	
 	
 <h4 id="h4cppformulas">CPP, CPP2, QPP and QPP2 formulas</h4>		
 <p>For all the following formulas, round the result of the amounts to the nearest $0.01.</p>	
@@ -955,6 +964,8 @@
 <p><strong>Your employee gives you a completed Form CPT30</strong> – The employee can either stop or restart contributing to CPP by filling out Form CPT30, Election to Stop Contributing to the Canada Pension Plan, or a Revocation of a Prior Election. This election is effective on the first day of the month following the receipt of the completed form.</p>
 
 <p>Use the same PM throughout the year, unless an election to stop contributing to the Canada Pension Plan, or a revocation of a prior election is made.</p>
+ <div data-ajax-replace="/cra-arc/payroll/calculate/when/cpprates.html #ajax-defnon"></div>
+	
 </details> 
 	
 	
@@ -1279,6 +1290,31 @@
             </script>			 
 			 
  </main>
+
+ <section id="cpp-contrib" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
+               <header class="modal-header">
+                  <h2 class="modal-title">CPP contributions rates, maximums and exemptions</h2>
+               </header>
+               <div class="modal-body">
+	<p class="lead hidden" id="max"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual employee and employer contribution" (<strong>column&nbsp;6)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
+	<p class="lead hidden" id="max1"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual pensionable earnings" (<strong>column&nbsp;2)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
+				   <p class="lead hidden" id="cpprate"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Employee and employer contribution rate" (<strong>column&nbsp;5</strong>) that matches the "Year" (<strong>column&nbsp;1</strong>) </p>
+				   
+                  <div data-ajax-replace="/cra-arc/payroll/calculate/when/cpprates.html #ajax-cpprate"><a href="/cra-arc/payroll/calculate/when/cpprates.html">CPP contributions rates, maximums and exemptions</a></div>
+               </div>
+            </section>
+ 
+     
+
+            <section id="exemption" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
+               <header class="modal-header">
+                  <h2 class="modal-title">CPP basic exemption chart</h2>
+               </header>
+               <div class="modal-body">
+                  <div data-ajax-replace="/cra-arc/payroll/calculate/when/cpprates.html #ajax-exemption"></div>
+               </div>
+            </section>
+		  
 
  <section id="ei-prem" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
                <header class="modal-header">
