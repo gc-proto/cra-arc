@@ -1003,7 +1003,7 @@
 	<p class="lead hidden" id="max1cpp"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Maximum annual pensionable earnings" (<strong>column&nbsp;2)</strong> that matches the "Year" (<strong>column&nbsp;1)</strong> </p>
 	 <p class="lead hidden" id="cpprate"><span class="fas fa-bullhorn fa-xl text-muted"></span> <strong>Reminder:</strong> Use the "Employee and employer contribution rate" (<strong>column&nbsp;5</strong>) that matches the "Year" (<strong>column&nbsp;1</strong>) </p>
 				   
-                  <div data-ajax-replace="/cra-arc/payroll/calculate/when/cpprates.html #ajax-cpprate"><a href="/cra-arc/payroll/calculate/when/cpprates.html">CPP contributions rates, maximums and exemptions</a></div>
+                  <div data-ajax-replace="/cra-arc/payroll/calculate/when/cpprates.html #ajax-cpprate"></div>
                </div>
             </section>
  
@@ -1533,7 +1533,7 @@
       const doc = parser.parseFromString(html, 'text/html');
 
       // List of IDs you want to extract and convert
-      const ids = ['ratecpp20xx', 'eratecpp20xx', 'ratecppq20xx', 'eratecppq20xx', 'ratecpp2025','ratecppq2025']; // Add all your IDs here
+      const ids = ['ratecpp', 'ratecpp20xx', 'eratecpp20xx', 'ratecppq20xx', 'eratecppq20xx', 'ratecpp2025','ratecppq2025']; // Add all your IDs here
 
       ids.forEach(id => {
         const rawValue = doc.getElementById(id)?.textContent;
@@ -1571,7 +1571,7 @@ function hidecppRateClasses() {
 	
 
 function downloadSelectedcppTables() {
-  const tables = [document.getElementById('ajax-cpprate-tbl')];
+  const tables = [document.getElementById('ajax-cpprate-tbl'), document.getElementById('ajax-cpprate-tbl2')];
   let csvContent = '';
 
   tables.forEach(function(table, index) {
