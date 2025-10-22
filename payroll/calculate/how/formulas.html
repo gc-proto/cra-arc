@@ -990,33 +990,42 @@
         
 
 <script>
-  // Fetch the page containing the table
-  fetch('https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html') // Replace with the actual URL
-    .then(response => response.text())
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
+  // Reusable function to fetch and process rates
+  function fetchAndConvertRates(url, ids) {
+    fetch(url)
+      .then(response => response.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
 
-      // List of IDs you want to extract and convert
-      const ids = ['rateei20xx', 'erateei20xx', 'rateeiq20xx', 'erateeiq20xx', 'rateei2025','rateeiq2025']; // Add all your IDs here
+        ids.forEach(id => {
+          const rawValue = doc.getElementById(id)?.textContent;
+          if (rawValue) {
+            const decimalValue = (parseFloat(rawValue) / 100).toFixed(4);
+            console.log(`${id}: ${decimalValue}`);
 
-      ids.forEach(id => {
-        const rawValue = doc.getElementById(id)?.textContent;
-        if (rawValue) {
-          const decimalValue = (parseFloat(rawValue) / 100).toFixed(4);
-          console.log(`${id}: ${decimalValue}`);
-
-          // Optionally display it somewhere on your page
-          const displayElement = document.getElementById(`display-${id}`);
-          if (displayElement) {
-            displayElement.textContent = decimalValue;
+            const displayElement = document.getElementById(`display-${id}`);
+            if (displayElement) {
+              displayElement.textContent = decimalValue;
+            }
           }
-        }
+        });
+      })
+      .catch(error => {
+        console.error(`Error fetching or converting rates from ${url}:`, error);
       });
-    })
-    .catch(error => {
-      console.error('Error fetching or converting rate:', error);
-    });
+  }
+
+  // Define the URLs and corresponding IDs
+  const cppUrl = 'https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html';
+  const cppIds = ['ratecpp20xx', 'eratecpp20xx', 'ratecppq20xx', 'eratecppq20xx', 'ratecpp2025', 'ratecppq2025'];
+
+  const eiUrl = 'https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html';
+  const eiIds = ['rateei20xx', 'erateei20xx', 'rateeiq20xx', 'erateeiq20xx', 'rateei2025', 'rateeiq2025'];
+
+  // Call the function for each set
+  fetchAndConvertRates(cppUrl, cppIds);
+  fetchAndConvertRates(eiUrl, eiIds);
 </script>
 
 
