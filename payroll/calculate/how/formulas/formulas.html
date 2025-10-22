@@ -1558,7 +1558,7 @@
       const doc = parser.parseFromString(html, 'text/html');
 
       // List of IDs you want to extract and convert
-      const ids = ['ratecpp', 'ratecpp20xx', 'eratecpp20xx', 'ratecppq20xx', 'eratecppq20xx', 'ratecpp2025','ratecppq2025']; // Add all your IDs here
+      const ids = ['ratecpp20xx', 'eratecpp20xx', 'ratecppq20xx', 'eratecppq20xx', 'ratecpp2025','ratecppq2025']; // Add all your IDs here
 
       ids.forEach(id => {
         const rawValue = doc.getElementById(id)?.textContent;
@@ -1589,7 +1589,7 @@ function hideRateClasses() {
 }
 
 function hidecppRateClasses() {
-  document.querySelectorAll('.ratecpp, .ratecppq').forEach(function(el) {
+  document.querySelectorAll('.ratecpp').forEach(function(el) {
     el.remove(); // This removes the element from the DOM completely
   });
 }
