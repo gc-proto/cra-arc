@@ -1031,7 +1031,17 @@
 				    <div data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html#ajax-termscpp"></div>
                </div>
             </section>
- 
+
+ <section id="cpprate" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
+               <header class="modal-header">
+                  <h2 class="modal-title">CPP contributions rates, maximums and exemptions</h2>
+               </header>
+               <div class="modal-body">
+	  
+                  <div data-ajax-replace="/cra-arc/payroll/calculate/when/cpprates.html #ajax-cpprate1"></div>
+				  
+               </div>
+            </section>		  
      
 
             <section id="exemption" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
@@ -1518,6 +1528,35 @@
   </div>
 </section>
 
+<script>
+  // Fetch the page containing the table
+  fetch('https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html') // Replace with the actual URL
+    .then(response => response.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      // List of IDs you want to extract and convert
+      const ids = ['ratecpp20xx', 'eratecpp20xx', 'ratecppq20xx', 'eratecppq20xx', 'ratecpp2025','ratecppq2025']; // Add all your IDs here
+
+      ids.forEach(id => {
+        const rawValue = doc.getElementById(id)?.textContent;
+        if (rawValue) {
+          const decimalValue = (parseFloat(rawValue) / 100).toFixed(4);
+          console.log(`${id}: ${decimalValue}`);
+
+          // Optionally display it somewhere on your page
+          const displayElement = document.getElementById(`display-${id}`);
+          if (displayElement) {
+            displayElement.textContent = decimalValue;
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching or converting rate:', error);
+    });
+</script>		  
 	
 <script>
   // Fetch the page containing the table
@@ -1549,35 +1588,7 @@
     });
 </script>
 
-<script>
-  // Fetch the page containing the table
-  fetch('https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html') // Replace with the actual URL
-    .then(response => response.text())
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-
-      // List of IDs you want to extract and convert
-      const ids = ['ratecpp20xx', 'eratecpp20xx', 'ratecppq20xx', 'eratecppq20xx', 'ratecpp2025','ratecppq2025']; // Add all your IDs here
-
-      ids.forEach(id => {
-        const rawValue = doc.getElementById(id)?.textContent;
-        if (rawValue) {
-          const decimalValue = (parseFloat(rawValue) / 100).toFixed(4);
-          console.log(`${id}: ${decimalValue}`);
-
-          // Optionally display it somewhere on your page
-          const displayElement = document.getElementById(`display-${id}`);
-          if (displayElement) {
-            displayElement.textContent = decimalValue;
-          }
-        }
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching or converting rate:', error);
-    });
-</script>		  
+		  
 
 
 <script>
