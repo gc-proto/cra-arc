@@ -1155,7 +1155,9 @@ function downloadTablesByIds(tableIds, filename = 'selected_tables.csv') {
     const rows = table.querySelectorAll('tr');
     rows.forEach(row => {
       const cols = row.querySelectorAll('td, th');
-      const rowData = Array.from(cols).map(col => `"${col.textContent.trim()}"`).join(',');
+      const rowData = Array.from(cols)
+ 	 .map(col => `"${col.textContent.trim().replace(/\bDefinition\b/gi, '')}"`)
+	 .join(',');
       csvContent += rowData + '\n';
     });
 
