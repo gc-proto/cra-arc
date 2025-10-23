@@ -439,7 +439,7 @@
 <li> <h3 class="h4" id="h4eiformulas">Use the <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #year20xx"></span> EI formulas</h3>
 <p>The following formula will help you calculate the <abbr title="Employment Insurance">EI</abbr> premiums you are required to withhold for a pay period in <strong>calendar year <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #year20xx"></span></strong>:</p>
 
-
+<div class="copy-scope">
  <ul class="list-unstyled cnjnctn-type-and">
 <li class="cnjnctn-col"><h4>Employees with a province of employment other than Quebec </h4>
 <p>The <abbr title="Employment Insurance">EI</abbr> premium to withhold for the pay period is the lesser of the following amounts:</p>
@@ -467,7 +467,7 @@
  </ul>
 </li> 
 </ul>
-
+</div>
 <details><summary>Example</summary>
 <p>In 2026, an employee makes $30,000 of insurable earnings in Ontario, changes their province of employment to Quebec, and makes an extra $52,000 with the same employer. The maximum annual insurable earnings for calendar year <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #year20xx"></span> is <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html #maxei20xx"></span>.</p>
 <p>The employee’s maximum premium is calculated as follows:</p>
@@ -1203,7 +1203,71 @@ function downloadSelectedcppTables() {
 
 </script>
  
-  
+ 
+<script>
+  (function () {
+    function installCopyHandler(scope) {
+      scope.addEventListener('copy', function (e) {
+        const sel = window.getSelection();
+        if (!sel || sel.rangeCount === 0) return;
+
+        const range = sel.getRangeAt(0);
+        // Only intercept if the selection intersects THIS scope
+        if (!range.intersectsNode(scope)) return;
+
+        const fragment = range.cloneContents();
+
+        // --- OPTION A: keep link text but remove hyperlink ---
+        fragment.querySelectorAll('a').forEach(a => {
+          a.replaceWith(document.createTextNode(a.textContent));
+        });
+
+        // Remove decorative/hidden/icon content from clipboard
+        fragment.querySelectorAll('.fas, .far, .fa, .wb-inv, .overlay-lnk').forEach(node => node.remove());
+
+        // Flatten lists so target apps don't infer bullets
+        fragment.querySelectorAll('ul, ol').forEach(list => {
+          const items = Array.from(list.querySelectorAll(':scope > li'));
+          const text = items.map(li => li.textContent.trim()).filter(Boolean).join('\n');
+          list.replaceWith(document.createTextNode(text + '\n'));
+        });
+
+        let text = fragment.textContent || '';
+        text = text
+          .replace(/\u00A0/g, ' ')     // no‑break spaces
+          .replace(/[ \t]+\n/g, '\n')  // trim trailing spaces
+          .replace(/\n{3,}/g, '\n\n')  // collapse big gaps
+          .replace(/[ \t]{2,}/g, ' ')  // collapse multiple spaces
+          .trim();
+
+        e.preventDefault();
+        // Modern browsers
+        if (e.clipboardData) {
+          e.clipboardData.setData('text/plain', text);
+        } else if (window.clipboardData) { // IE fallback
+          window.clipboardData.setData('Text', text);
+        }
+      });
+    }
+
+    // Attach to all current .copy-scope containers
+    document.querySelectorAll('.copy-scope').forEach(installCopyHandler);
+
+    // (Optional) If containers load later via AJAX, observe and attach automatically
+    const mo = new MutationObserver(muts => {
+      muts.forEach(m => {
+        m.addedNodes.forEach(node => {
+          if (!(node instanceof Element)) return;
+          if (node.matches && node.matches('.copy-scope')) installCopyHandler(node);
+          node.querySelectorAll && node.querySelectorAll('.copy-scope').forEach(installCopyHandler);
+        });
+      });
+    });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+  })();
+</script>
+
+ 
 
 <section id="def-A" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
 <header class="modal-header">
