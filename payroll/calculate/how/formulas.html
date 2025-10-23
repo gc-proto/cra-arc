@@ -1158,6 +1158,12 @@ function downloadTablesByIds(tableIds, filename = 'selected_tables.csv') {
   tables.forEach((table, index) => {
     if (!table) return;
 
+	  
+    // Unhide employer columns before processing
+    table.querySelectorAll('.employer.hidden').forEach(cell => {
+      cell.classList.remove('hidden');
+    });
+
     const caption = table.querySelector('caption');
     const title = caption ? caption.textContent.trim() : `Table ${index + 1}`;
     csvContent += `${title}\n`;
