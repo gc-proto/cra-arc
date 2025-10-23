@@ -1141,69 +1141,48 @@ function hideRateClasses() {
   });
 }
 
-
-
-function downloadSelectedTables() {
-  const tables = [document.getElementById('tb1'), document.getElementById('tb2')];
+function downloadTablesByIds(tableIds, filename = 'selected_tables.csv') {
+  const tables = tableIds.map(id => document.getElementById(id));
   let csvContent = '';
 
-  tables.forEach(function(table, index) {
+  tables.forEach((table, index) => {
     if (!table) return;
 
-    csvContent += `Table ${index + 1}\n`;
+    const caption = table.querySelector('caption');
+    const title = caption ? caption.textContent.trim() : `Table ${index + 1}`;
+    csvContent += `${title}\n`;
 
     const rows = table.querySelectorAll('tr');
-    rows.forEach(function(row) {
+    rows.forEach(row => {
       const cols = row.querySelectorAll('td, th');
-      const rowData = Array.from(cols).map(function(col) {
-        return `"${col.textContent.trim()}"`;
-      }).join(',');
+      const rowData = Array.from(cols).map(col => `"${col.textContent.trim()}"`).join(',');
       csvContent += rowData + '\n';
     });
 
-    csvContent += '\n'; // Add spacing between tables
+    csvContent += '\n';
   });
 
   const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'selected_tables.csv';
+  link.download = filename;
   link.style.display = 'none';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 }
 
+// Download selected tables
+
+function downloadSelectedTables() {
+  downloadTablesByIds(['tb1', 'tb2']);
+}
+
 function downloadSelectedcppTables() {
-  const tables = [document.getElementById('tbcpp'), document.getElementById('tbcpp2'), document.getElementById('exemption')];
-  let csvContent = '';
+  downloadTablesByIds(['tbcpp', 'tbcpp2', 'exemption']);
+}
 
-  tables.forEach(function(table, index) {
-    if (!table) return;
 
-    csvContent += `Table ${index + 1}\n`;
-
-    const rows = table.querySelectorAll('tr');
-    rows.forEach(function(row) {
-      const cols = row.querySelectorAll('td, th');
-      const rowData = Array.from(cols).map(function(col) {
-        return `"${col.textContent.trim()}"`;
-      }).join(',');
-      csvContent += rowData + '\n';
-    });
-
-    csvContent += '\n'; // Add spacing between tables
-  });
-
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = 'selected_tables.csv';
-  link.style.display = 'none';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}	
 </script>
  
   
