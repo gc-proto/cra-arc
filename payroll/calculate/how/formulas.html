@@ -1094,30 +1094,36 @@
 
 <script>
   // Reusable function to fetch and process rates
-  function fetchAndConvertRates(url, ids) {
-    fetch(url)
-      .then(response => response.text())
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
+ 
+	function fetchAndConvertRates(url, ids) {
+  fetch(url)
+    .then(response => response.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
 
-        ids.forEach(id => {
-          const rawValue = doc.getElementById(id)?.textContent;
-          if (rawValue) {
-            const decimalValue = (parseFloat(rawValue) / 100).toFixed(4);
-            console.log(`${id}: ${decimalValue}`);
-
-            const displayElement = document.getElementById(`display-${id}`);
-            if (displayElement) {
-              displayElement.textContent = decimalValue;
-            }
-          }
-        });
-      })
-      .catch(error => {
-        console.error(`Error fetching or converting rates from ${url}:`, error);
+      // Unhide employer columns in the fetched document
+      doc.querySelectorAll('.employer.hidden').forEach(el => {
+        el.classList.remove('hidden');
       });
-  }
+
+      ids.forEach(id => {
+        const rawValue = doc.getElementById(id)?.textContent;
+        if (rawValue) {
+          const decimalValue = (parseFloat(rawValue) / 100).toFixed(4);
+          console.log(`${id}: ${decimalValue}`);
+
+          const displayElement = document.getElementById(`display-${id}`);
+          if (displayElement) {
+            displayElement.textContent = decimalValue;
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error(`Error fetching or converting rates from ${url}:`, error);
+    });
+}
 
   // Define the URLs and corresponding IDs
   const cppUrl = 'https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html';
