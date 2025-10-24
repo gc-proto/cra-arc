@@ -1364,22 +1364,22 @@
 <script>
   // Reusable function to fetch and process rates
  
-	function fetchAndConvertRates(url, ids) {
+function fetchAndConvertRates(url, ids) {
   fetch(url)
     .then(response => response.text())
     .then(html => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
 
-     
-// Unhide employer columns in the fetched document
-doc.querySelectorAll('.employer.hidden, .employer.d-none').forEach(el => {
-  el.classList.remove('hidden', 'd-none');
-});
-
+      // Unhide employer columns in the fetched document
+      doc.querySelectorAll('.employer.hidden, .employer.d-none').forEach(el => {
+        el.classList.remove('hidden', 'd-none');
+      });
 
       ids.forEach(id => {
-        const rawValue = doc.getElementById(id)?.textContent;
+        const rawElement = doc.getElementById(id);
+        const rawValue = rawElement?.textContent;
+
         if (rawValue) {
           const decimalValue = (parseFloat(rawValue) / 100).toFixed(4);
           console.log(`${id}: ${decimalValue}`);
@@ -1387,6 +1387,13 @@ doc.querySelectorAll('.employer.hidden, .employer.d-none').forEach(el => {
           const displayElement = document.getElementById(`display-${id}`);
           if (displayElement) {
             displayElement.textContent = decimalValue;
+          } else {
+            // If no display element exists, inject the unhidden span directly
+            const target = document.querySelector(`[data-ajax-replace*="${id}"]`);
+            if (target && rawElement) {
+              rawElement.classList.remove('hidden', 'd-none');
+              target.appendChild(rawElement.cloneNode(true));
+            }
           }
         }
       });
