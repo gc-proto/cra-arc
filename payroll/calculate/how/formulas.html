@@ -407,6 +407,31 @@
 	<div data-ajax-replace="#ajax-zero"></div>
 <div data-ajax-replace="#ajax-round"></div>	
 </details>	
+<details><summary>QPP2 - <strong>Salary or wages</strong></summary>
+<p>The <abbr title="Second additional Quebec Pension Plan">QPP2</abbr> contribution to withhold on <strong>salary or wages</strong> for the pay period is the lesser of the following amounts:</p>
+<div class="copy-scope">	
+<ul class="list-unstyled cnjnctn-type-and cnjnctn-sm">	
+<li class="cnjnctn-col mrgn-tp-xs">	
+<p><span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/cpp2rates.html #bascpp2e20xx"></span> <strong>x</strong> &nbsp;(<a href="#def-PM" aria-controls="def-PM" class="overlay-lnk" role="button">PM&nbsp;<span class="far fa-question-circle"></span></a> <strong>/</strong> 12) <strong>–</strong> <a href="#def-D2Q" aria-controls="def-D2Q" class="overlay-lnk" role="button">D2Q&nbsp;<span class="far fa-question-circle"></span></a></p>
+                                 </li>
+   <li class="cnjnctn-col">
+<p>(<a href="#def-PI" aria-controls="def-PI" class="overlay-lnk" role="button">PI&nbsp;<span class="far fa-question-circle"></span></a><sub><a href="#def-YTD" aria-controls="def-YTD" class="overlay-lnk" role="button">YTD&nbsp;<span class="far fa-question-circle"></span></a></sub> <strong>+</strong>  <a href="#def-PI" aria-controls="def-PI" class="overlay-lnk" role="button">PI&nbsp;<span class="far fa-question-circle"></span></a> <strong>–</strong> <a href="#def-W" aria-controls="def-W" class="overlay-lnk" role="button">W&nbsp;<span class="far fa-question-circle"></span></a>) <strong>x</strong> <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/cpp2rates.html #ratedcpp220xx"></span> </p> </li>
+ </ul>
+ </div>
+	
+<h3 id="toc54">To determine CPP2 contributions for employees receiving salary or wages</h3>
+<p><a href="#def-C" aria-controls="def-C" class="overlay-lnk" role="button">C&nbsp;<span class="far fa-question-circle"></span></a>       =        The lesser of:</p>
+<p>                        (i)      $396.00 × (<a href="#def-PM" aria-controls="def-PM" class="overlay-lnk" role="button">PM&nbsp;<span class="far fa-question-circle"></span></a>/12) – <a href="#def-D2" aria-controls="def-D2" class="overlay-lnk" role="button">D2&nbsp;<span class="far fa-question-circle"></span></a>*;</p>
+<p>                       (ii)  (PI<sub>YTD</sub> + <a href="#def-PI" aria-controls="def-PI" class="overlay-lnk" role="button">PI&nbsp;<span class="far fa-question-circle"></span></a> – W) × 0.04</p>
+<p>                        If the result is negative, C2 = $0.</p>
+<p>                        *      For employees employed in Quebec, use <a href="#def-D2Q" aria-controls="def-D2Q" class="overlay-lnk" role="button">D2Q&nbsp;<span class="far fa-question-circle"></span></a> instead of D2.</p>
+<p><strong>W</strong>         =        The greater of:</p>
+<p>                        (i)    PI<sub>YTD;</sub></p>
+<p>                        (ii)   YMPE × (PM/12)</p>	
+<div data-ajax-replace="#ajax-round"></div>	
+	
+</details>	
+	
 </li> 
 
 	 <li class="cnjnctn-col"><h4>Employee transferred between Quebec and another province or territory &nbsp;<img src="https://test.canada.ca/cra-arc/payroll/images/flag-qc.png" alt="">&nbsp; <i class="fas fa-random"></i> &nbsp;<img src="https://www.canada.ca/content/dam/cra-arc/images/flag-ca.png" alt="" class="mrgn-rght-xs"></h4>
@@ -1381,6 +1406,10 @@ if (!displayElement && displayElements.length === 0) {
   const eiUrl = 'https://test.canada.ca/cra-arc/payroll/calculate/when/eirates.html';
   const eiIds = ['rateei20xx', 'erateei20xx', 'rateeiq20xx', 'erateeiq20xx', 'rateei2025', 'rateeiq2025'];
 
+  const cppUrl = 'https://test.canada.ca/cra-arc/payroll/calculate/when/cpp2rates.html';
+  const cppIds = ['ratecpp220xx', 'ratecpp2'];
+
+	
   // Call the function for each set
   fetchAndConvertRates(cppUrl, cppIds);
   fetchAndConvertRates(eiUrl, eiIds);
