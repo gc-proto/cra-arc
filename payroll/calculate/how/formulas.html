@@ -245,13 +245,377 @@
 <p class="mrgn-tp-md"> </p>
 <h2 class="h3" id="steps1">Steps</h2>
 
-<ol class="lst-stps ld-zr stps-strpd">
+<p>This option determines the federal and provincial or territorial tax deductions on salary, wages, taxable benefits, pension income, commissions, and other periodic payments. This option can also be used to calculate the tax on a bonus or other non‑periodic payment.</p>
+<p>We use Option 1, with the exception of a few factors, to determine the tax deduction amounts in the publications <a href="/en/revenue-agency/services/tax/businesses/topics/payroll/t4032-payroll-deductions-tables.html">T4032, Payroll Deductions Tables</a> and <a href="/en/revenue-agency/services/tax/businesses/topics/payroll/t4008-payroll-deductions-supplementary-tables.html">T4008, Payroll Deductions Supplementary Tables</a>, for each province and territory, as well as for Canada beyond the limits of any province or territory and outside Canada. Option 1 is also utilized in PDOC for its tax calculations.</p>
+<h3>Outline of Option 1</h3>
+<p>In general, the Option 1 steps are as follows:</p>
+<ol>
+<li>Determine the taxable income for the pay period (pay minus allowable deductions) and multiply it by the number of pay periods in the year to get an estimated annual taxable income amount. This annual taxable income amount is factor A.</li>
+<li>Calculate the basic federal tax on the estimated annual taxable income, after allowable federal non-refundable tax credits. The basic federal tax is factor T3.</li>
+<li>Calculate the annual federal tax payable. This is factor T1.</li>
+<li>Calculate the basic provincial or territorial tax on the estimated annual taxable income, after allowable provincial or territorial personal tax credits. The annual basic provincial or territorial tax is factor T4.</li>
+<li>Calculate the annual provincial or territorial tax deduction. This is factor T2.</li>
+<li>To get the estimated federal and provincial or territorial tax deductions for a pay period, add the federal and provincial or territorial tax, and divide the result by the number of pay periods. This is factor T.</li>
+</ol>
+<p>Special rules apply to determine the annual income for employees paid by commissions. A calculation is provided to determine the tax deductions for bonuses, retroactive pay increases, and other non-periodic payments.</p>
+<div class="alert alert-info">
+<p><strong>Note</strong>: <span style="background-color: inherit;">If an employee or a pensioner has income from another source from which no tax has been deducted (for example, investment income or support payments), they could have a tax liability when they file an income tax and benefit return for the year. The employee or pensioner can ask for more tax deductions, factor L, using Form TD1.</span></p>
+</div>
 
-	
-<li><h3 id="h4it1rates">Use and export the <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/tax.html #year20xx"></span> Income tax tables in a CSV format</h3>
-</li>
-<li> <h3 id="h4it1formulas">Use the <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/tax.html #year20xx"></span> Income tax formulas - Option 1</h3>
-</li> 
+<ol class="lst-stps ld-zr stps-strpd">
+<li><details><summary>Formula to calculate annual taxable income (A)</summary>
+<p><strong>A </strong>         =        Annual taxable income</p>
+<p>             =        [P × (I – F – F2 – F5A – U1 )] – HD – F1</p>
+<p>                        If the result is negative, T = L.</p>
+<p>Only for employees paid by commission:</p>
+<p><strong>A</strong>          =        I1 – F* – F2* – F5A– U1* – HD – F1 – E</p>
+<p>If the result is negative, T = L.</p>
+<p>*  Estimated deduction amounts for the year. For contributions to a registered plan included in F, you will need to find out from your employee paid by commission the expected or estimated annual deduction. We recommend that you caution employees not to exceed their RRSP contribution limit for the year. This only includes contributions expected to be deducted at source.</p>
+<p><strong>P</strong>           =        The number of pay periods in the year:</p>
+<p>                        Weekly                  P      =      52 (or 53 where applicable)</p>
+<p>                        Biweekly               P      =      26 (or 27 where applicable)</p>
+<p>                        Semi-monthly      P      =      24</p>
+<p>                        Monthly                P      =      12</p>
+<p>                        Other                     P      =      10, 13, 22, or any other number of pay periods for the year</p>
+<p><strong>F2</strong>         =        In situations where a garnishment or a similar order of a court or competent tribunal states that the alimony                        or maintenance payment cannot be more than a certain percentage of the employee’s net salary (net salary                        as defined in the garnishment or order), more calculations may be required, as follows:</p>
+<ol>
+<li>Calculate the tax deduction amount and the net salary amount using the alimony or maintenance amount shown in the garnishment or order.</li>
+<li>Determine the alimony or maintenance payment to be withheld (F2). This will be either the maximum allowable as a percentage of the employee’s net salary calculated in 1 or the amount shown in the garnishment or order, whichever is less.</li>
+<li>Determine the tax deduction for the pay period using the F2 amount in 2.</li>
+</ol>
+<p><strong>F1 </strong>        =        If the F1 amount is implemented after the first pay period in the year, F1 must be adjusted using the following formula:</p>
+<p>                       (P × F1) / PR.</p>
+<p><strong>F5</strong>         =       C × (0.0100/0.0595) + C2</p>
+<p>                      Only for employees in Quebec:</p>
+<p>                      F5Q = C × (0.0100/0.0640) + C2</p>
+<div class="alert alert-info">
+<p><strong>Note</strong>: <span style="background-color: inherit;">When C = 0 and C2 = 0, F5 = 0.</span></p>
+<p>Only for employees paid by commission:</p>
+</div>
+<p><strong>F5* </strong>        =      (0.0100 × (I1 – $3,500.00)**, maximum $678.00 × (PM/12)) + (0.04 × (I1 – ($71,300.00 × (PM/12)))**,                         maximum $396.00 × (PM/12))</p>
+<p>                        *   Estimated annual amount</p>
+<p>                        ** If the resulting amount is negative, enter $0.</p>
+<p><strong>                        Only for employees in Quebec:</strong></p>
+<p>                        F5Q * =  (0.0100 × (I1 – $3,500.00)**, maximum $678.00 × (PM/12)) + (0.04 × (I1 – ($71,300.00 × (PM/12)))**,                         maximum $396.00 × (PM/12))</p>
+<p>                        *   Estimated annual amount</p>
+<p>                        ** If the resulting amount is negative, enter $0.</p>
+<p><strong>F5A </strong>          =    F5* × ((PI – B)/PI)</p>
+<p>                        * When in the province of Quebec, replace F5 with F5Q.</p>
+<p><strong>F5B</strong>           =    F5* × (B/PI)</p>
+<p>                        * When in the province of Quebec, replace F5 with F5Q.</p>
+<div class="alert alert-info">
+<p><strong>Note: </strong><span style="background-color: inherit;">Exclude non-pensionable income from Factor B</span></p>
+</div></details></li>
+
+<li><details><summary>Formula to calculate basic federal tax (T3)</summary>	
+<p><strong>T3</strong>        =        Annual basic federal tax</p>
+<p>             =        (R × A) – K – K1 – K2* – K3 – K4</p>
+<p>                        If the result is negative, T3 = $0.</p>
+<p>                        * For employees that are transferred from Quebec to a location outside Quebec, replace K2 with K2R.</p>
+<p>                        Only for employees in Quebec:</p>
+<p>                        (R × A) – K – K1 – K2Q* – K3 – K4</p>
+<p>                        If the result is negative, T3 = $0.</p>
+<p>                        * For employees that are transferred to Quebec from a location outside Quebec, replace K2Q with K2RQ.</p>
+<p>                        R and K are based on 2025 index values for A see the <a href="#toc65">Rates (R, V), income thresholds (A), and constants (K,</a>                         <a href="#toc65">KP) for</a> 2025 Table 8.1 in Chapter 8.</p>
+<p><strong>K1</strong>        =        0.15 × TC</p>
+<p><strong>K2</strong>        =        [(0.15 × (P × C × (0.0495/0.0595), maximum $3,356.10 × (PM/12))) + (0.15 × (P × EI, maximum $1,077.48))]</p>
+<p><strong>K2R</strong>     =        [(0.15 × (P × C × (0.0495/0.0595), maximum ($3,356.10 × (PM/12) – (DQ × (0.0495/0.0640)) + (DQ ×                                                (0.0540/0.0640))))) + (0.15 × (P × EI, maximum $1,077.48))]</p>
+<p><strong>                        Only for employees in Quebec:</strong></p>
+<p>                        <strong>K2Q</strong>     =      Quebec Pension Plan contributions, employment insurance premiums, and Quebec Parental                         Insurance Plan premiums federal tax credits for the year</p>
+<p>                                    =      [(0.15 × (P × C × (0.0540/0.0640), maximum $3,661.20 × (PM/12))) + (0.15 × (P × EI, maximum                                             $860.67)) + (0.15 × (P × <a href="#def-IE" aria-controls="def-IE" class="overlay-lnk" role="button">IE&nbsp;<span class="far fa-question-circle"></span></a> × 0.00494, maximum $484.12))]</p>
+<p>                        <strong>K2RQ</strong>  =      [(0.15 × (P × C × (0.0540/0.0640), maximum ($3,661.20 × (PM/12) – (D × (0.0540/0.0595)) + (D ×                                             (0.0495/0.0595))))) + (0.15 × (P × EI, maximum $860.67)) + (0.15 × (P × <a href="#def-IE" aria-controls="def-IE" class="overlay-lnk" role="button">IE&nbsp;<span class="far fa-question-circle"></span></a> × 0.00494, maximum                                             $484.12))]</p>
+<div class="alert alert-info">
+<p><strong>Note: </strong><span style="background-color: inherit;">In order to ensure that the employee will get the appropriate CPP, EI, and QPIP tax credit, it is recommended that in the period in which the employee contributions or premiums have reached the annual maximum for CPP, EI or QPIP, and for the rest of the pay periods in the year, (P × C × (base rate/total contribution rate)), (P × EI), or (P × <a href="#def-IE" aria-controls="def-IE" class="overlay-lnk" role="button">IE&nbsp;<span class="far fa-question-circle"></span></a> × 0.00494) (as applicable) is replaced by the employee’s maximum annual base contribution or premium. </span></p>
+<p>It is also recommended to use the greater of i) (P × C × (base rate/total contribution rate))  or (P × EI) and ii) D or <a href="#def-D1" aria-controls="def-D1" class="overlay-lnk" role="button">D1&nbsp;<span class="far fa-question-circle"></span></a> for all pay periods, to provide a more accurate annualized amount.</p>
+</div>
+<p>If you want to use the year‑to‑date method to calculate CPP, EI, and QPIP federal tax credits:</p>
+<p style="margin-left: 40px;">(P × C × (0.0495/0.0595)) is changed to the lesser of:</p>
+<p style="margin-left: 40px;">(i)      $3,356.10 × (PM/12);</p>
+<p style="margin-left: 40px;">(ii)    (D × (0.0495/0.0595)) + (PR × C × (0.0495/0.0595))</p>
+<p style="margin-left: 40px;">(P × EI) is changed to the lesser of:</p>
+<p style="margin-left: 40px;">(i)      $1,077.48;</p>
+<p style="margin-left: 40px;">(ii)    <a href="#def-D1" aria-controls="def-D1" class="overlay-lnk" role="button">D1&nbsp;<span class="far fa-question-circle"></span></a> + (PR × EI)</p>
+<p style="margin-left: 40px;">Only for employees in Quebec:</p>
+<p style="margin-left: 40px;">(P × C × (0.0540/0.0640)) is changed to the lesser of:</p>
+<p style="margin-left: 40px;">(i)      $3,661.20 × (PM/12);</p>
+<p style="margin-left: 40px;">(ii)    (DQ × (0.0540/0.0640)) + (PR × C × (0.0540/0.0640))</p>
+<p style="margin-left: 40px;">(P × EI) is changed to the lesser of:</p>
+<p style="margin-left: 40px;">(i)      $860.67;</p>
+<p style="margin-left: 40px;">(ii)    <a href="#def-D1" aria-controls="def-D1" class="overlay-lnk" role="button">D1&nbsp;<span class="far fa-question-circle"></span></a> + (PR × EI)</p>
+<p style="margin-left: 40px;">(P × <a href="#def-IE" aria-controls="def-IE" class="overlay-lnk" role="button">IE&nbsp;<span class="far fa-question-circle"></span></a> × 0.00494) is changed to the lesser of:</p>
+<p style="margin-left: 40px;">(i)      $484.12;</p>
+<p style="margin-left: 40px;">(ii)    QPIP<sub>YTD</sub> + (PR × <a href="#def-IE" aria-controls="def-IE" class="overlay-lnk" role="button">IE&nbsp;<span class="far fa-question-circle"></span></a> × 0.00494)</p>
+<p>Only for employees paid by commission:</p>
+<p><strong>K2 </strong>       =        [(0.15 × (0.0495 × (I1 – $3,500.00)*, maximum $3,356.10 × (PM/12))) + (0.15 × (0.0164 × I1,                        maximum $1,077.48))]<br /> * If the resulting amount is negative, enter $0.</p>
+<p><strong>K2R</strong>     =        [(0.15 × (0.0495 × (I1 – $3,500.00)*, maximum ($3,356.10 × (PM/12) – (DQ × (0.0495/0.0640)) + (DQ ×                       (0.0540/0.0640))))) + (0.15 × (0.0164 × I1, maximum $1,077.48))]<br />                            * If the resulting amount is negative, enter $0.</p>
+<p style="margin-left: 80px;">Only for employees in Quebec:</p>
+<p style="margin-left: 80px;"><strong>K2Q</strong>     =      [(0.15 × (0.0540 × (I1 – $3,500.00)*, maximum $3,661.20 × (PM/12))) +<br />                     (0.15 × (0.0131 × I1, maximum $860.67)) + (0.15 × (0.00494 × I1, maximum $484.12))]<br /> * If the resulting amount is negative, enter $0.</p>
+<p style="margin-left: 80px;"><strong>K2RQ</strong>  =      [(0.15 × (0.0540 × (I1 – $3,500.00)*, maximum ($3,661.20 × (PM/12) – (D × (0.0540/0.0595)) +</p>
+<p style="margin-left: 80px;">                     (D × (0.0495/0.0595))))) + (0.15 × (0.0131 × I1, maximum $860.67)) + (0.15 × (0.00494 × I1, maximum                     $484.12))]</p>
+<p style="margin-left: 80px;">                    * If the resulting amount is negative, enter $0.</p>
+<div class="alert alert-info">
+<p><strong>Note:</strong> <span style="background-color: inherit;">The preceding is subject to the rules in Chapter 6 – “Canada Pension Plan (CPP)” and Chapter 7 – “Employment Insurance (EI)” of this document.</span></p>
+</div>
+<p><strong>K3</strong>        =        If the K3 amount is implemented after the first pay period in the year, K3 must be adjusted using the                        following formula:</p>
+<p>                        (P × K3) / PR.</p>
+<p><strong>K4</strong>        =        The lesser of:</p>
+<p>                        (i)    0.15 × A*; </p>
+<p>                        (ii)   0.15 × CEA</p>
+<p>                        CEA is an indexed amount. See Table 8.2 <a href="#toc66">Other rates and amounts</a>.</p>
+<p>* For the Canada employment amount, A is the annual gross income from office or employment before deductions. Only include the amounts from office or employment, this is the same amount you normally report in box 14 of the T4 slip (s).</p>
+</details></li>
+
+<li><details><summary>Formula to calculate the annual federal tax payable (T1)</summary>	
+<p> <strong>T1 </strong>       =        Annual federal tax deduction, except for employees in Quebec, outside Canada, and in Canada beyond the limits of any province or territory</p>
+<p>             =        T3 – (P × LCF)*</p>
+<p>                        * If the result is negative, enter $0.</p>
+<p>                        Only for employees in Quebec:</p>
+<p><strong>                        T1</strong>   =   [(T3 – (P × LCF))* – (0.165 × T3)]*</p>
+<p>                        * If the result is negative, enter $0.</p>
+<p>                        Only for employees outside Canada and in Canada beyond the limits of any province or territory:</p>
+<p><strong>                        T1</strong>   =   [T3 + (0.48 × T3) – (P × LCF)]*</p>
+<p>                        * If the result is negative, enter $0.</p>
+<p><strong>LCF</strong>     =        The lesser of:</p>
+<p>                      (i)    $750;</p>
+<p>                      (ii)   Fifteen percent of the amount deducted or withheld for the pay period for the acquisition, by the                               employee, of approved shares of the capital stock of a prescribed labour-sponsored venture capital                               corporation</p>
+<div class="alert alert-info">
+<p><strong>Note: </strong><span style="background-color: inherit;">If the shares are invested in a registered retirement savings plan (RRSP), the amount invested can be used to determine the annual taxable income amount. If you want to calculate the credit on an annual basis, (P x LCF) is replaced by LCF, where LCF is 15% of the amount deducted or withheld for the year for the acquisition, by the employee, of approved shares of the capital stock of a prescribed labour-sponsored venture capital corporation. The maximum LCF credit for the whole year cannot exceed $750.</span></p>
+</div>
+<h3 id="toc26">Tax calculation formulas for bonuses, retroactive pay increases, and other non‑periodic payments</h3>
+<h4>Introduction</h4>
+<p>Generally, the tax on a bonus (or retroactive pay increase) is calculated by finding the tax on the total of regular annual income plus any previous bonuses plus the current bonus and subtracting the tax on the total of regular annual income plus any previous bonuses. The difference will be the tax on the current bonus.</p>
+<p>The F5A and F5B values are expected to be the same for the calculation of Annual Taxable income (A). This is applicable for the regular payment, Step 1 and for Step 2.</p>
+<p>In the optional year‑to‑date method outlined below, instead of annualizing the current income, use year‑to‑date income values and year‑to‑date deductions as the annual income with and without the bonus. In either case the tax on the bonus is as follows:</p>
+<p><strong>TB</strong>       =        The difference between:</p>
+<p>                      (i)    the annual tax amount (T1 + T2) based on the instructions in Step 1 below;</p>
+<p>                      (ii)   the annual tax amount (T1 + T2) based on the instructions in Step 2 below</p>
+<h4>(1) Regular bonus calculation</h4>
+<p><strong>Step 1</strong></p>
+<p>Determine the annual tax (T1 + T2) based on the annual taxable income (factor A) with the non-periodic payment payable now. The formula to calculate factor A is as follows:</p>
+<p><strong>A</strong>          =        ([P × (I – F – F2 – F5A – U1)] – HD – F1)* + (B – F3 – F5B)** + (B1 – F4 – F5B<sub>YTD</sub>)**</p>
+<p>                        *      If the result is negative, enter $0.</p>
+<p>                        **   Result cannot be negative, and the result cannot be negative after deducting CPP and EI.</p>
+<div class="alert alert-info">
+<p><strong>Note: </strong><span style="background-color: inherit;">If the result above is less than or equal to $5,000, deduct 15% tax (10% in Quebec) from the bonus or retroactive pay increase.</span></p>
+</div>
+<p><strong>Step 2</strong></p>
+<p>Determine the annual tax (T1 + T2) based on the annual taxable income (factor A) without the non-periodic payment payable now. The formula to calculate factor A is as follows:</p>
+<p><strong>A </strong>         =        ([P × (I – F – F2 – F5A – U1)] – HD – F1)* + (B1 – F4 – F5B<sub>YTD</sub>)**</p>
+<p>                        *      If the result is negative, enter $0.</p>
+<p>                        **   Result cannot be negative, and the result cannot be negative after deducting CPP and EI.</p>
+<p>If I = 0, use the most recent I.</p>
+<h4>Example for regular bonus calculation method</h4>
+<p>In this example, an employee receives a weekly salary of $1,000. There is a $2,500 bonus that is payable in the current pay period. Twenty-nine pay periods have passed and twenty-three pay periods remain in the year. Year-to-date income is $30,500, which includes a one-time bonus of $1,500 that was previously paid. The employee received $14.60 of CPP deductions for additional contributions (F5B<sub>YTD</sub>) on the $1,500 bonus payment that was previously received.</p>
+<div class="alert alert-info">
+<p><strong>*Note:</strong> This example incorporates assumptions that PDOC considers for the calculation of tax on bonus payments. If the guidance mentioned above is followed for the calculation of tax on bonuses, users can use assumptions different than the ones shown in this example.</p>
+</div>
+<p><strong>C </strong>          =     0.0595 × ($3,500 – ($3,500/52))</p>
+<p>             =     $204.25</p>
+<p><strong>F5</strong>         =     C × (0.0100/0.0595) + C2</p>
+<p>             =     $204.25 × (0.0100/0.0595) + $0</p>
+<p>             =     $34.33</p>
+<p><strong>F5A </strong>      =    $34.33 × (($3,500 - $2,500)/$3,500)</p>
+<p>              =    $9.81</p>
+<p><strong>F5B</strong>        =    $34.33 × ($2,500/$3,500)</p>
+<p>               =    $24.52</p>
+<p><strong>Step 1</strong></p>
+<p><strong>A  </strong>        =     Annual taxable income with the non-periodic payment payable now</p>
+<p>             =     ([P × (I – F – F2 – F5A – U1)] – HD – F1) + (B – F3 – F5B) + (B1 – F4 – F5B<sub>YTD</sub>)</p>
+<p>             =     (52 × ($1,000  – $9.81)) + ($2,500 – $24.52) + ($1,500 – $14.60)</p>
+<p>             =     $55,450.76</p>
+<p><strong>K<sub>1</sub></strong>          =    0.15 × $16,129</p>
+<p>             =     $2,419.35</p>
+<p><strong>K<sub>2</sub></strong>         =      [(0.15 × ((52 × ($55.50 × (0.0495/0.0595))) + ($148.75 × 0.0495/0.0595) + ($89.25 × 0.0495/0.0595), maximum                     $3,356.10 × (PM/12))) + (0.15 × ((52 × $16.40) + ($41.00 + $24.60), maximum $1,077.48))]</p>
+<p>             =      $527.59</p>
+<p><strong>K<sub>4</sub></strong>         =     0.15 × $1,471</p>
+<p>             =     $220.65</p>
+<p><strong>T<sub>3</sub></strong>          =    (R × A) – K – K1 – K2 – K3 – K4</p>
+<p>              =    (0.15 × $55,450.76) – $2,419.35– $527.59 – $220.65</p>
+<p>              =    $5,150.02</p>
+<p><strong>T<sub>1</sub></strong>           =    $5,150.02</p>
+<p><strong>Step 2</strong></p>
+<p><strong>A</strong>           =        Annual taxable income without the non-periodic payment payable now</p>
+<p>              =       ([P × (I – F – F2 – F5A – U1)] – HD – F1) + (B1 – F4 – F5B<sub>YTD</sub>)</p>
+<p>              =       (52 × ($1,000  – $9.81))  + ($1,500 – $14.60)</p>
+<p>              =       $52,975.28</p>
+<p><strong>K<sub>1</sub></strong>           =       0.15 × $16,129</p>
+<p>              =        $2,419.35</p>
+<p><strong>K<sub>2</sub></strong>          =        [(0.15 × ((52 × ($55.50 × (0.0495/0.0595))) + ($89.25 × 0.0495/0.0595), maximum $3,356.10 × (PM/12))) + (0.15                         × ((52 × $16.40) + $24.60, maximum $1,077.48))]</p>
+<p>              =       $502.87</p>
+<p><strong>K<sub>4</sub> </strong>         =       0.15 × $1,471</p>
+<p>              =       $220.65</p>
+<p><strong>T<sub>3</sub></strong><sub>             </sub> =       (R × A) – K – K1 – K2 – K3 – K4</p>
+<p>               =       (0.15 × $52,975.28) – $2,419.35– $502.87  – $220.65</p>
+<p>               =       $4,803.42</p>
+<p><strong>T<sub>1 </sub></strong><sub>              </sub> =      $4,803.42</p>
+<p><strong>TB </strong>          =      $5,150.02 – $4,803.42</p>
+<p>                =      $346.60</p>
+<h4>(2) Year‑to‑date bonus calculation (optional)</h4>
+<p><strong>Step 1</strong></p>
+<p>Determine the annual tax (T1 + T2) based on the annual taxable income (factor A) with the non-periodic payment payable now. The annual taxable income (factor A) is based on a year‑to‑date concept, plus the estimated income for the rest of the pay periods in the year. The formula to calculate factor A is as follows:</p>
+<p><strong>A</strong>          =        [(I<sub>YTD</sub> – F<sub>YTD</sub> – F2<sub>YTD</sub> – F5A<sub>YTD</sub> – U1<sub>YTD</sub>) + (PR × (I – F – F2 – F5A – U1)) – F1 – HD]* + (B – F3 – F5B)** +        (B1 –                        F4 – F5B<sub>YTD</sub>)**</p>
+<p>                       *    If the result is negative, enter $0.</p>
+<p>                       **  Result cannot be negative, and the result cannot be negative after deducting CPP and EI.</p>
+<div class="alert alert-info">
+<p><strong>Note: </strong><span style="background-color: inherit;">If the result above is less than or equal to $5,000, deduct 15% tax (10% in Quebec) from the bonus or retroactive pay increase.</span></p>
+</div>
+<p><strong>Step 2</strong></p>
+<p>A          =        [(I<sub>YTD</sub> – F<sub>YTD</sub> – F2<sub>YTD</sub> – F5A<sub>YTD</sub> – U1<sub>YTD</sub>) + (PR × (I – F – F2 – F5A – U1)) – F1 – HD]* + (B1 – F4 – F5B<sub>YTD</sub>)**</p>
+<p>                      *      If the result is negative, enter $0.</p>
+<p>                      **   Result cannot be negative, and the result cannot be negative after deducting CPP and EI.</p>
+<p>If I = 0, use the most recent I.</p>
+<h4>Example for year‑to‑date bonus calculation method</h4>
+<p>In this example, an employee got a retroactive pay increase from $1,000 to $1,100 per week that applies to 25 weeks. Therefore, a retroactive pay increase payment of $2,500 is payable now. An amount of $1,000 will be directed to the employee’s RRSP. Thirty pay periods have passed and 22 pay periods remain in the year. Year‑to‑date income is $31,000 which includes a one-time $1,000 bonus that was previously paid, year‑to‑date RPP is $1,350, year-to-date CPP deductions for additional contributions are $289.91 (F5A<sub>YTD</sub> = $280.24; F5B<sub>YTD</sub> = $9.67) and year‑to‑date union dues are $150. The current income is $1,100 with RPP withheld of $45 and union dues of $5. The employee received $9.67 of CPP deductions for additional contributions (F5B<sub>YTD</sub>) on the $1,000 bonus payment that was previously received.</p>
+<p><strong>C </strong>          =         0.0595 × ($3,600 – ($3,500/52))</p>
+<p>              =        $210.20</p>
+<p><strong>F5 </strong>        =        C × (0.0100/0.0595) + C2</p>
+<p>             =        $210.20 × (0.0100/0.0595) + 0</p>
+<p>             =        $35.33</p>
+<p><strong>F5A</strong>      =        $35.33 × (($3,600 – $2,500)/$3,600)</p>
+<p>             =        $10.80</p>
+<p><strong>F5B</strong>      =        $35.33 × ($2,500/$3,600)</p>
+<p>             =        $24.53</p>
+<p><strong>Step 1</strong></p>
+<p><strong>A </strong>         =        Annual taxable income with the non-periodic payment payable now</p>
+<p>             =        [(I<sub>YTD </sub>– F<sub>YTD</sub> – F2<sub>YTD</sub> – F5A<sub>YTD</sub> – U1<sub>YTD</sub>) + (PR × (I – F – F2 – F5A – U1)) – F1 – HD]* + (B – F3 – F5B)** +</p>
+<p>                        (B1 – F4 – F5B<sub>YTD</sub>)**</p>
+<p>             =        [($30,000 – $1,350 – $0 – $280.24 – $150) + (22 × ($1,100 – $45 – $0 – $10.80 – $5)) – $0 – $0] +</p>
+<p>                        ($2,500 – $1,000 – $24.53) + ($1,000 – $0 – $9.67)</p>
+<p>             =        $28,219.76 + $22,862.40 + $1,475.47 + $990.33</p>
+<p>             =        $53,547.96</p>
+<p><strong>Step 2</strong></p>
+<p><strong>A</strong>          =        Annual taxable income without the non-periodic payment payable now</p>
+<p>             =        [(I<sub>YTD </sub>– F<sub>YTD</sub> – F2<sub>YTD</sub> – F5A<sub>YTD</sub> – U1<sub>YTD</sub>) + (PR × (I – F – F2 – F5A – U1)) – F1 – HD]* + (B1 – F4 – F5B<sub>YTD</sub>)**       </p>
+<p>             =        [($30,000 – $1,350 – $0 – $280.24 – $150) + (22 × ($1,100 – $45 – $0 – $10.80 – $5)) – $0 – $0] + ($1,000 – $0 –                       $9.67)</p>
+<p>             =        $28,219.76 + $22,862.40 + $990.33</p>
+<p>             =        $52,072.49</p>
+<p>After you have calculated the annual taxable income, factor A, in steps 1 and 2, calculate the factors T1 and T2 in the same way as the periodic payment.</p>
+<div class="alert alert-info">
+<p><strong>Note: </strong><span style="background-color: inherit;">The TB formula above can be used to calculate the tax deductions on non-periodic payments such as accumulated overtime not paid in the same pay period earned, paid vacation not taken by the employee, and bonuses.</span></p>
+</div>
+</details></li>
+
+<li><details><summary>Formula to calculate annual basic provincial or territorial tax (T4)</summary>	
+<p><strong>T4</strong>        =        (V × A) – KP – K1P – K2P* – K3P – K4P</p>
+<p>                       If the result is negative, T4 = $0.</p>
+<p>                       * For employees that are transferred from Quebec to a location outside Quebec, replace K2P with K2RP.</p>
+</details></li>
+
+<li><details><summary>Formulas to calculate the annual provincial or territorial tax deduction (T2)</summary>	
+<p><strong>T2</strong>        =         T4 + V1 + V2 – S – (P × LCP)</p>
+<p>                        If the result is negative, T2 = $0.</p>
+<p>                        <strong>Only for employees in Quebec:</strong></p>
+<p><strong>                        T2</strong>   =   $0</p>
+<p>                      <strong>  Only for employees outside Canada and in Canada beyond the limits of any province or territory:</strong></p>
+<p>                        <strong>T2 </strong>  =   $0</p>
+<p>                        Where:</p>
+<p>                        <strong>T4</strong>   =   (V × A) – KP – K1P – K2P – K3P – K4P</p>
+<p>                        V and KP are based on 2025 values for A see the <a href="#toc65">Rates (R, V), income thresholds (A), and constants (K,</a><strong>                         </strong><a href="#toc65">KP) for 2025</a> Table 8.1 in Chapter 8.</p>
+<p><strong>K1P</strong>       =      Lowest provincial tax rate × TCP</p>
+<p><strong>K2P</strong>       =      [(Lowest provincial tax rate × (P × C × (0.0495/0.0595), maximum $3,356.10 × (PM/12))) + (Lowest provincial                        tax rate × (P × EI, maximum $1,077.48))]</p>
+<p><strong>K2RP</strong>   =      [(Lowest provincial tax rate × (P × C × (0.0495/0.0595), maximum ($3,356.10 × (PM/12) – (DQ × (0.0495/0.0640))                     + (DQ × (0.0540/0.0640))))) + (Lowest provincial tax rate × (P × EI, maximum $1,077.48))]</p>
+<p>Replace the lowest provincial or territorial tax rate with the appropriate rate for the province or territory that applies to the employee or pensioner.</p>
+<p>Unless specified, the value for K4P, LCP, S, V1 and V2 = 0.</p>
+<div class="alert alert-info">
+<p><strong>Note: </strong><span style="background-color: inherit;">If you want to calculate the LCP credit on an annual basis, (P x LCP) is replaced by LCP. The maximum LCP credit for the whole year cannot exceed the maximum labour-sponsored funds tax credit for the province or territory.</span></p>
+</div>
+<p>Only for employees paid by commission:</p>
+<p>For employees paid by commission, use the federal K2 and K2R formulas for commission and replace the lowest federal rate in the K2 and K2R formulas with the lowest provincial or territorial tax rate.</p>
+<h3 id="toc29">British Columbia</h3>
+<p><strong>S</strong>           =        Where A ≤ $25,020, S is equal to the lesser of:</p>
+<p>                        (i)    T4;</p>
+<p>                        (ii)   $562</p>
+<p>             =        Where $25,020 &lt; A ≤ $40,807, S is equal to the lesser of:</p>
+<p>                        (i)    T4;</p>
+<p>                        (ii)   $562 – [(A – $25,020) × 3.56%]</p>
+<p>             =        Where A &gt; $40,807</p>
+<p>             =        $0</p>
+<h3 id="toc30">Manitoba</h3>
+<p><strong>LCP</strong>     =        The lesser of:</p>
+<p>                     (i)    $1,800;</p>
+<p>                     (ii)   15% of the amount deducted or withheld for the pay period for the acquisition by the employee of approved shares of the capital stock of a prescribed labour-sponsored venture capital corporation</p>
+<p>                    Note:</p>
+<p>                    The maximum LCP credit for the whole year cannot exceed $1,800.</p>
+<h3 id="toc31">New Brunswick</h3>
+<p><strong>LCP</strong>     =        The lesser of:</p>
+<p>                     (i)    $2,000;</p>
+<p>                     (ii)   20% of the amount deducted or withheld for the pay period for the acquisition by the employee of approved shares of the capital stock of a prescribed labour-sponsored venture capital corporation</p>
+<p>                    Note:</p>
+<p>                    The maximum LCP credit for the whole year cannot exceed $2,000.</p>
+<h3 id="toc32">Nova Scotia</h3>
+<p><strong>LCP</strong>     =        The lesser of:</p>
+<p>                     (i)    $2,000;</p>
+<p>                     (ii)   20% of the amount deducted or withheld for the pay period for the acquisition by the employee of                     approved shares of the capital stock of a prescribed labour-sponsored venture capital corporation</p>
+<p>                     Note:</p>
+<p>                     The maximum LCP credit for the whole year cannot exceed $2,000.</p>
+<h3 id="toc33">Ontario</h3>
+<p><strong>V1</strong>        =        Where T4 ≤ $5,710</p>
+<p>                       V1 = $0</p>
+<p>                       Where $5,710 &lt; T4 ≤ $7,307</p>
+<p>                       V1 = 0.20 × (T4 – $5,710)</p>
+<p>                       Where T4 &gt; $7,307</p>
+<p>                       V1 = 0.20 × (T4 – $5,710) + 0.36 × (T4 – $7,307)</p>
+<p><strong>V2</strong>        =        Where A ≤ $20,000, V2 = $0</p>
+<p>                       Where $20,000 &lt; A ≤ $36,000, V2 = the lesser of:</p>
+<p>                       (i)    $300;</p>
+<p>                       (ii)   0.06 × (A – $20,000)</p>
+<p>                       Where $36,000 &lt; A ≤ $48,000, V2 = the lesser of:</p>
+<p>                       (i)    $450;</p>
+<p>                       (ii)   $300 + (0.06 × (A – $36,000))</p>
+<p>                       Where $48,000 &lt; A ≤ $72,000, V2 = the lesser of:</p>
+<p>                       (i)    $600;</p>
+<p>                       (ii)   $450 + (0.25 × (A – $48,000))</p>
+<p>                       Where $72,000 &lt; A ≤ $200,000, V2 = the lesser of:</p>
+<p>                       (i)    $750;</p>
+<p>                       (ii)   $600 + (0.25 × (A – $72,000))</p>
+<p>                       Where A &gt; $200,000, V2 = the lesser of:</p>
+<p>                       (i)    $900;</p>
+<p>                       (ii)   $750 + (0.25 × (A – $200,000))</p>
+<p>                       Note:</p>
+<p>                       The Ontario Health Premium (OHP) is not reduced by the Ontario tax reduction (factor S). The OHP is not                        related to the employer health tax for Ontario. Include the OHP in the total federal and provincial tax                        deducted on T4 slips.</p>
+<p><strong>S</strong>           =        The lesser of:</p>
+<p>                       (i)    T4 + V1;</p>
+<p>                       (ii)   [2 × ($294 + Y)] – [T4 + V1]</p>
+<p>                       If the result is negative, S = $0.</p>
+<p>                       Where:</p>
+<p><strong>                       Y</strong>  = The total of the following amounts as shown on Form TD1ON or for which the employee or pensioner                        has made a written or electronic request:</p>
+<p>                       n  $544 multiplied by the number of disabled dependants;</p>
+<p>                       n  $544 multiplied by the number of dependants under age 19</p>
+<p>                       Note:</p>
+<p>                       If Y is not used, any over deduction of tax will be considered when the individual files their income tax and                        benefit return. When possible, use the Y factor.</p>
+<h3 id="toc34">Quebec</h3>
+<p>In this publication, we refer to the annual provincial or territorial tax deduction as factor T2. However, factor T2 does not apply in the province of Quebec. Quebec administers its own provincial income tax and Quebec Pension Plan contributions. If you have questions about the formulas for Quebec, please contact Revenu Québec:</p>
+<p>Revenu Québec<br /> 3800, rue de Marly<br /> Quebec (Québec) G1X 4A5</p>
+<p>Telephone:.................................. 1-800-567-4692</p>
+<p>Outside Canada:......................... 1-418-659-4692</p>
+<p>Quebec employers whose employees receive income from tips and gratuities should review the section called “Calculating payroll deductions for employees in the hotel and restaurant business in Quebec,” in the publication T4032QC, Payroll Deductions Tables.</p>
+<h3 id="toc35">Saskatchewan</h3>
+<p><strong>LCP</strong>        =     The lesser of:</p>
+<p>                     (i)    $875;</p>
+<p>                     (ii)   17.5% of the amount deducted or withheld for the pay period for the acquisition by the employee of approved shares of the capital stock of a prescribed labour-sponsored venture capital corporation                                        </p>
+<p>                      Note:</p>
+<p>                      The maximum LCP credit for the whole year cannot exceed $875.</p>
+<h3 id="toc36">Yukon</h3>
+<p><strong>K4P</strong>     =        The lesser of:</p>
+<p>                       (i)    0.064 × A*;  </p>
+<p>                       (ii)    0.064 × CEA</p>
+<p>                       CEA is an indexed amount. See Table 8.2 <a href="#toc66">Other rates and amounts</a> in Chapter 8.</p>
+<p>* For the Canada employment amount, A is the annual gross income from office or employment before deductions. Only include the amounts from office or employment, this is the same amount you normally report in box 14 of the T4 slip (s).</p>
+<p>Outside Canada and in Canada beyond the limits of any province or territory</p>
+<p><strong>V, V1, V2, S,</strong> and <strong>LCP</strong> = $0</p>
+</details></li>
+
+<li><details><summary>Formulas to calculate the estimated federal and provincial or territorial tax deductions (T) for the pay period</summary>	
+<p>T          =        [(T1 + T2) / P] + L</p>
+<p>                       You can round the resulting amount to the nearest multiple of $0.05 or $0.01.</p>
+<p><strong>                       Only for employees in Quebec, outside Canada, and in Canada beyond the limits of any province or                        territory:</strong></p>
+<p>                       T         =       (T1 / P) + L</p>
+<p>                                            You can round the resulting amount to the nearest multiple of $0.05 or $0.01.</p>
+<p><strong>                      For employees paid by commission who have filled out Form TD1X:</strong></p>
+<p>                      T         =       The tax to be deducted on the current commission payment (factor G)</p>
+<p>                                 =       [(T1 + T2) / (I1 / G)] + L</p>
+<p>                                           You can round the resulting amount to the nearest multiple of $0.05 or 0.01.</p>
+</details></li>
 </ol>	
 <br>	
 <h3 id="h_7_1">Legislation</h3>
