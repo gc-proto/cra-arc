@@ -26,201 +26,206 @@
             }));
          </script>
 <style>
-/***Font styling***/
-.small 
-	{line-height: 1.44em;}
-	
-    /*****Table styling *****/
-   
-.table>tbody>tr>th[scope=row] {
-    vertical-align: middle;
-      width: 20%; 
-} 
-   .table>thead>tr>th[scope=col] {
-    text-align: center;    
-    } 	
-td > div.range {
-  display: flex;
-  flex-direction: column-reverse;
-  text-align: center;
-	padding: 0px 20px;
-}
-td > div.range meter {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  writing-mode: vertical-lr;
-  width: 50px;
-  height: 180px;
-transform:scaleY(-1);
-}
-@-moz-document url-prefix() {
-  td > div.range meter {
-    width: 50px;
-    background: #f4f6f6;
-    border: 1px solid black;
-      transform: none;
-  }
-}
-td > div.range meter::-webkit-meter-bar {
-  width: 50px;
-  height: 180px;
-  border: 1px solid #333;
-}
-td > div.range meter::-moz-meter-bar {
-  background: #2572b4;
-  height: 180px;
-  width: 50px;
-  border-radius: 0px;
-}
-@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-  td > div.range meter {
-    background-clip: content-box;
-  }
-  td > div.range meter::-webkit-meter-optimum-value {
-    background: #2572b4;
-  }
-  td > div.range meter::-webkit-meter-bar {
-    background: #f4f6f6;
-  }
-}
-.active-cell, .prev-active {
-    font-weight: bold;
-}    
-.estimate-borders {
-    border: 1px solid #2572b4;
-    padding: 10px; 10px 10px 15px;
-    width: 180px;
-    display: inline-block;
-    border-radius: 25px;   
-}   
- /********** Range Input Styles **********/
-.wb-input-range {
---HTooltipPos: 0px;
---tooltipArrow: none;
-}
-/*     .wb-input-range .input-group-addon {
-          background-color: unset;
-          border: 0;
-          border-radius: 0;
-          width: auto;
-          padding-left: 5px;
-          padding-right: 5px;
-      } */
-
-.wb-input-range datalist {
-    display: flex;
-    justify-content: space-between;
-}
-.wb-input-range output.wb-input-range-tooltip, .wb-input-range div.wb-input-range-tooltip {
-    font-size: 20px;
-    min-width: 2em;
-    text-align: center;
-    position: relative;
-    padding-left: 6px;
-    padding-right: 6px;
-    border-radius: 6px;
-    line-height: 1.4em;
-    display: inline-block;
-    background: #e3e3e3;
-    color: #333333;
-    transform: translate(var(--HTooltipPos), 0px);
-}
-.wb-input-range output.wb-input-range-tooltip {
-    height: 28px;
-    top: -0.2em;
-}
-.wb-input-range div.wb-input-range-tooltip {
-    top: -0.2em;
-}
-output.wb-input-range-tooltip {
-    padding-top: 0px;
-}
-.wb-input-range output.wb-input-range-tooltip:before, .wb-input-range div.wb-input-range-tooltip:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    margin-top: -1px;
-    margin-left: -4px;
-    top: 100%;
-    left: 50%;
-    border-top: 10px var(--tooltipArrow) #e3e3e3;
-}    
-.range-list {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin: 0px 2px;
-}
-.range-list span {
-    font-size: 1em;
-    text-align: center;
-    padding: 0px 1px;
+/***** Font styling *****/
+	.small {
+		line-height: 1.44em;
 }
 
-      /* webkit styles  */
-      input[type="range"]::-webkit-slider-thumb {
-background-color: #335075;
-background-image: linear-gradient(to bottom, #335075, #26374A);
--webkit-box-sizing: border-box;
-box-sizing: border-box;
-border: none;
-border-radius: 1rem;
-transform: scale(1.5);
-}  
-/****Sticky slider ****/    
-.top-bar-stick {
-    position: sticky;
-    top: -1px;
-    padding-top: 10px;
-    z-index: 10;
-    background-color: #fff;
-}
-     #stickycontent {
-    position: relative;
-}
-.wb-frmvld, form, fieldset, legend {
-    display: contents;
-}
- /***Class to prevent horizontal scroll of page ***/
-    .tbl-hidden {font-size: 0px;}
-/*** Plus signs ***/
-    .float-plus {
-    font-weight: bold;
-    position: absolute;
-        left: 0;
-}    
-    td.tax-amount {position: relative;}
-    
-    
-    tbody>tr:last-child>td:first-of-type>span.float-plus {
- 
-      display:none;
-    }
-/***Math grid fix (remove once class has been pushed)***/
-.wb-math-grid .mg-spcd {
-    border-collapse: separate;
-    border-spacing: 0px 5px;
-}
-#resultsLink>a:target {
-  scroll-margin-top: 170px;
-}   
-/***Sizing of result***/
-	.grid-label  {font-size: 0.9em;}
-.grid-amount {font-size: 1em;}
-.grid-percent {font-size: 0.8em;}
-@media (min-width: 768px) 
-	{
-.wb-math-grid div.mg-row > div.mg-cell {padding: 10px 0px 10px 0px;} 		
-.grid-label  {font-size: 1.2em;}
-.grid-amount {font-size: 2em;}
-.grid-percent {font-size: 1.3em;}	
+/***** Table styling *****/
+	.table>tbody>tr>th[scope=row] {
+		vertical-align: middle;
+		width: 20%;
+	}
+	.table>thead>tr>th[scope=col] {
+		text-align: center;
+	}
+	td > div.range {
+		display: flex;
+		flex-direction: column-reverse;
+		padding: 0px 20px;
+		text-align: center;
+	}
+	td > div.range meter {
+		display: block;
+		height: 180px;
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+		width: 50px;
+		writing-mode: vertical-lr;
+		transform:scaleY(-1);
+	}
+	@-moz-document url-prefix() {
+		td > div.range meter {
+			background: #f4f6f6;
+			border: 1px solid black;
+			transform: none;
+			width: 50px;
+		}
+	}
+	td > div.range meter::-webkit-meter-bar {
+		border: 1px solid #333;
+		height: 180px;
+		width: 50px;
+	}
+	td > div.range meter::-moz-meter-bar {
+		background: #2572b4;
+		border-radius: 0px;
+		height: 180px;
+		width: 50px;
+	}
+	@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+		td > div.range meter {
+			background-clip: content-box;
+		}
+		td > div.range meter::-webkit-meter-optimum-value {
+			background: #2572b4;
+		}
+		td > div.range meter::-webkit-meter-bar {
+			background: #f4f6f6;
+		}
+	}
+	.active-cell, .prev-active {
+		font-weight: bold;
+	}
+	.estimate-borders {
+		border: 1px solid #2572b4;
+		border-radius: 25px;
+		display: inline-block;
+		padding: 10px; 10px 10px 15px;
+		width: 180px;
+	}   
+ /***** Range Input Styles *****/
+	.wb-input-range {
+		--HTooltipPos: 0px;
+		--tooltipArrow: none;
+	}
+	.wb-input-range datalist {
+		display: flex;
+		justify-content: space-between;
+	}
+	.wb-input-range output.wb-input-range-tooltip, .wb-input-range div.wb-input-range-tooltip {
+		background: #e3e3e3;
+		border-radius: 6px;
+		color: #333333;
+		display: inline-block;
+		font-size: 20px;
+		line-height: 1.4em;
+		min-width: 2em;
+		padding-left: 6px;
+		padding-right: 6px;
+		position: relative;
+		text-align: center;
+		transform: translate(var(--HTooltipPos), 0px);
+	}
+	.wb-input-range output.wb-input-range-tooltip {
+		height: 28px;
+		top: -0.2em;
+	}
+	.wb-input-range div.wb-input-range-tooltip {
+		top: -0.2em;
+	}
+	output.wb-input-range-tooltip {
+		padding-top: 0px;
+	}
+	.wb-input-range output.wb-input-range-tooltip:before, .wb-input-range div.wb-input-range-tooltip:before {
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 10px var(--tooltipArrow) #e3e3e3;
+		content: "";
+		height: 0;
+		left: 50%;
+		margin-left: -4px;
+		margin-top: -1px;
+		position: absolute;
+		top: 100%;
+		width: 0;
+	}
+	.range-list {
+		display: flex;
+		justify-content: space-between;
+		margin: 0px 2px;
+		width: 100%;
+	}
+	.range-list span {
+		font-size: 1em;
+		padding: 0px 1px;
+		text-align: center;
+	}
+
+      /*** webkit styles  ***/
+	input[type="range"]::-webkit-slider-thumb {
+		background-color: #335075;
+		background-image: linear-gradient(to bottom, #335075, #26374A);
+		border: none;
+		border-radius: 1rem;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		transform: scale(1.5);
 	}
 	
+/***** Sticky slider *****/
+	.top-bar-stick {
+		background-color: #fff;
+		padding-top: 10px;
+		position: sticky;
+		top: -1px;
+		z-index: 10;
+	}
+	#stickycontent {
+		position: relative;
+	}
+	.wb-frmvld, form, fieldset, legend {
+		display: contents;
+	}
+
+ /***** Class to prevent horizontal scroll of page inside tables *****/
+	.tbl-hidden {
+		font-size: 0px;
+	}
+	
+/***** Plus signs *****/
+	.float-plus {
+		font-weight: bold;
+		left: 0;
+		position: absolute;
+	}
+	td.tax-amount {
+		position: relative;
+	}
+	tbody>tr:last-child>td:first-of-type>span.float-plus {
+		display:none;
+	}
+/***** Results link design *****/
+	#resultsLink>a:target {
+		scroll-margin-top: 170px;
+	}
+	
+/***** Sizing of result *****/
+	.grid-label  {
+		font-size: 0.9em;
+	}
+	.grid-amount {
+		font-size: 1em;
+	}
+	.grid-percent {
+		font-size: 0.8em;
+	}
+	@media (min-width: 768px)
+	{
+		.wb-math-grid div.mg-row > div.mg-cell {
+			padding: 10px 0px 10px 0px;
+		}
+		.grid-label {
+			font-size: 1.2em;
+		}
+		.grid-amount {
+			font-size: 2em;
+		}
+		.grid-percent {
+			font-size: 1.3em;
+		}
+	}	
 </style>
 	
 </head>
