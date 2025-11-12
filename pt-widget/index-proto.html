@@ -515,11 +515,22 @@ transform: scale(1.5);
          </script>
   <script src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/méli-mélo/2025-12-mille-iles.js"></script>
 <script>
-	/**
-	* @title WET-BOEW Input range plugin
-	* @overview Plugin to display current value on an input of type range
-	* @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
-	*/
+/**START Universal variables/functions**/
+	var pagelang = document.documentElement.lang;
+	function formatCurrency(amount) {
+		const currencyFormatter = new Intl.NumberFormat(pagelang + "-CA", {
+			style: "currency",
+			currency: "CAD",
+			minimumFractionDigits: 0,
+			maximumFractionDigits: 0,
+			roundingPriority: "auto",
+			roundingMode: "trunc"
+		});
+		return currencyFormatter.format(amount);
+	}
+	/**END Universal variables/functions**/
+
+	
 	(function ($, window, wb) {
 		"use strict";
 		/*
@@ -623,15 +634,7 @@ transform: scale(1.5);
 				}
 			},
 			updateValElm = function (inputRangeElm, displayElm, groupElm) {
-                 var currencyFormatter = new Intl.NumberFormat(pagelang + "-CA", {
-  style: "currency",
-  currency: "CAD",
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0,
-  roundingPriority: "auto",
-  roundingMode: "trunc"
- });
-                
+            
 				let displayText, outputData;
 
 				if (displayElm !== null) {
@@ -644,7 +647,7 @@ transform: scale(1.5);
 					if (displayElm.tagName === "INPUT" || displayElm.tagName === "TEXTAREA") {
 						displayElm.value = displayText;
 					} else {
-						displayElm.textContent = currencyFormatter.format(displayText);
+						displayElm.textContent = formatCurrency(displayText);
 						updateTooltipPos(inputRangeElm, displayElm, groupElm);
 						window.onresize = function () {
 							updateTooltipPos(inputRangeElm, displayElm, groupElm);
@@ -754,19 +757,7 @@ transform: scale(1.5);
 	})(jQuery, window, wb);
 </script> 
 <script>
-var  pagelang = document.documentElement.lang;
-//pagelang toggle for inline sentences delete if not needed
-//var pagelang_alt;
 
-//if (pagelang === "fr" && typeof pagelang_alt !== 'undefined') {
-//    pagelang_alt = "fr_alt";
-//} else {
-//    pagelang_alt = "en";
-//}
-
-	
-
-	
 //Langauge arrays
 const langToggle = {
 	dataTableHeader: {
@@ -817,14 +808,7 @@ const incomeInputs = document.querySelectorAll('#incomeSlider, #incomeInput');
 const provinceSelect = document.getElementById('provinceSelect');
 const basedIncome = document.querySelectorAll('.based-income');
 	 const resultsLink = document.getElementById('resultsLink');
-var currencyFormatterChart = new Intl.NumberFormat(pagelang + "-CA", {
-  style: "currency",
-  currency: "CAD",
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0,
-  roundingPriority: "auto",
-  roundingMode: "trunc"
- });    
+   
  var percentFormatter = new Intl.NumberFormat(pagelang + "-CA", {
   style: "percent",
   minimumFractionDigits: 1,
@@ -937,7 +921,7 @@ incomeSlider.value = incomeInput.value;
 const income = Number(incomeInput.value) || 0;
 
 basedIncome.forEach(element => {
-  element.innerHTML = `(${langToggle.dataTableHeader[pagelang]} ${currencyFormatterChart.format(income)})`;
+  element.innerHTML = `(${langToggle.dataTableHeader[pagelang]} ${formatCurrency(income)})`;
 });
 
   
@@ -959,10 +943,10 @@ elementsToHide.forEach(element => {
 const rangeListMax = document.querySelectorAll('.rangelist-max');
 const incomeSliderLabel = document.getElementById("incomeSliderLabel");		
    incomeSlider.setAttribute("max", provinceMaxAmount);
- incomeSliderLabel.textContent = langToggle.dataSliderRange[pagelang] + currencyFormatterChart.format(provinceMaxAmount);
+ incomeSliderLabel.textContent = langToggle.dataSliderRange[pagelang] + formatCurrency(provinceMaxAmount);
 		
 	rangeListMax.forEach(listmax => {
-	listmax.textContent = currencyFormatterChart.format(provinceMaxAmount);      	
+	listmax.textContent = formatCurrency(provinceMaxAmount);      	
  });        
 
 	    const selectedProvinceFlag  = taxData[selectedProvince].flag_url; 
@@ -1002,7 +986,7 @@ elementsToShow.forEach(element => {
     const afterTax = income - federalTaxAmount - provincialTaxAmount;      
  /**Functions for estimate section**/        
   function updateCurrency(id, amount) {
-  document.getElementById(id).textContent = currencyFormatterChart.format(amount);
+  document.getElementById(id).textContent = formatCurrency(amount);
 }
 
 function updatePercentage(id, amount, income) {
@@ -1135,7 +1119,7 @@ if (index === 0) {
     incomeCell.innerHTML += `<div class="range"><div class="nowrap">$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> ${langToggle.dataHiddenTo[pagelang]}</span></div>
         <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}" aria-hidden="true"></meter>
     
-<div class="nowrap">${threshold === Infinity ? '' + currencyFormatterChart.format(maxIncome) + '<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ' + langToggle.dataHiddenAndUp[pagelang] +'</span></span>' : currencyFormatterChart.format(threshold)}</div></div>
+<div class="nowrap">${threshold === Infinity ? '' + formatCurrency(maxIncome) + '<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ' + langToggle.dataHiddenAndUp[pagelang] +'</span></span>' : formatCurrency(threshold)}</div></div>
 <p class="tbl-hidden">${langToggle.dataMeterFill[pagelang]}${percentFormatter.format(fillAmount)}</p>`;
     incomeRow.appendChild(incomeCell);
       
@@ -1143,7 +1127,7 @@ if (index === 0) {
    const payableCell = document.createElement('td'); 
      payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| taxEstimate !== 0? ' prev-active': ''}`);
 payableCell.innerHTML += `<span class="float-plus">+ </span>
-${currencyFormatterChart.format(taxEstimate)}`;  
+${formatCurrency(taxEstimate)}`;  
       
       
     payableRow.appendChild(payableCell);          
@@ -1156,7 +1140,7 @@ tableBody.appendChild(incomeRow);
 tableBody.appendChild(payableRow);
 
 
-totalDiv.innerHTML = `<div class="mrgn-rght-md"><p class="mrgn-bttm-0">${langToggle.dataTotalEstimate[pagelang]}</p></div><div class="estimate-borders fa-lg text-primary nowrap align-self-center">= ${currencyFormatterChart.format(totalTax)}</div> `;    
+totalDiv.innerHTML = `<div class="mrgn-rght-md"><p class="mrgn-bttm-0">${langToggle.dataTotalEstimate[pagelang]}</p></div><div class="estimate-borders fa-lg text-primary nowrap align-self-center">= ${formatCurrency(totalTax)}</div> `;    
  //Duplicated...need to clean (possibly put in seperate function)
     const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected.getAttribute('name');
@@ -1164,7 +1148,7 @@ totalDiv.innerHTML = `<div class="mrgn-rght-md"><p class="mrgn-bttm-0">${langTog
     
     const customTotal = document.getElementById("provinceTotal");   
 if (customTotal) {
-    customTotal.innerHTML = `<div class="mrgn-rght-md"><p class="mrgn-bttm-0">${langToggle.dataTotalEstimate[pagelang]}</p></div><div class="estimate-borders fa-lg text-primary nowrap align-self-center">= ${currencyFormatterChart.format(totalTax)}</div>`;
+    customTotal.innerHTML = `<div class="mrgn-rght-md"><p class="mrgn-bttm-0">${langToggle.dataTotalEstimate[pagelang]}</p></div><div class="estimate-borders fa-lg text-primary nowrap align-self-center">= ${formatCurrency(totalTax)}</div>`;
 }
 
     
