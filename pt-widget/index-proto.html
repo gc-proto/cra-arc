@@ -271,7 +271,13 @@
 </noscript>
 <p>The interactive chart below uses rates from the <strong id="jsonYear"></strong> tax year.</p>
 <p>The table chart shows you how tax brackets and progressive tax rates work in Canada and in each province and territory (except Quebec).</p>
-<p><strong><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"><span class="wb-inv">Attention:</span></span>This is for educational purposes only:</strong> Do not use this to calculate your actual tax amount.</p>
+<div class="wb-dismissable" id="accessibility-alert">
+	<div class="pull-left"><span class="fas fa-arrows-alt-h fa-2x pr-2 pt-2"></span></div>
+	<div class="pl-2 brdr-lft d-flex">
+		<p>The table chart uses horizontal animated scrolling to show how tax rates increase over time.</p>
+    </div>
+  </div>
+	<p><strong><span class="mrgn-rght-sm glyphicon glyphicon-exclamation-sign"><span class="wb-inv">Attention:</span></span>This is for educational purposes only:</strong> Do not use this to calculate your actual tax amount.</p>
 <div class="row">
   <div class="col-xs-12">
     <section class="panel panel-default brdr-rds-0 mrgn-tp-lg nojs-hide">
@@ -458,6 +464,7 @@
 <section id="errorMsg" class="mrgn-tp-lg">
   <p><span class="fas fa-exclamation fa-lg mrgn-rght-sm"></span>Error with loading script, try <a href="?">refreshing page</a>.</p>
 </section>
+	<p><a href="?" value="Reset acessibility alert" onclick="localStorage.removeItem( 'accessibility-alert' );" class="small">Reset acessibility alert</a></p>
   <div id="def-preFooter"> </div>
 
 <!-- Write closure template --> 
