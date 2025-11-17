@@ -843,179 +843,167 @@ if (pagelang == "fr") {
 	//Change table data if province is updated.
 	provinceSelect.addEventListener('change', updateTables);
 
-    function populateProvinceDropdown() {
+	function populateProvinceDropdown() {
 		//sort alphabetically in en/fr
 		const regions = Object.keys(taxData)
-    .filter(region => region !== 'federal')
-    .sort((a, b) => taxData[a][pagelang].localeCompare(taxData[b][pagelang], pagelang, { sensitivity: 'base' }));
-
-  for (const region of regions) {
-    const option = document.createElement('option');
-    option.value = region;
-    option.textContent = taxData[region][pagelang];
-    option.setAttribute("name", taxData[region][pagelang]);
-    provinceSelect.appendChild(option);
-  }
-}
- 
+			.filter(region => region !== 'federal')
+			.sort((a, b) => taxData[a][pagelang].localeCompare(taxData[b][pagelang], pagelang, { sensitivity: 'base' }));
+	
+		//Build select dropdown	
+		for (const region of regions) {
+			const option = document.createElement('option');
+			option.value = region;
+			option.textContent = taxData[region][pagelang];
+			option.setAttribute("name", taxData[region][pagelang]);
+			provinceSelect.appendChild(option);
+		}
+	}
 let previousTaxValues = { federal: [], province: [] };
-    function updateTables() {
-       
-incomeSlider.value = incomeInput.value;
-const income = Number(incomeInput.value) || 0;
 
-basedIncome.forEach(element => {
-  element.innerHTML = `(${langToggle.dataTableHeader[pagelang]} ${formatCurrency(income)})`;
-});
-
-  
-    
-const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
+	//Function to update tables
+	function updateTables() {
+		incomeSlider.value = incomeInput.value;
+		const income = Number(incomeInput.value) || 0;
+		basedIncome.forEach(element => {
+			element.innerHTML = `(${langToggle.dataTableHeader[pagelang]} ${formatCurrency(income)})`;
+		});
+		const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected.getAttribute('name');
         const selectedProvince = provinceSelect.value;
-         if (!selectedProvince) {
-   let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints, #quebecNotice, #errorMsg');    
-elementsToHide.forEach(element => {
-  element.classList.add('hidden'); 
-});
-        document.getElementById('provinceTitle').textContent = '';
-       document.getElementById('provinceTotal').textContent = '';
-        return;
-      }
- //Set slider maximum
-  const provinceMaxAmount  = taxData[selectedProvince].range_max;
-const rangeListMax = document.querySelectorAll('.rangelist-max');
-const incomeSliderLabel = document.getElementById("incomeSliderLabel");		
-   incomeSlider.setAttribute("max", provinceMaxAmount);
- incomeSliderLabel.textContent = langToggle.dataSliderRange[pagelang] + formatCurrency(provinceMaxAmount);
+		let federalTaxAmount = 0;
+		let provincialTaxAmount = 0;
 		
-	rangeListMax.forEach(listmax => {
-	listmax.textContent = formatCurrency(provinceMaxAmount);      	
- });        
+		if (!selectedProvince) {
+			let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints, #quebecNotice, #errorMsg');
+			elementsToHide.forEach(element => {
+				element.classList.add('hidden');
+			});
+			document.getElementById('provinceTitle').textContent = '';
+			document.getElementById('provinceTotal').textContent = '';
+			return;
+		}
+		if (selectedProvince === 'QC') {
+			federalTaxAmount = updateTable('federal', taxData.federal, income);
+			let elementsToHide = document.querySelectorAll('#provinceTableWrapper, #afterTaxWrapper');
+			elementsToHide.forEach(element => {
+				element.classList.add('hidden');
+			});
+			let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #federalTableWrapper, #quebecNotice, #afterTaxHints');
+			elementsToShow.forEach(element => {
+				element.classList.remove('hidden');
+			});
+			$("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");
+		} else {
+			let elementsToHide = document.querySelectorAll(' #quebecNotice');
+			elementsToHide.forEach(element => {
+				element.classList.add('hidden');
+			});
+			let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints');
+			elementsToShow.forEach(element => {
+				element.classList.remove('hidden');
+			});
+			federalTaxAmount = updateTable('federal', taxData.federal, income);
+			provincialTaxAmount = updateTable('province', taxData[selectedProvince], income);
+			$("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");
+		}
+//Set slider maximum
+		const provinceMaxAmount  = taxData[selectedProvince].range_max;
+		const rangeListMax = document.querySelectorAll('.rangelist-max');
+		const incomeSliderLabel = document.getElementById("incomeSliderLabel");
+		incomeSlider.setAttribute("max", provinceMaxAmount);
+		incomeSliderLabel.textContent = langToggle.dataSliderRange[pagelang] + formatCurrency(provinceMaxAmount);
+		rangeListMax.forEach(listmax => {
+			listmax.textContent = formatCurrency(provinceMaxAmount);
+		});
+		const selectedProvinceFlag  = taxData[selectedProvince].flag_url;
+		document.getElementById('provinceFlag').innerHTML = `<img src="${selectedProvinceFlag}" alt="" class="mrgn-rght-md">`;
+		document.getElementById('provinceTitle').textContent = `${selectedProvinceName}`;
+		const afterTax = income - federalTaxAmount - provincialTaxAmount;      
+ 
+		//Functions for estimate section
+		function updateCurrency(id, amount) {
+			document.getElementById(id).textContent = formatCurrency(amount);
+		}
+		function updatePercentage(id, amount, income) {
+			const percentage = calculatePercentage(amount, income);
+			const formatted = percentFormatter.format(percentage / 100);
+			document.getElementById(id).innerHTML = `(${formatted})`;
+			return percentage;
+		}
+		function updateText(id, text) {
+			document.getElementById(id).textContent = text;
+		}
 
-	    const selectedProvinceFlag  = taxData[selectedProvince].flag_url; 
-     
-      document.getElementById('provinceFlag').innerHTML = `<img src="${selectedProvinceFlag}" alt="" class="mrgn-rght-md">`;
-        
-      document.getElementById('provinceTitle').textContent = `${selectedProvinceName}`;
-	    
-	    let federalTaxAmount = 0;
-	    let provincialTaxAmount = 0;
+		// Currency updates for math calculation
+		const currencyUpdates = [
+			{id: 'fedTaxCal', amount: federalTaxAmount},
+			{id: 'provTaxCal', amount: provincialTaxAmount },
+			{id: 'totalTaxCal', amount: federalTaxAmount + provincialTaxAmount}
+		];
+		currencyUpdates.forEach(({ id, amount }) => updateCurrency(id, amount));
 
-      if (selectedProvince === 'QC') {
-	    federalTaxAmount = updateTable('federal', taxData.federal, income);       
-       let elementsToHide = document.querySelectorAll('#provinceTableWrapper, #afterTaxWrapper');    
-elementsToHide.forEach(element => {
-  element.classList.add('hidden'); 
-});    
-let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #federalTableWrapper, #quebecNotice, #afterTaxHints');    
-elementsToShow.forEach(element => {
-  element.classList.remove('hidden'); 
-});
- $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");	      
-      }  else {
-         let elementsToHide = document.querySelectorAll(' #quebecNotice');    
-elementsToHide.forEach(element => {
-  element.classList.add('hidden'); 
-});    
-let elementsToShow = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints');    
-elementsToShow.forEach(element => {
-  element.classList.remove('hidden'); 
-});     
-    federalTaxAmount = updateTable('federal', taxData.federal, income);
-        provincialTaxAmount = updateTable('province', taxData[selectedProvince], income);
- $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");	      
-      }
-        
-    const afterTax = income - federalTaxAmount - provincialTaxAmount;      
- /**Functions for estimate section**/        
-  function updateCurrency(id, amount) {
-  document.getElementById(id).textContent = formatCurrency(amount);
-}
+		// Text updates for math calculation
+		const textUpdates = [
+			{id: 'provTaxName', text: selectedProvinceName}
+		];
+		textUpdates.forEach(({ id, text }) => updateText(id, text));
 
-function updatePercentage(id, amount, income) {
-    const percentage = calculatePercentage(amount, income);
-    const formatted = percentFormatter.format(percentage / 100);
-     document.getElementById(id).innerHTML = `(${formatted})`;
-    return percentage;
-}
-
-function updateText(id, text) {
-  document.getElementById(id).textContent = text;
-}
-
-// Currency updates for math calculation
-const currencyUpdates = [
- { id: 'fedTaxCal', amount: federalTaxAmount },
-  { id: 'provTaxCal', amount: provincialTaxAmount },
-  { id: 'totalTaxCal', amount: federalTaxAmount + provincialTaxAmount}
-];
-currencyUpdates.forEach(({ id, amount }) => updateCurrency(id, amount));
-
-// Text updates for math calculation
-const textUpdates = [
-  { id: 'provTaxName', text: selectedProvinceName }
-];
-textUpdates.forEach(({ id, text }) => updateText(id, text));
-
-// Percentage updates		
-const percentageUpdates = [
-  { id: 'fedTaxPC', amount: federalTaxAmount },
-  { id: 'provTaxPC', amount: provincialTaxAmount }
-];
+		// Percentage updates
+		const percentageUpdates = [
+			{id: 'fedTaxPC', amount: federalTaxAmount },
+			{id: 'provTaxPC', amount: provincialTaxAmount }
+		];
 		const percentageValues = {};
-        percentageUpdates.forEach(({ id, amount }) => {
-            const percentage = updatePercentage(id, amount, income);
-            percentageValues[id] = percentage;
-});
-//Calculation for total tax percentage based on fed and prov percentage 
-const totalTaxPercentage =
-  percentageValues.fedTaxPC + percentageValues.provTaxPC;    
-const formattedTotal = percentFormatter.format(totalTaxPercentage / 100);
-document.getElementById('totalTaxPC').innerHTML = `(${formattedTotal})`;	
+		percentageUpdates.forEach(({ id, amount }) => {
+			const percentage = updatePercentage(id, amount, income);
+			percentageValues[id] = percentage;
+		});
+		
+		//Calculation for total tax percentage based on fed and prov percentage
+		const totalTaxPercentage = percentageValues.fedTaxPC + percentageValues.provTaxPC;
+		const formattedTotal = percentFormatter.format(totalTaxPercentage / 100);
+		document.getElementById('totalTaxPC').innerHTML = `(${formattedTotal})`;
 	}		
 
-function updateTable(idPrefix, data, income) {
-  const headerRow = document.getElementById(`${idPrefix}Header`);
-  const tableBody = document.getElementById(`${idPrefix}Body`);
-  const totalDiv = document.getElementById(`${idPrefix}Total`);
-  const minIncome = parseInt(incomeSlider.min);
-  const maxIncome = parseInt(incomeSlider.max);
+	//Function to build table
+	function updateTable(idPrefix, data, income) {
+		const headerRow = document.getElementById(`${idPrefix}Header`);
+		const tableBody = document.getElementById(`${idPrefix}Body`);
+		const totalDiv = document.getElementById(`${idPrefix}Total`);
+		const minIncome = parseInt(incomeSlider.min);
+		const maxIncome = parseInt(incomeSlider.max);
+		headerRow.innerHTML = '';
+		tableBody.innerHTML = ''; 
+		let totalTax = 0;
+		let previousThreshold = 0;
+		let currentTaxValues = [];
 
-headerRow.innerHTML = '';   
-	tableBody.innerHTML = ''; 
+		// Determine which bracket the income falls into
+		let activeIndex = -1;
+		previousThreshold = 0;
 
-  let totalTax = 0;
-  let previousThreshold = 0;
-  let currentTaxValues = [];
-
-  // Determine which bracket the income falls into
-
-
-let activeIndex = -1;
-previousThreshold = 0;
+//See about function to reduce repeativeness
+		
+		//Create rate row and header
+		const rateRow = document.createElement('tr');
+		const rateHeader = document.createElement('th');
+		rateHeader.setAttribute('scope', 'row');
+		rateHeader.textContent += `${langToggle.dataTaxRate[pagelang]}`;
+		rateRow.appendChild(rateHeader);   
  
-    //Create rate row and header
-    const rateRow = document.createElement('tr');
-const rateHeader = document.createElement('th');
-  rateHeader.setAttribute('scope', 'row')   
-rateHeader.textContent += `${langToggle.dataTaxRate[pagelang]}`;	
- rateRow.appendChild(rateHeader);   
- 
-    //Create income row and header   
-const incomeRow = document.createElement('tr');
-const incomeHeader = document.createElement('th');
-  incomeHeader.setAttribute('scope', 'row')   
-incomeHeader.innerHTML += `${langToggle.dataIncomeRange[pagelang]}`; 
-	
- incomeRow.appendChild(incomeHeader);      
+		//Create income row and header 
+		const incomeRow = document.createElement('tr');
+		const incomeHeader = document.createElement('th');
+		incomeHeader.setAttribute('scope', 'row');
+		incomeHeader.innerHTML += `${langToggle.dataIncomeRange[pagelang]}`;
+		incomeRow.appendChild(incomeHeader);      
 
-    //Create tax payable row and header    
-const payableRow = document.createElement('tr');
-const payableHeader = document.createElement('th');
-  payableHeader.setAttribute('scope', 'row')   
-payableHeader.innerHTML += `${langToggle.dataTaxEstimate[pagelang]}`;	
-payableRow.appendChild(payableHeader);   
+		//Create tax payable row and header
+		const payableRow = document.createElement('tr');
+		const payableHeader = document.createElement('th');
+		payableHeader.setAttribute('scope', 'row');
+		payableHeader.innerHTML += `${langToggle.dataTaxEstimate[pagelang]}`;
+		payableRow.appendChild(payableHeader);   
     
     
   
