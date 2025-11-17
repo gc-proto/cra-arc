@@ -762,7 +762,6 @@
 		}
 	}
 		
-	let taxData = {};
 	const incomeSlider = document.getElementById('incomeSlider'),
 		incomeInput = document.getElementById('incomeInput'),
 		incomeInputs = document.querySelectorAll('#incomeSlider, #incomeInput'),
@@ -776,89 +775,73 @@
 		});    
 
 	//Function to dynamically add date
- function dateFormatter(ymdDateString, mode = 'full') {
-  // Create a Date object from the YYYY-MM-DD string.
-  // The Date constructor can parse this format directly.
-  const dateObject = new Date(ymdDateString);
-
-  // Check if the dateObject is valid (in case of invalid input string)
-  if (isNaN(dateObject.getTime())) {
-    return "Invalid Date";
-  }
-
-if (mode === 'year') {
-    return dateObject.getUTCFullYear(); // Just the year
-  }
-
-  // Define options for locale-sensitive formatting
-  const options = {
-    timeZone: 'UTC',
-      year: 'numeric',
-    month: 'long', // e.g., "September"
-    day: 'numeric', // e.g., "9"
-   // weekday: 'long' // e.g., "Tuesday"
+	function dateFormatter(ymdDateString, mode = 'full') {
+		// Create a Date object from the YYYY-MM-DD string.
+		// The Date constructor can parse this format directly.
+		const dateObject = new Date(ymdDateString);
+		// Check if the dateObject is valid (in case of invalid input string)
+		
+		if (isNaN(dateObject.getTime())) {
+			return "Invalid Date";
+		}
+		if (mode === 'year') {
+			return dateObject.getUTCFullYear();
+		}
+		// Define options for locale-sensitive formatting
+		const options = {
+			timeZone: 'UTC',
+			year: 'numeric',
+			month: 'long', 
+			day: 'numeric',
   };
-
-  // Format the date using toLocaleDateString() with a specific locale (e.g., 'en-US')
-  // You can change 'en-US' to other locales like 'en-GB', 'fr-FR', etc.
-if (pagelang == "fr") {   
-    
-  return dateObject.toLocaleDateString('fr-CA', options);
+if (pagelang == "fr") {
+	return dateObject.toLocaleDateString('fr-CA', options);
+} else {
+	return dateObject.toLocaleDateString('en-CA', options);
+};
+	}
+	let taxData = {};
+	//Repeat function for UI on input change
+	function refreshUI() {
+    updateTables();
+    setupScrollObserver('federalScroll');
+    setupScrollObserver('provinceScroll');
 }
-    else { return dateObject.toLocaleDateString('en-CA', options);};
-} 
-
-
-	
-  fetch('canada_tax_rates_alt.json')
-      .then(response => response.json())
-      .then(json => {
-        const dateValue = json.date;
-       // let fullDate = document.getElementById('jsonDate');
-        let yearDate = document.getElementById('jsonYear');
-        yearDate.textContent = dateFormatter(dateValue, "year");
-       // fullDate.textContent = dateFormatter(dateValue);   
-        
-        
-        const data = json.data;
-        
-        for (const region in data) {
-          data[region].brackets.forEach(bracket => {
-            if (bracket.threshold === "Infinity") {
-              bracket.threshold = Infinity;
-            }
-          });
-        }
-        taxData = data;
-        populateProvinceDropdown();
-        updateTables();
-        
-setupScrollObserver('federalScroll');
-setupScrollObserver('provinceScroll');
-
-      });
-
-    incomeSlider.addEventListener('input', () => {
-  incomeInput.value = incomeSlider.value;
-   
-     
-      updateTables();
-        
-setupScrollObserver('federalScroll');
-setupScrollObserver('provinceScroll');
-
-    });
-
-    incomeInput.addEventListener('input', () => {
-      incomeSlider.value = incomeInput.value;
-      updateTables();
-        
-setupScrollObserver('federalScroll');
-setupScrollObserver('provinceScroll');
-
-    });
-
-    provinceSelect.addEventListener('change', updateTables);
+	fetch('canada_tax_rates_alt.json')
+		.then(response => response.json())
+		.then(json => {
+		// Get JSON date for conversion	
+			const dateValue = json.date;
+       // let fullDate = document.getElementById('jsonDate'); commented out unless full date needed
+			let yearDate = document.getElementById('jsonYear');
+			yearDate.textContent = dateFormatter(dateValue, "year");
+       // fullDate.textContent = dateFormatter(dateValue); commented out unless full date needed 
+			
+			//Convert to const
+			const data = json.data;
+			
+			//Parse region values to build brackets
+			for (const region in data) {
+				data[region].brackets.forEach(bracket => {
+					if (bracket.threshold === "Infinity") {
+						bracket.threshold = Infinity;
+					}
+				});
+			}
+			taxData = data;
+			populateProvinceDropdown();
+			refreshUI();
+		});
+	incomeSlider.addEventListener('input', () => {
+		incomeInput.value = incomeSlider.value;
+		refreshUI();
+	});
+	incomeInput.addEventListener('input', () => {
+		incomeSlider.value = incomeInput.value;
+		refreshUI();
+	});
+	//Change table data if province is updated.
+	provinceSelect.addEventListener('change', updateTables);
 
     function populateProvinceDropdown() {
 		//sort alphabetically in en/fr
