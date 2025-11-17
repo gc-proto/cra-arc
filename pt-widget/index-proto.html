@@ -711,63 +711,64 @@
 	
 
 /*START tax bracket script**/	
-//Langauge arrays
-const langToggle = {
-	dataTableHeader: {
-		en: "based on",
-		fr: "basé sur"
-	},
-	dataTaxBracket: {
-		"en": "bracket",
-		"fr": "bracket [Fr]"
-	},
-	dataTaxRate: {
-		en: "Tax rate",
-		fr: "Tax rate [Fr]"
-	},
-	dataIncomeRange: {
-		en: "Range<span class=\"wb-inv\"> per tax rate</span>",
-		fr: "Range<span class=\"wb-inv\"> per tax rate</span> [Fr]"
-	},
-	dataTaxEstimate: {
-		en: "Tax payable per bracket",
-		fr: "Tax payable per bracket [Fr]"
-	},
-	dataMeterFill: {
-    en: "meter bar is at: ",
-    fr: "meter bar is at [Fr] :"
-	},  
-	dataTotalEstimate: {
-		en: "Tax payable<br><small>before claiming deductions, credits and expenses</small>",
-		fr: "Tax payable<br><small>before claiming deductions, credits and expenses</small>"
-	},
-	dataHiddenTo: {
-		en: "to",
-		fr: "à"
-	},
-	dataHiddenAndUp: {
-		en: "and up",
-		fr: "et plus"
-	},
-	dataSliderRange: {
-		en: "Range slider (increments of $2,000): $0 to ",
-		fr: "Curseur de plage (incréments de 2 000 $) : 0 à "
+//Langauge arrays for dynamic language
+	const langToggle = {
+		dataTableHeader: {
+			en: "based on",
+			fr: "basé sur"
+		},
+		dataTaxBracket: {
+			"en": "bracket",
+			"fr": "Tranche de"
+		},
+		dataTaxRate: {
+			en: "Tax rate",
+			fr: "Taux d’imposition"
+		},
+		dataIncomeRange: {
+			en: "Range<span class=\"wb-inv\"> per tax rate</span>",
+			fr: "Plage<span class=\"wb-inv\"> par taux d'imposition</span>"
+		},
+		dataTaxEstimate: {
+			en: "Tax payable per bracket",
+			fr: "Impôt à payer par tranche"
+		},
+		dataMeterFill: {
+			en: "meter bar is at: ",
+			fr: "La barre de mesure est réglée à  :"
+		},  
+		dataTotalEstimate: {
+			en: "Tax payable<br><small>before claiming deductions, credits and expenses</small>",
+			fr: "Impôt à payer<br><small>avant de demander des déductions, crédits et dépensess</small>"
+		},
+		dataHiddenTo: {
+			en: "to",
+			fr: "à"
+		},
+		dataHiddenAndUp: {
+			en: "and up",
+			fr: "et plus"
+		},
+		dataSliderRange: {
+			en: "Range slider (increments of $2,000): $0 to ",
+			fr: "Curseur de plage (incréments de 2 000 $) : 0 à "
+		}
 	}
-} 
-let taxData = {};
-const incomeSlider = document.getElementById('incomeSlider');
-const incomeInput = document.getElementById('incomeInput');
-const incomeInputs = document.querySelectorAll('#incomeSlider, #incomeInput');	
-const provinceSelect = document.getElementById('provinceSelect');
-const basedIncome = document.querySelectorAll('.based-income');
-	 const resultsLink = document.getElementById('resultsLink');
-   
- var percentFormatter = new Intl.NumberFormat(pagelang + "-CA", {
-  style: "percent",
-  minimumFractionDigits: 1,
-  maximumFractionDigits: 1,
- });    
-//Function to dynamically add date
+		
+	let taxData = {};
+	const incomeSlider = document.getElementById('incomeSlider'),
+		incomeInput = document.getElementById('incomeInput'),
+		incomeInputs = document.querySelectorAll('#incomeSlider, #incomeInput'),
+		provinceSelect = document.getElementById('provinceSelect'),
+		basedIncome = document.querySelectorAll('.based-income'),
+		resultsLink = document.getElementById('resultsLink'),
+		percentFormatter = new Intl.NumberFormat(pagelang + "-CA", {
+			style: "percent",
+			minimumFractionDigits: 1,
+			maximumFractionDigits: 1
+		});    
+
+	//Function to dynamically add date
  function dateFormatter(ymdDateString, mode = 'full') {
   // Create a Date object from the YYYY-MM-DD string.
   // The Date constructor can parse this format directly.
@@ -1061,9 +1062,17 @@ if (index === 0) {
 	  
 
 // === Rate Header ===
- const rateCell = document.createElement('th');
-	  rateCell.setAttribute('scope', 'col');  
-	rateCell.innerHTML = `${percentFormatter.format(bracket.rate)} <span class="tbl-hidden"> ${langToggle.dataTaxBracket[pagelang]}</span>`;  
+	  const rateCell = document.createElement('th');
+	  rateCell.setAttribute('scope', 'col');
+if (pagelang == "en") { 
+	rateCell.innerHTML = `${percentFormatter.format(bracket.rate)} <span class="tbl-hidden"> ${langToggle.dataTaxBracket[pagelang]}</span>`; 
+} else {
+		rateCell.innerHTML = `<span class="tbl-hidden"> ${langToggle.dataTaxBracket[pagelang]} </span>${percentFormatter.format(bracket.rate)}`;
+};
+	
+	
+
+	
   rateRow.appendChild(rateCell);
 
       // === Income range Cell (clean up inner HTML) ===
