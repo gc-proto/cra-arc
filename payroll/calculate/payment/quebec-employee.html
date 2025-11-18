@@ -615,14 +615,6 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
 	
  <p>Learn more: <a href="/cra-arc/payroll/file/t4slip.html">T4 slip - Information for employers</a>  </p> 	
 </li>
-<li><h3 id="step6">Corrections after filing and payroll compliance reviews</h3>
-	<p>If you <strong>do not</strong> use the reconciliation formula, you may under-deduct <abbr title="Canada Pension Plan">CPP</abbr> contributions. If you under deducted <abbr title="Canada Pension Plan">CPP</abbr>, you are responsible for remitting both the employer's and employee's shares.</p>
-<p>If there are discrepancies between the required <abbr title="Canada Pension Plan">CPP</abbr> contributions from your employee's pensionable earnings and reported contributions on their T4 slip, their slip may be included in a Pensionable and insurable earnings review (PIER). </p>	
-<p>Learn more: </p>
-<ul>
-<li><a href="https://test.canada.ca/cra-arc/payroll/file/correct.html">Correct deduction errors after filing </a></li>	
-</ul>
-</li>	
 </ol>	
  
 <h2 id="h_3">References</h2>
@@ -979,11 +971,7 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
             const qcMaxEarnings = parseFloat(qcEarningsText);
             if (!isNaN(qcMaxEarnings)) {
                 const adjustedEarnings = qcMaxEarnings - ontEarnings; // subtract $30,000
-
-                // Show adjusted earnings in the same span
                 document.getElementById('qcEarnings').textContent = `$${adjustedEarnings.toLocaleString()}`;
-
-                // Calculate Quebec premium
                 qcPremium = (parseFloat(qcRateText) / 100) * adjustedEarnings;
                 document.getElementById('qcPremium').textContent = `$${qcPremium.toFixed(2)}`;
             }
@@ -993,16 +981,40 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
         if (ontPremium || qcPremium) {
             document.getElementById('totalPremium').textContent = `$${(ontPremium + qcPremium).toFixed(2)}`;
         }
+
+        // Conversion Factor Calculation (CPP ÷ QPP)
+        const cppRateElement = document.querySelector('[data-ajax-replace*="ratecpp"]');
+        const qppRateElement = document.querySelector('[data-ajax-replace*="rateqpp"]');
+
+        if (cppRateElement && qppRateElement) {
+            const cppRate = parseFloat(cppRateElement.textContent);
+            const qppRate = parseFloat(qppRateElement.textContent);
+
+            if (!isNaN(cppRate) && !isNaN(qppRate)) {
+                const conversionFactor = (cppRate / qppRate).toFixed(7); // precise to 7 decimals
+                document.querySelectorAll('.conversion-result').forEach(el => {
+                    el.textContent = `${conversionFactor}`;
+                });
+            }
+        }
     }
 
-    //  Poll until all required values are loaded
+    // Poll until all required values are loaded (EI + CPP/QPP)
     const interval = setInterval(() => {
         const qcEarningsText = document.getElementById('qcEarnings')?.textContent.trim();
         const ontRateText = document.getElementById('ontRate')?.textContent.trim();
         const qcRateText = document.getElementById('qcRate')?.textContent.trim();
+        const cppRateText = document.querySelector('[data-ajax-replace*="ratecpp"]')?.textContent.trim();
+        const qppRateText = document.querySelector('[data-ajax-replace*="rateqpp"]')?.textContent.trim();
 
-        if (qcEarningsText.match(/\d/) && ontRateText.match(/\d/) && qcRateText.match(/\d/)) {
-            calculatePremiums(); // run once when data is ready
+        if (
+            qcEarningsText.match(/\d/) &&
+            ontRateText.match(/\d/) &&
+            qcRateText.match(/\d/) &&
+            cppRateText.match(/\d/) &&
+            qppRateText.match(/\d/)
+        ) {
+            calculatePremiums(); // run once when all data is ready
             clearInterval(interval); // stop checking
         }
     }, 500);
