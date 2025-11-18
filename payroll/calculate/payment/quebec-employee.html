@@ -356,7 +356,7 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
                               <li><span class="fas  fa-li"><span class="fas fa-equals"></span><span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
                                  <span class="fas fa-circle fa-stack-2x"></span>
                                  <span class="fas fa-hashtag fa-stack-1x fa-inverse"></span>
-                                 </span> <span class="mrgn-tp-0 text-muted h5"><span id="conversion-result"></span> is the conversion factor for <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html #yearcpp20xx"></span>
+                                 </span> <span class="mrgn-tp-0 text-muted h5"> <span class="conversion-result">Calculating...</span> is the conversion factor for <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html #yearcpp20xx"></span>
 </span>
 </span> 
                               </li>
@@ -374,7 +374,7 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
                                  <span class="fas  fa-li"><span class="fas fa-times"></span><span class="wb-inv">multiply by</span></span> <span class="fa-stack text-success">
                                  <span class="far fa-circle fa-stack-2x"></span>
                                  <span class="fas fa-hashtag fa-stack-1x"></span>
-                                 </span>  <span class="mrgn-tp-0 text-muted h5"> <span id="conversion-result"></span> is the conversion factor for <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html #yearcpp20xx"></span></span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5"> <span class="conversion-result">Calculating...</span> is the conversion factor for <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html #yearcpp20xx"></span></span>
                                  <div class="mrgn-tp-md"></div>
                               </li>
                 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
@@ -1035,9 +1035,9 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
     const ontEarnings = 30000; // Ontario fixed
 
     function calculatePremiums() {
-        const ontRateText = document.getElementById('ontRate').textContent.trim();
-        const qcRateText = document.getElementById('qcRate').textContent.trim();
-        const qcEarningsText = document.getElementById('qcEarnings').textContent.trim().replace(/[^0-9.]/g, '');
+        const ontRateText = document.getElementById('ontRate')?.textContent.trim();
+        const qcRateText = document.getElementById('qcRate')?.textContent.trim();
+        const qcEarningsText = document.getElementById('qcEarnings')?.textContent.trim().replace(/[^0-9.]/g, '');
 
         let ontPremium = 0, qcPremium = 0;
 
@@ -1060,7 +1060,7 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
             document.getElementById('totalPremium').textContent = `$${(ontPremium + qcPremium).toFixed(2)}`;
         }
 
-        // ✅ Conversion Factor Calculation (CPP ÷ QPP)
+        // Conversion Factor Calculation (CPP ÷ QPP)
         const cppRateElement = document.querySelector('[data-ajax-replace*="ratecpp"]');
         const qppRateElement = document.querySelector('[data-ajax-replace*="rateqpp"]');
 
@@ -1081,9 +1081,10 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
 
     // Observe changes
     const observer = new MutationObserver(calculatePremiums);
-    observer.observe(document.getElementById('ontRate'), { childList: true });
-    observer.observe(document.getElementById('qcRate'), { childList: true });
-    observer.observe(document.getElementById('qcEarnings'), { childList: true });
+    ['ontRate', 'qcRate', 'qcEarnings'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el, { childList: true });
+    });
     observer.observe(document.querySelector('[data-ajax-replace*="ratecpp"]'), { childList: true });
     observer.observe(document.querySelector('[data-ajax-replace*="rateqpp"]'), { childList: true });
 </script>
