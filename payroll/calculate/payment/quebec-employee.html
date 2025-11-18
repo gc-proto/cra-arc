@@ -1043,12 +1043,14 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
             document.getElementById('ontPremium').textContent = `$${ontPremium.toFixed(2)}`;
         }
 
-        // Quebec calculation
+        // Quebec calculation: (rate × (maxEI - 30,000))
         if (qcRateText && qcEarningsText) {
             const qcMaxEarnings = parseFloat(qcEarningsText);
-            const adjustedEarnings = qcMaxEarnings - ontEarnings;
-            qcPremium = (parseFloat(qcRateText) / 100) * adjustedEarnings;
-            document.getElementById('qcPremium').textContent = `$${qcPremium.toFixed(2)}`;
+            if (!isNaN(qcMaxEarnings)) {
+                const adjustedEarnings = qcMaxEarnings - ontEarnings; // subtract $30,000
+                qcPremium = (parseFloat(qcRateText) / 100) * adjustedEarnings;
+                document.getElementById('qcPremium').textContent = `$${qcPremium.toFixed(2)}`;
+            }
         }
 
         // Total
@@ -1066,16 +1068,14 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
 
             if (!isNaN(cppRate) && !isNaN(qppRate)) {
                 const conversionFactor = (cppRate / qppRate).toFixed(7); // precise to 7 decimals
-
-                // Update ALL placeholders with class "conversion-result"
                 document.querySelectorAll('.conversion-result').forEach(el => {
-                    el.textContent = `${conversionFactor}`;
+                    el.textContent = `Conversion factor: ${conversionFactor}`;
                 });
             }
         }
     }
 
-    // Observe changes
+    // Observe changes for dynamic content
     const observer = new MutationObserver(calculatePremiums);
     ['ontRate', 'qcRate', 'qcEarnings'].forEach(id => {
         const el = document.getElementById(id);
