@@ -1040,36 +1040,44 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
 
 
 
+
 <script>
-    const ontEarnings = 30000;
-    const qcEarnings = 38900;
+    const ontEarnings = 30000; // Ontario fixed
 
     function calculatePremiums() {
         const ontRateText = document.getElementById('ontRate').textContent.trim();
         const qcRateText = document.getElementById('qcRate').textContent.trim();
+        const qcEarningsText = document.getElementById('qcEarnings').textContent.trim().replace(/[^0-9.]/g, '');
 
         let ontPremium = 0, qcPremium = 0;
 
+        // Ontario calculation
         if (ontRateText) {
             ontPremium = (parseFloat(ontRateText) / 100) * ontEarnings;
             document.getElementById('ontPremium').textContent = `$${ontPremium.toFixed(2)}`;
         }
 
-        if (qcRateText) {
-            qcPremium = (parseFloat(qcRateText) / 100) * qcEarnings;
+        // Quebec calculation: (rate × (maxEI - 30,000))
+        if (qcRateText && qcEarningsText) {
+            const qcMaxEarnings = parseFloat(qcEarningsText);
+            const adjustedEarnings = qcMaxEarnings - ontEarnings; // subtract $30,000
+            qcPremium = (parseFloat(qcRateText) / 100) * adjustedEarnings;
             document.getElementById('qcPremium').textContent = `$${qcPremium.toFixed(2)}`;
         }
 
+        // Total
         if (ontPremium || qcPremium) {
             document.getElementById('totalPremium').textContent = `$${(ontPremium + qcPremium).toFixed(2)}`;
         }
     }
 
-    // Observe both rate elements for AJAX updates
+    // Observe Ontario rate, Quebec rate, and Quebec max earnings
     const observer = new MutationObserver(calculatePremiums);
     observer.observe(document.getElementById('ontRate'), { childList: true });
     observer.observe(document.getElementById('qcRate'), { childList: true });
+    observer.observe(document.getElementById('qcEarnings'), { childList: true });
 </script>
+
 
 
 		  
