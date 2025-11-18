@@ -811,18 +811,17 @@ if (pagelang == "fr") {
 	fetch('canada_tax_rates_alt.json')
 		.then(response => {
 			if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-			response.json()})
+			return	response.json()
+		})
 		.then(json => {
-		// Get JSON date for conversion	
+			// Get JSON date for conversion
 			const dateValue = json.date;
-       // let fullDate = document.getElementById('jsonDate'); commented out unless full date needed
-			let yearDate = document.getElementById('jsonYear');
+			// const fullDate = document.getElementById('jsonDate'); commented out unless full date needed
+			const yearDate = document.getElementById('jsonYear');
 			yearDate.textContent = dateFormatter(dateValue, "year");
-       // fullDate.textContent = dateFormatter(dateValue); commented out unless full date needed 
-			
-			//Convert to const
+			// fullDate.textContent = dateFormatter(dateValue); commented out unless full date needed 
+			//Convert to const data
 			const data = json.data;
-			
 			//Parse region values to build brackets
 			for (const region in data) {
 				data[region].brackets.forEach(bracket => {
