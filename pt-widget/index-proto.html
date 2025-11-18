@@ -1012,42 +1012,61 @@ let previousTaxValues = { federal: [], province: [] };
 			const taxEstimate = Math.round(bracketIncome * bracket.rate);
 			totalTax += taxEstimate;
 
+			//Meter fill calculation
+			function meterFill() {
+				if (income < previousThreshold) {
+					return 0;
+				}
+				if (income > previousThreshold && income < threshold) {
+					return (income - previousThreshold) / (threshold - previousThreshold);
+				}
+				return 1;
+			}
+			
+			/* Rate Header */
+			const rateCell = document.createElement('th');
+			rateCell.setAttribute('scope', 'col');
+			//Create content
+			if (pagelang == "en") {
+				rateCell.innerHTML = `${percentFormatter.format(bracket.rate)} <span class="tbl-hidden"> ${langToggle.dataTaxBracket[pagelang]}</span>`; 
+			} else {
+				rateCell.innerHTML = `<span class="tbl-hidden"> ${langToggle.dataTaxBracket[pagelang]} </span>${percentFormatter.format(bracket.rate)}`;
+			};
+			rateRow.appendChild(rateCell);
+			
+			/* Income range Cell */
+			const incomeCell = document.createElement('td');
+			let fillAmount = meterFill();
+			//Create content
+			const rangeDiv = document.createElement("div");
+			rangeDiv.className = "range";
+			const startDiv = document.createElement("div");
+			startDiv.className = "nowrap";
+			startDiv.innerHTML = `$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> ${langToggle.dataHiddenTo[pagelang]}</span>`;
+			rangeDiv.appendChild(startDiv);
+			const meter = document.createElement("meter");
+			meter.min = previousThreshold;
+			meter.max = threshold === Infinity ? maxIncome : threshold;
+			meter.value = income;
+			meter.setAttribute("aria-hidden", "true");
+			rangeDiv.appendChild(meter);
+			const endDiv = document.createElement("div");
+			endDiv.className = "nowrap";
+			if (threshold === Infinity) {
+				endDiv.innerHTML = `${formatCurrency(maxIncome)}<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ${langToggle.dataHiddenAndUp[pagelang]}</span></span>`;
+			} else {
+				endDiv.innerHTML = formatCurrency(threshold);
+			};
+			rangeDiv.appendChild(endDiv);
 
-	  
-//Meter fill calculation      
-  function meterFill() {
-    if (income < previousThreshold) {
-        return 0;
-    }
-    if (income > previousThreshold && income < threshold) {
-        return (income - previousThreshold) / (threshold - previousThreshold);
-    }
-    return 1;
-}
-	  
+// Add the rangeDiv to incomeCell
+incomeCell.appendChild(rangeDiv);
 
-// === Rate Header ===
-	  const rateCell = document.createElement('th');
-	  rateCell.setAttribute('scope', 'col');
-if (pagelang == "en") { 
-	rateCell.innerHTML = `${percentFormatter.format(bracket.rate)} <span class="tbl-hidden"> ${langToggle.dataTaxBracket[pagelang]}</span>`; 
-} else {
-		rateCell.innerHTML = `<span class="tbl-hidden"> ${langToggle.dataTaxBracket[pagelang]} </span>${percentFormatter.format(bracket.rate)}`;
-};
-	
-	
-
-	
-  rateRow.appendChild(rateCell);
-
-      // === Income range Cell (clean up inner HTML) ===
-      const incomeCell = document.createElement('td');
-          let fillAmount = meterFill();  
-    incomeCell.innerHTML += `<div class="range"><div class="nowrap">$${index === 0 ? '0' : previousThreshold.toLocaleString()}<span class="tbl-hidden"> ${langToggle.dataHiddenTo[pagelang]}</span></div>
-        <meter min="${previousThreshold}" max="${threshold === Infinity ? maxIncome : threshold}" value="${income}" aria-hidden="true"></meter>
-    
-<div class="nowrap">${threshold === Infinity ? '' + formatCurrency(maxIncome) + '<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ' + langToggle.dataHiddenAndUp[pagelang] +'</span></span>' : formatCurrency(threshold)}</div></div>
-<p class="tbl-hidden">${langToggle.dataMeterFill[pagelang]}${percentFormatter.format(fillAmount)}</p>`;
+// Add second separate p-tag
+const p = document.createElement("p");
+p.className = "tbl-hidden";
+p.textContent = `${langToggle.dataMeterFill[pagelang]}${percentFormatter.format(fillAmount)}`;
+incomeCell.appendChild(p);
     incomeRow.appendChild(incomeCell);
       
 // === Tax payable Cell ===      
