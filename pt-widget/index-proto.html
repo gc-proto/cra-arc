@@ -870,8 +870,7 @@ let previousTaxValues = { federal: [], province: [] };
 		const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
         const selectedProvinceName = provinceSelected.getAttribute('name');
         const selectedProvince = provinceSelect.value;
-		let federalTaxAmount = 0;
-		let provincialTaxAmount = 0;
+		
 		
 		if (!selectedProvince) {
 			let elementsToHide = document.querySelectorAll('#incomeSliderDesign, #provinceTableWrapper, #federalTableWrapper, #afterTaxWrapper, #afterTaxHints, #quebecNotice, #errorMsg');
@@ -882,6 +881,21 @@ let previousTaxValues = { federal: [], province: [] };
 			document.getElementById('provinceTotal').textContent = '';
 			return;
 		}
+		//Set slider maximum
+		const provinceMaxAmount  = taxData[selectedProvince].range_max;
+		const rangeListMax = document.querySelectorAll('.rangelist-max');
+		const incomeSliderLabel = document.getElementById("incomeSliderLabel");
+		incomeSlider.setAttribute("max", provinceMaxAmount);
+		incomeSliderLabel.textContent = langToggle.dataSliderRange[pagelang] + formatCurrency(provinceMaxAmount);
+		rangeListMax.forEach(listmax => {
+			listmax.textContent = formatCurrency(provinceMaxAmount);
+		});
+		const selectedProvinceFlag  = taxData[selectedProvince].flag_url;
+		document.getElementById('provinceFlag').innerHTML = `<img src="${selectedProvinceFlag}" alt="" class="mrgn-rght-md">`;
+		document.getElementById('provinceTitle').textContent = `${selectedProvinceName}`;
+		const afterTax = income - federalTaxAmount - provincialTaxAmount;    
+		let federalTaxAmount = 0;
+		let provincialTaxAmount = 0;
 		if (selectedProvince === 'QC') {
 			federalTaxAmount = updateTable('federal', taxData.federal, income);
 			let elementsToHide = document.querySelectorAll('#provinceTableWrapper, #afterTaxWrapper');
@@ -906,19 +920,7 @@ let previousTaxValues = { federal: [], province: [] };
 			provincialTaxAmount = updateTable('province', taxData[selectedProvince], income);
 			$("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");
 		}
-//Set slider maximum
-		const provinceMaxAmount  = taxData[selectedProvince].range_max;
-		const rangeListMax = document.querySelectorAll('.rangelist-max');
-		const incomeSliderLabel = document.getElementById("incomeSliderLabel");
-		incomeSlider.setAttribute("max", provinceMaxAmount);
-		incomeSliderLabel.textContent = langToggle.dataSliderRange[pagelang] + formatCurrency(provinceMaxAmount);
-		rangeListMax.forEach(listmax => {
-			listmax.textContent = formatCurrency(provinceMaxAmount);
-		});
-		const selectedProvinceFlag  = taxData[selectedProvince].flag_url;
-		document.getElementById('provinceFlag').innerHTML = `<img src="${selectedProvinceFlag}" alt="" class="mrgn-rght-md">`;
-		document.getElementById('provinceTitle').textContent = `${selectedProvinceName}`;
-		const afterTax = income - federalTaxAmount - provincialTaxAmount;      
+  
  
 		//Functions for estimate section
 		function updateCurrency(id, amount) {
