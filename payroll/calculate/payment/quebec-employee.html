@@ -958,6 +958,7 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
 
 
 
+
 <script>
     const ontEarnings = 30000; // Ontario fixed
 
@@ -988,33 +989,21 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
         if (ontPremium || qcPremium) {
             document.getElementById('totalPremium').textContent = `$${(ontPremium + qcPremium).toFixed(2)}`;
         }
-
-        // Conversion Factor Calculation (CPP ÷ QPP)
-        const cppRateElement = document.querySelector('[data-ajax-replace*="ratecpp"]');
-        const qppRateElement = document.querySelector('[data-ajax-replace*="rateqpp"]');
-
-        if (cppRateElement && qppRateElement) {
-            const cppRate = parseFloat(cppRateElement.textContent);
-            const qppRate = parseFloat(qppRateElement.textContent);
-
-            if (!isNaN(cppRate) && !isNaN(qppRate)) {
-                const conversionFactor = (cppRate / qppRate).toFixed(7); // precise to 7 decimals
-                document.querySelectorAll('.conversion-result').forEach(el => {
-                    el.textContent = `${conversionFactor}`;
-                });
-            }
-        }
     }
 
-    // Observe changes for dynamic content
-    const observer = new MutationObserver(calculatePremiums);
-    ['ontRate', 'qcRate', 'qcEarnings'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) observer.observe(el, { childList: true });
-    });
-    observer.observe(document.querySelector('[data-ajax-replace*="ratecpp"]'), { childList: true });
-    observer.observe(document.querySelector('[data-ajax-replace*="rateqpp"]'), { childList: true });
+    // Poll until qcEarnings is loaded
+    const interval = setInterval(() => {
+        const qcEarningsText = document.getElementById('qcEarnings')?.textContent.trim();
+        const ontRateText = document.getElementById('ontRate')?.textContent.trim();
+        const qcRateText = document.getElementById('qcRate')?.textContent.trim();
+
+        if (qcEarningsText && qcEarningsText.match(/\d/) && ontRateText && qcRateText) {
+            calculatePremiums(); // run once when all data is ready
+            clearInterval(interval); // stop checking
+        }
+    }, 500);
 </script>
+
 
 
 		  
