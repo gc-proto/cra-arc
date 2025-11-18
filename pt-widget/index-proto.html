@@ -803,7 +803,7 @@ if (pagelang == "fr") {
 	let taxData = {};
 	//Repeat function for UI on input change
 	function refreshUI() {
-    updateTables();
+    buildTables();
     setupScrollObserver('federalScroll');
     setupScrollObserver('provinceScroll');
 }
@@ -841,7 +841,7 @@ if (pagelang == "fr") {
 		refreshUI();
 	});
 	//Change table data if province is updated.
-	provinceSelect.addEventListener('change', updateTables);
+	provinceSelect.addEventListener('change', buildTables);
 
 	function populateProvinceDropdown() {
 		//sort alphabetically in en/fr
@@ -861,7 +861,7 @@ if (pagelang == "fr") {
 let previousTaxValues = { federal: [], province: [] };
 
 	//Function to update tables
-	function updateTables() {
+	function buildTables() {
 		incomeSlider.value = incomeInput.value;
 		const income = Number(incomeInput.value) || 0;
 		basedIncome.forEach(element => {
@@ -1184,7 +1184,7 @@ mySlider.value = 0;
 const myInput = document.getElementById('incomeInput');
 myInput.value = 0;
 resultsLink.classList.add('invisible'); 
-               updateTables();
+               buildTables();
           $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");
            });
             }); 
