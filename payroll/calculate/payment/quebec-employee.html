@@ -374,7 +374,7 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
                                  <span class="fas  fa-li"><span class="fas fa-times"></span><span class="wb-inv">multiply by</span></span> <span class="fa-stack text-success">
                                  <span class="far fa-circle fa-stack-2x"></span>
                                  <span class="fas fa-hashtag fa-stack-1x"></span>
-                                 </span>  <span class="mrgn-tp-0 text-muted h5"> <span data-ajax-replace="#conversion-result"></span> is the conversion factor for <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html #yearcpp20xx"></span></span>
+                                 </span>  <span class="mrgn-tp-0 text-muted h5"> <span id="conversion-result"></span> is the conversion factor for <span data-ajax-replace="https://test.canada.ca/cra-arc/payroll/calculate/when/cpprates.html #yearcpp20xx"></span></span>
                                  <div class="mrgn-tp-md"></div>
                               </li>
                 <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
@@ -1054,6 +1054,7 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
 
 
 
+
 <script>
     const ontEarnings = 30000; // Ontario fixed
 
@@ -1070,10 +1071,10 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
             document.getElementById('ontPremium').textContent = `$${ontPremium.toFixed(2)}`;
         }
 
-        // Quebec calculation: (rate × (maxEI - 30,000))
+        // Quebec calculation
         if (qcRateText && qcEarningsText) {
             const qcMaxEarnings = parseFloat(qcEarningsText);
-            const adjustedEarnings = qcMaxEarnings - ontEarnings; // subtract $30,000
+            const adjustedEarnings = qcMaxEarnings - ontEarnings;
             qcPremium = (parseFloat(qcRateText) / 100) * adjustedEarnings;
             document.getElementById('qcPremium').textContent = `$${qcPremium.toFixed(2)}`;
         }
@@ -1083,7 +1084,7 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
             document.getElementById('totalPremium').textContent = `$${(ontPremium + qcPremium).toFixed(2)}`;
         }
 
-        // Conversion Factor Calculation (CPP ÷ QPP)
+        // ✅ Conversion Factor Calculation (CPP ÷ QPP)
         const cppRateElement = document.querySelector('[data-ajax-replace*="ratecpp"]');
         const qppRateElement = document.querySelector('[data-ajax-replace*="rateqpp"]');
 
@@ -1093,21 +1094,24 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
 
             if (!isNaN(cppRate) && !isNaN(qppRate)) {
                 const conversionFactor = (cppRate / qppRate).toFixed(7); // precise to 7 decimals
-                document.getElementById('conversion-result').textContent = `${conversionFactor}`;
+
+                // Update ALL placeholders with class "conversion-result"
+                document.querySelectorAll('.conversion-result').forEach(el => {
+                    el.textContent = `Conversion factor: ${conversionFactor}`;
+                });
             }
         }
     }
 
-    // Observe Ontario rate, Quebec rate, Quebec max earnings
+    // Observe changes
     const observer = new MutationObserver(calculatePremiums);
     observer.observe(document.getElementById('ontRate'), { childList: true });
     observer.observe(document.getElementById('qcRate'), { childList: true });
     observer.observe(document.getElementById('qcEarnings'), { childList: true });
-
-    // Also observe CPP and QPP rate elements for conversion factor
     observer.observe(document.querySelector('[data-ajax-replace*="ratecpp"]'), { childList: true });
     observer.observe(document.querySelector('[data-ajax-replace*="rateqpp"]'), { childList: true });
 </script>
+
 
 		  
       </body>
