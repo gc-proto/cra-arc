@@ -981,49 +981,36 @@ let previousTaxValues = { federal: [], province: [] };
 		// Determine which bracket the income falls into
 		let activeIndex = -1;
 		previousThreshold = 0;
-
-//See about function to reduce repeativeness
 		
-		//Create rate row and header
-		const rateRow = document.createElement('tr');
-		const rateHeader = document.createElement('th');
-		rateHeader.setAttribute('scope', 'row');
-		rateHeader.textContent += `${langToggle.dataTaxRate[pagelang]}`;
-		rateRow.appendChild(rateHeader);   
- 
-		//Create income row and header 
-		const incomeRow = document.createElement('tr');
-		const incomeHeader = document.createElement('th');
-		incomeHeader.setAttribute('scope', 'row');
-		incomeHeader.innerHTML += `${langToggle.dataIncomeRange[pagelang]}`;
-		incomeRow.appendChild(incomeHeader);      
-
-		//Create tax payable row and header
-		const payableRow = document.createElement('tr');
-		const payableHeader = document.createElement('th');
-		payableHeader.setAttribute('scope', 'row');
-		payableHeader.innerHTML += `${langToggle.dataTaxEstimate[pagelang]}`;
-		payableRow.appendChild(payableHeader);   
+//Function to build rows/header for tables
+		function createHeaderRow(headerText) {
+			const row = document.createElement('tr');
+			const header = document.createElement('th');
+			header.setAttribute('scope', 'row');
+			header.innerHTML = headerText; 
+			row.appendChild(header);
+			return row;
+}   
+ //Create rate/income/tax payable rows and headers
+		const rateRow = createHeaderRow(`${langToggle.dataTaxRate[pagelang]}`);
+		const incomeRow = createHeaderRow(`${langToggle.dataIncomeRange[pagelang]}`);
+		const payableRow = createHeaderRow(`${langToggle.dataTaxEstimate[pagelang]}`); 
     
-    
-  
-  data.brackets.forEach((bracket, index) => {
-    const threshold = bracket.threshold;
-       const lowerBound = previousThreshold;
-  const upperBound = threshold;
-
-  if (income >= lowerBound && income < upperBound && activeIndex === -1) {
-    activeIndex = index;
-  }
-      
-    let bracketIncome = Math.max(0, Math.min(income, threshold) - previousThreshold);
-    
-if (index === 0) {
-  bracketIncome = Math.max(0, bracketIncome);
-}
-
-    const taxEstimate = Math.round(bracketIncome * bracket.rate);
-    totalTax += taxEstimate;
+		data.brackets.forEach((bracket, index) => {
+			const threshold = bracket.threshold;
+			const lowerBound = previousThreshold;
+			const upperBound = threshold;
+			
+			if (income >= lowerBound && income < upperBound && activeIndex === -1) {
+				activeIndex = index;
+			}
+			let bracketIncome = Math.max(0, Math.min(income, threshold) - previousThreshold);
+			
+			if (index === 0) {
+				bracketIncome = Math.max(0, bracketIncome);
+			}
+			const taxEstimate = Math.round(bracketIncome * bracket.rate);
+			totalTax += taxEstimate;
 
 
 	  
