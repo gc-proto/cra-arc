@@ -197,7 +197,7 @@
 		display:none;
 	}
 /***** Results link design *****/
-	#resultsLink>a:target {
+	#summaryLink>a:target {
 		scroll-margin-top: 170px;
 	}
 	
@@ -343,7 +343,7 @@
               </div>
             </fieldset>
           </form>
-          <p class="small invisible" id="resultsLink"><a href="#results"><span class="glyphicon glyphicon-arrow-down mrgn-rght-sm"></span>Go to summary</a></p>
+          <p class="small invisible" id="summaryLink"><a href="#summary"><span class="glyphicon glyphicon-arrow-down mrgn-rght-sm"></span>Go to summary</a></p>
           <div id="federalTableWrapper" class="hidden mrgn-bttm-xl">
             <h3 id="results" class="h2">Progressive tax summary</h3>
             <h4 id="federalTableCaption" class="h5"><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-ca.png" alt="" class="mrgn-rght-md">Federal <span class="based-income"></span></h4>
@@ -1103,149 +1103,140 @@ setTotalContent(totalDiv, totalTax);
 		if (provTotal) {
 			setTotalContent(provTotal, totalTax);
 		}
-
-  // Scroll the active cell into view manually
-  const activeCell = document.querySelector(`#${idPrefix}Body .active-cell`);
-  if (activeCell) {
-    const container = activeCell.closest('.table-scroll');
-    if (container && !isElementFullyVisible(container, activeCell)) {
-      smoothScrollTo(container, activeCell);
-    }
-  }
-
-  previousTaxValues[idPrefix] = currentTaxValues;
-  return totalTax;
+		// Scroll the active cell into view automatically
+		const activeCell = document.querySelector(`#${idPrefix}Body .active-cell`);
+		
+		if (activeCell) {
+			const container = activeCell.closest('.table-scroll');
+			if (container && !isElementFullyVisible(container, activeCell)) {
+				smoothScrollTo(container, activeCell);
+			}
+		}
+		previousTaxValues[idPrefix] = currentTaxValues;
+		return totalTax;
+	}
+	
+	function isElementFullyVisible(container, element) {
+		const containerLeft = container.scrollLeft,
+			containerRight = containerLeft + container.clientWidth,
+			elementLeft = element.offsetLeft,
+			elementRight = elementLeft + element.offsetWidth;
+		return elementLeft >= containerLeft && elementRight <= containerRight;
 }
-
-
- 
-
-  
-    
-function isElementFullyVisible(container, element) {
-  const containerLeft = container.scrollLeft;
-  const containerRight = containerLeft + container.clientWidth;
-  const elementLeft = element.offsetLeft;
-  const elementRight = elementLeft + element.offsetWidth;
-  return elementLeft >= containerLeft && elementRight <= containerRight;
-}
-
-function smoothScrollTo(container, target, duration = 400) {
-  const containerLeft = container.scrollLeft;
-  const targetLeft = target.offsetLeft;
-  const targetRight = targetLeft + target.offsetWidth;
-
-  let scrollTo = containerLeft;
-
-  if (targetLeft < containerLeft) {
-    scrollTo = targetLeft - 20;
-  } else if (targetRight > containerLeft + container.clientWidth) {
-    scrollTo = targetRight - container.clientWidth ;
-  } else {
-    return;
-  }
-
-  const distance = scrollTo - containerLeft;
-  const startTime = performance.now();
-
-  function scrollStep(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const ease = 0.5 - Math.cos(progress * Math.PI) / 2;
-    container.scrollLeft = containerLeft + distance * ease;
-    if (progress < 1) {
-      requestAnimationFrame(scrollStep);
-    }
-  }
-
-  requestAnimationFrame(scrollStep);
-}
-
- function setupScrollObserver() {
-  document.querySelectorAll('.table-scroll').forEach(container => {
-    const cells = container.querySelectorAll('.tax-amount');
-    
-  });
-} 
-function calculatePercentage(part, total) {
-    if (total === 0) {
-        return 0; // Avoid division by zero
-    }
-    const formattedString = percentFormatter.format(part / total);
-    const numericString = formattedString.replace(',', '.'); // normalize comma to dot
-    const rawNumber = parseFloat(numericString);
+	function smoothScrollTo(container, target, duration = 400) {
+		const containerLeft = container.scrollLeft,
+			targetLeft = target.offsetLeft,
+			targetRight = targetLeft + target.offsetWidth;
+		let scrollTo = containerLeft;
+		
+		if (targetLeft < containerLeft) {
+			scrollTo = targetLeft - 20;
+		} else if (targetRight > containerLeft + container.clientWidth) {
+			scrollTo = targetRight - container.clientWidth;
+		} else {
+			return;
+		}
+		const distance = scrollTo - containerLeft;
+		const startTime = performance.now();
+		
+		function scrollStep(currentTime) {
+			const elapsed = currentTime - startTime;
+			const progress = Math.min(elapsed / duration, 1);
+			const ease = 0.5 - Math.cos(progress * Math.PI) / 2;
+			container.scrollLeft = containerLeft + distance * ease;
+			
+			if (progress < 1) {
+				requestAnimationFrame(scrollStep);
+			}
+		}
+		requestAnimationFrame(scrollStep);
+	}
+	
+	function setupScrollObserver() {
+		document.querySelectorAll('.table-scroll').forEach(container => {
+			const cells = container.querySelectorAll('.tax-amount');
+		});
+	} 
+	//Provide percentages in total
+	function calculatePercentage(part, total) {
+		if (total === 0) {
+			return 0; // Avoid division by zero
+		}
+		const formattedString = percentFormatter.format(part / total),
+			numericString = formattedString.replace(',', '.'),
+			rawNumber = parseFloat(numericString);
     return Math.round(rawNumber * 10) / 10; // round to one decimal
-}
+	}
+	
+	// Script for button toggle between input and range slider
+	const buttons = document.querySelectorAll('.btn-toggle');
+	const buttonsValue = document.querySelectorAll(".btn-toggle-value");
+	
+	buttons.forEach(button => {
+		button.addEventListener('click', inputToggle);
+	});
+	
+	function inputToggle(event) {
+		buttons.forEach(otherButton => {
+			otherButton.classList.remove("btn-primary");
+			otherButton.setAttribute("aria-pressed", false); 
+			buttonsValue.forEach(otherValue => {
+				otherValue.classList.add("hidden");
+				const mySlider = document.getElementById('incomeSlider');
+				mySlider.value = 0;
+				const myInput = document.getElementById('incomeInput');
+				myInput.value = 0;
+				resultsLink.classList.add('invisible');
+				buildTables();
+				
+				//Reset tables when toggling between options
+				$("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");
+			});
+            });
+		this.classList.add('btn-primary');
+		this.setAttribute("aria-pressed", true);
+		const getTargetID = event.currentTarget.id;
+		const getTargetValue = document.getElementById(getTargetID +"Value");
+		getTargetValue.classList.remove("hidden");
+	}   
  
- // Script for button toggle
-  const buttons = document.querySelectorAll('.btn-toggle');
-const buttonsValue = document.querySelectorAll(".btn-toggle-value");    
-     buttons.forEach(button => {
-        button.addEventListener('click', inputToggle);  
-        
-     });
-    function inputToggle(event) {
-       buttons.forEach(otherButton => {
-                otherButton.classList.remove("btn-primary");
-           otherButton.setAttribute("aria-pressed", false); 
-           buttonsValue.forEach(otherValue => {
-               otherValue.classList.add("hidden");
-    const mySlider = document.getElementById('incomeSlider');
-mySlider.value = 0;
-const myInput = document.getElementById('incomeInput');
-myInput.value = 0;
-resultsLink.classList.add('invisible'); 
-               buildTables();
-          $("#incomeSlider").trigger("update.wb-input-range", "#incomeSlider");
-           });
-            }); 
-         this.classList.add('btn-primary');
-        this.setAttribute("aria-pressed", true);
-        const getTargetID = event.currentTarget.id;
-      
-       const getTargetValue = document.getElementById(getTargetID +"Value");
-        getTargetValue.classList.remove("hidden");
-         
-    }   
- //Script to add class to sticky element
-const el = document.querySelector(".top-bar-stick");
-    const childEl = document.querySelector(".wb-input-range");
-  const classesToToggle = ["panel", "panel-default"];  
-const observer = new IntersectionObserver( 
-  ([e]) => 
-    classesToToggle.forEach(className => {
-    childEl.classList.toggle(className, e.intersectionRatio < 1)}),
-  { threshold: [1] }
-);
-
-observer.observe(el);
-//Script to show/hide results link 
-    incomeInputs.forEach(inputElement => {
- inputElement.addEventListener('input', function() {
- resultsLink.classList.remove('invisible');
- });
-  });
+	//Script to add class to sticky element
+	const el = document.querySelector(".top-bar-stick");
+	const childEl = document.querySelector(".wb-input-range");
+	const classesToToggle = ["panel", "panel-default"];
+	const observer = new IntersectionObserver(
+		([e]) => classesToToggle.forEach(className => {
+			childEl.classList.toggle(className, e.intersectionRatio < 1)}),
+		{
+			threshold: [1]
+		});
+	observer.observe(el);
 
 	
-  </script>
-	<script>
+//Script to show/hide results link (for accessibility)
+	incomeInputs.forEach(inputElement => {
+		inputElement.addEventListener('input', function() {
+			resultsLink.classList.remove('invisible');
+		});
+	});
 
-		//Test script for header scroll
- $(document).ready(function() {
-        $('a[href^="#"]').on('click', function(e) {
-      
-            var targetId = $(this).attr('href');
-            var headerHeight = $('.top-bar-stick').outerHeight(); // Get header height
-            var targetOffset = $(targetId).offset().top;
-            var scrollTo = targetOffset - headerHeight;
- setTimeout(function(){
-            history.replaceState("", document.title, window.location.pathname);
-        }, 1);
-            $('html, body').animate({
-                scrollTop: scrollTo
-            }, 1); // Scroll speed set to almost no animation
-        });
-    });
+		//Script for anchor link to offset sticky element above header
+	$(document).ready(function() {
+		$('a[href^="#summary"]').on('click', function(e) {
+			const targetId = $(this).attr('href'),
+				headerHeight = $('.top-bar-stick').outerHeight(),
+				targetOffset = $(targetId).offset().top,
+				scrollTo = targetOffset - headerHeight;
+			
+			setTimeout(function(){
+				history.replaceState("", document.title, window.location.pathname);
+			}, 1);
+			
+			$('html, body').animate({
+				scrollTop: scrollTo
+			}, 1); // Scroll speed set to almost no animation
+		});
+	});
 
 		
 	</script>
