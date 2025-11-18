@@ -800,6 +800,12 @@ if (pagelang == "fr") {
 	return dateObject.toLocaleDateString('en-CA', options);
 };
 	}
+	//Function to reference region
+	function regionName() {
+		const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
+		const selectedProvinceName = provinceSelected.getAttribute('name');
+	}
+	
 	let taxData = {};
 	//Repeat function for UI on input change
 	function refreshUI() {
@@ -867,8 +873,7 @@ let previousTaxValues = { federal: [], province: [] };
 		basedIncome.forEach(element => {
 			element.innerHTML = `(${langToggle.dataTableHeader[pagelang]} ${formatCurrency(income)})`;
 		});
-		const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
-        const selectedProvinceName = provinceSelected.getAttribute('name');
+		regionName();
         const selectedProvince = provinceSelect.value;
 		
 		
@@ -1059,39 +1064,40 @@ let previousTaxValues = { federal: [], province: [] };
 				endDiv.innerHTML = formatCurrency(threshold);
 			};
 			rangeDiv.appendChild(endDiv);
-
-// Add the rangeDiv to incomeCell
-incomeCell.appendChild(rangeDiv);
-
-// Add second separate p-tag
-const p = document.createElement("p");
-p.className = "tbl-hidden";
-p.textContent = `${langToggle.dataMeterFill[pagelang]}${percentFormatter.format(fillAmount)}`;
-incomeCell.appendChild(p);
-    incomeRow.appendChild(incomeCell);
-      
-// === Tax payable Cell ===      
-   const payableCell = document.createElement('td'); 
-     payableCell.setAttribute('class', `tax-amount${index === activeIndex ? ' active-cell' : ''|| taxEstimate !== 0? ' prev-active': ''}`);
-payableCell.innerHTML += `<span class="float-plus">+ </span>
-${formatCurrency(taxEstimate)}`;  
-      
-      
-    payableRow.appendChild(payableCell);          
-   currentTaxValues.push(taxEstimate.toFixed(2));
-   previousThreshold = threshold;
-  });
- 
-headerRow.appendChild(rateRow);
-tableBody.appendChild(incomeRow);
-tableBody.appendChild(payableRow);
-
-
-totalDiv.innerHTML = `<div class="mrgn-rght-md"><p class="mrgn-bttm-0">${langToggle.dataTotalEstimate[pagelang]}</p></div><div class="estimate-borders fa-lg text-primary nowrap align-self-center">= ${formatCurrency(totalTax)}</div> `;    
- //Duplicated...need to clean (possibly put in seperate function)
-    const provinceSelected = provinceSelect.options[provinceSelect.selectedIndex];
-        const selectedProvinceName = provinceSelected.getAttribute('name');
+			incomeCell.appendChild(rangeDiv);
+			const p = document.createElement("p");
+			p.className = "tbl-hidden";
+			p.textContent = `${langToggle.dataMeterFill[pagelang]}${percentFormatter.format(fillAmount)}`;
+			incomeCell.appendChild(p);
+			incomeRow.appendChild(incomeCell);
     
+			/* Tax payable cell*/     
+			const payableCell = document.createElement('td'); 
+			payableCell.className = `tax-amount${index === activeIndex ? ' active-cell' : ''|| taxEstimate !== 0? ' prev-active': ''}`;
+			//Create content
+			payableCell.innerHTML += `<span class="float-plus">+ </span>${formatCurrency(taxEstimate)}`;
+			payableRow.appendChild(payableCell);
+
+			//Apply values
+			currentTaxValues.push(taxEstimate.toFixed(2));
+			previousThreshold = threshold;
+		});
+		headerRow.appendChild(rateRow);
+		tableBody.appendChild(incomeRow);
+		tableBody.appendChild(payableRow);
+
+//Create the total amount 
+		totalDiv.innerHTML = "";
+		const totalTextDiv = document.createElement("p");
+		totalTextDiv.className = "mrgn-rght-md mrgn-bttm-0";
+		totalTextDiv.innerHTML = `${langToggle.dataTotalEstimate[pagelang]}`;
+		totalDiv.appendChild(totalTextDiv);
+		const totalAmtDiv = document.createElement("div");
+		totalAmtDiv.className = "estimate-borders fa-lg text-primary nowrap align-self-center";
+		totalAmtDiv.innerHTML = `= ${formatCurrency(totalTax)}`;
+		totalDiv.appendChild(totalAmtDiv);
+
+	regionName();    
     
     const customTotal = document.getElementById("provinceTotal");   
 if (customTotal) {
