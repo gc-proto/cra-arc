@@ -809,7 +809,9 @@ if (pagelang == "fr") {
     setupScrollObserver('provinceScroll');
 }
 	fetch('canada_tax_rates_alt.json')
-		.then(response => response.json())
+		.then(response => {
+			if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+			response.json()})
 		.then(json => {
 		// Get JSON date for conversion	
 			const dateValue = json.date;
@@ -832,6 +834,9 @@ if (pagelang == "fr") {
 			taxData = data;
 			populateProvinceDropdown();
 			refreshUI();
+		})
+		.catch(err => {
+    document.getElementById('errorMsg').classList.remove('hidden');
 		});
 	incomeSlider.addEventListener('input', () => {
 		incomeInput.value = incomeSlider.value;
