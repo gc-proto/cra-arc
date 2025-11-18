@@ -1041,13 +1041,15 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
 
 
 
+
 <script>
     const ontEarnings = 30000; // Ontario fixed
 
     function calculatePremiums() {
         const ontRateText = document.getElementById('ontRate').textContent.trim();
         const qcRateText = document.getElementById('qcRate').textContent.trim();
-        const qcEarningsText = document.getElementById('qcEarnings').textContent.trim().replace(/[^0-9.]/g, '');
+        const qcEarningsSpan = document.getElementById('qcEarnings');
+        const qcEarningsText = qcEarningsSpan.textContent.trim().replace(/[^0-9.]/g, '');
 
         let ontPremium = 0, qcPremium = 0;
 
@@ -1062,6 +1064,11 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
             const qcMaxEarnings = parseFloat(qcEarningsText);
             const adjustedEarnings = qcMaxEarnings - ontEarnings; // subtract $30,000
             qcPremium = (parseFloat(qcRateText) / 100) * adjustedEarnings;
+
+            // Update displayed earnings to show adjusted amount
+            qcEarningsSpan.textContent = `$${adjustedEarnings.toLocaleString()}`;
+
+            // Update premium
             document.getElementById('qcPremium').textContent = `$${qcPremium.toFixed(2)}`;
         }
 
@@ -1077,6 +1084,7 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
     observer.observe(document.getElementById('qcRate'), { childList: true });
     observer.observe(document.getElementById('qcEarnings'), { childList: true });
 </script>
+
 
 
 
