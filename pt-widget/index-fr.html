@@ -767,7 +767,7 @@
 		incomeInputs = document.querySelectorAll('#incomeSlider, #incomeInput'),
 		provinceSelect = document.getElementById('provinceSelect'),
 		basedIncome = document.querySelectorAll('.based-income'),
-		resultsLink = document.getElementById('resultsLink'),
+		summaryLink = document.getElementById('summaryLink'),
 		percentFormatter = new Intl.NumberFormat(pagelang + "-CA", {
 			style: "percent",
 			minimumFractionDigits: 1,
@@ -1190,7 +1190,7 @@ setTotalContent(totalDiv, totalTax);
 				mySlider.value = 0;
 				const myInput = document.getElementById('incomeInput');
 				myInput.value = 0;
-				resultsLink.classList.add('invisible');
+				summaryLink.classList.add('invisible');
 				buildTables();
 				
 				//Reset tables when toggling between options
@@ -1220,13 +1220,13 @@ setTotalContent(totalDiv, totalTax);
 //Script to show/hide results link (for accessibility)
 	incomeInputs.forEach(inputElement => {
 		inputElement.addEventListener('input', function() {
-			resultsLink.classList.remove('invisible');
+			summaryLink.classList.remove('invisible');
 		});
 	});
 
 		//Script for anchor link to offset sticky element above header
 	$(document).ready(function() {
-		$('a[href^="#summary"]').on('click', function(e) {
+		$('#summaryLink>a').on('click', function(e) {
 			const targetId = $(this).attr('href'),
 				headerHeight = $('.top-bar-stick').outerHeight(),
 				targetOffset = $(targetId).offset().top,
