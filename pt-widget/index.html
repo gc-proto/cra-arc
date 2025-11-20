@@ -237,8 +237,8 @@
             defTop.outerHTML = wet.builder.top({
             	lngLinks: [{
             		lang: "fr",
-            		href: "",
-            		text: "Français (Not available)"
+            		href: "index-fr.html",
+            		text: "Français"
             	}],
             	breadcrumbs: [{
                 title: "Canada.ca",
@@ -345,7 +345,7 @@
           </form>
           <p class="small invisible" id="summaryLink"><a href="#summary"><span class="glyphicon glyphicon-arrow-down mrgn-rght-sm"></span>Go to summary</a></p>
           <div id="federalTableWrapper" class="hidden mrgn-bttm-xl">
-            <h3 id="results" class="h2">Progressive tax summary</h3>
+            <h3 id="summary" class="h2">Progressive tax summary</h3>
             <h4 id="federalTableCaption" class="h5"><img src="https://www.canada.ca/content/dam/cra-arc/images/flag-ca.png" alt="" class="mrgn-rght-md">Federal <span class="based-income"></span></h4>
             <div id="federalScroll" class="table-responsive table-scroll">
               <table class="table pb-2 text-center" id="federalTable" aria-describedby="federalTableCaption">
@@ -363,7 +363,7 @@
             <div class="tax-total d-sm-flex" id="federalTotal"></div>
           </div>
           <div id="provinceTableWrapper" class="hidden" >
-            <h4 id="provinceTableCaption" class="h5"><span id="provinceFlag"></span><span id="provinceTitle">Provincial tax</span> <span class="based-income"></span></h4>
+            <h4 id="provinceTableCaption" class="h5"><span id="provinceFlag"></span><span id="provinceTitle">Provincial</span> <span class="based-income"></span></h4>
             <div id="provinceScroll" class="table-responsive table-scroll">
               <table class="table pb-2 text-center" id="provinceTable" aria-describedby="provinceTableCaption">
                 <caption class="wb-inv">
@@ -1226,7 +1226,7 @@ setTotalContent(totalDiv, totalTax);
 
 		//Script for anchor link to offset sticky element above header
 	$(document).ready(function() {
-		$('a[href^="#summary"]').on('click', function(e) {
+		$('#summaryLink>a').on('click', function(e) {
 			const targetId = $(this).attr('href'),
 				headerHeight = $('.top-bar-stick').outerHeight(),
 				targetOffset = $(targetId).offset().top,
