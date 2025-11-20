@@ -653,7 +653,7 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
 	    <li><span class="fas  fa-li"><span class="fas fa-equals"></span> <span class="wb-inv">equals</span></span> <span class="mrgn-tp-0 text-muted"><span class="fa-stack text-success">
                                     <span class="fas fa-circle fa-stack-2x"></span>
                                     <span class="fas fa-dollar-sign fa-stack-1x fa-inverse"></span>
-                                    </span> <span class="mrgn-tp-0 text-muted h5 result" id="ontPremium"></span></span> </li>
+                                    </span> <span class="mrgn-tp-0 text-muted h5 result" id="ontPremium">$0.00</span></span> </li>
                            </ul>
 	
 	  
@@ -1076,11 +1076,6 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
          <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
 
 
-
-
-
-
-
 <script>
     const ontEarnings = 30000; // Ontario fixed
 
@@ -1112,38 +1107,18 @@ i><a href="truck-drivers.html" class="hidden-xs hidden-sm">Payments to truck dri
         if (ontPremium || qcPremium) {
             document.getElementById('totalPremium').textContent = `$${(ontPremium + qcPremium).toFixed(2)}`;
         }
-
-        // Conversion Factor Calculation (CPP ÷ QPP)
-        const cppRateElement = document.querySelector('[data-ajax-replace*="ratecpp"]');
-        const qppRateElement = document.querySelector('[data-ajax-replace*="rateqpp"]');
-
-        if (cppRateElement && qppRateElement) {
-            const cppRate = parseFloat(cppRateElement.textContent);
-            const qppRate = parseFloat(qppRateElement.textContent);
-
-            if (!isNaN(cppRate) && !isNaN(qppRate)) {
-                const conversionFactor = (cppRate / qppRate).toFixed(7); // precise to 7 decimals
-                document.querySelectorAll('.conversion-result').forEach(el => {
-                    el.textContent = `${conversionFactor}`;
-                });
-            }
-        }
     }
 
-    // Poll until all required values are loaded (EI + CPP/QPP)
+    // Poll until all required values are loaded (EI only)
     const interval = setInterval(() => {
         const qcEarningsText = document.getElementById('qcEarnings')?.textContent.trim();
         const ontRateText = document.getElementById('ontRate')?.textContent.trim();
         const qcRateText = document.getElementById('qcRate')?.textContent.trim();
-        const cppRateText = document.querySelector('[data-ajax-replace*="ratecpp"]')?.textContent.trim();
-        const qppRateText = document.querySelector('[data-ajax-replace*="rateqpp"]')?.textContent.trim();
 
         if (
             qcEarningsText.match(/\d/) &&
             ontRateText.match(/\d/) &&
-            qcRateText.match(/\d/) &&
-            cppRateText.match(/\d/) &&
-            qppRateText.match(/\d/)
+            qcRateText.match(/\d/)
         ) {
             calculatePremiums(); // run once when all data is ready
             clearInterval(interval); // stop checking
