@@ -2149,66 +2149,53 @@ function downloadSelectedit2Tables() {
  
  
 <script>
-  (function () {
-    function installCopyHandler(scope) {
-      scope.addEventListener('copy', function (e) {
-        const sel = window.getSelection();
-        if (!sel || sel.rangeCount === 0) return;
+    const ontEarnings = 30000; // Ontario fixed
 
-        const range = sel.getRangeAt(0);
-        // Only intercept if the selection intersects THIS scope
-        if (!range.intersectsNode(scope)) return;
+    function calculatePremiums() {
+        const ontRateText = document.getElementById('ontRate')?.textContent.trim();
+        const qcRateText = document.getElementById('qcRate')?.textContent.trim();
+        const qcEarningsText = document.getElementById('qcEarnings')?.textContent.trim().replace(/[^0-9.]/g, '');
 
-        const fragment = range.cloneContents();
+        let ontPremium = 0, qcPremium = 0;
 
-        // --- OPTION A: keep link text but remove hyperlink ---
-        fragment.querySelectorAll('a').forEach(a => {
-          a.replaceWith(document.createTextNode(a.textContent));
-        });
-
-        // Remove decorative/hidden/icon content from clipboard
-        fragment.querySelectorAll('.fas, .far, .fa, .wb-inv, .overlay-lnk').forEach(node => node.remove());
-
-        // Flatten lists so target apps don't infer bullets
-        fragment.querySelectorAll('ul, ol').forEach(list => {
-          const items = Array.from(list.querySelectorAll(':scope > li'));
-          const text = items.map(li => li.textContent.trim()).filter(Boolean).join('\n');
-          list.replaceWith(document.createTextNode(text + '\n'));
-        });
-
-        let text = fragment.textContent || '';
-        text = text
-          .replace(/\u00A0/g, ' ')     // no‑break spaces
-          .replace(/[ \t]+\n/g, '\n')  // trim trailing spaces
-          .replace(/\n{3,}/g, '\n\n')  // collapse big gaps
-          .replace(/[ \t]{2,}/g, ' ')  // collapse multiple spaces
-          .trim();
-
-        e.preventDefault();
-        // Modern browsers
-        if (e.clipboardData) {
-          e.clipboardData.setData('text/plain', text);
-        } else if (window.clipboardData) { // IE fallback
-          window.clipboardData.setData('Text', text);
+        // Ontario calculation
+        if (ontRateText) {
+            ontPremium = (parseFloat(ontRateText) / 100) * ontEarnings;
+            document.getElementById('ontPremium').textContent = `$${ontPremium.toFixed(2)}`;
         }
-      });
+
+        // Quebec calculation: (rate × (maxEI - 30,000))
+        if (qcRateText && qcEarningsText) {
+            const qcMaxEarnings = parseFloat(qcEarningsText);
+            if (!isNaN(qcMaxEarnings)) {
+                const adjustedEarnings = qcMaxEarnings - ontEarnings; // subtract $30,000
+                document.getElementById('qcEarnings').textContent = `$${adjustedEarnings.toLocaleString()}`;
+                qcPremium = (parseFloat(qcRateText) / 100) * adjustedEarnings;
+                document.getElementById('qcPremium').textContent = `$${qcPremium.toFixed(2)}`;
+            }
+        }
+
+        // Total
+        if (ontPremium || qcPremium) {
+            document.getElementById('totalPremium').textContent = `$${(ontPremium + qcPremium).toFixed(2)}`;
+        }
     }
 
-    // Attach to all current .copy-scope containers
-    document.querySelectorAll('.copy-scope').forEach(installCopyHandler);
+    // Poll until all required values are loaded (EI only)
+    const interval = setInterval(() => {
+        const qcEarningsText = document.getElementById('qcEarnings')?.textContent.trim();
+        const ontRateText = document.getElementById('ontRate')?.textContent.trim();
+        const qcRateText = document.getElementById('qcRate')?.textContent.trim();
 
-    // (Optional) If containers load later via AJAX, observe and attach automatically
-    const mo = new MutationObserver(muts => {
-      muts.forEach(m => {
-        m.addedNodes.forEach(node => {
-          if (!(node instanceof Element)) return;
-          if (node.matches && node.matches('.copy-scope')) installCopyHandler(node);
-          node.querySelectorAll && node.querySelectorAll('.copy-scope').forEach(installCopyHandler);
-        });
-      });
-    });
-    mo.observe(document.documentElement, { childList: true, subtree: true });
-  })();
+        if (
+            qcEarningsText.match(/\d/) &&
+            ontRateText.match(/\d/) &&
+            qcRateText.match(/\d/)
+        ) {
+            calculatePremiums(); // run once when all data is ready
+            clearInterval(interval); // stop checking
+        }
+    }, 500);
 </script>
 
  
