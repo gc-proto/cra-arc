@@ -184,6 +184,57 @@
 <dd>
     <p>Your SR&amp;ED  reporting deadline is 12&nbsp;months after your T2 Corporation Income Tax Return is due.</p>
 
+<!-- ChatGPT Prompt used to generate JSON 
+
+I have a JSON file with two top-level sections: "trusts" and "corporations".
+Each section contains many date keys in the format "YYYY-MM-DD".
+
+For each date, the value must be one line only, formatted exactly like this:
+
+"2024-01-02" : ["2024-04-01", "2025-04-01"]
+
+No multi-line arrays.
+
+The first row in each section must ALWAYS be:
+
+"bad-date" : ["Date not found", "Date not found"]
+
+Now generate all dates from January 1, 2024 to December 31, 2026 for both sections, following these rules:
+
+Trusts:
+
+Tax filing due date = 90 days after tax year-end
+
+Reporting deadline = 12 months after filing due date
+
+Corporations:
+
+Tax filing due date = 6 months after tax year-end
+
+Exception A: If the tax year-end is the last day of a month, the filing due date is the last day of the sixth month after.
+
+Exception B: If the tax year-end is not the last day of a month, use the same numeric day in the sixth month after.
+
+Reporting deadline = 12 months after filing due date
+
+JSON Output Requirements:
+
+Output must include two top-level keys: "trusts" and "corporations".
+
+Arrays MUST be on one line.
+
+Indent consistently with 2 spaces.
+
+Use "YYYY-MM-DD" formatting for all dates.
+
+Do not split arrays onto separate lines.
+
+Do not add trailing commas.
+
+Finally, output the entire JSON object exactly as valid JSON.	
+
+-->	
+	
 <p><strong>Enter your tax year end to get your dates</strong></p>
 <form class="form-inline">
   <div class="form-group">
