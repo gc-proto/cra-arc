@@ -325,7 +325,7 @@
                       <div class="slider-group align-self-center">
                         <label for="incomeSlider" class="wb-inv" id="incomeSliderLabel">Range slider from $0 to $400,000</label>
                         <div id="incomeTooltip" class="wb-input-range-tooltip" aria-hidden="true"  data-wb-input-range="{&quot;fn&quot;: &quot;currencyFormatter.format&quot;}"> $0 </div>
-                        <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="400000" list="amountTicks" value="0" step="2000" name="incomeAmount"  data-wb-input-range="{&quot;target&quot;: [&quot;incomeSlider&quot;, &quot;incomeTooltip&quot;]}" aria-labelledby="incomeTooltip" aria-valuenow="">
+                        <input id="incomeSlider" class="form-range mrgn-tp-sm" type="range" min="0" max="400000" list="amountTicks" value="0" step="2000" name="incomeAmount" title="Range slider from $0 to $400,000" data-wb-input-range="{&quot;target&quot;: [&quot;incomeSlider&quot;, &quot;incomeTooltip&quot;]}" aria-labelledby="incomeTooltip">
                         <datalist id="amountTicks" class="hidden">
                           <option value="0"></option>
                           <option value="200000"></option>
@@ -891,7 +891,9 @@ let previousTaxValues = { federal: [], province: [] };
 		const rangeListMax = document.querySelectorAll('.rangelist-max');
 		const incomeSliderLabel = document.getElementById("incomeSliderLabel");
 		incomeSlider.setAttribute("max", provinceMaxAmount);
-		incomeSliderLabel.textContent = langToggle.dataSliderRange[pagelang] + formatCurrency(provinceMaxAmount);
+		const incomeSliderContent = langToggle.dataSliderRange[pagelang] + formatCurrency(provinceMaxAmount);
+        incomeSliderLabel.textContent = incomeSliderContent;
+        incomeSlider.setAttribute("title", incomeSliderContent);
 		rangeListMax.forEach(listmax => {
 			listmax.textContent = formatCurrency(provinceMaxAmount);
 		});
