@@ -891,7 +891,9 @@ let previousTaxValues = { federal: [], province: [] };
 		const rangeListMax = document.querySelectorAll('.rangelist-max');
 		const incomeSliderLabel = document.getElementById("incomeSliderLabel");
 		incomeSlider.setAttribute("max", provinceMaxAmount);
-		incomeSliderLabel.textContent = langToggle.dataSliderRange[pagelang] + formatCurrency(provinceMaxAmount);
+		const incomeSliderContent = langToggle.dataSliderRange[pagelang] + formatCurrency(provinceMaxAmount);
+        incomeSliderLabel.textContent = incomeSliderContent;
+        incomeSlider.setAttribute("title", incomeSliderContent);
 		rangeListMax.forEach(listmax => {
 			listmax.textContent = formatCurrency(provinceMaxAmount);
 		});
