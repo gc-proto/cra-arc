@@ -27,28 +27,59 @@
          </script>
 
  <style>		 
-.reorder-table td:nth-child(4),
+
+.reorder-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Make header and rows flex containers */
+.reorder-table thead tr,
+.reorder-table tbody tr {
+    display: flex;
+    width: 100%;
+}
+
+/* Make cells share space equally */
+.reorder-table th,
+.reorder-table td {
+    flex: 1;
+    text-align: left;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* Hide 4th and 5th columns */
 .reorder-table th:nth-child(4),
-.reorder-table td:nth-child(5),
-.reorder-table th:nth-child(5) {
+.reorder-table th:nth-child(5),
+.reorder-table td:nth-child(4),
+.reorder-table td:nth-child(5) {
     display: none;
 }
 
-.reorder-table tr {
-    display: flex;
-}
-.reorder-table td:first-child,
-.reorder-table th:first-child {
+/* Reorder columns visually */
+.reorder-table th:first-child,
+.reorder-table td:first-child {
     order: 3;
 }
-.reorder-table td:nth-child(2),
-.reorder-table th:nth-child(2) {
+.reorder-table th:nth-child(2),
+.reorder-table td:nth-child(2) {
     order: 1;
 }
-.reorder-table td:nth-child(3),
-.reorder-table th:nth-child(3) {
+.reorder-table th:nth-child(3),
+.reorder-table td:nth-child(3) {
     order: 2;
 }
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+    .reorder-table th,
+    .reorder-table td {
+        font-size: 14px;
+        padding: 6px;
+    }
+}
+
  </style> 
 		  
       </head>
