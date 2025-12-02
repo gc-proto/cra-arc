@@ -808,7 +808,7 @@ if (pagelang == "fr") {
     setupScrollObserver('federalScroll');
     setupScrollObserver('provinceScroll');
 }
-	fetch('canada_tax_rates_alt.json')
+	fetch('canada_tax_rates.json')
 		.then(response => {
 			if (!response.ok) throw new Error(`HTTP error ${response.status}`);
 			return	response.json()
@@ -825,7 +825,7 @@ if (pagelang == "fr") {
 			//Parse region values to build brackets
 			for (const region in data) {
 				data[region].brackets.forEach(bracket => {
-					if (bracket.threshold === "Infinity") {
+					if (bracket.threshold === "inf") {
 						bracket.threshold = Infinity;
 					}
 				});
