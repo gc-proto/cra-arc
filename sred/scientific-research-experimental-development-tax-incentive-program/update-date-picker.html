@@ -1,1 +1,143 @@
+<html>
+<head>
+<title>Updating SR&ED reporting deadline date picker</title>
+</head>
+<body>
+<h1>Updating SR&ED reporting deadline date picker</h1>
 
+<p><strong>Live page:</strong> <a href="https://www.canada.ca/en/revenue-agency/services/scientific-research-experimental-development-tax-incentive-program/sred-claim/get-ready.html">https://www.canada.ca/en/revenue-agency/services/scientific-research-experimental-development-tax-incentive-program/sred-claim/get-ready.html</a></p>
+
+
+<p>December 2025</p>
+<p>Updated Github json: <a href="https://test.canada.ca/cra-arc/sred/scientific-research-experimental-development-tax-incentive-program/doaction-dates-en.json">https://test.canada.ca/cra-arc/sred/scientific-research-experimental-development-tax-incentive-program/doaction-dates-en.json</a></p>
+<p>Updated Github page: <a href="https://test.canada.ca/cra-arc/sred/scientific-research-experimental-development-tax-incentive-program/get-ready.html">https://test.canada.ca/cra-arc/sred/scientific-research-experimental-development-tax-incentive-program/get-ready.html</a></p>
+
+<p>Edits to Get Ready page:</p>
+
+<ol>
+<li>Changed the min and max dates in the input fields (2 spots)
+<code>
+<input class="form-control" type="date" id="enddate2" name="enddate2" min="2024-01-01" max="2026-12-31" value="">
+</code>
+</li>
+
+<li>Changed the regex on the json manager part (2 spots). (I feel like this could be altered to capture all years in the first part but I didn't want to mess with it.)
+<code>
+&quot;match&quot;: &quot;^202[4,5,6]-[1,0][0-9]-[0,1,2,3][0-9]$&quot;,
+</code>
+</li>
+
+<li>Changed the /corp to /corporations in the json manager part since that's how the AI outputed the json (1 spot corp section)</li>
+</ol>
+
+<p>Edits to json file:</p>
+
+<p>Generated with ChatGPT with a bunch of prompts... I asked it to give me a proper prompt for next time and this is what it spit out:</p>
+
+<code>
+I have a JSON file with two top-level sections: "trusts" and "corporations".
+Each section contains many date keys in the format "YYYY-MM-DD".
+
+For each date, the value must be one line only, formatted exactly like this:
+
+"2024-01-02" : ["2024-04-01","2025-04-01"]
+
+No multi-line arrays.
+
+The first row in each section must ALWAYS be:
+
+"bad-date" : ["Date not found","Date not found"]
+
+Now generate all dates from January 1, 2024 to December 31, 2026 for both sections, following these rules:
+
+Trusts:
+
+Tax filing due date = 90 days after tax year-end
+
+Reporting deadline = 12 months after filing due date
+
+Corporations:
+
+Tax filing due date = 6 months after tax year-end
+
+Exception A: If the tax year-end is the last day of a month, the filing due date is the last day of the sixth month after.
+
+Exception B: If the tax year-end is not the last day of a month, use the same numeric day in the sixth month after.
+
+Reporting deadline = 12 months after filing due date
+
+JSON Output Requirements:
+
+Output must include two top-level keys: "trusts" and "corporations".
+
+Arrays MUST be on one line.
+
+Do not indent lines.
+
+Use "YYYY-MM-DD" formatting for all dates.
+
+Do not split arrays onto separate lines.
+
+Do not add trailing commas.
+
+Finally, output the entire JSON object exactly as valid JSON.	
+</code>
+
+
+<p>I would recommend using ChatGPT and prompts but here's the complete JSON update instructions as well:</p>
+
+<p>The JSON file has 2 sections. 1 for trusts and 1 for corporations.</p>
+
+<p><a href="https://www.canada.ca/content/dam/cra-arc/json/doaction-dates-en.json">https://www.canada.ca/content/dam/cra-arc/json/doaction-dates-en.json</a></p>
+
+<p>There's basically 3 columns of dates.</p>
+
+<p>Column 1: Tax year end and is what is shown in the date picker.</p>
+
+<p>The other 2 will be dates in relation to what is selected.</p>
+
+<p>These dates will be different between trusts and corporations.</p>
+
+
+<p><strong>Trusts</strong></p>
+
+<p>For trusts it is straight forward.</p>
+
+<p>Column 2: Tax filing due date: 90 days after your tax year end</p>
+
+<p>Column 3: SR&ED reporting deadline: 12 months after your tax filing due date</p>
+
+<p>ONLY exception is leap years (there will not be a 29th in the next year)</p>
+
+
+<p><strong>Corporations</strong>strong></p>
+
+<p>For corporations is there is one notable exception explained below.</p>
+
+<p>Column 2: Tax filing due date: 6 months after your tax year end</p>
+
+<p>Column 3: SR&ED reporting deadline: 12 months after your tax filing due date</p>
+
+<p>When the corporation's tax year ends on the last day of a month, the return should be filed by the last day of the sixth month after the end of the tax year.</p>
+
+<p>When the last day of the tax year is not the last day of a month, the return should be filed by the same day of the sixth month after the end of the tax year.</p>
+
+<p><strong>Details:</strong> <a href="https://www.canada.ca/en/revenue-agency/services/scientific-research-experimental-development-tax-incentive-program/filing-requirements-policy.html#toc86">https://www.canada.ca/en/revenue-agency/services/scientific-research-experimental-development-tax-incentive-program/filing-requirements-policy.html#toc86</a></p>
+
+<p>What this means is if the tax end year is on the 30th then 6 months later if that month has 31 days then that is the tax filing due day. Or vice versa.</p>
+
+<p><strong>Ex. 1</strong></p>
+
+<p>Year end date: 2023-03-31<br>
+Tax filing due date: 2023-09-30<br>
+SR&ED reporting deadline: 2024-09-30
+
+<p><strong>Ex. 2</strong></p>
+
+<p>Year end date: 2022-09-30<br>
+Tax filing due date: 2023-03-31<br>
+SR&ED reporting deadline: 2024-03-31</p>
+
+
+</body>
+</html>
