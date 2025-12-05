@@ -1,6 +1,9 @@
 <html>
 <head>
 <title>Updating SR&ED reporting deadline date picker</title>
+    <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_46/cdts/compiled/soyutils.js"></script>
+	<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_46/cdts/compiled/wet-en.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"/>
 </head>
 <body>
 <h1>Updating SR&ED reporting deadline date picker</h1>
@@ -8,16 +11,16 @@
 <p><strong>Live page:</strong> <a href="https://www.canada.ca/en/revenue-agency/services/scientific-research-experimental-development-tax-incentive-program/sred-claim/get-ready.html">https://www.canada.ca/en/revenue-agency/services/scientific-research-experimental-development-tax-incentive-program/sred-claim/get-ready.html</a></p>
 
 
-<p>December 2025</p>
+<h2>December 2025 update</h2>
 <p>Updated Github json: <a href="https://test.canada.ca/cra-arc/sred/scientific-research-experimental-development-tax-incentive-program/doaction-dates-en.json">https://test.canada.ca/cra-arc/sred/scientific-research-experimental-development-tax-incentive-program/doaction-dates-en.json</a></p>
 <p>Updated Github page: <a href="https://test.canada.ca/cra-arc/sred/scientific-research-experimental-development-tax-incentive-program/get-ready.html">https://test.canada.ca/cra-arc/sred/scientific-research-experimental-development-tax-incentive-program/get-ready.html</a></p>
 
-<p>Edits to Get Ready page:</p>
+<h3>Edits made to Get Ready page:</h3>
 
 <ol>
 <li>Changed the min and max dates in the input fields (2 spots)
 <code>
-<input class="form-control" type="date" id="enddate2" name="enddate2" min="2024-01-01" max="2026-12-31" value="">
+&lt;input class=&quot;form-control&quot; type=&quot;date&quot; id=&quot;enddate2&quot; name=&quot;enddate2&quot; min=&quot;2024-01-01&quot; max=&quot;2026-12-31&quot; value=&quot;&quot;&gt;
 </code>
 </li>
 
@@ -30,11 +33,12 @@
 <li>Changed the /corp to /corporations in the json manager part since that's how the AI outputed the json (1 spot corp section)</li>
 </ol>
 
-<p>Edits to json file:</p>
+<h3>Edits made to json file:</h3>
 
 <p>Generated with ChatGPT with a bunch of prompts... I asked it to give me a proper prompt for next time and this is what it spit out:</p>
 
 <code>
+<pre>	
 I have a JSON file with two top-level sections: "trusts" and "corporations".
 Each section contains many date keys in the format "YYYY-MM-DD".
 
@@ -80,7 +84,8 @@ Do not split arrays onto separate lines.
 
 Do not add trailing commas.
 
-Finally, output the entire JSON object exactly as valid JSON.	
+Finally, output the entire JSON object exactly as valid JSON.
+</pre>
 </code>
 
 
@@ -110,7 +115,7 @@ Finally, output the entire JSON object exactly as valid JSON.
 <p>ONLY exception is leap years (there will not be a 29th in the next year)</p>
 
 
-<p><strong>Corporations</strong>strong></p>
+<p><strong>Corporations</strong></p>
 
 <p>For corporations is there is one notable exception explained below.</p>
 
