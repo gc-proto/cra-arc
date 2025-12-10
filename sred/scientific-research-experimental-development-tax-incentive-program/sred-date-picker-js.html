@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tax Date Picker</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    label, button { font-size: 1rem; }
+    #results { margin-top: 1.5rem; }
+    .section { margin-bottom: 2rem; padding: 15px; border: 1px solid #ccc; border-radius: 8px; }
+    .example { font-family: monospace; background:#e0f7fa; color:#006064; padding:4px 8px; border-radius:4px; font-weight: bold; }
+    .datepicker { margin-bottom: 1rem; }
+    .visually-hidden { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <h2>Tax Year-End Date Picker (Timezone Safe)</h2>
+
+  <div class="section">
+    <h3>Trusts</h3>
+    <div class="datepicker">
+      <label for="trustYearEnd">Select Trust Tax Year-End:</label>
+      <input type="date" id="trustYearEnd" aria-describedby="trustInfo" />
+      <span id="trustInfo" class="visually-hidden">Tax filing due date is 90 days after tax year-end. Reporting deadline is 12 months after filing due date.</span>
+    </div>
+    <button onclick="calculateTrust()">Submit Trust Dates</button>
+    <div id="trustResults" aria-live="polite"></div>
+  </div>
+
+  <div class="section">
+    <h3>Corporations</h3>
+    <div class="datepicker">
+      <label for="corpYearEnd">Select Corporation Tax Year-End:</label>
+      <input type="date" id="corpYearEnd" aria-describedby="corpInfo" />
+      <span id="corpInfo" class="visually-hidden">Tax filing due date is 6 months after tax year-end, following special rules for month-end dates. Reporting deadline is 12 months after filing due date.</span>
+    </div>
+    <button onclick="calculateCorporation()">Submit Corporation Dates</button>
+    <div id="corpResults" aria-live="polite"></div>
+  </div>
+
+  <script>
+    // --- Helper Functions Using UTC for Accuracy ---
+
+    // Parses the input string into a Date object that is correct in UTC, 
+    // preventing local timezone shifting issues.
+    function parseYearEnd(input) {
+      const parts = input.split('-').map(Number);
+      // Date.UTC(year, monthIndex, day)
+      return new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
+    }
+
+    // Adds a specific number of months reliably using UTC month methods.
+    function addMonths(date, months) {
+      const d = new Date(date);
+      d.setUTCMonth(d.getUTCMonth() + months);
+      return d;
+    }
+
+    // Adds a specific number of days accurately via millisecond manipulation.
+    function addDaysExact(date, days) {
+      return new Date(date.getTime() + days * 24 * 60 * 60 * 1000);
+    }
+
+    // Formats the Date object into the required YYYY-MM-DD string using UTC values.
+    function formatDateUTC(d) {
+      const year = d.getUTCFullYear();
+      const month = String(d.getUTCMonth() + 1).padStart(2, '0');
+      const day = String(d.getUTCDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    // Determines the last day of a month using UTC logic.
+    function lastDayOfMonthUTC(year, monthIndex) {
+      // Create date for day 0 of the next month (which is the last day of the current month)
+      return new Date(Date.UTC(year, monthIndex + 1, 0)).getUTCDate();
+    }
+
+    // Computes the Corporation filing date based on the specific 6-month rules.
+    function computeCorporationFilingDate(yearEnd) {
+      const origYear = yearEnd.getUTCFullYear();
+      const origMonth = yearEnd.getUTCMonth(); // 0-based
+      const origDay = yearEnd.getUTCDate();
+
+      // Calculate target month and year
+      const totalMonths = origMonth + 6;
+      const targetYear = origYear + Math.floor(totalMonths / 12);
+      const targetMonth = totalMonths % 12; // 0-based
+
+      const origLastDay = lastDayOfMonthUTC(origYear, origMonth);
+      const targetLastDay = lastDayOfMonthUTC(targetYear, targetMonth);
+
+      // Exception A: If original date is last day of original month -> last day of target month
+      if (origDay === origLastDay) {
+        return new Date(Date.UTC(targetYear, targetMonth, targetLastDay));
+      }
+
+      // Exception B (part 1): If the same numeric day exists in target month -> use it
+      if (origDay <= targetLastDay) {
+        return new Date(Date.UTC(targetYear, targetMonth, origDay));
+      }
+
+      // Exception B (part 2): Otherwise (e.g., 31 -> month with 30 days), use last day of target month
+      return new Date(Date.UTC(targetYear, targetMonth, targetLastDay));
+    }
+
+    // --- Calculation Functions ---
+
+    function calculateTrust() {
+      const input = document.getElementById("trustYearEnd").value;
+      if (!input) { alert("Please select a Trust tax year-end."); return; }
+      
+      const yearEnd = parseYearEnd(input);
+
+      // Requirement: Tax filing due date = 90 days after tax year-end
+      const filing = addDaysExact(yearEnd, 90);
+      
+      // Requirement: Reporting deadline = 12 months after filing due date
+      const reporting = addMonths(filing, 12);
+
+      document.getElementById("trustResults").innerHTML = `
+        <h4>Trust Deadlines:</h4>
+        <p><strong>Tax filing due date (90 days after):</strong> <span class='example'>${formatDateUTC(filing)}</span></p>
+        <p><strong>Reporting deadline (12 months after filing):</strong> <span class='example'>${formatDateUTC(reporting)}</span></p>
+      `;
+    }
+
+    function calculateCorporation() {
+      const input = document.getElementById("corpYearEnd").value;
+      if (!input) { alert("Please select a Corporation tax year-end."); return; }
+      
+      const yearEnd = parseYearEnd(input);
+
+      // Requirement: Tax filing due date = 6 months after year-end, following Exceptions A/B
+      const filing = computeCorporationFilingDate(yearEnd);
+      
+      // Requirement: Reporting deadline = 12 months after filing due date
+      const reporting = addMonths(filing, 12);
+
+      document.getElementById("corpResults").innerHTML = `
+        <h4>Corporation Deadlines:</h4>
+        <p><strong>Tax filing due date:</strong> <span class='example'>${formatDateUTC(filing)}</span></p>
+        <p><strong>Reporting deadline (12 months after filing):</strong> <span class='example'>${formatDateUTC(reporting)}</span></p>
+      `;
+    }
+  </script>
+</body>
+</html>
