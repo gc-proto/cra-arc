@@ -94,21 +94,68 @@
   <h1 id="gc-document-nav">Scientific Research and Experimental Development (SR&amp;ED) tax incentives</h1>
 
 
+<div class="section">
+                    <h3>Trusts</h3>
+                    <div class="datepicker">
+                        <label for="trustYearEnd">Select Trust Tax Year-End:</label>
+                        <input type="date" id="trustYearEnd" aria-describedby="trustInfo" class="wb-date" />
+                        <span id="trustInfo" class="visually-hidden">... details ...</span>
+                    </div>
+                    <button type="button" onclick="calculateTrust()" class="btn btn-primary">Submit Trust Dates</button>
+                    <div id="trustResults" aria-live="polite"></div>
+                </div>
+
+                <div class="section">
+                    <h3>Corporations</h3>
+                    <div class="datepicker">
+                        <label for="corpYearEnd">Select Corporation Tax Year-End:</label>
+                        <input type="date" id="corpYearEnd" aria-describedby="corpInfo" class="wb-date" />
+                        <span id="corpInfo" class="visually-hidden">... details ...</span>
+                    </div>
+                    <button type="button" onclick="calculateCorporation()" class="btn btn-primary">Submit Corporation Dates</button>
+                    <div id="corpResults" aria-live="polite"></div>
+                </div>
 
 
-  <div class="section">
-    <h3>Trusts</h3>
-<form class="form-inline">
-  <div class="form-group">
-  <label class="wb-inv" for="enddate1">Enter your tax year end to get your dates <span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-  <input class="form-control" type="date" id="enddate1" name="enddate1" min="2024-01-01" max="2026-12-31" value="">           
-</div>
-    <button onclick="calculateTrust()">Submit Trust Dates</button>
-
-  </div>
 
 
+  
 
+<nav class="mrgn-bttm-lg mrgn-tp-lg">
+</nav><nav class="mrgn-bttm-lg mrgn-tp-lg"><h3 class="wb-inv">Document navigation</h3>
+    <ul class="pager">
+      <li class="next"><a href="grouping.html" rel="next"><span class="wb-inv">Next: </span>Group work into SR&ED projects</a></li>
+      </ul>
+  </nav>
+           
+           <div id="def-preFooter"></div>
+           <!-- Write closure template -->
+           <script type="text/javascript">
+               var defPreFooter = document.getElementById("def-preFooter");
+               defPreFooter.outerHTML = wet.builder.preFooter({
+               dateModified: "2020-03-13",
+               showPostContent: true,
+               showFeedback: true,
+               showShare: true
+               });
+            </script>
+         </main>
+         <div id="def-footer">
+         </div>
+         <!-- Write closure template -->
+         <script type="text/javascript">
+            var defFooter = document.getElementById("def-footer");
+            defFooter.outerHTML = wet.builder.footer({
+            showFooter: true,
+            showFeatures: true
+            });
+         </script>
+         <!-- Write closure template -->
+         <script type="text/javascript">
+            document.write(wet.builder.refFooter({
+            }));
+         </script>
+         <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
   <script>
     // --- Helper Functions Using UTC for Accuracy (Timezone-Safe) ---
 
@@ -216,43 +263,5 @@
     // You may also need to run WET initialization code if elements are added dynamically.
     // E.g., $(document).trigger('wb-ready.wb'); or similar WET-specific initialization.
   </script>
-  
-
-<nav class="mrgn-bttm-lg mrgn-tp-lg">
-</nav><nav class="mrgn-bttm-lg mrgn-tp-lg"><h3 class="wb-inv">Document navigation</h3>
-    <ul class="pager">
-      <li class="next"><a href="grouping.html" rel="next"><span class="wb-inv">Next: </span>Group work into SR&ED projects</a></li>
-      </ul>
-  </nav>
-           
-           <div id="def-preFooter"></div>
-           <!-- Write closure template -->
-           <script type="text/javascript">
-               var defPreFooter = document.getElementById("def-preFooter");
-               defPreFooter.outerHTML = wet.builder.preFooter({
-               dateModified: "2020-03-13",
-               showPostContent: true,
-               showFeedback: true,
-               showShare: true
-               });
-            </script>
-         </main>
-         <div id="def-footer">
-         </div>
-         <!-- Write closure template -->
-         <script type="text/javascript">
-            var defFooter = document.getElementById("def-footer");
-            defFooter.outerHTML = wet.builder.footer({
-            showFooter: true,
-            showFeatures: true
-            });
-         </script>
-         <!-- Write closure template -->
-         <script type="text/javascript">
-            document.write(wet.builder.refFooter({
-            }));
-         </script>
-         <script src="https://test.canada.ca/covid-19-guidance/proto/js/alpha-banner.js"></script>
-
       </body>
    </html>
