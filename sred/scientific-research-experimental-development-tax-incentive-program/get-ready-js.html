@@ -30,8 +30,6 @@
          </script>
       <style>
     /* Custom styles for demonstration */
-    .example { font-family: monospace; background:#e0f7fa; color:#006064; padding:4px 8px; border-radius:4px; font-weight: bold; }
-    .datepicker { margin-bottom: 1rem; }
     .visually-hidden { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
   </style>
         <style>
@@ -103,7 +101,7 @@
                         <span id="trustInfo" class="visually-hidden">... details ...</span>
                     </div>
                     <button class="btn btn-primary btn-lg mrgn-lft-sm" type="button" onclick="calculateTrust()" class="btn btn-primary">Submit Trust Dates</button>
-                    <div class="alert alert-info provisional mrgn-tp-lg mrgn-bttm-md" id="trustResults" aria-live="polite"></div>
+                    <div id="trustResults" aria-live="polite"></div>
   </form>
                 </div>
 
@@ -230,6 +228,7 @@
       const reporting = addMonths(filing, 12);
 
       document.getElementById("trustResults").innerHTML = `
+      <span class="alert alert-info provisional mrgn-tp-lg mrgn-bttm-md">
         <p class="text-muted small">Based on your selection</p>
         <h4>Your dates are:</h4>
 
@@ -240,7 +239,7 @@
           <ul class="fa-ul mrgn-bttm-md">
             <li><span class="far fa-calendar-alt fa-li text-muted"></span> Your SR&amp;ED  reporting deadline is: <strong><span class='example'>${formatDateUTC(reporting)}</span></strong><br><span class="small">(12 months after your tax filing due date)</span></li>
             </ul>    
-        </div>
+        </div></span>
       `;
     }
 
