@@ -42,6 +42,8 @@
 	td > div.range {
 		display: flex;
 		flex-direction: column-reverse;
+		font-size: 22px;
+		position: relative;
 		padding: 0px 20px;
 		text-align: center;
 	}
@@ -54,6 +56,20 @@
 		width: 50px;
 		writing-mode: vertical-lr;
 		transform:scaleY(-1);
+	}
+	.infinite-append::after {
+		font-size: 16px;
+		line-height: 1;
+		margin-left: 4px;
+		max-width: 50px;
+		position: absolute;
+		white-space: break-spaces;
+	}
+	html:lang(en) .infinite-append::after {
+		content: "and over";
+	}
+	html:lang(fr) .infinite-append::after {
+		content: "et plus";
 	}
 	@-moz-document url-prefix() {
 		td > div.range meter {
@@ -752,10 +768,6 @@
 			en: "to",
 			fr: "à"
 		},
-		dataHiddenAndUp: {
-			en: "and up",
-			fr: "et plus"
-		},
 		dataSliderRange: {
 			en: "Range slider (increments of $2,000): $0 to ",
 			fr: "Curseur de plage (incréments de 2 000 $) : 0 à "
@@ -1061,7 +1073,7 @@ let previousTaxValues = { federal: [], province: [] };
 			const endDiv = document.createElement("div");
 			endDiv.className = "nowrap";
 			if (threshold === Infinity) {
-				endDiv.innerHTML = `${formatCurrency(maxIncome)}<span class="glyphicon glyphicon-arrow-up"><span class="tbl-hidden"> ${langToggle.dataHiddenAndUp[pagelang]}</span></span>`;
+				endDiv.innerHTML = `<span class="infinite-append">${formatCurrency(maxIncome)}</span>`;
 			} else {
 				endDiv.innerHTML = formatCurrency(threshold);
 			};
