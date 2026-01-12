@@ -135,7 +135,7 @@
                   <div class="wb-fieldflow-sub" data-wb-fieldflow='{"reset": {"action": "addClass", "source": ".alert-result", "class": "hidden"}, "base": {"noForm": true, "isoptional": true,  "live": true}}'>
                     <div class="wb-fieldflow-header">
                       <p class="wb-fieldflow-label">Do you have exempt income under the Indian Act?</p>
-                      <details>
+                      <details class="mrgn-bttm-lg">
                         <summary>What is exempt income under the Indian Act</summary>
                         <p>If you are an individual who is registered or entitled to be registered under the Indian Act, your personal property, including income, is exempt from tax when it is situated on a reserve.</p>
                         <p>For more information, refer to <a href="https://www.canada.ca/en/revenue-agency/services/indigenous-peoples/information-indians.html#hdng2">Tax exemption under section 87 of the Indian Act</a>.</p>
@@ -172,28 +172,30 @@
               </ul>
             </div>
             
-            <!--Appended question for age //-->
+            <!--Appended question for Age //-->
             <div class="wb-fieldflow-sub hidden" id="ques-age" data-wb-fieldflow='{"noForm": true, "isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "default": {"action": "addClass", "source": ".alert-result", "class": "hidden"}, "base": {"class": "hidden", "live": true}}'>
               <div class="wb-fieldflow-header">
                 <div class="mrgn-tp-xl"><!--Added for space under select/dropdown--></div>
                 <p class="wb-fieldflow-label">What was your age on December 31, 2025?</p>
               </div>
               <ul>
-                <li data-wb-fieldflow='[{"action": "append", "source": "#ques-dtc","isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "default": {"action": "addClass", "source": ".alert-result"}},{"action": "addClass", "source": "#income-verify>span:is(.over65yesDtc, .over65noDtc)"}, {"action": "removeClass", "source": "#income-verify>span:is(.under65yesDtc, .under65noDtc)"}, {"action": "addClass", "target": "yes-dtc", "source": "#income-verify>span.under65noDtc"}, {"action": "removeClass", "target": "yes-dtc", "source": "#income-verify>span.under65yesDtc"}, {"action": "addClass", "target": "no-dtc", "source": "#income-verify>span.under65yesDtc"}, {"action": "removeClass", "target": "no-dtc", "source": "#income-verify>span.under65noDtc"}]'>Under 65 years old </li>
-                <li data-wb-fieldflow='[{"action": "append", "source": "#ques-dtc","isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "default": {"action": "addClass", "source": ".alert-result"}},{"action": "addClass", "source": "#income-verify>span:is(.under65yesDtc, .under65noDtc)","class": "hidden"}, {"action": "removeClass", "source": "#income-verify>span:is(.over65yesDtc, .over65noDtc)"}, {"action": "addClass", "target": "yes-dtc", "source": "#income-verify>span.over65noDtc"}, {"action": "removeClass", "target": "yes-dtc", "source": "#income-verify>span.over65yesDtc"}, {"action": "addClass", "target": "no-dtc", "source": "#income-verify>span.over65yesDtc"}, {"action": "removeClass", "target": "no-dtc", "source": "#income-verify>span.over65noDtc"}]'>65 years or older </li>
+                <li data-wb-fieldflow='[{"action": "append", "source": "#ques-dtc", "default": {"action": "addClass", "source": ".alert-result"}},{"action": "addClass", "source": "#income-verify>span:is(.over65yesDtc, .over65noDtc)"}, {"action": "removeClass", "source": "#income-verify>span:is(.under65yesDtc, .under65noDtc)"}, {"action": "addClass", "target": "yes-dtc", "source": "#income-verify>span.under65noDtc"}, {"action": "removeClass", "target": "yes-dtc", "source": "#income-verify>span.under65yesDtc"}, {"action": "addClass", "target": "no-dtc", "source": "#income-verify>span.under65yesDtc"}, {"action": "removeClass", "target": "no-dtc", "source": "#income-verify>span.under65noDtc"}]'>Under 65 years old </li>
+                <li data-wb-fieldflow='[{"action": "append", "source": "#ques-dtc", "default": {"action": "addClass", "source": ".alert-result"}},{"action": "addClass", "source": "#income-verify>span:is(.under65yesDtc, .under65noDtc)","class": "hidden"}, {"action": "removeClass", "source": "#income-verify>span:is(.over65yesDtc, .over65noDtc)"}, {"action": "addClass", "target": "yes-dtc", "source": "#income-verify>span.over65noDtc"}, {"action": "removeClass", "target": "yes-dtc", "source": "#income-verify>span.over65yesDtc"}, {"action": "addClass", "target": "no-dtc", "source": "#income-verify>span.over65yesDtc"}, {"action": "removeClass", "target": "no-dtc", "source": "#income-verify>span.over65noDtc"}]'>65 years or older </li>
               </ul>
             </div>
             
-            <!--OAS question //-->
+            <!--Appended question for DTC //-->
             <div class="wb-fieldflow-sub hidden" data-wb-fieldflow='{"noForm": true, "isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "base": { "class": "hidden","live": true}, "default": {"action": "addClass", "source": ".alert-result", "class": "hidden"}}' id="ques-dtc">
               <div class="wb-fieldflow-header">
                 <p class="wb-fieldflow-label">Did you receive the Disability Tax credit (DTC) in 2025?</p>
               </div>
               <ul>
-                <li id="yes-dtc" data-wb-fieldflow='[{"action": "append", "source": "#ques-source","isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "reset": {"action": "addClass", "source": ".alert-result", "class": "hidden"}}]'>Yes</li>
-                <li id="no-dtc" data-wb-fieldflow='[{"action": "append", "source": "#ques-source","isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "reset": {"action": "addClass", "source": ".alert-result", "class": "hidden"}}]'>No</li>
+                <li id="yes-dtc" data-wb-fieldflow='[{"action": "append", "source": "#ques-source"}]'>Yes</li>
+                <li id="no-dtc" data-wb-fieldflow='[{"action": "append", "source": "#ques-source"}]'>No</li>
               </ul>
             </div>
+
+			<!--Appended questions after DTC //-->  
             <div class="wb-fieldflow-sub hidden" data-wb-fieldflow='{"noForm": true, "isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "default": {"action": "addClass", "source": ".alert-result", "class": "hidden"},"attributes": {"aria-describedby": "ques-source-desc"}}' id="ques-source">
               <div class="wb-fieldflow-header">
                 <p class="wb-fieldflow-label">Did you earn income from the following sources in 2025?</p>
@@ -203,24 +205,20 @@
                 </div>
               </div>
               <ul>
-                <li data-wb-fieldflow='[{"action": "addClass", "source": ".alert-result, #has-no-income", "class": "hidden", "live": true}]'>Yes, I earned income from one or more of the above sources
-                  <div class="wb-fieldflow-sub hidden" id="ques-verify" data-wb-fieldflow='{"noForm": true, "isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "reset": {"action": "addClass", "source": ".alert-result", "class": "hidden"}, "attributes": {"aria-describedby": "ques-verify-desc"}}'>
+                <li>Yes, I earned income from one or more of the above sources
+                  <div class="wb-fieldflow-sub hidden" id="ques-verify" data-wb-fieldflow='{"noForm": true, "isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "default": {"action": "addClass", "source": ".alert-result", "class": "hidden"}, "attributes": {"aria-describedby": "ques-verify-desc"}}'>
                     <div class="wb-fieldflow-header">
                       <p class="wb-fieldflow-label">Was the income you earned from these sources under the following amount in 2025?</p>
-                      <div id="ques-verify-desc" class="brdr-tp brdr-bttm brdr-lft brdr-rght px-2 py-2 max-content mrgn-bttm-lg">
+                      <div id="ques-verify-desc" class="panel panel-default panel-body max-content mrgn-bttm-lg">
                         <p class="mrgn-bttm-0"><strong id="income-verify">$0</strong></p>
                       </div>
-                      <details class="mrgn-bttm-lg hidden" id="ques-verify-desc-exhide">
-                        <summary aria-labelledby="ques-verify-desc ques-verify-details"  id="ques-verify-details">What is taxable income</summary>
-                        <p>Details added or ajax'd to here</p>
-                      </details>
                     </div>
                     <ul>
-                      <li data-wb-fieldflow='{"action": "addClass", "source": ".alert-result", "class": "hidden", "live": true}'>Yes
-                        <div class="wb-fieldflow-sub" data-wb-fieldflow='{"noForm": true, "isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "reset": {"action": "addClass", "source": ".alert-result", "class": "hidden", "live": true}}'>
+                      <li>Yes
+                        <div class="wb-fieldflow-sub" data-wb-fieldflow='{"noForm": true, "isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "default": {"action": "addClass", "source": ".alert-result", "class": "hidden", "live": true}}'>
                           <p>Did you earn income from other sources?</p>
                           <ul>
-                            <li data-wb-fieldflow='{"action": "append", "source": "#ques-secondsource"}'>Yes </li>
+                            <li data-wb-fieldflow='[{"action": "append", "source": "#ques-secondsource"}]'>Yes </li>
                             <li data-wb-fieldflow='[{"action": "append", "source": "#ques-bcd", "isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "reset": [{"action": "addClass", "source": ".alert-result", "class": "hidden", "live": true}]}]'>No</li>
                           </ul>
                         </div>
@@ -244,7 +242,7 @@
                           <div class="wb-fieldflow-header">
                             <p class="wb-fieldflow-label">Are you planning to claim any benefits, credits, or deductions from the list provided?</p>
                             <details class="mrgn-bttm-lg gc-font-2019">
-                              <summary>Benefits, credits, and deductions you can claim using SimpleFile</summary>
+                              <summary>These are the benefits, credits, and deductions you can claim using SimpleFile</summary>
                               <dl class="dl-horizontal mrgn-tp-md">
                                 <div data-ajax-replace="#ajax-bcd-list>"></div>
                                 <dt><span class="prov-benefits-dt">Province here</span> <br>
@@ -286,7 +284,7 @@
                                             <div class="wb-fieldflow-header">
                                               <p class="wb-fieldflow-label">Have you had to repay amounts to a specific government program?</p>
                                               <details class="mrgn-bttm-lg">
-                                                <summary>Specific programs</summary>
+                                                <summary>What are the specific programs</summary>
                                                 <ul>
                                                   <li><a href="https://www.canada.ca/en/revenue-agency/services/payments/payments-cra/individual-payments/repay-covid-benefits.html">Federal COVID-19 benefits received from 2020 to 2022</a></li>
                                                   <li><a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/what-home-buyers-plan.html">Home Buyer’s Plan</a></li>
@@ -339,14 +337,13 @@
                     </ul>
                   </div>
                 </li>
-                <li data-wb-fieldflow='[{"action": "append", "source": "#ques-bcd", "isoptional": true, "gcChckbxrdio":true, "renderas":"radio", "reset": [{"action": "addClass", "source": ".alert-result", "class": "hidden", "live": true}]}]'>I have no income</li>
+                <li data-wb-fieldflow='[{"action": "append", "source": "#ques-bcd"}]'>I have no income</li>
               </ul>
             </div>
           </form>
         </div>
         
-        <!--Appended statements //-->
-        
+        <!--Results //-->
         <div id="answers" aria-live="polite"> 
           
           <!--Can apply-->
@@ -374,6 +371,8 @@
             </details>
             <div data-ajax-replace="#ajax-web-form"></div>
           </div>
+
+		<!--Cannot apply //-->	
           <div id="result-noteligible" class="alert alert-warning hidden alert-result">
             <p class="text-muted small">Based on your selections above:</p>
             <h3 class="mrgn-tp-0">You are not eligible to use SimpleFile Digital</h3>
