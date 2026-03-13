@@ -324,12 +324,13 @@
 
     <h2>Complete the web form</h2>
 		
-      <p>Complete and submit the following web form if you are either an existing SR&ED claimant in good standing with CRA, or a new SR&ED claimant.</p>
+      <p>You can request a case number if you are either an existing SR&ED claimant in good standing with CRA, or a new SR&ED claimant.</p>
 		<br>
 <div class="wb-tabs">
 	<div class="tabpanels">
 		<details id="existing">
 			<summary>Existing SR&ED claimant</summary>
+			<br>
 			<p>Complete and submit the following web form if you are an existing SR&ED claimant in good standing with the CRA.</p>
   <details>
             <summary>Privacy notice</summary>
@@ -341,11 +342,13 @@
                 <input id="emailTemplateSC" name="emailTemplate" type="hidden" value="cra-arc/request-case-number-en"> <input type="hidden" name="language" value="eng">
                 <div class="form-group"><label for="firstname" class="required"><span class="field-name">First name of contact</span> <strong class="required">(required)</strong></label><input class="form-control" data-rule-minlength="2" id="firstname" name="firstname" pattern=".{2,}" type="text"></div>
                 <div class="form-group"><label for="lastname" class="required"><span class="field-name">Last name of contact</span> <strong class="required">(required)</strong></label><input class="form-control" data-rule-minlength="2" id="lastname" name="lastname" pattern=".{2,}" type="text"></div>
-                <div class="form-group"><label for="businessname" class="required"><span class="field-name">Business name</span> <strong class="required">(required)</strong></label>
+               
+				   <div class="form-group"><label for="businessnumber" class="required"><span class="field-name">Business number (BN)</span> <strong class="required">(required)</strong></label><input class="form-control" data-rule-minlength="2" id="businessnumber" name="businessnumber" pattern=".{2,}" type="text"></div>
+				<div class="form-group"><label for="businessname" class="required"><span class="field-name">Business name</span> <strong class="required">(required)</strong></label>
                     <p>The business name must be the same as the name used on the income tax return of the business.</p>
                     <input class="form-control" data-rule-minlength="2" id="businessname" name="businessname" pattern=".{2,}" type="text">
                 </div>
-                <div class="form-group"><label for="businessnumber" class="required"><span class="field-name">Business number (BN)</span> <strong class="required">(required)</strong></label><input class="form-control" data-rule-minlength="2" id="businessnumber" name="businessnumber" pattern=".{2,}" type="text"></div>
+             
                 <div class="form-group"><label for="location" class="required"><span class="field-name">Region where your business is located</span> <strong class="required">(required)</strong></label> <select class="form-control" id="location" name="location" autocomplete="honorific-prefix">
                         <option label="Select a province or territory"></option>
                         <option value="Alberta">Alberta</option>
@@ -362,13 +365,13 @@
                         <option value="Saskatchewan">Saskatchewan</option>
                         <option value="Yukon">Yukon</option>
                     </select></div>
-				  <div class="form-group"><label for="location" class="required"><span class="field-name">Do you want the CRA to contact you?</span> <strong class="required">(required)</strong></label> <select class="form-control" id="location" name="location" autocomplete="honorific-prefix">
+				  <div class="form-group"><label for="location" class="required"><span class="field-name">Do you want the CRA to phone the contact named above?</span> <strong class="required">(required)</strong></label> <select class="form-control" id="location" name="location" autocomplete="honorific-prefix">
                         <option label="Select an option"></option>
                         <option value="yescall">Yes</option>
                         <option value="nocall">No</option>
                        
                     </select></div>
-                <div class="form-group"><label for="tel1"><span class="field-name">Phone number and area code</span></label>
+                <div class="form-group"><label for="tel1"><span class="field-name">Phone number and area code</span> (if applicable)</label>
                     <p>Required if you want the <abbr title="Canada Revenue Agency">CRA</abbr> to reach the contact named above</p>
                     <input class="form-control" id="tel1" name="tel1" type="tel" autocomplete="tel" data-rule-phoneus="true">
                 </div>
@@ -386,7 +389,7 @@
         </div>
 <h2 class="h3">[Heading]</h2>
 
- <p>The CRA will review the web form and contact you <strong>within 2 weeks</strong> through your <strong>My Business Account</strong> to either:</p>
+ <p>The CRA will review the web form and contact you <strong>within 2 business days</strong> through your <strong>My Business Account</strong> to either:</p>
         <ul class="list-unstyled cnjnctn-type-or cnjnctn-xs">
             <li class="cnjnctn-col">
                 <p>Give you a case number and further instructions to apply for pre-claim approval</p>
@@ -403,6 +406,7 @@
 
 		<details id="new">
 			<summary>New SR&ED claimant</summary>
+			<br>
 <p>Complete and submit the following web form if you are a new SR&ED claimant.</p>
   <details>
             <summary>Privacy notice</summary>
@@ -435,7 +439,9 @@
                         <option value="Saskatchewan">Saskatchewan</option>
                         <option value="Yukon">Yukon</option>
                     </select></div>
-				<div class="form-group"><label for="businessnumber"><span class="field-name">Business number (BN)</span> (if applicable)</label><input class="form-control" data-rule-minlength="2" id="businessnumber" name="businessnumber" pattern=".{2,}" type="text"></div>
+				<div class="form-group"><label for="businessnumber"><span class="field-name">Business number (BN)</span></label>
+			<p>Required if you have obtained a business number</p>
+					<input class="form-control" data-rule-minlength="2" id="businessnumber" name="businessnumber" pattern=".{2,}" type="text"></div>
                 <div class="form-group"><label for="tel1" class="required"><span class="field-name">Phone number and area code</span> <strong class="required">(required)</strong></label>
                     <p>The phone number where the <abbr title="Canada Revenue Agency">CRA</abbr> can reach the contact named above</p>
                     <input class="form-control" id="tel1" name="tel1" type="tel" autocomplete="tel" data-rule-phoneus="true">
@@ -454,7 +460,7 @@
         </div>
 <h2 class="h3">[Heading]</h2>
 
- <p>The CRA will review the web form and contact you <strong>within 2 weeks</strong> through your <strong>My Business Account</strong> to either:</p>
+ <p>The CRA will review the web form and contact you <strong>within 5 business days</strong> by <strong>phone</strong> to either:</p>
         <ul class="list-unstyled cnjnctn-type-or cnjnctn-xs">
             <li class="cnjnctn-col">
                 <p>Give you a case number and further instructions to apply for pre-claim approval</p>
@@ -508,7 +514,7 @@
 	</div>
     
 <gcds-date-modified>
-	2026-03-11
+	2026-03-13
 </gcds-date-modified>
 
 
