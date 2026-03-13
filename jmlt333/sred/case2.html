@@ -324,16 +324,16 @@
 
     <h2>Complete the web form</h2>
 		
-        <details>
-            <summary>Privacy notice</summary>
-            <p>Under the <a href="https://laws-lois.justice.gc.ca/eng/acts/P-21/FullText.html">Privacy Act</a>, individuals have a right of protection, access to and correction of their personal information and to file a complaint with the Privacy Commissioner of Canada regarding our handling of their personal information. Personal information is collected pursuant to subsections 37(1), 37(11), and 162(5.1) of the Income Tax Act and is used for the administration of the Scientific Research and Experimental Development (SR&amp;ED) program requirements. Information may also be used to inform the provision of services by the SR&amp;ED Program. For more detail, refer to Personal Information Bank CRA PPU 441 in the Canada Revenue Agency (CRA) <a href="https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra/access-information-privacy-canada-revenue-agency/information-programs-information-holdings-appendix.html#PPU441">Information about Programs and Information Holdings - Personal Information Banks - Canada.ca</a>.</p>
-        </details>
+      <p>Complete the following web form if you are either an existing SR&ED claimant in good standing with CRA, or a new SR&ED claimant.</p>
 		<br>
 <div class="wb-tabs">
 	<div class="tabpanels">
 		<details id="existing">
-			<summary>Existing SR&ED claimant in good standing with CRA</summary>
-
+			<summary>Existing SR&ED claimant</summary>
+  <details>
+            <summary>Privacy notice</summary>
+            <p>Under the <a href="https://laws-lois.justice.gc.ca/eng/acts/P-21/FullText.html">Privacy Act</a>, individuals have a right of protection, access to and correction of their personal information and to file a complaint with the Privacy Commissioner of Canada regarding our handling of their personal information. Personal information is collected pursuant to subsections 37(1), 37(11), and 162(5.1) of the Income Tax Act and is used for the administration of the Scientific Research and Experimental Development (SR&amp;ED) program requirements. Information may also be used to inform the provision of services by the SR&amp;ED Program. For more detail, refer to Personal Information Bank CRA PPU 441 in the Canada Revenue Agency (CRA) <a href="https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra/access-information-privacy-canada-revenue-agency/information-programs-information-holdings-appendix.html#PPU441">Information about Programs and Information Holdings - Personal Information Banks - Canada.ca</a>.</p>
+        </details>
 
         <div class="wb-frmvld mrgn-tp-lg">
             <form action="/gc/services/generateemail" method="post" class="wb-postback" data-wb-postback="{&quot;success&quot;:&quot;.success-message&quot;}">
@@ -361,7 +361,13 @@
                         <option value="Saskatchewan">Saskatchewan</option>
                         <option value="Yukon">Yukon</option>
                     </select></div>
-                <div class="form-group"><label for="tel1" class="required"><span class="field-name">Phone number and area code</span> <strong class="required">(required)</strong></label>
+				  <div class="form-group"><label for="location" class="required"><span class="field-name">Do you want the CRA to contact you?</span> <strong class="required">(required)</strong></label> <select class="form-control" id="location" name="location" autocomplete="honorific-prefix">
+                        <option label="Select an option"></option>
+                        <option value="yescall">Yes</option>
+                        <option value="nocall">No</option>
+                       
+                    </select></div>
+                <div class="form-group"><label for="tel1"><span class="field-name">Phone number and area code</span> (optional)</label>
                     <p>The phone number where the <abbr title="Canada Revenue Agency">CRA</abbr> can reach the contact named above</p>
                     <input class="form-control" id="tel1" name="tel1" type="tel" autocomplete="tel" data-rule-phoneus="true">
                 </div>
@@ -369,6 +375,7 @@
                     <p>Another phone number where the <abbr title="Canada Revenue Agency">CRA</abbr> can reach the contact named above</p>
                     <input class="form-control" data-rule-phoneus="true" id="tel2" name="tel2" type="tel">
                 </div>
+				
                 <input type="submit" value="Submit" class="btn btn-primary"><input type="reset" value="Reset" class="btn btn-default">
             </form>
             <section class="alert alert-success mrgn-tp-lg success-message hide">
@@ -376,9 +383,9 @@
                 <p>You have successfully submitted your request for a SR&amp;ED pre-claim approval case number.</p>
             </section>
         </div>
-<h2 class="h3">Heading</h2>
+<h2 class="h3">[Heading]</h2>
 
- <p>The CRA will review the web form and contact you through your <strong>My Business Account</strong> to either:</p>
+ <p>The CRA will review the web form and contact you <strong>within 2 weeks</strong> through your <strong>My Business Account</strong> to either:</p>
         <ul class="list-unstyled cnjnctn-type-or cnjnctn-xs">
             <li class="cnjnctn-col">
                 <p>Give you a case number and further instructions to apply for pre-claim approval</p>
