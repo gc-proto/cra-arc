@@ -1,0 +1,53 @@
+{%- if i18nText-lang == "fr" -%}
+<!-- DÉBUT de la section des modèles GitHub seulement -->
+{%- elsif i18nText-lang == "en" -%}
+<!-- START of GitHub only template section -->
+{%- endif -%}
+<data id="devoptions" {% if site.devOptionsLocStore !=nil and site.devOptionsLocStore !="" %} data-loc-storage="{{ site.devOptionsLocStore }}" {% endif %} value="{{ site.developerOptions }}"></data>
+<data id="exitpage" {% if site.exitByURL !=nil and site.exitByURL !="" %} data-exit-by-url="{{ site.exitByURL }}" {% endif %}{% if site.modifiedLinkList !=nil and site.modifiedLinkList !="" %} data-mod-link-file="{{ site.modifiedLinkList }}" {% endif %} value="{% if page.exitPage != nil and page.exitPage != "" %}{{ page.exitPage }}{% elsif site.exitPage[page.lang] != nil and site.exitPage[page.lang] != "" %}{{ site.exitPage[page.lang] }}{% endif %}"></data>
+<data id="relextlnk" data-origin="{{ site.externalOrigin }}" value="{{ site.relativeExternalLinks }}"></data>
+{% if page.testBanner == true or site.testBanner == true and page.testBanner != false %}
+{% if page.notedlinks != nil %}<data id="notedlinks" value="[{%- for source in page.notedlinks -%}{%- if source.title != "" and source.link != "" -%}{% if forloop.first == false %}, {% endif %}&lcub;&quot;sourcelink&quot;: &quot;{{ source.link }}&quot;, &quot;sourcetitle&quot;: &quot;{{ source.title }}&quot;&rcub;{%- endif -%}{%- endfor -%}]"></data>{% endif %}
+{% if page.keywords != nil and page.keywords != "" %}<data id="pageKeywords" value="{{ page.keywords }}"></data>{% endif %}
+<div id="site-banner-inc" class="wb-disable-allow" data-ajax-replace="https://proto-cra.github.io/core-prototype/source/includes/site-banner-{%- if i18nText-lang == " fr" -%}f{%- elsif i18nText-lang=="en" -%}e{%- endif -%}.inc"></div>
+{% endif %}
+{%- if i18nText-lang == "fr" -%}
+<!-- FIN de la section des modèles GitHub seulement -->
+{%- elsif i18nText-lang == "en" -%}
+<!-- END of GitHub only template section -->
+{%- endif -%}
+<header>
+    <div id="wb-bnr" class="container">
+        <div class="row">
+            {% if page.altLangPage %}
+            {% include language/languagetoggle.html %}
+            {% endif %}
+            {% include headers-includes/brand.html %}
+            {% unless page.nositesearch or layout.nositesearch %}
+            {% include headers-includes/sitesearch.html %}
+            {% endunless %}
+        </div>
+    </div>
+    {% unless page.layout == "application" %}
+    <hr>
+    <div class="container">
+        <div class="row">
+            {%- unless page.nomenu -%}
+            <div class="col-md-8">
+                {% include gcweb-menu/sitemenu.html %}
+            </div>
+            {%- endunless -%}
+            {%- assign colSo = "col-xs-6 col-xs-offset-6 col-md-offset-0 col-md-4" -%}
+            {%- if page.nomenu -%}
+            {%- assign colSo = "col-xs-12" -%}
+            {%- endif -%}
+            {%- if page.auth -%}
+            <div class="{{ colSo }}">
+                {% include authentication/authentication.html %}
+            </div>
+            {%- endif -%}
+        </div>
+    </div>
+    {% endunless %}
+    {% include breadcrumbs/breadcrumbs.html %}
+</header>

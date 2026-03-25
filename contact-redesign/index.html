@@ -1,0 +1,28 @@
+---
+testBanner: false
+title: "contact-redesign repository sitemap [GCWeb Jekyll pages]"
+dateModified: 2026-03-25
+dateIssued: 2026-03-25
+nositesearch: true
+nomenu: true
+breadcrumbs: false
+feedback: false
+share: false
+noFooterContextual: true
+noFooterCorporate: true
+noFooterMain: true
+---
+
+<div class="mrgn-tp-md">
+    <div class="row">
+        <ul class="toc lst-spcd col-md-12">
+            <li class="col-md-4 col-sm-6"><a class="list-group-item active" data-exit="false" href="https://github.com/cra-proto/contact-redesign/tree/main">GitHub repository</a></li>
+        </ul>
+    </div>
+</div>
+<ul>
+{% assign sitePages = site.pages | sort: "url" %}
+{% for p in sitePages %}
+    <li><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title | default: p.url }}</a></li>
+{% endfor %}
+</ul>
