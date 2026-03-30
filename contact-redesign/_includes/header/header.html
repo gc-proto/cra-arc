@@ -9,7 +9,7 @@
 {% if page.testBanner == true or site.testBanner == true and page.testBanner != false %}
 {% if page.notedlinks != nil %}<data id="notedlinks" value="[{%- for source in page.notedlinks -%}{%- if source.title != "" and source.link != "" -%}{% if forloop.first == false %}, {% endif %}&lcub;&quot;sourcelink&quot;: &quot;{{ source.link }}&quot;, &quot;sourcetitle&quot;: &quot;{{ source.title }}&quot;&rcub;{%- endif -%}{%- endfor -%}]"></data>{% endif %}
 {% if page.keywords != nil and page.keywords != "" %}<data id="pageKeywords" value="{{ page.keywords }}"></data>{% endif %}
-<div id="site-banner-inc" class="wb-disable-allow" data-ajax-replace="https://proto-cra.github.io/core-prototype/source/includes/site-banner-{%- if i18nText-lang == " fr" -%}f{%- elsif i18nText-lang=="en" -%}e{%- endif -%}.inc"></div>
+<div id="site-banner-inc" class="wb-disable-allow" data-ajax-replace="/cra-arc/source/includes/site-banner-{%- if i18nText-lang == " fr" -%}f{%- elsif i18nText-lang=="en" -%}e{%- endif -%}.inc"></div>
 {% endif %}
 {%- if i18nText-lang == "fr" -%}
 <!-- FIN de la section des modèles GitHub seulement -->
