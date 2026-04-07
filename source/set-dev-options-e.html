@@ -1,0 +1,66 @@
+---
+testBanner: false
+title: "Test banner developer options"
+dateModified: 2025-07-09
+dateIssued: 2025-07-09
+nomenu: true
+breadcrumbs: false
+feedback: false
+share: false
+noFooterContextual: true
+noFooterCorporate: true
+noFooterMain: true
+---
+
+<br>
+
+<p>Enabling will make the developer options visible on all pages that use the GitHub "testing purposes only" banner.</p>
+<ul class="btn-toolbar list-inline" role="toolbar">
+    <li class="btn-group">
+      <button id="dev_on" class="btn btn-default" type="button"><strong>On</strong></button>
+      <button id="dev_off" class="btn btn-default" type="button"><strong>Off</strong></button>
+    </li>
+    <li class="btn-group"><button id="dev_clear" class="btn btn-default" type="button"><strong>Clear</strong></button></li>
+</ul>
+<p>Current status: <strong><span id="devStatus">blank</span></strong></p>
+<br>
+<p>The following button will clear all localStorage for this domain.  This will clear the developer options as well as any page edit you may have saved within this domain.</p>
+<ul class="btn-toolbar list-inline" role="toolbar">
+    <li class="btn-group"><button id="dev_clearall" class="btn btn-default" type="button"><strong>Clear domain</strong></button></li>
+</ul>
+<script>
+    "use strict";
+
+    // Developer options ON button
+    document.getElementById("dev_on").addEventListener("click", function () {
+        localStorage.setItem("gitCRATemplateDevOptions", true);
+        document.getElementById("devStatus").innerHTML = "ON";
+    });
+
+    // Developer options OFF button
+    document.getElementById("dev_off").addEventListener("click", function () {
+        localStorage.setItem("gitCRATemplateDevOptions", false);
+        document.getElementById("devStatus").innerHTML = "OFF";
+    });
+
+    // Developer options CLEAR button
+    document.getElementById("dev_clear").addEventListener("click", function () {
+        localStorage.removeItem("gitCRATemplateDevOptions");
+        document.getElementById("devStatus").innerHTML = "blank";
+    });
+
+    // Developer options CLEAR button
+    document.getElementById("dev_clearall").addEventListener("click", function () {
+        localStorage.clear();
+    });
+
+  // Initalize the developer option status on the page
+    switch (localStorage.getItem("gitCRATemplateDevOptions")) {
+        case "true":
+            document.getElementById("devStatus").innerHTML = "ON";
+            break;
+        case "false":
+            document.getElementById("devStatus").innerHTML = "OFF";
+            break;
+    }
+</script>
