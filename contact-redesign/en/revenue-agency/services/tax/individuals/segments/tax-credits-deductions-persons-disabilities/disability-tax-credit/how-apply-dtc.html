@@ -60,31 +60,7 @@ notedlinks:
         <li><a href="#toc3">Check processing times</a></li>
     </ul>
 </nav>
-<script type="text/javascript">
-    //window.onload is needed otherwise it doesnot scan whole document but upto the component area only new version
-    window.onload = function() {
-        var hTags = ['H2','H2','H2','H2'];
-        var hText = ['Get ready to apply','Fill out the application','Submit the application','Check processing times'];
-        if(typeof hTags != 'undefined' && hTags != null){
-            for(var i = 0; i < hTags.length; i++){
-                var tags = document.querySelectorAll(hTags[i].toLowerCase());
-    if(typeof tags != 'undefined' && tags != null){
-                    for(var j = 0; j < tags.length; j++){
-                       // mws-1900 - the heading from texts contains contains text without backslash before appostraphy, where as tags returned by query selector does not contain them
-                        // hence removing backslash for creating equal comparison in order to add id reference
-                        if(tags[j].textContent.trim() === hText[i].replace(/\\/g, '')) {
-    			if(!tags[j].id) {
-    				tags[j].setAttribute('id', 'toc'+i);
-    				break;
-    			}
-                        }
-                    }
-                }
-            }
-        }
-    };
-</script>
-        <h2>Get ready to apply</h2>
+        <h2 id="toc0">Get ready to apply</h2>
         <p>Applying for the DTC involves the person who has the impairment and a medical practitioner who can certify the effects of the impairment.</p>
         <h3>Find a medical practitioner to certify your impairment</h3>
         <table class="table mrgn-tp-md">
@@ -137,7 +113,7 @@ notedlinks:
         <h3>Decide who is claiming the credit</h3>
         <p>If you intend to split or transfer the credit, it will save you time to include the supporting family member information in Part A question 2 of the DTC application.</p>
         <p>For more details see, <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/claiming-dtc.html">Transferring the credit</a>.</p>
-        <h2>Fill out the application</h2>
+        <h2 id="toc1">Fill out the application</h2>
         <p>You may apply for the DTC using the digital form or the printed paper form. <strong>Choose 1 method to apply:</strong></p>
         <section class="alert alert-warning mrgn-bttm-lg">
             <p>If you already applied using the paper form, do not&nbsp;apply again using the digital form. This will delay your application.</p>
@@ -337,9 +313,8 @@ notedlinks:
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-8">
-        <h2>Submit the application</h2>
+
+        <h2 id="toc2">Submit the application</h2>
         <p>There are 2 ways to submit a completed Form T2201,<em> Disability Tax Credit Certificate</em>, and any related documents to the CRA.</p>
         <dl class="dl-horizontal brdr-0 mrgn-bttm-sm">
             <dt>Online</dt>
@@ -380,7 +355,7 @@ notedlinks:
                 </details>
             </dd>
         </dl>
-        <h2><span class="far fa-clock mrgn-rght-sm"></span>Check processing times</h2>
+        <h2 id="toc3"><span class="far fa-clock mrgn-rght-sm"></span>Check processing times</h2>
         <p>Select the “Show targeted processing times” button to find the current processing time for DTC applications.</p>
         <button
             class="btn btn-primary btn-lg mrgn-bttm-md"
@@ -433,34 +408,3 @@ notedlinks:
             </ul>
         </nav>
 
-<script>
-
-    //window.onload is needed otherwise it doesnot scan whole document but upto the component area only new version
-    window.onload = function() {
-
-        var hTags = ['H2','H2','H2','H2'];
-        var hText = ['Get ready to apply','Fill out the application','Submit the application','Check processing times'];
-
-        if(typeof hTags != 'undefined' && hTags != null){
-            for(var i = 0; i < hTags.length; i++){
-                var tags = document.querySelectorAll(hTags[i].toLowerCase());
-                
-				if(typeof tags != 'undefined' && tags != null){
-                    for(var j = 0; j < tags.length; j++){
-                       // mws-1900 - the heading from texts contains contains text without backslash before appostraphy, where as tags returned by query selector does not contain them
-                        // hence removing backslash for creating equal comparison in order to add id reference
-                        if(tags[j].textContent.trim() === hText[i].replace(/\\/g, '')) {
-							if(!tags[j].id) {
-								tags[j].setAttribute('id', 'toc'+i);
-								break;
-							}
-                        }
-                    }
-                }
-            }
-        }
-
-    };
-
-
-</script>
