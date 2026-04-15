@@ -237,7 +237,77 @@ notedlinks:
                                     </ul>
                                 </div>
                                 <div data-ajax-replace="https://www.canada.ca/content/canadasite/en/revenue-agency/corporate/contact-information/check-cra-processing-times.html#datepicker-trbc-form-group" class="gc-font-2019"></div>
-                                <div data-ajax-replace="https://www.canada.ca/content/canadasite/en/revenue-agency/corporate/contact-information/check-cra-processing-times.html#buttons"></div>
+                                <button class="btn btn-primary btn-lg mrgn-bttm-md hidden" type="button" id="calculate17" data-wb-doaction='[
+{"action": "removeClass", "source": "#panel-1-trbc", "class": "hidden" },{"action": "addClass", "source": "#cra-processing-times", "class": "col-md-7" },
+{"action": "loadJSON", "source": "#smallLoader", "url": "https://www.canada.ca/content/dam/cra-arc/includes/chck-cr-prcssng-tms/extract_Benefits_E.json" },
+{
+    "action": "patch", "source": "#smallLoader",
+    "patches" : [
+        {
+        "op": "copy",
+        "path": "/phrase1",
+        "from": "/Benefit_Applications_digital/noDate/0"
+        },
+        {
+        "op": "copy",
+        "path": "/phrase2",
+        "from": "/Benefit_Applications_digital/noDate/1"
+        },
+        {
+        "op": "copy",
+        "path": "/date",
+        "from": "/Benefit_Applications_digital/noDate/2"
+        }
+] }
+]'>Show targeted processing time</button>
+<button class="btn btn-primary btn-lg mrgn-bttm-md hidden" type="button" id="calculate18" data-wb-doaction='[
+{"action": "removeClass", "source": "#panel-1-trbc", "class": "hidden" },
+{"action": "addClass", "source": "#cra-processing-times", "class": "col-md-7" },
+{"action": "loadJSON", "source": "#smallLoader", "url": "https://www.canada.ca/content/dam/cra-arc/includes/chck-cr-prcssng-tms/extract_Benefits_E.json" },
+{
+    "action": "patch", "source": "#smallLoader",
+    "patches" : [
+        {
+        "op": "copy",
+        "path": "/phrase1",
+        "from": "/Benefit_Applications_-_ABA_/noDate/0"
+        },
+        {
+        "op": "copy",
+        "path": "/phrase2",
+        "from": "/Benefit_Applications_-_ABA_/noDate/1"
+        },
+        {
+        "op": "copy",
+        "path": "/date",
+        "from": "/Benefit_Applications_-_ABA_/noDate/2"
+        }
+] }
+]'>Show targeted processing time</button>
+<button class="btn btn-primary btn-lg mrgn-bttm-md hidden" type="button" id="calculate19" data-wb-doaction='[
+{"action": "removeClass", "source": "#panel-1-trbc", "class": "hidden" },
+{"action": "addClass", "source": "#cra-processing-times", "class": "col-md-7" },
+{"action": "loadJSON", "source": "#smallLoader", "url": "https://www.canada.ca/content/dam/cra-arc/includes/chck-cr-prcssng-tms/extract_Benefits_E.json" },
+{
+    "action": "patch", "source": "#smallLoader",
+    "patches" : [
+        {
+        "op": "copy",
+        "path": "/phrase1",
+        "from": "/Benefit_Applications_paper/noDate/0"
+        },
+        {
+        "op": "copy",
+        "path": "/phrase2",
+        "from": "/Benefit_Applications_paper/noDate/1"
+        },
+        {
+        "op": "copy",
+        "path": "/date",
+        "from": "/Benefit_Applications_paper/noDate/2"
+        }
+] }
+]'>Show targeted processing time</button>
                                 <div
                                     id="smallLoader"
                                     data-wb-jsonmanager='{
