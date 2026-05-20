@@ -215,7 +215,7 @@
 
             // A safe way to replace placeholders
             return title.replace( /\${(\w+)}/g, function(match, key) {
-                return data[key] || match;
+                return data[key];
             } );
         }, 
         /**
@@ -368,7 +368,7 @@
                     } else {
                         datalistVal = parseFloat( datalistOption.value );
                     }
-                    if ( Object.prototype.hasOwnProperty.call( datalistOption, "label" ) === true && datalistOption.label !== "" ) {
+                    if ( datalistOption.getAttribute("label") !== null && datalistOption.label !== "" ) {
                         optionKey = datalistVal + "|" + datalistOption.label;
                     } else {
                         optionKey = datalistVal;
