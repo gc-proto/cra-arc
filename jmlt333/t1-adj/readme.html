@@ -270,7 +270,54 @@
 
     <h1 id="wb-cont">T1-ADJ T1 Adjustment Request</h1>
 
-<p>Intro text to ReadMe page</p>
+<p>Individuals making a paper request to change a personal income tax return can use this form to make an adjustment.</p>
+
+<ul class="list-unstyled cnjnctn-type-or cnjnctn-md">
+    <li class="cnjnctn-col">
+      <h3>Online request</h3>
+      <p class="mrgn-tp-md"><span class="far fa-clock mrgn-rght-sm fa-lg"></span><strong>Processing time:</strong> Within 2 weeks</p>
+    </li>
+    <li class="cnjnctn-col">
+      <h3>Request by mail</h3>
+      <p class="mrgn-tp-md"><span class="far fa-clock mrgn-rght-sm fa-lg"></span><strong>Processing time:</strong> Within 8 weeks from receiving the request</p>
+      <button class="btn btn-primary btn-lg mrgn-bttm-md" type="button" data-wb-doaction="[
+{&quot;action&quot;: &quot;removeClass&quot;, &quot;source&quot;: &quot;#panel-1-trbc, #panel-2-trbc, #servicename4, #note2-pap, #monthly&quot;, &quot;class&quot;: &quot;hidden&quot; },
+{&quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#smallLoader&quot;, &quot;url&quot;: &quot;/content/dam/cra-arc/includes/chck-cr-prcssng-tms/extract_Tax_Returns_E.json&quot; },
+{
+    &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#smallLoader&quot;,
+    &quot;patches&quot; : [
+        {
+        &quot;op&quot;: &quot;copy&quot;,
+        &quot;path&quot;: &quot;/phrase1&quot;,
+        &quot;from&quot;: &quot;/T1_Adjustment_requests_paper/noDate/0&quot;
+        },
+        {
+        &quot;op&quot;: &quot;copy&quot;,
+        &quot;path&quot;: &quot;/phrase2&quot;,
+        &quot;from&quot;: &quot;/T1_Adjustment_requests_paper/noDate/1&quot;
+        },
+        {
+        &quot;op&quot;: &quot;copy&quot;,
+        &quot;path&quot;: &quot;/date&quot;,
+        &quot;from&quot;: &quot;/T1_Adjustment_requests_paper/noDate/2&quot;
+        }
+] }
+]">Show targeted processing time</button>
+    </li>
+  </ul>
+  <div id="smallLoader" data-wb-jsonmanager="{
+&quot;name&quot;: &quot;jsonsmall&quot;,
+&quot;wait&quot;: true
+}"></div>
+  <div aria-live="polite">
+    <div data-ajax-replace="/content/canadasite/en/revenue-agency/corporate/contact-information/check-cra-processing-times.html#overlays"></div>
+    <div data-ajax-replace="/content/canadasite/en/revenue-agency/corporate/contact-information/check-cra-processing-times.html#panel-1-trbc">
+      <p>Go to: <a href="/en/revenue-agency/corporate/contact-information/check-cra-processing-times.html">Check CRA processing times</a></p>
+    </div>
+  </div>
+
+
+
 
 				
 		
