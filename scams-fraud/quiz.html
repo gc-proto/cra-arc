@@ -22,7 +22,7 @@ feedback: False
     <p>Test your knowledge of common government scams and fraud with this quiz.</p>
     <p id="loading-quiz"><span class="fas fa-spinner fa-pulse mrgn-rght-sm"></span>Loading quiz&hellip;</p>
 <p id="start-quiz" class="hidden"><a href="#qq1-hdr" onclick="setTimeout(() => {document.querySelector('#qq1-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-call-to-action proceed-btn" data-wb-doaction='[{"action": "removeClass", "source": "#qq-1", "class": "hidden"},{"action": "addClass", "source": "#start-quiz", "class": "hidden"}]' role="button">Start quiz</a></p>
-
+<div aria-live="polite">
     <section id="qq-1" class="qq-section hidden">
         <h3 id="qq1-hdr">Question 1 of 10</h3>
         <div class="frmvld fieldflow-lg">
@@ -177,7 +177,7 @@ feedback: False
                 answer<span class="wb-inv"> for question 1</span></button>
             </form>
         </div>
-        <div aria-live="polite">
+       <!-- <div aria-live="polite">//-->
             <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q1-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q1-answer1"><span class="fas fa-check-circle mrgn-rght-sm"></span>That's correct</h4>
@@ -189,7 +189,7 @@ feedback: False
                     <p>The CRA will not send a link to your refund or an online form for you to fill out.</p>
                 </div>
             </div>
-        </div>
+       <!-- </div>//-->
         <p> <a href="#qq2-hdr" onclick="setTimeout(() => {document.querySelector('#qq2-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "removeClass", "source": "#qq-2", "class": "hidden"},{"action": "addClass", "source": "#qq-1 .proceed-btn", "class": "hidden"}]' role="button">Next question</a></p>
     </section>
     <section id="qq-2" class="qq-section hidden">
@@ -725,8 +725,11 @@ feedback: False
                 </div>
             </div>
         </div>
+
+    
         <p><a href="#results-hdr" onclick="setTimeout(() => {document.querySelector('#results-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-lg btn-primary proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": ".greetings, #quiz-status, .proceed-btn", "class": "hidden"}, {"action": "removeClass", "source": "#quiz-results, #qr-list:has(#qzt-0:not(.hidden),#qzt-1:not(.hidden),#qzt-2:not(.hidden),#qzt-3:not(.hidden))~#greeting-1, #qr-list:has(#qzt-4:not(.hidden),#qzt-5:not(.hidden),#qzt-6:not(.hidden))~#greeting-2, #qr-list:has(#qzt-7:not(.hidden),#qzt-8:not(.hidden),#qzt-9:not(.hidden))~#greeting-3, #qr-list:has(#qzt-10:not(.hidden))~#greeting-4", "class": "hidden"}]'>View your results</a></p>
     </section>
+                                        </div>
     <div id="results" aria-live="polite">
         <div id="quiz-results" class="panel panel-primary brdr-rds-0 mrgn-tp-xl hidden" role="region" aria-label="Results">
             <header class="panel-heading">
