@@ -20,49 +20,9 @@ feedback: False
 
 <h1 property="name" id="wb-cont">Quiz for scams and fraud</h1>
     <p>Test your knowledge of common government scams and fraud with this quiz.</p>
-<div id="results">
-        <div id="quiz-results" class="panel panel-primary hidden">
-            <header class="panel-heading">
-                <h3 class="panel-title">Your quiz results</h3>
-            </header>
-            <div class="panel-body">
-                <p id="qr-list">You answered <strong><span class="qz-track qz-start" id="qzt-0">0</span><span class="qz-track hidden" id="qzt-1">1</span><span class="qz-track hidden" id="qzt-2">2</span><span class="qz-track hidden" id="qzt-3">3</span><span class="qz-track hidden" id="qzt-4">4</span><span class="qz-track hidden" id="qzt-5">5</span><span class="qz-track hidden" id="qzt-6">6</span><span class="qz-track hidden" id="qzt-7">7</span><span class="qz-track hidden" id="qzt-8">8</span><span class="qz-track hidden" id="qzt-9">9</span><span class="qz-track hidden" id="qzt-10">10</span></strong> out of <strong>10</strong> questions correctly</p>
-                <div id="greeting-1" class="greetings hidden">
-                    <p class="h4">Oh no, you need to watch out more.</p>
-                    <p>Scammers are very tricky.</p>
-                </div>
-                <div id="greeting-2" class="greetings hidden">
-                    <p class="h4">Well, You still got scammed!</p>
-                    <p>It&rsquo;s more common than you might think.</p>
-                </div>
-                <div id="greeting-3" class="greetings hidden">
-                    <p class="h4">You're pretty scam smart!</p>
-                    <p>But a couple still got through.</p>
-                </div>
-                <div id="greeting-4" class="greetings hidden">
-                    <p class="h4">Congratulations! </p>
-                    <p>You spotted all the scams!</p>
-                </div>
-                <p id="more-info" class="hidden">Here is some information you may want to review (links open up in a new tab or window):</p>
-                <ul id="more-info-list" class="hidden">
-                    <li id="q1-info" class="hidden"><a href="#" target="_blank">Web page for question 1 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="q2-info" class="hidden"><a href="#" target="_blank">Web page for question 2 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="q3-info" class="hidden"><a href="#" target="_blank">Web page for question 3 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="q4-info" class="hidden"><a href="#" target="_blank">Web page for question 4 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="q5-info" class="hidden"><a href="#" target="_blank">Web page for question 5 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="q6-info" class="hidden"><a href="#" target="_blank">Web page for question 6 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="q7-info" class="hidden"><a href="#" target="_blank">Web page for question 7 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="q8-info" class="hidden"><a href="#" target="_blank">Web page for question 8 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="q9-info" class="hidden"><a href="#" target="_blank">Web page for question 9 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="q10-info" class="hidden"><a href="#" target="_blank">Web page for question 10 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <h3 id="start-q" class="wb-inv">Start of question</h3>
     <p id="loading-quiz"><span class="fas fa-spinner fa-pulse mrgn-rght-sm"></span>Loading quiz&hellip;</p>
     <section id="qq-1" class="qq-section hidden">
-        <h3 class="mrgn-tp-0">Question 1 of 10</h3>
+        <h3 id="qq1-hdr">Question 1 of 10</h3>
         <div class="frmvld fieldflow-lg">
             <form onsubmit="$('#q1-desc+fieldset input').attr('disabled', true);">
                 <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "hideelm": "#loading-quiz", "unhideelm": "#qq-1, #quiz-status", "default": [{"action": "removeClass", "source": "#qq-1 .proceed-btn, #q1-panel", "class": "hidden"}], "attributes": {"aria-labelledby": "q1-desc q1-label"}}'>
@@ -216,7 +176,7 @@ feedback: False
             </form>
         </div>
         <div aria-live="polite">
-            <div class="panel brdr-rds-0 hidden" id="q1-panel">
+            <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q1-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q1-answer1"><span class="fas fa-check-circle mrgn-rght-sm"></span>That's correct</h4>
                     <h4 class="panel-title hidden" id="q1-answer2"><span class="fas fa-times-circle mrgn-rght-sm"></span>Sorry, that's
@@ -227,10 +187,10 @@ feedback: False
                 </div>
             </div>
         </div>
-        <button  onclick="document.querySelector('#start-q').scrollIntoView({behavior: 'smooth',block: 'start'});" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": "#qq-1", "class": "hidden"}, {"action": "addClass", "source": "#qq-2", "class": "in"}, {"action": "removeClass", "source": "#qq-2", "class": "hidden"}]' type="button">Go to the next question</button>
+        <p> <a href="#qq2-hdr" onclick="setTimeout(() => {document.querySelector('#qq2-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "removeClass", "source": "#qq-2", "class": "hidden"},{"action": "addClass", "source": "#qq-1 .proceed-btn", "class": "hidden"}]' role="button">Next question</a></p>
     </section>
-    <section id="qq-2" class="qq-section fade hidden">
-        <h3 class="mrgn-tp-0">Question 2 of 10</h3>
+    <section id="qq-2" class="qq-section hidden">
+        <h3 id="qq2-hdr">Question 2 of 10</h3>
         <div class="frmvld fieldflow-lg">
             <form onsubmit="$('#q2-desc+fieldset input').attr('disabled', true);">
                 <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qq-2 .proceed-btn, #q2-panel", "class": "hidden"}], "attributes": {"aria-labelledby": "q2-desc q2-label"}}'>
@@ -250,7 +210,7 @@ feedback: False
             </form>
         </div>
         <div aria-live="polite">
-            <div class="panel brdr-rds-0 hidden" id="q2-panel">
+            <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q2-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q2-answer1"><span class="fas fa-times-circle mrgn-rght-sm"></span>Sorry, that's
                         incorrect</h4>
@@ -261,10 +221,10 @@ feedback: False
                 </div>
             </div>
         </div>
-        <button  onclick="document.querySelector('#start-q').scrollIntoView({behavior: 'smooth',block: 'start'});"  class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": "#qq-2", "class": "hidden"}, {"action": "addClass", "source": "#qq-3", "class": "in"}, {"action": "removeClass", "source": "#qq-3", "class": "hidden"}]' type="button">Go to the next question</button>
+        <p><a href="#qq3-hdr" onclick="setTimeout(() => {document.querySelector('#qq3-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "removeClass", "source": "#qq-3", "class": "hidden"}, {"action": "addClass", "source": "#qq-2 .proceed-btn", "class": "hidden"}]' role="button">Next question</a></p>
     </section>
-    <section id="qq-3" class="qq-section fade hidden">
-        <h3 class="mrgn-tp-0">Question 3 of 10</h3>
+    <section id="qq-3" class="qq-section hidden">
+        <h3 id="qq3-hdr">Question 3 of 10</h3>
         <div class="frmvld fieldflow-lg">
             <form onsubmit="$('#q3-desc+fieldset input').attr('disabled', true);">
                 <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qq-3 .proceed-btn, #q3-panel", "class": "hidden"}], "attributes": {"aria-labelledby": "q3-desc q3-label"}}'>
@@ -284,7 +244,7 @@ feedback: False
             </form>
         </div>
         <div aria-live="polite">
-            <div class="panel brdr-rds-0 hidden" id="q3-panel">
+            <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q3-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q3-answer1"><span class="fas fa-check-circle mrgn-rght-sm"></span>That's correct</h4>
                     <h4 class="panel-title hidden" id="q3-answer2"><span class="fas fa-times-circle mrgn-rght-sm"></span>Sorry, that's
@@ -297,10 +257,10 @@ feedback: False
                 </div>
             </div>
         </div>
-        <button onclick="document.querySelector('#start-q').scrollIntoView({behavior: 'smooth',block: 'start'});" class="btn btn-default proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": "#qq-3", "class": "hidden"}, {"action": "addClass", "source": "#qq-4", "class": "in"}, {"action": "removeClass", "source": "#qq-4", "class": "hidden "}]'>Go to the next question</button>
+        <p><a href="#qq4-hdr" onclick="setTimeout(() => {document.querySelector('#qq4-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "removeClass", "source": "#qq-4", "class": "hidden"}, {"action": "addClass", "source": "#qq-3 .proceed-btn", "class": "hidden"}]' role="button">Next question</a></p>
     </section>
-    <section id="qq-4" class="qq-section fade hidden ">
-        <h3 class="mrgn-tp-0">Question 4 of 10</h3>
+    <section id="qq-4" class="qq-section hidden ">
+        <h3 id="qq4-hdr">Question 4 of 10</h3>
         <div class="frmvld fieldflow-lg">
             <form onsubmit="$('#q4-desc+fieldset input').attr('disabled', true);">
                 <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qq-4 .proceed-btn, #q4-panel", "class": "hidden"}], "attributes": {"aria-labelledby": "q4-desc q4-label"}}'>
@@ -419,7 +379,7 @@ feedback: False
             </form>
         </div>
         <div aria-live="polite">
-            <div class="panel brdr-rds-0 hidden" id="q4-panel">
+            <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q4-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q4-answer1"><span class="fas fa-check-circle mrgn-rght-sm"></span>That's correct</h4>
                     <h4 class="panel-title hidden" id="q4-answer2"><span class="fas fa-times-circle mrgn-rght-sm"></span>Sorry, that's
@@ -431,10 +391,10 @@ feedback: False
                 </div>
             </div>
         </div>
-        <button onclick="document.querySelector('#start-q').scrollIntoView({behavior: 'smooth',block: 'start'});" class="btn btn-default proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": "#qq-4", "class": "hidden"}, {"action": "addClass", "source": "#qq-5", "class": "in"}, {"action": "removeClass", "source": "#qq-5", "class": "hidden"}]'>Go to the next question</button>
+        <p><a href="#qq5-hdr" onclick="setTimeout(() => {document.querySelector('#qq5-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "removeClass", "source": "#qq-5", "class": "hidden"}, {"action": "addClass", "source": "#qq-4 .proceed-btn", "class": "hidden"}]' role="button">Next question</a></p>
     </section>
-    <section id="qq-5" class="qq-section fade hidden">
-        <h3 class="mrgn-tp-0">Question 5 of 10</h3>
+    <section id="qq-5" class="qq-section hidden">
+        <h3 id="qq5-hdr">Question 5 of 10</h3>
         <div class="frmvld fieldflow-lg">
             <form onsubmit="$('#q5-desc+fieldset input').attr('disabled', true);">
                 <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qq-5 .proceed-btn, #q5-panel", "class": "hidden"}], "attributes": {"aria-labelledby": "q5-desc q5-label"}}'>
@@ -454,7 +414,7 @@ feedback: False
             </form>
         </div>
         <div aria-live="polite">
-            <div class="panel brdr-rds-0 hidden" id="q5-panel">
+            <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q5-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q5-answer1"><span class="fas fa-check-circle mrgn-rght-sm"></span>That's correct</h4>
                     <h4 class="panel-title hidden" id="q5-answer2"><span class="fas fa-times-circle mrgn-rght-sm"></span>Sorry, that's
@@ -465,10 +425,10 @@ feedback: False
                 </div>
             </div>
         </div>
-        <button onclick="document.querySelector('#start-q').scrollIntoView({behavior: 'smooth',block: 'start'});" class="btn btn-default proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": "#qq-5", "class": "hidden"}, {"action": "addClass", "source": "#qq-6", "class": "in"}, {"action": "removeClass", "source": "#qq-6", "class": "hidden"}]'>Go to the next question</button>
+        <p><a href="#qq6-hdr" onclick="setTimeout(() => {document.querySelector('#qq6-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "removeClass", "source": "#qq-6", "class": "hidden"}, {"action": "addClass", "source": "#qq-5 .proceed-btn", "class": "hidden"}]' role="button">Next question</a></p>
     </section>
-    <section id="qq-6" class="qq-section fade hidden">
-        <h3 class="mrgn-tp-0">Question 6 of 10</h3>
+    <section id="qq-6" class="qq-section hidden">
+        <h3 id="qq6-hdr">Question 6 of 10</h3>
         <div class="frmvld fieldflow-lg">
             <form onsubmit="$('#q6-desc+fieldset input').attr('disabled', true);">
                 <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qq-6 .proceed-btn, #q6-panel", "class": "hidden"}], "attributes": {"aria-labelledby": "q6-desc q6-label"}}'>
@@ -488,7 +448,7 @@ feedback: False
             </form>
         </div>
         <div aria-live="polite">
-            <div class="panel brdr-rds-0 hidden" id="q6-panel">
+            <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q6-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q6-answer1"><span class="fas fa-times-circle mrgn-rght-sm"></span>Sorry, that's
                         incorrect</h4>
@@ -501,10 +461,10 @@ feedback: False
                 </div>
             </div>
         </div>
-        <button onclick="document.querySelector('#start-q').scrollIntoView({behavior: 'smooth',block: 'start'});" class="btn btn-default proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": "#qq-6", "class": "hidden"}, {"action": "addClass", "source": "#qq-7", "class": "in"}, {"action": "removeClass", "source": "#qq-7", "class": "hidden"}]'>Go to the next question</button>
+        <p><a href="#qq7-hdr" onclick="setTimeout(() => {document.querySelector('#qq7-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "removeClass", "source": "#qq-7", "class": "hidden"}, {"action": "addClass", "source": "#qq-6 .proceed-btn", "class": "hidden"}]' role="button">Next question</a></p>
     </section>
-    <section id="qq-7" class="qq-section fade hidden">
-        <h3 class="mrgn-tp-0">Question 7 of 10</h3>
+    <section id="qq-7" class="qq-section hidden">
+        <h3 id="qq7-hdr">Question 7 of 10</h3>
         <div class="frmvld fieldflow-lg">
             <form onsubmit="$('#q7-desc+fieldset input').attr('disabled', true);">
                 <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qq-7 .proceed-btn, #q7-panel", "class": "hidden"}], "attributes": {"aria-labelledby": "q7-desc q7-label"}}'>
@@ -635,7 +595,7 @@ feedback: False
             </form>
         </div>
         <div aria-live="polite">
-            <div class="panel brdr-rds-0 hidden" id="q7-panel">
+            <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q7-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q7-answer1"><span class="fas fa-times-circle mrgn-rght-sm"></span>Sorry, that's
                         incorrect</h4>
@@ -646,10 +606,10 @@ feedback: False
                 </div>
             </div>
         </div>
-        <button onclick="document.querySelector('#start-q').scrollIntoView({behavior: 'smooth',block: 'start'});" class="btn btn-default proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": "#qq-7", "class": "hidden"}, {"action": "addClass", "source": "#qq-8", "class": "in"}, {"action": "removeClass", "source": "#qq-8", "class": "hidden"}]'>Go to the next question</button>
+        <p><a href="#qq8-hdr" onclick="setTimeout(() => {document.querySelector('#qq8-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "removeClass", "source": "#qq-8", "class": "hidden"}, {"action": "addClass", "source": "#qq-7 .proceed-btn", "class": "hidden"}]' role="button">Next question</a></p>
     </section>
-    <section id="qq-8" class="qq-section fade hidden">
-        <h3 class="mrgn-tp-0">Question 8 of 10</h3>
+    <section id="qq-8" class="qq-section hidden">
+        <h3 id="qq8-hdr">Question 8 of 10</h3>
         <div class="frmvld fieldflow-lg">
             <form onsubmit="$('#q8-desc+fieldset input').attr('disabled', true);">
                 <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qq-8 .proceed-btn, #q8-panel", "class": "hidden"}], "attributes": {"aria-labelledby": "q8-desc q8-label"}}'>
@@ -672,7 +632,7 @@ feedback: False
             </form>
         </div>
         <div aria-live="polite">
-            <div class="panel brdr-rds-0 hidden" id="q8-panel">
+            <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q8-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q8-answer1"><span class="fas fa-times-circle mrgn-rght-sm"></span>Sorry, that's
                         incorrect</h4>
@@ -683,10 +643,10 @@ feedback: False
                 </div>
             </div>
         </div>
-        <button onclick="document.querySelector('#start-q').scrollIntoView({behavior: 'smooth',block: 'start'});" class="btn btn-default proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": "#qq-8", "class": "hidden"}, {"action": "removeClass", "source": "#qq-9", "class": "hidden"}]'>Go to the next question</button>
+        <p><a href="#qq9-hdr" onclick="setTimeout(() => {document.querySelector('#qq9-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "removeClass", "source": "#qq-9", "class": "hidden"}, {"action": "addClass", "source": "#qq-8 .proceed-btn", "class": "hidden"}]' role="button">Next question</a></p>
     </section>
     <section id="qq-9" class="qq-section hidden">
-        <h3 class="mrgn-tp-0">Question 9 of 10</h3>
+        <h3 id="qq9-hdr">Question 9 of 10</h3>
         <div class="frmvld fieldflow-lg">
             <form onsubmit="$('#q9-desc+fieldset input').attr('disabled', true);">
                 <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qq-9 .proceed-btn, #q9-panel", "class": "hidden"}], "attributes": {"aria-labelledby": "q9-desc q9-label"}}'>
@@ -706,7 +666,7 @@ feedback: False
             </form>
         </div>
         <div aria-live="polite">
-            <div class="panel brdr-rds-0 hidden" id="q9-panel">
+            <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q9-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q9-answer1"><span class="fas fa-check-circle mrgn-rght-sm"></span>That's correct</h4>
                     <h4 class="panel-title hidden" id="q9-answer2"><span class="fas fa-times-circle mrgn-rght-sm"></span>Sorry, that's
@@ -717,10 +677,10 @@ feedback: False
                 </div>
             </div>
         </div>
-        <button onclick="document.querySelector('#start-q').scrollIntoView({behavior: 'smooth',block: 'start'});" class="btn btn-default proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": "#qq-9", "class": "hidden"}, {"action": "removeClass", "source": "#qq-10", "class": "hidden"}]'>Go to the next question</button>
+        <p><a href="#qq10-hdr" onclick="setTimeout(() => {document.querySelector('#qq10-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-info proceed-btn hidden" data-wb-doaction='[{"action": "removeClass", "source": "#qq-10", "class": "hidden"}, {"action": "addClass", "source": "#qq-9 .proceed-btn", "class": "hidden"}]' role="button">Next question</a></p>
     </section>
     <section id="qq-10" class="qq-section hidden">
-        <h3 class="mrgn-tp-0">Question 10 of 10</h3>
+        <h3 id="qq1-hdr">Question 10 of 10</h3>
         <div class="frmvld fieldflow-lg">
             <form onsubmit="$('#q10-desc+fieldset input').attr('disabled', true);">
                 <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qq-10 .proceed-btn, #q10-panel", "class": "hidden"}], "attributes": {"aria-labelledby": "q10-desc q10-label"}}'>
@@ -740,7 +700,7 @@ feedback: False
             </form>
         </div>
         <div aria-live="polite">
-            <div class="panel brdr-rds-0 hidden" id="q10-panel">
+            <div class="panel brdr-rds-0 mrgn-bttm-xl hidden" role="region" aria-label="Answer" id="q10-panel">
                 <header class="panel-heading max-content brdr-rght brdr-bttm brdr-rds-0">
                     <h4 class="panel-title hidden" id="q10-answer1"><span class="fas fa-times-circle mrgn-rght-sm"></span>Sorry, that's
                         incorrect</h4>
@@ -753,9 +713,53 @@ feedback: False
                 </div>
             </div>
         </div>
-        <button onclick="document.querySelector('#results').scrollIntoView({behavior: 'smooth',block: 'start'});" class="btn btn-lg btn-primary proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": ".greetings, #quiz-status, .proceed-btn", "class": "hidden"}, {"action": "removeClass", "source": "#quiz-results, .qq-section, #start-over, #qr-list:has(#qzt-0:not(.hidden),#qzt-1:not(.hidden),#qzt-2:not(.hidden),#qzt-3:not(.hidden))~#greeting-1, #qr-list:has(#qzt-4:not(.hidden),#qzt-5:not(.hidden),#qzt-6:not(.hidden))~#greeting-2, #qr-list:has(#qzt-7:not(.hidden),#qzt-8:not(.hidden),#qzt-9:not(.hidden))~#greeting-3, #qr-list:has(#qzt-10:not(.hidden))~#greeting-4", "class": "hidden"}]'>View your results</button>
+        <p><a href="#results-hdr" onclick="setTimeout(() => {document.querySelector('#results-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-lg btn-primary proceed-btn hidden" data-wb-doaction='[{"action": "addClass", "source": ".greetings, #quiz-status, .proceed-btn", "class": "hidden"}, {"action": "removeClass", "source": "#quiz-results, #qr-list:has(#qzt-0:not(.hidden),#qzt-1:not(.hidden),#qzt-2:not(.hidden),#qzt-3:not(.hidden))~#greeting-1, #qr-list:has(#qzt-4:not(.hidden),#qzt-5:not(.hidden),#qzt-6:not(.hidden))~#greeting-2, #qr-list:has(#qzt-7:not(.hidden),#qzt-8:not(.hidden),#qzt-9:not(.hidden))~#greeting-3, #qr-list:has(#qzt-10:not(.hidden))~#greeting-4", "class": "hidden"}]'>View your results</a></p>
     </section>
+    <div id="results" aria-live="polite">
+        <div id="quiz-results" class="panel panel-primary brdr-rds-0 hidden" role="region" aria-label="Results">
+            <header class="panel-heading">
+                <h3 class="panel-title" id="results-hdr">Your quiz results</h3>
+            </header>
+            <div class="panel-body">
+                <p id="qr-list">You answered <strong><span class="qz-track qz-start" id="qzt-0">0</span><span class="qz-track hidden" id="qzt-1">1</span><span class="qz-track hidden" id="qzt-2">2</span><span class="qz-track hidden" id="qzt-3">3</span><span class="qz-track hidden" id="qzt-4">4</span><span class="qz-track hidden" id="qzt-5">5</span><span class="qz-track hidden" id="qzt-6">6</span><span class="qz-track hidden" id="qzt-7">7</span><span class="qz-track hidden" id="qzt-8">8</span><span class="qz-track hidden" id="qzt-9">9</span><span class="qz-track hidden" id="qzt-10">10</span></strong> out of <strong>10</strong> questions correctly</p>
+                <div id="greeting-1" class="greetings hidden">
+                    <p class="h4">Oh no, you need to watch out more.</p>
+                    <p>Scammers are very tricky.</p>
+                </div>
+                <div id="greeting-2" class="greetings hidden">
+                    <p class="h4">Well, You still got scammed!</p>
+                    <p>It&rsquo;s more common than you might think.</p>
+                </div>
+                <div id="greeting-3" class="greetings hidden">
+                    <p class="h4">You're pretty scam smart!</p>
+                    <p>But a couple still got through.</p>
+                </div>
+                <div id="greeting-4" class="greetings hidden">
+                    <p class="h4">Congratulations! </p>
+                    <p>You spotted all the scams!</p>
+                </div>
+                <p id="more-info" class="hidden">Here is some information you may want to review (links open up in a new tab or window):</p>
+                <ul id="more-info-list" class="hidden">
+                    <li id="q1-info" class="hidden"><a href="#" target="_blank">Web page for question 1 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
+                    <li id="q2-info" class="hidden"><a href="#" target="_blank">Web page for question 2 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
+                    <li id="q3-info" class="hidden"><a href="#" target="_blank">Web page for question 3 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
+                    <li id="q4-info" class="hidden"><a href="#" target="_blank">Web page for question 4 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
+                    <li id="q5-info" class="hidden"><a href="#" target="_blank">Web page for question 5 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
+                    <li id="q6-info" class="hidden"><a href="#" target="_blank">Web page for question 6 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
+                    <li id="q7-info" class="hidden"><a href="#" target="_blank">Web page for question 7 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
+                    <li id="q8-info" class="hidden"><a href="#" target="_blank">Web page for question 8 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
+                    <li id="q9-info" class="hidden"><a href="#" target="_blank">Web page for question 9 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
+                    <li id="q10-info" class="hidden"><a href="#" target="_blank">Web page for question 10 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
+                </ul>
+                <ul class="list-inline mrgn-tp-lg">
+                    <li><a href="#qq-1" class="btn btn-primary btn-lg">Review the questions</a></li>
+                    <li><a href="?" class="btn btn-link btn-lg">Start over</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div id="quiz-status" class="hidden">
+        <hr class="brdr-bttm mrgn-tp-xl">
         <h3 class="h6">Your quiz status</h3>
         <!--Quiz icon markers//-->
         <div class="hidden"><span class="far fa-times-circle fa-lg incorrect-fa text-danger"><span class="wb-inv">Incorrect for question </span></span> <span class="far fa-check-circle fa-lg correct-fa text-success"><span class="wb-inv">Correct for question </span></span></div>
@@ -778,4 +782,3 @@ feedback: False
             </ul>
         </div>
     </div>
-    <p id="start-over" class="hidden"><a href="?">Start over</a></p>
