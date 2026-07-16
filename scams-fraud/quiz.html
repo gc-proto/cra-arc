@@ -170,7 +170,7 @@ feedback: False
                         </div>
                         <ul>
                             <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#qzq1-btn, .qz-track:not(hidden)", "class": "hidden"},{"action": "addClass", "source": "#qzq1-answer", "class": "panel-success"},{"action": "removeClass", "source": "#qzq1-answer1, .qz-track.qz-prog+.qz-track", "class": "hidden"}, {"action": "ajax", "url": " .correct-fa", "container": "#qzq1-step"}]'> Yes, this is a scam email</li>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq1-btn", "class": "hidden"}, {"action": "addClass", "source": "#qzq1-answer", "class": "panel-danger"},{"action": "removeClass", "source": "#qzq1-answer2, #more-info, #more-info-list, #qzq1-info", "class": "hidden"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq1-step"}]'>No, this is a legitimate email</li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq1-btn", "class": "hidden"}, {"action": "addClass", "source": "#qzq1-answer", "class": "panel-danger"},{"action": "removeClass", "source": "#qzq1-answer2, #qzq1-info", "class": "hidden"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq1-step"}]'>No, this is a legitimate email</li>
                         </ul>
                     </div>
                     <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="qzq1-btn">Check your
@@ -187,6 +187,7 @@ feedback: False
                 <div class="panel-body">
                     <p>The answer is: <strong>Yes, this a scam email</strong></p>
                     <p>The CRA will not send a link to your refund or an online form for you to fill out.</p>
+                  <p id="qzq1-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 1 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                 </div>
             </div>
             <!-- </div>//-->
@@ -195,7 +196,7 @@ feedback: False
         <section id="qzq2" class="qq-section hidden">
             <h3 id="qzq2-hdr">Question 2 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
-                <form onsubmit="$('#qzq2-desc+fieldset input').attr('disabled', true);">
+                <form onsubmit="if ($('#qzq2-desc+fieldset input:checked').length == 0) {return false;} else {$('#qzq2-desc+fieldset input').attr('disabled', true);}">
                     <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qzq2 .proceed-btn, #qzq2-answer", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq2-desc qzq2-label"}}'>
                         <div class="wb-fieldflow-header">
                             <div id="qzq2-desc" class="mrgn-bttm-md">
@@ -204,7 +205,7 @@ feedback: False
                             <p class="wb-fieldflow-label"><span id="qzq2-label">Is this statement true or false?</span></p>
                         </div>
                         <ul>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq2-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq2-answer1, #more-info, #more-info-list, #qzq2-info", "class": "hidden"}, {"action": "addClass", "source": "#qzq2-answer", "class": "panel-danger"}, {"action": "ajax", "url": " .incorrect-fa", "container": "#qzq2-step"}]'>True</li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq2-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq2-answer1, #qzq2-info", "class": "hidden"}, {"action": "addClass", "source": "#qzq2-answer", "class": "panel-danger"}, {"action": "ajax", "url": " .incorrect-fa", "container": "#qzq2-step"}]'>True</li>
                             <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#qzq2-btn, .qz-track:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#qzq2-answer2, .qz-track.qz-prog+.qz-track", "class": "hidden"}, {"action": "addClass", "source": "#qzq2-answer", "class": "panel-success"},  {"action": "ajax", "url": " .correct-fa", "container": "#qzq2-step"}]'>False</li>
                         </ul>
                     </div>
@@ -222,6 +223,7 @@ feedback: False
                     <div class="panel-body">
                         <p>The answer is: <strong>False</strong></p>
                         <p>Official government messages will not use aggressive language or threaten you with arrest or police action.</p>
+                       <p id="qzq2-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 2 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                     </div>
                 </div>
             </div>
@@ -230,7 +232,7 @@ feedback: False
         <section id="qzq3" class="qq-section hidden">
             <h3 id="qzq3-hdr">Question 3 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
-                <form onsubmit="$('#qzq3-desc+fieldset input').attr('disabled', true);">
+                <form onsubmit="if ($('#qzq3-desc+fieldset input:checked').length == 0) {return false;} else {$('#qzq3-desc+fieldset input').attr('disabled', true);}">
                     <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qzq3 .proceed-btn, #qzq3-answer", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq3-desc qzq3-label"}}'>
                         <div class="wb-fieldflow-header">
                             <div id="qzq3-desc" class="mrgn-bttm-md">
@@ -240,7 +242,7 @@ feedback: False
                         </div>
                         <ul>
                             <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#qzq3-btn, .qz-track:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#qzq3-answer1, .qz-track.qz-prog+.qz-track", "class": "hidden"},{"action": "addClass", "source": "#qzq3-answer", "class": "panel-success"}, {"action": "ajax", "url": " .correct-fa", "container": "#qzq3-step"}]'>True</li>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq3-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq3-answer2, #more-info, #more-info-list, #qzq3-info", "class": "hidden"},{"action": "addClass", "source": "#qzq3-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq3-step"}]'>False</li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq3-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq3-answer2, #qzq3-info", "class": "hidden"},{"action": "addClass", "source": "#qzq3-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq3-step"}]'>False</li>
                         </ul>
                     </div>
                     <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="qzq3-btn">Check your
@@ -259,6 +261,7 @@ feedback: False
                         <p>When an official CRA agent calls you, they will provide you with their name. </p>
                         <p>If you are suspicious of them, you can tell them you want to verify their identity. Ask for their name, phone number, and office location. </p>
                         <p>End the call and contact the CRA at the number provided on the canada.ca website to verify the agent’s identity. </p>
+                       <p id="qzq3-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 3 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                     </div>
                 </div>
             </div>
@@ -267,7 +270,7 @@ feedback: False
         <section id="qzq4" class="qq-section hidden">
             <h3 id="qzq4-hdr">Question 4 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
-                <form onsubmit='if ($("#qzq4 fieldset input:checked").length == 0) {return false;} else {$("#qzq4 fieldset input").attr("disabled", true);}'>
+                <form onsubmit="if ($('#qzq4 fieldset input:checked').length == 0) {return false;} else {$('#qzq4 fieldset input').attr('disabled', true);}">
                     <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "checkbox", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qzq4 .proceed-btn, #qzq4-answer", "class": "hidden"},{
     "action": "removeClass",
     "source": "#qzq4-answer.qzq4-a1.qzq4-a2.qzq4-a4:not(.qzq4-a3) #qzq4-answer1, #qzq4-answer:not(.qzq4-a1.qzq4-a2.qzq4-a4:not(.qzq4-a3)) #qzq4-answer2",
@@ -330,6 +333,7 @@ feedback: False
                             <li><strong>The post encourages you to share it widely without verifying its accuracy</strong></li>
                         </ul>
                         <p>Emotional language, anonymous sources and encouraging wide sharing immediately are common tactics used in disinformation campaigns to bypass critical thinking and spread false narratives quickly. </p>
+                     <p id="qzq4-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 4 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                     </div>
                 </div>
             </div>
@@ -338,7 +342,7 @@ feedback: False
         <section id="qzq5" class="qq-section hidden">
             <h3 id="qzq5-hdr">Question 5 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
-                <form onsubmit="$('#qzq5-desc+fieldset input').attr('disabled', true);">
+                <form onsubmit="if ($('#qzq5-desc+fieldset input:checked').length == 0) {return false;} else {$('#qzq5-desc+fieldset input').attr('disabled', true);}">
                     <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qzq5 .proceed-btn, #qzq5-answer", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq5-desc qzq5-label"}}'>
                         <div class="wb-fieldflow-header">
                             <div id="qzq5-desc" class="mrgn-bttm-md">
@@ -447,7 +451,7 @@ feedback: False
                         </div>
                         <ul>
                             <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#qzq5-btn, .qz-track:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#qzq5-answer1, .qz-track.qz-prog+.qz-track", "class": "hidden"},{"action": "addClass", "source": "#qzq5-answer", "class": "panel-success"}, {"action": "ajax", "url": " .correct-fa", "container": "#qzq5-step"}]'>Yes, this is a scam text</li>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq5-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq5-answer2, #more-info, #more-info-list, #qzq5-info", "class": "hidden"},{"action": "addClass", "source": "#qzq5-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq5-step"}]'>No, this is a legitimate text</li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq5-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq5-answer2, #qzq5-info", "class": "hidden"},{"action": "addClass", "source": "#qzq5-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq5-step"}]'>No, this is a legitimate text</li>
                         </ul>
                     </div>
                     <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="qzq5-btn">Check your
@@ -465,6 +469,7 @@ feedback: False
                         <p>The answer is: <strong>Yes, this a scam text</strong></p>
                         <p>When an official CRA agent calls you, they will provide you with their name. </p>
                         <p>The CRA will not use text messages or instant messaging to start a conversation with you about your taxes, benefits, or My Account under any circumstance.</p>
+                     <p id="qzq5-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 5 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                     </div>
                 </div>
             </div>
@@ -473,7 +478,7 @@ feedback: False
         <section id="qzq6" class="qq-section hidden">
             <h3 id="qzq6-hdr">Question 6 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
-                <form onsubmit="$('#qzq6-desc+fieldset input').attr('disabled', true);">
+                <form onsubmit="if ($('#qzq6-desc+fieldset input:checked').length == 0) {return false;} else {$('#qzq6-desc+fieldset input').attr('disabled', true);}">
                     <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qzq6 .proceed-btn, #qzq6-answer", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq6-desc qzq6-label"}}'>
                         <div class="wb-fieldflow-header">
                             <div id="qzq6-desc" class="mrgn-bttm-md">
@@ -483,7 +488,7 @@ feedback: False
                         </div>
                         <ul>
                             <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#qzq6-btn, .qz-track:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#qzq6-answer1, .qz-track.qz-prog+.qz-track", "class": "hidden"},{"action": "addClass", "source": "#qzq6-answer", "class": "panel-success"}, {"action": "ajax", "url": " .correct-fa", "container": "#qzq6-step"}]'>True</li>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq6-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq6-answer2, #more-info, #more-info-list, #qzq6-info", "class": "hidden"},{"action": "addClass", "source": "#qzq6-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq6-step"}]'>False</li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq6-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq6-answer2, #qzq6-info", "class": "hidden"},{"action": "addClass", "source": "#qzq6-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq6-step"}]'>False</li>
                         </ul>
                     </div>
                     <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="qzq6-btn">Check your
@@ -500,6 +505,7 @@ feedback: False
                     <div class="panel-body">
                         <p>The answer is: <strong>True</strong></p>
                         <p>The CBSA (or any other government department) does not initiate requests for your SIN or financial documments by telephone, text, or email.</p>
+                       <p id="qzq6-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 6 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                     </div>
                 </div>
             </div>
@@ -508,7 +514,7 @@ feedback: False
         <section id="qzq7" class="qq-section hidden">
             <h3 id="qzq7-hdr">Question 7 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
-                <form onsubmit="$('#qzq7-desc+fieldset input').attr('disabled', true);">
+                <form onsubmit="if ($('#qzq7-desc+fieldset input:checked').length == 0) {return false;} else {$('#qzq7-desc+fieldset input').attr('disabled', true);}">
                     <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qzq7 .proceed-btn, #qzq7-answer", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq7-desc qzq7-label"}}'>
                         <div class="wb-fieldflow-header">
                             <div id="qzq7-desc" class="mrgn-bttm-md">
@@ -517,7 +523,7 @@ feedback: False
                             <p class="wb-fieldflow-label"><span id="qzq7-label">Is this statement true or false?</span></p>
                         </div>
                         <ul>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq7-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq7-answer1, #more-info, #more-info-list, #qzq7-info", "class": "hidden"},{"action": "addClass", "source": "#qzq7-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq7-step"}]'>True</li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq7-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq7-answer1, #qzq7-info", "class": "hidden"},{"action": "addClass", "source": "#qzq7-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq7-step"}]'>True</li>
                             <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#qzq7-btn, .qz-track:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#qzq7-answer2, .qz-track.qz-prog+.qz-track", "class": "hidden"},{"action": "addClass", "source": "#qzq7-answer", "class": "panel-success"}, {"action": "ajax", "url": " .correct-fa", "container": "#qzq7-step"}]'>False</li>
                         </ul>
                     </div>
@@ -537,6 +543,7 @@ feedback: False
                         <p>IRCC would not use law enforcement agencies to arrest or deport you for not paying fees.</p>
                         <p>A collection agent from IRCC might contact you by email, mail or phone, and will always identify themselves.</p>
                         <p>Collection agents will work with you to make a payment agreement.</p>
+                       <p id="qzq7-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 7 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                     </div>
                 </div>
             </div>
@@ -545,7 +552,7 @@ feedback: False
         <section id="qzq8" class="qq-section hidden">
             <h3 id="qzq8-hdr">Question 8 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
-                <form onsubmit="$('#qzq8-desc+fieldset input').attr('disabled', true);">
+                <form onsubmit="if ($('#qzq8-desc+fieldset input:checked').length == 0) {return false;} else {$('#qzq8-desc+fieldset input').attr('disabled', true);}">
                     <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qzq8 .proceed-btn, #qzq8-answer", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq8-desc qzq8-label"}}'>
                         <div class="wb-fieldflow-header">
                             <div id="qzq8-desc" class="mrgn-bttm-md">
@@ -665,7 +672,7 @@ feedback: False
                             <p class="wb-fieldflow-label"><span id="qzq8-label">Is the text message legitimate?</span></p>
                         </div>
                         <ul>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq8-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq8-answer1, #more-info, #more-info-list, #qzq8-info", "class": "hidden"},{"action": "addClass", "source": "#qzq8-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq8-step"}]'>Yes, this is a legitimate text</li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq8-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq8-answer1, #qzq8-info", "class": "hidden"},{"action": "addClass", "source": "#qzq8-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq8-step"}]'>Yes, this is a legitimate text</li>
                             <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#qzq8-btn, .qz-track:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#qzq8-answer2, .qz-track.qz-prog+.qz-track", "class": "hidden"},{"action": "addClass", "source": "#qzq8-answer", "class": "panel-success"}, {"action": "ajax", "url": " .correct-fa", "container": "#qzq8-step"}]'>No, this is a scam text</li>
                         </ul>
                     </div>
@@ -683,6 +690,7 @@ feedback: False
                     <div class="panel-body">
                         <p>The answer is: <strong>No, this a scam text</strong></p>
                         <p>The Government of Canada will not ask you to click on a link through text or email. </p>
+                       <p id="qzq8-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 8 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                     </div>
                 </div>
             </div>
@@ -691,7 +699,7 @@ feedback: False
         <section id="qzq9" class="qq-section hidden">
             <h3 id="qzq9-hdr">Question 9 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
-                <form onsubmit="$('#qzq9-desc+fieldset input').attr('disabled', true);">
+                <form onsubmit="if ($('#qzq9-desc+fieldset input:checked').length == 0) {return false;} else {$('#qzq9-desc+fieldset input').attr('disabled', true);}">
                     <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qzq9 .proceed-btn, #qzq9-answer", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq9-desc qzq9-label"}}'>
                         <div class="wb-fieldflow-header">
                             <div id="qzq9-desc" class="mrgn-bttm-md">
@@ -700,10 +708,10 @@ feedback: False
                             <p class="wb-fieldflow-label"><span id="qzq9-label">Which age group is likely to fall victim of a scam?</span></p>
                         </div>
                         <ul>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq9-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq9-answer1, #more-info, #more-info-list, #qzq9-info", "class": "hidden"},{"action": "addClass", "source": "#qzq9-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq9-step"}]'><span class="nowrap">a) Seniors (60+)</span></li>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq9-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq9-answer1, #more-info, #more-info-list, #qzq9-info", "class": "hidden"},{"action": "addClass", "source": "#qzq9-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq9-step"}]'><span class="nowrap">b) Adults (35 to 59)</span></li>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq9-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq9-answer1, #more-info, #more-info-list, #qzq9-info", "class": "hidden"},{"action": "addClass", "source": "#qzq9-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq9-step"}]'><span class="nowrap">c) Young Adults (18 to 24)</span></li>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq9-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq9-answer1, #more-info, #more-info-list, #qzq9-info", "class": "hidden"},{"action": "addClass", "source": "#qzq9-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq9-step"}]'><span class="nowrap">d) Options a and c</span></li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq9-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq9-answer1, #qzq9-info", "class": "hidden"},{"action": "addClass", "source": "#qzq9-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq9-step"}]'><span class="nowrap">a) Seniors (60+)</span></li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq9-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq9-answer1, #qzq9-info", "class": "hidden"},{"action": "addClass", "source": "#qzq9-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq9-step"}]'><span class="nowrap">b) Adults (35 to 59)</span></li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq9-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq9-answer1, #qzq9-info", "class": "hidden"},{"action": "addClass", "source": "#qzq9-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq9-step"}]'><span class="nowrap">c) Young Adults (18 to 24)</span></li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq9-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq9-answer1, #qzq9-info", "class": "hidden"},{"action": "addClass", "source": "#qzq9-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq9-step"}]'><span class="nowrap">d) Options a and c</span></li>
                             <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#qzq9-btn, .qz-track:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#qzq9-answer2, .qz-track.qz-prog+.qz-track", "class": "hidden"},{"action": "addClass", "source": "#qzq9-answer", "class": "panel-success"}, {"action": "ajax", "url": " .correct-fa", "container": "#qzq9-step"}]'><span class="nowrap">e) All of the above</span></li>
                         </ul>
                     </div>
@@ -721,6 +729,7 @@ feedback: False
                     <div class="panel-body">
                         <p>The answer is: <strong>e) All of the above</strong></p>
                         <p>Everyone is vulnerable in falling for a scam. Scams target every demographic and age range.</p>
+                       <p id="qzq9-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 9 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                     </div>
                 </div>
             </div>
@@ -729,7 +738,7 @@ feedback: False
         <section id="qzq10" class="qq-section hidden">
             <h3 id="qzq10-hdr">Question 10 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
-                <form onsubmit="$('#qzq10-desc+fieldset input').attr('disabled', true);">
+                <form onsubmit="if ($('#qzq10-desc+fieldset input:checked').length == 0) {return false;} else {$('#qzq10-desc+fieldset input').attr('disabled', true);}">
                     <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qzq10 .proceed-btn, #qzq10-answer", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq10-desc qzq10-label"}}'>
                         <div class="wb-fieldflow-header">
                             <div id="qzq10-desc" class="mrgn-bttm-md">
@@ -739,7 +748,7 @@ feedback: False
                         </div>
                         <ul>
                             <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#qzq10-btn, .qz-track:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#qzq10-answer1, .qz-track.qz-prog+.qz-track", "class": "hidden"},{"action": "addClass", "source": "#qzq10-answer", "class": "panel-success"}, {"action": "ajax", "url": " .correct-fa", "container": "#qzq10-step"}]'>True</li>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq10-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq10-answer2, #more-info, #more-info-list, #qzq10-info", "class": "hidden"},{"action": "addClass", "source": "#qzq10-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq10-step"}]'>False</li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq10-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq10-answer2, #qzq10-info", "class": "hidden"},{"action": "addClass", "source": "#qzq10-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq10-step"}]'>False</li>
                         </ul>
                     </div>
                     <button class="btn btn-primary btn-lg mrgn-bttm-md" type="submit" id="qzq10-btn">Check your
@@ -756,6 +765,7 @@ feedback: False
                     <div class="panel-body">
                         <p>The answer is: <strong>True</strong></p>
                         <p>The CRA may contact you by phone or by mail if you paid your taxes, or starting an audit.</p>
+                       <p id="qzq10-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 10 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                     </div>
                 </div>
             </div>
@@ -764,7 +774,7 @@ feedback: False
         <section id="qzq11" class="qq-section hidden">
             <h3 id="qzq11-hdr">Question 11 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
-                <form onsubmit="$('#qzq11-desc+fieldset input').attr('disabled', true);">
+                <form onsubmit="if ($('#qzq11-desc+fieldset input:checked').length == 0) {return false;} else {$('#qzq11-desc+fieldset input').attr('disabled', true);}">
                     <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "default": [{"action": "removeClass", "source": "#qzq11 .proceed-btn, #qzq11-answer", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq11-desc qzq11-label"}}'>
                         <div class="wb-fieldflow-header">
                             <div id="qzq11-desc" class="mrgn-bttm-md">
@@ -773,7 +783,7 @@ feedback: False
                             <p class="wb-fieldflow-label"><span id="qzq10-label">Is this statement true or false?</span></p>
                         </div>
                         <ul>
-                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq11-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq11-answer1, #more-info, #more-info-list, #qzq11-info", "class": "hidden"},{"action": "addClass", "source": "#qzq11-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq11-step"}]'>True</li>
+                            <li data-wb-fieldflow='[{"action": "addClass", "source": "#qzq11-btn", "class": "hidden"}, {"action": "removeClass", "source": "#qzq11-answer1, #qzq11-info", "class": "hidden"},{"action": "addClass", "source": "#qzq11-answer", "class": "panel-danger"},{"action": "ajax", "url": " .incorrect-fa", "container": "#qzq11-step"}]'>True</li>
                             <li data-wb-fieldflow='[{"action": "addClass", "source": ".qz-track:not(.hidden)", "class": "qz-prog"}, {"action": "removeClass", "source": ".qz-track.qz-prog.hidden", "class": "qz-prog"}, {"action": "addClass", "source": "#qzq11-btn, .qz-track:not(hidden)", "class": "hidden"}, {"action": "removeClass", "source": "#qzq11-answer2, .qz-track.qz-prog+.qz-track", "class": "hidden"},{"action": "addClass", "source": "#qzq11-answer", "class": "panel-success"}, {"action": "ajax", "url": " .correct-fa", "container": "#qzq11-step"}]'>False</li>
                         </ul>
                     </div>
@@ -793,6 +803,7 @@ feedback: False
                         <p>Scammers are sophisticated in hiding where they are calling from.</p>
                         <p>If you are suspicious of the caller, you can tell them you want to verify their identity. Ask for their name, phone number, and office location.</p>
                         <p>End the call and contact the government department at the number provided on the canada.ca website to verify their identity. </p>
+                       <p id="qzq11-info" class="hidden">Learn more: <a href="#" target="_blank">Web page for question 11 <span class="nowrap">content<span class="far fa-window-restore"><span class="wb-inv"> (opens in new tab or window)</span></span></span></a></p>
                     </div>
                 </div>
             </div>
@@ -822,20 +833,7 @@ feedback: False
                     <p class="h4">Congratulations! </p>
                     <p>You spotted all the scams!</p>
                 </div>
-                <p id="more-info" class="hidden">Here is some information you may want to review (links open up in a new tab or window):</p>
-                <ul id="more-info-list" class="hidden">
-                    <li id="qzq1-info" class="hidden"><a href="#" target="_blank">Web page for question 1 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="qzq2-info" class="hidden"><a href="#" target="_blank">Web page for question 2 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="qzq3-info" class="hidden"><a href="#" target="_blank">Web page for question 3 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="qzq4-info" class="hidden"><a href="#" target="_blank">Web page for question 4 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="qzq5-info" class="hidden"><a href="#" target="_blank">Web page for question 5 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="qzq6-info" class="hidden"><a href="#" target="_blank">Web page for question 6 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="qzq7-info" class="hidden"><a href="#" target="_blank">Web page for question 7 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="qzq8-info" class="hidden"><a href="#" target="_blank">Web page for question 8 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="qzq9-info" class="hidden"><a href="#" target="_blank">Web page for question 9 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="qzq10-info" class="hidden"><a href="#" target="_blank">Web page for question 10 content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                    <li id="qzq11-info" class="hidden"><a href="#" target="_blank">Web page for question 11content<span class="wb-inv"> (opens in new tab or window)</span></a></li>
-                </ul>
+               
                 <p class="mrgn-tp-lg"><a href="#qzq1">Review the questions</a></p>
             </div>
         </div>
