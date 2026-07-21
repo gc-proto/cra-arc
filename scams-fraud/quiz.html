@@ -21,13 +21,13 @@ feedback: False
 <h1 property="name" id="wb-cont">Quiz for scams and fraud</h1>
   <p>Test your knowledge of common government scams and fraud with this quiz.</p>
     <p id="loading-quiz"><span class="far fa-spinner fa-pulse mrgn-rght-sm"></span>Loading quiz&hellip;</p>
-    <p id="start-quiz" class="hidden"><a href="#qzq1-hdr" onclick="setTimeout(() => {document.querySelector('#qzq1-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-call-to-action proceed-btn" data-wb-doaction='[{"action": "removeClass", "source": "#qzq1, #quiz-status", "class": "hidden"},{"action": "addClass", "source": "#start-quiz", "class": "hidden"}]' role="button">Start quiz</a></p>
+    <p id="start-quiz" class="hidden"><a href="#qzq1-hdr" onclick="setTimeout(() => {document.querySelector('#qzq1-hdr').scrollIntoView({behavior: 'smooth'})}, 100);" class="btn btn-call-to-action proceed-btn" data-wb-doaction='[{"action": "removeClass", "source": "#qzq1", "class": "hidden"},{"action": "addClass", "source": "#start-quiz", "class": "hidden"}]' role="button">Start quiz</a></p>
     <div aria-live="polite">
         <section id="qzq1" class="qq-section hidden">
             <h3 id="qzq1-hdr">Question 1 of 11</h3>
             <div class="wb-frmvld fieldflow-lg">
                 <form onsubmit="if ($('#qzq1-desc+fieldset input:checked').length == 0) {return false;} else {$('#qzq1-desc+fieldset input').attr('disabled', true);}">
-                    <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "hideelm": "#loading-quiz", "unhideelm": "#start-quiz", "default": [{"action": "removeClass", "source": "#qzq1 .proceed-btn, #qzq1-answer", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq1-desc qzq1-label"}}'>
+                    <div class="wb-fieldflow gc-font-2019" data-wb-fieldflow='{"renderas": "radio", "noForm": true, "gcChckbxrdio":true, "noreqlabel": true, "hideelm": "#loading-quiz", "unhideelm": "#start-quiz", "default": [{"action": "removeClass", "source": "#qzq1 .proceed-btn, #qzq1-answer, #quiz-status", "class": "hidden"}], "attributes": {"aria-labelledby": "qzq1-desc qzq1-label"}}'>
                         <div class="wb-fieldflow-header">
                             <div id="qzq1-desc" class="mrgn-bttm-md">
                                 <p>You receive the following email:</p>
@@ -840,26 +840,26 @@ feedback: False
     </div>
     <div id="quiz-status" class="hidden">
         <hr class="brdr-bttm mrgn-tp-xl">
-        <h3 class="h6">Your quiz status</h3>
+        <h3 class="h6 pull-left mrgn-tp-sm mrgn-rght-md">Your quiz status</h3>
         <!--Quiz icon markers//-->
         <div class="hidden"><span class="far fa-times-circle fa-lg incorrect-fa text-danger"><span class="wb-inv">Incorrect for question </span></span> <span class="far fa-check-circle fa-lg correct-fa text-success"><span class="wb-inv">Correct for question </span></span></div>
         
         <!--Start of quiz status//-->
         <div class="mrgn-tp-sm clearfix">
             <ul class="list-inline h5 pull-left mrgn-tp-sm">
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq1-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>1 </li>
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq2-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>2 </li>
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq3-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>3<br>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq1-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>1 </li>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq2-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>2 </li>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq3-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>3<br>
                 </li>
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq4-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>4 </li>
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq5-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>5<br>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq4-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>4 </li>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq5-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>5<br>
                 </li>
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq6-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>6 </li>
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq7-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>7 </li>
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq8-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>8 </li>
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq9-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>9 </li>
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq10-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>10 </li>
-                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq11-step" class="center-block"><span class="far fa-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>11 </li>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq6-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>6 </li>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq7-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>7 </li>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq8-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>8 </li>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq9-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>9 </li>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq10-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>10 </li>
+                <li class="px-2 mrgn-bttm-md text-center"><span id="qzq11-step" class="center-block"><span class="far fa-dot-circle fa-lg"><span class="wb-inv">Not answered for question </span></span></span>11 </li>
             </ul>
         </div>
     </div>
