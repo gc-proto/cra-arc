@@ -3,15 +3,19 @@
 {%- assign static_html = site.static_files | where_exp: "item", "item.extname == '.html'" -%}
 
 {%- assign pages_html = "" | split: "" -%}
+{%- assign pages_pdf = "" | split: "" -%}
 {%- assign pages_md = "" | split: "" -%}
 
 {%- for item in site.pages -%}
-  {%- assign path_end_html = item.path | slice: -5, 5 -%}
-  {%- assign path_end_md = item.path | slice: -3, 3 -%}
+  {%- assign ext_len_5 = item.path | slice: -5, 5 -%}
+  {%- assign ext_len_4 = item.path | slice: -4, 4 -%}
+  {%- assign ext_len_3 = item.path | slice: -3, 3 -%}
   
-  {%- if path_end_html == ".html" -%}
+  {%- if path_end_5 == ".html" -%}
     {%- assign pages_html = pages_html | push: item -%}
-  {%- elsif path_end_md == ".md" -%}
+  {%- elsif path_end_4 == ".pdf" -%}
+    {%- assign pages_pdf = pages_pdf | push: item -%}
+  {%- elsif path_end_3 == ".md" -%}
     {%- assign pages_md = pages_md | push: item -%}
   {%- endif -%}
 {%- endfor -%}
@@ -21,10 +25,11 @@
 
   {%- assign static_html = static_html | where_exp: "item", "item.path contains folder_prefix" -%}
   {%- assign pages_html = pages_html | where_exp: "item", "item.path contains folder_prefix" -%}
+  {%- assign pages_pdf = pages_pdf | where_exp: "item", "item.path contains folder_prefix" -%}
   {%- assign pages_md = pages_md | where_exp: "item", "item.path contains folder_prefix" -%}
 {%- endif -%}
 
-{%- assign all_pages = static_html | concat: pages_html | concat: pages_md -%}
+{%- assign all_pages = static_html | concat: pages_html | concat: pages_pdf | concat: pages_md -%}
 
 {%- assign path_string_list = "" -%}
 {%- for p in all_pages -%}
