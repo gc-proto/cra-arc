@@ -11,11 +11,11 @@
   {%- assign ext_len_4 = item.path | slice: -4, 4 -%}
   {%- assign ext_len_3 = item.path | slice: -3, 3 -%}
   
-  {%- if path_end_5 == ".html" -%}
+  {%- if ext_len_5 == ".html" -%}
     {%- assign pages_html = pages_html | push: item -%}
-  {%- elsif path_end_4 == ".pdf" -%}
+  {%- elsif ext_len_4 == ".pdf" -%}
     {%- assign pages_pdf = pages_pdf | push: item -%}
-  {%- elsif path_end_3 == ".md" -%}
+  {%- elsif ext_len_3 == ".md" -%}
     {%- assign pages_md = pages_md | push: item -%}
   {%- endif -%}
 {%- endfor -%}
