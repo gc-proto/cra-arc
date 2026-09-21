@@ -2,15 +2,26 @@
 {% endcapture %}
 {%- assign static_html = site.static_files | where_exp: "item", "item.extname == '.html'" -%}
 
-{%- assign pages_html = site.pages | where_exp: "item", "item.path contains '.html'" -%}
-{%- assign pages_md = site.pages | where_exp: "item", "item.path contains '.md'" -%}
+{%- assign pages_html = "" | split: "" -%}
+{%- assign pages_md = "" | split: "" -%}
 
-{%- if include.repo and include.repo != "" -%}
-  {%- assign folder_prefix = include.repo | append: "/" -%}
+{%- for item in site.pages -%}
+  {%- assign path_end_html = item.path | slice: -5, 5 -%}
+  {%- assign path_end_md = item.path | slice: -3, 3 -%}
+  
+  {%- if path_end_html == ".html" -%}
+    {%- assign pages_html = pages_html | push: item -%}
+  {%- elsif path_end_md == ".md" -%}
+    {%- assign pages_md = pages_md | push: item -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if include.section and include.section != "" -%}
+  {%- assign folder_prefix = include.section | append: "/" -%}
 
   {%- assign static_html = static_html | where_exp: "item", "item.path contains folder_prefix" -%}
-  {%- assign pages_html  = pages_html  | where_exp: "item", "item.path contains folder_prefix" -%}
-  {%- assign pages_md    = pages_md    | where_exp: "item", "item.path contains folder_prefix" -%}
+  {%- assign pages_html = pages_html | where_exp: "item", "item.path contains folder_prefix" -%}
+  {%- assign pages_md = pages_md | where_exp: "item", "item.path contains folder_prefix" -%}
 {%- endif -%}
 
 {%- assign all_pages = static_html | concat: pages_html | concat: pages_md -%}
@@ -135,7 +146,7 @@
     {%- endfor -%}
   {%- endif -%}
   {%- if p.url -%}
-      <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="default" class="nowrap tv-list"><span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" lang="{{ page.lang | default: 'en' }}" href="{{ p.url | relative_url }}"{%- if p.title -%} title="{{ p.title | escape }}"{%- endif -%}>{{ display_label | escape }}</a>{%- if p.title -%}<span class="tv-page-title wb-inv" aria-hidden="true">{{ p.title | escape }}</span>{%- endif -%}</span></li>{{ crlf }}
+      <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="default" class="nowrap tv-list"><span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" lang="{{ page.lang | default: "en" }}" href="{{ p.url | relative_url }}"{%- if p.title -%} title="{{ p.title | escape }}"{%- endif -%}>{{ display_label | escape }}</a>{%- if p.title -%}<span class="tv-page-title wb-inv" aria-hidden="true">{{ p.title | escape }}</span>{%- endif -%}</span></li>{{ crlf }}
   {%- else -%}
       <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="static" class="nowrap tv-list"><span class="label label-default position-relative tv-type">static</span><span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" href="{{ p.path | relative_url }}">{{ display_label | escape }}</a></span></li>{{ crlf }}
   {%- endif -%}
