@@ -2,8 +2,16 @@
 {% endcapture %}
 {%- assign static_html = site.static_files | where_exp: "item", "item.extname == '.html'" -%}
 
-{%- assign pages_html = site.pages | where_exp: "item", "item.name contains '.html'" -%}
-{%- assign pages_md   = site.pages | where_exp: "item", "item.name contains '.md'" -%}
+{%- assign pages_html = site.pages | where_exp: "item", "item.path contains '.html'" -%}
+{%- assign pages_md = site.pages | where_exp: "item", "item.path contains '.md'" -%}
+
+{%- if include.repo and include.repo != "" -%}
+  {%- assign folder_prefix = include.repo | append: "/" -%}
+
+  {%- assign static_html = static_html | where_exp: "item", "item.path contains folder_prefix" -%}
+  {%- assign pages_html  = pages_html  | where_exp: "item", "item.path contains folder_prefix" -%}
+  {%- assign pages_md    = pages_md    | where_exp: "item", "item.path contains folder_prefix" -%}
+{%- endif -%}
 
 {%- assign all_pages = static_html | concat: pages_html | concat: pages_md -%}
 
