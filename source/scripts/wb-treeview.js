@@ -581,7 +581,7 @@
     $(document).on("click", "[data-tree-action=\"expandall\"]", function (event) {
         event.preventDefault();
         
-        var targetSelector = $(this).data("tree-target");
+        var targetSelector = $(this).data("treeTarget");
         var $targetTree = null;
 
         if (targetSelector !== undefined && targetSelector !== null && targetSelector !== "") {
@@ -597,7 +597,7 @@
     $(document).on("click", "[data-tree-action=\"collapseall\"]", function (event) {
         event.preventDefault();
         
-        var targetSelector = $(this).data("tree-target");
+        var targetSelector = $(this).data("treeTarget");
         var $targetTree = null;
 
         if (targetSelector !== undefined && targetSelector !== null && targetSelector !== "") {
