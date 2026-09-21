@@ -10,10 +10,20 @@ share: false
 noFooterContextual: true
 noFooterCorporate: true
 noFooterMain: true
+sitemapExclude: true
 ---
-
 <br>
-
+<div>
+    <details>
+        <summary class="h4">Bookmarklet to toggle between the GitHub enviornment and the live site</summary>
+        <p>This bookmarklet works like a bookmark but allow you to toggle between the GitHub enviornment and the live site for the current page you are viewing.</p>
+        <p>To create a bookmarklet to <strong>toggle GitHub</strong> right-click the following link and select <strong>Add to favorites…</strong> or drag the link to your favorites or favorites bar.</p>
+        <ul class="mrgn-tp-md list-unstyled">
+            <li><a id="toggleGitHub" href="#">Toggle GitHub</a></li>
+        </ul>
+    </details>
+</div>
+<br>
 <p>Enabling will make the developer options visible on all pages that use the GitHub "testing purposes only" banner.</p>
 <ul class="btn-toolbar list-inline" role="toolbar">
     <li class="btn-group">
@@ -63,4 +73,6 @@ noFooterMain: true
             document.getElementById("devStatus").innerHTML = "OFF";
             break;
     }
+
+    document.getElementById("toggleGitHub").href = encodeURI("javascript:(function(){if(globalThis.location.href.indexOf(\"github.com\")>-1){globalThis.location=globalThis.location.toString().replace(/^https:\/\/github\.com\/cra-proto\/([^/]+)\/(blob|tree|edit)\/[^/]+\/([^/]+)(\/)?(.+)$/,\"https://cra-test-arc.canada.ca/$1/$3$4$5\").replace(/^https:\/\/github.com\/(.*?)\/(.*?)\/(blob|tree|edit)\/.*?\/(.*?)(\/)?(\.\w+)?$/,\"https://$1.github.io/$2/$4$6\");}else{var i=\"/index.html\";if(globalThis.location.href.indexOf(\".html\")>-1){i=\"\";};globalThis.location=globalThis.location.toString().replace(/^https:\/\/cra-test-arc\.canada\.ca\/(.*?)\/((?:.*)(?=\/))?(\/?.*\..+)?/,\"https://github.com/cra-proto/$1/blob/master/$2$3\"+i).replace(/^https:\/\/test.canada.ca\/(.*?)\/(.*?)(\/)?(\.\w+)?$/,\"https://github.com/gc-proto/$1/tree/master/$2$4/\"+i).replace(/^https:\/\/(.*?).github.io\/(.*?)\/(.*?)(\/)?(\.\w+)?$/,\"https://github.com/$1/$2/tree/main/$3$5/\"+i);}})();");
 </script>

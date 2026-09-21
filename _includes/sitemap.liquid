@@ -1,0 +1,140 @@
+{% capture crlf %}
+{% endcapture %}
+{%- assign static_html = site.static_files | where_exp: "item", "item.extname == '.html'" -%}
+
+{%- assign pages_html = site.pages | where_exp: "item", "item.name contains '.html'" -%}
+{%- assign pages_md   = site.pages | where_exp: "item", "item.name contains '.md'" -%}
+
+{%- assign all_pages = static_html | concat: pages_html | concat: pages_md -%}
+
+{%- assign path_string_list = "" -%}
+{%- for p in all_pages -%}
+  {%- if p.sitemap == false or p.sitemapExclude == true -%}{%- continue -%}{%- endif -%}
+  {%- if p.url -%}
+    {%- assign target_path = p.url -%}
+  {%- else -%}
+    {%- assign target_path = p.path -%}
+  {%- endif -%}
+  {%- assign first_char = target_path | slice: 0 -%}
+  {%- if first_char != "/" -%}
+    {%- assign target_path = target_path | prepend: "/" -%}
+  {%- endif -%}
+  {%- if path_string_list == "" -%}
+    {%- assign path_string_list = target_path -%}
+  {%- else -%}
+    {%- assign path_string_list = path_string_list | append: "||" | append: target_path -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign sorted_paths = path_string_list | split: "||" | sort -%}
+{%- assign open_folders = "" | split: "," -%}
+{%- assign physical_html_depth = 0 -%}
+
+{%- for active_path in sorted_paths -%}
+  {%- assign p = nil -%}
+  {%- for item in all_pages -%}
+    {%- if item.url == active_path or item.path == active_path -%}
+      {%- assign p = item -%}
+      {%- break -%}
+    {%- else -%}
+      {%- assign clean_item_path = item.path -%}
+      {%- assign check_char = clean_item_path | slice: 0 -%}
+      {%- if check_char != "/" -%}
+        {%- assign clean_item_path = clean_item_path | prepend: "/" -%}
+      {%- endif -%}
+      {%- if clean_item_path == active_path -%}
+        {%- assign p = item -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if p == nil -%}{%- continue -%}{%- endif -%}
+  {%- assign current_loop_path = active_path -%}
+  {%- assign last_char = current_loop_path | slice: -1 -%}
+  {%- if last_char == "/" -%}
+    {%- assign current_loop_path = current_loop_path | append: "index.html" -%}
+  {%- endif -%}
+  {%- assign url_parts = current_loop_path | split: "/" -%}
+  {%- assign parts_size = url_parts.size -%}
+  {%- assign filename = url_parts | last -%}
+  {%- assign target_folder_depth = parts_size | minus: 2 -%}
+  {%- assign this_page_folders = "" | split: "," -%}
+  {%- if target_folder_depth > 0 -%}
+    {%- for i in (1..target_folder_depth) -%}
+      {%- if url_parts[i] != "" and url_parts[i] != nil -%}
+        {%- assign this_page_folders = this_page_folders | push: url_parts[i] -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- assign keep_open_count = 0 -%}
+  {%- assign max_possible_match = open_folders.size -%}
+  {%- if this_page_folders.size < max_possible_match -%}
+    {%- assign max_possible_match = this_page_folders.size -%}
+  {%- endif -%}
+  {%- if max_possible_match > 0 -%}
+    {%- assign loop_end = max_possible_match | minus: 1 -%}
+    {%- for i in (0..loop_end) -%}
+      {%- assign old_f = open_folders[i] -%}
+      {%- assign new_f = this_page_folders[i] -%}
+      {%- if old_f == new_f -%}
+        {%- assign keep_open_count = keep_open_count | plus: 1 -%}
+      {%- else -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- assign current_open_num = open_folders.size -%}
+  {%- if current_open_num > keep_open_count -%}
+    {%- assign levels_to_close = current_open_num | minus: keep_open_count -%}
+    {%- for c in (1..levels_to_close) -%}
+      {%- if physical_html_depth > 0 -%}
+        </ul>{{ crlf }}
+      </li>{{ crlf }}
+        {%- assign physical_html_depth = physical_html_depth | minus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- assign temp_folders = "" | split: "," -%}
+    {%- if keep_open_count > 0 -%}
+      {%- assign loop_end = keep_open_count | minus: 1 -%}
+      {%- for i in (0..loop_end) -%}
+        {%- assign temp_folders = temp_folders | push: open_folders[i] -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- assign open_folders = temp_folders -%}
+  {%- endif -%}
+  {%- assign start_index = open_folders.size -%}
+  {%- assign end_index = this_page_folders.size -%}
+  {%- if start_index < end_index -%}
+    {%- assign loop_end = end_index | minus: 1 -%}
+    {%- for i in (start_index..loop_end) -%}
+      {%- assign folder_name = this_page_folders[i] -%}
+      {%- assign open_folders = open_folders | push: folder_name -%}
+      {%- assign physical_html_depth = physical_html_depth | plus: 1 -%}
+  <li role="treeitem" aria-expanded="true" aria-selected="false" class="tv-parent" aria-level="{{ physical_html_depth }}">
+    <span class="tv-title">{{ folder_name }}</span>
+    <ul role="group">{{ crlf }}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- assign display_label = filename -%}
+  {%- assign leaf_level = physical_html_depth | plus: 1 -%}
+  {%- if is_trailing_slash and p == nil -%}
+    {%- assign original_slash_path = active_path | replace: "index.html", "" -%}
+    {%- for item in all_pages -%}
+      {%- if item.url == original_slash_path or item.path == original_slash_path -%}
+        {%- assign p = item -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- if p.url -%}
+      <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="default" class="nowrap tv-list"><span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" lang="{{ page.lang | default: 'en' }}" href="{{ p.url | relative_url }}"{%- if p.title -%} title="{{ p.title | escape }}"{%- endif -%}>{{ display_label | escape }}</a>{%- if p.title -%}<span class="tv-page-title wb-inv" aria-hidden="true">{{ p.title | escape }}</span>{%- endif -%}</span></li>{{ crlf }}
+  {%- else -%}
+      <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="static" class="nowrap tv-list"><span class="label label-default position-relative tv-type">static</span><span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" href="{{ p.path | relative_url }}">{{ display_label | escape }}</a></span></li>{{ crlf }}
+  {%- endif -%}
+{%- endfor -%}
+{%- if physical_html_depth > 0 -%}
+  {%- for i in (1..physical_html_depth) -%}
+    </ul>{{ crlf }}
+  </li>{{ crlf }}
+  {%- endfor -%}
+{%- endif -%}

@@ -1,0 +1,280 @@
+:root {
+  --spacing: 2.3rem;
+  --radius: 10px;
+  --listitemcolor: #ccc;
+  --expandcolor: #295376;
+}
+
+/* Clear default layout parameters */
+.wb-treeview, 
+.wb-treeview ul,
+.wb-treeview [role="group"] {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.wb-treeview li {
+  display: block;
+  position: relative;
+  padding-left: calc(2 * var(--spacing) - var(--radius) - 2px);
+}
+
+ul[role="tree"] li {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+li[role="treeitem"] [role="group"] {
+  margin-left: calc(var(--radius) - var(--spacing));
+  padding-left: 0;
+}
+
+li[role="treeitem"] {
+  line-height: 1.3em;
+  border-left: 2px solid var(--listitemcolor);
+  cursor: default;
+}
+
+li[role="treeitem"]:last-child {
+  border-color: transparent;
+}
+
+ul[role="tree"] > li[role="treeitem"] {
+  border-left-color: transparent;
+}
+
+/* Tree Connecting Lines (L-shape) */
+li[role="treeitem"]::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: calc(var(--spacing) / -2);
+  left: -2px;
+  width: calc(var(--spacing) + 2px);
+  height: calc(var(--spacing) + 1px);
+  border: 2px solid var(--listitemcolor);
+  border-width: 0 0 2px 2px;
+}
+
+ul[role="tree"] > li[role="treeitem"]::before {
+  display: none;
+}
+
+.wb-treeview li[role="treeitem"]::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: calc(var(--spacing) / 2 - var(--radius));
+  
+  /* Adjust left to change circle spacing and positioning */
+  left: calc(var(--spacing) - var(--radius) - 1px);
+  width: calc(2 * var(--radius));
+  height: calc(2 * var(--radius));
+  border-radius: 50%;
+  z-index: 3;
+  background: var(--listitemcolor);
+
+/*  border: 2px solid var(--listitemcolor);
+  box-sizing: border-box;
+  background: radial-gradient(
+    circle, 
+    lightgreen 35%, 
+    var(--listitemcolor) 36%, 
+    var(--listitemcolor) 50%, 
+    #fff 51%
+  );
+*/
+}
+
+.wb-treeview li[role="treeitem"][data-action-id="static"]::after {
+  background: #fff;
+  border: 2px #acacac solid;
+
+/*  border: 5px var(--listitemcolor) double; */
+}
+
+.wb-treeview li[role="treeitem"][data-action-id="add"]::after {
+  background: #d8eeca;
+  border: 2px #278400 solid;
+}
+
+.wb-treeview li[role="treeitem"][data-action-id="modify"]::after {
+  background: #f9f4d4;
+  border: 2px #f90 solid;
+}
+
+.wb-treeview li[role="treeitem"][data-action-id="delete"]::after {
+  background: #f3e9e8;
+  border: 2px #d3080c solid;
+}
+
+.wb-treeview li[role="treeitem"][data-action-id="info"]::after {
+  background: #d7faff;
+  border: 2px #269abc solid;
+}
+
+.wb-treeview li:has(> span.tv-title)::after,
+.wb-treeview li.tv-parent::after {
+  display: none;
+}
+
+.wb-treeview li .wb-inv {
+  display: none !important;
+}
+
+li[role="treeitem"] span.tv-title {
+  display: inline-flex !important;
+  align-items: center;
+  cursor: pointer;
+  line-height: 1.2em;
+  white-space: nowrap;
+  font-weight: 501;
+  margin-left: calc(-1 * (var(--spacing) - var(--radius) + 17px));
+  padding: 0.35em 0.6em 0.35em calc(var(--spacing) - var(--radius) + 12px);
+  border-radius: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+li[role="treeitem"] a.tv-page-link {
+  display: inline-flex !important;
+  align-items: center;
+  cursor: pointer;
+  line-height: 1.2em;
+  white-space: nowrap;
+
+  /* Adjust left to change link spacing and positioning */
+  margin-left: calc(-1 * (var(--spacing) - var(--radius) - 15px));
+  padding: 0.35em 0.6em;
+  border-radius: 4px;
+  position: relative;
+  z-index: 2;
+  text-decoration: underline;
+}
+
+[role="treeitem"] span.tv-title:focus,
+[role="treeitem"] a.tv-page-link:focus {
+  outline: 0;
+}
+
+[role="treeitem"] span.tv-title.focus,
+[role="treeitem"] a.tv-page-link.focus,
+[role="treeitem"] span.tv-title:focus-visible,
+[role="treeitem"] a.tv-page-link:focus-visible {
+  outline: 1px dotted #000;
+}
+
+.wb-treeview li[role="treeitem"] span.tv-title:hover {
+  background-color: var(--expandcolor);
+  color: #fff;
+
+/*  font-weight: 500; */
+}
+
+.wb-treeview li[role="treeitem"] span.tv-type {
+  margin-right: 1.2em;
+  top: -3px;
+}
+
+li[role="treeitem"] a.tv-page-link:visited {
+  color: #551a8b;
+}
+
+.wb-treeview li[role="treeitem"] a.tv-page-link:hover {
+  background-color: #eaebed;
+  color: #00e;
+}
+
+/* --- FontAwesome Folder Icons --- */
+li[role="treeitem"] > span.tv-title::before {
+  font-family: "Segoe UI Emoji", sans-serif;
+  font-weight: 900;
+  color: #26374a;
+  position: absolute;
+  left: calc(var(--spacing) - var(--radius) - 21px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #fff; 
+  padding: 2px;
+}
+
+/* Closed Folder State - Segoe UI Emoji */
+li[role="treeitem"][aria-expanded="false"] > span.tv-title::before {
+  content: "\1f4c1";
+}
+
+/* Open Folder State - Segoe UI Emoji */
+li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
+  content: "\1f4c2";
+}
+
+@supports (font-family: Wingdings) {
+  li[role="treeitem"] > span.tv-title::before {
+    font-family: Wingdings;
+    font-weight: 900;
+  }
+
+  /* Closed Folder - Wingdings */
+  li[role="treeitem"][aria-expanded="false"] > span.tv-title::before {
+    content: "\0030";
+  }
+
+  /* Open Folder State - Wingdings */
+  li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
+    content: "\0031";
+  }
+}
+
+@supports (font-family: "Font Awesome 5 Free") {
+
+  /*
+  li[role="treeitem"] > span.tv-title::before {
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900 !important;
+  }
+*/
+
+  /* Closed Folder State - FontAwesome 5 */
+  li[role="treeitem"][aria-expanded="false"] > span.tv-title::before {
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900 !important;
+    content: "\f07b" !important;
+
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+  }
+
+  /* Open Folder State - FontAwesome 5 */
+  li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900 !important;
+    content: "\f07c" !important;
+
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+  }
+}
+
+.wb-treeview li span.tv-title:hover::before {
+  background-color: transparent;
+  color: #fff;
+}
+
+li[role="treeitem"][aria-expanded="false"] + [role="group"], 
+li[role="treeitem"][aria-expanded="false"] > [role="group"],
+li[role="treeitem"][aria-expanded="false"] > ul[role="group"] {
+  display: none !important;
+}
+
+li[role="treeitem"][aria-expanded="true"] + [role="group"], 
+li[role="treeitem"][aria-expanded="true"] > [role="group"],
+li[role="treeitem"][aria-expanded="true"] > ul[role="group"] {
+  display: block !important;
+}

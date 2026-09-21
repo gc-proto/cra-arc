@@ -33,11 +33,7 @@
 
 {% if page.testBanner == true or site.testBanner == true and page.testBanner != false %}
 
-  {% if page.notedlinks != nil %}
-    <data id="notedlinks"
-          value="[{% for source in page.notedlinks %}{% if source.title != '' and source.link != '' %}{% unless forloop.first %}, {% endunless %}{&quot;sourcelink&quot;:&quot;{{ source.link }}&quot;,&quot;sourcetitle&quot;:&quot;{{ source.title }}&quot;}{% endif %}{% endfor %}]">
-    </data>
-  {% endif %}
+{%- assign sitemap_url = site.sitemap[page.lang] -%}{%- if page.notedlinks != nil or sitemap_url != nil -%}<data id="notedlinks" value="[{%- assign has_separator = false -%}{%- if sitemap_url != nil and sitemap_url != blank -%}{&quot;sourcelink&quot;: &quot;{{ sitemap_url }}&quot;, &quot;sourcetitle&quot;: &quot;Repository sitemap&quot;}{%- assign has_separator = true -%}{%- endif -%}{%- for source in page.notedlinks -%}{%- if source.title != blank and source.link != blank -%}{%- if has_separator -%}, {%- endif -%}{&quot;sourcelink&quot;: &quot;{{ source.link }}&quot;, &quot;sourcetitle&quot;:&quot;{{ source.title }}&quot;}{%- assign has_separator = true -%}{%- endif -%}{%- endfor -%}]"></data>{%- endif -%}
 
   {% if page.keywords != nil and page.keywords != "" %}
     <data id="pageKeywords" value="{{ page.keywords }}"></data>
