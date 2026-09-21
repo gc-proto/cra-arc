@@ -31,6 +31,8 @@
 
 {%- assign all_pages = static_html | concat: pages_html | concat: pages_pdf | concat: pages_md -%}
 
+{%- if all_pages.size > 0 -%}
+  <ul id="{{ include.tree_id }}" class="list-unstyled wb-treeview" role="tree"{%- if include.tree_label and include.tree_label != "" -%} aria-labelledby="{{ include.tree_label }}"{%- endif -%}>
 {%- assign path_string_list = "" -%}
 {%- for p in all_pages -%}
   {%- if p.sitemap == false or p.sitemapExclude == true -%}{%- continue -%}{%- endif -%}
@@ -161,4 +163,6 @@
     </ul>{{ crlf }}
   </li>{{ crlf }}
   {%- endfor -%}
+{%- endif -%}
+</ul>
 {%- endif -%}

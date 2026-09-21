@@ -30,17 +30,15 @@ script:
         </div>
     </div>
 </div>
-<h2 class="mrgn-tp-md" id="tree1">Sitemap (treeview)</h2>
+<h2 class="mrgn-tp-md" id="tree_header">Sitemap (treeview)</h2>
 <div class="wb-filter">
     <div class="mrgn-tp-lg mrgn-bttm-md">
         <div class="form-inline">
-            <button id="btn-expand-all" type="button" class="btn btn-default mrgn-rght-sm">Expand All</button>
-            <button id="btn-collapse-all" type="button" class="btn btn-default">Collapse All</button>
+            <button type="button" id="btn-expand-all" data-tree-target="#tree1" data-tree-action="expandall" class="btn btn-default mrgn-rght-sm">Expand All</button>
+            <button type="button" id="btn-collapse-all" data-tree-target="#tree1" data-tree-action="collapesall" class="btn btn-default">Collapse All</button>
         </div>
     </div>
     <section id="treeview">
-        <ul class="list-unstyled wb-treeview" role="tree" aria-labelledby="tree1">
-            {% include sitemap.liquid section="contact-redesign" %}
-        </ul>
+        {% include sitemap.liquid tree_id="tree1" tree_label="tree_header" section="contact-redesign" %}
     </section>
 </div>

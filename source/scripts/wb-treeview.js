@@ -577,13 +577,35 @@
 (function ($, wb) {
     "use strict";
 
-    $(document).on("click", "#btn-expand-all", function (event) {
+    // Unified click handler for targeted expansion triggers
+    $(document).on("click", "[data-tree-action=\"expandall\"]", function (event) {
         event.preventDefault();
-        $(".wb-treeview").trigger("expandall.wb-treeview");
+        
+        var targetSelector = $(this).data("tree-target");
+        var $targetTree = null;
+
+        if (targetSelector !== undefined && targetSelector !== null && targetSelector !== "") {
+            $targetTree = $(targetSelector);
+        } else {
+            $targetTree = $(".wb-treeview");
+        }
+        
+        $targetTree.trigger("expandall.wb-treeview");
     });
 
-    $(document).on("click", "#btn-collapse-all", function (event) {
+    // Unified click handler for targeted collapse triggers
+    $(document).on("click", "[data-tree-action=\"collapseall\"]", function (event) {
         event.preventDefault();
-        $(".wb-treeview").trigger("collapseall.wb-treeview");
+        
+        var targetSelector = $(this).data("tree-target");
+        var $targetTree = null;
+
+        if (targetSelector !== undefined && targetSelector !== null && targetSelector !== "") {
+            $targetTree = $(targetSelector);
+        } else {
+            $targetTree = $(".wb-treeview");
+        }
+        
+        $targetTree.trigger("collapseall.wb-treeview");
     });
 })(jQuery, wb);
