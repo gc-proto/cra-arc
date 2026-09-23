@@ -3,22 +3,23 @@
 {%- assign site_pages = "" | split: "" -%}
 {%- assign static_files = "" | split: "" -%}
 
-{%- if include.extensions and include.extensions != "" -%}
-  {%- assign ext_arr = include.extensions | split: ", " -%}
+{%- if include.extensions != nil -%}
+  {%- if include.extensions != "" -%}
+    {%- assign ext_arr = include.extensions | split: ", " -%}
 
-  {%- for item in site.static_files -%}
-    {%- for extname in ext_arr -%}
-      {%- assign ext_len = extname.size -%}
-      {%- assign ext_start_pos = 0 | minus: extname.size -%}
-      {%- assign current_ext = item.path | slice: ext_start_pos, ext_len -%}
-      {%- if current_ext == extname -%}
-        {%- assign static_files = static_files | push: item -%}
-      {%- endif -%}
+    {%- for item in site.static_files -%}
+      {%- for extname in ext_arr -%}
+        {%- assign ext_len = extname.size -%}
+        {%- assign ext_start_pos = 0 | minus: extname.size -%}
+        {%- assign current_ext = item.path | slice: ext_start_pos, ext_len -%}
+        {%- if current_ext == extname -%}
+          {%- assign static_files = static_files | push: item -%}
+        {%- endif -%}
+      {%- endfor -%}
     {%- endfor -%}
-  {%- endfor -%}
-
-{%- else -%}
-  {%- assign static_files = site.static_files -%}
+  {%- else -%}
+    {%- assign static_files = site.static_files -%}
+  {%- endif -%}
 {%- endif -%}
 {%- assign site_pages = site.pages -%}
 
