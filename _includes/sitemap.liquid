@@ -7,26 +7,20 @@
   {%- assign ext_arr = include.extensions | split: ", " -%}
 
   {%- for item in site.static_files -%}
-    {%- if ext_arr contains item.extname -%}
-      {%- assign static_files = static_files | push: item -%}
-    {%- endif -%}
-  {%- endfor -%}
-
-  {%- for item in site.pages -%}
     {%- for extname in ext_arr -%}
       {%- assign ext_len = extname.size -%}
       {%- assign ext_start_pos = 0 | minus: extname.size -%}
       {%- assign current_ext = item.path | slice: ext_start_pos, ext_len -%}
       {%- if current_ext == extname -%}
-        {%- assign site_pages = site_pages | push: item -%}
+        {%- assign static_files = static_files | push: item -%}
       {%- endif -%}
     {%- endfor -%}
   {%- endfor -%}
 
 {%- else -%}
   {%- assign static_files = site.static_files -%}
-  {%- assign site_pages = site.pages -%}
 {%- endif -%}
+{%- assign site_pages = site.pages -%}
 
 {%- if include.section and include.section != "" -%}
   {%- assign folder_prefix = include.section | append: "/" -%}
