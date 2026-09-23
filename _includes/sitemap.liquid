@@ -1,38 +1,44 @@
 {% capture crlf %}
 {% endcapture %}
-{%- assign static_html = site.static_files | where_exp: "item", "item.extname == '.html'" -%}
+{%- assign site_pages = "" | split: "" -%}
+{%- assign static_files = "" | split: "" -%}
 
-{%- assign pages_html = "" | split: "" -%}
-{%- assign pages_pdf = "" | split: "" -%}
-{%- assign pages_md = "" | split: "" -%}
+{%- if include.extensions and include.extensions != "" -%}
+  {%- assign ext_arr = include.extensions | split: ", " -%}
 
-{%- for item in site.pages -%}
-  {%- assign ext_len_5 = item.path | slice: -5, 5 -%}
-  {%- assign ext_len_4 = item.path | slice: -4, 4 -%}
-  {%- assign ext_len_3 = item.path | slice: -3, 3 -%}
-  
-  {%- if ext_len_5 == ".html" -%}
-    {%- assign pages_html = pages_html | push: item -%}
-  {%- elsif ext_len_4 == ".pdf" -%}
-    {%- assign pages_pdf = pages_pdf | push: item -%}
-  {%- elsif ext_len_3 == ".md" -%}
-    {%- assign pages_md = pages_md | push: item -%}
-  {%- endif -%}
-{%- endfor -%}
+  {%- for item in site.static_files -%}
+    {%- if ext_arr contains item.extname -%}
+      {%- assign static_files = static_files | push: item -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- for item in site.pages -%}
+    {%- for extname in ext_arr -%}
+      {%- assign ext_len = extname.size -%}
+      {%- assign ext_start_pos = 0 | minus: extname.size -%}
+      {%- assign current_ext = item.path | slice: ext_start_pos, ext_len -%}
+      {%- if current_ext == extname -%}
+        {%- assign site_pages = site_pages | push: item -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+
+{%- else -%}
+  {%- assign static_files = site.static_files -%}
+  {%- assign site_pages = site.pages -%}
+{%- endif -%}
 
 {%- if include.section and include.section != "" -%}
   {%- assign folder_prefix = include.section | append: "/" -%}
 
-  {%- assign static_html = static_html | where_exp: "item", "item.path contains folder_prefix" -%}
-  {%- assign pages_html = pages_html | where_exp: "item", "item.path contains folder_prefix" -%}
-  {%- assign pages_pdf = pages_pdf | where_exp: "item", "item.path contains folder_prefix" -%}
-  {%- assign pages_md = pages_md | where_exp: "item", "item.path contains folder_prefix" -%}
+  {%- assign static_files = static_files | where_exp: "item", "item.path contains folder_prefix" -%}
+  {%- assign site_pages = site_pages | where_exp: "item", "item.path contains folder_prefix" -%}
 {%- endif -%}
 
-{%- assign all_pages = static_html | concat: pages_html | concat: pages_pdf | concat: pages_md -%}
+{%- assign all_pages = static_files | concat: site_pages -%}
 
 {%- if all_pages.size > 0 -%}
-  <ul id="{{ include.tree_id }}" class="list-unstyled wb-treeview" role="tree"{%- if include.tree_label and include.tree_label != "" -%} aria-labelledby="{{ include.tree_label }}"{%- endif -%}>
+  <ul id="{{ include.tree_id }}" class="list-unstyled wb-treeview" role="tree"{%- if include.tree_label and include.tree_label != "" -%} aria-labelledby="{{ include.tree_label }}"{%- endif -%}>{{ crlf }}
 {%- assign path_string_list = "" -%}
 {%- for p in all_pages -%}
   {%- if p.sitemap == false or p.sitemapExclude == true -%}{%- continue -%}{%- endif -%}
@@ -164,5 +170,5 @@
   </li>{{ crlf }}
   {%- endfor -%}
 {%- endif -%}
-</ul>
+</ul>{{ crlf }}
 {%- endif -%}
