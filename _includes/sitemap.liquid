@@ -5,7 +5,7 @@
 
 {%- if include.extensions != nil -%}
   {%- if include.extensions != "" -%}
-    {%- assign ext_arr = include.extensions | split: ", " -%}
+    {%- assign ext_arr = include.extensions | strip | split: ", " -%}
 
     {%- for item in site.static_files -%}
       {%- for extname in ext_arr -%}
@@ -24,10 +24,48 @@
 {%- assign site_pages = site.pages -%}
 
 {%- if include.section and include.section != "" -%}
-  {%- assign folder_prefix = include.section | append: "/" -%}
+  {%- assign sections = include.section | split: "," -%}
+  
+  {%- assign matched_static_paths = "" -%}
+  {%- assign matched_page_paths = "" -%}
 
-  {%- assign static_files = static_files | where_exp: "item", "item.path contains folder_prefix" -%}
-  {%- assign site_pages = site_pages | where_exp: "item", "item.path contains folder_prefix" -%}
+  {%- for item in static_files -%}
+    {%- for section in sections -%}
+      {%- assign folder_prefix = section | strip | append: "/" -%}
+      {%- assign path_start = item.path | slice: 0, folder_prefix.size -%}
+      
+      {%- if path_start == folder_prefix -%}
+        {%- assign matched_static_paths = matched_static_paths | append: item.path | append: "||" -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+
+  {%- for item in site_pages -%}
+    {%- for section in sections -%}
+      {%- assign folder_prefix = section | strip | append: "/" -%}
+      {%- assign path_start = item.path | slice: 0, folder_prefix.size -%}
+      
+      {%- if path_start == folder_prefix -%}
+        {%- assign matched_page_paths = matched_page_paths | append: item.path | append: "||" -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+
+  {%- assign valid_static_paths = matched_static_paths | split: "||" -%}
+  {%- assign valid_page_paths = matched_page_paths | split: "||" -%}
+
+  {%- assign static_files = static_files | where_exp: "item", "valid_static_paths contains item.path" -%}
+  {%- assign site_pages = site_pages | where_exp: "item", "valid_page_paths contains item.path" -%}
+{%- endif -%}
+
+{%- if static_files == nil -%}
+  {%- assign static_files = "" | split: "," -%}
+{%- endif -%}
+
+{%- if site_pages == nil -%}
+  {%- assign site_pages = "" | split: "," -%}
 {%- endif -%}
 
 {%- assign all_pages = static_files | concat: site_pages -%}
