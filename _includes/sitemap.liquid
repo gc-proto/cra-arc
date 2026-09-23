@@ -3,39 +3,43 @@
 {%- assign site_pages = "" | split: "" -%}
 {%- assign static_files = "" | split: "" -%}
 
-{%- if include.extensions != nil -%}
-  {%- if include.extensions != "" -%}
-    {%- assign ext_arr = include.extensions | strip | split: ", " -%}
-
-    {%- for item in site.static_files -%}
-      {%- for extname in ext_arr -%}
-        {%- assign ext_len = extname.size -%}
-        {%- assign ext_start_pos = 0 | minus: extname.size -%}
-        {%- assign current_ext = item.path | slice: ext_start_pos, ext_len -%}
-        {%- if current_ext == extname -%}
-          {%- assign static_files = static_files | push: item -%}
-        {%- endif -%}
-      {%- endfor -%}
+{%- if include.extensions != nil and include.extensions != "" -%}
+  {%- assign ext_arr = include.extensions | strip | split: "," -%}
+  {%- for item in site.static_files -%}
+    {%- for extname in ext_arr -%}
+      {%- assign clean_ext = extname | strip -%}
+      {%- assign ext_len = clean_ext.size -%}
+      {%- assign ext_start_pos = 0 | minus: ext_len -%}
+      {%- assign current_ext = item.path | slice: ext_start_pos, ext_len -%}
+      {%- if current_ext == clean_ext -%}
+        {%- assign static_files = static_files | push: item -%}
+        {%- break -%}
+      {%- endif -%}
     {%- endfor -%}
-  {%- else -%}
-    {%- assign static_files = site.static_files -%}
-  {%- endif -%}
+  {%- endfor -%}
+{%- else -%}
+  {%- assign static_files = site.static_files -%}
 {%- endif -%}
 {%- assign site_pages = site.pages -%}
 
 {%- if include.section and include.section != "" -%}
   {%- assign sections = include.section | split: "," -%}
   
-  {%- assign matched_static_paths = "" -%}
-  {%- assign matched_page_paths = "" -%}
+  {%- assign matched_static_arr = "" | split: "" -%}
+  {%- assign matched_page_arr = "" | split: "" -%}
 
   {%- for item in static_files -%}
     {%- for section in sections -%}
-      {%- assign folder_prefix = section | strip | append: "/" -%}
+      {%- assign folder_prefix = section | strip -%}
+      {%- assign first_char = folder_prefix | slice: 0 -%}
+      {%- if first_char == "/" -%}
+        {%- assign folder_prefix = folder_prefix | slice: 1, folder_prefix.size -%}
+      {%- endif -%}
+      {%- assign folder_prefix = folder_prefix | append: "/" -%}
       {%- assign path_start = item.path | slice: 0, folder_prefix.size -%}
-      
+
       {%- if path_start == folder_prefix -%}
-        {%- assign matched_static_paths = matched_static_paths | append: item.path | append: "||" -%}
+        {%- assign matched_static_arr = matched_static_arr | push: item.path -%}
         {%- break -%}
       {%- endif -%}
     {%- endfor -%}
@@ -43,19 +47,31 @@
 
   {%- for item in site_pages -%}
     {%- for section in sections -%}
-      {%- assign folder_prefix = section | strip | append: "/" -%}
-      {%- assign path_start = item.path | slice: 0, folder_prefix.size -%}
+      {%- assign folder_prefix = section | strip -%}
+      {%- assign first_char = folder_prefix | slice: 0 -%}
+      {%- if first_char == "/" -%}
+        {%- assign folder_prefix = folder_prefix | slice: 1, folder_prefix.size -%}
+      {%- endif -%}
+      {%- assign folder_prefix = folder_prefix | append: "/" -%}
+
+      {%- assign clean_item_path = item.path -%}
+      {%- assign item_first_char = clean_item_path | slice: 0 -%}
+      {%- if item_first_char == "/" -%}
+        {%- assign clean_item_path = clean_item_path | slice: 1, clean_item_path.size -%}
+      {%- endif -%}
       
+      {%- assign path_start = clean_item_path | slice: 0, folder_prefix.size -%}
       {%- if path_start == folder_prefix -%}
-        {%- assign matched_page_paths = matched_page_paths | append: item.path | append: "||" -%}
+        {%- assign matched_page_arr = matched_page_arr | push: item.path -%}
         {%- break -%}
       {%- endif -%}
     {%- endfor -%}
   {%- endfor -%}
 
+  {%- assign matched_static_paths = matched_static_arr | join: "||" -%}
+  {%- assign matched_page_paths = matched_page_arr | join: "||" -%}
   {%- assign valid_static_paths = matched_static_paths | split: "||" -%}
   {%- assign valid_page_paths = matched_page_paths | split: "||" -%}
-
   {%- assign static_files = static_files | where_exp: "item", "valid_static_paths contains item.path" -%}
   {%- assign site_pages = site_pages | where_exp: "item", "valid_page_paths contains item.path" -%}
 {%- endif -%}
@@ -75,11 +91,7 @@
 {%- assign path_string_list = "" -%}
 {%- for p in all_pages -%}
   {%- if p.sitemap == false or p.sitemapExclude == true -%}{%- continue -%}{%- endif -%}
-  {%- if p.url -%}
-    {%- assign target_path = p.url -%}
-  {%- else -%}
-    {%- assign target_path = p.path -%}
-  {%- endif -%}
+  {%- assign target_path = p.url | default: p.path -%}
   {%- assign first_char = target_path | slice: 0 -%}
   {%- if first_char != "/" -%}
     {%- assign target_path = target_path | prepend: "/" -%}
@@ -96,21 +108,18 @@
 {%- assign physical_html_depth = 0 -%}
 
 {%- for active_path in sorted_paths -%}
+  {%- if active_path == "" or active_path == nil -%}{%- continue -%}{%- endif -%}
   {%- assign p = nil -%}
   {%- for item in all_pages -%}
-    {%- if item.url == active_path or item.path == active_path -%}
+    {%- assign clean_item_path = item.path -%}
+    {%- assign check_char = clean_item_path | slice: 0 -%}
+    {%- if check_char != "/" -%}
+      {%- assign clean_item_path = clean_item_path | prepend: "/" -%}
+    {%- endif -%}
+    
+    {%- if item.url == active_path or item.path == active_path or clean_item_path == active_path -%}
       {%- assign p = item -%}
       {%- break -%}
-    {%- else -%}
-      {%- assign clean_item_path = item.path -%}
-      {%- assign check_char = clean_item_path | slice: 0 -%}
-      {%- if check_char != "/" -%}
-        {%- assign clean_item_path = clean_item_path | prepend: "/" -%}
-      {%- endif -%}
-      {%- if clean_item_path == active_path -%}
-        {%- assign p = item -%}
-        {%- break -%}
-      {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
   {%- if p == nil -%}{%- continue -%}{%- endif -%}
@@ -139,9 +148,7 @@
   {%- if max_possible_match > 0 -%}
     {%- assign loop_end = max_possible_match | minus: 1 -%}
     {%- for i in (0..loop_end) -%}
-      {%- assign old_f = open_folders[i] -%}
-      {%- assign new_f = this_page_folders[i] -%}
-      {%- if old_f == new_f -%}
+      {%- if open_folders[i] == this_page_folders[i] -%}
         {%- assign keep_open_count = keep_open_count | plus: 1 -%}
       {%- else -%}
         {%- break -%}
@@ -182,15 +189,7 @@
   {%- endif -%}
   {%- assign display_label = filename -%}
   {%- assign leaf_level = physical_html_depth | plus: 1 -%}
-  {%- if is_trailing_slash and p == nil -%}
-    {%- assign original_slash_path = active_path | replace: "index.html", "" -%}
-    {%- for item in all_pages -%}
-      {%- if item.url == original_slash_path or item.path == original_slash_path -%}
-        {%- assign p = item -%}
-        {%- break -%}
-      {%- endif -%}
-    {%- endfor -%}
-  {%- endif -%}
+  
   {%- if p.url -%}
       <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="default" class="nowrap tv-list"><span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" lang="{{ page.lang | default: "en" }}" href="{{ p.url | relative_url }}"{%- if p.title -%} title="{{ p.title | escape }}"{%- endif -%}>{{ display_label | escape }}</a>{%- if p.title -%}<span class="tv-page-title wb-inv" aria-hidden="true">{{ p.title | escape }}</span>{%- endif -%}</span></li>{{ crlf }}
   {%- else -%}
