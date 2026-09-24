@@ -39,6 +39,13 @@ script:
         </div>
     </div>
     <section id="treeview">
+        {%- comment -%}
+        - tree_id     [String] : The unique DOM element ID applied to the root <ul> tree layout. Necessary to identify where the "Expand All" and "Collapse All" buttons apply. (Required)
+        - tree_label  [String] : The target DOM element ID containing the text label/header applied to the aria-labelledby. (Required)
+        - extensions  [String] : Have the sitemap generate with all standard Jekyll pages and any static files that match these extensions (comma-separated, e.g., ".html, .pdf"). If this parameter is omitted (nil), all non Jekyll files are excluded by default. But if explicitly set to "", "*", or ".*", than all file extensions are permitted. (Optional)
+        - section     [String] : Limits the sitemap generation to only these folders/paths (comma-separated, e.g., "en, fr"). If omitted or empty, the sitemap is generated for all folders in the repository. (Optional)
+        {%- endcomment -%}
+
         {% include sitemap.liquid tree_id="tree1" tree_label="tree_header" extensions=".html, .pdf, .txt" section="contact-redesign" %}
     </section>
 </div>

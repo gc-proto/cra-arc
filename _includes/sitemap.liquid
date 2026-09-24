@@ -3,22 +3,26 @@
 {%- assign site_pages = "" | split: "" -%}
 {%- assign static_files = "" | split: "" -%}
 
-{%- if include.extensions != nil and include.extensions != "" -%}
-  {%- assign ext_arr = include.extensions | strip | split: "," -%}
-  {%- for item in site.static_files -%}
-    {%- for extname in ext_arr -%}
-      {%- assign clean_ext = extname | strip -%}
-      {%- assign ext_len = clean_ext.size -%}
-      {%- assign ext_start_pos = 0 | minus: ext_len -%}
-      {%- assign current_ext = item.path | slice: ext_start_pos, ext_len -%}
-      {%- if current_ext == clean_ext -%}
-        {%- assign static_files = static_files | push: item -%}
-        {%- break -%}
-      {%- endif -%}
+{%- if include.extensions != nil -%}
+  {%- assign strip_ext = include.extensions | strip -%}
+  
+  {%- if strip_ext == "" or strip_ext == "*" or strip_ext == ".*" -%}
+    {%- assign static_files = site.static_files -%}
+  {%- else -%}
+    {%- assign ext_arr = strip_ext | split: "," -%}
+    {%- for item in site.static_files -%}
+      {%- for extname in ext_arr -%}
+        {%- assign clean_ext = extname | strip -%}
+        {%- assign ext_len = clean_ext.size -%}
+        {%- assign ext_start_pos = 0 | minus: ext_len -%}
+        {%- assign current_ext = item.path | slice: ext_start_pos, ext_len -%}
+        {%- if current_ext == clean_ext -%}
+          {%- assign static_files = static_files | push: item -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
     {%- endfor -%}
-  {%- endfor -%}
-{%- else -%}
-  {%- assign static_files = site.static_files -%}
+  {%- endif -%}
 {%- endif -%}
 {%- assign site_pages = site.pages -%}
 
@@ -116,7 +120,6 @@
     {%- if check_char != "/" -%}
       {%- assign clean_item_path = clean_item_path | prepend: "/" -%}
     {%- endif -%}
-    
     {%- if item.url == active_path or item.path == active_path or clean_item_path == active_path -%}
       {%- assign p = item -%}
       {%- break -%}
@@ -189,7 +192,6 @@
   {%- endif -%}
   {%- assign display_label = filename -%}
   {%- assign leaf_level = physical_html_depth | plus: 1 -%}
-  
   {%- if p.url -%}
       <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="default" class="nowrap tv-list"><span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" lang="{{ page.lang | default: "en" }}" href="{{ p.url | relative_url }}"{%- if p.title -%} title="{{ p.title | escape }}"{%- endif -%}>{{ display_label | escape }}</a>{%- if p.title -%}<span class="tv-page-title wb-inv" aria-hidden="true">{{ p.title | escape }}</span>{%- endif -%}</span></li>{{ crlf }}
   {%- else -%}
