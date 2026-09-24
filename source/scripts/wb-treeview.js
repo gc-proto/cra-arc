@@ -2,7 +2,7 @@
  * @title WET-BOEW Accessible Treeview Plugin
  * @overview Automated WAI-ARIA compliant nested tree view structures.
  */
-(function ($, window, document, wb) {
+(function ($, globalThis, document, wb) {
     "use strict";
 
     var componentName = "wb-treeview";
@@ -157,7 +157,6 @@
     }
 
     function initTreeitem(treeitem) {
-        // Safe pointer index configuration without destructive DOM manipulations
         treeitem.domNode.tabIndex = -1;
         if (treeitem.isExpandable === true) {
             if (treeitem.domNode.getAttribute("aria-expanded") === null) {
@@ -178,8 +177,12 @@
             handleTreeitemBlur(treeitem);
         });
         if (treeitem.isExpandable === false) {
-            treeitem.domNode.addEventListener("mouseover", handleTreeitemMouseOver);
-            treeitem.domNode.addEventListener("mouseout", handleTreeitemMouseOut);
+            treeitem.domNode.addEventListener("mouseover", function (event) {
+                handleTreeitemMouseOver(event);
+            });
+            treeitem.domNode.addEventListener("mouseout", function (event) {
+                handleTreeitemMouseOut(event);
+            });
         }
     }
 
@@ -214,14 +217,14 @@
         }
     }
 
-    var isExpandedItemState = function isTreeitemExpanded(treeitem) {
+    function isExpandedItemState(treeitem) {
         if (treeitem.isExpandable === true) {
             if (treeitem.domNode.getAttribute("aria-expanded") === "true") {
                 return true;
             }
         }
         return false;
-    };
+    }
 
     /**
      * Focused Element State Managers
@@ -342,6 +345,53 @@
         if (currentItem.isExpandable === true) {
             currentItem.domNode.setAttribute("aria-expanded", "true");
             updateVisibleTreeitems(tree);
+            checkRecursiveAutoExpansion(tree, currentItem);
+        }
+    }
+
+    /**
+    * Evaluates immediate visible group boundaries to trigger cascading
+    * folder updates down isolated structural pathways.
+    */
+    function checkRecursiveAutoExpansion(tree, currentItem) {
+        var groupContainer = currentItem.domNode.querySelector('ul[role="group"]');
+        if (groupContainer !== null) {
+            var immediateItems = groupContainer.children;
+            var folderCount = 0;
+            var linkCount = 0;
+            var targetItem = null;
+            var k = 0;
+            while (k < immediateItems.length) {
+                var childNode = immediateItems[k];
+                if (childNode.tagName.toLowerCase() === "li" && childNode.getAttribute("role") === "treeitem") {
+                    var isFolder = false;
+                    var subElem = childNode.firstElementChild;
+                    while (subElem !== null) {
+                        if (subElem.tagName.toLowerCase() === "ul" && subElem.getAttribute("role") === "group") {
+                            isFolder = true;
+                        }
+                        subElem = subElem.nextElementSibling;
+                    }
+                    if (isFolder === true) {
+                        folderCount = folderCount + 1;
+                        var m = 0;
+                        while (m < tree.treeitems.length) {
+                            if (tree.treeitems[m].domNode === childNode) {
+                                targetItem = tree.treeitems[m];
+                            }
+                            m = m + 1;
+                        }
+                    } else {
+                        linkCount = linkCount + 1;
+                    }
+                }
+                k = k + 1;
+            }
+            if (folderCount === 1 && linkCount === 0) {
+                if (targetItem !== null) {
+                    expandTreeitem(tree, targetItem);
+                }
+            }
         }
     }
 
@@ -392,6 +442,7 @@
     function handleTreeitemKeydown(treeitem, event) {
         var flag = false;
         var key = event.key;
+
         if (event.altKey === true || event.ctrlKey === true || event.metaKey === true) {
             return;
         }
