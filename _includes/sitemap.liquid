@@ -195,7 +195,7 @@
   {%- if p.url -%}
       <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="default" class="nowrap tv-list"><span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" lang="{{ page.lang | default: "en" }}" href="{{ p.url | relative_url }}"{%- if p.title -%} title="{{ p.title | escape }}"{%- endif -%}>{{ display_label | escape }}</a>{%- if p.title -%}<span class="tv-page-title wb-inv" aria-hidden="true">{{ p.title | escape }}</span>{%- endif -%}</span></li>{{ crlf }}
   {%- else -%}
-      <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="static" class="nowrap tv-list">"{%- if include.show_label != false -%}<span class="label label-default position-relative tv-type">static</span>{%- endif -%}<span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" href="{{ p.path | relative_url }}">{{ display_label | escape }}</a></span></li>{{ crlf }}
+      <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="static" class="nowrap tv-list">{%- if include.show_label != false -%}<span class="label label-default position-relative tv-type">static</span>{%- endif -%}<span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" href="{{ p.path | relative_url }}">{{ display_label | escape }}</a></span></li>{{ crlf }}
   {%- endif -%}
 {%- endfor -%}
 {%- if physical_html_depth > 0 -%}
