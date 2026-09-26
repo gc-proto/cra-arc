@@ -153,11 +153,27 @@ li[role="treeitem"] a.tv-page-link {
   text-decoration: underline;
 }
 
-[role="treeitem"] span.tv-title:focus,
-[role="treeitem"] a.tv-page-link:focus {
-  outline: 0;
+.tv-page-link[data-title-tooltip]:hover::after,
+.tv-page-link[data-title-tooltip]:focus::after {
+  content: attr(data-title-tooltip);
+  position: absolute;
+  bottom: 135%;
+  left: 50%;
+  transform: translateX(-50%); 
+  background-color: #eee;
+  color: #000;
+  border: 1px #acacac solid;
+  padding: 6px 12px;
+  font-size: 14px;
+  white-space: nowrap; 
+  width: max-content;
+  z-index: 999999;
+  border-radius: 4px; 
+  box-shadow: 0px 4px 8px #cecece;
 }
 
+[role="treeitem"] span.tv-title:focus,
+[role="treeitem"] a.tv-page-link:focus,
 [role="treeitem"] span.tv-title.focus,
 [role="treeitem"] a.tv-page-link.focus,
 [role="treeitem"] span.tv-title:focus-visible,
