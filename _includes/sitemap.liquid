@@ -193,9 +193,9 @@
   {%- assign display_label = filename -%}
   {%- assign leaf_level = physical_html_depth | plus: 1 -%}
   {%- if p.url -%}
-      <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="default" class="nowrap tv-list"><span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" href="{{ p.url | relative_url }}"{%- if p.title -%} data-title-tooltip="{{ p.title | escape_once }}"{%- endif -%}>{{ display_label | escape }}{%- if p.title -%}<span class="tv-page-title wb-inv" lang="{{ page.lang | default: "en" }}"> ({{ p.title | escape_once }})</span>{%- endif -%}</a></span></li>{{ crlf }}
+      <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="noaction" class="nowrap tv-list"><span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" href="{{ p.url | relative_url }}"{%- if p.title -%} data-title-tooltip="{{ p.title | escape_once }}"{%- endif -%}>{{ display_label | escape }}{%- if p.title -%}<span class="tv-page-title wb-inv" lang="{{ page.lang | default: "en" }}"> ({{ p.title | escape_once }})</span>{%- endif -%}</a></span></li>{{ crlf }}
   {%- else -%}
-      <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="no-frontmatter" class="nowrap tv-list">{%- if include.show_label != false -%}<span class="label label-default position-relative tv-type">static</span>{%- endif -%}<span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" href="{{ p.path | relative_url }}">{{ display_label | escape }}</a></span></li>{{ crlf }}
+      <li role="treeitem" aria-selected="false" aria-level="{{ leaf_level }}" data-action-id="static-noaction" class="nowrap tv-list">{%- if include.show_label != false -%}<span class="label label-default position-relative tv-type">static</span>{%- endif -%}<span class="tv-filtered"><a tabindex="-1" target="_blank" class="tv-page-link" data-exit="false" href="{{ p.path | relative_url }}">{{ display_label | escape }}</a></span></li>{{ crlf }}
   {%- endif -%}
 {%- endfor -%}
 {%- if physical_html_depth > 0 -%}
