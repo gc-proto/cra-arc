@@ -137,10 +137,16 @@ li[role="treeitem"] span.tv-title {
   z-index: 2;
 }
 
+.tv-page-link {
+  position: relative;
+  text-decoration: underline;
+  color: #0066cc;
+  cursor: pointer;
+}
+
 li[role="treeitem"] a.tv-page-link {
   display: inline-flex !important;
   align-items: center;
-  cursor: pointer;
   line-height: 1.2em;
   white-space: nowrap;
 
@@ -151,6 +157,18 @@ li[role="treeitem"] a.tv-page-link {
   position: relative;
   z-index: 2;
   text-decoration: underline;
+}
+
+.wb-treeview li[role="treeitem"]:has(.tv-page-link:hover),
+.wb-treeview li[role="treeitem"]:has(.tv-page-link:focus) {
+  position: relative !important;
+  z-index: 99999 !important;
+}
+
+.tv-page-link:hover,
+.tv-page-link:focus {
+  position: relative !important;
+  z-index: 100 !important;
 }
 
 .tv-page-link[data-title-tooltip]:hover::after,
