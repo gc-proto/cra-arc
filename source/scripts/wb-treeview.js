@@ -76,6 +76,7 @@
         if (typeof node !== "object") {
             return null;
         }
+
         return {
             domNode: node,
             treeitems: [],
@@ -107,6 +108,7 @@
 
         var isExpandable = false;
         var elem = node.firstElementChild;
+
         while (elem !== null) {
             if (elem.tagName.toLowerCase() === "ul" && elem.getAttribute("role") === "group") {
                 isExpandable = true;
@@ -115,6 +117,7 @@
         }
 
         var inGroupFlag = false;
+
         if (group !== null) {
             inGroupFlag = true;
         }
@@ -136,6 +139,7 @@
     function findTreeitems(node, tree, group) {
         var elem = node.firstElementChild;
         var ti = group;
+
         while (elem !== null) {
             if (elem.tagName.toLowerCase() === "li" && elem.getAttribute("role") === "treeitem") {
                 ti = createTreeitem(elem, tree, group);
@@ -163,7 +167,6 @@
                 treeitem.domNode.setAttribute("aria-expanded", "false");
             }
         }
-        
         treeitem.domNode.addEventListener("keydown", function (event) {
             handleTreeitemKeydown(treeitem, event);
         });
@@ -191,6 +194,7 @@
      */
     function updateVisibleTreeitems(tree) {
         var i = 0;
+
         if (tree !== null) {
             if (tree.treeitems !== null) {
                 tree.firstTreeitem = null;
@@ -239,6 +243,7 @@
 
     function setFocusToItem(tree, treeitem) {
         var i = 0;
+
         while (i < tree.treeitems.length) {
             var ti = tree.treeitems[i];
             if (ti === treeitem) {
@@ -254,6 +259,7 @@
     function setFocusToNextItem(tree, currentItem) {
         var nextItem = null;
         var i = tree.treeitems.length - 1;
+
         while (i >= 0) {
             var ti = tree.treeitems[i];
             if (ti === currentItem) {
@@ -273,8 +279,10 @@
     function setFocusToPreviousItem(tree, currentItem) {
         var prevItem = null;
         var i = 0;
+
         while (i < tree.treeitems.length) {
             var ti = tree.treeitems[i];
+
             if (ti === currentItem) {
                 i = tree.treeitems.length;
             } else {
@@ -312,11 +320,15 @@
 
     function setFocusByFirstCharacter(tree, currentItem, char) {
         char = char.toLowerCase();
+
         var start = tree.treeitems.indexOf(currentItem) + 1;
+
         if (start === tree.treeitems.length) {
             start = 0;
         }
+
         var index = getIndexFirstChars(tree, start, char);
+
         if (index === -1) {
             index = getIndexFirstChars(tree, 0, char);
         }
@@ -327,6 +339,7 @@
 
     function getIndexFirstChars(tree, startIndex, char) {
         var i = startIndex;
+
         while (i < tree.firstChars.length) {
             if (tree.treeitems[i].isVisible === true) {
                 if (char === tree.firstChars[i]) {
@@ -355,17 +368,20 @@
     */
     function checkRecursiveAutoExpansion(tree, currentItem) {
         var groupContainer = currentItem.domNode.querySelector('ul[role="group"]');
+
         if (groupContainer !== null) {
             var immediateItems = groupContainer.children;
             var folderCount = 0;
             var linkCount = 0;
             var targetItem = null;
             var k = 0;
+
             while (k < immediateItems.length) {
                 var childNode = immediateItems[k];
                 if (childNode.tagName.toLowerCase() === "li" && childNode.getAttribute("role") === "treeitem") {
                     var isFolder = false;
                     var subElem = childNode.firstElementChild;
+
                     while (subElem !== null) {
                         if (subElem.tagName.toLowerCase() === "ul" && subElem.getAttribute("role") === "group") {
                             isFolder = true;
@@ -374,7 +390,9 @@
                     }
                     if (isFolder === true) {
                         folderCount = folderCount + 1;
+
                         var m = 0;
+
                         while (m < tree.treeitems.length) {
                             if (tree.treeitems[m].domNode === childNode) {
                                 targetItem = tree.treeitems[m];
@@ -397,6 +415,7 @@
 
     function expandAllSiblingItems(tree, currentItem) {
         var i = 0;
+
         while (i < tree.treeitems.length) {
             var ti = tree.treeitems[i];
             if (ti.groupTreeitem === currentItem.groupTreeitem) {
@@ -410,6 +429,7 @@
 
     function collapseTreeitem(tree, currentItem) {
         var groupTreeitem = null;
+
         if (isExpandedItemState(currentItem) === true) {
             groupTreeitem = currentItem;
         } else {
@@ -426,6 +446,7 @@
     function collapseChildrenNodes(parentItem) {
         var childItems = parentItem.domNode.querySelectorAll('li[role="treeitem"]');
         var i = 0;
+
         while (i < childItems.length) {
             var item = childItems[i];
             var hasGroup = item.querySelector('ul[role="group"]');
@@ -527,6 +548,7 @@
         var targetNode = event.target;
         var isTitleClick = false;
         var isLinkClick = false;
+
         if (targetNode !== null) {
             if (targetNode.classList !== null) {
                 if (targetNode.classList.contains("tv-title") === true || targetNode.closest(".tv-title") !== null) {
@@ -554,6 +576,7 @@
 
     function handleTreeitemFocus(treeitem) {
         var node = treeitem.domNode;
+
         if (treeitem.isExpandable === true) {
             var titleSpan = node.querySelector(".tv-title");
             if (titleSpan !== null) {
@@ -567,8 +590,10 @@
 
     function handleTreeitemBlur(treeitem) {
         var node = treeitem.domNode;
+
         if (treeitem.isExpandable === true) {
             var titleSpan = node.querySelector(".tv-title");
+
             if (titleSpan !== null) {
                 node = titleSpan;
             } else {
@@ -592,6 +617,7 @@
     function triggerGlobalExpansion(treeNode, shouldExpand) {
         var treeItems = treeNode.querySelectorAll('li[role="treeitem"]');
         var j = 0;
+
         while (j < treeItems.length) {
             var itemNode = treeItems[j];
             var hasGroup = itemNode.querySelector('ul[role="group"]');
@@ -613,6 +639,7 @@
         var urlParams = new URLSearchParams(globalThis.location.search);
         var treeParam = urlParams.get("tree");
         var actionParam = urlParams.get("action");
+
         if (treeParam === "expand" || actionParam === "expandall") {
             triggerGlobalExpansion(treeNode, true);
         }
@@ -640,7 +667,6 @@
         } else {
             $targetTree = $(".wb-treeview");
         }
-        
         $targetTree.trigger("expandall.wb-treeview");
     });
 
@@ -656,7 +682,6 @@
         } else {
             $targetTree = $(".wb-treeview");
         }
-        
         $targetTree.trigger("collapseall.wb-treeview");
     });
 })(jQuery, wb);
