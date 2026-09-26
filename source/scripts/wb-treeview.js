@@ -660,3 +660,85 @@
         $targetTree.trigger("collapseall.wb-treeview");
     });
 })(jQuery, wb);
+
+/* Create and position tooltips showing page title information */
+document.addEventListener("DOMContentLoaded", function () {
+  var links = document.querySelectorAll(".tv-page-link[data-title-tooltip]");
+  var padding = 15; 
+
+  links.forEach(function (link) {
+    var checkBounds = function () {
+      var linkRect = link.getBoundingClientRect();
+      
+      // Calculate link coordinates relative to the absolute page layout space
+      // This includes the current hidden scroll offset positions
+      var absoluteLinkLeft = linkRect.left + window.pageXOffset;
+      
+      // Find the absolute maximum width boundary of the canvas container
+      var totalPageWidth = document.documentElement.scrollWidth;
+
+      var textAfter = link.getAttribute("data-title-tooltip");
+
+      if (textAfter === null) {
+        textAfter = "";
+      }
+      
+      var longestText = textAfter;
+      /* 
+      var textBefore = link.getAttribute("data-before-tooltip");
+
+      if (textBefore === null) {
+        textBefore = "";
+      }
+      if (textBefore.length > textAfter.length) {
+        longestText = textBefore;
+      }
+      */
+      
+      var dummy = document.createElement("span");
+      dummy.style.visibility = "hidden";
+      dummy.style.position = "absolute";
+      dummy.style.whiteSpace = "nowrap";
+      dummy.style.fontSize = "14px";
+      dummy.innerText = longestText;
+      document.body.appendChild(dummy);
+      
+      var tooltipWidth = dummy.offsetWidth + 24; 
+      document.body.removeChild(dummy);
+
+      var maxAllowedWidth = window.innerWidth * 0.95;
+      if (tooltipWidth > maxAllowedWidth) {
+        tooltipWidth = maxAllowedWidth;
+      }
+
+      // Track centering based on the absolute layout coordinate map
+      var linkCenter = absoluteLinkLeft + (linkRect.width / 2);
+      var tooltipLeft = linkCenter - (tooltipWidth / 2);
+      var tooltipRight = linkCenter + (tooltipWidth / 2);
+
+      var shift = 0;
+
+      // Check boundary overflow using the total horizontal layout scroll footprint
+      if (tooltipRight > (totalPageWidth - padding)) {
+        shift = (totalPageWidth - padding) - tooltipRight;
+      }
+      else {
+        if (tooltipLeft < padding) {
+          shift = padding - tooltipLeft;
+        }
+      }
+
+      link.style.setProperty("--tooltip-shift", shift + "px");
+    };
+
+    link.addEventListener("mouseenter", checkBounds);
+    link.addEventListener("focus", checkBounds);
+    
+    link.addEventListener("mouseleave", function () {
+      link.style.removeProperty("--tooltip-shift");
+    });
+    link.addEventListener("blur", function () {
+      link.style.removeProperty("--tooltip-shift");
+    });
+  });
+});
