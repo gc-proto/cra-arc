@@ -78,11 +78,11 @@
         }
 
         return {
-            domNode: node,
-            treeitems: [],
-            firstChars: [],
-            firstTreeitem: null,
-            lastTreeitem: null,
+            domNode: node, 
+            treeitems: [], 
+            firstChars: [], 
+            firstTreeitem: null, 
+            lastTreeitem: null, 
             selectedItem: null
         };
     }
@@ -123,12 +123,12 @@
         }
 
         return {
-            tree: treeObj,
-            groupTreeitem: group,
-            domNode: node,
-            label: label,
-            isExpandable: isExpandable,
-            isVisible: false,
+            tree: treeObj, 
+            groupTreeitem: group, 
+            domNode: node, 
+            label: label, 
+            isExpandable: isExpandable, 
+            isVisible: false, 
             inGroup: inGroupFlag
         };
     }
@@ -692,6 +692,11 @@ document.addEventListener("DOMContentLoaded", function () {
   var padding = 15;
 
   links.forEach(function (link) {
+    // Ensure keyboard users can navigate seamlessly
+    if (link.getAttribute("tabindex") === "-1") {
+      link.setAttribute("tabindex", "0");
+    }
+
     var checkBounds = function () {
       var linkRect = link.getBoundingClientRect();
       var viewportWidth = window.innerWidth;
@@ -706,7 +711,7 @@ document.addEventListener("DOMContentLoaded", function () {
         textBefore = "";
       }
 
-      // 1. Measure the exact wrapping height and absolute width of the right segment (Title)
+      // 1. Measure the EXACT layout metrics of the right segment (Title) under 90vw limits
       var rightDummy = document.createElement("div");
       rightDummy.style.visibility = "hidden";
       rightDummy.style.position = "absolute";
@@ -716,14 +721,15 @@ document.addEventListener("DOMContentLoaded", function () {
       rightDummy.style.boxSizing = "border-box";
       rightDummy.style.whiteSpace = "normal";
       rightDummy.style.width = "max-content";
-      rightDummy.style.maxWidth = "70vw";
+      rightDummy.style.maxWidth = "90vw"; /* Synchronized with your CSS constraint */
       rightDummy.style.wordWrap = "break-word";
       rightDummy.style.border = "1px solid transparent";
       rightDummy.innerText = textAfter;
       document.body.appendChild(rightDummy);
 
-      var rightWidth = rightDummy.getBoundingClientRect().width;
-      var dynamicHeight = rightDummy.getBoundingClientRect().height;
+      var rightRect = rightDummy.getBoundingClientRect();
+      var rightWidth = rightRect.width;
+      var dynamicHeight = rightRect.height;
       document.body.removeChild(rightDummy);
 
       // 2. Measure the exact width of the left segment (Status Prefix) if it exists
@@ -746,22 +752,23 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.removeChild(leftDummy);
       }
 
-      // 3. Compute the offset shift to center the combined tooltip system
+      // 3. Compute the perfect offset shift to balance the system center directly above the link center
       var shift = 0;
       if (textBefore !== "") {
+        // Find combined system footprint
         var totalTooltipWidth = leftWidth + rightWidth;
         var linkCenter = linkRect.left + (linkRect.width / 2);
 
-        // Find where the left and right edges would naturally fall if centered over the link midpoint
+        // Find where edges fall when system midpoint sits above link midpoint
         var targetLeftBoundary = linkCenter - (totalTooltipWidth / 2);
         var targetRightBoundary = linkCenter + (totalTooltipWidth / 2);
 
-        // Standard Centering Calculation: Find out how much the seam needs to move leftwards
+        // Calculate how much the connection seam must move from center to keep things balanced
         var naturalSeamPosition = linkCenter;
         var balancedSeamPosition = targetLeftBoundary + leftWidth;
         shift = balancedSeamPosition - naturalSeamPosition;
 
-        // Bounding Box Safety Fallbacks: Clamp calculations to prevent running off screen margins
+        // Bounding Box Edge Guarding: clamp movements if the text threatens screen margins
         if (targetRightBoundary > (viewportWidth - padding)) {
           var rightOverflow = targetRightBoundary - (viewportWidth - padding);
           shift = shift - rightOverflow;
@@ -772,7 +779,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       } else {
-        // Fallback for elements missing a data-status attribute entirely
+        // Safe fallback for text links completely missing status attributes
         var singleLinkCenter = linkRect.left + (linkRect.width / 2);
         var singleLeftBoundary = singleLinkCenter - (rightWidth / 2);
         var singleRightBoundary = singleLinkCenter + (rightWidth / 2);
@@ -786,6 +793,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
+      // Push execution variables cleanly into active CSS custom properties
       link.style.setProperty("--tooltip-shift", shift + "px");
       link.style.setProperty("--tooltip-height", dynamicHeight + "px");
     };
@@ -793,14 +801,26 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("mouseenter", checkBounds);
     link.addEventListener("focus", checkBounds);
 
-    link.addEventListener("mouseleave", function () {
+    var clearTooltip = function () {
       link.style.removeProperty("--tooltip-shift");
       link.style.removeProperty("--tooltip-height");
-    });
+    };
 
-    link.addEventListener("blur", function () {
-      link.style.removeProperty("--tooltip-shift");
-      link.style.removeProperty("--tooltip-height");
-    });
+    link.addEventListener("mouseleave", clearTooltip);
+    link.addEventListener("blur", clearTooltip);
+  });
+
+  // Dismiss tooltips dynamically via Escape key (WCAG 2.1 compliance)
+  window.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" || event.key === "Esc") {
+      var activeLinks = document.querySelectorAll(".tv-page-link[data-title-tooltip]");
+      activeLinks.forEach(function (activeLink) {
+        activeLink.style.removeProperty("--tooltip-shift");
+        activeLink.style.removeProperty("--tooltip-height");
+        if (document.activeElement === activeLink) {
+          activeLink.blur();
+        }
+      });
+    }
   });
 });
