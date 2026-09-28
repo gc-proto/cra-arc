@@ -6,16 +6,16 @@
 }
 
 /* Clear default layout parameters */
-.wb-treeview, 
-.wb-treeview ul, 
-.wb-treeview [role="group"] {
+.treeview, 
+.treeview ul, 
+.treeview [role="group"] {
   list-style: none;
   padding-left: 0;
   margin-left: 0;
   box-sizing: border-box;
 }
 
-.wb-treeview li {
+.treeview li {
   display: block;
   position: relative;
   padding-left: calc(2 * var(--spacing) - var(--radius) - 2px);
@@ -65,7 +65,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
 }
 
 /* Node indicators (Circles) */
-.wb-treeview li[role="treeitem"]::after {
+.treeview li[role="treeitem"]::after {
   content: "";
   display: block;
   position: absolute;
@@ -93,41 +93,41 @@ ul[role="tree"] > li[role="treeitem"]::before {
 }
 
 /* Hide indicators for folders/parent elements */
-.wb-treeview li:has(> span.tv-title)::after, 
-.wb-treeview li.tv-parent::after {
+.treeview li:has(> span.tv-title)::after, 
+.treeview li.tv-parent::after {
   display: none;
 }
 
 /* Action variations applied to indicators */
-.wb-treeview li[role="treeitem"][data-action-id="static-noaction"]::after {
+.treeview li[role="treeitem"][data-action-id="static-noaction"]::after {
   background: #FFF;
   border: 2px #ACACAC solid;
 
 /*  border: 5px var(--listitemcolor) double; */
 }
 
-.wb-treeview li[role="treeitem"][data-action-id="add"]::after {
+.treeview li[role="treeitem"][data-action-id="add"]::after {
   background: #D8EECA;
   border: 2px #278400 solid;
 }
 
-.wb-treeview li[role="treeitem"][data-action-id="modify"]::after {
+.treeview li[role="treeitem"][data-action-id="modify"]::after {
   background: #F9F4D4;
   border: 2px #F90 solid;
 }
 
-.wb-treeview li[role="treeitem"][data-action-id="delete"]::after {
+.treeview li[role="treeitem"][data-action-id="delete"]::after {
   background: #F3E9E8;
   border: 2px #D3080C solid;
 }
 
-.wb-treeview li[role="treeitem"][data-action-id="info"]::after {
+.treeview li[role="treeitem"][data-action-id="info"]::after {
   background: #D7FAFF;
   border: 2px #269ABC solid;
 }
 
 /* Badges / Document type identifiers */
-.wb-treeview li[role="treeitem"] span.tv-type {
+.treeview li[role="treeitem"] span.tv-type {
   margin-right: 1.2em;
   top: -3px;
 }
@@ -147,7 +147,7 @@ li[role="treeitem"] span.tv-title {
   z-index: 2;
 }
 
-.wb-treeview li[role="treeitem"] span.tv-title:hover {
+.treeview li[role="treeitem"] span.tv-title:hover {
   background-color: var(--expandcolor);
   color: #FFF;
 
@@ -175,7 +175,7 @@ li[role="treeitem"] a.tv-page-link {
   margin-right: -6px;
 }
 
-.wb-treeview li[role="treeitem"] a.tv-page-link:hover {
+.treeview li[role="treeitem"] a.tv-page-link:hover {
   background-color: #EAEBED;
   color: #00E;
 }
@@ -194,14 +194,14 @@ li[role="treeitem"] a.tv-page-link:visited {
   outline: 1px dotted #000;
 }
 
-.wb-treeview li[role="treeitem"]:has(.tv-page-link:hover), 
-.wb-treeview li[role="treeitem"]:has(.tv-page-link:focus) {
+.treeview li[role="treeitem"]:has(.tv-page-link:hover), 
+.treeview li[role="treeitem"]:has(.tv-page-link:focus) {
   position: relative !important;
   z-index: auto !important;
 }
 
-.wb-treeview li[role="treeitem"] span.tv-filtered:has(.tv-page-link:hover), 
-.wb-treeview li[role="treeitem"] span.tv-filtered:has(.tv-page-link:focus) {
+.treeview li[role="treeitem"] span.tv-filtered:has(.tv-page-link:hover), 
+.treeview li[role="treeitem"] span.tv-filtered:has(.tv-page-link:focus) {
   position: relative !important;
   z-index: 99999 !important;
 }
@@ -237,7 +237,7 @@ li[role="treeitem"] > span.tv-title::before {
   padding: 2px;
 }
 
-.wb-treeview li span.tv-title:hover::before {
+.treeview li span.tv-title:hover::before {
   background-color: transparent;
   color: #FFF;
 }

@@ -91,7 +91,7 @@
 {%- assign all_pages = static_files | concat: site_pages -%}
 
 {%- if all_pages.size > 0 -%}
-  {{ crlf }}<ul id="{{ include.tree_id }}" class="list-unstyled wb-treeview" role="tree" {%- if include.tree_label and include.tree_label != "" -%} aria-labelledby="{{ include.tree_label }}"{%- endif -%}>{{ crlf }}
+  {{ crlf }}<ul id="{{ include.tree_id }}" class="list-unstyled wb-treeview treeview" role="tree" {%- if include.tree_label and include.tree_label != "" -%} aria-labelledby="{{ include.tree_label }}"{%- endif -%}>{{ crlf }}
 {%- assign path_string_list = "" -%}
 {%- for p in all_pages -%}
   {%- if p.sitemap == false or p.sitemapExclude == true -%}{%- continue -%}{%- endif -%}
