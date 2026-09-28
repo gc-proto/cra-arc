@@ -41,7 +41,7 @@
     function initPlugin(element) {
         var $treeNode = $(element);
         var treeObj = createTree(element);
-        
+
         $treeNode.attr("role", "tree");
         $treeNode.attr("data-tree-initialized", "true");
         element._treeInstance = treeObj;
@@ -65,7 +65,7 @@
         });
 
         checkQueryStringTriggers(element);
-        
+
         wb.ready($treeNode, componentName);
     }
 
@@ -658,7 +658,7 @@
     // Unified click handler for targeted expansion triggers
     $(document).on("click", "[data-tree-action=\"expandall\"]", function (event) {
         event.preventDefault();
-        
+
         var targetSelector = $(this).data("treeTarget");
         var $targetTree = null;
 
@@ -673,7 +673,7 @@
     // Unified click handler for targeted collapse triggers
     $(document).on("click", "[data-tree-action=\"collapseall\"]", function (event) {
         event.preventDefault();
-        
+
         var targetSelector = $(this).data("treeTarget");
         var $targetTree = null;
 
@@ -689,81 +689,118 @@
 /* Create and position tooltips showing page title information */
 document.addEventListener("DOMContentLoaded", function () {
   var links = document.querySelectorAll(".tv-page-link[data-title-tooltip]");
-  var padding = 15; 
+  var padding = 15;
 
   links.forEach(function (link) {
     var checkBounds = function () {
       var linkRect = link.getBoundingClientRect();
-      
-      // Calculate link coordinates relative to the absolute page layout space
-      // This includes the current hidden scroll offset positions
-      var absoluteLinkLeft = linkRect.left + window.pageXOffset;
-      
-      // Find the absolute maximum width boundary of the canvas container
-      var totalPageWidth = document.documentElement.scrollWidth;
+      var viewportWidth = window.innerWidth;
 
       var textAfter = link.getAttribute("data-title-tooltip");
-
       if (textAfter === null) {
         textAfter = "";
       }
-      
-      var longestText = textAfter;
-      /* 
-      var textBefore = link.getAttribute("data-before-tooltip");
 
+      var textBefore = link.getAttribute("data-status");
       if (textBefore === null) {
         textBefore = "";
       }
-      if (textBefore.length > textAfter.length) {
-        longestText = textBefore;
+
+      // 1. Measure the exact wrapping height and absolute width of the right segment (Title)
+      var rightDummy = document.createElement("div");
+      rightDummy.style.visibility = "hidden";
+      rightDummy.style.position = "absolute";
+      rightDummy.style.fontSize = "14px";
+      rightDummy.style.lineHeight = "1.2em";
+      rightDummy.style.padding = "6px 12px";
+      rightDummy.style.boxSizing = "border-box";
+      rightDummy.style.whiteSpace = "normal";
+      rightDummy.style.width = "max-content";
+      rightDummy.style.maxWidth = "70vw";
+      rightDummy.style.wordWrap = "break-word";
+      rightDummy.style.border = "1px solid transparent";
+      rightDummy.innerText = textAfter;
+      document.body.appendChild(rightDummy);
+
+      var rightWidth = rightDummy.getBoundingClientRect().width;
+      var dynamicHeight = rightDummy.getBoundingClientRect().height;
+      document.body.removeChild(rightDummy);
+
+      // 2. Measure the exact width of the left segment (Status Prefix) if it exists
+      var leftWidth = 0;
+      if (textBefore !== "") {
+        var leftDummy = document.createElement("div");
+        leftDummy.style.visibility = "hidden";
+        leftDummy.style.position = "absolute";
+        leftDummy.style.fontSize = "14px";
+        leftDummy.style.lineHeight = "1.2em";
+        leftDummy.style.padding = "6px 12px";
+        leftDummy.style.boxSizing = "border-box";
+        leftDummy.style.whiteSpace = "nowrap";
+        leftDummy.style.width = "max-content";
+        leftDummy.style.border = "1px solid transparent";
+        leftDummy.innerText = textBefore;
+        document.body.appendChild(leftDummy);
+
+        leftWidth = leftDummy.getBoundingClientRect().width;
+        document.body.removeChild(leftDummy);
       }
-      */
-      
-      var dummy = document.createElement("span");
-      dummy.style.visibility = "hidden";
-      dummy.style.position = "absolute";
-      dummy.style.whiteSpace = "nowrap";
-      dummy.style.fontSize = "14px";
-      dummy.innerText = longestText;
-      document.body.appendChild(dummy);
-      
-      var tooltipWidth = dummy.offsetWidth + 24; 
-      document.body.removeChild(dummy);
 
-      var maxAllowedWidth = window.innerWidth * 0.95;
-      if (tooltipWidth > maxAllowedWidth) {
-        tooltipWidth = maxAllowedWidth;
-      }
-
-      // Track centering based on the absolute layout coordinate map
-      var linkCenter = absoluteLinkLeft + (linkRect.width / 2);
-      var tooltipLeft = linkCenter - (tooltipWidth / 2);
-      var tooltipRight = linkCenter + (tooltipWidth / 2);
-
+      // 3. Compute the offset shift to center the combined tooltip system
       var shift = 0;
+      if (textBefore !== "") {
+        var totalTooltipWidth = leftWidth + rightWidth;
+        var linkCenter = linkRect.left + (linkRect.width / 2);
 
-      // Check boundary overflow using the total horizontal layout scroll footprint
-      if (tooltipRight > (totalPageWidth - padding)) {
-        shift = (totalPageWidth - padding) - tooltipRight;
-      }
-      else {
-        if (tooltipLeft < padding) {
-          shift = padding - tooltipLeft;
+        // Find where the left and right edges would naturally fall if centered over the link midpoint
+        var targetLeftBoundary = linkCenter - (totalTooltipWidth / 2);
+        var targetRightBoundary = linkCenter + (totalTooltipWidth / 2);
+
+        // Standard Centering Calculation: Find out how much the seam needs to move leftwards
+        var naturalSeamPosition = linkCenter;
+        var balancedSeamPosition = targetLeftBoundary + leftWidth;
+        shift = balancedSeamPosition - naturalSeamPosition;
+
+        // Bounding Box Safety Fallbacks: Clamp calculations to prevent running off screen margins
+        if (targetRightBoundary > (viewportWidth - padding)) {
+          var rightOverflow = targetRightBoundary - (viewportWidth - padding);
+          shift = shift - rightOverflow;
+        } else {
+          if (targetLeftBoundary < padding) {
+            var leftOverflow = padding - targetLeftBoundary;
+            shift = shift + leftOverflow;
+          }
+        }
+      } else {
+        // Fallback for elements missing a data-status attribute entirely
+        var singleLinkCenter = linkRect.left + (linkRect.width / 2);
+        var singleLeftBoundary = singleLinkCenter - (rightWidth / 2);
+        var singleRightBoundary = singleLinkCenter + (rightWidth / 2);
+
+        if (singleRightBoundary > (viewportWidth - padding)) {
+          shift = (viewportWidth - padding) - singleRightBoundary;
+        } else {
+          if (singleLeftBoundary < padding) {
+            shift = padding - singleLeftBoundary;
+          }
         }
       }
 
       link.style.setProperty("--tooltip-shift", shift + "px");
+      link.style.setProperty("--tooltip-height", dynamicHeight + "px");
     };
 
     link.addEventListener("mouseenter", checkBounds);
     link.addEventListener("focus", checkBounds);
-    
+
     link.addEventListener("mouseleave", function () {
       link.style.removeProperty("--tooltip-shift");
+      link.style.removeProperty("--tooltip-height");
     });
+
     link.addEventListener("blur", function () {
       link.style.removeProperty("--tooltip-shift");
+      link.style.removeProperty("--tooltip-height");
     });
   });
 });

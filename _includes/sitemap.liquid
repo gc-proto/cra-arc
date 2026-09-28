@@ -5,7 +5,7 @@
 
 {%- if include.extensions != nil -%}
   {%- assign strip_ext = include.extensions | strip -%}
-  
+
   {%- if strip_ext == "" or strip_ext == "*" or strip_ext == ".*" -%}
     {%- assign static_files = site.static_files -%}
   {%- else -%}
@@ -28,7 +28,7 @@
 
 {%- if include.section and include.section != "" -%}
   {%- assign sections = include.section | split: "," -%}
-  
+
   {%- assign matched_static_arr = "" | split: "" -%}
   {%- assign matched_page_arr = "" | split: "" -%}
 
@@ -63,7 +63,7 @@
       {%- if item_first_char == "/" -%}
         {%- assign clean_item_path = clean_item_path | slice: 1, clean_item_path.size -%}
       {%- endif -%}
-      
+
       {%- assign path_start = clean_item_path | slice: 0, folder_prefix.size -%}
       {%- if path_start == folder_prefix -%}
         {%- assign matched_page_arr = matched_page_arr | push: item.path -%}
@@ -91,7 +91,7 @@
 {%- assign all_pages = static_files | concat: site_pages -%}
 
 {%- if all_pages.size > 0 -%}
-  <ul id="{{ include.tree_id }}" class="list-unstyled wb-treeview" role="tree"{%- if include.tree_label and include.tree_label != "" -%} aria-labelledby="{{ include.tree_label }}"{%- endif -%}>{{ crlf }}
+  {{ crlf }}<ul id="{{ include.tree_id }}" class="list-unstyled wb-treeview" role="tree" {%- if include.tree_label and include.tree_label != "" -%} aria-labelledby="{{ include.tree_label }}"{%- endif -%}>{{ crlf }}
 {%- assign path_string_list = "" -%}
 {%- for p in all_pages -%}
   {%- if p.sitemap == false or p.sitemapExclude == true -%}{%- continue -%}{%- endif -%}

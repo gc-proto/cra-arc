@@ -12,12 +12,14 @@
   list-style: none;
   padding-left: 0;
   margin-left: 0;
+  box-sizing: border-box;
 }
 
 .wb-treeview li {
   display: block;
   position: relative;
   padding-left: calc(2 * var(--spacing) - var(--radius) - 2px);
+  box-sizing: border-box;
 }
 
 ul[role="tree"] li {
@@ -55,12 +57,14 @@ li[role="treeitem"]::before {
   height: calc(var(--spacing) + 1px);
   border: 2px solid var(--listitemcolor);
   border-width: 0 0 2px 2px;
+  transform: translate3d(0, 0, 0);
 }
 
 ul[role="tree"] > li[role="treeitem"]::before {
   display: none;
 }
 
+/* Node indicators (Circles) */
 .wb-treeview li[role="treeitem"]::after {
   content: "";
   display: block;
@@ -74,6 +78,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
   border-radius: 50%;
   z-index: 3;
   background: var(--listitemcolor);
+  transform: translate3d(0, 0, 0);
 
 /*  border: 2px solid var(--listitemcolor);
   box-sizing: border-box;
@@ -87,6 +92,13 @@ ul[role="tree"] > li[role="treeitem"]::before {
 */
 }
 
+/* Hide indicators for folders/parent elements */
+.wb-treeview li:has(> span.tv-title)::after, 
+.wb-treeview li.tv-parent::after {
+  display: none;
+}
+
+/* Action variations applied to indicators */
 .wb-treeview li[role="treeitem"][data-action-id="static-noaction"]::after {
   background: #FFF;
   border: 2px #ACACAC solid;
@@ -114,15 +126,13 @@ ul[role="tree"] > li[role="treeitem"]::before {
   border: 2px #269ABC solid;
 }
 
-.wb-treeview li:has(> span.tv-title)::after, 
-.wb-treeview li.tv-parent::after {
-  display: none;
+/* Badges / Document type identifiers */
+.wb-treeview li[role="treeitem"] span.tv-type {
+  margin-right: 1.2em;
+  top: -3px;
 }
 
-.wb-treeview li .wb-inv {
-  display: none !important;
-}
-
+/* Folder Titles */
 li[role="treeitem"] span.tv-title {
   display: inline-flex !important;
   align-items: center;
@@ -135,6 +145,13 @@ li[role="treeitem"] span.tv-title {
   border-radius: 4px;
   position: relative;
   z-index: 2;
+}
+
+.wb-treeview li[role="treeitem"] span.tv-title:hover {
+  background-color: var(--expandcolor);
+  color: #FFF;
+
+/*  font-weight: 500; */
 }
 
 .tv-page-link {
@@ -158,8 +175,33 @@ li[role="treeitem"] a.tv-page-link {
   margin-right: -6px;
 }
 
+.wb-treeview li[role="treeitem"] a.tv-page-link:hover {
+  background-color: #EAEBED;
+  color: #00E;
+}
+
+li[role="treeitem"] a.tv-page-link:visited {
+  color: #7834BC;
+}
+
+/* Keyboard Accessibility - Focus outlines */
+[role="treeitem"] span.tv-title:focus, 
+[role="treeitem"] a.tv-page-link:focus, 
+[role="treeitem"] span.tv-title.focus, 
+[role="treeitem"] a.tv-page-link.focus, 
+[role="treeitem"] span.tv-title:focus-visible, 
+[role="treeitem"] a.tv-page-link:focus-visible {
+  outline: 1px dotted #000;
+}
+
 .wb-treeview li[role="treeitem"]:has(.tv-page-link:hover), 
 .wb-treeview li[role="treeitem"]:has(.tv-page-link:focus) {
+  position: relative !important;
+  z-index: auto !important;
+}
+
+.wb-treeview li[role="treeitem"] span.tv-filtered:has(.tv-page-link:hover),
+.wb-treeview li[role="treeitem"] span.tv-filtered:has(.tv-page-link:focus) {
   position: relative !important;
   z-index: 99999 !important;
 }
@@ -170,56 +212,16 @@ li[role="treeitem"] a.tv-page-link {
   z-index: 100 !important;
 }
 
-.tv-page-link[data-title-tooltip]:hover::after, 
-.tv-page-link[data-title-tooltip]:focus::after {
-  content: attr(data-title-tooltip);
-  position: absolute;
-  bottom: 135%;
-  left: calc(50% + var(--tooltip-shift, 0px));
-  transform: translateX(-50%);
-  background-color: #eee;
-  color: #000;
-  border: 1px #acacac solid;
-  padding: 6px 12px;
-  font-size: 14px;
-  z-index: 999999;
-  border-radius: 4px;
-  box-shadow: 0px 4px 8px #cecece;
-  white-space: normal;
-  width: max-content;
-  max-width: 70vw;
-  word-wrap: break-word;
-  text-align: center;
+li[role="treeitem"][aria-expanded="false"] + [role="group"], 
+li[role="treeitem"][aria-expanded="false"] > [role="group"], 
+li[role="treeitem"][aria-expanded="false"] > ul[role="group"] {
+  display: none !important;
 }
 
-[role="treeitem"] span.tv-title:focus, 
-[role="treeitem"] a.tv-page-link:focus, 
-[role="treeitem"] span.tv-title.focus, 
-[role="treeitem"] a.tv-page-link.focus, 
-[role="treeitem"] span.tv-title:focus-visible, 
-[role="treeitem"] a.tv-page-link:focus-visible {
-  outline: 1px dotted #000;
-}
-
-.wb-treeview li[role="treeitem"] span.tv-title:hover {
-  background-color: var(--expandcolor);
-  color: #FFF;
-
-/*  font-weight: 500; */
-}
-
-.wb-treeview li[role="treeitem"] span.tv-type {
-  margin-right: 1.2em;
-  top: -3px;
-}
-
-li[role="treeitem"] a.tv-page-link:visited {
-  color: #7834BC;
-}
-
-.wb-treeview li[role="treeitem"] a.tv-page-link:hover {
-  background-color: #EAEBED;
-  color: #00E;
+li[role="treeitem"][aria-expanded="true"] + [role="group"], 
+li[role="treeitem"][aria-expanded="true"] > [role="group"], 
+li[role="treeitem"][aria-expanded="true"] > ul[role="group"] {
+  display: block !important;
 }
 
 /* --- FontAwesome Folder Icons --- */
@@ -233,6 +235,11 @@ li[role="treeitem"] > span.tv-title::before {
   transform: translateY(-50%);
   background-color: #FFF;
   padding: 2px;
+}
+
+.wb-treeview li span.tv-title:hover::before {
+  background-color: transparent;
+  color: #FFF;
 }
 
 /* Closed Folder State - Segoe UI Emoji */
@@ -276,7 +283,6 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
     font-family: "Font Awesome 5 Free" !important;
     font-weight: 900 !important;
     content: "\f07b" / "" !important;
-
     -webkit-font-smoothing: antialiased;
     display: inline-block;
     font-style: normal;
@@ -289,7 +295,6 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
     font-family: "Font Awesome 5 Free" !important;
     font-weight: 900 !important;
     content: "\f07c" / "" !important;
-
     -webkit-font-smoothing: antialiased;
     display: inline-block;
     font-style: normal;
@@ -298,19 +303,34 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   }
 }
 
-.wb-treeview li span.tv-title:hover::before {
-  background-color: transparent;
-  color: #FFF;
+/* Main Text Container Tooltip Setup (Right Side Segment) */
+.tv-page-link[data-title-tooltip]:hover::after, 
+.tv-page-link[data-title-tooltip]:focus::after {
+  content: attr(data-title-tooltip);
+  position: absolute;
+  bottom: 135%;
+  left: calc(50% + var(--tooltip-shift, 0px));
+  transform: none;
+  background-color: #EEE;
+  color: #000;
+  border: 1px #ACACAC solid;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.2em;
+  z-index: 999999;
+  white-space: normal;
+  width: max-content;
+  max-width: 70vw;
+  word-wrap: break-word;
+  text-align: center;
+  box-sizing: border-box !important;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px #CECECE;
 }
 
-li[role="treeitem"][aria-expanded="false"] + [role="group"], 
-li[role="treeitem"][aria-expanded="false"] > [role="group"], 
-li[role="treeitem"][aria-expanded="false"] > ul[role="group"] {
-  display: none !important;
-}
-
-li[role="treeitem"][aria-expanded="true"] + [role="group"], 
-li[role="treeitem"][aria-expanded="true"] > [role="group"], 
-li[role="treeitem"][aria-expanded="true"] > ul[role="group"] {
-  display: block !important;
+/* Left Segment Shadow and Split Layout Alterations */
+.tv-page-link[data-title-tooltip]:hover::after,
+.tv-page-link[data-title-tooltip]:focus::after {
+  transform: translateX(-50%) !important;
+  left: calc(50% + var(--tooltip-shift, 0px)) !important;
 }
