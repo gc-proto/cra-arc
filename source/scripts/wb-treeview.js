@@ -688,7 +688,7 @@
 
 /* Create and position tooltips showing page title information */
 document.addEventListener("DOMContentLoaded", function () {
-  var links = document.querySelectorAll(".tv-page-link[data-title-tooltip]");
+  var links = document.querySelectorAll(".tv-page-link[data-content-tooltip]");
   var padding = 15;
 
   links.forEach(function (link) {
@@ -701,12 +701,12 @@ document.addEventListener("DOMContentLoaded", function () {
       var linkRect = link.getBoundingClientRect();
       var viewportWidth = window.innerWidth;
 
-      var textAfter = link.getAttribute("data-title-tooltip");
+      var textAfter = link.getAttribute("data-content-tooltip");
       if (textAfter === null) {
         textAfter = "";
       }
 
-      var textBefore = link.getAttribute("data-status");
+      var textBefore = link.getAttribute("data-indicator-tooltip");
       if (textBefore === null) {
         textBefore = "";
       }
@@ -732,7 +732,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var dynamicHeight = rightRect.height;
       document.body.removeChild(rightDummy);
 
-      // 2. Measure the exact width of the left segment (Status Prefix) if it exists
+      // 2. Measure the exact width of the left segment (Indicator-tooltip Prefix) if it exists
       var leftWidth = 0;
       if (textBefore !== "") {
         var leftDummy = document.createElement("div");
@@ -779,7 +779,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       } else {
-        // Safe fallback for text links completely missing status attributes
+        // Safe fallback for text links completely missing indicator tooltip attributes
         var singleLinkCenter = linkRect.left + (linkRect.width / 2);
         var singleLeftBoundary = singleLinkCenter - (rightWidth / 2);
         var singleRightBoundary = singleLinkCenter + (rightWidth / 2);
@@ -813,7 +813,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Dismiss tooltips dynamically via Escape key (WCAG 2.1 compliance)
   window.addEventListener("keydown", function (event) {
     if (event.key === "Escape" || event.key === "Esc") {
-      var activeLinks = document.querySelectorAll(".tv-page-link[data-title-tooltip]");
+      var activeLinks = document.querySelectorAll(".tv-page-link[data-content-tooltip]");
       activeLinks.forEach(function (activeLink) {
         activeLink.style.removeProperty("--tooltip-shift");
         activeLink.style.removeProperty("--tooltip-height");
